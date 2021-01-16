@@ -437,17 +437,7 @@
 
 
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
-
+    
 
 <%@ include file="../adminInc/bottom.jsp" %>
 

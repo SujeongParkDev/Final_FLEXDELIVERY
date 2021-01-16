@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/owner")
-public class testController {
+public class ownerTestController {
 	private static final Logger logger
-	=LoggerFactory.getLogger(testController.class);
+	=LoggerFactory.getLogger(ownerTestController.class);
 
 	
 	@RequestMapping("/index.do")

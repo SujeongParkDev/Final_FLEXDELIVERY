@@ -93,7 +93,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                     	<!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="index.html" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a>
+                        <c:import url="/admin/index.do"><a href="#" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a></c:import>
                     </div>
                 </div>
             </div>
@@ -126,20 +126,45 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">입점</a></li>
-                                    <li><a href="#">내 가게</a></li>
-                                    <li><a href="#">사장님광장</a>
+                                    <li><c:import url="/admin/menu1/memberMg.do"><span>회원 관리</span></c:import>
                                         <ul class="dropdown">
-                                            <li><a href="#">공지사항</a></li>
-                                            <li><a href="#">이벤트</a></li>
-                                            <li><a href="#">사장님 꿀팁</a></li>
+                                            <li><c:import url="/admin/menu1/member.do">회원 조회</c:import></li>
+                                            <li><c:import url="/admin/menu1/memberGrade.do">등급 관리</c:import></li>
+                                            <li><c:import url="/admin/menu1/review.do">리뷰 관리</c:import></li>
+                                        </ul>
+                                    
+                                    </li>
+                                    <li><c:import url="/admin/menu2/storeMg.do">점포 관리</c:import>
+                                        <ul class="dropdown">
+                                            <li><c:import url="/admin/menu2/approval.do">승인 관리</c:import></li>
+                                            <li><c:import url="/admin/menu2/store.do">점포 조회</c:import></li>
                                         </ul>
                                     </li>
-                                    <li><a href="about-us.html">플렉스 딜리버리 소개</a></li>
-                                    <li><a href="#">고객센터</a>
+                                    <li>사장님광장
+                                        <ul class="dropdown">
+                                            <li><c:import url="/admin/menu3/notice.do">공지사항</c:import></li>
+                                            <li><c:import url="/admin/menu3/event.do">이벤트</c:import></li>
+                                            <li><c:import url="/admin/menu3/honeyTip.do">사장님꿀팁</c:import></li>
+                                        </ul>
+                                    </li>
+                                    <li><c:import url="/admin/menu4/introduce.do">플렉스 딜리버리 소개</c:import></li>
+                                    <li>고객센터
                                          <ul class="dropdown">
-                                            <li><a href="#">자주 하는 질문</a></li>
-                                            <li><a href="#">1:1 문의</a></li>
+                                            <li><c:import url="/admin/menu5/faq.do">자주 하는 질문</c:import></li>
+                                            <li><c:import url="/admin/menu5/oneToOne.do">1:1 문의</c:import></li>
+                                        </ul>
+                                    </li>
+                                    <li>부가기능
+                                         <ul class="dropdown">
+                                            <li><c:import url="/admin/menu6/category.do">카테고리 관리</c:import></li>
+                                            <li><c:import url="/admin/menu6/todayFoods.do">오늘 뭐 먹지</c:import></li>
+                                            <li><c:import url="/admin/menu6/coupons.do">쿠폰 관리</c:import>
+	                                            <ul class="dropdown">
+		                                            <li><c:import url="/admin/menu6/storeCoupon.do">정기쿠폰 관리</c:import></li>
+		                                            <li><c:import url="/admin/menu6/eventCoupon.do">이벤트쿠폰 관리</c:import></li>                                           
+	                                            </ul>
+                                            </li>
+                                            <li><c:import url="/admin/menu6/gift.do">선물하기</c:import></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">고객 사이트로 이동</a></li>
@@ -163,3 +188,15 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
+    
