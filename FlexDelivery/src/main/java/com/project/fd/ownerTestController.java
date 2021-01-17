@@ -12,10 +12,20 @@ public class ownerTestController {
 	=LoggerFactory.getLogger(ownerTestController.class);
 
 	
-	/*
-	 * @RequestMapping("/index.do") public void ownerMain() {
-	 * logger.info("사장님 메인 화면 보여주기"); }
-	 */
-	
+	 @RequestMapping("/index.do") 
+	 public void ownerMain() {
+		 logger.info("사장님 메인 화면 보여주기"); 
+	 }
+	 
+	 @RequestMapping("/menu1/launch.do")
+	 public void ownerlaunch() {
+		 logger.info("점포 - 입점 메인 화면 보여주기");
+	}
+	 
+	 @RequestMapping("/menu2/myStore.do")
+	 public void ownermyStore() {
+		 logger.info("점포 - 내 가게 메인 화면 보여주기");
+	}
+	 
 	
 }
