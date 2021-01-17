@@ -12,14 +12,6 @@
 
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area">
-                            <form action="#" class="search-form">
-                                <input type="search" name="search" id="searchForm" placeholder="Search">
-                                <input type="submit" value="submit">
-                            </form>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
                             <h5 class="title subscribe-title">Subscribe to my newsletter</h5>
                             <div class="widget-content">
                                 <form action="#" class="newsletterForm">
@@ -29,12 +21,6 @@
                             </div>
                         </div>
 
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Advertisement</h5>
-                            <a href="#"><img src="${pageContext.request.contextPath}/resources/adminResources/img/bg-img/add.gif" alt=""></a>
-                        </div>
-                        
                     </div>
                 </div>
                 <!-- ##### Sidebar Area ##### -->

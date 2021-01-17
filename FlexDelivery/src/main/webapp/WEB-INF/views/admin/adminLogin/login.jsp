@@ -5,7 +5,7 @@
     
 <!-- Admin Login Form start -->
    <form action="#" method="post">
-   	<div class="container">
+     <div class="container">
        <div class="row justify-content-center">
  	      <div class="col-lg-3 col-md-3 col-sm-3">
 	           <div>
@@ -32,7 +32,7 @@
 	           </div>
            </div>
        </div>
-   	</div>
+    </div>       	</div>
    </form>
 <!-- Admin Login Form end -->
    
