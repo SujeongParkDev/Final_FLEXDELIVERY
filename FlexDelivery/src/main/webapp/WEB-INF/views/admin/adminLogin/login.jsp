@@ -6,7 +6,7 @@
 <!-- Admin Login Form start -->
    <form action="#" method="post">
        <div class="row">
- 	      <div class="col-lg-3 col-md-3 col-sm-3 align-self-center">
+ 	      <div class="col-lg-3 col-md-3 align-self-center">
  	      
 	           <div>
 	               <div class="group">
