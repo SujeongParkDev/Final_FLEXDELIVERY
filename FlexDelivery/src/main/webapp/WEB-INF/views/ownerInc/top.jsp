@@ -93,7 +93,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                    	<!-- img src: flex delivery 로고로 변경 필요함 -->
+                       <!-- img src: flex delivery 로고로 변경 필요함 -->
                         <a href="index.html" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="<c:url value='/owner/menu1/launch.do'/>">입점</a></li>
-                                    <li><a href="<c:url value='/owner/menu2/myStore.do'/>">내 가게</a></li>
+                                    <li><a href="<c:url value='fd/owner/menu2/myStore.do'/>">내 가게</a></li>
                                     <li><a href="#">사장님광장</a>
                                         <ul class="dropdown">
                                             <li><a href="#">공지사항</a></li>

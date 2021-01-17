@@ -11,7 +11,6 @@ public class ownerTestController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(ownerTestController.class);
 
-	
 	 @RequestMapping("/index.do") 
 	 public void ownerMain() {
 		 logger.info("사장님 메인 화면 보여주기"); 
@@ -26,6 +25,5 @@ public class ownerTestController {
 	 public void ownermyStore() {
 		 logger.info("점포 - 내 가게 메인 화면 보여주기");
 	}
-	 
 	
 }
