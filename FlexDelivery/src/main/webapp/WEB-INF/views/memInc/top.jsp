@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="p-3 border-bottom">
-                                        <a href="${pageContext.request.contextPath}/resources/memberResources/home.html" class="text-decoration-none">
+                                        <a href="/member/member.do" class="text-decoration-none">
                                             <p class="font-weight-bold text-primary m-0"><i class="feather-navigation"></i> New York, USA</p>
                                         </a>
                                     </div>
