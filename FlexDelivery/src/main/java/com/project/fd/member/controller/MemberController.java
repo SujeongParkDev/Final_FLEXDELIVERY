@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/member/register")
 public class MemberController {
 	private static final Logger logger
 		=LoggerFactory.getLogger(MemberController.class);
@@ -19,14 +20,19 @@ public class MemberController {
 	}
 	*/
 	
-	@RequestMapping("/login/memsignup.do")
+	@RequestMapping("/register.do")
 	public String register(){
 		logger.info("회원가입 화면 보여주기");
 		
-		return "login/memsignup";
+		return "member/register/register";
 	}
 	
-	
+	@RequestMapping("/register2.do")
+	public String register2(){
+		logger.info("회원가입 화면 보여주기");
+		
+		return "member/register";
+	}
 	
 	
 }
