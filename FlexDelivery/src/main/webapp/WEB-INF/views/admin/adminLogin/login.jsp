@@ -5,9 +5,9 @@
     
 <!-- Admin Login Form start -->
    <form action="#" method="post">
-       <div class="row">
- 	      <div class="col-lg-3 col-md-3 col-sm-3 align-self-center">
- 	      
+   	<div class="container">
+       <div class="row justify-content-center">
+ 	      <div class="col-lg-3 col-md-3 col-sm-3">
 	           <div>
 	               <div class="group">
 	                   <input type="text" name="adminId" id="adminId" required>
@@ -32,6 +32,7 @@
 	           </div>
            </div>
        </div>
+   	</div>
    </form>
 <!-- Admin Login Form end -->
    
