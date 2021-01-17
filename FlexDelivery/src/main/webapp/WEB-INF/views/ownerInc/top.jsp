@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- adminInc/top.jsp -->    
 <!DOCTYPE html>
@@ -126,8 +127,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">입점</a></li>
-                                    <li><a href="#">내 가게</a></li>
+                                    <li><a href="<c:url value='/owner/menu1/launch.do'/>">입점</a></li>
+                                    <li><a href="<c:url value='/owner/menu2/myStore.do'/>">내 가게</a></li>
                                     <li><a href="#">사장님광장</a>
                                         <ul class="dropdown">
                                             <li><a href="#">공지사항</a></li>
@@ -163,3 +164,14 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
