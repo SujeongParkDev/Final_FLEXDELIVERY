@@ -41,7 +41,6 @@
                 
             	<div class="card-body px-0 pb-0">
                         <div class="table-responsive">
-                        <!-- table Detail start -->
                             <table class='table mb-0' id="table1">
                                 <thead>
                                     <tr>
@@ -96,9 +95,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        <!-- table detail end -->
-                        
-                        
                         </div>
                     </div>
 			</div>
