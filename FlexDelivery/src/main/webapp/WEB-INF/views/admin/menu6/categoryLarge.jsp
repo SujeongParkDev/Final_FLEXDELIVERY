@@ -27,15 +27,14 @@
 		  <div class="col-12">
 		    <div class="card">
 		      <div class="card-header">
-		        <h4 class="card-title">음식메뉴 카테고리 관리</h4>
+		        <h4 class="card-title">음식메뉴 대분류 카테고리 관리</h4>
 		      </div>
 		      <div class="card-content">
 		        <div class="card-body">
 		          
 		        </div>
 		        
-		        <a href="#" class="btn btn-dark round">등록</a>
-		        
+		        <a href="<c:url value='/categoryLargeWrite' />" class="btn btn-dark round">등록</a>
 		        <!-- table hover -->
 		        <div class="table-responsive">
 		          <table class="table table-hover mb-0">
@@ -56,8 +55,8 @@
 		                
 		                <td></td>
 		                <td></td>
-		                <td><a href="#" class="btn btn-primary round">수정</a>
-		                <a href="#" class="btn btn-danger round">삭제</a></td>
+		                <td><a href="<c:url value='/categoryLargeEdit' />" class="btn btn-primary round">수정</a>
+		                <a href="<c:url value='/categoryLargeDelete' />" class="btn btn-danger round">삭제</a></td>
 		              </tr>
 		              <tr>
 		                <td class="text-bold-500">2</td>
