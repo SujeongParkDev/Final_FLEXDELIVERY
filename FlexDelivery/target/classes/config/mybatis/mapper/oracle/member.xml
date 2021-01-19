@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="config.mybatis.mapper.oracle.member.">
+<mapper namespace="config.mybatis.mapper.oracle.member">
 	
 	<insert id="insertMember" parameterType="memberVo">
 		<selectKey keyProperty="memberNo" resultType="int" order="BEFORE">
@@ -14,6 +14,11 @@
 			#{memberAdressDetail},#{memberHp1},#{memberHp2}, #{memberHp3},#{memberEmail1}, #{memberEmail2})
 	</insert>
 
-
-
+	<select id="selectPwd" parameterType="String" resultType="String">
+		select memberPwd from member where memberId=${memberId} and memberOutdate is null
+	</select>
+	
+	<select id="selectMember" parameterType="String" resultType="memberVo">
+		select * from member where memberId=${memberId}	
+	</select>
 </mapper>

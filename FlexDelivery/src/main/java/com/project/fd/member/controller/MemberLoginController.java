@@ -10,9 +10,10 @@ import com.project.fd.common.Utility;
 @RequestMapping("/member/login")
 public class MemberLoginController {
 
-	@RequestMapping("/memberLogin")
-	public void memberLogin_view(Model model) {
+	@RequestMapping("/memberLogin.do")
+	public String memberLogin_view(Model model) {
 		int idx=Utility.MEMBER_LOGIN;
 		model.addAttribute("idx",idx);
+		return "member/login/memberLogin";
 	}
 }

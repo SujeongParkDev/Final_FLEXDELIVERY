@@ -6,8 +6,8 @@ public class MemberVO {
 	private String memberId;
 	private String memberPwd;
 	private String memberZipcode;
-	private String memberAdress;
-	private String memberAdressDetail;
+	private String memberAddress;
+	private String memberAddressDetail;
 	private String memberRegdate;
 	private String memberOutdate;
 	private String memberHp1;
@@ -48,16 +48,16 @@ public class MemberVO {
 		this.memberZipcode = memberZipcode;
 	}
 	public String getMemberAdress() {
-		return memberAdress;
+		return memberAddress;
 	}
 	public void setMemberAdress(String memberAdress) {
-		this.memberAdress = memberAdress;
+		this.memberAddress = memberAdress;
 	}
 	public String getMemberAdressDetail() {
-		return memberAdressDetail;
+		return memberAddressDetail;
 	}
 	public void setMemberAdressDetail(String memberAdressDetail) {
-		this.memberAdressDetail = memberAdressDetail;
+		this.memberAddressDetail = memberAdressDetail;
 	}
 	public String getMemberRegdate() {
 		return memberRegdate;
@@ -116,8 +116,8 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
-				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAdress=" + memberAdress
-				+ ", memberAdressDetail=" + memberAdressDetail + ", memberRegdate=" + memberRegdate + ", memberOutdate="
+				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAdress=" + memberAddress
+				+ ", memberAdressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate + ", memberOutdate="
 				+ memberOutdate + ", memberHp1=" + memberHp1 + ", memberHp2=" + memberHp2 + ", memberHp3=" + memberHp3
 				+ ", memberEmail1=" + memberEmail1 + ", memberEmail2=" + memberEmail2 + ", authorityNo=" + authorityNo
 				+ ", locationNo=" + locationNo + "]";
