@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,25 +12,21 @@
     <link rel="icon" type="image/png" href="img/fav.png">
     <title>Swiggiweb - Online Food Ordering Website Template</title>
     <!-- Slick Slider -->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/memberResources/vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/memberResources/vendor/slick/slick-theme.min.css" />
     <!-- Feather Icon-->
-    <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/memberResources/vendor/icons/feather.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/memberResources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/memberResources/css/style.css" rel="stylesheet">
     <!-- Sidebar CSS -->
-    <link href="vendor/sidebar/demo.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/memberResources/vendor/sidebar/demo.css" rel="stylesheet">
 </head>
+
 
 <body>
     <div class="osahan-signup login-page">
-        <video loop autoplay muted id="vid">
-            <source src="img/bg.mp4" type="video/mp4">
-            <source src="img/bg.mp4" type="video/ogg">
-            Your browser does not support the video tag.
-         </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-100">
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
@@ -164,14 +160,14 @@
         </ul>
     </nav>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- slick Slider JS-->
-    <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/slick/slick.min.js"></script>
     <!-- Sidebar JS-->
-    <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/sidebar/hc-offcanvas-nav.js"></script>
     <!-- Custom scripts for all pages-->
-    <script type="text/javascript" src="js/osahan.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/js/osahan.js"></script>
 </body>
 
 </html>
