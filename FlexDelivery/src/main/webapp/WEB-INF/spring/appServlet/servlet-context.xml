@@ -37,15 +37,16 @@
 	     <beans:property name="order" value="0" />
 	</beans:bean>
 	
-	<!-- 	
-	<interceptors>
+	
+	<!-- <interceptors>
 		<interceptor>
-			<mapping path="/admin/**/*"/>
-			<exclude-mapping path="/admin/login/adminLogin.do"/>
-			<beans:ref bean="adminLoginInterceptor"/>
+			<mapping path="/member/**/*"/>
+			<exclude-mapping path="/member/login/memberLogin.do"/>
+			<exclude-mapping path="/member/register/register.do"/>
+			<beans:ref bean="memberLoginInterceptor"/>
 		</interceptor>
-	</interceptors>
-	 -->
+	</interceptors> -->
+	
 	
 	
 </beans:beans>

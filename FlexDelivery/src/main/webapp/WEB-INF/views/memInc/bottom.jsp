@@ -46,13 +46,11 @@
                             <div><img alt="#" src="${pageContext.request.contextPath}/resources/memberResources/img/logo_web.png" class="logo-footer mr-3"></div>
                             <div>
                                 <h6 class="title text-white">About Us</h6>
-                                <p class="text-muted">Some short text about company like You might remember the Dell computer commercials in which a youth reports.</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-icon btn-outline-light mr-1 btn-sm" title="Facebook" target="_blank" href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-facebook"></i></a>
-                                    <a class="btn btn-icon btn-outline-light mr-1 btn-sm" title="Instagram" target="_blank" href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-instagram"></i></a>
-                                    <a class="btn btn-icon btn-outline-light mr-1 btn-sm" title="Youtube" target="_blank" href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-youtube"></i></a>
-                                    <a class="btn btn-icon btn-outline-light mr-1 btn-sm" title="Twitter" target="_blank" href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-twitter"></i></a>
-                                </div>
+								<!-- 플렉스 딜리버리 사업자 소개 Start-->
+								<p class="text-muted">
+									<b>플렉스 딜리버리 FLEX DELIVERY</b><br>
+									<b>대표자:</b> 윤희영 | 김정만 | 김백신 | 박수정 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 박지안 | 양현준 | 이소정 <br><b>본사 :</b> 경상북도 울릉군 울릉읍 <a href="https://dokdo.mofa.go.kr/kor/" style="text-decoration: none">독도</a>안용복길 3<br><b>대표전화:</b> 054-0115-0219<br><b>대표메일:</b> FlexDeliveryCEO@flexdelivery.com
+								</p>
                             </div>
                         </article>
                     </aside>
@@ -95,74 +93,11 @@
                 <!-- row.// -->
             </section>
             <!-- footer-top.// -->
-            <section class="footer-center border-top padding-y py-5">
-                <h6 class="title text-white">Countries</h6>
-                <div class="row">
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">India</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Indonesia</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Ireland</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Italy</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Lebanon</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Malaysia</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">New Zealand</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Philippines</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Poland</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Portugal</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Australia</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Brasil</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Canada</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Chile</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Czech Republic</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Turkey</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">UAE</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">United Kingdom</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">United States</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Sri Lanka</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Qatar</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Singapore</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Slovakia</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">South Africa</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Green Land</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-2 col-md-2 text-white">
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Pakistan</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Bangladesh</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Bhutaan</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="text-muted">Nepal</a></li>
-                        </ul>
-                    </aside>
-                </div>
-                <!-- row.// -->
-            </section>
         </div>
         <!-- //container -->
         <section class="footer-copyright border-top py-3 bg-light">
             <div class="container d-flex align-items-center">
-                <p class="mb-0"> © 2020 Company All rights reserved </p>
-                <p class="text-muted mb-0 ml-auto d-flex align-items-center">
-                    <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="d-block"><img alt="#" src="${pageContext.request.contextPath}/resources/memberResources/img/appstore.png" height="40"></a>
-                    <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="d-block ml-3"><img alt="#" src="${pageContext.request.contextPath}/resources/memberResources/img/playmarket.png" height="40"></a>
-                </p>
+                <p class="mb-0"> © Flex Delivery Corp. </p>
             </div>
         </section>
     </footer>
