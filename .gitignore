@@ -3,4 +3,4 @@ MANIFEST.MF
 pom.properties
 database.properties
 fileUpload.properties
-.class
+*.class

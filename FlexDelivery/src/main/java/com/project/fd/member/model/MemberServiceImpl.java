@@ -12,6 +12,27 @@ public class MemberServiceImpl implements MemberService{
 		int cnt = memberDao.insertMember(vo);
 		return cnt;
 	}
+
+	@Override
+	public int loginChk(String userId,String pwd) {
+		int result=0;
+		String dbPwd=memberDao.selectPwd(userId);
+		if(dbPwd==null || dbPwd.isEmpty()) {
+			result=ID_NONE;
+		}else{
+			if (dbPwd.equals(pwd)) {
+				result=LOGIN_OK;				
+			}else {
+				result=PWD_DISAGREE;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public MemberVO selectMember(String userid) {
+		return memberDao.selectMember(userid);
+	}
 	
 	
 }

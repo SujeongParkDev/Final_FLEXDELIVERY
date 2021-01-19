@@ -12,4 +12,6 @@ public interface MemberService {
 		public static final int PWD_DISAGREE=3; //비밀번호 불일치
 
 		public int insertMember(MemberVO vo);
+		int loginChk(String userid,String pwd);
+		MemberVO selectMember(String userid);
 }
