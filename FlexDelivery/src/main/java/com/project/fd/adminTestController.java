@@ -56,11 +56,6 @@ public class adminTestController {
 		logger.info("관리자 - 리뷰 화면 보여주기");
 	}
 	
-	@RequestMapping("/menu2/storeMg.do")
-	public void adminStoreMg() {
-		logger.info("관리자 - 점포관리 요약 화면 보여주기");
-	}
-	
 	@RequestMapping("/menu2/approval.do")
 	public void adminApproval() {
 		logger.info("관리자 - 점포 승인관리 화면 보여주기");
@@ -71,9 +66,24 @@ public class adminTestController {
 		logger.info("관리자 - 점포 승인 디테일 화면 보여주기");
 	}
 	
-	@RequestMapping("/menu2/store.do")
+	@RequestMapping("/menu2/approvalEdit.do")
+	public void adminApprovalEdit() {
+		logger.info("관리자 - 점포 승인 변경 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu2/storeAD.do")
 	public void adminStore() {
-		logger.info("관리자 - 점포조회 화면 보여주기");
+		logger.info("관리자 - 광고승인 리스트 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu2/storeAdDetail.do")
+	public void adminStoreDetail() {
+		logger.info("관리자 - 광고승인 리스트 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu2/storeMg.do")
+	public void adminStoreManage() {
+		logger.info("관리자 - 점포 현황 화면 보여주기");
 	}
 	
 	@RequestMapping("/menu3/honeyTip.do")
