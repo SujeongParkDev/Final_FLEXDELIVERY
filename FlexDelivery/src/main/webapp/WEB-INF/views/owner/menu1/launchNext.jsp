@@ -3,16 +3,25 @@
 <%@ include file="../../ownerInc/top.jsp"%>
 <link rel="stylesheet" type="text/css" href
 ="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchNext.css"/>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btRegi').click(function(){
+		location.href='<c:url value="/owner/menu1/launchRegister.do"/>';
+	});
+});
+</script>
 <div id="root">
 	<div class="Frame medium">
 		<div class="frame-container pl-0 pt-0">
 			<div class="frame-wrap">
 				<div class="frame-body">
 					<div id="ols-landing-page" class="my-5 mx-2 mt-sm-4">
-						<a class="d-block pb-4 pb-sm-3 ml-0" href="/"><img
+						<a class="d-block pb-4 pb-sm-3 ml-0" href="/">
+						<!-- <img
 							src="#"
-							style="width: 146px; height: 22px;">
-							FLEXDELIVERY 사장님 페이지</a>
+							style="width: 146px; height: 22px;"> -->
+							FLEXDELIVERY 주문 페이지</a>
 						<div class="Card rounded ">
 							<div class="card-header">
 								<h3>FLEXDELIVERY 입점</h3>
@@ -78,7 +87,7 @@
 							</div>
 						</div>
 						<div class="text-right my-3">
-							<button type="button" class="button medium primary">입점
+							<button type="button" class="button medium primary" id="btRegi">입점
 								시작하기</button>
 						</div>
 					</div>
