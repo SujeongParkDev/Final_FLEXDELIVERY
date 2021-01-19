@@ -66,6 +66,11 @@ public class adminTestController {
 		logger.info("관리자 - 점포 승인관리 화면 보여주기");
 	}
 	
+	@RequestMapping("/menu2/approvalDetail.do")
+	public void adminApprovalDetail() {
+		logger.info("관리자 - 점포 승인 디테일 화면 보여주기");
+	}
+	
 	@RequestMapping("/menu2/store.do")
 	public void adminStore() {
 		logger.info("관리자 - 점포조회 화면 보여주기");
