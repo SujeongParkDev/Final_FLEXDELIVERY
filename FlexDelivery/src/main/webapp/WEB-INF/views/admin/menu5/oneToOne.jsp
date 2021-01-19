@@ -112,11 +112,13 @@
 		                        </tr>
 		                    </tbody>
 		                </table>
-		            </div>
-		        </div>
+		                
+		                
+					</div>
+				</div>
+				<!-- Hoverable rows end -->
 		    </section>
 		</div>
-		
 	</div>
 </div>
     
