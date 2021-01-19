@@ -7,10 +7,10 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <meta name="description" content="">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 
 
@@ -157,21 +157,36 @@
                                     </li>
                                     <li><a href="#">부가기능</a>
                                          <ul class="dropdown">
-                                            <li><a href="<c:url value='/admin/menu6/category.do' />">카테고리 관리</a></li>
-                                            <li><a href="<c:url value='/admin/menu6/todayFoods.do' />">오늘 뭐 먹지</a></li>
+                                            <li><a href="#">음식 메뉴 카테고리</a>
+	                                            <ul class="dropdown">
+		                                            <li><a href="<c:url value="/admin/menu6/categoryLarge.do" />">대분류 카테고리</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/categoryMiddle.do" />">중분류 카테고리</a></li>                                           
+	                                            </ul>
+                                            </li>
+                                            <li><a href="#">오늘 뭐 먹지</a>
+	                                            <ul class="dropdown">
+		                                            <li><a href="<c:url value="/admin/menu6/todayFoodsRandom.do" />">랜덤 추천</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/todayFoodsWeather.do" />">날씨별 추천</a></li>                                           
+	                                            </ul>
+                                            </li>
                                             <li><a href="<c:url value='/admin/menu6/coupons.do' />">쿠폰 관리</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/storeCoupon.do" />">정기쿠폰 관리</a></li>
 		                                            <li><a href="<c:url value="/admin/menu6/eventCoupon.do" />">이벤트쿠폰 관리</a></li>                                           
 	                                            </ul>
                                             </li>
-                                            <li><a href="<c:url value='/admin/menu6/gift.do' />">선물하기</a></li>
+                                            <li><a href="<c:url value='/admin/menu6/gift.do' />">선물하기</a>
+	                                            <ul class="dropdown">
+		                                            <li><a href="<c:url value="/admin/menu6/giftCategory.do" />">카테고리 관리</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/giftPrice.do" />">금액 관리</a></li>                                           
+	                                            </ul>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a href="<c:url value='/member/index.do' />">고객 사이트로 이동</a></li>
                                 </ul>
 
-                                <!-- Search Form  -->
+                                <!-- Search Form start -->
                                 <div id="search-wrapper">
                                     <form action="#">
                                         <input type="text" id="search" placeholder="Search something...">
@@ -179,6 +194,8 @@
                                         <input class="d-none" type="submit" value="">
                                     </form>
                                 </div>
+                                <!-- Search Form end -->
+                                
                             </div>
                             <!-- Nav End -->
                             

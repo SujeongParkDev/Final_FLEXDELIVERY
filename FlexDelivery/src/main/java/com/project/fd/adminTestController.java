@@ -11,9 +11,19 @@ public class adminTestController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(adminTestController.class);
 
-	@RequestMapping("/adminLogin/login.do")
+	@RequestMapping("/login/login.do")
 	public void adminLogin() {
-		logger.info("관리자 로그인 화면");
+		logger.info("관리자 - 로그인 화면");
+	}
+
+	@RequestMapping("/myPage/myPage.do")
+	public void adminMyPage() {
+		logger.info("관리자 - 마이페이지 비밀번호 확인 화면");
+	}
+	
+	@RequestMapping("/myPage/myPage2.do")
+	public void adminMyPage2() {
+		logger.info("관리자 - 마이페이지 화면");
 	}
 	
 	@RequestMapping("/index.do")
@@ -96,6 +106,16 @@ public class adminTestController {
 		logger.info("관리자 - 카테고리 화면 보여주기");
 	}
 	
+	@RequestMapping("/menu6/categoryLarge.do")
+	public void adminCategoryLarge() {
+		logger.info("관리자 - 카테고리 대분류 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu6/categoryMiddle.do")
+	public void adminCategoryMiddle() {
+		logger.info("관리자 - 카테고리 중분류 화면 보여주기");
+	}
+	
 	@RequestMapping("/menu6/coupons.do")
 	public void adminCoupons() {
 		logger.info("관리자 - 쿠폰 요약 화면 보여주기");
@@ -111,14 +131,29 @@ public class adminTestController {
 		logger.info("관리자 - 이벤트 쿠폰 화면 보여주기");
 	}
 	
-	@RequestMapping("/menu6/todayFoods.do")
-	public void adminTodayFoods() {
-		logger.info("관리자 - 오늘 뭐 먹지 화면 보여주기");
+	@RequestMapping("/menu6/todayFoodsRandom.do")
+	public void adminTodayFoodsRandom() {
+		logger.info("관리자 - 오늘 뭐 먹지 - 랜덤 추천 화면 보여주기");
+	}
+
+	@RequestMapping("/menu6/todayFoodsWeather.do")
+	public void adminTodayFoodsWeather() {
+		logger.info("관리자 - 오늘 뭐 먹지 - 날씨 추천 화면 보여주기");
 	}
 	
 	@RequestMapping("/menu6/gift.do")
 	public void adminGift() {
 		logger.info("관리자 - 선물하기 관리 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu6/giftCategory.do")
+	public void adminGiftCategory() {
+		logger.info("관리자 - 선물하기 - 카테고리 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu6/giftPrice.do")
+	public void adminGiftPrice() {
+		logger.info("관리자 - 선물하기 - 금액 화면 보여주기");
 	}
 	
 	
