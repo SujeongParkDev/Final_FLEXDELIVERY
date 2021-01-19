@@ -13,16 +13,18 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 
-
+<!-- css start -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/style.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/animate.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/classy-nav.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/owl.carousel.css"/>
+<!-- css end -->
 
-<!-- Title -->
+<!-- Title start -->
 <title>플렉스 딜리버리 사장님</title>
+<!-- Title end -->
 
 <!-- Favicon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/adminResources/img/core-img/favicon.ico">
@@ -206,6 +208,7 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    
     
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
