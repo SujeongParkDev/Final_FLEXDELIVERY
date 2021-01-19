@@ -12,7 +12,7 @@ public class MemberController {
 		=LoggerFactory.getLogger(MemberController.class);
 
 	
-	@RequestMapping("/register.do")
+	@RequestMapping("/register/register.do")
 	public String register(){
 		logger.info("회원가입 화면 보여주기");
 		
@@ -25,5 +25,20 @@ public class MemberController {
 		
 		return "member/register2";
 	}
-
+	
+	@RequestMapping("/store/store.do")
+	public String store() {
+		logger.info("점포 화면 보여주기");
+		
+		return "member/store/store";
+	}
+	
+	@RequestMapping("/member.do")
+	public String membermainjw() {
+		logger.info("회원 메인 보여주기");
+		
+		return "member/member";
+	}
+	
+	
 }

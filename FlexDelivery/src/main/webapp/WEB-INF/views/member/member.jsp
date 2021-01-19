@@ -114,7 +114,7 @@
         <div class="container">
             <!-- Trending this week -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
-                <h5 class="m-0">Trending this week</h5>
+                <h5 class="m-0">산뜻한 아침 특집.</h5>
                 <a class="font-weight-bold ml-auto" href="<c:url value='/resources/memberResources/trending.html' />">View all <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- slider -->
@@ -131,14 +131,14 @@
                         </div>
                         <div class="p-3 position-relative">
                             <div class="list-card-body">
-                                <h6 class="mb-1"><a href='<c:url value="restaurant.html' />" />' class="text-black">Famous Dave's Bar-B-Que
+                                <h6 class="mb-1"><a href='<c:url value="restaurant.html" />" />' class="text-black"> 양식의 정석
                               </a>
                                 </h6>
-                                <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–30 min</span> <span class="float-right text-black-50"> $350 FOR TWO</span></p>
+                                <p class="text-gray mb-3">• Vegetarian • Indian </p>
+                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–30 분</span> <span class="float-right text-black-50"> 6000원 부터</span></p>
                             </div>
                             <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small> Use Coupon OSAHAN50</small>
+                                <span class="badge badge-danger">coupon</span> <span class="badge badge-success">new</span> 
                             </div>
                         </div>
                     </div>
@@ -155,12 +155,12 @@
                         </div>
                         <div class="p-3 position-relative">
                             <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
+                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">타이의 아침</a></h6>
+                                <p class="text-gray mb-3"> • Thai • Pure veg</p>
+                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 분</span> <span class="float-right text-black-50"> 5000원 부터</span></p>
                             </div>
                             <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
+                                <span class="badge badge-success">coupon</span>
                             </div>
                         </div>
                     </div>
@@ -177,14 +177,14 @@
                         </div>
                         <div class="p-3 position-relative">
                             <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black"> 함박 스테이크의 기본
                               </a>
                                 </h6>
-                                <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
+                                <p class="text-gray mb-3">• Hamburgers </p>
+                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 20-30 분</span> <span class="float-right text-black-50"> 8000원 부터</span></p>
                             </div>
                             <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+                                <span class="badge badge-danger">coupon</span> 
                             </div>
                         </div>
                     </div>
@@ -196,17 +196,17 @@
                             <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
                             <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
                             <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                <img alt="#" src='<c:url value="/resources/memberResources/img/trending2.png" />' class="img-fluid item-img w-100">
+                                <img alt="#" src='<c:url value="/resources/memberResources/img/corns.png"/>' class="img-fluid item-img w-100 h-100">
                             </a>
                         </div>
                         <div class="p-3 position-relative">
                             <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
+                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">아침에 셀러드</a></h6>
+                                <p class="text-gray mb-3"> • Indian • Pure veg</p>
+                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15-20 분</span> <span class="float-right text-black-50"> 6500원 부터</span></p>
                             </div>
                             <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
+                                <span class="badge badge-success">coupon</span>
                             </div>
                         </div>
                     </div>
@@ -214,8 +214,8 @@
             </div>
             <!-- Most popular -->
             <div class="py-3 title d-flex align-items-center">
-                <h5 class="m-0">Most popular</h5>
-                <a class="font-weight-bold ml-auto" href="<c:url value='/resources/memberResources/most_popular.html' />">26 places <i class="feather-chevrons-right"></i></a>
+                <h5 class="m-0">인기 메뉴</h5>
+                <a class="font-weight-bold ml-auto" href="<c:url value='/resources/memberResources/most_popular.html' />">show more <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- Most popular -->
             <div class="most_popular">
@@ -232,10 +232,10 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">강죽
                                  </a>
                                     </h6>
-                                    <p class="text-gray mb-1 small">• North • Hamburgers</p>
+                                    <p class="text-gray mb-1 small">•rice • healthy</p>
                                     <p class="text-gray mb-1 rating">
                                     </p>
                                     <ul class="rating-stars list-unstyled">
@@ -250,7 +250,7 @@
                                     <p></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+                                    <span class="badge badge-danger">coupon</span>
                                 </div>
                             </div>
                         </div>
@@ -267,8 +267,8 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Indian Cuisine</a></h6>
-                                    <p class="text-gray mb-1 small">• Indian • Pure veg</p>
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">브런치 식당</a></h6>
+                                    <p class="text-gray mb-1 small">•Italian •brunch</p>
                                     <p class="text-gray mb-1 rating">
                                     </p>
                                     <ul class="rating-stars list-unstyled">
@@ -283,7 +283,7 @@
                                     <p></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
+                                    <span class="badge badge-success">coupon</span>
                                 </div>
                             </div>
                         </div>
@@ -300,10 +300,10 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">한상 가득 식당
                                  </a>
                                     </h6>
-                                    <p class="text-gray mb-1 small">• Hamburgers • Pure veg</p>
+                                    <p class="text-gray mb-1 small">• korean • side dish</p>
                                     <p class="text-gray mb-1 rating">
                                     </p>
                                     <ul class="rating-stars list-unstyled">
@@ -318,7 +318,7 @@
                                     <p></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+                                    <span class="badge badge-danger">coupon</span> 
                                 </div>
                             </div>
                         </div>
@@ -335,8 +335,8 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Bite Me Now Sandwiches</a></h6>
-                                    <p class="text-gray mb-1 small">American • Pure veg</p>
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">미국에도 파스타家</a></h6>
+                                    <p class="text-gray mb-1 small">American • pasta</p>
                                     <p class="text-gray mb-1 rating">
                                     </p>
                                     <ul class="rating-stars list-unstyled">
@@ -351,155 +351,18 @@
                                     <p></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
+                                    <span class="badge badge-success">coupon</span> 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                    <img alt="#" src='<c:url value="/resources/memberResources/img/popular5.png" />' class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• North • Hamburgers</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                    <img alt="#" src='<c:url value="/resources/memberResources/img/popular6.png" />' class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Indian Cuisine</a></h6>
-                                    <p class="text-gray mb-1 small">• Indian • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                    <img alt="#" src='<c:url value="/resources/memberResources/img/popular7.png" />'class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                    <img alt="#" src='<c:url value="/resources/memberResources/img/popular8.png" />'class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Bite Me Now Sandwiches</a></h6>
-                                    <p class="text-gray mb-1 small">American • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          
             </div>
             <!-- Most sales -->
             <div class="pt-2 pb-3 title d-flex align-items-center">
-                <h5 class="m-0">Most sales</h5>
-                <a class="font-weight-bold ml-auto" href="<c:url value='/resources/memberResources/#' />">26 places <i class="feather-chevrons-right"></i></a>
+                <h5 class="m-0">추천 식당</h5>
+                <a class="font-weight-bold ml-auto" href="<c:url value='/resources/memberResources/#' />">show others <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- Most sales -->
             <div class="most_sale">
@@ -516,14 +379,14 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">사이드 레스토랑
                                  </a>
                                     </h6>
-                                    <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
+                                    <p class="text-gray mb-3">•waffle •side dish</p>
+                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> 5000원 부터</span></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+                                    <span class="badge badge-danger">coupon</span> 
                                 </div>
                             </div>
                         </div>
@@ -540,12 +403,12 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
-                                    <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">함박 스테이크의 기본</a></h6>
+                                    <p class="text-gray mb-3">• Hamburgers</p>
+                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 20 - 30분</span> <span class="float-right text-black-50"> 8000원 부터</span></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
+                                    <span class="badge badge-success">coupon</span>
                                 </div>
                             </div>
                         </div>
@@ -562,14 +425,14 @@
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                                    <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">타이의 아침
                                  </a>
                                     </h6>
-                                    <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
+                                    <p class="text-gray mb-3">• Thai • Pure veg</p>
+                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30-35 min</span> <span class="float-right text-black-50"> 5000원 부터</span></p>
                                 </div>
                                 <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
+                                    <span class="badge badge-danger">coupon</span>
                                 </div>
                             </div>
                         </div>
