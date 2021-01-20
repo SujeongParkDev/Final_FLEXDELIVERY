@@ -6,7 +6,7 @@
 <script>
 	$(function(){
 		$('#lcategoryRegister').click(function(){
-			window.open("<c:url value='/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=400, height=600, scrollbars=0, toolbar=0, menubar=no");
+			window.open("<c:url value='/admin/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=400, height=600, scrollbars=0, toolbar=0, menubar=no");
 		});
 	});
 </script>
