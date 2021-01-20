@@ -1,5 +1,6 @@
 package com.project.fd.admin.controller;
 
-public class HoneytipController {
+
+public class AdminHoneytipController {
 
 }

@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.project.fd.common.SearchVO;
 
-public interface LargeCategoryService {
+public interface AdminLargeCategoryDAO {
 
-	List<LargeCategoryVO> selectAll(SearchVO searchVo);
+	List<AdminLargeCategoryVO> selectAll(SearchVO searchVo);
 
 	int selectTotalRecord(SearchVO searchVo);
 

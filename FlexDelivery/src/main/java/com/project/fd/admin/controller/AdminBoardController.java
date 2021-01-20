@@ -1,5 +1,7 @@
 package com.project.fd.admin.controller;
 
-public class BoardController {
+
+public class AdminBoardController {
+
 
 }

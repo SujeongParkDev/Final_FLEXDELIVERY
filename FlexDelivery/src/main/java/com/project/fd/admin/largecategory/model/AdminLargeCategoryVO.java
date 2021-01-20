@@ -1,6 +1,6 @@
 package com.project.fd.admin.largecategory.model;
 
-public class LargeCategoryVO {
+public class AdminLargeCategoryVO {
 	private int lCategoryNo;
 	private String lCategoryName;
 	private String lCategoryFilename;

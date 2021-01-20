@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import com.project.fd.common.SearchVO;
 
 @Service
-public class LargeCategoryServiceImpl implements LargeCategoryService{
-	private LargeCategoryDAO largeCategoryDao;
+public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
+	private AdminLargeCategoryDAO largeCategoryDao;
 	
 	@Override
-	public List<LargeCategoryVO> selectAll(SearchVO searchVo) {
+	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
 		return largeCategoryDao.selectAll(searchVo);
 	}
 

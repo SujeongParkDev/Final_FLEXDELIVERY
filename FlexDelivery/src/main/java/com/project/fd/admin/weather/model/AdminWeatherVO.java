@@ -1,6 +1,6 @@
 package com.project.fd.admin.weather.model;
 
-public class WeatherVO {
+public class AdminWeatherVO {
 	private int weatherNo;
 	private String weatherName;
 	

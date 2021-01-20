@@ -1,6 +1,6 @@
 package com.project.fd.admin.faq.model;
 
-public class FaqCategoryVO {
+public class AdminFaqCategoryVO {
 	private int fCategoryNo;
 	private String fCategoryName;
 	private int authorityNo;

@@ -1,6 +1,6 @@
 package com.project.fd.admin.gift.model;
 
-public class GiftCategoryVO {
+public class AdminGiftCategoryVO {
 	private int gCategoryNo;
 	private String gCategoryName;
 	

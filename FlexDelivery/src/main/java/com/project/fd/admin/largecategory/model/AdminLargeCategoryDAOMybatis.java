@@ -7,17 +7,15 @@ import org.springframework.stereotype.Repository;
 import com.project.fd.common.SearchVO;
 
 @Repository
-public class LargeCategoryDAOMybatis implements LargeCategoryDAO{
+public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 
 	@Override
-	public List<LargeCategoryVO> selectAll(SearchVO searchVo) {
-		// TODO Auto-generated method stub
+	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
 		return null;
 	}
 
 	@Override
 	public int selectTotalRecord(SearchVO searchVo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

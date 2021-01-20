@@ -1,5 +1,9 @@
 package com.project.fd.admin.controller;
 
-public class AskController {
 
-}
+/*
+ * public class AskController {
+ * 
+ * }
+ */
+

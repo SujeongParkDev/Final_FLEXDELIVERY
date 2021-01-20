@@ -1,6 +1,6 @@
 package com.project.fd.admin.faq.model;
 
-public class FaqVO {
+public class AdminFaqVO {
 	private int faqNo;
 	private String faqQ;
 	private String faqA;

@@ -1,6 +1,6 @@
 package com.project.fd.admin.menu3.model;
 
-public class BoardVO {
+public class AdminBoardVO {
 	private int boardNo;
 	private String boardTitle;
 	private String boardContent;
