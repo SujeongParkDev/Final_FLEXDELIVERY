@@ -4,6 +4,8 @@ public class AdvertiseVO {
 	private int advertiseNo;
 	private String advertiseName;
 	private int advertisePrice;
+	
+	
 	public int getAdvertiseNo() {
 		return advertiseNo;
 	}

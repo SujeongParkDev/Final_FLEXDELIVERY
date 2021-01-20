@@ -1,7 +1,9 @@
-package com.project.fd.owner.advertise.controller;
+package com.project.fd.owner.controller;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.owner.advertise.model.AdvertiseAllVO;
 import com.project.fd.owner.advertise.model.AdvertiseService;
 import com.project.fd.owner.advertise.model.AdvertiseVO;
-import com.project.fd.owner.advertise.model.StoreAdVO;
 
 @Controller
 @RequestMapping("/owner/menu2/advertise")
@@ -32,8 +34,11 @@ public class AdvertiseController {
 	
 	//테스트용
 		@RequestMapping(value = "/test.do", method = RequestMethod.GET) 
-		public String test_get() {
+		public String test_get(@RequestParam(defaultValue = "0")int storeNo) {
 			logger.info("test 창 보여주기");
+			
+			
+			
 			
 			return "owner/menu2/advertise/test";
 		}
@@ -45,8 +50,21 @@ public class AdvertiseController {
 		
 	//advertiseOngoin.jsp 를 포함한 advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET) 
-	public String advertiseMain_get() {
-		logger.info("advertiseMain 창 보여주기");
+	public String advertiseMain_get(@RequestParam(defaultValue = "0")int storeNo, Model model) {
+		logger.info("advertiseMain 창 보여주기 , 파라미너 storeNo={}",storeNo);
+		
+		//Q. storeNo을 어떻게 받아와야하지?
+		if(storeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/index.do");
+			
+			return "common/message";
+		}
+		List<AdvertiseAllVO> list = null;
+		list = advertiseService.selectAdvertieseView(storeNo);
+		logger.info("현재 진행중 광고 보기 결과 list.size={}",list.size());
+		
+		model.addAttribute("list",list);
 		
 		return "owner/menu2/advertise/advertiseMain";
 	}

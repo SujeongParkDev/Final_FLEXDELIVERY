@@ -64,6 +64,10 @@
 			  
 			  <!-- 현재 진행중인 광고 -->
       		  <div class="row">
+      		  
+      		  		
+      		  		<c:if test="${empty list} ">
+ 					</c:if>
       		  		 <!-- 플렉스한광고 -->
       		  		<div class="col-md-2 col-sm-12"></div>
 				 	<div class="col-md-8 col-sm-12">

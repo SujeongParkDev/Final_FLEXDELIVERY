@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,6 +49,8 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
 
+<!-- admin.css -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/bootstrap.min.css"/>
 	
 <!-- js -->
 	<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
@@ -92,15 +95,16 @@
 	
 	</script>
 </head>
+<body style="overflow-x:hidden;">
 		<br>	<br>	
-		<br>	<br>	
+		
 		
 		<section id="basic-vertical-layouts">
 		    <div class="row match-height">
 		    	<div class="col-md-3 col-sm-12"></div>
 		        <div class="col-md-6 col-sm-12">
-		        <div class="card">
-		            <div class="card-header">
+		        <div class="card" >
+		            <div class="card-header" style="background-color:white;">
 		            <h4 class="card-title text-center">메뉴 등록</h4>
 		            </div>
 		            <div class="card-content">
@@ -154,4 +158,3 @@
 			
 </body>
 </html>
-    	

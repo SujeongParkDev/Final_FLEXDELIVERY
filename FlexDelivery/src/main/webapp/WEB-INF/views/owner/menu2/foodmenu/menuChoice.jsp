@@ -70,7 +70,7 @@
 		
 		</script>
 		<!-- 메뉴 버튼 -->
-		<br><br><br>
+		<br>
 			 <div class="row mt-3">
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">

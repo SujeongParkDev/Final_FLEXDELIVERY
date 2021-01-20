@@ -1,5 +1,7 @@
 package com.project.fd.owner.advertise.model;
 
-public interface AdvertiseService {
+import java.util.List;
 
+public interface AdvertiseService {
+	public List<AdvertiseAllVO> selectAdvertieseView(int storeNo);
 }

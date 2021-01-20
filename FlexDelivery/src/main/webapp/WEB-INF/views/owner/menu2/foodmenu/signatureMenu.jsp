@@ -21,6 +21,15 @@
 				event.preventDefault();
 			}
 			
+			
+			function goMain(){
+				
+		        location.href= "${pageContext.request.contextPath}/owner/menu2/foodmenu/menuMain.do";
+		        
+			}
+			
+			
+			
 			$(function(){
 				$('.btMainMenuChange').click(function(){
 					
@@ -46,7 +55,7 @@
 		
 		
 		<!-- 메뉴 버튼 -->
-		<br><br><br>
+		<br>
 			 <div class="row mt-3">
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">
@@ -84,7 +93,7 @@
 				           </p>
 				           <div class="text-right">
 				         	  <button class="btn btn-primary block" id="btFlexAD"  name="btFlexAD">수정</button>
-				         	  <button class="btn btn-primary block" id="btFlexAD"  name="btFlexAD" onclick="history.back()">취소</button>
+				         	  <button class="btn btn-primary block" id="btFlexAD"  name="btFlexAD" onclick="goMain()">취소</button>
 				           </div>
 				       </div>
 				   </div>
