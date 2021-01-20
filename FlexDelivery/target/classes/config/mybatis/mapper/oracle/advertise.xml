@@ -3,5 +3,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.advertise">
-
+	
+	
+	<!-- advertise , storeAd , stores 합친 뷰 
+	
+		create or replace view jaAdvertiseView
+		as
+	 	select p.*, e.store_no, e.ad_validate, e.ad_pay_flag
+            , s.a_agree_no
+	     from advertise p, storead e, stores s 
+	     where p.ADVERTISE_NO=e.ADVERTISE_NO and e.STORE_NO=s.STORE_NO;
+	 -->
+	 
+	  <select id="selectAdvertieseView" parameterType="string" 
+		resultType="advertiseAllVo">
+			select * from jaAdvertiseView
+			<![CDATA[
+	  			where storeNo=#{storeNo} and adValidate < sysdate and aAgreeNo=3
+	  		]]>
+	  		order by advertiseName
+		</select>
 </mapper>

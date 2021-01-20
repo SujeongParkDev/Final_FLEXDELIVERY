@@ -39,7 +39,7 @@
 		
 		</script>
 		<!-- 메뉴 버튼 -->
-		<br><br><br>
+		<br>
 			 <div class="row mt-3">
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">
@@ -77,12 +77,14 @@
 							 <div class="row">
 								  <div class="col-md-1 col-sm-12"></div>
 								  <div class="col-md-4 col-sm-12">
-										<select class="form-select" size="10" multiple aria-label="multiple select example" style="overflow: auto">
+										<select class="form-select" size="10" multiple aria-label="multiple select example" style="overflow:auto;">
 											  <option class="m-3 text-center" style="font-size:17px;" selected disabled="disabled">메뉴 그룹 선택</option>
 											  <option class="m-3 text-center" style="font-size:17px;" value="1">치킨</option>
 											  <option  class="m-3 text-center" style="font-size:17px;" value="2">돈까스</option>
 											  <option class="m-3 text-center" style="font-size:17px;" value="3">피자</option>
+											
 										</select>
+								
 								 </div>
 								 <div class="col-md-4 col-sm-12">
 										<select class="form-select" size="10" multiple aria-label="multiple select example" style="overflow: auto;">
