@@ -29,11 +29,11 @@ public class MemberController {
 		return "member/register2";
 	}
 	
-	@RequestMapping("/store/store.do")
+	@RequestMapping("/store/storeDetail.do")
 	public String store() {
 		logger.info("점포 화면 보여주기");
 		
-		return "member/store/store";
+		return "member/store/storeDetail";
 	}
 	
 	@RequestMapping("/member.do")
