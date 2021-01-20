@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member/ask")
-public class AskController {
-	@Autowired private static final Logger logger=LoggerFactory.getLogger(AskController.class);
+public class MemberAskController {
+	@Autowired private static final Logger logger=LoggerFactory.getLogger(MemberAskController.class);
 	
 	@RequestMapping("/askList.do")
 	public void askList() {
