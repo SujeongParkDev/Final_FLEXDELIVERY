@@ -11,7 +11,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>점포 등록 세부 조회</h3>
+                <h3>광고승인 세부조회</h3>
                 <p class="text-subtitle text-muted">점포 승인 요청과 관련된 세부 내역입니다.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -33,8 +33,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" >승인 요청 내역</h4>
-                        <h4 class="card-title" >[접수번호 : 123456, 접수일자 : 2015년 05월 25일]</h4>
+                        <h4 class="card-title" >변경 요청 내역 </h4>
+                        <h4 class="card-title" >[접수번호 : 123456, 접수일자 : 2015년 05월 25일] </h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -88,14 +88,28 @@
            								<div class="col">
                 							<div class="card">
                 								<div class="card-header">
-                        							승인 요청 사항 :
+                        							광고 요청 사항 :
                    								</div>
                     							<div class="card-body">
-                        							<div class="form-group with-title mb-3">
-                            							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" 
-                            							 >긴급 승인 부탁드립니다.</textarea>
-                            							<label>요청 내용</label>
-                        							</div>
+                    								<form class="form">
+                                						<div class="row">
+                    										<div class="col-md-4 col-12">
+                                        						<div class="form-group">
+                                           							 <label for="present-ad">현재 광고 등급</label>
+                                            							 <input type="text" id="present-ad" class="form-control" name="present-ad"
+                                                								value="신규" disabled="disabled">
+                                        						</div>
+                                    						</div>
+                    									
+                                    						<div class="col-md-4 col-12">
+                                     		   					<div class="form-group">
+                                            						<label for="request-ad">요청 광고 등급</label>
+                                            						<input type="text" id="request-ad" class="form-control" name="request-ad"
+                                                				  		   value="슈퍼캡숑" disabled="disabled">
+                                        						</div>
+                                    						</div>                        							
+                    									</div>
+                    								</form>
                     							</div>
                 							</div>
             							</div>

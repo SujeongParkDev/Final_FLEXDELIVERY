@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
 <br><br>
 
 <div class="main-content container-fluid">
@@ -33,7 +34,7 @@
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>점포번호</th>
+                            <th>접수번호</th>
                             <th>점포명</th>
                             <th>점주명</th>
                             <th>연락처</th>
