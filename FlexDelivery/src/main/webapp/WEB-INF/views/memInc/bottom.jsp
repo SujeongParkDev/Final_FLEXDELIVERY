@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
  <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
         <div class="row">
@@ -103,21 +104,29 @@
     </footer>
     <nav id="main-nav">
         <ul class="second-nav">
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/home.html"><i class="feather-home mr-2"></i> Homepage</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/my_order.html"><i class="feather-list mr-2"></i> My Orders</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홍</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/mypage/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
             <li>
-                <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-edit-2 mr-2"></i> Authentication</a>
-                <ul>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/login.html">Login</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/signup.html">Register</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html">Forgot Password</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/verification.html">Verification</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/location.html">Location</a></li>
-                </ul>
+                <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-edit-2 mr-2"></i>내 정보</a>
+                <c:if test="${empty sessionScope.memberId}">
+	                <ul>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/login.html">로그인</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/signup.html">회원가입</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html">아이디찾기</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/verification.html">비밀번호찾기</a></li>
+	                </ul>
+                </c:if>
+                <c:if test="${!empty sessionScope.memberId}">
+	                <ul>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/login.html">마이페이지</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/signup.html">로그아웃</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html">회원정보수정</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/verification.html">회원탈퇴</a></li>
+	                </ul>
+                </c:if>
             </li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html"><i class="feather-heart mr-2"></i> Favorites</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/trending.html"><i class="feather-trending-up mr-2"></i> Trending</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html"><i class="feather-award mr-2"></i> Most Popular</a></li>
+            <li><a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html"><i class="feather-heart mr-2"></i>찜한가게</a></li>
+            <li><a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html"><i class="feather-award mr-2"></i></a></li>
             <li><a href="${pageContext.request.contextPath}/resources/memberResources/restaurant.html"><i class="feather-paperclip mr-2"></i> Restaurant Detail</a></li>
             <li><a href="${pageContext.request.contextPath}/resources/memberResources/checkout.html"><i class="feather-list mr-2"></i> Checkout</a></li>
             <li><a href="${pageContext.request.contextPath}/resources/memberResources/successful.html"><i class="feather-check-circle mr-2"></i> Successful</a></li>
