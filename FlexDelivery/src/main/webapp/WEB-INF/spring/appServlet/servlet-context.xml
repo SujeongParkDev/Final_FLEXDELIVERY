@@ -47,12 +47,12 @@
 		</interceptor>
 	</interceptors> -->
 	
-	
-	<interceptors>	
+	<!-- 오류 확인을 위해 잠시 주석 처리했습니다. -->
+<!-- 	<interceptors>	
 			<interceptor>
 			<mapping path="/owner/menu1/launchNext.do"/>
-			<beans:ref bean="licenseInterceptor"/>
+			<beans:ref bean="licenseInterceptor"/> 
 			</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 </beans:beans>

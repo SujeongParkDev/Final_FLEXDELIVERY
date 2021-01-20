@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.fd.common.SearchVO;
 
+@Repository
 public class LargeCategoryDAOMybatis implements LargeCategoryDAO{
 
 	@Override
