@@ -105,6 +105,12 @@
 			                        <li>
 			                            <a href="#">영업중지</a>
 			                        </li>
+			                         <li>
+			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록 신청하기</a>
+			                        </li>
+			                         <li>
+			                            <a href="#">사업자등록증 확인하기</a>
+			                        </li>
 			                    </ul>
 			                </li>
 							
