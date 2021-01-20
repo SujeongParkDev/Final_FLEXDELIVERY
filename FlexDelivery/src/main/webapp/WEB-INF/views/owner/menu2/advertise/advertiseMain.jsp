@@ -65,58 +65,54 @@
 			  <!-- 현재 진행중인 광고 -->
       		  <div class="row">
       		  
-      		  		
-      		  		<c:if test="${empty list} ">
- 					</c:if>
-      		  		 <!-- 플렉스한광고 -->
-      		  		<div class="col-md-2 col-sm-12"></div>
-				 	<div class="col-md-8 col-sm-12">
-		                <div class="card">
-		                    <div class="card-content">
-		                        <div class="card-body">
-		                            <h4 class="card-title">FLEX한 광고</h4>
-		                            <p class="card-text">
-					                	<span>광고명 : flex한 광고 </span><br>
-					                	<a href="#">광고번호 : FD2 </a><br>
-					                	<span>광고가격 : 30000 </span><br>
-					                	<span>만료일 : '2020-10-01'</span>
-		                            </p>
-		                            <small class="text-muted">굳 초이스</small>
-		                        </div>
-		                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
-		                            alt="Card image cap" style="height:200px;">
-		                     </div>
-		                 </div>
-				  	 </div>
-				 	 <div class="col-md-2 col-sm-12"></div>
-		        
-		        	 <!-- 오픈리스트 -->
-		        	  <div class="col-md-2 col-sm-12"></div>
-					 
-					  <div class="col-md-8 col-sm-12">
-			                <div class="card">
-			                    <div class="card-content">
-			                        <div class="card-body">
-			                            <h4 class="card-title">오픈리스트</h4>
-			                            <p class="card-text">
-						                	<span>광고명 : 오픈리스트 </span><br>
-						                	<a href="#">광고번호 : FD3 </a><br>
-						                	<span>광고가격 : 15000 </span><br>
-						                	<span>만료일 : '2020-10-10'</span>
-			                            </p>
-			                            <small class="text-muted">좋습니다</small>
-			                        </div>
-			                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
-			                            alt="Card image cap" style="height:200px;">
-			                    </div>
-			                </div>
-					   </div>
-					   <div class="col-md-2 col-sm-12"></div>
-			        
-		        
-		        	
-			 </div>
-		
+      		
+	      		  		<c:if test="${empty list} ">
+		      		  		<div class="col-md-2 col-sm-12"></div>
+						 	<div class="col-md-8 col-sm-12">
+			      		  			<div class="card">
+					                    <div class="card-content">
+					                        <div class="card-body">
+					                            <h4 class="card-title">현재 등록하신 광고가 없습니다.</h4>
+					                            <p class="card-text">
+					                            </p>
+					                            <small class="text-muted">광고 등록을 원하시면 오른쪽 위의 등록버튼을 눌러주세요</small>
+					                        </div>
+					                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
+					                            alt="Card image cap" style="height:200px;">
+					                     </div>
+					                 </div>
+							  </div>
+				 			 <div class="col-md-2 col-sm-12"></div>
+	 					</c:if>
+	 					
+	 					 <!-- 플렉스한광고 -->
+	 					<c:if test="${!empty list} ">
+	 						<c:forEach var="vo" items="${list }">
+		      		  		<div class="col-md-2 col-sm-12"></div>
+						 	<div class="col-md-8 col-sm-12">
+			      		  			<div class="card">
+					                    <div class="card-content">
+					                        <div class="card-body">
+					                            <h4 class="card-title">현재 걸려있는 광고입니다</h4>
+					                            <p class="card-text">
+								                	<span>광고명 : ${vo.advertiseName } </span><br>
+								                	<a href="#">광고번호 : ${vo.advertiseNo } </a><br>
+								                	<span>광고가격 : ${vo.advertisePrice} </span><br>
+								                	<span>만료일 : 
+								                		<fmt:formatDate value="${vo.adValidate }" pattern="yyyy-MM-dd"/>
+								                	</span>
+					                            </p>
+					                            <small class="text-muted">언제나 감사합니다 플렉스한 하루 되세요</small>
+					                        </div>
+					                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
+					                            alt="Card image cap" style="height:200px;">
+					                     </div>
+					                 </div>
+							  </div>
+				 			 <div class="col-md-2 col-sm-12"></div>
+				 			 </c:forEach>
+	 					</c:if>
+				</div>
 			   	
 			  
 		 </section>
