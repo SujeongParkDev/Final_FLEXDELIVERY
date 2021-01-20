@@ -20,7 +20,7 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out=response.getWriter();
 			out.print("<script>");
-			out.print("alert()");
+			out.print("alert(먼저 로그인 하세요)");
 			out.print("location.href="+request.getContextPath()+"/member/login/memberLogin.do");
 			out.print("</script>");
 			return false;
