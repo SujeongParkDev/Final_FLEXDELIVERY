@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@include file="../memInc/top.jsp" %>
+<%@include file="../../memInc/top.jsp" %>
 <div class="osahan-home-page">
         <div class="bg-primary p-3 d-none">
             <div class="text-white">
@@ -20,7 +20,7 @@
                 <input type="text" class="shadow-none border-0 form-control" placeholder="Search for restaurants or dishes">
             </div>
         </div>
-        <!-- Filters -->
+        <!-- 대분류카테고리 -->
         <div class="container">
             <div class="cat-slider">
                 <div class="cat-item px-1 py-3">
@@ -79,38 +79,7 @@
                 </div>
             </div>
         </div>
-        <!-- offer sectio slider -->
-        <div class="bg-white">
-            <div class="container">
-                <div class="offer-slider">
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src='<c:url value="/resources/memberResources/img/pro1.jpg" />' class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src='<c:url value="/resources/memberResources/img/pro2.jpg" />' class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src='<c:url value="/resources/memberResources/img/pro3.jpg" />' class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src='<c:url value="/resources/memberResources/img/pro4.jpg" />' class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src='<c:url value="/resources/memberResources/img/pro2.jpg" />' class="img-fluid rounded">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- 점포리스트 출력 -->
         <div class="container">
             <!-- Trending this week -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
@@ -441,4 +410,4 @@
             </div>
         </div>
     </div>
-<%@include file="../memInc/bottom.jsp" %>
+<%@include file="../../memInc/bottom.jsp" %>
