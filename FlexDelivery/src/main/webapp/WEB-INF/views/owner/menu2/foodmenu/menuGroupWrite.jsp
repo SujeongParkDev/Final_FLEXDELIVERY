@@ -70,58 +70,63 @@
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
-    $(function(){
-		$('#button-addon1').click(function(){
-			if($('input[type=password]').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('input[type=password]').focus();
-				event.preventDefault();
-			}else{
-			
-				window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
-				self.close();
-			}
-				
+	  $(function(){
+			$('#btMenuGroupWriteOpen').click(function(){
+				if($('input[type=text]').val().length<1){
+					alert('그룹명을 입력해 주세요');
+					$('input[type=text]').focus();
+					event.preventDefault();
+				}else{
+					var sMGroupName  =$('input[type=text]').val();
+					window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupWrite.do?sMGroupName="+sMGroupName;
+					self.close();
+				}
+					
+			});
 		});
-	});
+    
+    
+   
+    
 	
 	</script>
 </head>
-
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  
-	 		  <!-- adPwd 의 제목, 내용  -->
-	 		  <div align="center">
-	 		  		<h3> 본인 인증 </h3>
-	 		  		<br>
-	 		  		<div>
-	 		  			<span> 본인 인증을 위해 비밀번호를 입력해주세요</span>
-	 		  		</div>
-	 		  </div>
-	 		  <br>
-	 		  <br>
-		 		  <!-- 본인인증을 위한 비밀번호 입력값 -->
-				  <div class="row">
-				  		<div class="col-md-4 col-sm-12"></div>
-				  		<div class="col-md-4 col-sm-12">
-	                           <div class="input-group mb-4">
-	                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1">
-	                          		 <button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
-	                           </div>
-			            </div>
-	                    <div class="col-md-4 col-sm-12"></div>
-				  </div>
-		
-			  
-			 	
+		<br>	<br>	
+		<section id="basic-vertical-layouts">
+		    <div class="row match-height">
+		    	<div class="col-md-3 col-sm-12"></div>
+		        <div class="col-md-6 col-sm-12">
+		        <div class="card">
+		            <div class="card-header">
+		            <h4 class="card-title">메뉴 그룹 등록</h4>
+		            </div>
+		            <div class="card-content">
+		            <div class="card-body">
+		                <form class="form form-vertical">
+		                   <div class="form-body">
+		                    <div class="row">
+		                    <div class="col-12">
+		                        <div class="form-group">
+		                        <label for="first-name-vertical">메뉴 그룹 이름</label>
+		                        <input type="text" id="sMGroupName" class="form-control" name="sMGroupName">
+		                        </div>
+		                    </div>
+		                    <div class="col-12 d-flex justify-content-end">
+		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuGroupWriteOpen" value="등록">
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                    </div>
+		                    </div>
+		                </div>
+		                </form>
+		            </div>
+		            </div>
+		        </div>
+		        </div>
+		        <div class="col-md-3 col-sm-12"></div>
+		    </div>
+		</section>
 			
-			
-	
 			  
 			
 </body>

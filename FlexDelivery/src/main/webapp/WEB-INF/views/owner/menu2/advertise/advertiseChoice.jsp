@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <!-- top 시작-->
 
-<%@include file="../../../ownerInc/top.jsp"%>
+
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- top 끝 -->
 
@@ -103,6 +103,6 @@
 		
 <!-- bottom 시작-->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
-<%@include file="../../../ownerInc/bottom.jsp"%>
+
 
 		

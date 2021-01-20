@@ -3,7 +3,13 @@
     pageEncoding="UTF-8"%>
 <!-- top 시작-->
 
-<%@include file="../../../ownerInc/top.jsp"%>
+
+
+
+
+<style>
+	
+</style>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- top 끝 -->
 
@@ -26,12 +32,11 @@
 						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
 				});
 			
-				
+			
 			});
 			
-		
-
 			
+
 			  
 		
 		</script>
@@ -116,6 +121,5 @@
 		
 <!--  bottom  -->
   <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
-  <%@include file="../../../ownerInc/bottom.jsp"%>
 
 		

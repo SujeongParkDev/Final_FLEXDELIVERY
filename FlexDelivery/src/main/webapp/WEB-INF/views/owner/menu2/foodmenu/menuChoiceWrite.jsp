@@ -70,58 +70,86 @@
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
-    $(function(){
-		$('#button-addon1').click(function(){
-			if($('input[type=password]').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('input[type=password]').focus();
-				event.preventDefault();
-			}else{
-			
-				window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
-				self.close();
-			}
-				
+	  $(function(){
+			$('#btMenuGroupWriteOpen').click(function(){
+				if($('input[type=text]').val().length<1){
+					alert('그룹명을 입력해 주세요');
+					$('input[type=text]').focus();
+					event.preventDefault();
+				}else{
+					var sMGroupName  =$('input[type=text]').val();
+					window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupWrite.do?sMGroupName="+sMGroupName;
+					self.close();
+				}
+					
+			});
 		});
-	});
+    
+    
+   
+    
 	
 	</script>
 </head>
-
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  
-	 		  <!-- adPwd 의 제목, 내용  -->
-	 		  <div align="center">
-	 		  		<h3> 본인 인증 </h3>
-	 		  		<br>
-	 		  		<div>
-	 		  			<span> 본인 인증을 위해 비밀번호를 입력해주세요</span>
-	 		  		</div>
-	 		  </div>
-	 		  <br>
-	 		  <br>
-		 		  <!-- 본인인증을 위한 비밀번호 입력값 -->
-				  <div class="row">
-				  		<div class="col-md-4 col-sm-12"></div>
-				  		<div class="col-md-4 col-sm-12">
-	                           <div class="input-group mb-4">
-	                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1">
-	                          		 <button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
-	                           </div>
-			            </div>
-	                    <div class="col-md-4 col-sm-12"></div>
-				  </div>
+		<br>	<br>	
+		<br>	<br>	
 		
-			  
-			 	
+		<section id="basic-vertical-layouts">
+		    <div class="row match-height">
+		    	<div class="col-md-3 col-sm-12"></div>
+		        <div class="col-md-6 col-sm-12">
+		        <div class="card">
+		            <div class="card-header">
+		            <h4 class="card-title text-center">메뉴 등록</h4>
+		            </div>
+		            <div class="card-content">
+		            <div class="card-body">
+		                <form class="form form-vertical">
+		                   <div class="form-body">
+		                    <div class="row">
+		                    <div class="col-12">
+		                        <div class="form-group">
+		                        	<span>메뉴 그룹</span>
+		                     	 	<select class="form-select" id="sMGroupNo" name="sMGroupNo" style="text-align-last: right">
+                                            <option selected="selected">돈까스</option>
+                                            <option>치킨</option>
+                                            <option>피자</option>
+                                    </select>
+		                       		
+		                       		<label for="first-name-vertical">메뉴 이름</label>
+		                        	<input type="text" id="menuName" class="form-control" name="menuName">
+		                    	  
+		                    	    <label for="first-name-vertical">메뉴 가격</label>
+		                        	<input type="text" id="menuPrice" class="form-control text-right" name="menuPrice">
+		                     		<span>메뉴 이미지</span>
+		                     		<div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text text-right">파일을 선택하세요</span>
+                                            <span class="form-file-button btn-primary "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></span>
+                                        </label>
+                                    </div>
+                            		<label for="exampleFormControlTextarea1" class="form-label">메뉴 내용</label>
+                            		<textarea class="form-control" id="menuContent" rows="3"></textarea>
+                        		</div>
+		                       
+		                      </div>
+		                    </div>
+		                    <div class="col-12 d-flex justify-content-end">
+		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuGroupWriteOpen" value="등록">
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                    </div>
+		                    </div>
+		                </form>
+		            </div>
+		            </div>
+		        </div>
+		        </div>
+		        <div class="col-md-3 col-sm-12"></div>
+		    </div>
+		</section>
 			
-			
-	
 			  
 			
 </body>
