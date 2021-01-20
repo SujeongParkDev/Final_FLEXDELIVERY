@@ -1,5 +1,5 @@
 package com.project.fd.admin.controller;
 
-public class RegularCouponController {
+public class AdminWeatherController {
 
 }

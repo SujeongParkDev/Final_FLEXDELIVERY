@@ -1,6 +1,6 @@
 package com.project.fd.admin.coupons.model;
 
-public class EventCouponVO {
+public class AdminEventCouponVO {
 	private int eCouponNo;
 	private String eCouponName;
 	private String eCouponStartDate;

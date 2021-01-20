@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.fd.admin.largecategory.model.LargeCategoryService;
-import com.project.fd.admin.largecategory.model.LargeCategoryVO;
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.SearchVO;
@@ -24,12 +24,12 @@ import com.project.fd.common.Utility;
 
 @Controller
 @RequestMapping("/admin/menu6")
-public class LargeCategoryController {
+public class AdminLargeCategoryController {
 	private static final Logger logger
-		=LoggerFactory.getLogger(LargeCategoryController.class);
+		=LoggerFactory.getLogger(AdminLargeCategoryController.class);
 	
 	@Autowired
-	private LargeCategoryService largeCategoryService;
+	private AdminLargeCategoryService largeCategoryService;
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
@@ -42,7 +42,7 @@ public class LargeCategoryController {
 	}
 	
 	@RequestMapping(value="/largecategory/write.do", method=RequestMethod.POST)
-	public String write_post(@ModelAttribute LargeCategoryVO largeCategoryVo,
+	public String write_post(@ModelAttribute AdminLargeCategoryVO largeCategoryVo,
 			HttpServletRequest request) {
 		//1. 
 		logger.info("대분류 카테고리 등록 처리, 파라미터  vo={}", largeCategoryVo);
@@ -88,7 +88,7 @@ public class LargeCategoryController {
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
-		List<LargeCategoryVO> list=largeCategoryService.selectAll(searchVo);
+		List<AdminLargeCategoryVO> list=largeCategoryService.selectAll(searchVo);
 		logger.info("글목록 결과, list.size={}", list.size());
 		
 		int totalRecord=largeCategoryService.selectTotalRecord(searchVo);

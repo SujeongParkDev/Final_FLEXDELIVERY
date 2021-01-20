@@ -1,6 +1,6 @@
 package com.project.fd.admin.ask.model;
 
-public class AskVO {
+public class AdminAskVO {
 	private int askNo;
 	private String askTitle;
 	private String askId;

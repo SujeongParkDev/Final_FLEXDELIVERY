@@ -1,6 +1,6 @@
 package com.project.fd.admin.gift.model;
 
-public class GiftProductVO {
+public class AdminGiftProductVO {
 	private int gProductNo;
 	private String gProductName;
 	private String gProductFile;

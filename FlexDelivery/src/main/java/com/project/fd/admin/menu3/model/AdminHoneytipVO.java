@@ -1,6 +1,6 @@
 package com.project.fd.admin.menu3.model;
 
-public class HoneytipVO {
+public class AdminHoneytipVO {
 	private int honeytipNo;
 	private String honeytipTitle;
 	private String honeytipContent;

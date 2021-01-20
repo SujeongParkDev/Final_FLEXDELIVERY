@@ -1,6 +1,6 @@
 package com.project.fd.admin.coupons.model;
 
-public class RegularCouponVO {
+public class AdminRegularCouponVO {
 	private int rCouponNo;
 	private int rCouponDv;
 	private int rCouponMin;

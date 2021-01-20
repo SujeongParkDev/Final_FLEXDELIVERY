@@ -1,6 +1,6 @@
 package com.project.fd.admin.mediumcategory.model;
 
-public class MediumCategoryVO {
+public class AdminMediumCategoryVO {
 	private int mCategoryNo;
 	private String mCategoryName;
 	private int lCategoryNo;
