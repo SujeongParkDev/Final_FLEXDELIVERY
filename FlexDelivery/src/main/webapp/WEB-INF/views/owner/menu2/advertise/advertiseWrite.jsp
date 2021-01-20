@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <!-- top 시작-->
 
-<%@include file="../../../ownerInc/top.jsp"%>
+
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- top 끝 -->
 	<br>
@@ -51,7 +51,7 @@
 				                  
 				                    <div class="col-sm-12 d-flex justify-content-end pt-5">
 				                        <button type="submit" class="btn btn-primary mr-1 mb-1">신청</button>
-				                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">취소</button>
+				                        <button type="button" onclick="history.back()" class="btn btn-light-secondary mr-1 mb-1">취소</button>
 				                    </div>
 			                    </div>
 			                </div>
@@ -65,6 +65,6 @@
 	</div>
 <!-- bottom 시작-->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
-<%@include file="../../../ownerInc/bottom.jsp"%>
+
 
 		
