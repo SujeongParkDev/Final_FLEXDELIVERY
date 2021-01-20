@@ -26,19 +26,19 @@
 				                        <label>사업자 대표명</label>
 				                    </div>
 				                    <div class="col-md-8 form-group" >
-				                        <input type="text" id="advertiseName" class="form-control text-right" name="advertiseName" value="${param.choice }" readonly="readonly">
+				                        <input type="text" id="" class="form-control text-right" placeholder="" name="" value="${param.choice }" >
 				                    </div>
 				                    <div class="col-md-4">
 				                        <label>사업자등록 번호</label>
 				                    </div>
 				                    <div class="col-md-8 form-group" >
-				                        <input type="text" id="advertiseName" class="form-control text-right" name="advertiseName" value="${param.choice }" readonly="readonly">
+				                        <input type="text" id="" class="form-control text-right" placeholder=""  name="" value="${param.choice }">
 				                    </div>
 				                    <div class="col-md-4">
 				                        <label>사업자등록증</label>
 				                    </div>
 				                    <div class="col-md-8 form-group">
-				                        <input type="file" id="advertisePrice" class="form-control text-right" name="advertisePrice"  placeholder="" value="" readonly="readonly">
+				                        <input type="file" id="" class="form-control text-right border none" name=""   value="" >
 				                    </div>
 				                    <div class="col-sm-12 d-flex justify-content-end pt-5">
 				                        <button type="submit" class="btn btn-primary mr-1 mb-1">신청</button>

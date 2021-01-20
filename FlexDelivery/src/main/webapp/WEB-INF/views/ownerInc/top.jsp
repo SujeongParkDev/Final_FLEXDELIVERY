@@ -67,11 +67,11 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="#">백신</a></li>
+                                    <li><a href="#">지안</a></li>
+                                    <li><a href="#">소정</a></li>
+                                    <li><a href="#">최강 점포팀</a></li>
+                                    <li><a href="#">점포now4ever</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                     <li><a href="#">고객센터</a>
                                          <ul class="dropdown">
                                             <li><a href="#">자주 하는 질문</a></li>
-                                            <li><a href="#">1:1 문의</a></li>
+                                            <li><a href="<c:url value='/owner/menu5/oneToOne.do'/>">1:1 문의</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">고객 사이트로 이동</a></li>
