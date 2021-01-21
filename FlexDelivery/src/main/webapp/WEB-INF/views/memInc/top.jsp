@@ -39,7 +39,7 @@
                         <!-- brand-wrap.// -->
                     </div>
                     <div class="col-3 d-flex align-items-center m-none">
-                    	<img src="${pageContext.request.contextPath}/resources/imgs/FD2.png" alt="FlexDeliveryLogo">
+                    	<img src="${pageContext.request.contextPath}/resources/imgs/FD2.png" alt="FlexDeliveryLogo" class="img-fluid">
                     </div>
                     <!-- col.// -->
                     <div class="col-8">

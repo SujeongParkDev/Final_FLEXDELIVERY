@@ -1,4 +1,4 @@
-/*
+
 package com.project.fd.admin.controller;
 
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(AdminController.class);
-
+	
 	@RequestMapping("/login/login.do")
 	public void adminLogin() {
 		logger.info("관리자 - 로그인 화면");
@@ -173,6 +173,6 @@ public class AdminController {
 		logger.info("관리자 - 선물하기 - 금액 화면 보여주기");
 	}
 	*/
+
 	
 }
-*/
