@@ -12,8 +12,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-
-
+<!-- fontawsome -->
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/style.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/animate.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/bootstrap.min.css"/>
@@ -67,11 +68,11 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">백신</a></li>
-                                    <li><a href="#">지안</a></li>
-                                    <li><a href="#">소정</a></li>
-                                    <li><a href="#">최강 점포팀</a></li>
-                                    <li><a href="#">점포now4ever</a></li>
+                                    <li><a href="#">입점신청</a></li>
+                                    <li><a href="#">광고관리</a></li>
+                                    <li><a href="#">고객센터</a></li>
+                                    <li><a href="#">사장님꿀팁</a></li>
+                                    <li><a href="#">매출관리</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -94,7 +95,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                        <!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="index.html" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a>
+                         <a href="<c:url value='/owner/index.do' />" class="original-logo"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
                     </div>
                 </div>
             </div>
@@ -109,7 +110,7 @@
 
                         <!-- Subscribe btn -->
                         <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribe</a>
+                           <!--  <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal"></a> -->
                         </div>
 
                         <!-- Navbar Toggler -->
