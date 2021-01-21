@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
+<%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
 
@@ -125,4 +125,4 @@
 </div>
 
 
-<%@include file="../../ownerInc/jianSidebarBottom.jsp"%>
+<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

@@ -108,10 +108,10 @@
 			                    </a>
 			                    <ul class="submenu active">
 			                        <li>
-			                            <a href="#">기본정보</a>
+			                            <a href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a>
 			                        </li>
 			                        <li>
-			                            <a href="#">운영정보</a>
+			                            <a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a>
 			                        </li>
 			                        <li>
 			                            <a href="#">영업중지</a>
@@ -182,7 +182,7 @@
 			                        
 			                        <!-- 쿠폰view -->
 			                         <li>
-			                            <a href="#">쿠폰관리</a>
+			                            <a href="<c:url value='/owner/menu2/couponused/couponUsed.do'/>">쿠폰관리</a>
 			                        </li>
 			                    </ul>
 			                </li>

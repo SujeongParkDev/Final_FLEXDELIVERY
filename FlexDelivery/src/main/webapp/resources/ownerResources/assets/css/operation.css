@@ -116,6 +116,9 @@ select:not([size]) {
     content: "\f101"
 }
 
+.Card {
+    width: 860px;
+}
 
 
 

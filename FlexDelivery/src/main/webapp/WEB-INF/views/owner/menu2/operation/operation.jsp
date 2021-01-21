@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
-<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
-
+<%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/couponUsed.css" />
+   href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/operation.css" />
 <link rel="stylesheet" href="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/css/ceo-selfservice.css?ts=20210119110213">
+
 
 <div class="frame-wrap">
 	<div class="frame-body">
@@ -27,11 +27,9 @@
 			<div>
 				<div class="tabs TabNav">
 					<ul>
-						<li><a href="/self-service/shops/13195815/basic">기본정보</a></li>
 						<li><a aria-current="page" class="active"
-							href="/self-service/shops/13195815/operation">운영정보</a></li>
-						<li><a href="/self-service/shops/13195815/order">주문정보</a></li>
-						<li><a href="/self-service/shops/13195815/delivery-region">배달지역</a></li>
+                     href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a></li>
+                  <li><a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
 					</ul>
 				</div>
 				<form class="form-card">
@@ -178,4 +176,4 @@
 </div>
 
 
-<%@include file="../../ownerInc/jianSidebarBottom.jsp"%>
+<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
