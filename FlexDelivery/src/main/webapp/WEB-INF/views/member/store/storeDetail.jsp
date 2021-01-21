@@ -226,7 +226,6 @@
                         <h6 class="mb-1">이 가게의 리뷰</h6>
                         <div class="reviews-members py-3">
                             <div class="media">
-                                <a href="#"><img alt="#" src="img/reviewer1.png" class="mr-3 rounded-pill"></a>
                                 <div class="media-body">
                                     <div class="reviews-members-header">
                                         <div class="star-rating float-right">
@@ -253,7 +252,6 @@
                         <hr>
                         <div class="reviews-members py-3">
                             <div class="media">
-                                <a href="#"><img alt="#" src="img/reviewer2.png" class="mr-3 rounded-pill"></a>
                                 <div class="media-body">
                                     <div class="reviews-members-header">
                                         <div class="star-rating float-right">
@@ -301,7 +299,6 @@
             <div class="col-md-4 pt-3">
                 <div class="osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar">
                     <div class="d-flex border-bottom osahan-cart-item-profile bg-white p-3">
-                        <img alt="osahan" src="<c:url value="/resources/memberResources/img/stater1.png "/>" class="mr-3 rounded-circle img-fluid">
                         <div class="d-flex flex-column">
                             <h6 class="mb-1 font-weight-bold">콘라드 레스토랑</h6>
                             <p class="mb-0 small text-muted"><i class="feather-map-pin"></i> 사랑시 행복동 75번지</p>
