@@ -19,4 +19,9 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 		return 0;
 	}
 
+	@Override
+	public AdminLargeCategoryVO selectByNo(int no) {
+		return null;
+	}
+
 }

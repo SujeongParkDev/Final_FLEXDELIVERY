@@ -22,7 +22,7 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="squareText">비밀번호 확인</label>
-								<input type="text" id="squareText" class="form-control square" placeholder="비밀번호를 입력하세요">
+								<input type="password" id="squareText" class="form-control square" placeholder="비밀번호를 입력하세요">
 							</div>
 						</div>
                     </div>

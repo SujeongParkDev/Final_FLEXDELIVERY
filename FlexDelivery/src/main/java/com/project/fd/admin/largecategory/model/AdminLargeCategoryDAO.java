@@ -10,4 +10,6 @@ public interface AdminLargeCategoryDAO {
 
 	int selectTotalRecord(SearchVO searchVo);
 
+	AdminLargeCategoryVO selectByNo(int no);
+
 }

@@ -20,4 +20,9 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 		return largeCategoryDao.selectTotalRecord(searchVo);
 	}
 
+	@Override
+	public AdminLargeCategoryVO selectByNo(int no) {
+		return largeCategoryDao.selectByNo(no);
+	}
+
 }

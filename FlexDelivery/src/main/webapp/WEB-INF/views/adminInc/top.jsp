@@ -96,7 +96,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                     	<!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="<c:url value='/admin/index.do' />" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a>
+                        <a href="<c:url value='/admin/index.do' />" class="original-logo"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                                         <ul class="dropdown">
                                             <li><a href="<c:url value='/admin/menu3/notice.do' />">공지사항</a></li>
                                             <li><a href="<c:url value='/admin/menu3/event.do' />">이벤트</a></li>
-                                            <li><a href="<c:url value='/admin/menu3/honeyTip.do' />">사장님꿀팁</a></li>
+                                            <li><a href="<c:url value='/admin/menu3/honeytip.do' />">사장님꿀팁</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="<c:url value='/admin/menu4/introduce.do' />">플렉스 딜리버리 소개</a></li>
@@ -161,8 +161,8 @@
                                          <ul class="dropdown">
                                             <li><a href="#">음식 메뉴 카테고리</a>
 	                                            <ul class="dropdown">
-		                                            <li><a href="<c:url value="/admin/menu6/categoryLarge.do" />">대분류 카테고리</a></li>
-		                                            <li><a href="<c:url value="/admin/menu6/categoryMiddle.do" />">중분류 카테고리</a></li>                                           
+		                                            <li><a href="<c:url value="/admin/menu6/largeCategory.do" />">대분류 카테고리</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/middleCategory.do" />">중분류 카테고리</a></li>                                           
 	                                            </ul>
                                             </li>
                                             <li><a href="#">오늘 뭐 먹지</a>
@@ -173,7 +173,7 @@
                                             </li>
                                             <li><a href="<c:url value='/admin/menu6/coupons.do' />">쿠폰 관리</a>
 	                                            <ul class="dropdown">
-		                                            <li><a href="<c:url value="/admin/menu6/storeCoupon.do" />">정기쿠폰 관리</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/regularCoupon.do" />">정기쿠폰 관리</a></li>
 		                                            <li><a href="<c:url value="/admin/menu6/eventCoupon.do" />">이벤트쿠폰 관리</a></li>                                           
 	                                            </ul>
                                             </li>

@@ -40,7 +40,7 @@
 				              </tr>
 				              <tr>
 				                <td colspan="3"  style="text-align: center;">
-				                	<input type="submit" value="등록" class="btn btn-dark round">
+				                	<input type="submit" value="수정" class="btn btn-dark round">
 				                </td>
 				              </tr>
 				            </tbody>
