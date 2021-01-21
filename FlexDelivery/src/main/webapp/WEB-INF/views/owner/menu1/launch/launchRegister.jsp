@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../ownerInc/top.jsp"%>
+<%@ include file="../../../ownerInc/top.jsp"%>
 
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchRegister.css" />
@@ -272,4 +272,4 @@
 	
 
 
-<%@include file="../../ownerInc/bottom.jsp"%>
+<%@include file="../../../ownerInc/bottom.jsp"%>

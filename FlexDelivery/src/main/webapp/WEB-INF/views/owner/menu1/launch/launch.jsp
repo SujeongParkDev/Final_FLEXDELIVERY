@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../ownerInc/top.jsp" %>
+<%@ include file="../../../ownerInc/top.jsp" %>
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -75,7 +75,7 @@ $(function(){
             class="content-body s2"
             style="background-color: rgb(243, 248, 255)"
           >
-            <section>
+            <section id="howto">
               <h3
                 class="section-title rblADaB1yPUEg7R83HVUs _1xRjW6OBdx_wib_P4X650Y"
               >
@@ -123,4 +123,4 @@ $(function(){
 </div>
 
 
-<%@include file="../../ownerInc/bottom.jsp" %> 
+<%@include file="../../../ownerInc/bottom.jsp" %> 

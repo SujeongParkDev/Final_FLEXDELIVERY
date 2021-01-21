@@ -141,4 +141,50 @@ img {
     border-style: none;
 }
 
+/*아래 카드 두가지*/
+.ols-intro .s1 .item-list, .ols-intro .s2 .item-list, .ols-intro .s6 .item-list {
+    display: flex;
+    justify-content: space-between;
+}
+.howto .card-outer.p-sm-3.rblADaB1yPUEg7R83HVUs {
+ 
+    text-align: left;
+}
 
+.howto .item-list .card-outer  {
+    padding: 56px;
+    text-align: left;
+}
+
+.rblADaB1yPUEg7R83HVUs._1xRjW6OBdx_wib_P4X650Y {
+    opacity: 1;
+    transform: none;
+}
+
+.ols-intro .s2 .item-list .card-outer ol li {
+    font-size: 18px;
+}
+
+.ols-intro .s2 .item-list .card-outer ol li:not(.call):before {
+    width: 24px;
+    height: 24px;
+    background: #212329;
+    border-radius: 50%;
+    color: #fff;
+    content: counter(my-awesome-counter);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-right: 12px;
+    text-align: center;
+}
+
+.howto .item-list .card-outer {
+    background-size: 80px 80px;
+}
+
+.content-body .item-list .rounded {
+    border: 1px solid #d7dbe6;
+    border-radius: 100px;
+}

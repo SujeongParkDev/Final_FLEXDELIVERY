@@ -176,3 +176,11 @@ ul.bullet-ul.number.mb-half {
     letter-spacing: -.4px;
     color: #212329;
 }
+
+.d-flex.align-items-center {
+    font-size: bold;
+    font: bold;
+    font-style: bold;
+    font-style: italic;
+    font-weight: bold;
+}
