@@ -8,10 +8,11 @@
 
 	<script type="text/javascript">
 		function pageFunc(curPage){
-				$('form[name=frm1]').find('input[name=currentPage]').val(curPage);	
-				$('form[name=frm1]').submit();
+				$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
+				$('form[name=frmPage]').submit();
 		}
 		
+
 		
 		$(function(){
 			$('#btAdRegister').on('click', function(){
@@ -65,6 +66,15 @@
 		
 		
 		
+		
+		<form action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" 
+			name="frmPage" method="post">
+			<input type="text" name="currentPage" >
+			<input type="hidden" value="${storeNo }" name="storeNo">
+		</form>
+		
+		
+		
 		<!-- 테이블 감싼 디비 시작 -->
 
 		<div class="row" id="table-hover-row">
@@ -87,23 +97,26 @@
 			                <th>광고번호</th>
 			                <th>광고명</th>
 			                <th>가격</th>
-			                <th>이용기간</th>
+			                <th>만료일</th>
 			              </tr>
 			            </thead>
 			            <tbody>
 			            <!-- table 시작 -->
+			            	<c:if test="${!empty lsit }">
+			            	<tr>
+								<td colspan="4" class="align_center">데이터가 존재하지 않습니다.</td>
+							</tr>
+			            	</c:if>
+			            	<c:if test="${empty lsit }">
+			            	<c:forEach var="vo" items="${list }">	
 				              <tr  class="text-center">
-					                <td class="text-bold-500">FD01</td>
-					                <td>FLEX한 광고</td>
-					                <td>50000원</td>
-					                <td>2020-01-03 ~ 2021-03-04</td>
+					                <td class="text-bold-500">${vo.storeadNo }</td>
+					                <td>${vo.advertiseName }</td>
+					                <td>${vo.advertisePrice }</td>
+					                <td>${vo.adValidate }</td>
 				              </tr>
-				              <tr  class="text-center">
-					               	<td class="text-bold-500">FD04</td>
-					                <td>오픈리스트</td>
-					                <td>30000원</td>
-					                <td>2020-01-03 ~ 2021-03-05</td> 
-				              </tr>
+				              </c:forEach>
+				           </c:if>
 			            </tbody>
 			          </table>
 			        </div>
@@ -113,25 +126,41 @@
 			  <div class="col-md-2 col-sm-12"></div>
 		</div>
 		<!-- 테이블 끝 -->
-	
+	<%-- 
 		<!-- 페이징 시작 -->
 		<div class="card-body">
            <nav aria-label="Page navigation example">				<!-- 페이지 가운데 정렬은  justify-content-center-->
                <ul class="pagination pagination-primary justify-content-center">
-                   <li class="page-item"><a class="page-link" href="#">
-                       <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
-                   </a></li>
-                   <li class="page-item"><a class="page-link" href="#">1</a></li>
-                   <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                   <li class="page-item"><a class="page-link" href="#">4</a></li>
-                   <li class="page-item"><a class="page-link" href="#">5</a></li>
-                   <li class="page-item"><a class="page-link" href="#">
-                       <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
-                   </a></li>
+		   <!-- 페이지 번호 추가 -->		
+			<!-- 이전 블럭으로 이동 -->
+		 			<c:if test="${pagingInfo.firstPage>1 }">	
+						<li class="page-item">
+			                   <a class="page-link" href="#"  onclick="pageFunc(${pagingInfo.firstPage-1})">
+			                       <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+			                   </a>
+		                   </li>
+					</c:if>
+		                
+	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
+						<c:if test="${i==pagingInfo.currentPage }">
+							 <li class="page-item active"><a class="page-link" href="#" >${i}</a></li>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+						    <li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
+						</c:if>
+					</c:forEach>
+
+				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
+					<li class="page-item">
+		                   <a class="page-link" href="#"  onclick="pageFunc(${pagingInfo.lastPage+1})">
+	                       		<span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+		                   </a>
+	                   </li>
+				 </c:if>
                </ul>
            </nav>
-        </div>
+        </div> --%>
 		
   <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 
