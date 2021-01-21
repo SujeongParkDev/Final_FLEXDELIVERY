@@ -14,7 +14,7 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String namespace="config.mybatis.mapper.oracle.adminlargecategory";
+	private String namespace="config.mybatis.mapper.oracle.adminlargecategory.";
 	
 	@Override
 	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
@@ -33,8 +33,9 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 
 	@Override
 	public int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo) {
-		int cnt=sqlSession.insert(namespace+"insertLargeCategory", largeCategoryVo);
+		int cnt=sqlSession.insert(namespace+"insertLargecategory", largeCategoryVo);
 		return cnt;
 	}
+
 
 }

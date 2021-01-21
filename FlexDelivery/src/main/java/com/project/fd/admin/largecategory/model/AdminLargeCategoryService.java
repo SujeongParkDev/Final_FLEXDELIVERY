@@ -12,6 +12,5 @@ public interface AdminLargeCategoryService {
 
 	AdminLargeCategoryVO selectByNo(int no);
 
-	int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo);
-
+	int insertLargeCategory(AdminLargeCategoryVO largecategoryVo);
 }
