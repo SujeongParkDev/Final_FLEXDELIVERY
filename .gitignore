@@ -5,3 +5,12 @@ database.properties
 fileUpload.properties
 *.class
 .class
+/target/
+/target/*
+/target/**
+*/target/*
+*/target/**
+*/target/
+
+
+

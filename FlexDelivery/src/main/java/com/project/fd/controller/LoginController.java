@@ -32,16 +32,15 @@ public class LoginController {
 	@Autowired private OwnerService ownerServ;
 	
 	@RequestMapping("/login.do")
-	public String login(@RequestParam int idx,@RequestParam String userid,@RequestParam String pwd,@RequestParam String chkSave,
+	public String login(@RequestParam int idx,@RequestParam String userid,@RequestParam String pwd,@RequestParam(required = false) String chkSave,
 			HttpServletRequest request,HttpServletResponse response,Model model) {
 		logger.info("로그인처리, idx={}",idx);
-		
 		HttpSession session=request.getSession();
 		String msg="로그인 실패!",url="";
-		
 		if(idx==Utility.MEMBER_LOGIN) {
 			logger.info("회원 로그인처리, 파라미터 userid={},pwd={}",userid,pwd);
 			int cnt=memServ.loginChk(userid, pwd);
+			logger.info("아이디 유효성검사 결과 cnt={}",cnt);
 			if(cnt==MemberService.ID_NONE) {
 				msg="아이디가 존재하지 않습니다.";
 				url="/member/login/memberLogin.do";

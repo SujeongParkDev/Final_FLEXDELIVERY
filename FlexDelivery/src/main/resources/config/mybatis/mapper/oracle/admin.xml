@@ -4,10 +4,10 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.admin">
 	<select id="selectPwd" parameterType="String" resultType="String">
-		select adminPwd from admin where adminId=${userid}
+		select admin_pwd from admin where admin_id=#{userid}
 	</select>
 	
 	<select id="selectAdmin" parameterType="String" resultType="adminVo">
-		select * from admin where adminId=${userid}	
+	select * from admin where admin_id=#{userid}
 	</select>
 </mapper>

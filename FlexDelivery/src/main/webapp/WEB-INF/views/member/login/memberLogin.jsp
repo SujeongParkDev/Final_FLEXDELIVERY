@@ -73,9 +73,9 @@
                     <h2 class="text-dark my-0">WECOME FLEX-DELIVERY</h2>
                    	<br>
                     <form class="mt-5 mb-4" action="<c:url value='/login.do' />">
-                    	<input type="hidden" name="idx" value="${param.idx}"> 
+                    	<input type="hidden" name="idx" value="${idx}"> 
                         <div class="form-group">
-                            <input type="text" placeholder="ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userId">
+                            <input type="text" placeholder="ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid">
                             ${cookie.ck_memberId}
                         </div>
                         <div class="form-group">
