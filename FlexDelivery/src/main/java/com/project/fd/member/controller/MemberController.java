@@ -19,13 +19,6 @@ public class MemberController {
 		return "member/register/register";
 	}
 	
-	@RequestMapping("/register2.do")
-	public String register2(){
-		logger.info("회원가입2 화면 보여주기");
-		
-		return "member/register2";
-	}
-	
 	@RequestMapping("/store/storeDetail.do")
 	public String store() {
 		logger.info("점포 화면 보여주기");
