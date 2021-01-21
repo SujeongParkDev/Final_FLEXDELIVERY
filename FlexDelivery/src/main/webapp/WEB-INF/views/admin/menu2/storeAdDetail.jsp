@@ -7,7 +7,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
 <!-- main start -->
-<div class="main-content container-fluid" style="width: 75%">
+<div class="main-content container" style="width: 75%">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">

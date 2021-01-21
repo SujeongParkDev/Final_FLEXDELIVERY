@@ -7,7 +7,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
 <!-- main start -->
-<div class="main-content container-fluid" >
+<div class="main-content container" >
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
@@ -33,6 +33,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >변경 요청 내역</h4>
+                        <h4 class="card-title" >[접수번호 : 123456, 접수일자 : 2015년 05월 25일]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -113,6 +114,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >기존 등록 내역</h4>
+                        <h4 class="card-title" >[접수번호 : 3456, 접수일자 : 2014년 04월 25일]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
