@@ -4,13 +4,15 @@
 
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchRegister.css" />
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#btRegi').click(function() {
 			location.href = '<c:url value="/owner/menu1/launchRegister_ok.do"/>';
 		});
 	});
+	
+	
 </script>
 <div id="root">
 	<div class="Frame medium">
