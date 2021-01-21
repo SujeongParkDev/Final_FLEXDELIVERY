@@ -76,52 +76,33 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
-    $(function(){
-		$('#button-addon1').click(function(){
-			if($('input[type=password]').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('input[type=password]').focus();
-				event.preventDefault();
-			}else{
-			
-				window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
-				self.close();
-			}
-				
+	
+		
+		if(${result}==${checkSuccess}){
+		 	window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
+			self.close();
+		}else{
+			alert("비밀번호가 틀렸습니다.");
+		}
+		
+	    $(function(){
+			$('#button-addon1').click(function(){
+				if($('input[type=password]').val().length<1){
+					alert('비밀번호를 입력하세요');
+					$('input[type=password]').focus();
+					event.preventDefault();
+				} else{
+					$('form[name=frm1]').submit();
+					
+				} 
+					
+			});
 		});
-	});
 	
 	</script>
 </head>
 <body style="overflow-x:hidden;">
-<!-- 
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  <br>
-	 		  
-	 		  adPwd 의 제목, 내용 
-	 		  <div align="center">
-	 		  		<h3> 본인 인증 </h3>
-	 		  		<br>
-	 		  		<div>
-	 		  			<span> 본인 인증을 위해 비밀번호를 입력해주세요</span>
-	 		  		</div>
-	 		  </div>
-	 		  <br>
-	 		  <br>
-		 		  본인인증을 위한 비밀번호 입력값
-				  <div class="row">
-				  		<div class="col-md-4 col-sm-12"></div>
-				  		<div class="col-md-4 col-sm-12">
-	                           <div class="input-group mb-4">
-	                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1">
-	                          		 <button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
-	                           </div>
-			            </div>
-	                    <div class="col-md-4 col-sm-12"></div>
-				  </div>
-		 -->
+	
 			  
 			 		<br>	<br>	
 		<section id="basic-vertical-layouts">
@@ -134,13 +115,13 @@
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">
-		                <form class="form form-vertical">
+		                <form class="form form-vertical" method="post" action="<c:url value='/owner/menu2/advertise/advertisePwdCheck.do'/>" name="frm1">
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
 		                        <div class="form-group">
 			                         <div class="input-group mb-4">
-		                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1">
+		                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1" name="ownerPwd">
 		                               
 		                                 <div class="col-12 d-flex mt-3 justify-content-center">
 		                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>

@@ -26,19 +26,21 @@
 				 	  
 				            <!-- form 시작 -->
 			                <form class="form form-horizontal" method="post" action="<c:url value='/owner/menu2/advertise/advertiseWrite.do'/>" >
+			                <input type="hidden" name="advertiseNo" value="${vo.advertiseNo }">
+			                <input type="hidden" name="storeNo" value="${storeNo }">
 			                <div class="form-body">
 			                    <div class="row">
 				                    <div class="col-md-4">
 				                        <label>광고명</label>
 				                    </div>
 				                    <div class="col-md-8 form-group" >
-				                        <input type="text" id="advertiseName" class="form-control text-right" name="advertiseName" value="${param.choice }" readonly="readonly">
+				                        <input type="text" id="advertiseName" class="form-control text-right" name="advertiseName" value="${vo.advertiseName }" readonly="readonly">
 				                    </div>
 				                    <div class="col-md-4">
 				                        <label>가격</label>
 				                    </div>
 				                    <div class="col-md-8 form-group">
-				                        <input type="text" id="advertisePrice" class="form-control text-right" name="advertisePrice"  placeholder="0" value="50000" readonly="readonly">
+				                        <input type="text" id="advertisePrice" class="form-control text-right" name="advertisePrice"  placeholder="0" value="${vo.advertisePrice}" readonly="readonly">
 				                        <!-- 리스트로 뽑아오기 -->
 				                    </div>
 				                    <div class="col-md-4">

@@ -63,10 +63,10 @@
 			  
 			  
 			  <!-- 현재 진행중인 광고 -->
-      		  <div class="row">
+      	
       		  
-      		
-	      		  		<c:if test="${empty list} ">
+      				 <div class="row">
+	      		  		<c:if test="${empty list }">
 		      		  		<div class="col-md-2 col-sm-12"></div>
 						 	<div class="col-md-8 col-sm-12">
 			      		  			<div class="card">
@@ -86,8 +86,8 @@
 	 					</c:if>
 	 					
 	 					 <!-- 플렉스한광고 -->
-	 					<c:if test="${!empty list} ">
-	 						<c:forEach var="vo" items="${list }">
+	 					<c:if test="${!empty list}">
+	 						<c:forEach var="vo" items="${list}">
 		      		  		<div class="col-md-2 col-sm-12"></div>
 						 	<div class="col-md-8 col-sm-12">
 			      		  			<div class="card">
@@ -98,9 +98,10 @@
 								                	<span>광고명 : ${vo.advertiseName } </span><br>
 								                	<a href="#">광고번호 : ${vo.advertiseNo } </a><br>
 								                	<span>광고가격 : ${vo.advertisePrice} </span><br>
-								                	<span>만료일 : 
-								                		<fmt:formatDate value="${vo.adValidate }" pattern="yyyy-MM-dd"/>
-								                	</span>
+								                	<span>만료일 : ${vo.adValidate } 	</span>
+								                		<!-- Q.어떻게해야 시간을 버릴 수 있을까요? -->
+								                		<%-- <fmt:formatDate value="${vo.adValidate }" pattern="yyyy-MM-dd"/> --%>
+								                		<!-- string <- date 형변환 -->
 					                            </p>
 					                            <small class="text-muted">언제나 감사합니다 플렉스한 하루 되세요</small>
 					                        </div>
@@ -112,7 +113,7 @@
 				 			 <div class="col-md-2 col-sm-12"></div>
 				 			 </c:forEach>
 	 					</c:if>
-				</div>
+					 </div>
 			   	
 			  
 		 </section>

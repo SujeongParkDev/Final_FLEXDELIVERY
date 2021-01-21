@@ -1,12 +1,17 @@
 package com.project.fd.owner.advertise.model;
 
 public class OwnerStoreAdVO {
+	private int storeadNo;
 	private int storeNo;
 	private int advertiseNo;
 	private String adValidate;
 	private String AdPayFlag;
-	
-	
+	public int getStoreadNo() {
+		return storeadNo;
+	}
+	public void setStoreadNo(int storeadNo) {
+		this.storeadNo = storeadNo;
+	}
 	public int getStoreNo() {
 		return storeNo;
 	}
@@ -33,9 +38,11 @@ public class OwnerStoreAdVO {
 	}
 	@Override
 	public String toString() {
-		return "StoreAdVO [storeNo=" + storeNo + ", advertiseNo=" + advertiseNo + ", adValidate=" + adValidate
-				+ ", AdPayFlag=" + AdPayFlag + "]";
+		return "OwnerStoreAdVO [storeadNo=" + storeadNo + ", storeNo=" + storeNo + ", advertiseNo=" + advertiseNo
+				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + "]";
 	}
+	
+	
 	
 	
 	

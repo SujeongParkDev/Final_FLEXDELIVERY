@@ -7,6 +7,7 @@ public class OwnerAdvertiseAllVO {
 	private int advertisePrice;
 
 	//광고 함 vo 
+	private int storeadNo;
 	private int storeNo;
 	/* private int advertiseNo; */
 	private String adValidate;
@@ -38,6 +39,14 @@ public class OwnerAdvertiseAllVO {
 
 	public void setAdvertisePrice(int advertisePrice) {
 		this.advertisePrice = advertisePrice;
+	}
+
+	public int getStoreadNo() {
+		return storeadNo;
+	}
+
+	public void setStoreadNo(int storeadNo) {
+		this.storeadNo = storeadNo;
 	}
 
 	public int getStoreNo() {
@@ -74,10 +83,14 @@ public class OwnerAdvertiseAllVO {
 
 	@Override
 	public String toString() {
-		return "AdvertiseAllVO [advertiseNo=" + advertiseNo + ", advertiseName=" + advertiseName + ", advertisePrice="
-				+ advertisePrice + ", storeNo=" + storeNo + ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag
-				+ ", sAgreeNo=" + sAgreeNo + "]";
+		return "OwnerAdvertiseAllVO [advertiseNo=" + advertiseNo + ", advertiseName=" + advertiseName
+				+ ", advertisePrice=" + advertisePrice + ", storeadNo=" + storeadNo + ", storeNo=" + storeNo
+				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + ", sAgreeNo=" + sAgreeNo + "]";
 	}
+
+	
+	
+	
 	
 	
 }
