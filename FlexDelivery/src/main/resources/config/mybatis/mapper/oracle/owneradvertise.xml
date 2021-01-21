@@ -34,7 +34,7 @@
 		    	<![CDATA[
 		        select * from jaAdvertiseView
 				where store_no=#{storeNo} and ad_validate < sysdate and a_agree_no=3 and ad_pay_flag='Y'
-				order by ad_validate
+				order by ad_validate desc, storead_no
 				]]>
 		    )A
 		)

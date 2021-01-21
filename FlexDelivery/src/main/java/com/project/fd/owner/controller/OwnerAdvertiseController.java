@@ -196,7 +196,7 @@ public class OwnerAdvertiseController {
 			pagingInfo.setTotalRecord(totalRecord);
 			
 			
-
+		
 			//3. 모델에 결과 저장
 			model.addAttribute("list", list);
 			model.addAttribute("pagingInfo", pagingInfo);
