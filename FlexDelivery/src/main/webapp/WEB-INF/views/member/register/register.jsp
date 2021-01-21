@@ -1,70 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+<script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
-    <link rel="icon" type="image/png" href="img/fav.png">
+    <link rel="icon" type="image/png" href="<c:url value='/resources/memberResources/img/fav.png' />">
     <title>Swiggiweb - Online Food Ordering Website Template</title>
     <!-- Slick Slider -->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick.min.css' />" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick-theme.min.css' />" />
     <!-- Feather Icon-->
-    <link href="vendor/icons/feather.css" rel="stylesheet" type="text/css">
+    <link href="<c:url value='/resources/memberResources/vendor/icons/feather.css' />" rel="stylesheet" type="text/css">
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<c:url value='/resources/memberResources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<c:url value='/resources/memberResources/css/style.css' />" rel="stylesheet">
     <!-- Sidebar CSS -->
-    <link href="vendor/sidebar/demo.css" rel="stylesheet">
+    <link href="<c:url value='/resources/memberResources/vendor/sidebar/demo.css' />" rel="stylesheet">
 </head>
 
 <body>
     <div class="osahan-signup login-page">
         <video loop autoplay muted id="vid">
-            <source src="img/bg.mp4" type="video/mp4">
-            <source src="img/bg.mp4" type="video/ogg">
-            Your browser does not support the video tag.
+            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
+            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
          </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-100">
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
-                    <h2 class="text-dark my-0">Hello There.</h2>
-                    <p class="text-50">Sign up to continue</p>
+                    <h2 class="text-dark my-0">안녕하세요!</h2>
+                    <!-- <p class="text-50">Sign up to continue</p> -->
                     <form class="mt-5 mb-4" action="verification.html">
                         <div class="form-group">
-                            <label for="exampleInputName1" class="text-dark">Name</label>
-                            <input type="text" placeholder="Enter Name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
+                            <label for="exampleInputName1" class="text-dark">이름</label>
+                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNumber1" class="text-dark">Mobile Number</label>
-                            <input type="number" placeholder="Enter Mobile" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp">
+                            <label for="exampleInputNumber1" class="text-dark">아이디</label>
+                            <input type="text" placeholder="ID를 입력하세요" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1" class="text-dark">Password</label>
-                            <input type="password" placeholder="Enter Password" class="form-control" id="exampleInputPassword1">
+                            <label for="exampleInputPassword1" class="text-dark">비밀번호</label>
+                            <input type="password" placeholder="비밀번호를 입력하세요" class="form-control" id="exampleInputPassword1">
                         </div>
+						<label for="exampleInputNumber1" class="text-dark">전화번호</label>
+						<div class="row">
+							<div class="col-md-4" >
+								<input type="text"  placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							</div>
+							<div class="col-md-4">
+								<input type="text" placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							</div>
+							<div class="col-md-4">
+								<input type="text" placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<label for="exampleInputaddress" class="text-dark" style="line-height: 33px">주소 검색</label>
+							<div class="col-md-4" >
+								<input type="text"  placeholder="주소 검색" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							</div>
+							<span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">검색</a></span>
+						</div>
+						<br>
+						
+						<div class="form-group">
+							<label for="exampleInputaddress" class="text-dark">주소</label>
+							<input type="text" placeholder="" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputaddress" class="text-dark">상세주소</label>
+							<input type="text" placeholder="" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+						</div>
+						
+						
                         <button class="btn btn-primary btn-lg btn-block">
-                           SIGN UP
+						회원 가입
                         </button>
-                        <div class="py-2">
+
+<!--                         <div class="py-2">
                             <button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
-                        </div>
+                       		</div> -->
                     </form>
                 </div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
                     <a href="login.html">
-                        <p class="text-center m-0">Already an account? Sign in</p>
+                        <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
                 </div>
             </div>
         </div>
     </div>
+    <br><br><br> 
     <nav id="main-nav">
         <ul class="second-nav">
             <li><a href="home.html"><i class="feather-home mr-2"></i> Homepage</a></li>
@@ -164,14 +199,14 @@
         </ul>
     </nav>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- slick Slider JS-->
-    <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/slick/slick.min.js"></script>
     <!-- Sidebar JS-->
-    <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/sidebar/hc-offcanvas-nav.js"></script>
     <!-- Custom scripts for all pages-->
-    <script type="text/javascript" src="js/osahan.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/js/osahan.js"></script>
 </body>
 
 </html>
