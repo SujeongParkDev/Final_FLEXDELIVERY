@@ -8,18 +8,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
 <br><br>
 
-<div class="main-content container-fluid">
+<div class="main-content container">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>점포 승인 관리</h3>
-                <p class="text-subtitle text-muted">점포 등록승인/승인 변경 관리 페이지입니다. </p>
+                <h3>점포 광고 승인 관리</h3>
+                <p class="text-subtitle text-muted">점포 광고 승인/변경 관리 페이지입니다. </p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<c:url value='/admin/main.do'/> ">Main</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">점포 승인 관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">광고 승인 관리</li>
                     </ol>
                 </nav>
             </div>
@@ -28,17 +28,18 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                	승인 관리 현황표
+                	광고 승인/변경  현황표
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>접수번호</th>
+                            <th>점포번호</th>
                             <th>점포명</th>
                             <th>점주명</th>
                             <th>연락처</th>
                             <th>지역</th>
+                            <th>현광고등급</th>
                             <th>승인상태</th>
                         </tr>
                     </thead>
@@ -50,8 +51,9 @@
                             <td>선영이남편</td>
                             <td>010 4321-1234</td>
                             <td>강서구</td>
+                            <td>신규</td>                 
                             <td>
-                                <span class="badge bg-success">변경완료</span>
+                                <span class="badge bg-danger">승인미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -60,8 +62,9 @@
                             <td>선영이</td>
                             <td>010 4321-4321</td>
                             <td>관악구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-success">승인완료</span>
+                                <span class="badge bg-danger">변경미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -70,8 +73,9 @@
                             <td>영숙이</td>
                             <td>010 1234-4321</td>
                             <td>서초구</td>
+                            <td>울트라</td>
                             <td>
-                                <span class="badge bg-danger">승인미완료</span>
+                                <span class="badge bg-danger">변경미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -80,8 +84,9 @@
                             <td>영숙이 남편</td>
                             <td>010 1234-4321</td>
                             <td>강남구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-danger">변경미완료</span>
+                                <span class="badge bg-danger">승인완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -90,6 +95,7 @@
                             <td>이수근</td>
                             <td>010 9876-4321</td>
                             <td>종로구</td>
+                            <td>울트라</td>
                             <td>
                                 <span class="badge bg-success">승인완료</span>
                             </td>
@@ -100,8 +106,9 @@
                             <td>헨젤</td>
                             <td>010 1234-4321</td>
                             <td>강북구</td>
+                            <td>울트라</td>
                             <td>
-                                <span class="badge bg-success">승인완료</span>
+                                <span class="badge bg-success">변경완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -110,18 +117,20 @@
                             <td>헨젤,그레텔</td>
                             <td>010 1234-4321</td>
                             <td>송파구</td>
+                            <td>슈퍼</td>
                             <td>
                                 <span class="badge bg-success">변경완료</span>
                             </td>
                         </tr>
                         <tr>
                             <td>123449</td>
-                            <td>작작 좀 먹지?</td>
+                            <td>작작 좀 마시지?</td>
                             <td>선영이</td>
                             <td>010 1234-9876</td>
                             <td>성북구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">변경완료</span>
+                                <span class="badge bg-success">승인반려</span>
                             </td>
                         </tr>
                         <tr>
@@ -130,8 +139,9 @@
                             <td>선영이 왠수</td>
                             <td>010 5678-4321</td>
                             <td>동작구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-success">승인반려</span>
+                                <span class="badge bg-success">변경반려</span>
                             </td>
                         </tr>
                         <tr>
@@ -140,18 +150,20 @@
                             <td>선영이 엄마</td>
                             <td>010 7890-4567</td>
                             <td>광진구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">변경반려</span>
+                                <span class="badge bg-success">승인완료</span>
                             </td>
                         </tr>
                         <tr>
                             <td>123446</td>
                             <td>그럼 건더기라도</td>
-                            <td>장모님 왠수</td>
+                            <td>백년 왠수</td>
                             <td>010 3456-4321</td>
                             <td>금천구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">승인반려</span>
+                                <span class="badge bg-success">승인완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -160,8 +172,9 @@
                             <td>선영이남편</td>
                             <td>010 4321-1234</td>
                             <td>강서구</td>
+                            <td>신규</td>                 
                             <td>
-                                <span class="badge bg-success">변경완료</span>
+                                <span class="badge bg-danger">승인미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -170,8 +183,9 @@
                             <td>선영이</td>
                             <td>010 4321-4321</td>
                             <td>관악구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-success">승인완료</span>
+                                <span class="badge bg-danger">변경미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -180,8 +194,9 @@
                             <td>영숙이</td>
                             <td>010 1234-4321</td>
                             <td>서초구</td>
+                            <td>울트라</td>
                             <td>
-                                <span class="badge bg-danger">승인미완료</span>
+                                <span class="badge bg-danger">변경미완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -190,8 +205,9 @@
                             <td>영숙이 남편</td>
                             <td>010 1234-4321</td>
                             <td>강남구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-danger">변경미완료</span>
+                                <span class="badge bg-danger">승인완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -200,6 +216,7 @@
                             <td>이수근</td>
                             <td>010 9876-4321</td>
                             <td>종로구</td>
+                            <td>울트라</td>
                             <td>
                                 <span class="badge bg-success">승인완료</span>
                             </td>
@@ -210,8 +227,9 @@
                             <td>헨젤</td>
                             <td>010 1234-4321</td>
                             <td>강북구</td>
+                            <td>울트라</td>
                             <td>
-                                <span class="badge bg-success">승인완료</span>
+                                <span class="badge bg-success">변경완료</span>
                             </td>
                         </tr>
                         <tr>
@@ -220,18 +238,20 @@
                             <td>헨젤,그레텔</td>
                             <td>010 1234-4321</td>
                             <td>송파구</td>
+                            <td>슈퍼</td>
                             <td>
                                 <span class="badge bg-success">변경완료</span>
                             </td>
                         </tr>
                         <tr>
                             <td>123449</td>
-                            <td>작작 좀 먹지?</td>
+                            <td>작작 좀 마시지?</td>
                             <td>선영이</td>
                             <td>010 1234-9876</td>
                             <td>성북구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">변경완료</span>
+                                <span class="badge bg-success">승인반려</span>
                             </td>
                         </tr>
                         <tr>
@@ -240,8 +260,9 @@
                             <td>선영이 왠수</td>
                             <td>010 5678-4321</td>
                             <td>동작구</td>
+                            <td>슈퍼</td>
                             <td>
-                                <span class="badge bg-success">승인반려</span>
+                                <span class="badge bg-success">변경반려</span>
                             </td>
                         </tr>
                         <tr>
@@ -249,21 +270,24 @@
                             <td>자넨 국물도 없네</td>
                             <td>선영이 엄마</td>
                             <td>010 7890-4567</td>
-                            <td>구로구</td>
+                            <td>광진구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">변경반려</span>
+                                <span class="badge bg-success">승인완료</span>
                             </td>
                         </tr>
                         <tr>
                             <td>123446</td>
                             <td>그럼 건더기라도</td>
-                            <td>장모님 왠수</td>
+                            <td>백년 왠수</td>
                             <td>010 3456-4321</td>
-                            <td>서대문구</td>
+                            <td>금천구</td>
+                            <td>신규</td>
                             <td>
-                                <span class="badge bg-success">변경승인</span>
+                                <span class="badge bg-success">승인완료</span>
                             </td>
                         </tr>
+                        
                     <!-- 반복구간 끝 -->
                     </tbody>
                 </table>
@@ -281,7 +305,7 @@
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
-
+[/WEB-INF/views/admin/menu2/storeAdList.jsp]
 
 
 <%@ include file="../../adminInc/bottom.jsp" %>

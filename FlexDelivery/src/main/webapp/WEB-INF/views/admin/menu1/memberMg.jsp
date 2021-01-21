@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/apexcharts/apexcharts.css">
 <br><br>
 
-<div class="main-content container-fluid">
+<div class="main-content container">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
@@ -143,7 +143,7 @@
         </div>
 
     </section>
-</div>
+
 <section class="section">
 	<div class="row">
 		<div class="col-12">
@@ -184,6 +184,7 @@
 	</div>
 
 </section>
+</div>
 
 <!-- script start -->
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>

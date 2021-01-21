@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(AdminController.class);
-	
+
 	@RequestMapping("/login/login.do")
 	public void adminLogin() {
 		logger.info("관리자 - 로그인 화면");
@@ -174,5 +174,4 @@ public class AdminController {
 	}
 	*/
 
-	
 }
