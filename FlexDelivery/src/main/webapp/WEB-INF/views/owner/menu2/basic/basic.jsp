@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
-<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
+<%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
@@ -18,7 +18,7 @@
             <select><option value="13195815">피자알파 서면점</option></select>
             <section class="title">
                <h3>
-                  피자알파 서면점 <i class="icon icon-arrow-down"></i>
+                  	피자알파 서면점 <i class="icon icon-arrow-down"></i>
                </h3>
                <p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
             </section>
@@ -27,10 +27,8 @@
             <div class="tabs TabNav">
                <ul>
                   <li><a aria-current="page" class="active"
-                     href="/self-service/shops/13195815/basic">기본정보</a></li>
-                  <li><a href="/self-service/shops/13195815/operation">운영정보</a></li>
-                  <li><a href="/self-service/shops/13195815/order">주문정보</a></li>
-                  <li><a href="/self-service/shops/13195815/delivery-region">배달지역</a></li>
+                     href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a></li>
+                  <li><a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
                </ul>
             </div>
             <form class="form-card">
@@ -215,4 +213,4 @@
    </div>
 </div>
 
-<%@include file="../../ownerInc/jianSidebarBottom.jsp"%>
+<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
