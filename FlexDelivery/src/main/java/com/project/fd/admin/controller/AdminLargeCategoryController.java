@@ -69,8 +69,12 @@ public class AdminLargeCategoryController {
 			e.printStackTrace();
 		}
 		
+		largeCategoryVo.setlCategoryFilename(fileName);
+		int cnt=largeCategoryService.insertLargeCategory(largeCategoryVo);
+		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
-		return "admin/menu6/largecategory/write";
+		
+		return "admin/menu6/largeCategory.do";
 	}
 	@RequestMapping(value="/largeCategory.do", method=RequestMethod.POST)
 	public String list_post(@ModelAttribute AdminLargeCategoryVO largeCategoryVo,
@@ -98,8 +102,12 @@ public class AdminLargeCategoryController {
 			e.printStackTrace();
 		}
 		
+		largeCategoryVo.setlCategoryFilename(fileName);
+		int cnt=largeCategoryService.insertLargeCategory(largeCategoryVo);
+		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
-		return "admin/menu6/largecategory/write";
+		
+		return "admin/menu6/largeCategory.do";
 	}
 	
 	@RequestMapping(value="/largeCategory.do")

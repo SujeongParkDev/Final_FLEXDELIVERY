@@ -27,6 +27,8 @@ $(function(){
 	}); */
 	
 	$('#modalWrite').click(function () {
+		 /* location.href='<c:url value="/admin/menu6/largecategory/write.do"/>'; */
+		 $('form[name=frmLCategoryWrite]').submit();
 		 alert("등록 성공");
 		 window.parent.location.reload();
 	});
@@ -142,7 +144,7 @@ function readInputFile(input) {
 	                        <div class="modal-body">
 	                        
 	                           <!-- 폼 걸어보기  -->    
-								<form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largeCategory.do' />" enctype="multipart/form-data">
+								<form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largecategory/write.do' />" enctype="multipart/form-data">
 									<!-- Hoverable rows start -->
 									<div class="row" id="table-hover-row">
 										<div class="col-12">   

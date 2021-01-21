@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.adminlargecategory">
+	<!-- <sql id="searchWhere">
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				${searchCondition} like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>	
+	</sql> -->
+	
+	<insert id="insertLargecategory" parameterType="adminLargeCategoryVo">
+		<!-- <selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select reBoard_seq.nextval from dual 
+		</selectKey> -->
+		
+		insert into LARGECATEGORY(L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME)
+		values(11 ,#{lCategoryName}, #{lCategoryFilename})
+	</insert>
+	
+	<!-- <select id="selectAll" parameterType="adminLargeCategoryVo" resultType="adminLargeCategoryVo">
+		select * from LARGECATEGORY
+		<if test="searchKeyword != null and searchKeyword != ''">
+			where ${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+		order by no desc
+	</select>
+	 -->
+	 
+	<!-- <select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM
+		    from
+		    (
+		        select no, name, pwd, title, email, regdate,
+				readcount, content, (sysdate-regdate)*24 as newImgTerm,
+				groupno,step, sortno,delflag,filename, filesize,
+				downcount, originalfilename 
+		        from reBoard 
+				<include refid="searchWhere" />	        
+		        order by groupno desc, sortno
+		    )A
+		)
+		<![CDATA[
+		where RNUM > #{firstRecordIndex} 
+		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from reBoard
+		<include refid="searchWhere"></include>
+	</select>
+	
+	<update id="updateReadCount" parameterType="int">
+		update reBoard
+		set readcount=readcount+1 
+		where no=#{no}
+	</update>
+	
+	<select id="selectByNo" parameterType="int" resultType="reBoardVo">
+		select * from reBoard where no=#{no}
+	</select>
+	
+	<select id="selectPwd" parameterType="int" resultType="String">
+		select pwd from reBoard
+		where no=#{no}
+	</select>
+	
+	<update id="updateReBoard" parameterType="reBoardVo">
+		update reBoard 
+		set name=#{name},title=#{title},email=#{email},content=#{content}
+		<if test="fileName!=null and fileName!=''">
+			, filename=#{fileName}, originalFileName=#{originalFileName},
+			fileSize=#{fileSize}
+		</if>		
+		where no=#{no}
+	</update>
+	
+	<delete id="deleteReBoard" parameterType="reBoardVo">
+		delete from reBoard where no=#{no}
+	</delete>
+	
+	<parameterMap type="map" id="reBoardDeleteParam">
+		<parameter property="no" javaType="string" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="step" javaType="string" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="groupNo" javaType="string" jdbcType="VARCHAR" mode="IN"/>		
+	</parameterMap>
+	
+	<delete id="deleteReBoard" parameterMap="reBoardDeleteParam">
+		call deleteReboard(?,?,?)
+	</delete>
+	
+	
+	<update id="updateDownCount" parameterType="int">
+		update reboard
+		set downcount=downcount+1
+		where no=#{no}
+	</update>
+	
+	<update id="updateSortNo" parameterType="reBoardVo">
+		update reboard
+		set sortno=sortno+1
+		where groupNo=#{groupNo} and sortNo>#{sortNo}
+	</update>
+	
+	<insert id="reply" parameterType="reBoardVo">
+		<selectKey resultType="int" keyProperty="no" order="BEFORE">
+			select reBoard_seq.nextval from dual
+		</selectKey>
+		insert into reBoard(no, name, pwd, title, email, content, groupNo, 
+			step, sortNo)
+		values(#{no}, #{name},#{pwd}, #{title}, #{email}, #{content},
+			#{groupNo}, #{step}+1, #{sortNo}+1)		
+	</insert> -->
+	
+</mapper>
