@@ -6,11 +6,13 @@ import com.project.fd.common.SearchVO;
 
 public interface AdminLargeCategoryService {
 
-	List<AdminLargeCategoryVO> selectAll(SearchVO searchVo);
+	List<AdminLargeCategoryVO> selectAll();
 
 	int selectTotalRecord(SearchVO searchVo);
 
 	AdminLargeCategoryVO selectByNo(int no);
 
 	int insertLargeCategory(AdminLargeCategoryVO largecategoryVo);
+
+	int updateLargeCategory(AdminLargeCategoryVO largecategoryVo);
 }

@@ -117,11 +117,11 @@ public class AdminLargeCategoryController {
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
 		//3
-		return "admin/menu6/largeCategory.do";
+		return "redirect:/admin/menu6/largeCategory.do";
 	}
 	
 	@RequestMapping(value="/largeCategory.do", method=RequestMethod.GET)
-	public String list_get(/*@ModelAttribute SearchVO searchVo, Model model*/) {
+	public String list_get(/*@ModelAttribute SearchVO searchVo,*/ Model model) {
 		//1.
 		//logger.info("대분류 카테고리 목록 페이지, 파라미터 searchVo={}", searchVo);
 		logger.info("list_get 대분류 카테고리 목록 페이지");
@@ -138,14 +138,14 @@ public class AdminLargeCategoryController {
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());*/
 		
-		//List<AdminLargeCategoryVO> list=largeCategoryService.selectAll(searchVo);
-		//logger.info("글목록 결과, list.size={}", list.size());
+		List<AdminLargeCategoryVO> list=largeCategoryService.selectAll();
+		logger.info("글목록 결과, list.size={}", list.size());
 		
 		//int totalRecord=largeCategoryService.selectTotalRecord(searchVo);
 		//logger.info("글 개수, totalRecord={}", totalRecord);
 		
 		//3. 모델에 결과 저장
-		//model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		//model.addAttribute("pagingInfo", pagingInfo);
 		
 		//4. 뷰페이지 리턴
@@ -180,11 +180,11 @@ public class AdminLargeCategoryController {
 	}
 
 	@RequestMapping(value="/largecategory/edit.do", method = RequestMethod.POST)
-	public void edit_post(/*@ModelAttribute AdminLargeCategoryVO vo,
-			@RequestParam String oldFileName, HttpServletRequest request,*/
+	public String edit_post(@ModelAttribute AdminLargeCategoryVO largecategoryVo,
+			@RequestParam String oldFileName, HttpServletRequest request,
 			Model model) {
 		//1
-		/*logger.info("글수정 처리, 파라미터 vo={}, oldFileName={}", vo, oldFileName);
+		logger.info("글수정 처리, 파라미터 vo={}, oldFileName={}", largecategoryVo, oldFileName);
 
 		//업로드 처리
 		String fileName="", originName="";
@@ -208,18 +208,18 @@ public class AdminLargeCategoryController {
 		}
 
 		//2
-		vo.setFileName(fileName);
-		vo.setFileSize(fileSize);
-		vo.setOriginalFileName(originName);
+		largecategoryVo.setlCategoryFilename(fileName);
+		//vo.setFileSize(fileSize);
+		//vo.setOriginalFileName(originName);
 
-		String msg="글 수정 실패", url="/admin/menu6/largecategory/edit.do?no="+vo.getNo();
-		if(largeCategoryService.checkPwd(vo.getNo(),vo.getPwd())) {
-			int cnt=largeCategoryService.updateReBoard(vo);
+		String msg="글 수정 실패", url="/admin/menu6/largecategory/edit.do?largeCategoryNo="+largecategoryVo.getlCategoryNo();
+			int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
 			logger.info("글수정 결과, cnt={}", cnt);	
 
 			if(cnt>0) {
-				msg="글수정되었습니다.";
-				url="/reBoard/detail.do?no="+vo.getNo();
+				msg="대분류 카테고리를 수정하였습니다.";
+				url="/admin/menu6/largeCategory.do";
+						//+ "detail.do?no="+largeCategoryVo.getlCategoryNo();
 
 				//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
 				if(fileName!=null && !fileName.isEmpty()) {
@@ -232,19 +232,16 @@ public class AdminLargeCategoryController {
 					}					
 				}
 			}//if
-		}else {
-			msg="비밀번호가 일치하지 않습니다.";
-		}
-		 */
-		String msg="글수정되었습니다.";
-		String url="/admin/menu6/largeCategory";
+
+		//String msg="글수정되었습니다.";
+		//String url="/admin/menu6/largeCategory";
 
 		//3
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
 		//4
-		//return "../../common/message";
+		return "common/message";
 	}
 
 	@RequestMapping(value="/largecategory/delete.do", method=RequestMethod.POST)

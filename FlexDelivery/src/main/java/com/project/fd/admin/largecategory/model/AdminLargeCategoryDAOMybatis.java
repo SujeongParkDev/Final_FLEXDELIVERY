@@ -17,8 +17,9 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 	private String namespace="config.mybatis.mapper.oracle.adminlargecategory.";
 	
 	@Override
-	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
-		return null;
+	public List<AdminLargeCategoryVO> selectAll() {
+		List<AdminLargeCategoryVO> list=sqlSession.selectList(namespace+"selectAll");
+		return list;
 	}
 
 	@Override

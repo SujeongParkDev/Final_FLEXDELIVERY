@@ -20,14 +20,10 @@
 		values(11 ,#{lCategoryName}, #{lCategoryFilename})
 	</insert>
 	
-	<!-- <select id="selectAll" parameterType="adminLargeCategoryVo" resultType="adminLargeCategoryVo">
-		select * from LARGECATEGORY
-		<if test="searchKeyword != null and searchKeyword != ''">
-			where ${searchCondition} like '%' || #{searchKeyword} || '%'
-		</if>
-		order by no desc
+	<select id="selectAll" parameterType="adminLargeCategoryVo" resultType="adminLargeCategoryVo">
+		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY
+		order by L_CATEGORY_NO desc
 	</select>
-	 -->
 	 
 	<!-- <select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
 		select *

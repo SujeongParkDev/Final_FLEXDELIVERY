@@ -6,7 +6,7 @@ import com.project.fd.common.SearchVO;
 
 public interface AdminLargeCategoryDAO {
 
-	List<AdminLargeCategoryVO> selectAll(SearchVO searchVo);
+	List<AdminLargeCategoryVO> selectAll();
 
 	int selectTotalRecord(SearchVO searchVo);
 
