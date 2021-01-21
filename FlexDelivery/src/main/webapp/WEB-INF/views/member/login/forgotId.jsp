@@ -9,7 +9,7 @@
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
     <link rel="icon" type="image/png" href="<c:url value='/resources/memberResources/img/fav.png' />">
-    <title>비밀번호 찾기</title>
+    <title>아이디 찾기</title>
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick.min.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick-theme.min.css' />" />

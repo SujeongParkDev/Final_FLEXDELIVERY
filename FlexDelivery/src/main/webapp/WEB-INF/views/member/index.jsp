@@ -2,216 +2,214 @@
     pageEncoding="UTF-8"%>
 <%@include file="../memInc/top.jsp"%>
 <div class="osahan-home-page">
-        <div class="bg-primary p-3 d-none">
-            <div class="text-white">
-                <div class="title d-flex align-items-center">
-                    <a class="toggle" href="<c:url value='/resources/memberResources/#' />">
-                        <span></span>
-                    </a>
-                    <h4 class="font-weight-bold m-0 pl-5">Flex-Delivery</h4>
-                </div>
+	<div class="bg-primary p-3 d-none">
+	    <div class="text-white">
+	        <div class="title d-flex align-items-center">
+	            <a class="toggle" href="<c:url value='/resources/memberResources/#' />">
+	                <span></span>
+	            </a>
+	            <h4 class="font-weight-bold m-0 pl-5">Flex-Delivery</h4>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- 이벤트출력 -->
+    <div class="container">
+    	<div class="pt-4 pb-2 title d-flex align-items-center">
+        	<h5 class="m-0">EVENT</h5>
+    	</div>
+        <div class="offer-slider">
+            <div class="cat-item px-1 py-3">
+                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
+                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
+                </a>
+            </div>
+            <div class="cat-item px-1 py-3">
+                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
+                </a>
+            </div>
+            <div class="cat-item px-1 py-3">
+                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro3.jpg' />" class="img-fluid rounded">
+                </a>
+            </div>
+            <div class="cat-item px-1 py-3">
+                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro4.jpg' />" class="img-fluid rounded">
+                </a>
+            </div>
+            <div class="cat-item px-1 py-3">
+                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
+                </a>
             </div>
         </div>
-        
-        <!-- 이벤트출력 -->
-        <div class="bg-white">
-            <div class="container">
-            	<div class="pt-4 pb-2 title d-flex align-items-center">
-                	<h5 class="m-0">EVENT</h5>
-            	</div>
-                <div class="offer-slider">
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
-                            <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src="<c:url value='/resources/memberResources/img/pro3.jpg' />" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src="<c:url value='/resources/memberResources/img/pro4.jpg' />" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                            <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
         <!-- 대분류카테고리 -->
-<div class="most_popular">
-	<div class="row">
-		<div class="col-md-3 pb-3">
+    <div class="bg-white">
+		<div class="container">
 			<div class="pt-4 pb-2 title d-flex align-items-center">
 				<h5 class="m-0">Menu</h5>
 			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Fries.png' />" class="img-fluid mb-2">
-					<h6>디저트</h6>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Pizza.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">피자</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Burger.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">패스트푸드</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Sandwich.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">간식</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Coffee.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">커피</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Steak.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">양식</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/ColaCan.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">음료</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Breakfast.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">양식</p>
-				</a>
-			</div>
-			<div class="cat-item px-1 py-3">
-				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Salad.png' />" class="img-fluid mb-2">
-					<p class="m-0 small">한식</p>
-				</a>
+			<div class="row">
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Fries.png' />" class="img-fluid mb-2">
+						<h6>디저트</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Pizza.png' />" class="img-fluid mb-2" >
+						<h6>피자</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Burger.png' />" class="img-fluid mb-2">
+						<h6>패스트푸드</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Sandwich.png' />" class="img-fluid mb-2">
+						<h6>간식</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Coffee.png' />" class="img-fluid mb-2">
+						<h6>커피</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Steak.png' />" class="img-fluid mb-2">
+						<h6>양식</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/ColaCan.png' />" class="img-fluid mb-2">
+						<h6>음료</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Breakfast.png' />" class="img-fluid mb-2">
+						<h6>양식</h6>
+					</a>
+				</div>
+				<div class="col-sm-3 col-3 pb-3">
+					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
+						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Salad.png' />" class="img-fluid mb-2">
+						<h6>한식</h6>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-        <div class="container">
-            <!-- 뭐넣을지고민중 -->
-            <div class="pt-4 pb-2 title d-flex align-items-center">
-                <h5 class="m-0">Trending this week</h5>
+    <div class="container">
+        <!-- 뭐넣을지고민중 -->
+        <div class="pt-4 pb-2 title d-flex align-items-center">
+            <h5 class="m-0">Trending this week</h5>
+        </div>
+        <!-- slider -->
+        <div class="trending-slider">
+            <div class="osahan-slider-item">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+                        <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+                        <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+                        <a href="<c:url value='/resources/memberResources/restaurant.html' />">
+                            <img alt="#" src="<c:url value='/resources/memberResources/img/trending1.png' />" class="img-fluid item-img w-100">
+                        </a>
+                    </div>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Famous Dave's Bar-B-Que
+                          </a>
+                            </h6>
+                            <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>
+                            <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–30 min</span> <span class="float-right text-black-50"> $350 FOR TWO</span></p>
+                        </div>
+                        <div class="list-card-badge">
+                            <span class="badge badge-danger">OFFER</span> <small> Use Coupon OSAHAN50</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- slider -->
-            <div class="trending-slider">
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                <img alt="#" src="<c:url value='/resources/memberResources/img/trending1.png' />" class="img-fluid item-img w-100">
-                            </a>
+            <div class="osahan-slider-item">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+                        <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+                        <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+                        <a href="<c:url value='/resources/memberResources/restaurant.html' />">
+                            <img alt="#" src="<c:url value='/resources/memberResources/img/trending2.png' />" class="img-fluid item-img w-100">
+                        </a>
+                    </div>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
+                            <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
+                            <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
                         </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Famous Dave's Bar-B-Que
-                              </a>
-                                </h6>
-                                <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–30 min</span> <span class="float-right text-black-50"> $350 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small> Use Coupon OSAHAN50</small>
-                            </div>
+                        <div class="list-card-badge">
+                            <span class="badge badge-success">OFFER</span> <small>65% off</small>
                         </div>
                     </div>
                 </div>
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                <img alt="#" src="<c:url value='/resources/memberResources/img/trending2.png' />" class="img-fluid item-img w-100">
-                            </a>
+            </div>
+            <div class="osahan-slider-item">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+                        <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+                        <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+                        <a href="<c:url value='/resources/memberResources/restaurant.html' />">
+                            <img alt="#" src="<c:url value='/resources/memberResources/img/trending3.png' />" class="img-fluid item-img w-100">
+                        </a>
+                    </div>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
+                          </a>
+                            </h6>
+                            <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
+                            <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
                         </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                            </div>
+                        <div class="list-card-badge">
+                            <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
                         </div>
                     </div>
                 </div>
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                <img alt="#" src="<c:url value='/resources/memberResources/img/trending3.png' />" class="img-fluid item-img w-100">
-                            </a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">The osahan Restaurant
-                              </a>
-                                </h6>
-                                <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                            </div>
-                        </div>
+            </div>
+            <div class="osahan-slider-item">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+                        <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+                        <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
+                        <a href="<c:url value='/resources/memberResources/restaurant.html' />">
+                            <img alt="#" src="<c:url value='/resources/memberResources/img/trending2.png' />" class="img-fluid item-img w-100">
+                        </a>
                     </div>
-                </div>
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="<c:url value='/resources/memberResources/restaurant.html' />">
-                                <img alt="#" src="<c:url value='/resources/memberResources/img/trending2.png' />" class="img-fluid item-img w-100">
-                            </a>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
+                            <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
+                            <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
                         </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="<c:url value='/resources/memberResources/restaurant.html' />" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                            </div>
+                        <div class="list-card-badge">
+                            <span class="badge badge-success">OFFER</span> <small>65% off</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 <%@include file="../memInc/bottom.jsp"%>

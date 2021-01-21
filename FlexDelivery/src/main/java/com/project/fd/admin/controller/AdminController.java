@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(AdminController.class);
-
+	
 	@RequestMapping("/login/login.do")
 	public void adminLogin() {
 		logger.info("관리자 - 로그인 화면");
@@ -30,7 +30,7 @@ public class AdminController {
 	public void adminMain() {
 		logger.info("관리자 메인 화면 보여주기");
 	}
-	
+	/*
 	@RequestMapping("/chart/index.do")
 	public void adminChartMain() {
 		logger.info("관리자 - 통계용 화면 보여주기");
@@ -170,6 +170,7 @@ public class AdminController {
 	public void adminGiftPrice() {
 		logger.info("관리자 - 선물하기 - 금액 화면 보여주기");
 	}
+	*/
 	
 	
 }
