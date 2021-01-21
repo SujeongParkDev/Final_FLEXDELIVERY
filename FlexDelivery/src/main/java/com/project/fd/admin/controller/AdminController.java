@@ -85,7 +85,7 @@ public class AdminController {
 	public void adminStoreManage() {
 		logger.info("관리자 - 점포 현황 화면 보여주기");
 	}
-	*/
+	
 	@RequestMapping("/menu3/honeyTip.do")
 	public void adminHoneyTip() {
 		logger.info("관리자 - 사장님꿀팁 화면 보여주기");
@@ -170,6 +170,6 @@ public class AdminController {
 	public void adminGiftPrice() {
 		logger.info("관리자 - 선물하기 - 금액 화면 보여주기");
 	}
-	
+	*/
 	
 }
