@@ -15,8 +15,8 @@ public class MemberVO {
 	private String memberHp3;
 	private String memberEmail1;
 	private String memberEmail2;
-	private String authorityNo;
-	private String locationNo;
+	private int authorityNo;
+	private int locationNo;
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -47,16 +47,16 @@ public class MemberVO {
 	public void setMemberZipcode(String memberZipcode) {
 		this.memberZipcode = memberZipcode;
 	}
-	public String getMemberAdress() {
+	public String getMemberAddress() {
 		return memberAddress;
 	}
-	public void setMemberAdress(String memberAdress) {
+	public void setMemberAddress(String memberAdress) {
 		this.memberAddress = memberAdress;
 	}
-	public String getMemberAdressDetail() {
+	public String getMemberAddressDetail() {
 		return memberAddressDetail;
 	}
-	public void setMemberAdressDetail(String memberAdressDetail) {
+	public void setMemberAddressDetail(String memberAdressDetail) {
 		this.memberAddressDetail = memberAdressDetail;
 	}
 	public String getMemberRegdate() {
@@ -101,16 +101,16 @@ public class MemberVO {
 	public void setMemberEmail2(String memberEmail2) {
 		this.memberEmail2 = memberEmail2;
 	}
-	public String getAuthorityNo() {
+	public int getAuthorityNo() {
 		return authorityNo;
 	}
-	public void setAuthorityNo(String authorityNo) {
+	public void setAuthorityNo(int authorityNo) {
 		this.authorityNo = authorityNo;
 	}
-	public String getLocationNo() {
+	public int getLocationNo() {
 		return locationNo;
 	}
-	public void setLocationNo(String locationNo) {
+	public void setLocationNo(int locationNo) {
 		this.locationNo = locationNo;
 	}
 	@Override

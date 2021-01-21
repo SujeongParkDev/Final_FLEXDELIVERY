@@ -5,7 +5,7 @@
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
         <div class="row">
             <div class="col selected">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/home.html" class="text-danger small font-weight-bold text-decoration-none">
+                <a href="${pageContext.request.contextPath}/member/index.do" class="text-danger small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
                     Home
                 </a>
@@ -26,17 +26,18 @@
             <div class="col">
                 <a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
-                    Favorites
+                    	찜한가게
                 </a>
             </div>
             <div class="col">
                 <a href="${pageContext.request.contextPath}/resources/memberResources/profile.html" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
+                    MyFlex
                 </a>
             </div>
         </div>
     </div>
+    
     <!-- footer -->
     <footer class="section-footer border-top bg-dark">
         <div class="container">
@@ -107,89 +108,55 @@
             <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홍</a></li>
             <li><a href="${pageContext.request.contextPath}/member/mypage/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
             <li>
-                <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-edit-2 mr-2"></i>내 정보</a>
                 <c:if test="${empty sessionScope.memberId}">
+                	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인하세요</a>
 	                <ul>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/login.html">로그인</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/signup.html">회원가입</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html">아이디찾기</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/verification.html">비밀번호찾기</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/register/register.do">회원가입</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotId">아이디찾기</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotPwd">비밀번호찾기</a></li>
 	                </ul>
                 </c:if>
                 <c:if test="${!empty sessionScope.memberId}">
+                	<a href="${pageContext.request.contextPath}/member/mypage/main.do"><i class="feather-user mr-2"></i>MyFlex</a>
 	                <ul>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/login.html">마이페이지</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/signup.html">로그아웃</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html">회원정보수정</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/verification.html">회원탈퇴</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/coupon/couponBox.do">쿠폰함</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">선물함</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/order/orderList.do">주문내역</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myReview.do">내 리뷰관리</a></li>
 	                </ul>
                 </c:if>
             </li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html"><i class="feather-heart mr-2"></i>찜한가게</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html"><i class="feather-award mr-2"></i></a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/restaurant.html"><i class="feather-paperclip mr-2"></i> Restaurant Detail</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/checkout.html"><i class="feather-list mr-2"></i> Checkout</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/successful.html"><i class="feather-check-circle mr-2"></i> Successful</a></li>
-            <li><a href="${pageContext.request.contextPath}/resources/memberResources/map.html"><i class="feather-map-pin mr-2"></i> Live Map</a></li>
             <li>
-                <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-user mr-2"></i> Profile</a>
+                <a><i class="feather-map-pin mr-2"></i>점포조회</a>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/profile.html">Profile</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html">Delivery support</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/contact-us.html">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/terms.html">Terms of use</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/privacy.html">Privacy & Policy</a></li>
+                    <li><a href="${pageContext.request.contextPath}#">한식</a></li>
+                    <li><a href="${pageContext.request.contextPath}#">양식</a></li>
+                    <li><a href="${pageContext.request.contextPath}#">한식</a></li>
                 </ul>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-alert-triangle mr-2"></i> Error</a>
+            	<a><i class="feather-user mr-2"></i>알림광장</a>
+	                <ul>
+	                    <li><a href="${pageContext.request.contextPath}/member/coupon/couponBox.do">공지사항</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">이벤트</a></li>
+	                </ul>
+            </li>
+            <li>
+                <a><i class="feather-link mr-2"></i>Contact Us</a>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/resources/memberResources/not-found.html">Not Found</a>
-                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/maintence.html"> Maintence</a>
-                            <li><a href="${pageContext.request.contextPath}/resources/memberResources/coming-soon.html">Coming Soon</a>
+                    <li><a href="${pageContext.request.contextPath}/admin/index.do">사장님 사이트</a></li>
+                    <li data-nav-custom-content>
+                        <div class="custom-message">
+                            	지금 바로 Flex-Delivery에 입점신청해 사장님이 되어보세요!
+                        </div>
+                    </li>
                 </ul>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/resources/memberResources/#"><i class="feather-link mr-2"></i> Navigation Link Example</a>
-                    <ul>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 1</a>
-                            <ul>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 1.1</a>
-                                    <ul>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 1.2</a>
-                                    <ul>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 2</a></li>
-                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 3</a></li>
-                        <li><a href="${pageContext.request.contextPath}/resources/memberResources/#">Link Example 4</a></li>
-                        <li data-nav-custom-content>
-                            <div class="custom-message">
-                                You can add any custom content to your navigation items. This text is just an example.
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+            </li>
         </ul>
         <ul class="bottom-nav">
             <li class="email">
-                <a class="text-danger" href="${pageContext.request.contextPath}/resources/memberResources/home.html">
+                <a class="text-danger" href="${pageContext.request.contextPath}/member/index.do">
                     <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
                     Home
                 </a>
@@ -301,5 +268,4 @@
     <!-- Custom scripts for all pages-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/js/osahan.js"></script>
 </body>
-
 </html>

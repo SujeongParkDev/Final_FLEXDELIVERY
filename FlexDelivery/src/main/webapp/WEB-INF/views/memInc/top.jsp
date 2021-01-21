@@ -38,16 +38,9 @@
                         </a>
                         <!-- brand-wrap.// -->
                     </div>
-                    <c:if test="${!empty sessionScope.memberId}">
-	                    <div class="col-3 d-flex align-items-center m-none">
-	                    	<h4>${sessionScope.memberAddress} &nbsp; ${sessionScope.memberAddressDetail}</h4>
-	                    </div>
-                    </c:if>
-                    <c:if test="${empty sessionScope.memberId}">
-	                    <div class="col-3 d-flex align-items-center m-none">
-	                    	<h6>FLEX-DELIVERY에서 조져보세요</h6>
-	                    </div>
-                    </c:if>
+                    <div class="col-3 d-flex align-items-center m-none">
+                    	<img src="${pageContext.request.contextPath}/resources/imgs/FD2.png" alt="FlexDeliveryLogo">
+                    </div>
                     <!-- col.// -->
                     <div class="col-8">
                         <div class="d-flex align-items-center justify-content-end pr-5">
@@ -68,7 +61,7 @@
                             </c:if>
                             <!-- signin -->
                             <c:if test="${empty sessionScope.memberId}">
-	                            <a href="${pageContext.request.contextPath}/resources/memberResources/login.html" class="widget-header mr-4 text-dark m-none">
+	                            <a href="${pageContext.request.contextPath}/member/register/register.do" class="widget-header mr-4 text-dark m-none">
 	                                <div class="icon d-flex align-items-center">
 	                                    <i class="feather-user h6 mr-2 mb-0"></i> <span>회원가입</span>
 	                                </div>
@@ -81,13 +74,22 @@
 	                                    <img alt="#" src="${pageContext.request.contextPath}/resources/memberResources/img/user/1.jpg" class="img-fluid rounded-circle header-user mr-2 header-user">안녕하세요 ${sessionScope.memberName}님 
 	                                </a>
 	                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/profile.html">주문내역</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/faq.html">회원정보 수정</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/contact-us.html">선물함</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/terms.html">쿠폰함</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/privacy.html">리뷰관리</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/login.html">회원탈퇴</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/login.html">회원탈퇴</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/member/mypage/main.do">마이페이지</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/login.html">알림광장</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/privacy.html">고객센터</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/memberResources/login.html">부가기능</a>
+	                                </div>
+	                            </div>
+	                        </c:if>
+                            <c:if test="${empty sessionScope.memberId}">
+	                            <div class="dropdown mr-4 m-none">
+	                                <a href="${pageContext.request.contextPath}/resources/memberResources/#" class="dropdown-toggle text-dark py-3 d-block" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                                    <img alt="#" src="${pageContext.request.contextPath}/resources/memberResources/img/user/1.jpg" class="img-fluid rounded-circle header-user mr-2 header-user">FLEX DELIVERY에 지금 바로 가입하세요!
+	                                </a>
+	                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/#">알림광장</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/#">고객센터</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/#">부가기능</a>
 	                                </div>
 	                            </div>
 	                        </c:if>

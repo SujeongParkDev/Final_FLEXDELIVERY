@@ -38,14 +38,17 @@
 	</beans:bean>
 	
 	
-	<!-- <interceptors>
+	<interceptors>
 		<interceptor>
-			<mapping path="/member/**/*"/>
+			<mapping path="/member/mypage/**/*"/>
+			<mapping path="/member/gift/**/*"/>
+			<mapping path="/member/coupon/**/*"/>
+			<mapping path="/member/order/orderList.do"/>
 			<exclude-mapping path="/member/login/memberLogin.do"/>
 			<exclude-mapping path="/member/register/register.do"/>
 			<beans:ref bean="memberLoginInterceptor"/>
 		</interceptor>
-	</interceptors> -->
+	</interceptors>
 	
 	<!-- 오류 확인을 위해 잠시 주석 처리했습니다. -->
 <!-- 	<interceptors>	

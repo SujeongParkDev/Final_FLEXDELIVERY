@@ -8,21 +8,17 @@
                     <a class="toggle" href="<c:url value='/resources/memberResources/#' />">
                         <span></span>
                     </a>
-                    <h4 class="font-weight-bold m-0 pl-5">Browse</h4>
-                    <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModal" href="<c:url value='/resources/memberResources/#' />">Filter</a>
+                    <h4 class="font-weight-bold m-0 pl-5">Flex-Delivery</h4>
                 </div>
-            </div>
-            <div class="input-group mt-3 rounded shadow-sm overflow-hidden">
-                <div class="input-group-prepend">
-                    <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i class="feather-search"></i></button>
-                </div>
-                <input type="text" class="shadow-none border-0 form-control" placeholder="Search for restaurants or dishes">
             </div>
         </div>
         
-        <!-- offer sectio slider -->
+        <!-- 이벤트출력 -->
         <div class="bg-white">
             <div class="container">
+            	<div class="pt-4 pb-2 title d-flex align-items-center">
+                	<h5 class="m-0">EVENT</h5>
+            	</div>
                 <div class="offer-slider">
                     <div class="cat-item px-1 py-3">
                         <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
@@ -52,67 +48,72 @@
                 </div>
             </div>
         </div>
-        <!-- Filters -->
+        <!-- 대분류카테고리 -->
+<div class="most_popular">
+	<div class="row">
+		<div class="col-md-3 pb-3">
+			<div class="pt-4 pb-2 title d-flex align-items-center">
+				<h5 class="m-0">Menu</h5>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Fries.png' />" class="img-fluid mb-2">
+					<h6>디저트</h6>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Pizza.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">피자</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Burger.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">패스트푸드</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Sandwich.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">간식</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Coffee.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">커피</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Steak.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">양식</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/ColaCan.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">음료</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Breakfast.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">양식</p>
+				</a>
+			</div>
+			<div class="cat-item px-1 py-3">
+				<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+					<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Salad.png' />" class="img-fluid mb-2">
+					<p class="m-0 small">한식</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
         <div class="container">
-            <div class="cat-slider">
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Fries.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">디저트</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Pizza.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">피자</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Burger.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">패스트푸드</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Sandwich.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">간식</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Coffee.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">커피</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Steak.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">양식</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/ColaCan.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">음료</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Breakfast.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">양식</p>
-                    </a>
-                </div>
-                <div class="cat-item px-1 py-3">
-                    <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                        <img alt="#" src="<c:url value='/resources/memberResources/img/icons/Salad.png' />" class="img-fluid mb-2">
-                        <p class="m-0 small">한식</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <!-- Trending this week -->
+            <!-- 뭐넣을지고민중 -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
                 <h5 class="m-0">Trending this week</h5>
             </div>

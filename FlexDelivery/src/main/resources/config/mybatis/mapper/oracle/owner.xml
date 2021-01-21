@@ -4,10 +4,10 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.owner">
 	<select id="selectPwd" parameterType="String" resultType="String">
-		select ownerPwd from owner where ownerId=${userid}
+		select owner_pwd from owner where owner_id=#{userid} and owner_outdate is null
 	</select>
 	
 	<select id="selectOwner" parameterType="String" resultType="ownerVo">
-		select * from owner where ownerId=${userid}	
+		select * from owner where owner_id=#{userid}	
 	</select>
 </mapper>
