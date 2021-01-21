@@ -2,32 +2,35 @@ package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fd.common.SearchVO;
 
 @Service
 public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
-	private AdminLargeCategoryDAO largeCategoryDao;
+	@Autowired
+	private AdminLargeCategoryDAO largecategoryDao;
 	
 	@Override
 	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
-		return largeCategoryDao.selectAll(searchVo);
+		return largecategoryDao.selectAll(searchVo);
 	}
 
 	@Override
 	public int selectTotalRecord(SearchVO searchVo) {
-		return largeCategoryDao.selectTotalRecord(searchVo);
+		return largecategoryDao.selectTotalRecord(searchVo);
 	}
 
 	@Override
 	public AdminLargeCategoryVO selectByNo(int no) {
-		return largeCategoryDao.selectByNo(no);
+		return largecategoryDao.selectByNo(no);
 	}
 
 	@Override
-	public int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo) {
-		return largeCategoryDao.insertLargeCategory(largeCategoryVo);
+	public int insertLargeCategory(AdminLargeCategoryVO largecategoryVo) {
+		return largecategoryDao.insertLargeCategory(largecategoryVo);
 	}
 
+	
 }

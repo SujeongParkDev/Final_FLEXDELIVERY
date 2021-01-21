@@ -44,13 +44,13 @@ public class AdminLargeCategoryController {
 	}
 	
 	@RequestMapping(value="/largecategory/write.do", method=RequestMethod.POST)
-	public String write_post(@ModelAttribute AdminLargeCategoryVO largeCategoryVo,
+	public String write_post(@ModelAttribute AdminLargeCategoryVO largecategoryVo,
 			HttpServletRequest request) {
 		//1. 
-		logger.info("대분류 카테고리 등록 처리, 파라미터  vo={}", largeCategoryVo);
+		logger.info("대분류 카테고리 등록 처리, 파라미터  vo={}", largecategoryVo);
 		
 		//파일 업로드 처리
-		String originName="", fileName="";
+		String originName="", fileName="test";
 		long fileSize=0;
 		
 		try {
@@ -69,18 +69,23 @@ public class AdminLargeCategoryController {
 			e.printStackTrace();
 		}
 		
-		largeCategoryVo.setlCategoryFilename(fileName);
-		int cnt=largeCategoryService.insertLargeCategory(largeCategoryVo);
+		//2
+		largecategoryVo.setlCategoryFilename(fileName);
+		logger.info("파일 이름 확인, fileName={}", fileName);
+		
+		int cnt=largeCategoryService.insertLargeCategory(largecategoryVo);
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
-		
+		//3
 		return "admin/menu6/largeCategory.do";
 	}
+	
+	//모달에서 서브밋 하면 폼 정보 가지고 온다~
 	@RequestMapping(value="/largeCategory.do", method=RequestMethod.POST)
 	public String list_post(@ModelAttribute AdminLargeCategoryVO largeCategoryVo,
 			HttpServletRequest request) {
 		//1. 
-		logger.info("대분류 카테고리 등록 처리, 파라미터  vo={}", largeCategoryVo);
+		logger.info("list_post 대분류 카테고리 등록 처리, 파라미터  vo={}", largeCategoryVo);
 		
 		//파일 업로드 처리
 		String originName="", fileName="";
@@ -90,9 +95,13 @@ public class AdminLargeCategoryController {
 			List<Map<String, Object>> fileList
 			=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
 			for(Map<String, Object> fileMap : fileList) {
+				logger.info("debug={}", fileMap.get("originalFileName"));
+				logger.info("debug={}", fileMap.get("fileName"));
+				logger.info("debug={}", fileMap.get("fileSize"));
 				originName=(String) fileMap.get("originalFileName");
 				fileName=(String) fileMap.get("fileName");
-				fileSize=(Long)fileMap.get("fileSize");	
+				fileSize=(Long) fileMap.get("fileSize");	
+				
 			}//for
 		} catch (IllegalStateException e) {
 			logger.info("파일 업로드 실패!");
@@ -102,19 +111,20 @@ public class AdminLargeCategoryController {
 			e.printStackTrace();
 		}
 		
+		//2
 		largeCategoryVo.setlCategoryFilename(fileName);
 		int cnt=largeCategoryService.insertLargeCategory(largeCategoryVo);
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
-		
+		//3
 		return "admin/menu6/largeCategory.do";
 	}
 	
-	@RequestMapping(value="/largeCategory.do")
-	public String list(/*@ModelAttribute SearchVO searchVo, Model model*/) {
+	@RequestMapping(value="/largeCategory.do", method=RequestMethod.GET)
+	public String list_get(/*@ModelAttribute SearchVO searchVo, Model model*/) {
 		//1.
 		//logger.info("대분류 카테고리 목록 페이지, 파라미터 searchVo={}", searchVo);
-		logger.info("대분류 카테고리 목록 페이지");
+		logger.info("list_get 대분류 카테고리 목록 페이지");
 		
 		//2.
 		//페이징 처리 관련 세팅

@@ -30,7 +30,7 @@ public class AdminController {
 	public void adminMain() {
 		logger.info("관리자 메인 화면 보여주기");
 	}
-	
+	/*
 	@RequestMapping("/chart/index.do")
 	public void adminChartMain() {
 		logger.info("관리자 - 통계용 화면 보여주기");
@@ -85,7 +85,7 @@ public class AdminController {
 	public void adminStoreManage() {
 		logger.info("관리자 - 점포 현황 화면 보여주기");
 	}
-	
+	*/
 	@RequestMapping("/menu3/honeyTip.do")
 	public void adminHoneyTip() {
 		logger.info("관리자 - 사장님꿀팁 화면 보여주기");

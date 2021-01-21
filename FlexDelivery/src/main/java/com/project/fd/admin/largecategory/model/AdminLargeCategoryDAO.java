@@ -12,6 +12,7 @@ public interface AdminLargeCategoryDAO {
 
 	AdminLargeCategoryVO selectByNo(int no);
 
-	int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo);
+	public int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo);
 
+	
 }
