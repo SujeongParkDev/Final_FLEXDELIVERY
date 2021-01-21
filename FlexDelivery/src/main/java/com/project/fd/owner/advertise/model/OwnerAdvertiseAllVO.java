@@ -16,7 +16,22 @@ public class OwnerAdvertiseAllVO {
 	//점포
 	/* private int storeNo; */
 	private int sAgreeNo; //관리자 승인번호
+	
+	//rownum
+	private int rnum;
 
+
+	
+	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
+	
 	public int getAdvertiseNo() {
 		return advertiseNo;
 	}
@@ -85,9 +100,11 @@ public class OwnerAdvertiseAllVO {
 	public String toString() {
 		return "OwnerAdvertiseAllVO [advertiseNo=" + advertiseNo + ", advertiseName=" + advertiseName
 				+ ", advertisePrice=" + advertisePrice + ", storeadNo=" + storeadNo + ", storeNo=" + storeNo
-				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + ", sAgreeNo=" + sAgreeNo + "]";
+				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + ", sAgreeNo=" + sAgreeNo + ", rnum="
+				+ rnum + "]";
 	}
 
+	
 	
 	
 	

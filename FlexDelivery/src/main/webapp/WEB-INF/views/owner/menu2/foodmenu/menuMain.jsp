@@ -4,6 +4,7 @@
 
 <%-- <%@include file="../../../ownerInc/top.jsp"%> --%>
 
+
 	
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- 창 띄우기 -->
@@ -41,8 +42,13 @@
 				
 			});  
 		
+	
 		</script>
-		<!-- 메뉴 버튼 -->
+	
+
+
+
+<!-- 메뉴 버튼 -->
 		<br>
 			 <div class="row mt-3">
 			  		<div class="col-md-2 col-sm-12"></div>
@@ -60,6 +66,7 @@
 		
 			 
 			 <br>
+			 
 			 
 		<!-- 테이블 시작 -->
 			<div class="row" id="table-hover-row">

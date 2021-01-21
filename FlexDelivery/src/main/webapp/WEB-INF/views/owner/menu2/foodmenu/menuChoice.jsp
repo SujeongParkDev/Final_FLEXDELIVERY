@@ -9,7 +9,10 @@
 
 <!-- 창 띄우기 -->
 	<script type="text/javascript">
-			
+	
+	
+	
+
 			
 			$(function(){
 				$('#btMenuChoiceWrite').on('click', function(){
@@ -30,8 +33,11 @@
 			
 			
 			});
+			
+			
+			
 			$(function(){
-				$('.btMenuChoiceChange').click(function(){
+				$('.btMainMenuChange').click(function(){
 					
 					var url='<c:url value="/owner/menu2/foodmenu/menuMain.do"/>';
 					
@@ -49,6 +55,8 @@
 				});
 				
 			});  
+		
+			
 			
 			$(function(){
 				$('.btmenu').click(function(){
@@ -69,16 +77,18 @@
 			});  
 		
 		</script>
+		
+		
 		<!-- 메뉴 버튼 -->
 		<br>
 			 <div class="row mt-3">
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMenuChoiceChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMenuChoiceChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMenuChoiceChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMenuChoiceChange " >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
 	                	 </div>
 		            </div>
                     <div class="col-md-2 col-sm-12"></div>
@@ -87,7 +97,6 @@
 		
 			 
 			 <br>
-			 
 			 
 				   <!-- 내용 -->
 

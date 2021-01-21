@@ -64,17 +64,23 @@
 		<input type="submit" value="조회" >	
 		</form> --%>
 		
+	
+		<div class="row" >
+			  <div class="col-md-2 col-sm-12"></div>
+			  <div class="col-md-8 col-sm-12">
+				<form name="frmPage" method="post" style="float:right;"
+					action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>">
+					<!-- 조회기간 include -->
+					
+					<input type="hidden" name="currentPage" value="1">
+					<input type="submit" value="조회" >
+				</form>
+			</div>
+			<div class="col-md-2 col-sm-12"></div>
+	   </div>
+		<br>
 		
-		
-		
-		<form action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" 
-			name="frmPage" method="post">
-			<input type="text" name="currentPage" >
-			<input type="hidden" value="${storeNo }" name="storeNo">
-		</form>
-		
-		
-		
+				
 		<!-- 테이블 감싼 디비 시작 -->
 
 		<div class="row" id="table-hover-row">
@@ -94,6 +100,7 @@
 			          <table class="table table-hover mb-5">
 			            <thead>
 			              <tr class="text-center">
+			              	<th>번호</th>
 			                <th>광고번호</th>
 			                <th>광고명</th>
 			                <th>가격</th>
@@ -104,12 +111,13 @@
 			            <!-- table 시작 -->
 			            	<c:if test="${!empty lsit }">
 			            	<tr>
-								<td colspan="4" class="align_center">데이터가 존재하지 않습니다.</td>
+								<td colspan="5" class="align_center">데이터가 존재하지 않습니다.</td>
 							</tr>
 			            	</c:if>
 			            	<c:if test="${empty lsit }">
 			            	<c:forEach var="vo" items="${list }">	
 				              <tr  class="text-center">
+				              		<td>${vo.rnum }</td>
 					                <td class="text-bold-500">${vo.storeadNo }</td>
 					                <td>${vo.advertiseName }</td>
 					                <td>${vo.advertisePrice }</td>
@@ -126,7 +134,9 @@
 			  <div class="col-md-2 col-sm-12"></div>
 		</div>
 		<!-- 테이블 끝 -->
-	<%-- 
+	
+
+		<!-- 계속 페이지 첫 시작에서 문제 생김 -->
 		<!-- 페이징 시작 -->
 		<div class="card-body">
            <nav aria-label="Page navigation example">				<!-- 페이지 가운데 정렬은  justify-content-center-->
@@ -135,8 +145,8 @@
 			<!-- 이전 블럭으로 이동 -->
 		 			<c:if test="${pagingInfo.firstPage>1 }">	
 						<li class="page-item">
-			                   <a class="page-link" href="#"  onclick="pageFunc(${pagingInfo.firstPage-1})">
-			                       <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+        							<span aria-hidden="true">&laquo;</span>
 			                   </a>
 		                   </li>
 					</c:if>
@@ -153,14 +163,14 @@
 
 				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
 					<li class="page-item">
-		                   <a class="page-link" href="#"  onclick="pageFunc(${pagingInfo.lastPage+1})">
-	                       		<span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
+								 <span aria-hidden="true">&raquo;</span>
 		                   </a>
 	                   </li>
 				 </c:if>
                </ul>
            </nav>
-        </div> --%>
+        </div> 
 		
   <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

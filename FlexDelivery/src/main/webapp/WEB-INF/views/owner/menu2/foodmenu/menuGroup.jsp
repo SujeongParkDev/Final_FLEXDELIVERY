@@ -4,6 +4,7 @@
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 
+
 <!-- 창 띄우기 -->
 	<script type="text/javascript">
 					
@@ -29,7 +30,7 @@
 					
 			
 			$(function(){
-				$('.btMenuGroupChange').click(function(){
+				$('.btMainMenuChange').click(function(){
 					
 					var url='<c:url value="/owner/menu2/foodmenu/menuMain.do"/>';
 					
@@ -47,6 +48,7 @@
 				});
 				
 			});  
+		
 			
 			$(function(){
 				$('.btmenu').click(function(){
@@ -64,6 +66,7 @@
 				
 			});  
 		
+		
 		</script>
 		<!-- 메뉴 버튼 -->
 		<br>
@@ -71,10 +74,10 @@
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMenuGroupChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMenuGroupChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMenuGroupChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMenuGroupChange " >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
 	                	 </div>
 		            </div>
                     <div class="col-md-2 col-sm-12"></div>
@@ -97,8 +100,8 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center" style="font-size:20px;">메뉴</p>
-					          <p class="card-text text-center">메뉴 수정 삭제해주세요</p>
+					          <p class="card-text text-center" style="font-size:20px;">메뉴그룹</p>
+					          <p class="card-text text-center">메뉴 그룹 수정 삭제해주세요</p>
 					          <div class="table-responsive">
 					            <table class="table">
 					              <thead>

@@ -81,8 +81,9 @@
 		if(${result}==${checkSuccess}){
 		 	window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
 			self.close();
-		}else{
+		}else if(${result}==${checkFalse}){
 			alert("비밀번호가 틀렸습니다.");
+			$('input[type=password]').focus();
 		}
 		
 	    $(function(){
@@ -93,7 +94,6 @@
 					event.preventDefault();
 				} else{
 					$('form[name=frm1]').submit();
-					
 				} 
 					
 			});
