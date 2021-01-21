@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../ownerInc/top.jsp"%>
+<%@ include file="../../../ownerInc/top.jsp"%>
 <link rel="stylesheet" type="text/css" href
 ="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchNext.css"/>
+
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -11,6 +12,7 @@ $(function(){
 	});
 });
 </script>
+
 <div id="root">
 	<div class="Frame medium">
 		<div class="frame-container pl-0 pt-0">
@@ -28,15 +30,13 @@ $(function(){
 							</div>
 							<div class="card-description " style="position: relative;">
 								입점 · 정산에 필요한 가게 정보들을 <br class="d-none d-sm-block">등록하고 광고를
-								시작해보세요!<img class="bg-title"
-									src="#">
+								시작해보세요!
 							</div>
 							<div class="form-group ">
 								<h5 class="form-label">
+									<i class="fas fa-paperclip"></i>
 									<div class="d-flex align-items-center">
-										<img class="mb-half mr-1"
-											src="#"
-											style="width: 20px;">미리 준비해주세요!
+										미리 준비해주세요!
 									</div>
 								</h5>
 								<div class="inline-values flex-1 mt-1">
@@ -49,11 +49,11 @@ $(function(){
 								</div>
 							</div>
 							<div class="form-group ">
+									
 								<h5 class="form-label">
+							<i class="fas fa-paperclip"></i>
 									<div class="d-flex align-items-center">
-										<img class="mb-half mr-1"
-											src="#"
-											style="width: 20px;">입점 과정 미리보기
+									입점 과정 미리보기
 									</div>
 								</h5>
 								<div class="inline-values flex-1 mt-1">
@@ -73,9 +73,10 @@ $(function(){
 							<div class="Tip mt-2">
 								<div class="tip-content">
 									<div class="tip-content-wrapper ">
-										<p>아이콘 넣기</p>
 										<div class="title">
-											<div>전화상담 채널 오픈!</div>										
+											<div>
+										<i class="fas fa-phone-alt"></i>
+											전화상담 채널 오픈!</div>										
 										</div>
 										<div class="children-wrapper">
 											<div>
@@ -100,4 +101,4 @@ $(function(){
 </div>
 
 
-<%@include file="../../ownerInc/bottom.jsp"%>
+<%@include file="../../../ownerInc/bottom.jsp"%>

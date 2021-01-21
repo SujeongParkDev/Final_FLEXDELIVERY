@@ -8,5 +8,12 @@ import org.springframework.stereotype.Repository;
 public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 
 	@Autowired SqlSessionTemplate sqlSession;
-	private String namespace="";
+	private String namespace="config.mybatis.mapper.oracle.ownerlaunch.";
+	
+	@Override
+	public int insertRegister(OwnerRegisterVO vo) {
+		return sqlSession.insert(namespace+"insertRegister",vo);
+	}
+	
+	
 }

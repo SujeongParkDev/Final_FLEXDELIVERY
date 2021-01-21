@@ -7,4 +7,12 @@ import org.springframework.stereotype.Service;
 public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 
 	@Autowired private OwnerRegisterDAO ownerRegisterDao;
+
+	@Override
+	public int insertRegister(OwnerRegisterVO vo) {
+		return ownerRegisterDao.insertRegister(vo);
+	}
+
+	
+
 }
