@@ -4,4 +4,95 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownermenu">
 
+<!-- 	create or replace view jaMenuAllView
+	as
+	  select m.* , g.S_M_GROUP_NAME, g.STORE_NO, s.L_CATEGORY_NO , s.A_AGREE_NO
+	     from menu m, storemenugroup g, stores s 
+	     where m.S_M_GROUP_NO = g.S_M_GROUP_NO and g.STORE_NO = s.STORE_NO; -->
+	    <!-- menu groupmenu stores 합친 뷰 -->
+	    
+	  <select id="selectMenuAllView" parameterType="int" resultType="ownerMenuAllVo">
+		select *
+		from
+		(
+		    select A.*,rownum as RNUM
+		    from
+		    (	
+					select * from jaMenuAllView
+				<![CDATA[
+					where store_no=#{storeNo} and a_agree_no=3
+					order by S_M_GROUP_No , MENU_NO
+			  	]]>
+			   )A
+		)
+	 
+	 </select> 
+	 
+	 
+	 <select id="selectMenuViewBymenuNo" parameterType="int" resultType="ownerMenuAllVo">
+			select * from jaMenuAllView
+		<![CDATA[
+			where menu_no=#{menuNo} and a_agree_no=3
+	  	]]>
+	 </select> 
+	 
+	 
+	 
+	 <!-- 
+	 	create or replace view jaMenuOptionAllView
+	as
+	  select o.* , r.o_rank_name 
+	     from menu m, menuoption o, optionRank r
+	     where r.O_RANK_NO = o.O_RANK_NO and m.MENU_NO = o.MENU_NO;
+	 
+	  -->
+	   <!-- menu menuoption optionRank 합친 뷰 -->
+	  <select id="selectMenuOptionAllView" parameterType="int" resultType="ownerMenuOptionAllVo">
+			select * from jaMenuOptionAllView
+		<![CDATA[
+			where menu_no=#{menuNo}
+			order by o_rank_no , m_option_name
+	  	]]>
+	 </select> 
+	
+	
+	<!-- 메뉴그룹 조회 -->
+	<select id="selectMenuGroupByNo" parameterType="int" resultType="ownerStoreMenuGroupVo">
+		select * from storeMenuGroup
+		where store_no=#{storeNo}
+		order by s_m_group_no
+	</select>
+	
+	<!-- 메뉴 번호에 따른 메뉴그룹조회 -->
+	<select id="selectMenuGroupByGroupNo" parameterType="int" resultType="ownerStoreMenuGroupVo">
+		select * from storeMenuGroup
+		where s_m_group_no=#{sMGroupNo}
+	</select>
+	
+	<!-- 메뉴 그룹 업데이트  -->
+	
+	<update id="updateMenuGroupByNo" parameterType="ownerStoreMenuGroupVo" >
+		update storeMenuGroup
+		set S_M_GROUP_NAME =#{sMGroupName}
+		where S_M_GROUP_NO =#{sMGroupNo} and store_NO=#{storeNo}
+	</update>
+	
+	
+	<delete id="deleteMenuGroupByNo" parameterType="int">
+		delete storeMenuGroup
+		where S_M_GROUP_NO=#{sMGroupNo}
+	</delete>
+	
+	
+	<insert id="insertMenuGroup" parameterType="ownerStoreMenuGroupVo">
+		<selectKey keyProperty="sMGroupNo" resultType="int" order="BEFORE">
+			select STOREMENUGROUP_SEQ.nextval from dual
+		</selectKey>
+			insert into storeMenuGroup(s_m_group_no, s_m_group_name, store_no)
+			values(#{sMGroupNo}, #{sMGroupName}, #{storeNo})
+	</insert>
+	
+	
+	
+	
 </mapper>

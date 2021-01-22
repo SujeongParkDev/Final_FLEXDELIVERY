@@ -7,7 +7,7 @@
 
 <!-- 창 띄우기 -->
 	<script type="text/javascript">
-					
+				
 			$(function(){
 				$('#btMenuGroupWrite').on('click', function(){
 					window.screen.width //현재 윈도우창의 가로크기를 가져옴
@@ -26,8 +26,49 @@
 				});
 			
 			
-			});
+			}); 
+			
+		
+			
+			$(function(){
+				$('.btmenu').click(function(){
+					//수정이랑 삭제누르면 수정은 오픈창가고 삭제는 걍 confirm 창 뜬다.
+					//원래는 더짧게 하고싶었는데 소스가 안먹혀서 어쩔수가없었다.. 아쉽..
 					
+					var sMGroupNo = $(this).attr('value');
+					var url="";
+					if($(this).attr('name')=='menuEdit'){
+						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupEdit.do?sMGroupNo="+sMGroupNo;
+						window.screen.width //현재 윈도우창의 가로크기를 가져옴
+						window.screen.height //세로크기 가져옴
+						
+						var popupWidth = 500; //띄울 창 가로크기
+						var popupHeight = 300;
+						
+						var popupX = (window.screen.width / 2) - (popupWidth /2);
+						var popupY = (window.screen.height / 2) - (popupHeight /2);
+						
+						window.open(
+							url, 
+							"메뉴 수정", 
+							'toolbar=no, menubar=no, scrollbars=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+					
+						
+						
+					}else if($(this).attr('name')=='menuDelete'){
+						if(confirm(sMGroupNo+"번 그룹을 삭제하시겠습니까?")){
+							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupDelete.do?sMGroupNo="+sMGroupNo;
+							location.href=url;
+						}else{
+							history.back();
+						}
+					}
+					
+					
+				});
+				
+			});   
+		
 			
 			$(function(){
 				$('.btMainMenuChange').click(function(){
@@ -50,22 +91,7 @@
 			});  
 		
 			
-			$(function(){
-				$('.btmenu').click(function(){
-					
-					var sMGroupNo = $(this).attr('value');
-					var url="";
-					if($(this).attr('name')=='menuEdit'){
-						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupEdit.do?sMGroupNo="+sMGroupNo;
-					}else if($(this).attr('name')=='menuDelete'){
-						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupDelete.do?sMGroupNo="+sMGroupNo;
-					}
-					
-					location.href=url;
-				});
-				
-			});  
-		
+			
 		
 		</script>
 		<!-- 메뉴 버튼 -->
@@ -108,35 +134,26 @@
 					                <tr class="text-center">
 					                  <th style="width:60%;">메뉴 그룹</th>
 					                  <th style="width:23%;">수정/삭제</th>
-					                   <th style="width:17%;" class="pl-3"><button class="btn btn-outline-primary p-2" id="btMenuGroupWrite">등록</button></th>
+					                   <th style="width:17%;" class="pl-3"><button class="btn btn-outline-primary p-2"  id="btMenuGroupWrite">등록</button></th>
 					                </tr>
 					              </thead>
 					              <tbody>
-					                <tr class="text-center">
-					                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=1"><strong>돈까스</strong></a></td>
-					                  <td>  
-					                  		<button class="btn btn-outline-dark p-2 btmenu" value="1" name="menuEdit" >수정</button>
-					                  		<button class="btn btn-outline-dark p-2 btmenu" value="2" name="menuDelete">삭제</button>
-					                  </td>
-					                  <td></td>
-					                  
-					                </tr>
-					                <tr class="text-center">
-					                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=1"><strong>치킨</strong></a></td>
-					                    <td>  
-					                  		<button class="btn btn-outline-dark p-2 btmenu" value="1" name="menuEdit">수정</button>
-					                  		<button class="btn btn-outline-dark p-2 btmenu" value="2" name="menuDelete">삭제</button>
-					                  </td>
-					                  <td></td>
-					                </tr>
-					                <tr class="text-center">
-					                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=1"><strong> 피자</strong></a></td>
-					                    <td>  
-					                  		<button class="btn btn-outline-dark p-2 btmenu"  value="1" name="menuEdit">수정</button>
-					                  		<button class="btn btn-outline-dark p-2 btmenu" value="2" name="menuDelete">삭제</button>
-					                  </td>
-					                  <td></td>
-					                </tr>
+										 <c:if test="${empty list }">
+					                  		<tr class="text-center">
+					                  			<td  colspan="3"> 데이터가 없습니다 </td>
+					                  		</tr>
+					                 	  </c:if>	
+					                 	  <c:if test="${!empty list}">
+					                 	  		<c:forEach var="vo" items="${list }">
+						                 	  		  <tr class="text-center">
+									                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=${vo.sMGroupNo}"><strong>${vo.sMGroupName }</strong></a></td>
+									                  <td>  
+									                  		<button class="btmenu btn btn-outline-dark p-2 " value="${vo.sMGroupNo}"  name="menuEdit" >수정</button>
+									                  		<button class="btmenu btn btn-outline-dark p-2 " value="${vo.sMGroupNo}" name="menuDelete">삭제</button>
+									                  </td>
+									                  <td></td>
+					                 	  		</c:forEach>
+					                 	  </c:if>				              
 					              </tbody>
 					            </table>
 					          </div>

@@ -128,8 +128,8 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="<c:url value='/owner/menu1/launch/launch.do'/>">입점</a></li>
-                                    <li><a href="<c:url value='/owner/menu2/myStore.do'/>">내 가게</a></li>
+                                    <li><a href="<c:url value='/owner/menu1/launch.do'/>">입점</a></li>
+                                    <li><a href="<c:url value='/owner/menu2/myStoreIndex.do'/>">내 가게</a></li>
                                     <li><a href="#">사장님광장</a>
                                         <ul class="dropdown">
                                             <li><a href="#">공지사항</a></li>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <!-- 나중에 storeNo 수정필요 -->
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -70,60 +70,50 @@
 
 
 
-
-	
-	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    
 	<script type="text/javascript">
-
-	   
-	  $(function(){
-			$('form[name=frm]').submit(function(){
-				if($('input[id=sMGroupName]').val().length<1){
-					alert('그룹명을 입력해 주세요');
-					$('input[id=sMGroupName]').focus();
-					event.preventDefault();
-				}
-			});
-			
-		}); 
-
-		 if(${result}==${SUCCESSPOST}){
+	
+		if(${result}==${SUCCESSPOST}){
 			opener.parent.location.reload();
 			self.close();
-		} 
+		}
 
+		
+	
 	</script>
+
 </head>
-<body style="overflow-x:hidden;">	
+<body style="overflow-x:hidden;">
 		<br>	<br>	
+		
+		
 		<section id="basic-vertical-layouts">
 		    <div class="row match-height">
 		    	<div class="col-md-3 col-sm-12"></div>
 		        <div class="col-md-6 col-sm-12">
-		        <div class="card">
+		        <div class="card" >
 		            <div class="card-header" style="background-color:white;">
-		            <h4 class="card-title">메뉴 그룹 등록</h4>
+		            <h4 class="card-title text-center">메뉴 그룹 등록</h4>
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">
-		                <form class="form form-vertical" name="frm" method="post" action='<c:url value="/owner/menu2/foodmenu/menuGroupWrite.do"/>'>
+		                <form class="form form-vertical" name="frm123" method="post" action='<c:url value="/owner/menu2/foodmenu/menuGroupEdit.do"/>'>
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
 		                        <div class="form-group">
-		                        <label for="first-name-vertical">메뉴 그룹 이름</label>
-		                        <input type="text" id="sMGroupName" class="form-control" name="sMGroupName">
-		                        <input type="hidden" name="storeNo" value="4"> 
-		                        <!-- 나중에 storeNo 수정필요 -->
-		                        </div>
+		                       		<label for="first-name-vertical">메뉴 그룹 번호</label>
+		                        	<input type="text" id="sMGroupNo" class="form-control" name="sMGroupNo" value="${param.sMGroupNo}" readonly="readonly">
+		                       		<label for="first-name-vertical">메뉴 그룹 이름</label>
+		                        	<input type="text" id="sMGroupName" class="form-control" name="sMGroupName" value="${vo.sMGroupName }">
+		                        	<input type="hidden" name="storeNo" value="${vo.storeNo }">
+		                    	 </div>
+		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" value="등록">
-		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuGroupEdit" value="수정">
 		                    </div>
 		                    </div>
-		                </div>
 		                </form>
 		            </div>
 		            </div>
@@ -137,4 +127,3 @@
 			
 </body>
 </html>
-    	
