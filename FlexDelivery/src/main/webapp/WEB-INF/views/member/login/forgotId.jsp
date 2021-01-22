@@ -21,6 +21,35 @@
     <link href="<c:url value='/resources/memberResources/css/style.css' />" rel="stylesheet">
     <!-- Sidebar CSS -->
     <link href="<c:url value='/resources/memberResources/vendor/sidebar/demo.css' />" rel="stylesheet">
+    <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$('form[name=frmFind]').submit(function(){
+    	         if($('#memberName').val().length<2){
+    	            alert('이름을 2글자 이상 입력하세요');
+    	            $('#memberName').focus();
+    	            event.preventDefault();
+    	         }else if(!validate_name($('#memberName').val())){
+    	            alert('이름은 한글을 입력하세요');
+    	            $('#memberName').focus();
+    	            event.preventDefault();            
+    	         }else if($('#memberEmail1').val().length<1){
+    	            alert('이메일아이디를 입력하세요');
+    	            $('#memberEmail1').focus();
+    	            event.preventDefault();
+    	         }else if($('#memberEmail2').val().length<1){
+    	            alert('이메일주소를 입력하세요');
+    	            $('#memberEmail2').focus();
+    	            event.preventDefault();
+    	         }else if(!validate_email($('#memberEmail2').val())){
+    	            alert('이에일을 정확히 입력하세요');
+    	            $('#memberEmail2').focus();
+    	            event.preventDefault();            
+    	         }
+    	      });
+    	});
+    </script>
 </head>
 
 <body>
@@ -36,19 +65,18 @@
                     <h2 class="text-dark my-0">FIND ID</h2>
                    	<br>
                     <p class="text-50 lead">아이디 찾기</p>
-                    <form class="mt-5 mb-4" action="<c:url value='/login.do' />">
-                    	<input type="hidden" name="idx" value="${param.idx}"> 
+                    <form name="frmFind" method="post" class="mt-5 mb-4" action="<c:url value='/member/login/forgotId.do' />">
                         <div class="form-group">
-                            <input type="text" placeholder="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="memberName">
+                            <input type="text" placeholder="Name" class="form-control" id="memberName" aria-describedby="emailHelp" name="memberName">
                         </div>
                         <div class="form-group">
                         	<div class="input-group">
-	                            <input type="text" placeholder="user" class="form-control" id="exampleInputPassword1" name="email">
+	                            <input type="text" placeholder="EmailID" class="form-control" id="memberEmail1" name="memberEmail1">
 	                            <span class="input-group-text">@</span>
-	                            <input type="text" placeholder="gmail.com" class="form-control" id="exampleInputPassword1" name="email">
+	                            <input type="text" placeholder="gmail.com" class="form-control" id="memberEmail2" name="memberEmail2">
                         	</div>
                         </div>
-                        <button class="btn btn-primary btn-lg btn-block">OK</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">FIND</button>
                     </form>
                 </div>
             </div>

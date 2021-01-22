@@ -33,6 +33,20 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectMember(String userid) {
 		return memberDao.selectMember(userid);
 	}
+
+	@Override
+	public String selectMemberId(MemberVO vo) {
+		return memberDao.selectMemberId(vo);
+	}
+
+	@Override
+	public boolean chkMember(MemberVO vo) {
+		int cnt=memberDao.chkMember(vo);
+		if(cnt<1) {
+			return false;
+		}
+		return true;
+	}
 	
 	
 }

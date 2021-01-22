@@ -22,33 +22,8 @@
     <!-- Sidebar CSS -->
     <link href="<c:url value='/resources/memberResources/vendor/sidebar/demo.css' />" rel="stylesheet">
     <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
     <script type="text/javascript">
-    	$(function(){
-    		$('form[name=frmFind]').submit(function(){
-    	         if($('#memberId').val().length<1){
-    	            alert('아이디를 입력하세요');
-    	            $('#memberId').focus();
-    	            event.preventDefault();
-    	         }else if(!validate_userid($('#memberId').val())){
-    	            alert('아이디를 정확히 입력하세요');
-    	            $('#memberId').focus();
-    	            event.preventDefault();            
-    	         }else if($('#memberEmail1').val().length<1){
-    	            alert('이메일아이디를 입력하세요');
-    	            $('#memberEmail1').focus();
-    	            event.preventDefault();
-    	         }else if($('#memberEmail2').val().length<1){
-    	            alert('이메일주소를 입력하세요');
-    	            $('#memberEmail2').focus();
-    	            event.preventDefault();
-    	         }else if(!validate_email($('#memberEmail2').val())){
-    	            alert('이에일을 정확히 입력하세요');
-    	            $('#memberEmail2').focus();
-    	            event.preventDefault();            
-    	         }
-    	      });
-    	});
+    	
     </script>
     
 </head>
@@ -65,7 +40,7 @@
                 	<hr>
                     <h2 class="text-dark my-0">FIND PWD</h2>
                    	<br>
-                    <p class="text-50 lead">비밀번호 찾기</p>
+                    <p class="text-50 lead">인증번호 입력</p>
                     <form class="mt-5 mb-4" name="frmPwd" method="post" action="<c:url value='/member/login/forgotPwd.do' />">
                         <div class="form-group">
                             <input type="text" placeholder="ID" class="form-control" id="memberId" aria-describedby="emailHelp" name="memberId">
