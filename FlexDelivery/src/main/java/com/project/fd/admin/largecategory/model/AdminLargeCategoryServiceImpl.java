@@ -32,5 +32,10 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 		return largecategoryDao.insertLargeCategory(largecategoryVo);
 	}
 
+	@Override
+	public int updateLargeCategory(AdminLargeCategoryVO largecategoryVo) {
+		return largecategoryDao.updateLargeCategory(largecategoryVo);
+	}
+
 	
 }

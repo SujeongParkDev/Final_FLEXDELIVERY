@@ -14,5 +14,7 @@ public interface AdminLargeCategoryDAO {
 
 	public int insertLargeCategory(AdminLargeCategoryVO largeCategoryVo);
 
+	int updateLargeCategory(AdminLargeCategoryVO largecategoryVo);
+
 	
 }

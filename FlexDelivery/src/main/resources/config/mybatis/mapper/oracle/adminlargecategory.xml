@@ -58,7 +58,7 @@
 		set readcount=readcount+1 
 		where no=#{no}
 	</update>
-	
+
 	<select id="selectByNo" parameterType="int" resultType="reBoardVo">
 		select * from reBoard where no=#{no}
 	</select>
@@ -67,17 +67,19 @@
 		select pwd from reBoard
 		where no=#{no}
 	</select>
+	-->
 	
-	<update id="updateReBoard" parameterType="reBoardVo">
-		update reBoard 
-		set name=#{name},title=#{title},email=#{email},content=#{content}
-		<if test="fileName!=null and fileName!=''">
+	<update id="updateLargecategory" parameterType="AdminLargeCategoryVo">
+		update LARGECATEGORY 
+		set L_CATEGORY_NAME=#{lCategoryName},L_CATEGORY_FILENAME=#{lCategoryFilename}
+		<!-- <if test="fileName!=null and fileName!=''">
 			, filename=#{fileName}, originalFileName=#{originalFileName},
 			fileSize=#{fileSize}
-		</if>		
-		where no=#{no}
+		</if> -->		
+		where L_CATEGORY_NO=#{lCategoryNo}
 	</update>
 	
+	<!--
 	<delete id="deleteReBoard" parameterType="reBoardVo">
 		delete from reBoard where no=#{no}
 	</delete>
