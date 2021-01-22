@@ -1,7 +1,7 @@
 package com.project.fd.owner.menu.model;
 
 
-//메뉴 + 메뉴그룹번호 + 점포번호 뷰 작성 VO
+//메뉴 + 메뉴그룹 + 점포 뷰 작성 VO
 //따로따로 꺼내는게 아니기때문에 resultMap 은 아닌것같아서.. 일단은 뷰! 내가 잘못알고있는거면
 //나중에 수정하기! 
 public class OwnerMenuAllVO {
@@ -19,11 +19,23 @@ public class OwnerMenuAllVO {
 	private int storeNo;
 	
 
-	//점포 번호
+	//점포
 	//private int storeNo;
+	private int lCategoryNo;
+	private int aAgreeNo;
+	
+	//번호
+	private int rnum;
 	
 	
 	
+	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	public int getMenuNo() {
 		return menuNo;
 	}
@@ -72,12 +84,26 @@ public class OwnerMenuAllVO {
 	public void setStoreNo(int storeNo) {
 		this.storeNo = storeNo;
 	}
+	public int getlCategoryNo() {
+		return lCategoryNo;
+	}
+	public void setlCategoryNo(int lCategoryNo) {
+		this.lCategoryNo = lCategoryNo;
+	}
+	public int getaAgreeNo() {
+		return aAgreeNo;
+	}
+	public void setaAgreeNo(int aAgreeNo) {
+		this.aAgreeNo = aAgreeNo;
+	}
 	@Override
 	public String toString() {
-		return "MenuAllVO [menuNo=" + menuNo + ", menuName=" + menuName + ", menuPrice=" + menuPrice + ", menuImg="
+		return "OwnerMenuAllVO [menuNo=" + menuNo + ", menuName=" + menuName + ", menuPrice=" + menuPrice + ", menuImg="
 				+ menuImg + ", menuContent=" + menuContent + ", sMGroupNo=" + sMGroupNo + ", sMGroupName=" + sMGroupName
-				+ ", storeNo=" + storeNo + "]";
+				+ ", storeNo=" + storeNo + ", lCategoryNo=" + lCategoryNo + ", aAgreeNo=" + aAgreeNo + ", rnum=" + rnum
+				+ "]";
 	}
+	
 	
 	
 	

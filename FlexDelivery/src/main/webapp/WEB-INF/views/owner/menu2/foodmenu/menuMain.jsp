@@ -85,6 +85,7 @@
 						          <table class="table table-hover mb-5">
 						            <thead>
 						              <tr class="text-center">
+						              	<th>번호</th>
 						                <th>메뉴번호</th>
 						                <th>메뉴이름</th>
 						                <th>메뉴그룹</th>
@@ -93,24 +94,22 @@
 						            </thead>
 						            <tbody>
 						            <!-- table 시작 -->
-							              <tr  class="text-center">
-								                <td class="text-bold-500">FD01</td>
-								              	<td><a onclick="goDetail(1)" href="#">호랭이 치킨</a></td>
-								                <td>치킨</td>
-								                <td>20000원</td>
-							              </tr>
-							              <tr  class="text-center">
-								               	<td class="text-bold-500">FD04</td>
-								                <td><a onclick="goDetail(2)" href="#" >호랭이 돈까스</a></td>
-								                <td>돈까스</td>
-								                <td>8000</td> 
-							              </tr>
-							                <tr  class="text-center">
-								               	<td class="text-bold-500">FD011</td>
-								                <td><a  onclick="goDetail(3)" href="#" >호랭이 초밥</a></td>
-								                <td>초밥</td>
-								                <td>12000</td> 
-							              </tr>
+						            	  <c:if test="${empty list }">
+						            	  		<tr>
+													<td colspan="5" class="text-center">데이터가 존재하지 않습니다.</td>
+												</tr>
+						            	  </c:if>
+						            	  <c:if test="${!empty list }">
+						            	  		<c:forEach var="vo" items="${list}">
+										              <tr  class="text-center">
+										              		<td>${vo.rnum }</td>
+											                <td class="text-bold-500">${vo.menuNo }</td>
+											              	<td><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></td>
+											                <td>${vo.sMGroupName }</td>
+											                <td>${vo.menuPrice }원</td>
+										              </tr>
+							              		</c:forEach>
+							               </c:if>
 						            </tbody>
 						          </table>
 				        	   </div>

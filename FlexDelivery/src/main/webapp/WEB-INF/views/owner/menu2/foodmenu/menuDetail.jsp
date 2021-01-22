@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
 		html {overflow-x:hidden;}
 	</style>
 	
-	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
+	<!-- 클릭시 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
@@ -32,6 +35,9 @@
 	
 	</script>
 </head>	
+		<!-- 메뉴 컨텐츠 내용 br 바꾸기 -->
+		<c:set var="content" 
+			value="${fn:replace(menuAllVo.menuContent, newLine,'<br>') }" />
 
 		<div></div>
 		<br>
@@ -42,33 +48,35 @@
 				<div class="col-md-6 col-sm-12">
 				<!-- 메뉴에 관한 내용 -->
 				<div class="card">
-					<div class="card-content">
-				       <img class="card-img-top img-fluid" style="height:250px;"
-				       			src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/aerial-panoramic-image-of-sansonvale-lake-X6TCENW.jpg" alt="Card image cap">
-				       <div class="card-body">
+				      <div class="card-body">
+				       		
 				       	   <!-- 그룹에 관한 내용(테이블) -->
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->
 						          <div class="table-responsive">
 						            <table class="table">
 						              <tbody>
+						                <tr>
+						                	<td colspan="4" class="text-center">
+				                				<img src="${menuAllVo.menuImg}" style="height:250px; width:inherit;"
+		       									src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/aerial-panoramic-image-of-sansonvale-lake-X6TCENW.jpg" alt="Card image cap">
+				                			</td>
+						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">메뉴이름</th>
-							                  <td>호랭이 돈까스</td>
+							                  <td>${menuAllVo.menuName}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">메뉴그룹</th>
-							                  <td>면</td>
+							                  <td>${menuAllVo.sMGroupName}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">메뉴가격</th>
-							                  <td>8000원</td>
+							                  <td>${menuAllVo.menuPrice}원</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">메뉴내용</th>
-							                  <td>호랑이 담배피던 시절 부터 사랑받아온 
-							                  	  호랭이 돈까스 맛있게 드세요
-							                  </td>
+							                  <td>${content}</td>
 						                </tr>
 						              </tbody>
 						            </table>
@@ -94,25 +102,31 @@
 					      </div>
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text  text-center">호랭이 돈까스에 대한 옵션메뉴입니다.</p>
+					          <p class="card-text  text-center">${menuAllVo.menuName}에 대한 옵션메뉴입니다.</p>
 					          <!-- Table with outer spacing -->
 					          <div class="table-responsive">
 					            <table class="table">
 					              <thead>
 					                <tr class="text-center">
+					                  <th>순위</th>
 					                  <th>옵션이름</th>
 					                  <th>가격</th>
 					                </tr>
 					              </thead>
 					              <tbody>
-					                <tr class="text-center">
-					                  <td class="text-bold-500">파추가</td>
-					                  <td>3000원</td>
-					                </tr>
-					                <tr class="text-center">
-					                  <td class="text-bold-500">밥추가</td>
-					                  <td>1000원</td>
-					                </tr>
+					              	<c:if test="${empty list}">
+					              		<td class="text-center" colspan="3">데이터가 없습니다</td>
+					              	</c:if>
+					              	<c:if test="${!empty list}">
+					              		<c:forEach var="vo" items="${list}">
+							                <tr class="text-center">
+							                  <td class="text-bold-500">${vo.oRankName }</td>
+							                  <td class="text-bold-500">${vo.mOptionName }</td>
+							                  <td>${vo.mOptionPrice }원</td>
+							                </tr>
+						                </c:forEach>
+					                </c:if>
+					               
 					              </tbody>
 					            </table>
 					             <div class="text-center">
