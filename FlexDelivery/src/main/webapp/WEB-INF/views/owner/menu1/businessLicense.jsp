@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../ownerInc/top.jsp"%>
 <%@include file="../../ownerInc/jianSidebarTop.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/businessLicense.css" />
 <script type="text/javascript" src="<c:url value='${pageContext.request.contextPath}/resources/ownerResources/assets/js/storesregister.js'/>"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-// 안먹어 ㅡㅡ
 $(function(){
 	$('#wr_submit').click(function(){
 		if($('#oRegisterNo').val().length<1){
@@ -16,12 +15,23 @@ $(function(){
 			event.preventDefault();
 		}
 	});
+	
+	$('#oRegisterNo').keyup(function(){
+		var oRegisterNo=$(this).val();
+		if( oRegisterNo.length>=1 && oRegisterNo.length<=10){
+			$('.error').html(oRegisterNo.length+'/10');
+		}
+	
+/* 	function validate_oRegisterNo(oRegisterNo){
+		$('.error').html("숫자 10자리만 입력해주세요.");
+	} */
+	});
 });
 </script>
 <!-- 다음에 옮기기 CSS작업할때 -->
 <style type="text/css">
    .error{
-      color:red;
+      color:purple;
       font-weight:bold;
    }
 </style>

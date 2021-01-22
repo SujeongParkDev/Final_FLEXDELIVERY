@@ -5,7 +5,7 @@
 <script type="text/javascript">
 $(function(){
 	$('#btNext').click(function(){
-		location.href='<c:url value="/owner/menu1/launchNext.do"/>';
+		location.href='<c:url value="/owner/menu1/launch/launchNext.do"/>';
 	});
 });
 </script>
