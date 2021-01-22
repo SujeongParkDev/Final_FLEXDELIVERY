@@ -11,14 +11,15 @@ $(function(){
 		self.close();
 	}); */
 	
-	$('#lcategoryEdit').click(function(){
-		window.open("<c:url value='/admin/menu6/largecategory/edit.do' />", "음식 대분류 수정", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
-	});
 	
-	$('#lcategoryDel').click(function(){
+	$('#lcategoryEdit').click(function(){
 		window.open("<c:url value='/admin/menu6/largecategory/edit.do' />", "음식 대분류 수정", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
 		
 	});
+	/* $('#lcategoryDel').click(function(){
+		window.open("<c:url value='/admin/menu6/largecategory/edit.do' />", "음식 대분류 수정", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
+		
+	}); */
 	
 	/* 등록이든 닫기든 모달 닫힐 때 무조건 닫힘 */
 	/* $('#backdrop').on('hidden.bs.modal', function () {
@@ -33,10 +34,10 @@ $(function(){
 		 window.parent.location.reload();
 	}); */
 
-	$('#modalDel').click(function () {
+	/* $('#modalDel').click(function () {
 		 alert("삭제하였습니다.");
 		 window.parent.location.reload();
-	});
+	}); */
 	
 	$('#upfile').on('change', function(){
 	    readInputFile(this);
@@ -94,6 +95,11 @@ function readInputFile(input) {
     }  
 } 
  
+function edit(){
+	$('form[name=frmLCategoryEdit]').submit();
+	alert("수정 성공");
+	window.parent.location.reload();
+}
 
 
 </script>
@@ -131,18 +137,15 @@ function readInputFile(input) {
 								role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 									<div class="modal-content">
-										<form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largeCategory.do' />" enctype="multipart/form-data">
-										<div class="modal-header">
-											<h4 class="modal-title" id="myModalLabel4">음식메뉴 - 대분류 카테고리 등록</h4>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<i data-feather="x"></i>
-											</button>
-										</div>
-										<div class="modal-body">
-										
-											<!-- 폼 걸어보기  -->    
-											<%-- <form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largecategory/write.do' />" enctype="multipart/form-data"> --%>
-											<!-- Hoverable rows start -->
+					<!-- 등록폼+등록모달 --><form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largeCategory.do' />" enctype="multipart/form-data">
+											<div class="modal-header">
+												<h4 class="modal-title" id="myModalLabel4">음식메뉴 - 대분류 카테고리 등록</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<i data-feather="x"></i>
+												</button>
+											</div>
+											<div class="modal-body">											
+												<!-- Hoverable rows start -->
 												<div class="row" id="table-hover-row">
 													<div class="col-12">   
 														<!-- table head dark -->
@@ -157,40 +160,33 @@ function readInputFile(input) {
 																	<tr>
 																		<td colspan="3"  style="text-align: center;">
 																			<div>
-																				<!-- <label for="upfile" class="btn btn-outline-light">첨부파일</label> -->
 																				<input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
-																				<!-- <span>(최대 2M)</span> -->            
 																			</div>
-																		<!-- <button class="btn btn-outline-light">파일 등록</button> -->
 																		</td>
 																	</tr>
 																	<tr>
 																		<td colspan="1"><span>대분류 이름</span></td>
 																		<td colspan="2">
 																			<input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요">
-																			<!-- <input type="hidden" name="lCategoryFilename" id="lCategoryFilename" value="test"> -->
 																		</td>
 																	</tr>
 																</tbody>
 															</table>				          
 														</div>
 													</div>
-												</div>
-											<!-- </form> -->
-											<!-- 폼 걸어보기 -->
-										            
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-outline-dark" data-dismiss="modal">
-												<i class="bx bx-x d-block d-sm-none"></i>
-												<span class="d-none d-sm-block">닫기</span>
-											</button>
-											<button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
-												<i class="bx bx-check d-block d-sm-none"></i>
-												<span class="d-none d-sm-block">등록</span>
-											</button>
-										</div>
-									</form>
+												</div>        
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+													<i class="bx bx-x d-block d-sm-none"></i>
+													<span class="d-none d-sm-block">닫기</span>
+												</button>
+												<button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+													<i class="bx bx-check d-block d-sm-none"></i>
+													<span class="d-none d-sm-block">등록</span>
+												</button>
+											</div>
+										</form><!-- frmLCategoryWrite등록 폼 모달 -->
 									</div>
 								</div>
 							</div>
@@ -220,24 +216,22 @@ function readInputFile(input) {
 														<img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename }' />" alt="${vo.lCategoryFilename }" style="height: 120px" class="mb-1">
 														<p class="card-text white">${vo.lCategoryNo }</p>
 														<h4 class="card-title white">${vo.lCategoryName }</h4>
-														<button class="btn btn-primary round" id="lcategoryEdit" name="lcategoryEdit"
-														data-toggle="modal" data-backdrop="false" data-target="#lcategoryEdit">수정</button>
+														<button type="button" class="btn btn-primary round" id="lcategoryEdit" name="lcategoryEdit"
+														data-toggle="modal" data-backdrop="false" data-target="#backdrop">수정</button>
 														<button class="btn btn-danger round white" id="lcategoryDel" name="lcategoryDel">삭제</button>
 														
 															<div class="modal fade text-left" id="lcategoryEdit" tabindex="-1" 
 																role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
 																<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 																	<div class="modal-content">
-																		<form name="frmLCategoryEdit" method="post" action="<c:url value='/admin/menu6/largeCategory/edit.do' />" enctype="multipart/form-data">
-																		<div class="modal-header">
-																			<h4 class="modal-title" id="myModalLargeEdit">음식메뉴 - 대분류 카테고리 수정</h4>
-																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																				<i data-feather="x"></i>
-																			</button>
-																		</div>
-																		<div class="modal-body">
-																		
-																			<!-- 폼 걸어보기  -->    
+														<!-- 수정 모달  --><form name="frmLCategoryEdit" method="post" action="<c:url value='/admin/menu6/largeCategory/edit.do' />" enctype="multipart/form-data">
+																			<div class="modal-header">
+																				<h4 class="modal-title" id="myModalLargeEdit">음식메뉴 - 대분류 카테고리 수정</h4>
+																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																					<i data-feather="x"></i>
+																				</button>
+																			</div>
+																			<div class="modal-body">
 																			<!-- Hoverable rows start -->
 																				<div class="row" id="table-hover-row">
 																					<div class="col-12">   
@@ -253,7 +247,8 @@ function readInputFile(input) {
 																									<tr>
 																										<td colspan="3"  style="text-align: center;">
 																											<div>
-																												<input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
+																												<input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />
+																												<span>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</span>             
 																											</div>
 																										</td>
 																									</tr>
@@ -261,7 +256,8 @@ function readInputFile(input) {
 																										<td colspan="1"><span>대분류 이름</span></td>
 																										<td colspan="2">
 																											<input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요" value="${vo.lCategoryName }">
-																											<input type="hidden" name="lCategoryNo" id="lCategoryNo" value="${vo.lCategoryNo }">
+																											<input type="hidden" name="lCategoryNo" id="lCategoryNo" value="${param.lCategoryNo }">
+																											<input type="hidden" name="oldFileName" id="oldFileName" value="${vo.lCategoryFilename }">
 																										</td>
 																									</tr>
 																								</tbody>
@@ -269,21 +265,19 @@ function readInputFile(input) {
 																						</div>
 																					</div>
 																				</div>
-																			<!-- </form> -->
-																			<!-- 폼 걸어보기 -->
 																		            
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-outline-dark" data-dismiss="modal">
-																				<i class="bx bx-x d-block d-sm-none"></i>
-																				<span class="d-none d-sm-block">닫기</span>
-																			</button>
-																			<button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
-																				<i class="bx bx-check d-block d-sm-none"></i>
-																				<span class="d-none d-sm-block">수정</span>
-																			</button>
-																		</div>
-																	</form>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+																					<i class="bx bx-x d-block d-sm-none"></i>
+																					<span class="d-none d-sm-block">닫기</span>
+																				</button>
+																				<button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="edit()">
+																					<i class="bx bx-check d-block d-sm-none"></i>
+																					<span class="d-none d-sm-block">수정</span>
+																				</button>
+																			</div>
+																		</form>
 																	</div>
 																</div>
 															</div>
@@ -294,7 +288,7 @@ function readInputFile(input) {
 												</div>
 											</div>
 										</div>
-	                			</c:forEach>
+	                				</c:forEach>
 							<!-- <section id="groups"> -->
 							<!-- <div class="row"> -->		            
 

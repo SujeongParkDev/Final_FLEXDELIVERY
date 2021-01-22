@@ -179,7 +179,7 @@ public class AdminLargeCategoryController {
 		return "/admin/menu6/largecategory/edit";
 	}
 
-	@RequestMapping(value="/largecategory/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value="/largeCategory/edit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute AdminLargeCategoryVO largecategoryVo,
 			@RequestParam String oldFileName, HttpServletRequest request,
 			Model model) {
@@ -212,29 +212,28 @@ public class AdminLargeCategoryController {
 		//vo.setFileSize(fileSize);
 		//vo.setOriginalFileName(originName);
 
-		String msg="글 수정 실패", url="/admin/menu6/largecategory/edit.do?largeCategoryNo="+largecategoryVo.getlCategoryNo();
-			int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
-			logger.info("글수정 결과, cnt={}", cnt);	
+		String msg="글 수정 실패", url="/admin/menu6/largecategory/list.do";
+		int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
+		logger.info("글수정 결과, cnt={}", cnt);	
 
-			if(cnt>0) {
-				msg="대분류 카테고리를 수정하였습니다.";
+		if(cnt>0) {
+			msg="대분류 카테고리를 수정하였습니다.";
+			url="/admin/menu6/largeCategory.do";
+					//+ "detail.do?no="+largeCategoryVo.getlCategoryNo();
+
+			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
+			if(fileName!=null && !fileName.isEmpty()) {
+				String upPath 
+				= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
+				File oldFile = new File(upPath, oldFileName);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("기존 파일 삭제 여부 :{}", bool);
+				}					
+				msg="대분류 카테고리 - 이미지가 수정되었습니다.";
 				url="/admin/menu6/largeCategory.do";
-						//+ "detail.do?no="+largeCategoryVo.getlCategoryNo();
-
-				//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
-				if(fileName!=null && !fileName.isEmpty()) {
-					String upPath 
-					= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
-					File oldFile = new File(upPath, oldFileName);
-					if(oldFile.exists()) {
-						boolean bool=oldFile.delete();
-						logger.info("기존 파일 삭제 여부 :{}", bool);
-					}					
-				}
-			}//if
-
-		//String msg="글수정되었습니다.";
-		//String url="/admin/menu6/largeCategory";
+			}
+		}//if
 
 		//3
 		model.addAttribute("msg", msg);

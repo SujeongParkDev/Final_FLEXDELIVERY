@@ -38,5 +38,11 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 		return cnt;
 	}
 
+	@Override
+	public int updateLargeCategory(AdminLargeCategoryVO largecategoryVo) {
+		int cnt=sqlSession.update(namespace+"updateLargeCategory", largecategoryVo);
+		return cnt;
+	}
+
 
 }
