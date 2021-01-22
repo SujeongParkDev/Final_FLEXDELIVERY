@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../ownerInc/top.jsp"%>
-<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
+	<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/businessLicense.css" />
 <script type="text/javascript" src="<c:url value='${pageContext.request.contextPath}/resources/ownerResources/assets/js/storesregister.js'/>"></script>
 <script type="text/javascript">
 $(function(){
@@ -34,6 +31,14 @@ $(function(){
       color:purple;
       font-weight:bold;
    }
+   .col-md-4.col-12 {
+    align-items: center;
+    margin: auto;
+    width: 600px;
+}
+.row {
+    margin-top: 15%;
+}
 </style>
 	<div class="row">
 		<div class="col-md-4 col-12"></div>
@@ -77,7 +82,7 @@ $(function(){
 				                    </div>
 				                    <div class="col-sm-12 d-flex justify-content-end pt-5">
 				                        <input type="submit" class="btn btn-primary mr-1 mb-1"
-				                        id="wr_submit" name="wr_submit">신청</button>
+				                        id="wr_submit" name="wr_submit">신청
 				                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">취소</button>
 				                    </div>
 			                    </div>
@@ -90,5 +95,5 @@ $(function(){
 	    </div>
 	    <div class="col-md-4 col-12"></div>
 	</div>
+
 <%@include file="../../ownerInc/jianSidebarBottom.jsp"%>
-<%@include file="../../ownerInc/bottom.jsp"%>

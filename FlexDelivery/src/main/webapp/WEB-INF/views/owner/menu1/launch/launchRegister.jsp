@@ -7,22 +7,15 @@
 <script type="text/javascript" src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#btRegi').click(function() {
-			
-		});
-		
-		var radioVal = $('input[name="radio"]:checked').val();
-		if(radioVal==1){
-			
-		}
-		
 			$('#btRegi').click(function(){
 				if(!$('#chkAgree').is(":checked")){
 					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
 					$('#chkAgree').focus();
 					event.preventDefault();
 				}else{
-					location.href = '<c:url value="/owner/menu1/launchRegister_ok.do"/>';
+					alert('축하합니다!  입점 등록 신청이 완료되었습니다.');
+					// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
+					location.href = '<c:url value="/owner/menu2/temporary/tempList.do"/>';
 				}
 		});
 	});
@@ -42,7 +35,7 @@
 							</div>
 					
 					<!-- 폼 시작 -->
-						<form class="dialog on lg ">
+						<form class="dialog on lg " name="dialog" method="post" enctype="multipart/form-data">
 							<div class="header">
 								<div class="header-hint"></div>
 							</div>
@@ -206,20 +199,19 @@
 															<div class="form-control ">
 														<select required="" style="min-width: 140px;"><option
 																value="" disabled="">마감시간</option>
-																<option value="7">7시</option>
-																<option value="8">8시</option>
-															<option value="9">9시</option>
-															<option value="10">10시</option>
-															<option value="11">11시</option>
-															<option value="12">12시</option>
-															<option value="13">13시</option>
-															<option value="14">14시</option>
 															<option value="15">15시</option>
 															<option value="16">16시</option>
 															<option value="17">17시</option>
 															<option value="18">18시</option>
 															<option value="19">19시</option>
-															<option value="20">20시</option></select>
+															<option value="20">20시</option>
+															<option value="21">21시</option>
+															<option value="22">22시</option>
+															<option value="23">23시</option>
+															<option value="00">12시</option>
+															<option value="1">1시</option>
+															<option value="2">2시</option>
+															</select>
 															</div>
 														</div>
 													</div>
@@ -266,8 +258,8 @@
 													</li>
 												</ul>
 						<div class="text-right my-3">
+						<!-- input으로 변경 -->
 							<button type="button" class="button medium primary" id="btRegi">등록 제출
-								</button>
 						</div>
 											</div>
 										</div>

@@ -32,10 +32,6 @@ public class OwnerStoresController {
 		logger.info("사장님 메인 화면 보여주기"); 
 	}
 	 
-	 @RequestMapping("/menu1/businessLicense.do")
-	 public void License_get() {
-		 logger.info("점포 - 라이센스 등록 화면");
-	 }
-	 
+	
 
 }

@@ -6,13 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/owner")
+@RequestMapping("/owner/menu2")
 public class OwnerReviewController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerReviewController.class);
 	
-	@RequestMapping("/menu1/reviewOwner.do")
+	@RequestMapping("/reviewOwner/reviewOwner.do")
 	public void reviewList_get() {
 		 logger.info("점포 - 리뷰관리 보여주기");
 	}
+	
+	
 }

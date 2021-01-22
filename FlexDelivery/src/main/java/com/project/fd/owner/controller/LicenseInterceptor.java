@@ -18,6 +18,8 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		//aAgreeNo
+		//aAgreeType 어떤걸로 하는 지 ? 
 		String authority
 		=(String) request.getSession().getAttribute("authority");
 	
@@ -28,7 +30,7 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter{
 		
 		PrintWriter out =response.getWriter();
 		out.print("<script>");
-		out.print("alert('먼저 사업자 등록하세요!');");
+		out.print("alert('먼저 사업자등록증을 등록하세요!');");
 		out.print("location.href='"+ request.getContextPath()
 				+"/owner/menu1/businessLicense.do';");
 		out.print("</script>");
