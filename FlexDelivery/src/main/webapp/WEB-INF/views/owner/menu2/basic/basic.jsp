@@ -67,10 +67,6 @@
                         <div class="inline-values flex-1 ">13195815</div>
                      </div>
                      <div class="form-group ">
-                        <h5 class="form-label">서비스 · 카테고리</h5>
-                        <div class="inline-values flex-1 ">배달의민족, 피자</div>
-                     </div>
-                     <div class="form-group ">
                         <h5 class="form-label">실제 위치</h5>
                         <div class="inline-values flex-1 mb-1">(47360) 부산광역시 부산진구
                            범천동 886-12 1층 피자알파(범천동)</div>

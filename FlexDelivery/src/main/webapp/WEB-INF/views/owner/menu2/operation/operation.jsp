@@ -60,25 +60,6 @@
 					<div>
 						<div class="Card ">
 							<div class="card-header">
-								<h3>휴게시간</h3>
-								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
-										<i class="icon icon-pencil"></i> 변경
-									</button>
-								</div>
-							</div>
-							<div class="form-group ">
-								<div class="inline-values flex-1 ">
-									<span class="text-disabled">설정안함</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<form class="form-card">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
 								<h3>휴무일</h3>
 								<div class="card-menu " style="opacity: 0.99;">
 									<button type="button" class="button change-button medium text">

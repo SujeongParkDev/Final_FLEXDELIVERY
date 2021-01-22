@@ -114,7 +114,10 @@
 			                            <a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a>
 			                        </li>
 			                        <li>
-			                            <a href="#">영업중지</a>
+			                            <a href="#">주문접수</a>
+			                        </li>
+			                        <li>
+			                            <a href="#">주문완료</a>
 			                        </li>
 			                         <li>
 			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록 신청하기</a>
