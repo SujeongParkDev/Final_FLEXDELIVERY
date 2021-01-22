@@ -8,7 +8,22 @@
 <script type="text/javascript">
 	$(function() {
 		$('#btRegi').click(function() {
-			location.href = '<c:url value="/owner/menu1/launchRegister_ok.do"/>';
+			
+		});
+		
+		var radioVal = $('input[name="radio"]:checked').val();
+		if(radioVal==1){
+			
+		}
+		
+			$('#btRegi').click(function(){
+				if(!$('#chkAgree').is(":checked")){
+					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+					$('#chkAgree').focus();
+					event.preventDefault();
+				}else{
+					location.href = '<c:url value="/owner/menu1/launchRegister_ok.do"/>';
+				}
 		});
 	});
 	
@@ -23,7 +38,7 @@
 						<a class="d-block pb-4 pb-sm-3 ml-0" href="/">FLEXDELIVERY 주문페이지로 이동</a>
 						<div class="Card rounded ">
 							<div class="card-header">
-								<h3>FLEXDELIVERY 입점</h3>
+								<h3>FLEXDELIVERY 입점 🏩 </h3>
 							</div>
 					
 					<!-- 폼 시작 -->
@@ -43,18 +58,18 @@
 											<div class="card-description h6 pb-2">답변은 전화 상담 목적으로만
 												사용됩니다.</div>
 											<div class="form-group border-top">
-												<h5 class="form-label">현재 매장을 운영중이신가요?</h5>
+												<h5 class="form-label">✔ 현재 매장을 운영중이신가요?</h5>
 												<div class="form-control-wrap">
 													<div class="form-control  mt-3">
 														<label class="radio-button"><input type="radio"
-															value="">
+															value="1" name="bt1">
 														<p class="label">네. 현재 매장을 운영중입니다.</p></label>
 													</div>
 												</div>
 												<div class="form-control-wrap">
 													<div class="form-control ">
 														<label class="radio-button"><input type="radio"
-															value="" checked="">
+															value="2" name="bt1">
 														<p class="label">아니요. 매장 오픈 준비중입니다.</p></label>
 													</div>
 												</div>
@@ -62,7 +77,7 @@
 											<div class="form-group ">
 												<h5 class="form-label">
 													<div class="text-wrap">
-														아래 내용을 자세하게 적어주세요.<br>
+														😊 아래 내용을 자세하게 적어주세요.<br>
 														입점에 필요한 정보를 상세하게 적어주시면 <br>
 														상담하는데 많은 도움이 됩니다.
 													</div>
@@ -70,7 +85,7 @@
 												<div class="form-control-wrap">
 													    	
 												<div class="form-group ">
-												<h5 class="form-label">점포명</h5>
+												<h5 class="form-label">✔ 점포명</h5>
 												<div class="form-control-wrap border 1px solid #ced4da">
 													<div class="form-control only-one-input">
 														<div class="input-label-container" style="width: inherit;">
@@ -84,7 +99,7 @@
 											</div>
 												        
 												     		<div class="form-group ">
-												<h5 class="form-label">점포소개</h5>
+												<h5 class="form-label">✔ 점포소개</h5>
 												<div class="form-control-wrap border 1px solid #ced4da">
 													<div class="form-control only-one-input">
 														<div class="input-label-container" style="width: inherit;">
@@ -98,7 +113,7 @@
 											</div>
 											
 												<div class="form-group ">
-												<h5 class="form-label">점포 로고 이미지 (최대 2M)</h5>
+												<h5 class="form-label">✔ 점포 로고 이미지 (최대 2M)</h5>
 												<div class="form-control-wrap ">
 													<div class="form-control only-one-input">
 														<div class="input-label-container" style="width: inherit;">
@@ -113,7 +128,7 @@
 											
 													<div class="form-control ">
 												            	<div class="form-group ">
-																	<h5 class="form-label">대분류 카테고리</h5>
+																	<h5 class="form-label">✔ 대분류 카테고리</h5>
 																<div class="form-control-wrap border 1px solid #ced4da">
 															<div class="form-control ">
 														<select required="" style="min-width: 140px;"><option
@@ -134,7 +149,7 @@
 											
 												        	<div class="form-control ">
 												            	<div class="form-group ">
-																	<h5 class="form-label">최소 주문 금액을 선택해주세요.</h5>
+																	<h5 class="form-label">✔ 최소 주문 금액을 선택해주세요.</h5>
 																<div class="form-control-wrap border 1px solid #ced4da">
 															<div class="form-control ">
 														<select required="" style="min-width: 140px;"><option
@@ -159,7 +174,7 @@
 											
 												<div class="form-control ">
 												            	<div class="form-group ">
-																	<h5 class="form-label">점포오픈시간</h5>
+																	<h5 class="form-label">✔ 점포오픈시간</h5>
 																<div class="form-control-wrap border 1px solid #ced4da">
 															<div class="form-control ">
 														<select required="" style="min-width: 140px;"><option
@@ -186,7 +201,7 @@
 											
 													<div class="form-control ">
 												            	<div class="form-group ">
-																	<h5 class="form-label">점포마감시간</h5>
+																	<h5 class="form-label">✔ 점포마감시간</h5>
 																<div class="form-control-wrap border 1px solid #ced4da">
 															<div class="form-control ">
 														<select required="" style="min-width: 140px;"><option
@@ -221,7 +236,7 @@
 											</div>
 											
 											<div class="form-group ">
-												<h5 class="form-label">전화 받을 연락처를 확인해주세요.</h5>
+												<h5 class="form-label">✔ 전화 받을 연락처를 확인해주세요.</h5>
 												<div class="form-control-wrap border 1px solid #ced4da">
 													<div class="form-control only-one-input">
 														<div class="input-label-container" style="width: inherit;">
@@ -238,11 +253,10 @@
 											<div class="form-group ">
 												<div class="form-control-wrap">
 													<div class="form-control ">
-														<label class="checkbox-button  disabled"><input
-															type="checkbox" required="" disabled="" value=""
-															checked=""><span class="checkbox"><i
-																class="icon icon-done align-top"></i></span>
-														<p class="label text-disabled">개인 정보 수집 이용에 동의합니다.</p></label>
+														<input
+															type="checkbox" id="chkAgree" value="agree"
+															><span class="checkbox">개인 정보 수집 이용에 동의합니다.</span>
+														<p class="label text-disabled"></p></label>
 													</div>
 												</div>
 												<ul class="bullet-ul small muted">

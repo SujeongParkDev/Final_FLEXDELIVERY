@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $(function(){
 	$('#btRegi').click(function(){
-		location.href='<c:url value="/owner/menu1/launchRegister.do"/>';
+		location.href='<c:url value="/owner/menu1/launch/launchRegister.do"/>';
 	});
 });
 </script>
