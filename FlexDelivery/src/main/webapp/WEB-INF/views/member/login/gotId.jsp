@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
     <link rel="icon" type="image/png" href="<c:url value='/resources/memberResources/img/fav.png' />">
-    <title>비밀번호 찾기</title>
+    <title>아이디 찾기</title>
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick.min.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick-theme.min.css' />" />
@@ -22,35 +24,13 @@
     <!-- Sidebar CSS -->
     <link href="<c:url value='/resources/memberResources/vendor/sidebar/demo.css' />" rel="stylesheet">
     <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
     <script type="text/javascript">
     	$(function(){
-    		$('form[name=frmFind]').submit(function(){
-    	         if($('#memberId').val().length<1){
-    	            alert('아이디를 입력하세요');
-    	            $('#memberId').focus();
-    	            event.preventDefault();
-    	         }else if(!validate_userid($('#memberId').val())){
-    	            alert('아이디를 정확히 입력하세요');
-    	            $('#memberId').focus();
-    	            event.preventDefault();            
-    	         }else if($('#memberEmail1').val().length<1){
-    	            alert('이메일아이디를 입력하세요');
-    	            $('#memberEmail1').focus();
-    	            event.preventDefault();
-    	         }else if($('#memberEmail2').val().length<1){
-    	            alert('이메일주소를 입력하세요');
-    	            $('#memberEmail2').focus();
-    	            event.preventDefault();
-    	         }else if(!validate_email($('#memberEmail2').val())){
-    	            alert('이에일을 정확히 입력하세요');
-    	            $('#memberEmail2').focus();
-    	            event.preventDefault();            
-    	         }
-    	      });
+    		$('button[type=button]').click(function(){
+    			window.close();
+    		})
     	});
     </script>
-    
 </head>
 
 <body>
@@ -59,26 +39,42 @@
             <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
             <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
          </video>
-        <div class="d-flex align-items-center justify-content-center vh-100">
+         <div class="col-12" style="background: #d92662;height: 50px"></div>
+        <div class="d-flex align-items-center justify-content-center vh-90" style="line-height: 2">
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
-                	<hr>
-                    <h2 class="text-dark my-0">FIND PWD</h2>
+                	<br>
+                    <hr>
+                    <h2 class="text-dark my-0">FIND ID</h2>
                    	<br>
-                    <p class="text-50 lead">비밀번호 찾기</p>
-                    <form class="mt-5 mb-4" name="frmPwd" method="post" action="<c:url value='/member/login/forgotPwd.do' />">
-                        <div class="form-group">
-                            <input type="text" placeholder="ID" class="form-control" id="memberId" aria-describedby="emailHelp" name="memberId">
-                        </div>
-                        <div class="form-group">
-                        	<div class="input-group">
-	                            <input type="text" placeholder="EmailID" class="form-control" id="memberEmail1" name="memberEmail1">
-	                            <span class="input-group-text">@</span>
-	                            <input type="text" placeholder="gmail.com" class="form-control" id="memberEmail2" name="memberEmail2">
-                        	</div>
-                        </div>
-                        <button class="btn btn-primary btn-lg btn-block">FIND</button>
-                    </form>
+                    <p class="text-50 lead">아이디 찾기</p>
+                    <br>
+	                <c:if test="${!empty memberId}">
+                    	<div class="row justify-content-center">
+                    		<div class="col-sm-4 col-4">
+		                    	<p class="text-40 lead">아이디 찾기 결과 : </p>
+                    		</div>
+                    		<div class="col-sm-4 col-4">
+                    			<c:set var="str" value="${memberId}" />
+                    			<c:set var="length" value="${fn:length(str)}" />
+                    			<c:set var="subStr" value="${fn:substring(str,3,length)}" />
+		                    	<p class="text-40 lead">${fn:replace(str,subStr,"*")} </p>
+		                    </div>
+                    	</div>
+			            <button class="btn btn-primary btn-lg btn-block mt-5 mb-4" type="button">CLOSE</button>
+                    	<a href="<c:url value='/member/login/forgotPwd.do' />" class="text-decoration-none">
+                        	<p class="text-center" id="forgotPwd">비밀번호 찾기</p>
+                   		</a>
+	                </c:if>
+                    <c:if test="${empty memberId}">
+                    	<hr>
+	                    <h4 class="m-0">일치하는 아이디가 없습니다</h4>
+	                    <hr>
+                   		<button class="btn btn-primary btn-lg btn-block mt-5 mb-3" type="button">CLOSE</button>
+	                    <a href="<c:url value='/member/login/forgotId.do' />" class="text-decoration-none">
+                        	<p class="text-center" id="forgotId">재검색</p>
+                   		</a>
+                    </c:if>
                 </div>
             </div>
         </div>

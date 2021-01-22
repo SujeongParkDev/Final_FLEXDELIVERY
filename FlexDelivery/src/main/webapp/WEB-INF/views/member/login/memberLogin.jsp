@@ -7,10 +7,10 @@
 <script type="text/javascript">
 	$(function(){
 		$('#forgotId').click(function(){
-			window.screen.width //현재 윈도우창의 가로크기를 가져옴
-			window.screen.height //세로크기 가져옴
+			window.screen.width 
+			window.screen.height 
 			
-			var popupWidth = 700; //띄울 창 가로크기
+			var popupWidth = 700;
 			var popupHeight = 500;
 			
 			var popupX = (window.screen.width/2)-(popupWidth/2);
@@ -19,14 +19,14 @@
 			window.open(
 				"${pageContext.request.contextPath}/member/login/forgotId.do", 
 				"Find ID", 
-				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+',scrollbars=0');
 		});
 		
 		$('#forgotPwd').click(function(){
-			window.screen.width //현재 윈도우창의 가로크기를 가져옴
-			window.screen.height //세로크기 가져옴
+			window.screen.width
+			window.screen.height 
 			
-			var popupWidth = 700; //띄울 창 가로크기
+			var popupWidth = 700; 
 			var popupHeight = 500;
 			
 			var popupX = (window.screen.width/2)-(popupWidth/2);
@@ -35,7 +35,7 @@
 			window.open(
 				"${pageContext.request.contextPath}/member/login/forgotPwd.do", 
 				"Find ID", 
-				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+',scrollbars=0');
 		});
 	
 	});

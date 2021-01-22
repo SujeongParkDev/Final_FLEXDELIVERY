@@ -14,4 +14,6 @@ public interface MemberService {
 		public int insertMember(MemberVO vo);
 		int loginChk(String userid,String pwd);
 		MemberVO selectMember(String userid);
+		String selectMemberId(MemberVO vo);
+		boolean chkMember(MemberVO vo);
 }
