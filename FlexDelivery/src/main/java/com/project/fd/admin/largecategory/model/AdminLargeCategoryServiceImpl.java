@@ -13,8 +13,8 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 	private AdminLargeCategoryDAO largecategoryDao;
 	
 	@Override
-	public List<AdminLargeCategoryVO> selectAll(SearchVO searchVo) {
-		return largecategoryDao.selectAll(searchVo);
+	public List<AdminLargeCategoryVO> selectAll() {
+		return largecategoryDao.selectAll();
 	}
 
 	@Override
