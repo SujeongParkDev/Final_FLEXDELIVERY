@@ -117,10 +117,10 @@
 			                            <a href="#">영업중지</a>
 			                        </li>
 			                         <li>
-			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록 신청하기</a>
+			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록</a>
 			                        </li>
 			                         <li>
-			                            <a href="#">사업자등록증 확인하기</a>
+			                            <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">승인 현황 조회 </a>
 			                        </li>
 			                    </ul>
 			                </li>
@@ -160,7 +160,7 @@
 			                    </a>
 			                    <ul class="submenu ">
 			                        <li>
-			                            <a href="#">리뷰관리</a>
+			                            <a href="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">리뷰관리</a>
 			                            <!-- 답변/미답변/차단(보류) 는 탭으로 -->
 			                        </li>
 			                    </ul>
