@@ -212,13 +212,13 @@ public class AdminLargeCategoryController {
 		//vo.setFileSize(fileSize);
 		//vo.setOriginalFileName(originName);
 
-		String msg="글 수정 실패", url="/admin/menu6/largecategory/list.do";
+		String msg="글 수정 실패", url="/admin/menu6/largeCategory.do";
 		int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
 		logger.info("글수정 결과, cnt={}", cnt);	
 
 		if(cnt>0) {
 			msg="대분류 카테고리를 수정하였습니다.";
-			url="/admin/menu6/largeCategory.do";
+			//url="/admin/menu6/largeCategory.do";
 
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
 			if(fileName!=null && !fileName.isEmpty()) {

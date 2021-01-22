@@ -279,7 +279,7 @@ function readInputFile(input) {
 																						<tbody>
 																							<tr>
 																								<td colspan="3"  style="text-align: center;">
-																									<div id="preview"><img src="/resources/imgs/largeCategory/${vo.lCategoryFilename }' />" id="previewImg"/></div>
+																									<div id="preview"><img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename }' />" id="previewImg"/></div>
 																								</td>
 																							</tr>
 																							<tr>
