@@ -2,14 +2,10 @@ package com.project.fd.owner.store.model;
 
 public class OwnerStoresVO {
 	/*NOT NULL*/
-	private int storeNo;/* 점포번호 */
-	private String storeName; /* 점포명 */
-	private String storeAddress;/* 점포주소 */
-	private String storeAddressDetail; /* 점포상세주소 */
+	private OwnerStoresFormVO ownerStoresFormVo;
+	
+	
 	private String storeRegdate;/* 점포등록일 */
-	private String storeLogo;/* 점포로고이미지 */
-	
-	
 	private String storeContent; /* 점포소개 */
 	private String storeOutdate; /* 점포탈퇴일 */
 	private String storeOpenTime; /* 점포오픈시간 */
@@ -25,41 +21,12 @@ public class OwnerStoresVO {
 	private int aAgreeNo; /* 관리자승인번호1 */
 	private int oRegisterNo;/* 사업자등록번호 */
 	
-	public int getStoreNo() {
-		return storeNo;
-	}
-	public void setStoreNo(int storeNo) {
-		this.storeNo = storeNo;
-	}
-	public String getStoreName() {
-		return storeName;
-	}
-	public void setStoreName(String storeName) {
-		this.storeName = storeName;
-	}
-	public String getStoreAddress() {
-		return storeAddress;
-	}
-	public void setStoreAddress(String storeAddress) {
-		this.storeAddress = storeAddress;
-	}
-	public String getStoreAddressDetail() {
-		return storeAddressDetail;
-	}
-	public void setStoreAddressDetail(String storeAddressDetail) {
-		this.storeAddressDetail = storeAddressDetail;
-	}
+
 	public String getStoreRegdate() {
 		return storeRegdate;
 	}
 	public void setStoreRegdate(String storeRegdate) {
 		this.storeRegdate = storeRegdate;
-	}
-	public String getStoreLogo() {
-		return storeLogo;
-	}
-	public void setStoreLogo(String storeLogo) {
-		this.storeLogo = storeLogo;
 	}
 	public String getStoreContent() {
 		return storeContent;
@@ -135,9 +102,8 @@ public class OwnerStoresVO {
 	}
 	@Override
 	public String toString() {
-		return "StoresVO [storeNo=" + storeNo + ", storeName=" + storeName + ", storeAddress=" + storeAddress
-				+ ", storeAddressDetail=" + storeAddressDetail + ", storeRegdate=" + storeRegdate + ", storeLogo="
-				+ storeLogo + ", storeContent=" + storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime="
+		return "OwnerStoresVO [ownerStoresFormVo=" + ownerStoresFormVo + ", storeRegdate=" + storeRegdate
+				+ ", storeContent=" + storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime="
 				+ storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice
 				+ ", ownerNo=" + ownerNo + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo
 				+ ", sStatusNo=" + sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo

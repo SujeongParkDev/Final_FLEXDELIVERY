@@ -79,6 +79,35 @@
 							            						</tbody>
 							          					</table>
 							        				</div> 
+							        				
+							        				<div class="divPage">		
+	<!-- 페이지 번호 추가 -->		
+	<c:if test="${pagingInfo.firstPage>1 }">
+		<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">			
+		    <img src='<c:url value="/resources/images/first.JPG" />'  border="0">	</a>
+	</c:if>
+					
+	<!-- [1][2][3][4][5][6][7][8][9][10] -->
+	<c:forEach var="i" begin="${pagingInfo.firstPage }" 
+	end="${pagingInfo.lastPage }">
+		<c:if test="${i==pagingInfo.currentPage }">
+			<span style="color:blue;font-weight:bold">${i }</span>
+		</c:if>
+		<c:if test="${i!=pagingInfo.currentPage }">						
+			<a href="#" onclick="pageFunc(${i})">
+				[${i }]
+			</a>
+		</c:if>
+	</c:forEach>
+		
+	<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+		<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">			
+			<img src="<c:url value="/resources/images/last.JPG" />" border="0">
+		</a>
+	</c:if>
+	<!--  페이지 번호 끝 -->
+</div>
+							        				
 							     			 </div> 
 							    		</div> 
 								</div> 

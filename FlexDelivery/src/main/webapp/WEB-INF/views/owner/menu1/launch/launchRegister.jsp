@@ -15,7 +15,7 @@
 				}else{
 					alert('축하합니다!  입점 등록 신청이 완료되었습니다.');
 					// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
-					location.href = '<c:url value="/owner/menu2/temporary/tempList.do"/>';
+					location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
 				}
 		});
 	});
@@ -30,7 +30,7 @@
 					<div id="ols-landing-page" class="my-5 mx-2 mt-sm-4">
 						<a class="d-block pb-4 pb-sm-3 ml-0" href="/">FLEXDELIVERY 주문페이지로 이동</a>
 						<div class="Card rounded ">
-							<div class="card-header">
+							<div class="card-header"> <!--여기 더 꾸며야할듯 -->
 								<h3>FLEXDELIVERY 입점 🏩 </h3>
 							</div>
 					
@@ -46,7 +46,7 @@
 									
 										<div class="steps-content">
 											<h3 class="mt-2 mb-1">
-												<strong>dlthwjd</strong>님, 맞춤 안내를 위해<br>몇 가지 물어볼게요 : )
+												<strong>${sessionScope.ownerName }</strong>님, 맞춤 안내를 위해<br>몇 가지 물어볼게요 : )
 											</h3>
 											<div class="card-description h6 pb-2">답변은 전화 상담 목적으로만
 												사용됩니다.</div>
@@ -84,21 +84,7 @@
 														<div class="input-label-container" style="width: inherit;">
 															<div class="input-container left">
 																<input type="text" placeholder="20자 이내로 등록해주세요."
-																	required="" pattern="" minlength="1">
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-												        
-												     		<div class="form-group ">
-												<h5 class="form-label">✔ 점포소개</h5>
-												<div class="form-control-wrap border 1px solid #ced4da">
-													<div class="form-control only-one-input">
-														<div class="input-label-container" style="width: inherit;">
-															<div class="input-container left">
-																<input type="text" placeholder="100자 이내로 등록해주세요."
-																	required="" pattern="" minlength="1">
+																	name="storeName" id="storeName" minlength="1">
 															</div>
 														</div>
 													</div>
@@ -112,13 +98,60 @@
 														<div class="input-label-container" style="width: inherit;">
 															<div class="input-container left">
 																<input type="file" placeholder="최대 (2M)"
-																	required="" pattern="" minlength="">
+																	required="storeLogo" id="storeLogo" minlength="">
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 											
+											
+											<!-- 나중에 지도 api적용 예정임다  -->
+											<div class="form-group ">
+												<h5 class="form-label">✔ 점포 주소 </h5>
+												<div class="form-control-wrap border 1px solid #ced4da">
+													<div class="form-control only-one-input">
+														<div class="input-label-container" style="width: inherit;">
+															<div class="input-container left">
+																<input type="text" placeholder="20자 이내로 등록해주세요."
+																	name="storeAddress" id="storeAddress" minlength="1">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="form-group ">
+												<h5 class="form-label">✔ 점포 상세주소 </h5>
+												<div class="form-control-wrap border 1px solid #ced4da">
+													<div class="form-control only-one-input">
+														<div class="input-label-container" style="width: inherit;">
+															<div class="input-container left">
+																<input type="text" placeholder="20자 이내로 등록해주세요."
+																	name="storeAddressDetail" id="storeAddressDetail" minlength="1">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+												        
+												     		<div class="form-group ">
+												<h5 class="form-label">✔ 점포소개</h5>
+												<div class="form-control-wrap border 1px solid #ced4da">
+													<div class="form-control only-one-input">
+														<div class="input-label-container" style="width: inherit;">
+															<div class="input-container left">
+																<input type="text" placeholder="100자 이내로 등록해주세요."
+																	name="storeContent" id="storeContent" minlength="1">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<!-- 옵션 지우기 아까워서 남겨놓음 ㅠ  -->
+											<!-- 
 													<div class="form-control ">
 												            	<div class="form-group ">
 																	<h5 class="form-label">✔ 대분류 카테고리</h5>
@@ -218,6 +251,7 @@
 												</div>
 											</div>
 											
+											 -->
 															<div class="form-control ">
 												            	<div class="form-group ">
 																
