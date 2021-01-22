@@ -1,6 +1,7 @@
 package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,12 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 	public int updateLargeCategory(AdminLargeCategoryVO largecategoryVo) {
 		return largecategoryDao.updateLargeCategory(largecategoryVo);
 	}
+
+	@Override
+	public int deleteLargeCategory(AdminLargeCategoryVO largecategoryVo) {
+		return largecategoryDao.deleteLargeCategory(largecategoryVo);
+	}
+
 
 	
 }

@@ -58,18 +58,20 @@
 		set readcount=readcount+1 
 		where no=#{no}
 	</update>
-
-	<select id="selectByNo" parameterType="int" resultType="reBoardVo">
-		select * from reBoard where no=#{no}
+	-->
+	
+	<select id="selectByNo" parameterType="int" resultType="AdminLargeCategoryVo">
+		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
 	</select>
 	
+	<!--
 	<select id="selectPwd" parameterType="int" resultType="String">
 		select pwd from reBoard
 		where no=#{no}
 	</select>
 	-->
 	
-	<update id="updateLargecategory" parameterType="AdminLargeCategoryVo">
+	<update id="updateLargecategory" parameterType="adminLargeCategoryVo">
 		update LARGECATEGORY 
 		set L_CATEGORY_NAME=#{lCategoryName},L_CATEGORY_FILENAME=#{lCategoryFilename}
 		<!-- <if test="fileName!=null and fileName!=''">
@@ -79,21 +81,18 @@
 		where L_CATEGORY_NO=#{lCategoryNo}
 	</update>
 	
-	<!--
-	<delete id="deleteReBoard" parameterType="reBoardVo">
-		delete from reBoard where no=#{no}
+	<delete id="deleteLargecategory" parameterType="adminLargeCategoryVo">
+		delete from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
 	</delete>
 	
-	<parameterMap type="map" id="reBoardDeleteParam">
-		<parameter property="no" javaType="string" jdbcType="VARCHAR" mode="IN"/>
-		<parameter property="step" javaType="string" jdbcType="VARCHAR" mode="IN"/>
-		<parameter property="groupNo" javaType="string" jdbcType="VARCHAR" mode="IN"/>		
+	<!--
+	<parameterMap type="map" id="adminLargeCategoryDeleteParam">
+		<parameter property="no" javaType="string" jdbcType="VARCHAR" mode="IN"/>	
 	</parameterMap>
 	
-	<delete id="deleteReBoard" parameterMap="reBoardDeleteParam">
-		call deleteReboard(?,?,?)
+	<delete id="deleteLargecategory" parameterMap="adminLargeCategoryDeleteParam">
+		call deleteLargecategory(?)
 	</delete>
-	
 	
 	<update id="updateDownCount" parameterType="int">
 		update reboard

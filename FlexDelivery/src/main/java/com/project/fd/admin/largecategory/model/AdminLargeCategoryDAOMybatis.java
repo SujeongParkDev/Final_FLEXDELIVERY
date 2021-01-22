@@ -1,6 +1,7 @@
 package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 
 	@Override
 	public AdminLargeCategoryVO selectByNo(int no) {
-		return null;
+		AdminLargeCategoryVO vo=sqlSession.selectOne(namespace+"selectByNo", no);
+		return vo;
 	}
 
 	@Override
@@ -40,9 +42,16 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 
 	@Override
 	public int updateLargeCategory(AdminLargeCategoryVO largecategoryVo) {
-		int cnt=sqlSession.update(namespace+"updateLargeCategory", largecategoryVo);
+		int cnt=sqlSession.update(namespace+"updateLargecategory", largecategoryVo);
 		return cnt;
 	}
+
+	@Override
+	public int deleteLargeCategory(AdminLargeCategoryVO largeCategoryVO) {
+		int cnt=sqlSession.delete(namespace+"deleteLargecategory", largeCategoryVO);
+		return cnt;
+	}
+
 
 
 }
