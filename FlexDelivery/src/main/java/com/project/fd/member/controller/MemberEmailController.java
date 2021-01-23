@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.fd.member.model.MemberEmailSender;
-
+/*
 @Controller
 @RequestMapping("member/SendvalidateKey")
 public class MemberEmailController {
@@ -37,3 +37,4 @@ public class MemberEmailController {
 	}
 	
 }
+*/
