@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fd.common.DateSearchVO;
-import com.project.fd.owner.model.OwnerAllAgreementVO;
 
 @Service
 public class OwnerRegisterServiceImpl implements OwnerRegisterService{
@@ -20,7 +19,7 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 
 	//tempList
 	@Override
-	public List<OwnerAllAgreementVO> selectTempList(DateSearchVO searchVo) {
+	public List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo) {
 		return ownerRegisterDao.selectTempList(searchVo);
 	}
 	//tempList
@@ -28,6 +27,7 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 	public int getTotalRecord(DateSearchVO searchVo) {
 		return ownerRegisterDao.getTotalRecord(searchVo);
 	}
+
 
 	
 

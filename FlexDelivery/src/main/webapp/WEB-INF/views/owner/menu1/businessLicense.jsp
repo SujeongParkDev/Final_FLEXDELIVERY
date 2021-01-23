@@ -16,9 +16,6 @@ $(function(){
 		}
 			});
 
-	if( validate_oRegisterNo(oRegisterNo)){
-		
-	}
 	
 	$('#oRegisterNo').keyup(function(){
 		var oRegisterNo=$(this).val();

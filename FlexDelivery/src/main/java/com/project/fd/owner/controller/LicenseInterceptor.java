@@ -19,13 +19,12 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		//aAgreeNo
-		//aAgreeType 어떤걸로 하는 지 ? 
-		String authority
-		=(String) request.getSession().getAttribute("authority");
+	int aAgreeNo
+		=(Integer) request.getSession().getAttribute("aAgreeNo");
 	
-	logger.info("사업자등록 확인용 - preHandle() authority={}", authority);
+	logger.info("사업자등록 확인용 - preHandle() aAgreeNo={}", aAgreeNo);
 	
-	if(authority==null || authority.isEmpty()) {
+	if(aAgreeNo>=1 && aAgreeNo<=3) {
 		response.setContentType("text/html;charset=utf-8");
 		
 		PrintWriter out =response.getWriter();

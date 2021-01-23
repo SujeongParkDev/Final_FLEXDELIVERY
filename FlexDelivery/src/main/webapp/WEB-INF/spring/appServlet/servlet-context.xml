@@ -48,14 +48,14 @@
 			<exclude-mapping path="/member/register/register.do"/>
 			<beans:ref bean="memberLoginInterceptor"/>
 		</interceptor>
-	</interceptors>
-	
-	<!-- 오류 확인을 위해 잠시 주석 처리했습니다. -->
-<!-- 	<interceptors>	
+		<!-- 주석풀어도됩니
+		
 			<interceptor>
 			<mapping path="/owner/menu1/launch/launchNext.do"/>
 			<beans:ref bean="licenseInterceptor"/> 
 			</interceptor>
-	</interceptors> -->
+		 -->
+	</interceptors>
+	
 	
 </beans:beans>

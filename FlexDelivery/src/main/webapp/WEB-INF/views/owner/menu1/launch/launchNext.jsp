@@ -7,7 +7,6 @@
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 </script>
-
 <div id="root">
 	<div class="Frame medium">
 		<div class="frame-container pl-0 pt-0">
