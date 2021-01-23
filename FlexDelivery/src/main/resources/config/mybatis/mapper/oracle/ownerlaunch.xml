@@ -14,6 +14,13 @@
 		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName})
 	</insert>
 	
+	<!-- 유저 번호 같은거만 뜨니까 일치한지 안해도되겠지 ??  -->
+	<delete id="deleteRegi">
+	delete from OWNERREGISTER
+		where O_REGISTER_NO=#{oRegisterNo}
+	</delete>
+	
+	
 	<!--지금 막힌 부분이 폼에서는 회원가입정보로 사업자등록여부 확인하고 
 	폼에서는 정말 기본적인것만 작성하는데 낫널인게있서
 	폼을 어디에 임시 저장하고 나중에 기본정보 입력할때 인서트 해야할 것 같음! -->
@@ -21,10 +28,13 @@
 	<!-- <selectKey keyProperty="storeNo" resultType="int" order="BEFORE">
 		select stores_seq.nextval from dual 
 	</selectKey> -->
-	 insert into stores()
-	 value(#{storeNo},#{storeName},#{storeLogo},
-	 #{storeAddress},#{storeAddressDetail})
+	 insert into STORES(STORE_NO,STORE_NAME,STORE_LOGO,STORE_ADDRESS,
+	 STORE_ADDRESS_DETAIL,OWNER_NO,L_CATEGORY_NO,LOCATION_NO,
+	 O_REGISTER_NO)
+	values(#{storeNo},#{storeName},#{storeLogo},#{storeAddress},#{storeAddressDetail},
+	#{ownerNo},#{lCategoryNo},#{locationNo},#{oRegisterNo})
 	</insert>
+	
 	
 	<!--  -->
 	<!-- tempList -->

@@ -4,4 +4,6 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerstores">
 	
+	
+	
 </mapper>
