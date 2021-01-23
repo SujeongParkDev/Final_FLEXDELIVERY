@@ -242,3 +242,6 @@ select:not([size]) {
     white-space: nowrap;
 }
 
+form.dialog.on.lg {
+    text-align: justify;
+}

@@ -50,6 +50,7 @@ public class OwnerAdminAgreeListcontroller {
 	 }
 	 
 	 //datapicker 사용 리스트 조회
+	 /*
 	 @RequestMapping("/temporary/tempList.do")
 		public String adminAgreeList(@ModelAttribute DateSearchVO searchVo,
 				HttpSession session, Model model) {
@@ -93,7 +94,7 @@ public class OwnerAdminAgreeListcontroller {
 			return "owner/menu2/temporary/tempList";
 	 }
 			
-	 
+	 */
 	 
 	 
 	 // 우선 사업자 등록현황만 뿌려주기 그 후에 뷰하던 추가할것! 
@@ -125,6 +126,7 @@ public class OwnerAdminAgreeListcontroller {
 			
 			return "owner/temporary/tempList";
 		}
+		
 	 /*
 		@RequestMapping("/detail.do")
 		public String temp_detail(@RequestParam(defaultValue = "0") int no,
@@ -184,5 +186,5 @@ public class OwnerAdminAgreeListcontroller {
 			//4
 			return "common/message";
 		}
-		
 }
+

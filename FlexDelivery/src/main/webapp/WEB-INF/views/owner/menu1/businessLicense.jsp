@@ -74,11 +74,18 @@ $(function(){
 				                   	<span class="error"></span>
 				                    </div>
 				                    <div class="col-md-4">
-				                        <label>사업자등록증</label>
+				                        <label>사업자등록증 앞면</label>
 				                    </div>
 				                    <div class="col-md-8 form-group">
 				                        <input type="file" id="oRegisterOriginalFileName" name="oRegisterOriginalFileName"
-				                         class="form-control text-right border none" value="" >
+				                         class="form-control text-right border none" value="" accept=".jpg, .jpeg, .png, .pdf">
+				                   	<ul class="bullet-ul bullet-ul small muted">
+																				<li>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보
+																					확인이 어려울 경우 승인이 지연될 수 있습니다.</li>
+																				<li>종사업장번호가 있는 경우 사업자등록증 뒷면은 필수입니다.</li>
+																				<li>10MB 이하, JPG, PNG, PDF 형식의 파일만 등록할 수 있습니다.</li>
+																			</ul>
+				                   
 				                    </div>
 				                    <div class="col-sm-12 d-flex justify-content-end pt-5">
 				                        <input type="submit" class="btn btn-primary mr-1 mb-1"
