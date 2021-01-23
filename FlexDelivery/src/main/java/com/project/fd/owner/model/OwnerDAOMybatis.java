@@ -20,4 +20,18 @@ public class OwnerDAOMybatis implements OwnerDAO {
 		return sqlSession.selectOne(namespace+"selectOwner",userid);
 	}
 	
+	
+	public int insertowner(OwnerVO ownerVo) {
+		return sqlSession.insert(namespace+"insertowner", ownerVo);
+	}
+	
+	
+	public int checkDup(String ownerId) {
+		return sqlSession.selectOne(namespace+"dupCheck", ownerId);
+	}
+	
+	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid) {
+		return sqlSession.selectOne(namespace+"selectOwnerAuthorityAll", userid);
+	}
+	
 }

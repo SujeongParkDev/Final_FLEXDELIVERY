@@ -33,10 +33,6 @@
 		});
 	</script>
 
-	
-
-
-	
 		 <!-- 광고등록 탭 + 버튼-->
 		  <div class="row mt-3">
 		  		<div class="col-md-2 col-sm-12"></div>
@@ -70,8 +66,7 @@
 			  <div class="col-md-8 col-sm-12">
 				<form name="frmPage" method="post" style="float:right;"
 					action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>">
-					<!-- 조회기간 include -->
-					
+				
 					<input type="hidden" name="currentPage" value="1">
 					<input type="submit" value="조회" >
 				</form>
@@ -118,7 +113,7 @@
 			            	<c:forEach var="vo" items="${list }">	
 				              <tr  class="text-center">
 				              		<td>${vo.rnum }</td>
-					                <td class="text-bold-500">${vo.storeadNo }</td>
+					                <td class="text-bold-500">FDAD${vo.storeadNo }</td>
 					                <td>${vo.advertiseName }</td>
 					                <td>${vo.advertisePrice }</td>
 					                <td>${vo.adValidate }</td>

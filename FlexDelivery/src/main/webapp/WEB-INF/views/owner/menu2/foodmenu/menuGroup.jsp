@@ -59,8 +59,6 @@
 						if(confirm(sMGroupNo+"번 그룹을 삭제하시겠습니까?")){
 							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupDelete.do?sMGroupNo="+sMGroupNo;
 							location.href=url;
-						}else{
-							history.back();
 						}
 					}
 					

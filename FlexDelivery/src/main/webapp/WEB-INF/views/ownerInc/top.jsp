@@ -21,7 +21,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/classy-nav.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/owl.carousel.css"/>
-
 <!-- Title -->
 <title>플렉스 딜리버리 사장님</title>
 
@@ -29,7 +28,7 @@
 <link rel="icon" href="${pageContext.request.contextPath}/resources/adminResources/img/core-img/favicon.ico">
 
 </head>
-<body>
+<body style="background-color: white;">
 
 <!-- Preloader -->
     <div id="preloader">
@@ -37,6 +36,8 @@
             <div id="original-load"></div>
         </div>
     </div>
+
+
 
     <!-- Subscribe Modal -->
     <div class="subscribe-newsletter-area">
@@ -56,6 +57,8 @@
         </div>
     </div>
 
+  <!-- 사장님이 로그인 안했을 경우  -->
+	                  
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
@@ -68,11 +71,9 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">입점신청</a></li>
-                                    <li><a href="#">광고관리</a></li>
+									<!-- 왼쪽 상단에 뜨는 휠 같은거 -->                                    
                                     <li><a href="#">고객센터</a></li>
                                     <li><a href="#">사장님꿀팁</a></li>
-                                    <li><a href="#">매출관리</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -80,8 +81,17 @@
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그인</i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">회원가입</i></a>
+                        	<!-- 사장님이  로그인 안했을때-->
+                        	<c:if test="${empty sessionScope.userid }">
+                        		  <a href="<c:url value='/owner/login/login.do'/>" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그인</i></a>
+                          		  <a href="<c:url value='/owner/register/register.do'/>" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">회원가입</i></a>
+                        	 </c:if>
+	                        <!-- 사장님이  로그인 했을때 -->
+	                        <c:if test="${!empty sessionScope.userid }">
+	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
+	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">내 정보 수정</i></a>
+	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">회원 탈퇴</i></a>
+	                        </c:if>
                             
                         </div>
                     </div>
@@ -128,19 +138,19 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="<c:url value='/owner/menu1/launch.do'/>">입점</a></li>
+                                    <li><a href="<c:url value='/owner/menu1/launch/launch.do'/>">입점</a></li>
                                     <li><a href="<c:url value='/owner/menu2/myStoreIndex.do'/>">내 가게</a></li>
                                     <li><a href="#">사장님광장</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">공지사항</a></li>
-                                            <li><a href="#">이벤트</a></li>
-                                            <li><a href="#">사장님 꿀팁</a></li>
+                                            <li><a href="<c:url value='/owner/menu3/notice.do'/>">공지사항</a></li>
+                                            <li><a href="<c:url value='/owner/menu3/event.do'/>">이벤트</a></li>
+                                            <li><a href="<c:url value='/owner/menu3/honeyTip.do'/>">사장님 꿀팁</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="about-us.html">플렉스 딜리버리 소개</a></li>
+                                    <li><a href="<c:url value='/owner/menu4/introduce.do'/>">플렉스 딜리버리 소개</a></li>
                                     <li><a href="#">고객센터</a>
                                          <ul class="dropdown">
-                                            <li><a href="#">자주 하는 질문</a></li>
+                                            <li><a href="<c:url value='/owner/menu5/faq.do'/>">자주 하는 질문</a></li>
                                             <li><a href="<c:url value='/owner/menu5/oneToOne.do'/>">1:1 문의</a></li>
                                         </ul>
                                     </li>
@@ -148,13 +158,13 @@
                                 </ul>
 
                                 <!-- Search Form  -->
-                                <div id="search-wrapper">
+                                <!-- <div id="search-wrapper">
                                     <form action="#">
                                         <input type="text" id="search" placeholder="Search something...">
                                         <div id="close-icon"></div>
                                         <input class="d-none" type="submit" value="">
                                     </form>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Nav End -->
                             
