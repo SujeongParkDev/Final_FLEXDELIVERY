@@ -14,7 +14,7 @@
 								alert('개인 정보 수집 이용에 동의하셔야 합니다.');
 								$('#chkAgree').focus();
 								event.preventDefault();
-						});
+						}
 	});
 	});
 </script>

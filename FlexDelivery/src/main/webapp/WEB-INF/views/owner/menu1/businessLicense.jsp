@@ -10,9 +10,15 @@ $(function(){
 			alert('사업자 번호 10자리를 입력해주세요.');
 			$('#oRegisterNo').focus();
 			event.preventDefault();
+		}else if($('#oRegisterNo').val().length==10){
+			alert('사업자 등록 신청되었습니다.\n'
+					+'처리 상태는 신청 현황에서 확인하실 수 있습니다.');
 		}
 			});
 
+	if( validate_oRegisterNo(oRegisterNo)){
+		
+	}
 	
 	$('#oRegisterNo').keyup(function(){
 		var oRegisterNo=$(this).val();
@@ -63,7 +69,7 @@ $(function(){
 				                    </div>
 				                    <div class="col-md-8 form-group" >
 				                        <input type="text" id="oRegisterNo" name="oRegisterNo" 
-				                        class="form-control text-right" placeholder="숫자만 입력, 예시 :  1048300469"   value="">
+				                        class="form-control text-right" placeholder="숫자만 입력, 예시 :  1048300469"   pattern="[0-9]+" >
 				                   	<span class="error"></span>
 				                    </div>
 				                    <div class="col-md-4">
