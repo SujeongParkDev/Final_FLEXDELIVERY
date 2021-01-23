@@ -47,6 +47,11 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return true;
 	}
+
+	@Override
+	public int pwdUpd(MemberVO vo) {
+		return memberDao.pwdUpd(vo);
+	}
 	
 	
 }

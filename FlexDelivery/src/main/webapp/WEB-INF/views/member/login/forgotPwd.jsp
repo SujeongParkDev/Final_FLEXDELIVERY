@@ -25,7 +25,7 @@
     <script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
     <script type="text/javascript">
     	$(function(){
-    		$('form[name=frmFind]').submit(function(){
+    		$('form[name=frmPwd]').submit(function(){
     	         if($('#memberId').val().length<1){
     	            alert('아이디를 입력하세요');
     	            $('#memberId').focus();
