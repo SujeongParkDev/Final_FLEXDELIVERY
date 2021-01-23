@@ -5,6 +5,13 @@
 <!-- script start -->
 <script>
 $(function(){
+	$('#modalEditBt').click(function(){
+		$('form[name=frmLCategoryEdit]').find('#EditlCategoryNo').val(modalNo);
+		$('form[name=frmLCategoryEdit]').find('#EditlCategoryName').val(modalName);
+		$('form[name=frmLCategoryEdit]').find('#EditoldFileName').val(modalFilename);
+
+	});
+	
 	/* $('#lcategoryWrite').click(function(){
 		window.open("<c:url value='/admin/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
 		opener.location.reload();
@@ -205,7 +212,11 @@ function readInputFile(input) {
 						</c:if>                
                 		<c:if test="${!empty list }">
 							<div class="row">		            
-	                			<c:forEach var="vo" items="${list }">
+	                			<c:forEach var="vo" items="${list }" varStatus="status">
+	                			<c:set var="modalNo" value="${vo.lCategoryNo }" />
+	                			<c:set var="modalName" value="${vo.lCategoryName }" />
+	                			<c:set var="modalFilename" value="${vo.lCategoryFilename }" />
+	                			
 									<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 										<div class="card text-center bg-lighten-2">
 											<div class="card-content d-flex">
@@ -262,7 +273,7 @@ function readInputFile(input) {
 														role="dialog" aria-labelledby="대분류 카테고리 수정" aria-hidden="true">
 														<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 															<div class="modal-content">
-												<!-- 수정 모달  --><form name="frmLCategoryEdit" method="post" action="<c:url value='/admin/menu6/largeCategory/edit.do?lCategoryNo=${vo.lCategoryNo }' />" enctype="multipart/form-data">
+												<!-- 수정 모달  --><form name="frmLCategoryEdit" method="post" action="<c:url value='/admin/menu6/largeCategory/edit.do' />" enctype="multipart/form-data">
 																	<div class="modal-header">
 																		<h4 class="modal-title" id="myModalLargeEdit">음식메뉴 - 대분류 카테고리 수정</h4>
 																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -293,9 +304,9 @@ function readInputFile(input) {
 																							<tr>
 																								<td colspan="1"><span>대분류 이름</span></td>
 																								<td colspan="2">
-																									<input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요" value="${vo.lCategoryName }">
-																									<input type="hidden" name="lCategoryNo" id="lCategoryNo" value="${vo.lCategoryNo }">
-																									<input type="hidden" name="oldFileName" id="oldFileName" value="${vo.lCategoryFilename }">
+																									<input type="text" name="lCategoryName" id="EditlCategoryName" placeholder="이름을 입력하세요" value="${vo.lCategoryName }">
+																									<input type="hidden" name="lCategoryNo" id="EditlCategoryNo" value="${vo.lCategoryNo }">
+																									<input type="hidden" name="oldFileName" id="EditoldFileName" value="${vo.lCategoryFilename }">
 																								</td>
 																							</tr>
 																						</tbody>
