@@ -18,12 +18,16 @@
     	<div class="pt-4 pb-2 title d-flex align-items-center">
         	<h5 class="m-0">EVENT</h5>
     	</div>
+    	<c:set var="no" property="${vo.lCategoryNo }" />
+    	
         <div class="offer-slider">
-            <div class="cat-item px-1 py-3">
-                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
-                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
-                </a>
-            </div>
+        	<c:forEach var="vo" items="${list}">
+	            <div class="cat-item px-1 py-3">
+	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
+	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
+	                </a>
+	            </div>
+        	</c:forEach>
             <div class="cat-item px-1 py-3">
                 <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
                     <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
@@ -55,7 +59,7 @@
 			<div class="row">
 				<div class="col-sm-3 col-3 pb-3">
 					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Fries.png' />" class="img-fluid mb-2">
+						<img alt="#" src="" class="img-fluid mb-2">
 						<h6>디저트</h6>
 					</a>
 				</div>

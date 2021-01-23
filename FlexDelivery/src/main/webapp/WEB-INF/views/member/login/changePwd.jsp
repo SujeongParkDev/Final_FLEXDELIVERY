@@ -59,7 +59,7 @@
                    	<br>
                     <p class="text-50 lead">비밀번호 변경</p>
                     <form class="mt-5 mb-4" name="frmChange" method="post" action="<c:url value='/member/login/changePwd.do' />">
-                    	<input type="text" name="memberId" value="${memberId}">
+                    	<input type="hidden" name="memberId" value="${memberId}">
                         <div class="form-group">
                         	<div class="input-group">
 	                            <input type="password" placeholder="변경할 비밀번호 입력" class="form-control" id="memberPwd" name="memberPwd">

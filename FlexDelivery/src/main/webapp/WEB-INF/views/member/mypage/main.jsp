@@ -99,4 +99,4 @@
             </div>
         </div>
     </div>
-<%@include file="../../memInc/bottom.jsp"%>
+<%@include file="../../memInc/myPageBottom.jsp"%>

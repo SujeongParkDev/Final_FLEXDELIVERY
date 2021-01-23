@@ -1,5 +1,6 @@
 package com.project.fd.member.model;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 		if(dbPwd==null || dbPwd.isEmpty()) {
 			result=ID_NONE;
 		}else{
-			if (dbPwd.equals(pwd)) {
+			if (BCrypt.checkpw(pwd, dbPwd)) {
 				result=LOGIN_OK;				
 			}else {
 				result=PWD_DISAGREE;
@@ -51,6 +52,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int pwdUpd(MemberVO vo) {
 		return memberDao.pwdUpd(vo);
+	}
+
+	@Override
+	public String selectAuth(int no) {
+		return memberDao.selectAuth(no);
 	}
 	
 	

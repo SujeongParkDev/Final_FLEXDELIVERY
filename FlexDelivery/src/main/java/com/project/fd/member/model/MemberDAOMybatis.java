@@ -1,5 +1,6 @@
 package com.project.fd.member.model;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,11 @@ public class MemberDAOMybatis implements MemberDAO{
 	@Override
 	public int pwdUpd(MemberVO vo) {
 		return sqlSession.update(namespace+"pwdUpd",vo);
+	}
+
+	@Override
+	public String selectAuth(int no) {
+		return sqlSession.selectOne(namespace+"selectAuth",no);
 	}
 
 }

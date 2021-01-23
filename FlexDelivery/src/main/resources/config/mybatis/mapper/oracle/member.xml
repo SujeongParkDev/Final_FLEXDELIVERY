@@ -37,4 +37,8 @@
 		set member_pwd=#{memberPwd}
 		where member_id=#{memberId}
 	</update>
+	
+	<select id="selectAuth" resultType="string" parameterType="int">
+		select authority_name from authority where authority_no=#{authorityNo}
+	</select>
 </mapper>
