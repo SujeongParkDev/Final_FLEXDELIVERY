@@ -70,7 +70,7 @@ $(function(){
 				                        <label>사업자등록증 앞면</label>
 				                    </div>
 				                    <div class="col-md-8 form-group">
-				                        <input type="file" id="oRegisterOriginalFileName" name="oRegisterOriginalFileName"
+				                        <input type="file" id="upfile" name="upfile"
 				                         class="form-control text-right border none"  accept=".jpg, .jpeg, .png, .pdf">
 				                   	<ul class="bullet-ul bullet-ul small muted">
 																				<li>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보
