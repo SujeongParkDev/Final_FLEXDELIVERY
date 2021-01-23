@@ -2,26 +2,57 @@ package com.project.fd.owner.store.model;
 
 public class OwnerStoresVO {
 	/*NOT NULL*/
-	private OwnerStoresFormVO ownerStoresFormVo;
+	//private OwnerStoresFormVO ownerStoresFormVo;
+	private String storeName; /* 점포명 */
+	private String storeLogo;/* 점포로고이미지 */
+	private String storeAddress;/* 점포주소 */
+	private String storeAddressDetail; /* 점포상세주소 */
 	
-	
-	private String storeRegdate;/* 점포등록일 */
+	//널 
 	private String storeContent; /* 점포소개 */
+
+	private String storeRegdate;/* 점포등록일 */
 	private String storeOutdate; /* 점포탈퇴일 */
 	private String storeOpenTime; /* 점포오픈시간 */
 	private String storeCloseTime ; /* 점포마감시간 */
 	private int storeMinPrice;/* 최소주문금액 */
 	
+	
 	/*포린키*/
-	private int ownerNo; /* 점주번호 */
 	private int lCategoryNo;  /* 대분류카테고리번호 */
 	private int locationNo;  /* 지역코드번호 */
 	private int  sStatusNo;  /* 점포영업상태번호1 */
 	private int hCategoryNo; /* 휴무요일번호 7*/
+	
 	private int aAgreeNo; /* 관리자승인번호1 */
+	private int ownerNo; /* 점주번호 */
 	private int oRegisterNo;/* 사업자등록번호 */
 	
 
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+	public String getStoreLogo() {
+		return storeLogo;
+	}
+	public void setStoreLogo(String storeLogo) {
+		this.storeLogo = storeLogo;
+	}
+	public String getStoreAddress() {
+		return storeAddress;
+	}
+	public void setStoreAddress(String storeAddress) {
+		this.storeAddress = storeAddress;
+	}
+	public String getStoreAddressDetail() {
+		return storeAddressDetail;
+	}
+	public void setStoreAddressDetail(String storeAddressDetail) {
+		this.storeAddressDetail = storeAddressDetail;
+	}
 	public String getStoreRegdate() {
 		return storeRegdate;
 	}
@@ -102,13 +133,14 @@ public class OwnerStoresVO {
 	}
 	@Override
 	public String toString() {
-		return "OwnerStoresVO [ownerStoresFormVo=" + ownerStoresFormVo + ", storeRegdate=" + storeRegdate
-				+ ", storeContent=" + storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime="
-				+ storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice
-				+ ", ownerNo=" + ownerNo + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo
-				+ ", sStatusNo=" + sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo
-				+ ", oRegisterNo=" + oRegisterNo + "]";
+		return "OwnerStoresVO [storeName=" + storeName + ", storeLogo=" + storeLogo + ", storeAddress=" + storeAddress
+				+ ", storeAddressDetail=" + storeAddressDetail + ", storeRegdate=" + storeRegdate + ", storeContent="
+				+ storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime=" + storeOpenTime
+				+ ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice + ", ownerNo=" + ownerNo
+				+ ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo=" + sStatusNo
+				+ ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", oRegisterNo=" + oRegisterNo + "]";
 	}
+	
 	
 	
 }

@@ -4,9 +4,6 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerlaunch">
 	<insert id="insertRegister" parameterType="ownerRegisterVo" >
-	<!-- <selectKey keyProperty="oRegisterNo" resultType="int" order="BEFORE">
-		select ownerregister_seq.nextval from dual 
-	</selectKey> -->
 		insert into ownerregister(O_REGISTER_NO,O_REGISTER_FILENAME, O_REGISTER_ORIGINAL_FILENAME)
 		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName})
 	</insert>
