@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
-
+/*
 @Controller
 @RequestMapping("/owner")
 public class OwnerStoresController {
@@ -35,3 +35,4 @@ public class OwnerStoresController {
 	
 
 }
+*/

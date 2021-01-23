@@ -23,7 +23,7 @@ import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 @RequestMapping("/owner/menu1")
 public class OwnerRegisterController {
 	private static final Logger logger
-	=LoggerFactory.getLogger(OwnerStoresController.class);
+	=LoggerFactory.getLogger(OwnerRegisterController.class);
 	
 	@Autowired private OwnerRegisterService ownerRegisterService;
 	

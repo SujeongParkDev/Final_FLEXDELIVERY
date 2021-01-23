@@ -29,4 +29,33 @@ public class OwnerServiceImpl implements OwnerService {
 		return ownerDao.selectOwner(userid);
 	}
 	
+	public int insertowner(OwnerVO ownerVo) {
+		return ownerDao.insertowner(ownerVo);
+	}
+	
+	public int checkDup(String ownerId){
+		int count=ownerDao.checkDup(ownerId);
+		
+		int result=0;
+		if(count>0) {
+			result=EXIST_ID;  //이미 해당 아이디 존재
+		}else {
+			result=NON_EXIST_ID; //해당 아이디 없다
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int checkAuthority(String userid) {
+		
+		/*
+		 * OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid); int result=0;
+		 * 
+		 * if(vo.getSagreeno())
+		 * 
+		 */
+		return 0;
+	}
+	
 }

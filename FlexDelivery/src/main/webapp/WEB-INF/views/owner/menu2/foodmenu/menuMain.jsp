@@ -103,7 +103,7 @@
 						            	  		<c:forEach var="vo" items="${list}">
 										              <tr  class="text-center">
 										              		<td>${vo.rnum }</td>
-											                <td class="text-bold-500">${vo.menuNo }</td>
+											                <td class="text-bold-500">FDMU${vo.menuNo }</td>
 											              	<td><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></td>
 											                <td>${vo.sMGroupName }</td>
 											                <td>${vo.menuPrice }원</td>
