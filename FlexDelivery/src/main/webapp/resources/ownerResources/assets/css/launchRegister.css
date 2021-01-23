@@ -113,7 +113,6 @@ div.Card {
 }
 
 .form-group .form-control-wrap .form-control {
-    display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
@@ -243,3 +242,6 @@ select:not([size]) {
     white-space: nowrap;
 }
 
+form.dialog.on.lg {
+    text-align: justify;
+}

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 @Controller
 @RequestMapping("/owner/menu1")
@@ -50,6 +51,7 @@ public class OwnerRegisterController {
 		 logger.info("사업자 등록증 등록  화면 보여주기");
 	 }
 	 
+	 //사업자 등록증 처리 
 	 @RequestMapping(value="/businessLicense.do",method=RequestMethod.POST)
 	 public String ownerLicenseOk(@ModelAttribute OwnerRegisterVO vo, 
 			 HttpServletRequest request,
@@ -93,5 +95,41 @@ public class OwnerRegisterController {
 			return "common/message";
 	 }
 	 
+	 //입점신청 
+	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
+	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
+			 HttpServletRequest request,
+			 Model model) { 
+		 logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
+		 
+			//파일 업로드 처리
+			String originName="", fileName="";
+			long fileSize=0;
+			try {
+				List<Map<String, Object>> fileList
+				=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+				for(Map<String, Object> fileMap : fileList) {
+					originName=(String) fileMap.get("originalFileName");
+					fileName=(String) fileMap.get("fileName");
+					fileSize=(Long)fileMap.get("fileSize");				
+				}//for
+			} catch (IllegalStateException e) {
+				logger.info("파일 업로드 실패!");
+				e.printStackTrace();
+			} catch (IOException e) {
+				logger.info("파일 업로드 실패!");
+				e.printStackTrace();
+			}
+
+			//2
+			//ownerStoresVo.setStoreLogo(originName);
+
+			//int cnt=ownerRegisterService.insertOwnerStores(ownerStoresVo);
+			//logger.info("점포 입점 신청  처리 결과, cnt={}", cnt);
+
+			//3
+			return "redirect:/owner/menu2/basic.do";
+		 
+	 }
 	 
 }

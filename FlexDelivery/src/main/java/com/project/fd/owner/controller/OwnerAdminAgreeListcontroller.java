@@ -1,6 +1,9 @@
 package com.project.fd.owner.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.common.DateSearchVO;
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.common.PaginationInfo;
+import com.project.fd.common.Utility;
+import com.project.fd.owner.model.OwnerAllAgreementVO;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -26,6 +33,11 @@ public class OwnerAdminAgreeListcontroller {
 	// 승인 받아야하는거 3가지 사업자등록증, 메뉴, 입점폼 
 	//리스트 뿌리려면 공통된거 점주번호 관리자 승인구분체크  합쳐서 맵으로 받으면되나?? 
 	// 3개 조인해서??
+	//
+	//필요한것 관리자승인테이블 - 관리자승인여부와 데이트관리자 승인번호로 조인 
+	//점주 사업자등록증 파일이랑 번호
+	//광고 광고네임 접수번호?
+	// 입점신청 입점신청이라는 제목과 
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerReviewController.class);
 	
@@ -36,6 +48,54 @@ public class OwnerAdminAgreeListcontroller {
 	 public void TempList_get() {
 		 logger.info("점포 - 승인 목록 조회  화면");
 	 }
+	 
+	 //datapicker 사용 리스트 조회
+	 /*
+	 @RequestMapping("/temporary/tempList.do")
+		public String adminAgreeList(@ModelAttribute DateSearchVO searchVo,
+				HttpSession session, Model model) {
+			String ownerId=(String) session.getAttribute("ownerId"); //사업자ID
+			searchVo.setCustomerId(ownerId);		
+			logger.info("adminAgreeListTempList , 파라미터 searchVo={}", searchVo);
+			
+			//[1]
+			PaginationInfo pagingInfo = new PaginationInfo();
+			//pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2]
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			
+			//날짜가 넘어오지 않은 경우 현재일자를 셋팅
+			String startDay=searchVo.getStartDay();
+			if(startDay==null || startDay.isEmpty()) {
+				Date d = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String today=sdf.format(d);
+				searchVo.setStartDay(today);
+				searchVo.setEndDay(today);			
+			}
+			
+			List<OwnerAllAgreementVO> tempList=ownerRService.selectTempList(searchVo);
+			logger.info("tempList조회 결과, tempList.size={}", tempList.size());
+			
+			int totalRecord=ownerRService.getTotalRecord(searchVo);
+			logger.info("tempList-레코드 개수 조회 결과, totalRecord={}", totalRecord);
+			
+			pagingInfo.setTotalRecord(totalRecord);
+			
+			model.addAttribute("tempList", tempList);
+			model.addAttribute("pagingInfo", pagingInfo);
+			//model.addAttribute("dateSearchVO", searchVo);
+			
+			
+			return "owner/menu2/temporary/tempList";
+	 }
+			
+	 */
+	 
 	 
 	 // 우선 사업자 등록현황만 뿌려주기 그 후에 뷰하던 추가할것! 
 		@RequestMapping("/temporary/tempList.do")
@@ -66,6 +126,7 @@ public class OwnerAdminAgreeListcontroller {
 			
 			return "owner/temporary/tempList";
 		}
+		
 	 /*
 		@RequestMapping("/detail.do")
 		public String temp_detail(@RequestParam(defaultValue = "0") int no,
@@ -108,7 +169,7 @@ public class OwnerAdminAgreeListcontroller {
 					url="owner/menu2/temporary/tempList.do";
 			
 			//int cnt=ownerRService.deleteLicense(ownerRegisterVo);
-			//logger.debug("장바구니 삭제 결과 : cnt={}", cnt);
+			//logger.debug("사업자등록증  삭제 결과 : cnt={}", cnt);
 			
 			String upPath 
 			= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
@@ -125,5 +186,5 @@ public class OwnerAdminAgreeListcontroller {
 			//4
 			return "common/message";
 		}
-		
 }
+
