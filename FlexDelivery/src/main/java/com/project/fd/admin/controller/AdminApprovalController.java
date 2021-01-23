@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.temporary.model.AdminTemporaryService;
 import com.project.fd.admin.temporary.model.AdminTemporaryVO;
 
 @RequestMapping("/admin/menu2")
@@ -16,14 +19,19 @@ public class AdminApprovalController {
 	public static final Logger logger
 	= LoggerFactory.getLogger(AdminApprovalController.class);
 	
+	@Autowired
+	AdminTemporaryService temporaryService;
+	
 	@RequestMapping("/approvalList.do")
-	public String adminApprovalList(Model model) {
+	public String adminApprovalList(@RequestParam String approvalFlag, Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 승인/변경 화면");
 		//1
 		//2
+		List<AdminTemporaryVO> list= temporaryService.approvalList(approvalFlag);
  
 		//3
+		model.addAttribute("list", list);
 		
 		return "admin/menu2/approvalList";
 	}
@@ -34,6 +42,7 @@ public class AdminApprovalController {
 		logger.info("점포 변경 세부 화면");
 		//1
 		//2
+		
  
 		//3
 		
