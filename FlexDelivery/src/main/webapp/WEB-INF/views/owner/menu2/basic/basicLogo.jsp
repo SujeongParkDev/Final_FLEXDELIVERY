@@ -9,7 +9,7 @@
 
 
 
-<form novalidate="" class="dialog on lg ">
+<form novalidate="" class="dialog on lg " method="post" action="<c:url value='/owner/menu2/basic/basicLogo.do'/>" name="frm1">
 	<div class="header">
 		<div class="header-close">
 			<button class="close" type="button">나가기</button>
