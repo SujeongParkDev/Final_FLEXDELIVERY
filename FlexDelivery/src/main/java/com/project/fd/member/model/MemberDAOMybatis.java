@@ -32,20 +32,26 @@ public class MemberDAOMybatis implements MemberDAO{
 	public String selectMemberId(MemberVO vo) {
 		return sqlSession.selectOne(namespace+"selectMemberId",vo);
 	}
-
+	
 	@Override
 	public int chkMember(MemberVO vo) {
 		return sqlSession.selectOne(namespace+"chkMember",vo);
 	}
-
+	
 	@Override
 	public int pwdUpd(MemberVO vo) {
 		return sqlSession.update(namespace+"pwdUpd",vo);
 	}
-
+	
 	@Override
 	public String selectAuth(int no) {
 		return sqlSession.selectOne(namespace+"selectAuth",no);
+	}
+	
+	@Override
+	public int checkDup(String userid) {
+		int count = sqlSession.selectOne(namespace+"dupCheck", userid);
+		return count;
 	}
 
 }

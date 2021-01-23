@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return result;
 	}
-
+	
 	@Override
 	public MemberVO selectMember(String userid) {
 		return memberDao.selectMember(userid);
@@ -59,5 +59,17 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectAuth(no);
 	}
 	
+	public int checkDup(String userid){
+		int count=memberDao.checkDup(userid);
+		
+		int result=0;
+		if(count>0) {
+			result=EXIST_ID;  //이미 해당 아이디 존재
+		}else {
+			result=NON_EXIST_ID; //해당 아이디 없다
+		}
+		
+		return result;
+	}
 	
 }
