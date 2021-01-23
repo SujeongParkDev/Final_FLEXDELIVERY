@@ -16,4 +16,6 @@ public interface MemberService {
 		MemberVO selectMember(String userid);
 		String selectMemberId(MemberVO vo);
 		boolean chkMember(MemberVO vo);
+		int pwdUpd(MemberVO vo);
+		
 }

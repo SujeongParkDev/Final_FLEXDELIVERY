@@ -6,4 +6,5 @@ public interface MemberDAO {
 	MemberVO selectMember(String userid);
 	String selectMemberId(MemberVO vo);
 	int chkMember(MemberVO vo);
+	int pwdUpd(MemberVO vo);
 }
