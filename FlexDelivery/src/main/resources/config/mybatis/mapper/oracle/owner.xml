@@ -41,7 +41,7 @@ create or replace view jaOwnerAuthorityAllView
  <!-- 권한 설정을 위한 뷰  -->
 
 
-	<select id="selectOwnerAuthorityAll"  parameterType="userid" resultType="ownerAuthorityVo">
+	<select id="selectOwnerAuthorityAll"  parameterType="string" resultType="ownerAuthorityVo">
 		select * from jaOwnerAuthorityAllView
 		where owner_id = #{userid}
 	</select>
