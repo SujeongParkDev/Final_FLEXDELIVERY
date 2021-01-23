@@ -3,6 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerlaunch">
+<!-- 유효성검사해야하나? 관리자가 알아서 반려해줬으면^^.... -->
+	<select id="dupckRegiNo" parameterType="int">
+	select count(*) from OWNERREGISTER
+	where O_REGISTER_NO='#{oRegisterNo}
+	</select>
+
 	<insert id="insertRegister" parameterType="ownerRegisterVo" >
 		insert into ownerregister(O_REGISTER_NO,O_REGISTER_FILENAME, O_REGISTER_ORIGINAL_FILENAME)
 		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName})

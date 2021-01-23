@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,11 +52,15 @@ public class OwnerRegisterController {
 		 logger.info("사업자 등록증 등록  화면 보여주기");
 	 }
 	 
+	 // 번호가 일치하면 등록 못하게
+	 
 	 //사업자 등록증 처리 
 	 @RequestMapping(value="/businessLicense.do",method=RequestMethod.POST)
 	 public String ownerLicenseOk(@ModelAttribute OwnerRegisterVO vo, 
-			 HttpServletRequest request,
+			 HttpServletRequest request, HttpSession session,
 			 Model model) {
+		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		 vo.setOwnerNo(ownerNo);
 		 logger.info("사업자등록증 업로드 페이지 파라미터 vo={}",vo);
 		 
 		//파일 업로드 처리
