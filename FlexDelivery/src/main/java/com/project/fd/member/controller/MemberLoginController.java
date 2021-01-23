@@ -49,7 +49,6 @@ public class MemberLoginController {
 
 		model.addAttribute("memberId",memberId);
 		return "member/login/gotId";
-		//return "redirect:/member/login/gotId.do?memberId="+memberId;
 	}
 	
 	@RequestMapping(value="/gotId.do")

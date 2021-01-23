@@ -26,6 +26,9 @@ public class MemberMyPageController {
 		String memberId=(String)session.getAttribute("memberId");
 		logger.info("1:1문의 내역 보여주기,세션에 저장된 memberId={}",memberId);
 		MemberVO vo=memServ.selectMember(memberId);
+		String authorityName=memServ.selectAuth(vo.getAuthorityNo());
 		model.addAttribute("vo",vo);
+		model.addAttribute("authorityName",authorityName);
+		
 	}
 }
