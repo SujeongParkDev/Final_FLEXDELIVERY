@@ -2,6 +2,7 @@ package com.project.fd.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,27 +154,26 @@ public class AdminLargeCategoryController {
 	}
 	
 	@RequestMapping(value="/largecategory/edit.do", method=RequestMethod.GET)
-	public String edit_get(/*@RequestParam(defaultValue = "0") int no,
-			HttpServletRequest request,	Model model*/) {
+	public String edit_get(@RequestParam(defaultValue = "0") int no,
+			HttpServletRequest request,	Model model) {
 		//1
-		//logger.info("수정화면, 파라미터 no={}", no);
-		/*if(no==0) {
+		logger.info("edit_get 수정화면, 파라미터 no={}", no);
+		if(no==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/admin/menu6/largecategory/list.do");
 			return "common/message";
-		}*/
+		}
 
 		//2
-		//AdminLargeCategoryVO vo=largeCategoryService.selectByNo(no);
-		//logger.info("수정화면, 조회 결과 vo={}", vo);
+		AdminLargeCategoryVO vo=largeCategoryService.selectByNo(no);
+		logger.info("수정화면, 조회 결과 vo={}", vo);
 
-		/*String fileInfo
-		=largeCategoryService.getFileInfo(vo.getOriginalFileName(), vo.getFileSize(),
-				request);
+		//String fileInfo
+		//=largeCategoryService.getFileInfo(vo.getlCategoryFilename(), request);
 
 		//3
 		model.addAttribute("vo", vo);
-		model.addAttribute("fileInfo", fileInfo);*/
+		//model.addAttribute("fileInfo", fileInfo);
 
 		//4
 		return "/admin/menu6/largecategory/edit";
@@ -184,7 +184,7 @@ public class AdminLargeCategoryController {
 			@RequestParam String oldFileName, HttpServletRequest request,
 			Model model) {
 		//1
-		logger.info("글수정 처리, 파라미터 vo={}, oldFileName={}", largecategoryVo, oldFileName);
+		logger.info("edit_post 글수정 처리, 파라미터 vo={}, oldFileName={}", largecategoryVo, oldFileName);
 
 		//업로드 처리
 		String fileName="", originName="";
@@ -212,14 +212,13 @@ public class AdminLargeCategoryController {
 		//vo.setFileSize(fileSize);
 		//vo.setOriginalFileName(originName);
 
-		String msg="글 수정 실패", url="/admin/menu6/largecategory/list.do";
+		String msg="글 수정 실패", url="/admin/menu6/largeCategory.do";
 		int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
 		logger.info("글수정 결과, cnt={}", cnt);	
 
 		if(cnt>0) {
 			msg="대분류 카테고리를 수정하였습니다.";
-			url="/admin/menu6/largeCategory.do";
-					//+ "detail.do?no="+largeCategoryVo.getlCategoryNo();
+			//url="/admin/menu6/largeCategory.do";
 
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
 			if(fileName!=null && !fileName.isEmpty()) {
@@ -243,22 +242,51 @@ public class AdminLargeCategoryController {
 		return "common/message";
 	}
 
-	@RequestMapping(value="/largecategory/delete.do", method=RequestMethod.POST)
-	public String delete_post(@RequestParam(defaultValue = "0") int no,
+	@RequestMapping(value="/largeCategory/delete.do", method=RequestMethod.POST)
+	public String delete_post(@ModelAttribute AdminLargeCategoryVO largeCategoryVo,
+			@RequestParam String oldFileName, HttpServletRequest request,
 			Model model) {
 		//1
-		logger.info("글 삭제처리, 파라미터 no={}", no);
-		if(no==0) {
+		logger.info("delete_post 대분류 카테고리 삭제처리, 파라미터 vo={}, oldFileName={}", largeCategoryVo, oldFileName);
+		
+		if(largeCategoryVo==null) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/admin/menu6/largeCategory.do");
 			return "common/message";
 		}
 
 		//2
+		String msg="대분류 삭제 실패", url="/admin/menu6/largeCategory.do";
+		/*
+		if (largeCategoryVo.getlCategoryFilename()==null) {
+			largeCategoryVo.setlCategoryFilename(oldFileName);
+		}
+		*/
+		
+		//Map<String, String> map = new HashMap<String, String>();
+		//map.put("no", largeCategoryVo.getlCategoryNo()+"");
+					
+		largeCategoryService.deleteLargeCategory(largeCategoryVo);
+		logger.info("대분류 카테고리 삭제!");	
+		
+		msg="대분류 카테고리가 삭제되었습니다.";
+
+		
+		//기존 파일이 존재하면 기존 파일 삭제
+		String upPath 
+		= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
+		File oldFile = new File(upPath, oldFileName);
+		if(oldFile.exists()) {
+			boolean bool=oldFile.delete();
+			logger.info("기존 파일 삭제 여부 :{}", bool);
+		}			
+		
 		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
 		//4
-		return "/admin/menu6/largeCategory";
+		return "common/message";
 	}
 
 	 
