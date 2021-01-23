@@ -83,17 +83,11 @@ public class OwnerRegisterController {
 			
 			int cnt=ownerRegisterService.insertRegister(vo);
 			logger.info("제출 처리 결과, cnt={}", cnt);
-			String msg="사업자 등록증 등록 실패", url="/owner/menu1/businessLicense.do";
-			if(cnt>0) {
-				msg="사업자 등록 신청되었습니다.\n"
-						+"처리 상태는 신청 현황에서 확인하실 수 있습니다.";
-			}
+			String msg="사업자 등록증 등록 실패", url="";
 			
 			//3
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
 			
-			return "common/message";
+			return "/owner/menu1/businessLicense";
 	 }
 	 
 	 //입점신청 
