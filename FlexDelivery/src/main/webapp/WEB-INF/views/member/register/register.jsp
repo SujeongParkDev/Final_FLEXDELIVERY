@@ -40,33 +40,35 @@
                     <form class="mt-5 mb-4" action="verification.html">
                         <div class="form-group">
                             <label for="exampleInputName1" class="text-dark">이름</label>
-                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
+                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="membername" aria-describedby="nameHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNumber1" class="text-dark">아이디</label>
-                            <input type="text" placeholder="ID를 입력하세요" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp">
+                            <input type="text" placeholder="ID를 입력하세요" class="form-control" id="memberid" aria-describedby="numberHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1" class="text-dark">비밀번호</label>
-                            <input type="password" placeholder="비밀번호를 입력하세요" class="form-control" id="exampleInputPassword1">
+                            <input type="password" placeholder="비밀번호를 입력하세요" class="form-control" id="memberpwd">
+                            <label for="exampleInputPassword1" class="text-dark">비밀번호</label>
+                            <input type="password" placeholder="비밀번호를 입력하세요" class="form-control" id="memberpwd2">
                         </div>
 						<label for="exampleInputNumber1" class="text-dark">전화번호</label>
 						<div class="row">
 							<div class="col-md-4" >
-								<input type="text"  placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="번호 입력" class="form-control" id="hp1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="hp2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="hp3" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 						</div>
 						<br>
 						<div class="row">
 							<label for="exampleInputaddress" class="text-dark" style="line-height: 33px">주소 검색</label>
 							<div class="col-md-4" >
-								<input type="text"  placeholder="주소 검색" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="주소 검색" class="form-control" id="scaddress" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">검색</a></span>
 						</div>
@@ -74,15 +76,15 @@
 						
 						<div class="form-group">
 							<label for="exampleInputaddress" class="text-dark">주소</label>
-							<input type="text" placeholder="" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							<input type="text" placeholder="" class="form-control" id="memberaddress" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputaddress" class="text-dark">상세주소</label>
-							<input type="text" placeholder="" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							<input type="text" placeholder="" class="form-control" id="memberaddressDetail" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 						</div>
 						
 						
-                        <button class="btn btn-primary btn-lg btn-block">
+                        <button class="btn btn-primary btn-lg btn-block"oi89h np0[- ,. ]>
 						회원 가입
                         </button>
 
@@ -92,7 +94,7 @@
                     </form>
                 </div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
-                    <a href="login.html">
+                    <a href="<c:url value='/member/login.do' />">
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
                 </div>
@@ -107,7 +109,7 @@
             <li>
                 <a href="#"><i class="feather-edit-2 mr-2"></i> Authentication</a>
                 <ul>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="<c:url value='/member/login.do' />">Login</a></li>
                     <li><a href="signup.html">Register</a></li>
                     <li><a href="forgot_password.html">Forgot Password</a></li>
                     <li><a href="verification.html">Verification</a></li>
