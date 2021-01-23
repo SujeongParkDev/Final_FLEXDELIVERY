@@ -59,13 +59,13 @@ public class OwnerRegisterController {
 		 logger.info("사업자등록증 업로드 페이지 파라미터 vo={}",vo);
 		 
 		//파일 업로드 처리
-			String originName="", fileName="";
+			String originName="", fileName="test";
 			long fileSize=0;
 			try {
 				List<Map<String, Object>> fileList
 				=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
 				for(Map<String, Object> fileMap : fileList) {
-					originName=(String) fileMap.get("originalFileName");
+					originName=(String) fileMap.get("oRegisterOriginalFileName");
 					fileName=(String) fileMap.get("fileName");
 					fileSize=(Long)fileMap.get("fileSize");	
 				}//for
@@ -79,6 +79,7 @@ public class OwnerRegisterController {
 			
 			vo.setoRegisterFileName(fileName);
 			vo.setoRegisterOriginalFileName(originName);
+			logger.info("originName={}",originName);
 			
 			int cnt=ownerRegisterService.insertRegister(vo);
 			logger.info("제출 처리 결과, cnt={}", cnt);

@@ -16,6 +16,7 @@
 								event.preventDefault();
 						});
 	});
+	});
 </script>
 
 <div id="root">
