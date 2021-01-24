@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
@@ -49,19 +50,6 @@ public class MemberController {
 
 		String email1=vo.getMemberEmail1();
 		String email2=vo.getMemberEmail2();
-		if(email1==null || email1.isEmpty()) {
-			email1="";
-			email2="";
-		}else {
-			if(email2.equals("etc")) {
-				if(email3==null || email3.isEmpty()) {
-					email1="";
-					email2="";
-				}else {
-					email2=email3;
-				}
-			}
-		}
 
 		vo.setMemberEmail1(email1);
 		vo.setMemberEmail2(email2);
@@ -110,7 +98,23 @@ public class MemberController {
 		logger.info("점포 리스트 보여주기");
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("/ajaxCheckId.do")
+	public boolean ajaxCheckId(@RequestParam String userid) {
+		logger.info("ajax 이용-아이디 중복확인, userid={}", userid);
+		
+		boolean bool=false;
+		int result=memberService.checkDup(userid);
+		logger.info("아이디 중복확인 결과, result={}", result);
+		
+		if(result==MemberService.EXIST_ID) {
+			bool=true;  //이미 존재
+		}else if(result==MemberService.NON_EXIST_ID) {
+			bool=false;	//사용 가능		
+		}
+		
+		return bool;
+	}
 	
 	
 }

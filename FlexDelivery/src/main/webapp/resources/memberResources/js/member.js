@@ -3,15 +3,7 @@
  */
  var contextPath="/herb";
 $(function(){
-	$('#email2').change(function(){
-		if($(this).val()=='etc'){
-			$('#email3').val('');
-			$('#email3').css('visibility','visible');
-			$('#email3').focus();				
-		}else{
-			$('#email3').css('visibility','hidden');				
-		}	
-	});
+	
 	
 	$('#btnChkId').click(function(){
 		var type=$(this).attr('class');	//admin , user
