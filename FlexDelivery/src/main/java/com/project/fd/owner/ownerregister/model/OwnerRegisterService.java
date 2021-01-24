@@ -10,5 +10,5 @@ public interface OwnerRegisterService {
 	List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo);
 	int getTotalRecord(DateSearchVO searchVo);
 	List<Map<String, Object>> selectLSJAgreeListView(int ownerNo);
-	
+	int deleteAd(int storeadNo);
 }

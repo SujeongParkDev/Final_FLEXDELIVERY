@@ -7,6 +7,17 @@ public class OwnerRegisterVO {
 	private int aAgreeNo;  /* 관리자승인번호 fk */
 	private int ownerNo; /* 점주번호 fk*/
 	
+	// 데이트로 언제 승인 받았는지
+	private String  ownerregisterRegdate;
+	
+	
+	
+	public String getOwnerregisterRegdate() {
+		return ownerregisterRegdate;
+	}
+	public void setOwnerregisterRegdate(String ownerregisterRegdate) {
+		this.ownerregisterRegdate = ownerregisterRegdate;
+	}
 	public int getoRegisterNo() {
 		return oRegisterNo;
 	}
@@ -41,7 +52,7 @@ public class OwnerRegisterVO {
 	public String toString() {
 		return "OwnerRegisterVO [oRegisterNo=" + oRegisterNo + ", oRegisterFileName=" + oRegisterFileName
 				+ ", oRegisterOriginalFileName=" + oRegisterOriginalFileName + ", aAgreeNo=" + aAgreeNo + ", ownerNo="
-				+ ownerNo + "]";
+				+ ownerNo + ", ownerregisterRegdate=" + ownerregisterRegdate + "]";
 	}
 	
 	

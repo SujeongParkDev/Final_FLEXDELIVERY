@@ -34,6 +34,11 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 		return ownerRegisterDao.selectLSJAgreeListView(ownerNo);
 	}
 
+	@Override
+	public int deleteAd(int storeadNo) {
+		return ownerRegisterDao.deleteAd(storeadNo);
+	}
+
 
 	
 

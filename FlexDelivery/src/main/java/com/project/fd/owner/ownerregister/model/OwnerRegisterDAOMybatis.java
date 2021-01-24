@@ -34,6 +34,11 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	public List<Map<String, Object>> selectLSJAgreeListView(int ownerNo) {
 		return sqlSession.selectList(namespace+"selectLSJAgreeListView",ownerNo);
 	}
+
+	@Override
+	public int deleteAd(int storeadNo) {
+		return sqlSession.delete(namespace+"deleteAd",storeadNo);
+	}
 	
 	
 }
