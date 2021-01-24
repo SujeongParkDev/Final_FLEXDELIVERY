@@ -45,19 +45,20 @@ public class OwnerAdvertiseController {
 
 	// 테스트용
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
-	public String test_get(@RequestParam(defaultValue = "0") int storeNo) {
+	public String test_get() {
 		logger.info("test 창 보여주기");
 
 		return "owner/menu2/advertise/test";
 	}
 
-	// advertiseOngoin.jsp 를 포함한 advertiseMain 을 보여주기위한 창
+	// advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET)
-	public String advertiseMain_get(@RequestParam(defaultValue = "0") int storeNo, Model model) {
-		logger.info("advertiseMain 창 보여주기 , 파라미너 storeNo={}", storeNo);
+	public String advertiseMain_get(HttpSession session, Model model) {
+		int storeNo = (Integer) session.getAttribute("storeNo");
+		logger.info("advertiseMain 창 보여주기, storeNo = {}" ,storeNo);
 
 		
-		storeNo = 4; // Q.storeNo 받아와야함 
+		//list출력
 		List<OwnerAdvertiseAllVO> list = null;
 		list = ownerAdvertiseService.selectAdvertieseView(storeNo);
 		logger.info("현재 진행중 광고 보기 결과 list.size={}", list.size());

@@ -3,6 +3,9 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
+
+
+
 <script type="text/javascript">
 			
 			function goDetail(no){
@@ -119,7 +122,7 @@
 		<div class="row" id="basic-table">
 					  <div class="col-md-2 col-sm-12"></div>
 					  <div class="col-12 col-md-8">
-					    <div class="card">
+					    <div class="card" >
 					      <br>
 					      <!-- <div class="card-header">
 					        <h4 class="card-title text-center" >메뉴</h4>
@@ -132,9 +135,9 @@
 					            <table class="table">
 					              <thead>
 					                <tr class="text-center">
-					                  <th style="width:40%;">메뉴 옵션</th>
+					                  <th style="width:30%;">메뉴 옵션</th>
 					                  <th style="width:20%;">옵션 가격</th>
-					                  <th style="width:23%;">수정/삭제</th>
+					                  <th style="width:33%;">수정/삭제</th>
 					                   <th style="width:17%;" class="pl-3"><button class="btn btn-outline-primary p-2" id="btMenuGroupWrite">등록</button></th>
 					                </tr>
 					              </thead>

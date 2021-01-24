@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.common.Utility;
 import com.project.fd.member.model.MemberVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
@@ -29,10 +30,12 @@ public class OwnerController {
 
 	//회원가입 화면 보여주기 (점포)
 	@RequestMapping("/register/register.do")
-	public void register(){
-		
-		logger.info("회원가입 화면 보여주기");
+	public void register(Model model){
+		logger.info("회원가입 창 보여주기");
 	}
+	
+	
+
 	
 	
 	
@@ -105,10 +108,17 @@ public class OwnerController {
 	}
 
 	
-	
+
+		
 	//관리자, 점포 공통 뷰 보여주기(점포)
 	@RequestMapping("/index.do")
-	public void index(){
+	public void index(Model model){
+		
+		model.addAttribute("NO_LICENSE", OwnerService.NO_LICENSE);
+		model.addAttribute("NO_STORE", OwnerService.NO_STORE);
+		model.addAttribute("HAVE_ALL", OwnerService.HAVE_ALL);
+		
+		
 		logger.info("점포 공통 뷰 보여주기");
 	
 	}

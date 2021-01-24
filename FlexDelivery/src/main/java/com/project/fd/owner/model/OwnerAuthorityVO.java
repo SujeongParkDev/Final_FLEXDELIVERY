@@ -7,13 +7,8 @@ public class OwnerAuthorityVO {
 	private int sagreeno; // 별칭이라 혹시 몰라 붙여썼어요 언더바 안썼어요
 	private int ownerNo;
 	private String ownerId;
-	
-	
 	public int getoRegisterNo() {
 		return oRegisterNo;
-	}
-	public void setoRegisterNo(int oRegisterNo) {
-		this.oRegisterNo = oRegisterNo;
 	}
 	public int getRagreeno() {
 		return ragreeno;
@@ -45,11 +40,15 @@ public class OwnerAuthorityVO {
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
+	public void setoRegisterNo(int oRegisterNo) {
+		this.oRegisterNo = oRegisterNo;
+	}
 	@Override
 	public String toString() {
 		return "OwnerAuthorityVO [oRegisterNo=" + oRegisterNo + ", ragreeno=" + ragreeno + ", storeNo=" + storeNo
 				+ ", sagreeno=" + sagreeno + ", ownerNo=" + ownerNo + ", ownerId=" + ownerId + "]";
 	}
+	
 	
 	
 	
