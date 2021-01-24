@@ -112,9 +112,6 @@ select:not([size]) {
     display: inline-block;
 }
 
-.icon-pencil:before {
-    content: "\f101"
-}
 
 
 

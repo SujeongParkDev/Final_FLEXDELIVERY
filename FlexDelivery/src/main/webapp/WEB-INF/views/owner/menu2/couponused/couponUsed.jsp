@@ -4,6 +4,7 @@
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
+<script src="https://kit.fontawesome.com/e42a7f130f.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css"
    href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/couponUsed.css" />
@@ -19,7 +20,7 @@
 				<select><option value="13195815">피자알파 서면점</option></select>
 				<section class="title">
 					<h3>
-						피자알파 서면점 <i class="icon icon-arrow-down"></i>
+						피자알파 서면점 <i class="fas fa-angle-down"></i>
 					</h3>
 					<p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
 				</section>
@@ -28,7 +29,7 @@
 				<ul>
 					<li><a aria-current="page" class="active"
 						href="/self-service/shops/13195815/benefit/coupon/used">사용내역</a></li>
-					<li><a
+					<li><a 
 						href="/self-service/shops/13195815/benefit/coupon/released">발행내역</a></li>
 				</ul>
 			</div>

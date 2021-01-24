@@ -1,12 +1,10 @@
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
+<script src="https://kit.fontawesome.com/e42a7f130f.js" crossorigin="anonymous"></script>
+
 
 <link rel="stylesheet" type="text/css"
    href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/operation.css" />
@@ -23,7 +21,7 @@
 				<select><option value="13195815">피자알파 서면점</option></select>
 				<section class="title">
 					<h3>
-						피자알파 서면점 <i class="icon icon-arrow-down"></i>
+						피자알파 서면점 <i class="fas fa-angle-down"></i>
 					</h3>
 					<p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
 				</section>
@@ -31,9 +29,10 @@
 			<div>
 				<div class="tabs TabNav">
 					<ul>
-						<li><a aria-current="page" class="active"
+						<li><a
                      href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a></li>
-                  <li><a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
+                  <li><a aria-current="page" class="active" 
+                  href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
 					</ul>
 				</div>
 				<form class="form-card">
@@ -43,7 +42,7 @@
 								<h3>영업시간</h3>
 								<div class="card-menu " style="opacity: 0.99;">
 									<button type="button" class="button change-button medium text">
-										<i class="icon icon-pencil"></i> 변경
+										<i class="fas fa-pencil-alt"></i> 변경
 									</button>
 								</div>
 							</div>
@@ -63,7 +62,7 @@
 								<h3>휴무일</h3>
 								<div class="card-menu " style="opacity: 0.99;">
 									<button type="button" class="button change-button medium text">
-										<i class="icon icon-pencil"></i> 변경
+										<i class="fas fa-pencil-alt"></i> 변경
 									</button>
 								</div>
 							</div>
@@ -112,7 +111,7 @@
 								</h3>
 								<div class="card-menu " style="opacity: 0.99;">
 									<button type="button" class="button change-button medium text">
-										<i class="icon icon-pencil"></i> 변경
+										<i class="fas fa-pencil-alt"></i> 변경
 									</button>
 								</div>
 							</div>
