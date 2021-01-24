@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +23,7 @@ import com.project.fd.common.DateSearchVO;
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
-import com.project.fd.owner.model.OwnerAllAgreementVO;
+import com.project.fd.owner.ownerregister.model.OwnerAllRegisterVO;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -30,14 +31,6 @@ import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 @Controller
 @RequestMapping("/owner/menu2")
 public class OwnerAdminAgreeListcontroller {
-	// 승인 받아야하는거 3가지 사업자등록증, 메뉴, 입점폼 
-	//리스트 뿌리려면 공통된거 점주번호 관리자 승인구분체크  합쳐서 맵으로 받으면되나?? 
-	// 3개 조인해서??
-	//
-	//필요한것 관리자승인테이블 - 관리자승인여부와 데이트관리자 승인번호로 조인 
-	//점주 사업자등록증 파일이랑 번호
-	//광고 광고네임 접수번호?
-	// 입점신청 입점신청이라는 제목과 
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerReviewController.class);
 	
@@ -50,7 +43,7 @@ public class OwnerAdminAgreeListcontroller {
 	 }
 	 
 	 //datapicker 사용 리스트 조회
-	 /*
+	/* 
 	 @RequestMapping("/temporary/tempList.do")
 		public String adminAgreeList(@ModelAttribute DateSearchVO searchVo,
 				HttpSession session, Model model) {
@@ -78,7 +71,7 @@ public class OwnerAdminAgreeListcontroller {
 				searchVo.setEndDay(today);			
 			}
 			
-			List<OwnerAllAgreementVO> tempList=ownerRService.selectTempList(searchVo);
+			List<OwnerAllRegisterVO> tempList=ownerRService.selectTempList(searchVo);
 			logger.info("tempList조회 결과, tempList.size={}", tempList.size());
 			
 			int totalRecord=ownerRService.getTotalRecord(searchVo);
@@ -93,38 +86,23 @@ public class OwnerAdminAgreeListcontroller {
 			
 			return "owner/menu2/temporary/tempList";
 	 }
-			
-	 */
+			*/
 	 
 	 
-	 // 우선 사업자 등록현황만 뿌려주기 그 후에 뷰하던 추가할것! 
+	 //장바구니처럼 
 		@RequestMapping("/temporary/tempList.do")
 		public String tempList(HttpSession session,
 				Model model) {
-			int ownerNo=(Integer) session.getAttribute("ownerNo");
-			logger.info("상품 목록 조회, 파라미터 ownerNo = {}", ownerNo);
+			//int ownerNo=(Integer) session.getAttribute("ownerNo");
+			int ownerNo=1;
+			logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 			
-			//[1]
-			/*PaginationInfo pagingInfo = new PaginationInfo();
-			pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-			pagingInfo.setCurrentPage(evPdVo.getCurrentPage());
-			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			List<Map<String, Object>> tempList =ownerRService.selectLSJAgreeListView(ownerNo);
+			logger.info("승인 대기  목록 조회 결과, tempList.size={}", tempList.size());
+
+			model.addAttribute("tempList", tempList);
 			
-			//[2]
-			evPdVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-			evPdVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-			
-			model.addAttribute("pagingInfo", pagingInfo);
-			int totalRecord=productService.getTotalRecord(evPdVo);
-			logger.info("totalRecord={}", totalRecord);
-			pagingInfo.setTotalRecord(totalRecord);  */
-			
-			//OwnerRegisterVO registerVo =oRService.selectAll(ownerNo);
-			//logger.info("상품 목록 조회, 결과 registerVo={}", registerVo);
-			
-			//model.addAttribute("registerVo", registerVo);
-			
-			return "owner/temporary/tempList";
+			return "owner/menu2/temporary/tempList";
 		}
 		
 	 /*

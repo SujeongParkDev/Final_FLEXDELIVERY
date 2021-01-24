@@ -1,6 +1,7 @@
 package com.project.fd.owner.ownerregister.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 	@Override
 	public int getTotalRecord(DateSearchVO searchVo) {
 		return ownerRegisterDao.getTotalRecord(searchVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLSJAgreeListView(int ownerNo) {
+		return ownerRegisterDao.selectLSJAgreeListView(ownerNo);
 	}
 
 

@@ -1,6 +1,7 @@
 package com.project.fd.owner.ownerregister.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	@Override
 	public int getTotalRecord(DateSearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"getTotalRecord",searchVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLSJAgreeListView(int ownerNo) {
+		return sqlSession.selectList(namespace+"selectLSJAgreeListView",ownerNo);
 	}
 	
 	
