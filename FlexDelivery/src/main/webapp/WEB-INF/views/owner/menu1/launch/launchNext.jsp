@@ -6,19 +6,7 @@
 
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('#btRegi')
-				.click(
-						function() {
-							if(!$('#chkAgree').is(":checked")){
-								alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-								$('#chkAgree').focus();
-								event.preventDefault();
-						}
-	});
-	});
 </script>
-
 <div id="root">
 	<div class="Frame medium">
 		<div class="frame-container pl-0 pt-0">

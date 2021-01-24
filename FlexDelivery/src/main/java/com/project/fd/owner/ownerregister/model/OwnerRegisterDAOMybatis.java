@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.fd.common.DateSearchVO;
-import com.project.fd.owner.model.OwnerAllAgreementVO;
 
 @Repository
 public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
@@ -21,7 +20,7 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	}
 
 	@Override
-	public List<OwnerAllAgreementVO> selectTempList(DateSearchVO searchVo) {
+	public List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo) {
 		return sqlSession.selectList(namespace+"selectTempList",searchVo);
 	}
 

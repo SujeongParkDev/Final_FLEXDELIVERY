@@ -1,34 +1,42 @@
 package com.project.fd.owner.store.model;
 
 public class OwnerStoresVO {
-	/*NOT NULL*/
 	//private OwnerStoresFormVO ownerStoresFormVo;
+
+	/*NOT NULL*/
+	private int storeNo;/* 점포번호 */
 	private String storeName; /* 점포명 */
 	private String storeLogo;/* 점포로고이미지 */
 	private String storeAddress;/* 점포주소 */
 	private String storeAddressDetail; /* 점포상세주소 */
+	/*포린키*/
+	private int ownerNo; /* 점주번호 */
+	private int lCategoryNo;  /* 대분류카테고리번호 */
+	private int locationNo;  /* 지역코드번호 */
+	private int oRegisterNo;/* 사업자등록번호 */
 	
 	//널 
 	private String storeContent; /* 점포소개 */
-
 	private String storeRegdate;/* 점포등록일 */
 	private String storeOutdate; /* 점포탈퇴일 */
 	private String storeOpenTime; /* 점포오픈시간 */
 	private String storeCloseTime ; /* 점포마감시간 */
 	private int storeMinPrice;/* 최소주문금액 */
 	
-	
 	/*포린키*/
-	private int lCategoryNo;  /* 대분류카테고리번호 */
-	private int locationNo;  /* 지역코드번호 */
 	private int  sStatusNo;  /* 점포영업상태번호1 */
 	private int hCategoryNo; /* 휴무요일번호 7*/
-	
 	private int aAgreeNo; /* 관리자승인번호1 */
-	private int ownerNo; /* 점주번호 */
-	private int oRegisterNo;/* 사업자등록번호 */
 	
 
+	
+	
+	public int getStoreNo() {
+		return storeNo;
+	}
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
+	}
 	public String getStoreName() {
 		return storeName;
 	}
@@ -133,12 +141,13 @@ public class OwnerStoresVO {
 	}
 	@Override
 	public String toString() {
-		return "OwnerStoresVO [storeName=" + storeName + ", storeLogo=" + storeLogo + ", storeAddress=" + storeAddress
-				+ ", storeAddressDetail=" + storeAddressDetail + ", storeRegdate=" + storeRegdate + ", storeContent="
-				+ storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime=" + storeOpenTime
-				+ ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice + ", ownerNo=" + ownerNo
-				+ ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo=" + sStatusNo
-				+ ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", oRegisterNo=" + oRegisterNo + "]";
+		return "OwnerStoresVO [storeNo=" + storeNo + ", storeName=" + storeName + ", storeLogo=" + storeLogo
+				+ ", storeAddress=" + storeAddress + ", storeAddressDetail=" + storeAddressDetail + ", storeContent="
+				+ storeContent + ", storeRegdate=" + storeRegdate + ", storeOutdate=" + storeOutdate
+				+ ", storeOpenTime=" + storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice="
+				+ storeMinPrice + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo="
+				+ sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", ownerNo=" + ownerNo
+				+ ", oRegisterNo=" + oRegisterNo + "]";
 	}
 	
 	

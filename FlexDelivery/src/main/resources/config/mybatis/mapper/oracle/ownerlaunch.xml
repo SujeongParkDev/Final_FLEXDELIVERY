@@ -14,101 +14,12 @@
 		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName})
 	</insert>
 	
-	<!--지금 막힌 부분이 폼에서는 회원가입정보로 사업자등록여부 확인하고 
-	폼에서는 정말 기본적인것만 작성하는데 낫널인게있서
-	폼을 어디에 임시 저장하고 나중에 기본정보 입력할때 인서트 해야할 것 같음! -->
-	<insert id="registerStores" parameterType="ownerStoresVo">
-	<!-- <selectKey keyProperty="storeNo" resultType="int" order="BEFORE">
-		select stores_seq.nextval from dual 
-	</selectKey> -->
-	 insert into stores()
-	 value(#{storeNo},#{storeName},#{storeLogo},
-	 #{storeAddress},#{storeAddressDetail})
-	</insert>
-	
-	<!--  -->
-	<!-- tempList -->
-	
-	<!-- 	
-create or replace view orderDetailsView
-as
-select o.orderNo, o.productNo, o.quantity,
-p.productName, p.sellPrice, p.imageUrl 
-from orderDetails o, products p
-where o.productNo = p.productNo;
-
--->
-	
-	<select id="selectRegisterDetailsView" parameterType="int" resultType="map">
-		select * from RegisterDetailsView
-		where oRegisterNo=#{oRegisterNo}
-	</select>	
-	
-
-	<resultMap type="OwnerAllAgreementVO" id="tempListResultMap">
-		<association property="ownerStoresVo" column="STORE_NO" javaType="OwnerStoresVO">
-			<id property="storeNo" column="STORE_NO" jdbcType="BIGINT"/>			
-			<result property="storeName" column="STORE_NAME" jdbcType="VARCHAR"/>
-			<result property="storeLogo" column="STORE_LOGO" jdbcType="VARCHAR"/>
-			<result property="storeAddress" column="STORE_ADDRESS" jdbcType="VARCHAR"/>
-			<result property="storeAddressDetail" column="STORE_ADDRESS_DETAIL" jdbcType="VARCHAR"/>
-			
-			<result property="storeRegdate" column="STORE_REGDATE" jdbcType="VARCHAR"/>
-			<result property="storeOutdate" column="STORE_OUTDATE" jdbcType="VARCHAR"/>
-			<result property="storeContent" column="STORE_CONTENT" jdbcType="VARCHAR"/>
-			<result property="storeOpenTime" column="STORE_OPEN_TIME" jdbcType="VARCHAR"/>
-			<result property="storeCloseTime" column="STORE_CLOSE_TIME" jdbcType="VARCHAR"/>
-			
-			<result property="storeMinPrice" column="STORE_MIN_PRICE" jdbcType="BIGINT"/>
-			<result property="ownerNo" column="OWNER_NO" jdbcType="BIGINT"/>
-			<result property="lCategoryNo" column="L_CATEGORY_NO" jdbcType="BIGINT"/>
-			<result property="locationNo" column="LOCATION_NO" jdbcType="BIGINT"/>
-			<result property="sStatusNo" column="S_STATUS_NO" jdbcType="BIGINT"/>
-			<result property="hCategoryNo" column="H_CATEGORY_NO" jdbcType="BIGINT"/>
-			<result property="aAgreeNo" column="A_AGREE_NO" jdbcType="BIGINT"/>
-			<result property="oRegisterNo" column="O_REGISTER_NO" jdbcType="BIGINT"/>
-			
-		</association>
-		<collection property="orderDetailsList" select="selectRegisterDetailsView"
-			column="oRegisterNo" javaType="ArrayList" ofType="map">		
-		</collection>
-	</resultMap>
+	<!-- 유저 번호 같은거만 뜨니까 일치한지 안해도되겠지 ??  -->
+	<delete id="deleteRegi">
+	delete from OWNERREGISTER
+		where O_REGISTER_NO=#{oRegisterNo}
+	</delete>
 	
 	
-	<select id="selectTempList" parameterType="dateSearchVo"
-		resultMap="tempListResultMap">
-		select *
-		from
-		(
-		    select A.*, rownum as RNUM
-		    from
-		    (
-		        select * from adminagree
-				where orderdate >= #{startDay} and
-				<![CDATA[
-				orderdate< to_date(#{endDay})+1
-				]]>
-				<if test="ownerId !=null and ownerId!=''">
-					and ownerId=#{ownerId}
-				</if>
-				order by storesno desc
-		    )A
-		)
-		<![CDATA[
-		where RNUM > #{firstRecordIndex} 
-		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
-		]]>
-	</select>
-	
-	<select id="getTotalRecord" parameterType="dateSearchVo" resultType="int">
-		select count(*) from adminagree
-		where orderdate >= #{startDay} and
-		<![CDATA[
-		orderdate< to_date(#{endDay})+1
-		]]>
-		<if test="ownerId !=null and ownerId!=''">
-			and ownerId=#{ownerId}
-		</if>
-	</select>
 	
 </mapper>
