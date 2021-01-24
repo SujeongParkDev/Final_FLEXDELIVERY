@@ -5,7 +5,7 @@ public class AdminMediumCategoryVO {
 	private String mCategoryName;
 	private int lCategoryNo;
 	private int weatherNo;
-	
+
 	public int getmCategoryNo() {
 		return mCategoryNo;
 	}
@@ -30,6 +30,7 @@ public class AdminMediumCategoryVO {
 	public void setWeatherNo(int weatherNo) {
 		this.weatherNo = weatherNo;
 	}
+	
 	
 	@Override
 	public String toString() {

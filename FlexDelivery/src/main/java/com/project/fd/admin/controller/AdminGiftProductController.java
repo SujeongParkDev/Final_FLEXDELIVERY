@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/menu6")
-public class AdminGiftCategoryController {
-	private Logger logger=LoggerFactory.getLogger(AdminGiftCategoryController.class);
+public class AdminGiftProductController {
+	private Logger logger=LoggerFactory.getLogger(AdminGiftProductController.class);
 	
-	@RequestMapping(value="/giftCategory.do", method = RequestMethod.GET)
+	@RequestMapping(value="/giftProduct.do", method = RequestMethod.GET)
 	public String list_get() {
 		logger.info("list_get 목록 화면 출력");
 		
-		return "/admin/menu6/giftCategory";
+		return "/admin/menu6/giftProduct";
 	}
 }
