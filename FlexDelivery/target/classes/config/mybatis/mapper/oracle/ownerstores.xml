@@ -4,4 +4,26 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerstores">
 	
+	<insert id="registerStores" parameterType="ownerStoresVo">
+	<!-- <selectKey keyProperty="storeNo" resultType="int" order="BEFORE">
+		select stores_seq.nextval from dual 
+	</selectKey> -->
+	 insert into STORES(STORE_NO,STORE_NAME,STORE_LOGO,STORE_ADDRESS,
+	 STORE_ADDRESS_DETAIL,OWNER_NO,L_CATEGORY_NO,LOCATION_NO,
+	 O_REGISTER_NO)
+	values(#{storeNo},#{storeName},#{storeLogo},#{storeAddress},#{storeAddressDetail},
+	#{ownerNo},#{lCategoryNo},#{locationNo},#{oRegisterNo})
+	</insert>
+	
+	<select id="getTotalRecord" parameterType="dateSearchVo" resultType="int">
+		select count(*) from adminagree
+		where orderdate >= #{startDay} and
+		<![CDATA[
+		orderdate< to_date(#{endDay})+1
+		]]>
+		<if test="ownerId !=null and ownerId!=''">
+			and ownerId=#{ownerId}
+		</if>
+	</select>
+	
 </mapper>

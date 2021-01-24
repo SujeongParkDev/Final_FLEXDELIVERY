@@ -89,7 +89,7 @@ public class OwnerAdminAgreeListcontroller {
 			*/
 	 
 	 
-	 //장바구니처럼 
+	 //장바구니처럼 //test rename git email and username
 		@RequestMapping("/temporary/tempList.do")
 		public String tempList(HttpSession session,
 				Model model) {
