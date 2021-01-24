@@ -18,4 +18,6 @@ public interface AdminLargeCategoryService {
 	int updateLargeCategory(AdminLargeCategoryVO largecategoryVo);
 
 	int deleteLargeCategory(AdminLargeCategoryVO largecategoryVo);
+
+	List<AdminLargeCategoryVO> listLCategoryAll();
 }
