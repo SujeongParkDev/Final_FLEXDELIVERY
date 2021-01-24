@@ -58,6 +58,7 @@ $(function(){
 				            <!-- form 시작 -->
 			                <form class="form form-horizontal" method="post" enctype="multipart/form-data" name="frm1"
 			        action="<c:url value='/owner/menu1/businessLicense.do'/>" >
+			        <input type="text" id="ownerNo"name="ownerNo" value="1">
 			                <div class="form-body">
 			                    <div class="row">
 				                    <div class="col-md-4">
@@ -75,6 +76,7 @@ $(function(){
 				                    <div class="col-md-8 form-group">
 				                        <input type="file" id="upfile" name="upfile"
 				                         class="form-control text-right border none"  accept=".jpg, .jpeg, .png, .pdf">
+				                         <br>
 				                   	<ul class="bullet-ul bullet-ul small muted">
 																				<li>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보
 																					확인이 어려울 경우 승인이 지연될 수 있습니다.</li>
