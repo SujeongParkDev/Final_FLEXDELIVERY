@@ -10,11 +10,14 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
+          ['Year', '이번주', 		'지난주'],
+          ['월',  10000,      30000],
+          ['화',  11700,      40000],
+          ['수',  6600,       2000],
+          ['목',  60000,      70000],
+          ['금',  65500,      2100],
+          ['토',  100000,      1480],
+          ['일',  1030,      4000]
         ]);
 
         var options = {
@@ -30,6 +33,6 @@
     </script>
   </head>
   <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="curve_chart" style="width: 100%; height: 90%;"></div>
   </body>
 </html>

@@ -11,74 +11,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLEX한 사장님을 위한 내 점포 사이트</title>
-
+    
+    
+ 
+    
 <!-- admin.css -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/style.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/animate.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/classy-nav.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/owl.carousel.css"/>
 
-	
-<!--  css  -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
-<!-- vender css -->
-	<!-- apexcharts -->	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/apexcharts/apexcharts.css">
+	 
+	  
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
 
-	<!-- chartjs -->	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
-
-	<!-- choices.js -->	
-	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/choices.js/base.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/choices.js/base.min.css">
- --%>
- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/choices.js/choices.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/choices.js/choices.min.css">
-
-	<!-- dragula -->	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/dragula/dragula.min.css">
-
-	<!-- perfect-scrollbar -->	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-
-	<!-- quill -->	
-   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/quill/quill.bubble.css">
-   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/quill/quill.core.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/quill/quill.snow.css">
-
-	<!--simple-datatables-->	
-   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
-
-	<!-- toastify -->	
-   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/toastify/src/toastify.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
+
+  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+	<!-- js -->
 	
-<!-- js -->
-	<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-    
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/pages/dashboard.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 
 	<!-- owner한테 없어서 admin거 가져왔슴다 -->
-	 <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
-	 <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
+
+	
 
 </head>
 
 <body>
     <div id="app" style="width:100%;">
-        <div id="sidebar" class='active' style="width:250px; ">
+        <div id="sidebar" class='active' style="width:250px; background-color: ">
             <div class="sidebar-wrapper active" style="position: absolute; " >
 			    <div class="sidebar-menu">
 			        <ul class="menu">
@@ -93,7 +56,7 @@
 			            
 			            	<!-- 내점포 메인 view -->
 			                <li class="sidebar-item">
-			                    <a href="#" class='sidebar-link'>
+			                    <a href="<c:url value='/owner/menu2/myStoreIndex.do'/>" class='sidebar-link'>
 			                        <img data-feather="home" width="20"></img> 
 			                        <span>Home</span>
 			                    </a>
@@ -229,8 +192,8 @@
    					 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 				</div>
         	</div>
-        	
-	        <div id="main" style="overflow-y: auto; overflow-x:hidden; height:500px;">
+        	<!-- QQQ.배경색 여기서 바꿀수있음 -->
+	        <div id="main" style="overflow-y: auto; overflow-x:hidden; height:500px; background-color:  rgba(211,208,251,0.4);  ">
 	           <nav class="navbar navbar-header navbar-expand navbar-light">
 	                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
 	                <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

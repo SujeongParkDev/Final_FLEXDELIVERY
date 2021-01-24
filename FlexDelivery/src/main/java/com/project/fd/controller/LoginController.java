@@ -18,6 +18,7 @@ import com.project.fd.admin.model.AdminVO;
 import com.project.fd.common.Utility;
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
+import com.project.fd.owner.model.OwnerAuthorityVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
 
@@ -71,18 +72,30 @@ public class LoginController {
 		}else if(idx==Utility.OWNER_LOGIN) {
 			logger.info("점포 로그인 처리,파라미터 userid={},pwd={}",userid,pwd);
 			int cnt=ownerServ.loginChk(userid, pwd);
+			logger.info("점포 로그인 결과 cnt={}",cnt);
 			if(cnt==MemberService.ID_NONE) {
 				msg="아이디가 존재하지 않습니다.";
-				url="/owner/index.do";
+				url="/owner/login/login.do";
 			}else if(cnt==MemberService.PWD_DISAGREE) {
 				msg="비밀번호가 일치하지 않습니다.";
-				url="/owner/index.do";
+				url="/owner/login/login.do";
 			}else if(cnt==MemberService.LOGIN_OK) {
+				int result = ownerServ.checkAuthority(userid);
+				logger.info("점포 로그인 권한 번호 결과 result={}", result);
+
+				OwnerAuthorityVO auVo= ownerServ.selectOwnerAuthorityAll(userid);
+				logger.info("점포 로그인 권한 번호 결과 vovo={}", auVo);
+
+				
 				OwnerVO vo=ownerServ.selectOwner(userid);
 				session.setAttribute("ownerId",userid);
 				session.setAttribute("ownerName",vo.getOwnerName());
 				session.setAttribute("ownerNo",vo.getOwnerNo());
 				session.setAttribute("authorityNo",vo.getAuthorityNo());
+				session.setAttribute("result", result);
+				if(result==OwnerService.HAVE_ALL) {
+					session.setAttribute("storeNo", auVo.getStoreNo());
+				}
 				
 				Cookie ck=new Cookie("ck_ownerid", vo.getOwnerId());
 				ck.setPath("/");

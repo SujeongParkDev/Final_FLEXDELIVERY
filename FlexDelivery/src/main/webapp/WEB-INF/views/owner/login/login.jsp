@@ -73,7 +73,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('${pageContext.request.contextPath}/resources/ownerResources/Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="<c:url value='/login.do' />">
 							<a href="<c:url value='/owner/index.do' />">
 								<img alt="logo" src="${pageContext.request.contextPath}/resources/imgs/OwnerLoginLogo.png" style="width:300px; height: 75px; padding-left:90px;">
 							</a>

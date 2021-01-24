@@ -49,13 +49,23 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public int checkAuthority(String userid) {
 		
-		/*
-		 * OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid); int result=0;
-		 * 
-		 * if(vo.getSagreeno())
-		 * 
-		 */
-		return 0;
+		 OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid);
+		 
+		 int result = NO_LICENSE;
+		 
+		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
+				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()>3)) {
+			  result=NO_LICENSE;
+		 } else if(vo.getRagreeno()==3
+				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()>3)) {
+			 result = NO_STORE;
+		 }else if(vo.getRagreeno()==3 && vo.getSagreeno()==3) {
+			 result=HAVE_ALL;
+		 }
+		
+		return result;
 	}
-	
+	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid) {
+		return ownerDao.selectOwnerAuthorityAll(userid);
+	}
 }

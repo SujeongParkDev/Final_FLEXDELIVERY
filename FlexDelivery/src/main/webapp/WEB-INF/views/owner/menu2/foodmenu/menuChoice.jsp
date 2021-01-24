@@ -116,9 +116,9 @@
 					            <table class="table">
 					              <thead>
 					                <tr class="text-center">
-					                  <th style="width:40%;">메뉴</th>
+					                  <th style="width:30%;">메뉴</th>
 					                  <th style="width:20%;">가격</th>
-					                  <th style="width:23%;">수정/삭제</th>
+					                  <th style="width:33%;">수정/삭제</th>
 					                   <th style="width:17%;" class="pl-3"><button class="btn btn-outline-primary p-2" id="btMenuChoiceWrite">등록</button></th>
 					                </tr>
 					              </thead>

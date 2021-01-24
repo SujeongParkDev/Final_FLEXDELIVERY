@@ -6,8 +6,9 @@
     <div class="hero-area">
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
+      
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style="background-image: url(${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b2.jpg); background-size:contain; height:500px;">
+            <div class="single-hero-slide bg-img " style="background-image: url('https://i.imgur.com/tGBGXft.jpg'); background-size:cover; height:500px;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -21,8 +22,10 @@
                     </div>
                 </div>
             </div>
+         
+         
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b1.jpg); background-size:contain;  height:500px;">
+            <div class="single-hero-slide bg-img" style="background-image :url('https://cdn.clien.net/web/api/file/F01/6833392/58fd21123b167e.jpg'); background-size:cover;  height:500px;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -39,7 +42,7 @@
 
             
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style=" height:500px; background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA4MjZfMTY2%2FMDAxNTk4NDE1Mzc0OTQ1.aPq6qOIMyi2Qg2hAceeIagADYAXlcrrni_IYTYwjbOcg.4aA4eXV-00Rpndur7X-Ixk0skG4LeM7yQhxg2uVH4Aog.GIF.dloere4%2F1598415371805.gif&type=sc960_832_gif); background-size:contain;">
+            <div class="single-hero-slide bg-img " style=" height:500px; background-image: url('https://i.imgur.com/zU9sTZJ.jpg'); background-size:cover;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -126,42 +129,44 @@
 			                            	<div class="col-12 col-md-1">
 			                           			 <a href="<c:url value='/owner/menu3/notice.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
 			                            	</div>
-			                            </div>
-			                            <ul >
-			                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-			                            		<a style="text-decoration:none; color:black;"href="">
-			                            			<b>[공지사항] 오늘부로 수수료 10% 인하합니.. </b>
-			                            		</a>
-			                            		<span style="float:right;">2020-01-20</span>
-			                            	</li>
-			                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-			                            		<a style="text-decoration:none; color:black;"href="">
-			                            			<b>[공지사항] 쿠폰도 할인중 </b>
-			                            		</a>
-			                            		<span style="float:right;">2020-01-20</span>
-			                            	</li>
-			                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-			                            		<a style="text-decoration:none; color:black;"href="">
-			                            			<b>[공지사항] 광고도 할인할인할인 언제까지... </b>
-			                            		</a>
-			                            		<span style="float:right;">2020-01-20</span>
-			                            	</li>
-			                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-			                            		<a style="text-decoration:none; color:black;"href="">
-			                            			<b>[공지사항] 마지막 구매찬스~선착순입니다. 사장님덜 </b>
-			                            		</a>
-			                            		<span style="float:right;">2020-01-20</span>
-			                            	</li>
-			                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-			                            		<a style="text-decoration:none; color:black;"href="">
-			                            			<b>[공지사항] 재밋다 하하 </b>
-			                            		</a>
-			                            		<span style="float:right;">2020-01-20</span>
-			                            	</li>
-			                        
-			                            
-			                            </ul>
-			                            <hr style="border: 1px solid gray;">
+				                            </div>
+					                            <ul >
+					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
+					                            		<a style="text-decoration:none; color:black;"href="">
+					                            			<b>[공지]</b>&nbsp;오늘부로 수수료 10% 인하합니..
+					                            		</a>
+					                            		<span style="float:right;">2020-01-20</span>
+					                            	</li>
+					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
+					                            		<a style="text-decoration:none; color:black;"href="">
+					                            			<b>[공지]</b>&nbsp;쿠폰도 할인중 
+					                            		</a>
+					                            		<span style="float:right;">2020-01-20</span>
+					                            	</li>
+					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
+					                            		<a style="text-decoration:none; color:black;"href="">
+					                            			<b>[공지]</b>&nbsp;광고도 할인할인할인 언제까지...
+					                            		</a>
+					                            		<span style="float:right;">2020-01-20</span>
+					                            	</li>
+					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
+					                            		<a style="text-decoration:none; color:black;"href="">
+					                            			<b>[공지]</b>&nbsp;마지막 구매찬스~선착순입니다. 사장님덜 
+					                            		</a>
+					                            		<span style="float:right;">2020-01-20</span>
+					                            	</li>
+					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
+					                            		<a style="text-decoration:none; color:black;"href="">
+					                            			<b>[공지] </b> &nbsp;재밋다 하하
+					                            		</a>
+					                            		<span style="float:right;">2020-01-20</span>
+					                            	</li>
+					                            </ul>
+				                         	  <div >
+				                         	  <div>
+                       		 						<hr style="border: 1px 1solid; border-color: gray;" >
+                       		 				  </div>
+                        	 			</div>
 			                        </div>
 			                    </div>
              			  </div>
@@ -171,164 +176,204 @@
 						H O N E Y T I P  이라고 적혀있는건 전체 게시판을 연결해주시고
 						그밑에거는 또 번호에 해당하는 곳으로 이동시켜주세요 -->
                     <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 m.b-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
-                    	<div class="line"></div>
-                    	<a href="#" class="post-tag"></a>
-                        <div class="row align-items-center" style="margin-bottom:30px;">
-                            	<div class="col-12 col-md-10">
-                            		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
-                            	</div>
-                            	<div class="col-12 col-md-1">
-                           			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
-                            	</div>
-	                            	<br><br><br><br>
-                            	<div class="col-12 col-md-1">
-                            	</div>
-                            <div class="col-12 col-md-5">
-                                <div class="single-blog-thumbnail">
-                                    <img src="http://t1.daumcdn.net/thumb/R1024x0/?fname=http://cfile299.uf.daum.net/image/2640483D55DAD39B04043C" style="height:300px;" alt="pcRoom">
-                                    <div class="post-date">
-                                        <a href="<c:url value='/owner/menu3/honeyTip.do'/>">3<span>Honey</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">H O N E Y T I P</a>
-                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>맛있겠찡? 배고프지? 약오르죠?</b></a></h4>
-                                    <p>저두 배고파요..</p>
-                                    <div class="post-meta">
-                                        <p>By FLEX DELIVERY</p>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-1"></div>
-                        </div>
-                    </div>
+                    <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
+                    	 <div class="row align-items-center" >
+                           	<div class="col-12 col-md-10">
+                           		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
+                           	</div>
+                           	<div class="col-12 col-md-1">
+                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
+                           	</div>
+                           	<div class="col-12 col-md-1"> </div>
+                           	     <br><br><br><br>
+                           	     
+                           	     
+	                          <div class="col-12 col-md-3" >
+	                              <div class="single-blog-thumbnail">
+	                                  <img src="http://t1.daumcdn.net/thumb/R1024x0/?fname=http://cfile299.uf.daum.net/image/2640483D55DAD39B04043C" style=" margin-bottom: 40px;" alt="pcRoom">
+	                              </div>
+	                          </div>
+	                          
+	                          <div class="col-12 col-md-2" style="height:200px; padding-right:0px; ">
+	                              <!-- Blog Content -->
+	                              <div class="single-blog-content" style="margin-bottom: 40px;">
+	                                  <div class="line mb-2"></div>
+	                                  <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>맛있겠찡? 배고프지?</b></a></h4>
+	                                  <div class="post-meta">
+	                                      <p>By FLEX DELIVERY</p>
+	                                      <p></p>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                          
+	                           <div class="col-12 col-md-1"></div>
+	                           
+	                           <div class="col-12 col-md-3" >
+                             			  <div class="single-blog-thumbnail">
+                                		  	 <img src="http://t1.daumcdn.net/thumb/R1024x0/?fname=http://cfile275.uf.daum.net/image/275DC93F55DAD3730B50BE" style=" margin-bottom: 40px;" alt="pcRoom">
+                              			 </div>
+                            		</div>
+	                            <div class="col-12 col-md-2" style="height:200px; padding-right:0px; ">
+	                                <!-- Blog Content -->
+	                                <div class="single-blog-content" style="margin-bottom: 40px;">
+	                                    <div class="line mb-2"></div>
+	                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>삼겹살 <br>입니다.</b></a></h4>
+	                                    <div class="post-meta">
+	                                        <p>By FLEX DELIVERY</p>
+	                                        <p></p>
+	                                    </div>
+	                                </div>
+	                            </div>
+                           		 <div class="col-12 col-md-1"></div>
+                           		 
+                           		 
+                           		 
+                           		  	     
+	                          <div class="col-12 col-md-3" >
+	                              <div class="single-blog-thumbnail">
+	                                  <img src="//img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Frealfood%2F6edfee13edc641d48eb1f4a9b50225b7.JPG" style=" margin-bottom: 40px;" alt="pcRoom">
+	                              </div>
+	                          </div>
+	                          
+	                          <div class="col-12 col-md-2" style="height:200px; padding-right:0px; ">
+	                              <!-- Blog Content -->
+	                              <div class="single-blog-content" style=" margin-bottom: 40px;">
+	                                  <div class="line mb-2"></div>
+	                                  <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>칠레의 <br>식사예절</b></a></h4> 
+	                                  <div class="post-meta">
+	                                      <p>By FLEX DELIVERY</p>
+	                                      <p></p>
+	                                  </div>
+	                              </div>
+	                          </div>
+	                          
+	                           <div class="col-12 col-md-1"></div>
+	                           
+	                           <div class="col-12 col-md-3">
+                             			  <div class="single-blog-thumbnail">
+                                		  	 <img src="//img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Frealfood%2Fc164c212084a4b49904b5c371e869959.JPG" style="margin-bottom: 40px;" alt="pcRoom">
+                              			 </div>
+                            		</div>
+	                            <div class="col-12 col-md-2" style="height:200px; padding-right:0px; ">
+	                                <!-- Blog Content -->
+	                                <div class="single-blog-content" style=" margin-bottom: 40px;">
+	                                    <div class="line mb-2"></div>
+	                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>헝가리 <br>식사예절</b></a></h4>
+	                                    <div class="post-meta">
+	                                        <p>By FLEX DELIVERY</p>
+	                                        <p></p>
+	                                    </div>
+	                                </div>
+	                            </div>
+                           		 <div class="col-12 col-md-1"></div>
+                       	</div>
+                   	</div>
 
-					  <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-5">
-                                <div class="single-blog-thumbnail">
-                                    <img src="http://t1.daumcdn.net/thumb/R1024x0/?fname=http://cfile275.uf.daum.net/image/275DC93F55DAD3730B50BE"  style="height:300px;"  alt="삼겹살">
-                                    <div class="post-date">
-                                        <a href="<c:url value='/owner/menu3/honeyTip.do'/>">45 <span>Honey</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">H O N E Y T I P</a>
-                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>삼겹살에 소주 캬</b></a></h4>
-                                    <p>맛있는 음식입니다 사람을 사로잡는건 음식이 중요해요</p>
-                                    <div class="post-meta">
-                                        <p>By FLEX DELIVERY</p>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-1"></div>
-                        </div>
-                    </div>
-						 <hr style="border: 1px solid gray;">
-					<br>
-					<br>
-				
 					
 					
+				 	<div style="margin-top:0px; margin-bottom:10px;">
+                        <div class="col-12 col-md-11">
+		                    <hr style="border: 1px 1solid; border-color: gray; " >
+                       </div>
+                         <div class="col-12 col-md-11"></div>
+				   </div>
+			
 					
 					
-					
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1000ms">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="single-blog-thumbnail">
-                                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150215_286%2Fokinuna36_1423970409876lvIjJ_JPEG%2FPicSpeed_-574194526.jpg&type=sc960_832" style="height:300px;"alt="맛있는이미지">
-                                    <div class="post-date">
-                                        <a href="#">10 <span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content mt-50">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">요거트</a>
-                                    <h4><a href="#" class="post-headline">요거트는 사랑이지</a></h4>
-                                    <p>사랑은 컴퓨터다 그리고 요거트도 사랑이다 맛있다</p>
-                                    <div class="post-meta">
-                                        <p>By FLEX DELIVERY</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/5.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/6.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
+                     <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
+                    	 <div class="row align-items-center" >
+                           	<div class="col-12 col-md-10"  style="margin-top:10px;">
+                           		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black;  "><h4 >이벤트</h4></a>
+                           	</div>
+                           	<div class="col-12 col-md-1">
+                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
+                           	</div>
+                           	<div class="col-12 col-md-1"> </div>
+                           	     <br><br><br><br>
+                
+                            <div class="col-12 col-md-11">
+                                <div class="card-group">
+								  <div class="card " style="margin:20px; margin-left:0px; ">
+								    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNjEyMDZfMjI4%2FMDAxNDgwOTg2MTM5NTc2.yzAJUrNLZO8sN42YqWJXLUpN7_3lBy1wvtAKqG2n2l8g.5PXAysmFniQlOJTegIy749nKElVTt0ROcbrp8CN4OYAg.PNG.elleswimwear%2F12%25BF%25F9%25C0%25CC%25BA%25A5%25C6%25AE_01.png&type=ofullfill340_600"
+								    	style="height:150px;" class="card-img-top" alt="겨울안녕">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>아디오스 겨울</b></a></h5>
+								      <p class="card-text">즐거웠다  </p>
+			
+								    </div>
+								  </div>
+								  <div class="card" style="margin:20px; ">
+								    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODA1MTFfNCAg%2FMDAxNTI2MDAxODUwNzU0.KQRkebvQnuoE-8z1ASRHX4IO928aBbQVTqnpqZRfGl4g.rDI94hIg4_w0bevHPYS3kDnOUh_dqs8Z0eq3Ctx52Rkg.JPEG.hoonhwii%2F%25C0%25BD%25BD%25C4%25C1%25A1%25C0%25CC%25BA%25A5%25C6%25AE.jpg&type=sc960_832" 
+								    style="height:150px;"  class="card-img-top" alt="음식점이벤트">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>효과적인 음식점</b></a></h5>
+								      <p class="card-text">궁금하세요? 궁금하면 드루와</p>
+			
+								    </div>
+								  </div>
+								  <div class="card" style="margin:20px; ">
+								    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F366%2F2017%2F03%2F14%2F2017031401647_1_99_20170314140203.jpg&type=a340" 
+								    	style="height:150px;"  class="card-img-top" alt="봄되면">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>봄봄봄 봄이</b></a></h5>
+								      <p class="card-text">찾아왔네요 . 봄에 어울리는 음식을 즐겨봐요</p>
+					
+								    </div>
+								  </div>
+								</div>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">We love colors in 2018</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
+                             <div class="col-12 col-md-1" ></div>
+                             <div class="col-12 col-md-11">
+                                <div class="card-group">
+								  <div class="card " style="margin:20px; margin-left:0px;  ">
+								    <img src="${pageContext.request.contextPath}/resources/imgs/flexHyuna.jpg"
+								    	style="height:150px;" class="card-img-top" alt="현아">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>현아와 함께 <br>플렉스 하자!</b></a></h5>
+								      <p class="card-text">야! <br>너두 할 수 있어! </p>
+			
+								    </div>
+								  </div>
+								  <div class="card" style="margin:20px; ">
+								    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX6TmcNHmnrNVUzOdgL1O3ErkQ_4kFGTg0Yw&usqp=CAU" 
+								    style="height:150px;"  class="card-img-top" alt="음식점이벤트">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>썰어먹기 냠냠</b></a></h5>
+								      <p class="card-text">냠냠</p>
+			
+								    </div>
+								  </div>
+								  <div class="card" style="margin:20px; ">
+								    <img src="https://lh3.googleusercontent.com/proxy/nnGQ_bfS1ZwMmJO4TJmFpSmJm2hO2GSb-0JXAaJ7k6i3u3ZAQniewF5SVf6u0Z5pE8aN0u5KRwbGCfGUHHGg4K_0uqAZJM2X7Wmk1xxLSU5kj4P3aY7e5XIansL5AXs2vw" 
+								    	style="height:150px;"  class="card-img-top" alt="김치는사기다">
+								    <div class="card-body" style="height:150px;">
+								      <h5 class="card-title"><a href="#" style="text-decoration:none; color:black; font-size:20px; "><b>김치맛있따</b></a></h5>
+								      <p class="card-text">배고프죠?</p>
+					
+								    </div>
+								  </div>
+								</div>
                             </div>
+                             <div class="col-12 col-md-1" ></div>
                         </div>
                     </div>
 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
                     <!-- Load More -->
-                    <div class="load-more-btn mt-100 wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1000ms">
-                        <a href="#" class="btn original-btn">Read More</a>
+                    <div class=" mt-100 wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1000ms">
+                        <a href="#" ></a>
                     </div>
                 </div>
 
@@ -347,38 +392,56 @@
 
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area text-center" style="padding-top:40px; margin-bottom:30px;" >
-                        	<hr style="border: 1px solid ; border-color: gray;">
+                        	<div >
+                       		 	<hr style="border: 1px 1solid; border-color: gray;" >
+                        	 </div>
                         	<br>
-                            <!-- 사장님이 로그인 안했을 경우  -->
-	                    	<c:if test="${empty sessionScope.userid }">
-	                    		<h6 class="title subscribe-title">사장님, 로그인 해주세요</h6>
-	                            <div class="widget-content">
-	                                <form action="#">
-	                                    <button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white; width:250px; height:50px;">로 그 인</button>
-	                                </form>
-	                            </div>
-	                        </c:if>
-	                        <!-- 사장님이 사업자등록 3 점포  null 이 아닐때  -->
-	                        <c:if test="${(!empty sessionScope.userid) and sessionScope.authority == 1}">
-	                       		 <h5 class="title">${sessionScope.userid}님 오늘도 플렉스한 하루 보내세요 </h5>
-	                       		  <div class="widget-content">
-	                                <form action="#">
-	                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
-	                            	</form>
-	                            </div>
-                       		 </c:if>
-                       		 <!-- 사장님 사업자등록 3 점포 null 일때  -->
-                       		  <c:if test="${(!empty sessionScope.userid) and sessionScope.authority == 2}">
-	                       		 <h5 class="title">${sessionScope.userid}님 오늘도 플렉스한 하루 보내세요 </h5>
-	                       		  <div class="widget-content">
-	                                <form action="#">
-	                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
-	                            	</form>
-	                            </div>
-                       		 </c:if>
+                        	<div style="height:170px;">
+	                        	<c:set  var="noLicense" value="${NO_LICENSE}"/>
+	                        	<c:set  var="noStore" value="${NO_STORE}"/>
+	                        	<c:set  var="haveAll" value="${HAVE_ALL}"/>
+	                        	
+	                            <!-- 사장님이 로그인 안했을 경우  -->
+		                    	<c:if test="${empty sessionScope.ownerId}">
+		                    		<h6 class="title subscribe-title">사장님, 로그인 해주세요</h6>
+		                            <div class="widget-content">
+		                                <form action="<c:url value='/owner/login/login.do'/>">
+		                                    <button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white; width:250px; height:50px;">로 그 인</button>
+		                                </form>
+		                            </div>
+		                        </c:if>
+		                        <!-- 사장님이 로그인했는데 사업자 등록증이 없을때 -->
+		                        <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==noLicense}">
+		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                       		  <div class="widget-content">
+		                                <form action="<c:url value='/owner/menu1/launch/launch.do'/>">
+		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
+		                            	</form>
+		                            </div>
+	                       		 </c:if>
+		                        <!-- 사장님이 점포가없을때 -->
+		                        <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==noStore}">
+		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                       		  <div class="widget-content">
+		                                <form action="<c:url value='/owner/menu1/launch/launch.do'/>">
+		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
+		                            	</form>
+		                            </div>
+	                       		 </c:if>
+	                       		 <!-- 사장님 사업자등록도 점포도 다있어서 내가게가 잇을때-->
+	                       		  <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==haveAll}">
+		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                       		  <div class="widget-content">
+		                                <form action="<c:url value='/owner/menu2/myStoreIndex.do'/>">
+		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">내 점 포</button>
+		                            	</form>
+		                            </div>
+	                       		 </c:if>
+                       		 </div>
                        		 <br>
-                       		 
-                       		 <hr style="border: 1px solid; border-color: gray;">
+                       		 <div >
+                       		 	<hr style="border: 1px 1solid; border-color: gray;" >
+                        	 </div>
                         </div>
                        
 
@@ -419,27 +482,28 @@
 								</div>	
 	                        </div>
                         </div>
-
-						<hr style="border: 1px solid ; border-color: gray;">
+						<div >
+                       		 	<hr style="border: 1px 1solid; border-color: gray;" >
+                        </div>
 						<br>
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area">
-                            <h5 class="title">Latest Posts</h5>
-
+                            <h5 class="title">이달의 점포</h5>
+							<!-- QQQ.스토어 선택하는 곳으로 가주세요 -->
                             <div class="widget-content">
 
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post d-flex align-items-center widget-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/imgs/flexHyuna.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/resources/imgs/flexHyuna.jpg" style="height: 90px; border-radius: 20px; width: 90px;" alt="현아">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
+                                        <a href="#" class="post-tag">Flex Store</a>
+                                        <h4><a href="#" class="post-headline">현아 </a></h4>
                                         <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
+                                            <p><a href="#">현아하게</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -448,14 +512,14 @@
                                 <div class="single-blog-post d-flex align-items-center widget-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/resources/imgs/testS.jpg" style="height: 90px;  width: 90px; border-radius: 20px;" alt="화난스누피">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
+                                        <a href="#" class="post-tag">Flex Store</a>
+                                        <h4><a href="#" class="post-headline">스누피</a></h4>
                                         <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
+                                            <p><a href="#">스누피의 하루</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -464,14 +528,14 @@
                                 <div class="single-blog-post d-flex align-items-center widget-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp3.jpg" alt="">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVaqwzBAs5EoFftJ4G5u13gGmSDHQ_K5epiA&usqp=CAU"  style="height: 90px;  border-radius: 20px; width: 90px;" alt="조승우">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
+                                        <a href="#" class="post-tag">Flex Store</a>
+                                        <h4><a href="#" class="post-headline">타짜</a></h4>
                                         <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
+                                            <p><a href="#">고니곤이</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -480,34 +544,17 @@
                                 <div class="single-blog-post d-flex align-items-center widget-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp4.jpg" alt="">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmYcd4VxUYaFNLKYccgploJWUy8xLPwoChyA&usqp=CAU" style="height: 90px; border-radius: 20px; width: 90px;" alt="공효진">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
+                                        <a href="#" class="post-tag">Flex Store</a>
+                                        <h4><a href="#" class="post-headline">공효진</a></h4>
                                         <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
+                                            <p><a href="#">효진스토어</a></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Tags</h5>
-                            <div class="widget-content">
-                                <ul class="tags">
-                                    <li><a href="#">design</a></li>
-                                    <li><a href="#">fashion</a></li>
-                                    <li><a href="#">travel</a></li>
-                                    <li><a href="#">music</a></li>
-                                    <li><a href="#">party</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">photography</a></li>
-                                    <li><a href="#">adventure</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -516,80 +563,7 @@
         </div>
 
   
-   
-    <!-- ##### Blog Wrapper End ##### -->
-
-    <!-- ##### Instagram Feed Area Start ##### -->
-    <div class="instagram-feed-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Instagram Slides -->
-        <div class="instagram-slides owl-carousel">
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/1.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/2.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/3.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/4.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/5.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/6.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/7.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Instagram Feed Area End ##### -->
-
+ 	  
 
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->

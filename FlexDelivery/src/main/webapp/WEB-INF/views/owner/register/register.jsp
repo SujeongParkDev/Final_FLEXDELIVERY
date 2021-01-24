@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
+     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Colorlib Templates">
@@ -13,7 +13,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>점포 회원 가입</title>
+    <title>Au Register Forms by Colorlib</title>
 
     <!-- Icons font CSS-->
     <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -23,13 +23,14 @@
 
     <!-- Vendor CSS-->
     <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/css/main.css" rel="stylesheet" media="all">
-
-
-  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
-	
+    
+    
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		function goHome(){
 			location.href="<c:url value='/owner/index.do'/>";
@@ -69,20 +70,14 @@
 		function validate_userid(id){
 			var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
 			return pattern.test(id);
-			/*
-			a에서 z 사이의 문자, A~Z사이의 문자, 0 에서 9사이의 숫자나 _로 시작하거나 
-			끝나야 한다는 의미
-			닫기 대괄호(]) 뒤의 + 기호는 이 패턴이 한 번 또는 그 이상 반복된다는 의미
-			*/
+		
 		}
 		
 		function validate_phone(tel){
-			var pattern = new RegExp(/^[0-9]*$/g);
+			var pattern = new RegExp(/^[0-9]+$/g);
 			return pattern.test(tel);
-			/*
-				0 에서 9사이의 숫자로 시작하거나 끝나야 한다는 의미 (^는 시작, $는 끝을 의미)
-				닫기 대괄호(]) 뒤의 * 기호는 0번 이상 반복
-			*/
+
+		
 		}
 		
 		$(function(){
@@ -115,11 +110,12 @@
     <div class="page-wrapper p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
-           			<div  class="card-heading" style="background-image: url('${pageContext.request.contextPath}/resources/imgs/test.jpg');">
-           		 		<img src="${pageContext.request.contextPath}/resources/imgs/FD.png" width="500px;"/>  
+           			<div  class="card-heading" onclick="goHome()" style="background-image: url('${pageContext.request.contextPath}/resources/imgs/registerBg.png');
+           						background-repeat: no-repeat; background-size: cover;  padding-top: 150px;">
+           		 		<img src="${pageContext.request.contextPath}/resources/imgs/FD.png" width="500px;" style="margin-left:100px;"/>  
            			</div>
                 <div class="card-body ">
-                    <h2 class="title" style="text-align: center;">FLEX REGISTER</h2>
+                    <h2 class="title" style="text-align: center;">R E G I S T E R</h2>
                     <form method="POST" action="<c:url value='/owner/ownerWrite.do'/>">
                         <div class="input-group" style="margin-bottom:10px;">
                             	이름  <input class="input--style-1" type="text" id="ownerName" name="ownerName" style="text-align:center; ime-mode:active;" >
@@ -188,6 +184,7 @@
             </div>
         </div>
     </div>
+    
 
     <!-- Jquery JS-->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/jquery/jquery.min.js"></script>
@@ -198,7 +195,7 @@
 
     <!-- Main JS-->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/js/global.js"></script>
-
+    
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>

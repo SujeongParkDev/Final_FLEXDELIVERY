@@ -82,13 +82,13 @@
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
                         	<!-- 사장님이  로그인 안했을때-->
-                        	<c:if test="${empty sessionScope.userid }">
+                        	<c:if test="${empty sessionScope.ownerId}">
                         		  <a href="<c:url value='/owner/login/login.do'/>" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그인</i></a>
                           		  <a href="<c:url value='/owner/register/register.do'/>" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">회원가입</i></a>
                         	 </c:if>
 	                        <!-- 사장님이  로그인 했을때 -->
-	                        <c:if test="${!empty sessionScope.userid }">
-	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
+	                        <c:if test="${!empty sessionScope.ownerId }">
+	                        	 <a href="<c:url value='/owner/logout.do'/>" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
 	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">내 정보 수정</i></a>
 	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">회원 탈퇴</i></a>
 	                        </c:if>
@@ -151,7 +151,9 @@
                                     <li><a href="#">고객센터</a>
                                          <ul class="dropdown">
                                             <li><a href="<c:url value='/owner/menu5/faq.do'/>">자주 하는 질문</a></li>
-                                            <li><a href="<c:url value='/owner/menu5/oneToOne.do'/>">1:1 문의</a></li>
+                                            <c:if test="${!empty sessionScope.ownerId }">
+                                          		  <li><a href="<c:url value='/owner/menu5/oneToOne.do'/>">1:1 문의</a></li>
+                                            </c:if>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">고객 사이트로 이동</a></li>
