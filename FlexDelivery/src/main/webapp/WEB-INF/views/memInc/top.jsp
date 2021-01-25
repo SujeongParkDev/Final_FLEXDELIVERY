@@ -32,14 +32,10 @@
         <section class="header-main shadow-sm bg-white" style="line-height:4em">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-1">
-                        <a href="${pageContext.request.contextPath}/member/index.do" class="brand-wrap mb-0">
-                            <img alt="" class="img-fluid" src="${pageContext.request.contextPath}/resources/memberResources/img/logo_web.png">
-                        </a>
-                        <!-- brand-wrap.// -->
-                    </div>
-                    <div class="col-3 d-flex align-items-center m-none">
-                    	<img src="${pageContext.request.contextPath}/resources/imgs/FD2.png" alt="FlexDeliveryLogo" class="img-fluid">
+                    <div class="col-4 d-flex align-items-center m-none">
+                    	<a href="${pageContext.request.contextPath}/member/index.do" class="brand-wrap mb-0">
+                    		<img src="${pageContext.request.contextPath}/resources/imgs/FD2.png" alt="FlexDeliveryLogo" class="img-fluid">
+                    	</a>
                     </div>
                     <!-- col.// -->
                     <div class="col-8">
@@ -53,7 +49,7 @@
 	                            </a>
                             </c:if>
                             <c:if test="${!empty sessionScope.memberId}">
-                            	 <a href="${pageContext.request.contextPath}/member/logout.do" class="widget-header mr-4 text-white btn bg-primary m-none">
+                            	 <a href="${pageContext.request.contextPath}/member/login/logout.do" class="widget-header mr-4 text-white btn bg-primary m-none">
 	                                <div class="icon d-flex align-items-center">
 	                                    <i class="feather-disc h6 mr-2 mb-0"></i> <span>로그아웃</span>
 	                                </div>

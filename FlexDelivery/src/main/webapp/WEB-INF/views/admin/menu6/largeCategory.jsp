@@ -5,12 +5,7 @@
 <!-- script start -->
 <script>
 $(function(){
-	$('#modalEditBt').click(function(){
-		$('form[name=frmLCategoryEdit]').find('#EditlCategoryNo').val(modalNo);
-		$('form[name=frmLCategoryEdit]').find('#EditlCategoryName').val(modalName);
-		$('form[name=frmLCategoryEdit]').find('#EditoldFileName').val(modalFilename);
-
-	});
+	
 	
 	/* $('#lcategoryWrite').click(function(){
 		window.open("<c:url value='/admin/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
@@ -212,34 +207,30 @@ function readInputFile(input) {
 						</c:if>                
                 		<c:if test="${!empty list }">
 							<div class="row">		            
-	                			<c:forEach var="vo" items="${list }" varStatus="status">
-	                			<c:set var="modalNo" value="${vo.lCategoryNo }" />
-	                			<c:set var="modalName" value="${vo.lCategoryName }" />
-	                			<c:set var="modalFilename" value="${vo.lCategoryFilename }" />
-	                			
+	                			<c:forEach var="vo" items="${list}" varStatus="status">
 									<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
 										<div class="card text-center bg-lighten-2">
 											<div class="card-content d-flex">
 												<div class="card-body">
-													<img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename }' />" alt="${vo.lCategoryFilename }" style="height: 120px" class="mb-1">
+													<img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename}' />" alt="${vo.lCategoryFilename}" style="height: 120px" class="mb-1">
 													<p class="card-text white">${vo.lCategoryNo }</p>
 													<h4 class="card-title white">${vo.lCategoryName }</h4>
-													<button type="button" class="btn btn-primary round" id="modalEditBt"
-													data-toggle="modal" data-backdrop="false" data-target="#largeEdit">수정</button>
+													<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.lCategoryNo}"
+													data-toggle="modal" data-backdrop="false" data-target="#largeEdit${vo.lCategoryNo}">수정</button>
 													<!-- <button class="btn btn-danger round white" id="lcategoryDel" name="lcategoryDel">삭제</button> -->
 													
 													<!-- Button trigger for warning theme modal -->
 													<button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
-														data-target="#largeDelete" id="modalDeleteBt">
+														data-target="#largeDelete${vo.lCategoryNo}" id="modalDeleteBt${vo.lCategoryNo}">
 													  	 삭제
 													</button>
 								
 													<!--warning theme Modal -->
-													<div class="modal fade text-left" id="largeDelete" tabindex="-1" role="dialog"
+													<div class="modal fade text-left" id="largeDelete${vo.lCategoryNo}" tabindex="-1" role="dialog"
 														aria-labelledby="대분류 카테고리 삭제" aria-hidden="true">
 														<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 															<div class="modal-content">
-																<form name="frmLCategoryDel" id="frmLCategoryDel" method="post" action="<c:url value='/admin/menu6/largeCategory/delete.do?lCategoryNo=${vo.lCategoryNo }' />">
+																<form name="frmLCategoryDel" id="frmLCategoryDel" method="post" action="<c:url value='/admin/menu6/largeCategory/delete.do' />">
 																	<div class="modal-header bg-danger">
 																		<h5 class="modal-title white" id="myModalLabel140">대분류 삭제</h5>
 																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -269,7 +260,7 @@ function readInputFile(input) {
 														</div>
 													</div> <!-- warning theme Modal -->
 													
-													<div class="modal fade text-left" id="largeEdit" tabindex="-1" 
+													<div class="modal fade text-left" id="largeEdit${vo.lCategoryNo}" tabindex="-1" 
 														role="dialog" aria-labelledby="대분류 카테고리 수정" aria-hidden="true">
 														<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 															<div class="modal-content">

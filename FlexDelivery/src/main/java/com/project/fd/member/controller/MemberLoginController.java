@@ -1,6 +1,7 @@
 package com.project.fd.member.controller;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
@@ -130,4 +131,19 @@ public class MemberLoginController {
 		return "member/login/success";
 	}
 	
+	@RequestMapping("/logout.do")
+	public String logOut(HttpSession session,Model model) {
+		logger.info("로그아웃 처리");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		session.removeAttribute("memberNo");
+		session.removeAttribute("authorityNo");
+		session.removeAttribute("locationNo");
+		session.removeAttribute("memberNo");
+		
+		model.addAttribute("msg","로그아웃 처리 되었습니다.");
+		model.addAttribute("url","/member/index.do");
+		
+		return "common/message";
+	}
 }

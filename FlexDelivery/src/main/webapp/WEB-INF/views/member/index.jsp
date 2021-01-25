@@ -14,42 +14,42 @@
 	</div>
 	
 	<!-- 이벤트출력 -->
-    <div class="container">
-    	<div class="pt-4 pb-2 title d-flex align-items-center">
-        	<h5 class="m-0">EVENT</h5>
-    	</div>
-    	<c:set var="no" property="${vo.lCategoryNo }" />
-    	
-        <div class="offer-slider">
-        	<c:forEach var="vo" items="${list}">
+	<div class="bg-white">
+	    <div class="container">
+	    	<div class="pt-4 pb-2 title d-flex align-items-center">
+	        	<h5 class="m-0">EVENT</h5>
+	    	</div>
+	    	<c:set var="no" property="${vo.lCategoryNo }" />
+	    	
+	        <div class="offer-slider">
 	            <div class="cat-item px-1 py-3">
 	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
 	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
 	                </a>
 	            </div>
-        	</c:forEach>
-            <div class="cat-item px-1 py-3">
-                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-                </a>
-            </div>
-            <div class="cat-item px-1 py-3">
-                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro3.jpg' />" class="img-fluid rounded">
-                </a>
-            </div>
-            <div class="cat-item px-1 py-3">
-                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro4.jpg' />" class="img-fluid rounded">
-                </a>
-            </div>
-            <div class="cat-item px-1 py-3">
-                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-                </a>
-            </div>
-        </div>
-    </div>
+	            <div class="cat-item px-1 py-3">
+	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
+	                </a>
+	            </div>
+	            <div class="cat-item px-1 py-3">
+	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro3.jpg' />" class="img-fluid rounded">
+	                </a>
+	            </div>
+	            <div class="cat-item px-1 py-3">
+	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro4.jpg' />" class="img-fluid rounded">
+	                </a>
+	            </div>
+	            <div class="cat-item px-1 py-3">
+	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
+	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
         <!-- 대분류카테고리 -->
     <div class="bg-white">
 		<div class="container">
@@ -57,66 +57,21 @@
 				<h5 class="m-0">Menu</h5>
 			</div>
 			<div class="row">
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="" class="img-fluid mb-2">
-						<h6>디저트</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Pizza.png' />" class="img-fluid mb-2" >
-						<h6>피자</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Burger.png' />" class="img-fluid mb-2">
-						<h6>패스트푸드</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Sandwich.png' />" class="img-fluid mb-2">
-						<h6>간식</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Coffee.png' />" class="img-fluid mb-2">
-						<h6>커피</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Steak.png' />" class="img-fluid mb-2">
-						<h6>양식</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/ColaCan.png' />" class="img-fluid mb-2">
-						<h6>음료</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Breakfast.png' />" class="img-fluid mb-2">
-						<h6>양식</h6>
-					</a>
-				</div>
-				<div class="col-sm-3 col-3 pb-3">
-					<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />" style="color:gray;">
-						<img alt="#" src="<c:url value='/resources/memberResources/img/icons/Salad.png' />" class="img-fluid mb-2">
-						<h6>한식</h6>
-					</a>
-				</div>
+				<c:forEach var="vo" items="${list}">
+					<div class="col-sm-3 col-3 pb-3">
+						<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/member/store/storeList.do?lCategoryNo=${vo.lCategoryNo}' />" style="color:gray;">
+							<img alt="이미지 추가예정" src="${vo.lCategoryFilename}" class="img-fluid mb-2">
+							<h6>${vo.lCategoryName}</h6>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
-	</div>
+	</div> <!-- 대분류 끝 -->
     <div class="container">
         <!-- 뭐넣을지고민중 -->
-        <div class="pt-4 pb-2 title d-flex align-items-center">
+        
+        <%-- <div class="pt-4 pb-2 title d-flex align-items-center">
             <h5 class="m-0">Trending this week</h5>
         </div>
         <!-- slider -->
@@ -213,7 +168,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
     </div>
-    </div>
+</div>
 <%@include file="../memInc/bottom.jsp"%>

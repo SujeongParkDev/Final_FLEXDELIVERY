@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery/member.js' />"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#forgotId').click(function(){
@@ -39,6 +40,8 @@
 		});
 	
 	});
+	
+	
 </script>
 <head>
     <meta charset="utf-8">
@@ -70,13 +73,12 @@
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
                     <hr>
-                    <h2 class="text-dark my-0">WECOME FLEX-DELIVERY</h2>
+                    <a href="<c:url value='/member/index.do'/>"><h2 class="text-dark my-0">WECOME FLEX-DELIVERY</h2></a>
                    	<br>
                     <form class="mt-5 mb-4" action="<c:url value='/login.do' />">
                     	<input type="hidden" name="idx" value="${idx}"> 
                         <div class="form-group">
-                            <input type="text" placeholder="ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid">
-                            ${cookie.ck_memberId}
+                            <input type="text" placeholder="ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid" value="${cookie.ck_memberid.value}">
                         </div>
                         <div class="form-group">
                             <input type="password" placeholder="PASSWORD" class="form-control" id="exampleInputPassword1" name="pwd">
@@ -84,7 +86,7 @@
 						<div class="checkbox ">
 							<label>
 								<input type="checkbox" name="chkSave" 
-								<c:if test="${!empty cookie.ck_memberId}">
+								<c:if test="${!empty cookie.ck_memberid}">
 									checked="checked"
 								</c:if>
 								> 아이디 저장
@@ -100,7 +102,7 @@
                         <p class="text-center" id="forgotPwd">비밀번호 찾기</p>
                     </a>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a href="<c:url value='/member/register.do' />">
+                        <a href="<c:url value='/member/register/register.do' />">
                             <p class="text-center m-0">회원가입</p>
                         </a>
                     </div>

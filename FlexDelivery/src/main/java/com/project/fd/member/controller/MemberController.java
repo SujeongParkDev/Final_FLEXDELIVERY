@@ -1,14 +1,19 @@
 package com.project.fd.member.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
 
@@ -19,6 +24,7 @@ public class MemberController {
 		=LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired private MemberService memberService;
+	@Autowired private AdminLargeCategoryService lCategoryServ;
 	
 	@RequestMapping("/register/register.do")
 	public String register(){
@@ -84,13 +90,6 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/store/storeDetail.do")
-	public String store() {
-		logger.info("점포 화면 보여주기");
-		
-		return "member/store/storeDetail";
-	}
-	
 	@RequestMapping("/member.do")
 	public String membermainjw() {
 		logger.info("회원 메인 보여주기");
@@ -99,18 +98,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/index.do")
-	public String memberIndex() {
+	public String memberIndex(Model model) {
 		logger.info("회원 메인화면 보여주기");
-		
+		List<AdminLargeCategoryVO> list=lCategoryServ.selectAll();
+		logger.info("list.size={}",list.size());
+		model.addAttribute("list",list);
 		return "member/index";
 	}
 	
-	@RequestMapping("/store/storeList.do")
-	public void storeList() {
-		logger.info("점포 리스트 보여주기");
+	
+	@RequestMapping("/sidebarList.do")
+	public String sidebarList(Model model) {
+		logger.info("사이드바 대분류출력");
+		List<AdminLargeCategoryVO> list=lCategoryServ.selectAll();
+		model.addAttribute("list",list);
+		return "memInc/sidebarList";
 	}
-	
-	
-	
 	
 }
