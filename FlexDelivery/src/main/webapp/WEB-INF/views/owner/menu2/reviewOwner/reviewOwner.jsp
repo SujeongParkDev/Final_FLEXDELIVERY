@@ -1,9 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
  <%@include file="../../../ownerInc/jianSidebarTop.jsp"%> 
+ <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- top 끝 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/reviewOwner.css" />
+
+	<script type="text/javascript">
+	$(function(){
+	$('#frm1').submit(function(){
+		$('#p1').append($.param($(this).serializeArray()));
+		//=> $.param() : 객체를 쿼리 문자열로 바꾼다
+		alert($(this).serializeArray());
+		
+		$.ajax({
+			url:"<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>",
+			type:"post",
+			data:$(this).serializeArray(), //입력양식의 내용을 객체로 만든다
+			dataType:"json",
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			success:function(res){
+				//alert(res);
+				var str=res.message+ "<br>";
+				str+="메모 : " + res.data.content;
+				
+				$('#result').html(str);
+			},
+			error:function(xhr, status, error){
+				alert("error! : " + error);
+			}				
+		});
+				$('#content').val("");
+		
+		event.preventDefault();
+	});
+	
+	function check(){
+		var form = document.form1;
+		//첫번째 라디오 버튼을 선택한 경우
+		if(form.ex[0].checked == true){
+			//현재 폼의 action 값을 menu_1.html이라는 파일로 만든다
+			form.action="menu_1.html";
+		}
+		//두번째 라디오 버튼을 선택한 경우
+		else if(form.ex[1].checked == true){
+			form.action = "menu_2.html";
+		}
+		else{
+			form.action = "menu_3.html";
+		}
+		form.submit();
+	}
+
+	});
+	</script>
 <div class="frame-wrap">
 	<div class="frame-body">
 		<button class="top-button  hide" style="">
@@ -34,171 +85,18 @@
 									</p>
 									<p class="total">4.9</p>
 								</div>
-								<ol class="detail-point">
-								<!-- 차트 넣어주세요 죄송합니다 ㅠㅠ 넣고 삭제해주세요 -->
-									<li><span class="point">5점</span><span class="chart"><em
-											style="width: 94.9008%;"></em></span><span class="count">335</span></li>
-									<li><span class="point">4점</span><span class="chart"><em
-											style="width: 4.24929%;"></em></span><span class="count">15</span></li>
-									<li><span class="point">3점</span><span class="chart"><em
-											style="width: 0%;"></em></span><span class="count">0</span></li>
-									<li><span class="point">2점</span><span class="chart"><em
-											style="width: 0%;"></em></span><span class="count">0</span></li>
-									<li><span class="point">1점</span><span class="chart"><em
-											style="width: 0.849858%;"></em></span><span class="count">3</span></li>
-								</ol>
+								
+								<!--  -->
+								<!--  -->
+								<!--  -->
+								
 							</div>
-							<!-- 차트 부탁드려요 죄송합니다 아래는 삭제해주세욥 -->
-							<div class="month-point">
-								<div class="recharts-responsive-container"
-									style="width: 99%; height: 100%;">
-									<div class="recharts-wrapper"
-										style="position: relative; cursor: default; width: 325px; height: 156px;">
-										<svg class="recharts-surface" width="325" height="156"
-											viewBox="0 0 325 156" version="1.1">
-											<defs>
-											<clipPath id="recharts22-clip">
-											<rect x="0" y="20" height="76" width="325"></rect></clipPath></defs>
-											<g class="recharts-cartesian-grid">
-											<g class="recharts-cartesian-grid-horizontal">
-											<line stroke="#eceef2" stroke-dasharray="3 2" fill="none"
-												x="0" y="20" width="325" height="76" x1="0" y1="96" x2="325"
-												y2="96"></line>
-											<line stroke="#eceef2" stroke-dasharray="3 2" fill="none"
-												x="0" y="20" width="325" height="76" x1="0" y1="77" x2="325"
-												y2="77"></line>
-											<line stroke="#eceef2" stroke-dasharray="3 2" fill="none"
-												x="0" y="20" width="325" height="76" x1="0" y1="58" x2="325"
-												y2="58"></line>
-											<line stroke="#eceef2" stroke-dasharray="3 2" fill="none"
-												x="0" y="20" width="325" height="76" x1="0" y1="39" x2="325"
-												y2="39"></line>
-											<line stroke="#eceef2" stroke-dasharray="3 2" fill="none"
-												x="0" y="20" width="325" height="76" x1="0" y1="20" x2="325"
-												y2="20"></line></g></g>
-											<g
-												class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
-											<g class="recharts-cartesian-axis-ticks">
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="33.75" y="104" stroke="none"
-												fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="33.75" dy="0.71em">7월</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="85.25" y="104" stroke="none"
-												fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="85.25" dy="0.71em">8월</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="136.75" y="104"
-												stroke="none" fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="136.75" dy="0.71em">9월</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="188.25" y="104"
-												stroke="none" fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="188.25" dy="0.71em">10월</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="239.75" y="104"
-												stroke="none" fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="239.75" dy="0.71em">11월</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="291.25" y="104"
-												stroke="none" fill="#212329" font-size="14"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="291.25" dy="0.71em">12월</tspan></text></g></g></g>
-											<g
-												class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
-											<g class="recharts-cartesian-axis-ticks">
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="33.75" y="127" stroke="none"
-												fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="33.75" dy="0.71em">107개</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="85.25" y="127" stroke="none"
-												fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="85.25" dy="0.71em">89개</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="136.75" y="127"
-												stroke="none" fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="136.75" dy="0.71em">62개</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="188.25" y="127"
-												stroke="none" fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="188.25" dy="0.71em">53개</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="239.75" y="127"
-												stroke="none" fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="239.75" dy="0.71em">37개</tspan></text></g>
-											<g class="recharts-layer recharts-cartesian-axis-tick">
-											<text width="325" height="30" x="291.25" y="127"
-												stroke="none" fill="#8e929f" font-size="12"
-												class="recharts-text recharts-cartesian-axis-tick-value"
-												text-anchor="middle">
-											<tspan x="291.25" dy="0.71em">48개</tspan></text></g></g></g>
-											<g class="recharts-layer recharts-line">
-											<path stroke="#eee" fill="none" stroke-width="2" width="325"
-												height="76" class="recharts-curve recharts-line-curve"
-												d="M33.75,21.89999999999999L85.25,21.89999999999999L136.75,21.89999999999999L188.25,21.89999999999999L239.75,20L291.25,21.89999999999999"></path>
-											<g class="recharts-layer recharts-line-dots">
-											<circle cx="33.75" cy="21.89999999999999" r="2"
-												stroke-width="0" fill="#212329"></circle>
-											<circle cx="85.25" cy="21.89999999999999" r="2"
-												stroke-width="0" fill="#212329"></circle>
-											<circle cx="136.75" cy="21.89999999999999" r="2"
-												stroke-width="0" fill="#212329"></circle>
-											<circle cx="188.25" cy="21.89999999999999" r="2"
-												stroke-width="0" fill="#212329"></circle>
-											<circle cx="239.75" cy="20" r="2" stroke-width="0"
-												fill="#212329"></circle>
-											<circle cx="291.25" cy="21.89999999999999" r="2"
-												stroke-width="0" fill="#212329"></circle></g>
-											<g class="recharts-layer recharts-label-list">
-											<text x="33.75" y="21.89999999999999" dy="-10" font-size="14"
-												offset="10" text-anchor="middle" dominant-baseline="central"
-												fill="#212329" style="font-weight: 500;">4.9</text>
-											<text x="85.25" y="21.89999999999999" dy="-10" font-size="14"
-												offset="10" text-anchor="middle" dominant-baseline="central"
-												fill="#212329" style="font-weight: 500;">4.9</text>
-											<text x="136.75" y="21.89999999999999" dy="-10"
-												font-size="14" offset="10" text-anchor="middle"
-												dominant-baseline="central" fill="#212329"
-												style="font-weight: 500;">4.9</text>
-											<text x="188.25" y="21.89999999999999" dy="-10"
-												font-size="14" offset="10" text-anchor="middle"
-												dominant-baseline="central" fill="#212329"
-												style="font-weight: 500;">4.9</text>
-											<text x="239.75" y="20" dy="-10" font-size="14" offset="10"
-												text-anchor="middle" dominant-baseline="central"
-												fill="#212329" style="font-weight: 500;">5.0</text>
-											<text x="291.25" y="21.89999999999999" dy="-10"
-												font-size="14" offset="10" text-anchor="middle"
-												dominant-baseline="central" fill="#212329"
-												style="font-weight: 500;">4.9</text></g></g></svg>
-									</div>
-									<div
-										style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;"></div>
-								</div>
-							</div>
-							<!-- 삭제뷰 -->
+							
+			<%@include file="reviewChart.jsp" %>
+						
+							<!--  -->
+							<!--  -->
+							<!--  -->
 						</div>
 					</div>
 				</div>
@@ -233,58 +131,95 @@
 				<div class="review-wrap">
 					<div class="review-list">
 						<div class="Card ">
+								<c:if test="${!empty reviewList }">
+					<c:forEach var="map" items="${reviewList }">
+					<!--  var="optionMap" items="${optionList}"  -->
+					
+						<!-- revewList include -->
 							<div class="user-info">
 								<div class="rating-stars-wrap">
-									<p class="nick">rlad****</p>
+							
+									<p class="nick">${map['MEMBER_ID']}</p>
+							
+							<!-- 3자리 뒤에 **표
+								<c:if test="${fn:length(map['MEMBER_ID'])>=3}">
+									${fn:substring(map['MEMBER_ID'], 2,10) }*
+								</c:if>
+							
+							 -->
+								
 									<div class="rating-stars">
-										<span style="width: 100%;"></span>5
+										<span style="width: 100%;"></span>${map['REVIEW_RATING'] }점 
 									</div>
-									<span class="date">오늘</span>
+									<span class="date"><fmt:formatDate value="${map['REVIEW_REGDATE']}" pattern="yyyy-MM-dd"/></span>
 								</div>
 								<div class="coupon-info"></div>
 							</div>
-							<div class="review-info">
-								<p class="review-cont">사장님 오늘도 잘먹겠습니다! 주말에 먹고싶었는데 안하셔가지고
-									기다렸어요ㅠㅠ너무 맛있네요! 감사합니다~</p>
+							<div class="review-cont">
 								<ul class="review-menus">
-									<li>피자(M)+소주 1병<i class="icon icon-good"></i><span
+									<li class="">${map['MENU_NAME']} + ${map['M_OPTION_NAME']}<i class="icon icon-good"></i><span
 										class="menu-item-review"></span></li>
 								</ul>
 								<ul class="review-photos">
-									<li class=""
-										style="background-image: url(&quot;https://img-cdn.baemin.com/fw/shopreview/2021/1/19/58808799_191028000425012008_1_b.jpg&quot;);">메뉴사진</li>
+								<img src
+					="<c:url value='/resources/imgs/${map["REVIEW_FILENAME"] }'/>" 
+							alt="${map['REVIEW_FILENAME']}" width="40" 
+							align="absmiddle">
 								</ul>
+								<p class="card-text">${map['REVIEW_CONTENT']}</p>
+								</div>
+								
+								<!-- CEO comment start !! -->
+								<c:if test="${!empty map['R_COMMENT_CONTENT']}">
 								<div class="ceo-comment">
-									<p class="comment-name">
+									<p class="comment-cont">
 										사장님<span class="date">오늘</span>
 									</p>
-									<p class="comment-cont">
-										rlad****님,
-										<br><br>🧡💛💚💙💜리뷰이벤트🧡💛💚💙💜<br>♀남녀노소♂
-										불문하고[💫5개+단골매장💖찜+📸사진리뷰]약속해주시는 👨&zwj;👩&zwj;👧&zwj;👦고객님들께
-										맛있는 서비스를 👌제공해드립니다.<br>📢참여방법<br>1.우측 상단에 💖 꾹 눌러서 찜
-										~!<br>2.요청사항에 "리뷰이벤트 참여"기재 리뷰 선택 메뉴중 한가지 선택(미기재시 사장 마음대로)<br>3.💫5개와
-										함께 사진 리뷰 작성하기(바로결제/만나서 결제 모두 참여가능 !)<br>
+									<p class="card-text">
+										${map['MEMBER_ID'] }님,
+										<br>
+										${map['R_COMMENT_CONTENT'] }
+										<br>
 									</p>
 									<div class="button-group button-group-row align-right ">
 										<button type="button" class="button small danger inGroup">삭제</button>
 										<button type="button" class="button small secondary inGroup">수정</button>
 									</div>
 								</div>
+								<br>
+								<br>
+								</c:if>
+							</c:forEach>
+								<c:if test="${empty  reviewList }">
+								
+								<!-- 댓글이 없는 경우 활성화  -->
 								<div class="ceo-comment-write-wrap">
-									<button type="button" class="open-comment">댓글을 등록해주세요</button>
+									 <h3>파라미터</h3>
+	 							<p id="p1"></p>
+										 <hr>
+								<form id="frm1">
+								<div class="form-group">
+								<!-- hidden  -->
+								<input type="hidden" id="reviewNo" name="reviewNo" />
+								<input type="hidden" id="storeNo" name="storeNo" />
+								<label for="content"></label>
+								<textarea class="form-control" rows="3" id="content" name="rCommentContent" placeholder="댓글을 등록해주세요"></textarea>
+									<button class="button medium" type="submit">Button</button>
+									</div>
+									</form>
 								</div>
-							</div>
+								</c:if>
+								</c:if>
+							</div><!-- list -->
+									</div>
+								
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	<div class="frame-promo">
 		<div class="tip-container"></div>
 	</div>
-</div>
 
 <!--  bottom  -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
