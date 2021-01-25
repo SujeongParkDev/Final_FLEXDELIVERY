@@ -21,11 +21,11 @@
 	</delete>
 	
 	<!-- 승인 목록 조회 
-	create or replace view LSJAgreeListView
+create or replace view LSJAgreeListView
 as
-select s.STORE_NO,s.A_AGREE_NO as SAGREENO,
-o.O_REGISTER_NO,o.A_AGREE_NO as RAGREENO, o.owner_no,
-a.STOREAD_NO, a.ad_pay_flag
+select s.STORE_NO,s.A_AGREE_NO as SAGREENO,s.STORE_REGDATE,
+o.O_REGISTER_NO,o.A_AGREE_NO as RAGREENO, o.owner_no, o.OWNERREGISTER_REGDATE,
+a.STOREAD_NO, a.ad_pay_flag, a.STOREAD_REGDATE
 from ownerRegister o full outer join stores s
 on  o.OWNER_NO=s.OWNER_NO
  full join STOREAD a
@@ -37,6 +37,11 @@ on a.store_no=s.STORE_NO;
 		select * from LSJAgreeListView
 		where OWNER_NO=#{ownerNo}
 	</select>
+	
+	<delete id="deleteAd" parameterType="int">
+		delete from STOREAD
+		where STOREAD_NO=#{storeadNo}
+	</delete>
 	
 	
 </mapper>

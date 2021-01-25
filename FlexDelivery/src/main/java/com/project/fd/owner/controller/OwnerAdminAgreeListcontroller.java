@@ -1,12 +1,8 @@
 package com.project.fd.owner.controller;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,16 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.fd.common.DateSearchVO;
 import com.project.fd.common.FileUploadUtil;
-import com.project.fd.common.PaginationInfo;
-import com.project.fd.common.Utility;
-import com.project.fd.owner.ownerregister.model.OwnerAllRegisterVO;
+import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
-import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
 
 @Controller
@@ -36,12 +27,13 @@ public class OwnerAdminAgreeListcontroller {
 	
 	@Autowired private OwnerRegisterService ownerRService;
 	@Autowired private FileUploadUtil fileUtil;
+	@Autowired private OwnerAdvertiseService ownerAdvertiseService;
 	
-	 @RequestMapping(value="/temporary/tempList.do",method=RequestMethod.GET)
+	/* @RequestMapping(value="/temporary/tempList.do",method=RequestMethod.GET)
 	 public void TempList_get() {
 		 logger.info("점포 - 승인 목록 조회  화면");
 	 }
-	 
+	 */
 	 //datapicker 사용 리스트 조회
 	/* 
 	 @RequestMapping("/temporary/tempList.do")
@@ -136,26 +128,39 @@ public class OwnerAdminAgreeListcontroller {
 		} */
 		
 		@RequestMapping("/tempDelete.do")
-		public String temp_Delete(@ModelAttribute OwnerRegisterVO ownerRegisterVo,
-			@RequestParam String oldFileName, HttpServletRequest request
-				,Model model){
+		public String temp_Delete(
+				@ModelAttribute int storeadNo,
+			@RequestParam String mode,
+				Model model){
+			int cnt=0;
+			if(mode.equals("stores")) {
+				
+			}else if(mode.equals("btAd")) {
+				cnt=ownerRService.deleteAd(storeadNo);
+			}else if(mode.equals("btRegi")) {
+				//int cnt=ownerRService.deleteLicense(ownerRegisterVo);
+				//logger.debug("사업자등록증  삭제 결과 : cnt={}", cnt);
+				/*
+				String upPath 
+				= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
+				File oldFile = new File(upPath, oldFileName);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("기존 파일 삭제 여부 :{}", bool);
+				}		
+				 */
+			}
+			
 			//1. 파라미터
-			logger.debug(" 취소 , 파라미터: ownerRegisterVo={}", ownerRegisterVo);
+			logger.debug(" 취소 , 파라미터: storeadNo={}",storeadNo );
 			
 			//2. db작업
 			String msg="신청 취소  실패", 
 					url="owner/menu2/temporary/tempList.do";
+			if(cnt>0) {
+				msg="취소 처리 성공 ";
+			}
 			
-			//int cnt=ownerRService.deleteLicense(ownerRegisterVo);
-			//logger.debug("사업자등록증  삭제 결과 : cnt={}", cnt);
-			
-			String upPath 
-			= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
-			File oldFile = new File(upPath, oldFileName);
-			if(oldFile.exists()) {
-				boolean bool=oldFile.delete();
-				logger.info("기존 파일 삭제 여부 :{}", bool);
-			}		
 			
 			//3
 			model.addAttribute("msg", msg);

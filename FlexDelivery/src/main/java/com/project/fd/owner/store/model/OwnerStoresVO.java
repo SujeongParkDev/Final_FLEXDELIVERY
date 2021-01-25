@@ -18,7 +18,6 @@ public class OwnerStoresVO {
 	
 	//널 
 	private String storeContent; /* 점포소개 */
-	private String storeRegdate;/* 점포등록일 */
 	private String storeOutdate; /* 점포탈퇴일 */
 	private String storeOpenTime; /* 점포오픈시간 */
 	private String storeCloseTime ; /* 점포마감시간 */
@@ -28,8 +27,13 @@ public class OwnerStoresVO {
 	private int  sStatusNo;  /* 점포영업상태번호1 */
 	private int hCategoryNo; /* 휴무요일번호 7*/
 	private int aAgreeNo; /* 관리자승인번호1 */
+
 	private int ownerNo; /* 점주번호 */
 	private int oRegisterNo;/* 사업자등록번호 */
+	
+	//date로 언제 승 받았는지 
+	private String storeRegdate;/* 점포등록일 */
+
 
 	public int getStoreNo() {
 		return storeNo;
