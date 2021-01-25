@@ -210,6 +210,54 @@
 						</div>
 					</div>
 				</form>
+
+
+				<form class="form-card form-card-active">
+					<div>
+						<div class="Card ">
+							<div class="card-header">
+								<h3>가게 소개</h3>
+								<div class="card-menu " style="opacity: 1;">
+									<button type="button" class="button mr-1 small secondary">취소</button>
+									<button type="submit" class="button small primary">적용</button>
+								</div>
+							</div>
+							<div class="form-group no-divider" style="min-height: auto;">
+								<div class="form-control-wrap">
+									<div class="form-control ">
+										<div class="textarea-container ">
+											<textarea data-component="[object Object]" class="" rows="13"
+												maxlength="500" placeholder="">♡피자알파는 흑미도우를 사용합니다.
+♡(건강한 담백함과 숙성도우의 쫄깃함)
+♡자연산 최고급 치즈를 사용합니다.
+
+하나 ☆ 박리다매♡
+피자는 절대 허접하지 않습니다.
+드셔보시고 판단 해주세요.
+이 불경기에 비싼 피자 부담스럽습니다.
+어려움을 고객님과 함께 하겠습니다.
+
+둘 ☆ 재료선정과 맛♡
+피자알파만의 색깔로 아낌없는 재료와 푸짐한 가성비 그리고 어디서도 맛볼 수 없는 맛
+저렴한 가격에도 최상의 맛과 퀄리티로 고객님들에게 만족시켜드릴 수 있도록 노력하겠습니다.
+아무리 금액이 저렴해도 맛이 없다면 고객님들의 선택을 받을 수 없습니다.
+
+셋 ☆ 초심♡
+처음 가게 오픈해서 처음 주문 받았던 그 감사한 마음을 "절대"잊지 않고 항상 고객님들의 말씀을 새겨듣는 매장으로 거듭나겠습니다.</textarea>
+											<span class="text-count">118</span>
+										</div>
+									</div>
+								</div>
+								<ul class="bullet-ul small muted">
+									<li>가게소개는 변경 즉시 배달의민족 앱에 반영됩니다. 정보 수정 시 주의 하시기 바랍니다.</li>
+									<li>배달의민족은 플랫폼 서비스로서, 공정한 경쟁을 해치거나 고객의 선택에 혼선을 주는 키워드와 문구를
+										입력할 수 없도록 합니다. 게시 영역의 목적에 맞게 활용해 주시길 바랍니다.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</form>
+				
 				<form class="form-card">
 					<div>
 						<div class="Card ">
