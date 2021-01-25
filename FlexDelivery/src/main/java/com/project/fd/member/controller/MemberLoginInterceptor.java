@@ -21,7 +21,7 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 			PrintWriter out=response.getWriter();
 			out.print("<script>");
 			out.print("alert('먼저 로그인 하세요');");
-			out.print("location.href="+request.getContextPath()+"/member/login/memberLogin.do;");
+			out.print("location.href='"+request.getContextPath()+"/member/login/memberLogin.do';");
 			out.print("</script>");
 			return false;
 		}

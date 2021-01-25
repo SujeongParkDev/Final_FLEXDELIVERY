@@ -5,8 +5,7 @@
 <!-- script start -->
 <script>
 $(function(){
-   
-   
+
    /* $('#lcategoryWrite').click(function(){
       window.open("<c:url value='/admin/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
       opener.location.reload();
@@ -32,6 +31,7 @@ $(function(){
        alert("등록 성공");
        window.parent.location.reload();
    }); */
+
 
    /* $('#modalDel').click(function () {
        alert("삭제하였습니다.");
@@ -190,6 +190,7 @@ function readInputFile(input) {
                      </div>
                   <!-- modal end -->
                 
+
                   <c:if test="${empty list }">
                      <div class="row">
                         <div class="col-12">

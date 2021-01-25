@@ -109,7 +109,7 @@
 					</form>
 				</div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
-                    <a href="<c:url value='/member/login.do' />">
+                    <a href="<c:url value='/member/login/memberLogin.do' />">
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
                 </div>

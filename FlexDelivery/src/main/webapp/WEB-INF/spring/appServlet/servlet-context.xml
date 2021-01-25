@@ -43,7 +43,8 @@
 			<mapping path="/member/mypage/**/*"/>
 			<mapping path="/member/gift/**/*"/>
 			<mapping path="/member/coupon/**/*"/>
-			<mapping path="/member/order/orderList.do"/>
+			<mapping path="/member/order/**/*"/>
+			<mapping path="/member/store/**/*"/>
 			<exclude-mapping path="/member/login/memberLogin.do"/>
 			<exclude-mapping path="/member/register/register.do"/>
 			<beans:ref bean="memberLoginInterceptor"/>

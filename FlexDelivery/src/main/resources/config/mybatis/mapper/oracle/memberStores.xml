@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.memberStores">
+	<!-- create or replace view hyStoreList
+		as
+		select s.*,A.REVIEW_COUNT,A.REVIEW_RATING,A.COUPON_EXIST
+		from stores s,
+		(
+		    select s.store_no as dummy,count(r.REVIEW_NO) as "REVIEW_COUNT",count(b.STORE_NO) as "COUPON_EXIST",avg(nvl(r.REVIEW_RATING,0)) as "REVIEW_RATING"
+		    from stores s left join review r 
+		    on s.STORE_NO = r.STORE_NO
+		    left join storecouponbox b
+		    on s.store_no=b.STORE_NO
+		    group by s.store_No
+		)A
+		where s.store_NO=A.dummy -->
+
+
+	<select id="selectFlexAdStores" parameterType="map" resultType="memberStoresVo">
+		select s.*
+		from hyStoreList s,storeAd a
+		where s.STORE_NO = a.STORE_NO 
+		and a.ad_validate>sysdate 
+		and a.AD_PAY_FLAG='Y'
+		and s.LOCATION_NO=#{locationNo}
+		and s.l_category_No=#{lCategoryNo}
+		and s.a_agree_no=3
+		and s.store_outdate is null
+		and a.advertise_no=1
+	</select>
+	<select id="selectOpenAdStores" parameterType="map" resultType="memberStoresVo">
+		select s.*
+		from hyStoreList s,storeAd a
+		where s.STORE_NO = a.STORE_NO 
+		and a.ad_validate>sysdate 
+		and a.AD_PAY_FLAG='Y'
+		and s.LOCATION_NO=#{locationNo}
+		and s.l_category_No=#{lCategoryNo}
+		and s.a_agree_no=3
+		and s.store_outdate is null
+		and a.advertise_no=2
+	</select>
+	<select id="categorySlider" resultType="adminLargeCategoryVo">
+		select * from largeCategory
+	</select>
+	
+	<select id="selectAllStores" parameterType="map" resultType="memberStoresVo">
+		select s.*
+		from hyStoreList s,storeAd a
+		where s.STORE_NO = a.STORE_NO 
+		and a.ad_validate>sysdate 
+		and a.AD_PAY_FLAG='Y'
+		and s.LOCATION_NO=#{locationNo}
+		and s.l_category_No=#{lCategoryNo}
+		and s.a_agree_no=3
+		and s.store_outdate is null
+	</select>
+</mapper>
