@@ -23,13 +23,13 @@ public class AdminApprovalController {
 	AdminTemporaryService temporaryService;
 	
 	@RequestMapping("/approvalList.do")
-	public String adminApprovalList(@RequestParam String approvalFlag, Model model) {
+	public String adminApprovalList(Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 승인/변경 화면");
 		//1
 		//2
-		List<AdminTemporaryVO> list= temporaryService.approvalList(approvalFlag);
- 
+		List<AdminTemporaryVO> list= temporaryService.approvalList();
+		logger.info("승인 list, list.size={}",list.size());
 		//3
 		model.addAttribute("list", list);
 		

@@ -12,8 +12,8 @@ public class AdminTemporaryServiceImpl implements AdminTemporaryService{
 	
 
 	@Override
-	public List<AdminTemporaryVO> approvalList(String approvalFlag) {
-		return temporaryDao.approvalList(approvalFlag);
+	public List<AdminTemporaryVO> approvalList() {
+		return temporaryDao.approvalList();
 	}
 
 
