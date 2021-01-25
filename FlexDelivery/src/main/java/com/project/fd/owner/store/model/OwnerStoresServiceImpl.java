@@ -8,4 +8,7 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 
 	@Autowired OwnerStoresDAO ownerStoresDao;
 	
+	public int selectStoreNoByNo(int ownerNo) {
+		return ownerStoresDao.selectStoreNoByNo(ownerNo);
+	}
 }

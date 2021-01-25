@@ -33,20 +33,21 @@ public class OwnerLoginController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		String ownerId=(String) session.getAttribute("ownerId");
-		/*
-		 * String storeNo = (String) session.getAttribute("storeNo");
-		 * 
-		 * logger.info("storeNo={}",storeNo);
-		 * 
-		 */
-		logger.info("로그아웃 처리, 파라미터 userid={}", ownerId);
+		
+		if(session.getAttribute("storeNo")!=null) {
+			session.removeAttribute("storeNo");
+		}
+	
+		logger.info("로그아웃 처리, 파라미터 userid={}, storeNO={}", ownerId);
+		
+		
 		
 		session.removeAttribute("ownerId");
 		session.removeAttribute("ownerName");
 		session.removeAttribute("ownerNo");
 		session.removeAttribute("authorityNo");
 		session.removeAttribute("result");
-		session.removeAttribute("storeNo");
+	
 		
 		/* logger.info("storeNo={}",session.getAttribute("storeNo")); */
 		

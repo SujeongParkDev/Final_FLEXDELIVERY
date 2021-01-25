@@ -13,7 +13,9 @@
 
 
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
-    
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -26,11 +28,9 @@
 
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+ 
 	<script type="text/javascript">
-		
-		
-		
+
 		if(${result}==${checkSuccess}){
 		 	window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
 			self.close();
@@ -57,8 +57,7 @@
 	</script>
 </head>
 <body style="overflow-x:hidden;">
-	
-			  
+		
 			 		<br>	<br>	
 		<section id="basic-vertical-layouts">
 		    <div class="row match-height">
@@ -77,6 +76,7 @@
 		                        <div class="form-group">
 			                         <div class="input-group mb-4">
 		                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1" name="ownerPwd">
+		                                 
 		                               
 		                                 <div class="col-12 d-flex mt-3 justify-content-center">
 		                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>

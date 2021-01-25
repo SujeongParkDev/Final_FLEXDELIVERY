@@ -3,6 +3,7 @@ package com.project.fd.owner.store.model;
 public class OwnerStoresVO {
 	/*NOT NULL*/
 	//private OwnerStoresFormVO ownerStoresFormVo;
+	private int storeNo; /*점포번호 => 지안 20210125 추가함 필요해서.. */
 	private String storeName; /* 점포명 */
 	private String storeLogo;/* 점포로고이미지 */
 	private String storeAddress;/* 점포주소 */
@@ -27,8 +28,12 @@ public class OwnerStoresVO {
 	private int aAgreeNo; /* 관리자승인번호1 */
 	private int ownerNo; /* 점주번호 */
 	private int oRegisterNo;/* 사업자등록번호 */
-	
-
+	public int getStoreNo() {
+		return storeNo;
+	}
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
+	}
 	public String getStoreName() {
 		return storeName;
 	}
@@ -53,17 +58,17 @@ public class OwnerStoresVO {
 	public void setStoreAddressDetail(String storeAddressDetail) {
 		this.storeAddressDetail = storeAddressDetail;
 	}
-	public String getStoreRegdate() {
-		return storeRegdate;
-	}
-	public void setStoreRegdate(String storeRegdate) {
-		this.storeRegdate = storeRegdate;
-	}
 	public String getStoreContent() {
 		return storeContent;
 	}
 	public void setStoreContent(String storeContent) {
 		this.storeContent = storeContent;
+	}
+	public String getStoreRegdate() {
+		return storeRegdate;
+	}
+	public void setStoreRegdate(String storeRegdate) {
+		this.storeRegdate = storeRegdate;
 	}
 	public String getStoreOutdate() {
 		return storeOutdate;
@@ -88,12 +93,6 @@ public class OwnerStoresVO {
 	}
 	public void setStoreMinPrice(int storeMinPrice) {
 		this.storeMinPrice = storeMinPrice;
-	}
-	public int getOwnerNo() {
-		return ownerNo;
-	}
-	public void setOwnerNo(int ownerNo) {
-		this.ownerNo = ownerNo;
 	}
 	public int getlCategoryNo() {
 		return lCategoryNo;
@@ -125,6 +124,12 @@ public class OwnerStoresVO {
 	public void setaAgreeNo(int aAgreeNo) {
 		this.aAgreeNo = aAgreeNo;
 	}
+	public int getOwnerNo() {
+		return ownerNo;
+	}
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
+	}
 	public int getoRegisterNo() {
 		return oRegisterNo;
 	}
@@ -133,14 +138,16 @@ public class OwnerStoresVO {
 	}
 	@Override
 	public String toString() {
-		return "OwnerStoresVO [storeName=" + storeName + ", storeLogo=" + storeLogo + ", storeAddress=" + storeAddress
-				+ ", storeAddressDetail=" + storeAddressDetail + ", storeRegdate=" + storeRegdate + ", storeContent="
-				+ storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime=" + storeOpenTime
-				+ ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice + ", ownerNo=" + ownerNo
-				+ ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo=" + sStatusNo
-				+ ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", oRegisterNo=" + oRegisterNo + "]";
+		return "OwnerStoresVO [storeNo=" + storeNo + ", storeName=" + storeName + ", storeLogo=" + storeLogo
+				+ ", storeAddress=" + storeAddress + ", storeAddressDetail=" + storeAddressDetail + ", storeContent="
+				+ storeContent + ", storeRegdate=" + storeRegdate + ", storeOutdate=" + storeOutdate
+				+ ", storeOpenTime=" + storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice="
+				+ storeMinPrice + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo="
+				+ sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", ownerNo=" + ownerNo
+				+ ", oRegisterNo=" + oRegisterNo + "]";
 	}
 	
+
 	
 	
 }

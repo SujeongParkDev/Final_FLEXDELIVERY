@@ -44,4 +44,8 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 	public int insertMenuGroup(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo) {
 		return ownerMenuDao.insertMenuGroup(ownerStoreMenuGroupVo);
 	}
+	
+	public List<OwnerMenuAllVO> selectMenuViewBymenuGroupNo(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo){
+		return ownerMenuDao.selectMenuViewBymenuGroupNo(ownerStoreMenuGroupVo);
+	}
 }

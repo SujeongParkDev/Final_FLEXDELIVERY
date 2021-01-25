@@ -13,4 +13,6 @@ public interface OwnerMenuDAO {
 	public OwnerStoreMenuGroupVO selectMenuGroupByGroupNo(int sMGroupNo);
 	public int deleteMenuGroupByNo(int sMGroupNo);
 	public int insertMenuGroup(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo);
+	public List<OwnerMenuAllVO> selectMenuViewBymenuGroupNo(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo);
+	
 }

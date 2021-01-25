@@ -11,5 +11,9 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 	
 	private String namespace="config.mybatis.mapper.oracle.ownerstores.";
 	
+	public int selectStoreNoByNo(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectStoreNoByNo", ownerNo);
+	}
+	
 	
 }

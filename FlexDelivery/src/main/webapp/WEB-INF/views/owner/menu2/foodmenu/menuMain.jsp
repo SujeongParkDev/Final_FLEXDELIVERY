@@ -86,7 +86,6 @@
 						            <thead>
 						              <tr class="text-center">
 						              	<th>번호</th>
-						                <th>메뉴번호</th>
 						                <th>메뉴이름</th>
 						                <th>메뉴그룹</th>
 						                <th>메뉴가격</th>
@@ -103,10 +102,9 @@
 						            	  		<c:forEach var="vo" items="${list}">
 										              <tr  class="text-center">
 										              		<td>${vo.rnum }</td>
-											                <td class="text-bold-500">FDMU${vo.menuNo }</td>
 											              	<td><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></td>
 											                <td>${vo.sMGroupName }</td>
-											                <td>${vo.menuPrice }원</td>
+														    <td>${vo.menuPrice }원</td>
 										              </tr>
 							              		</c:forEach>
 							               </c:if>

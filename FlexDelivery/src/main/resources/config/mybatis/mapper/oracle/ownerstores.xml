@@ -4,4 +4,9 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerstores">
 	
+	
+	<select id="selectStoreNoByNo" parameterType="int" resultType="int">
+		select store_No from stores
+		where owner_No=#{ownerNo}
+	</select>
 </mapper>
