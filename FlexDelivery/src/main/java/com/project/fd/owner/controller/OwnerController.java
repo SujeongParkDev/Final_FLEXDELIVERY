@@ -109,40 +109,7 @@ public class OwnerController {
 
 	
 
-		
-	//관리자, 점포 공통 뷰 보여주기(점포)
-	@RequestMapping("/index.do")
-	public void index(Model model){
-		
-		model.addAttribute("NO_LICENSE", OwnerService.NO_LICENSE);
-		model.addAttribute("NO_STORE", OwnerService.NO_STORE);
-		model.addAttribute("HAVE_ALL", OwnerService.HAVE_ALL);
-		
-		
-		logger.info("점포 공통 뷰 보여주기");
-	
-	}
-	
-	//공지사항 보여주기
-	@RequestMapping("/menu3/notice.do")
-	public void notice(){
-		logger.info("공지사항 보여주기 ");
-	
-	}
-	
-	//관리자, 점포 공통 뷰 보여주기(점포)
-	@RequestMapping("/menu3/event.do")
-	public void event(){
-		logger.info("이벤트 보여주기");
-	
-	}
-	
-	//관리자, 점포 공통 뷰 보여주기(점포)
-	@RequestMapping("/menu3/honeyTip.do")
-	public void honeyTip(){
-		logger.info("사장님 꿀팁 보여주기");
-	
-	}
+
 	
 	//플렉스 소개 뷰 보여주기(점포)
 	@RequestMapping("/menu4/introduce.do")
@@ -151,12 +118,6 @@ public class OwnerController {
 	
 	}
 	
-	//내점포 메인 뷰 보여주기(점포)
-	@RequestMapping("/menu2/myStoreIndex.do")
-	public void myStoreIndex(){
-		logger.info("내점포 메인 뷰 보여주기");
-	
-	}
 	
 	//faq 뷰 보여주기 (점포)
 	@RequestMapping("/menu5/faq.do")

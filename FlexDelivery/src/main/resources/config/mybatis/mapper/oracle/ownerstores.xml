@@ -4,6 +4,7 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerstores">
 	
+
 	<insert id="registerStores" parameterType="ownerStoresVo">
 	<!-- <selectKey keyProperty="storeNo" resultType="int" order="BEFORE">
 		select stores_seq.nextval from dual 
@@ -26,4 +27,9 @@
 		</if>
 	</select>
 	
+	<select id="selectStoreNoByNo" parameterType="int" resultType="int">
+		select store_No from stores
+		where owner_No=#{ownerNo}
+	</select>
+
 </mapper>

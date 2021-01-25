@@ -4,7 +4,8 @@ public class OwnerStoresVO {
 	//private OwnerStoresFormVO ownerStoresFormVo;
 
 	/*NOT NULL*/
-	private int storeNo;/* 점포번호 */
+	private int storeNo; /*점포번호 => 지안 20210125 추가함 필요해서.. */
+
 	private String storeName; /* 점포명 */
 	private String storeLogo;/* 점포로고이미지 */
 	private String storeAddress;/* 점포주소 */
@@ -27,10 +28,9 @@ public class OwnerStoresVO {
 	private int  sStatusNo;  /* 점포영업상태번호1 */
 	private int hCategoryNo; /* 휴무요일번호 7*/
 	private int aAgreeNo; /* 관리자승인번호1 */
-	
+	private int ownerNo; /* 점주번호 */
+	private int oRegisterNo;/* 사업자등록번호 */
 
-	
-	
 	public int getStoreNo() {
 		return storeNo;
 	}
@@ -61,17 +61,17 @@ public class OwnerStoresVO {
 	public void setStoreAddressDetail(String storeAddressDetail) {
 		this.storeAddressDetail = storeAddressDetail;
 	}
-	public String getStoreRegdate() {
-		return storeRegdate;
-	}
-	public void setStoreRegdate(String storeRegdate) {
-		this.storeRegdate = storeRegdate;
-	}
 	public String getStoreContent() {
 		return storeContent;
 	}
 	public void setStoreContent(String storeContent) {
 		this.storeContent = storeContent;
+	}
+	public String getStoreRegdate() {
+		return storeRegdate;
+	}
+	public void setStoreRegdate(String storeRegdate) {
+		this.storeRegdate = storeRegdate;
 	}
 	public String getStoreOutdate() {
 		return storeOutdate;
@@ -96,12 +96,6 @@ public class OwnerStoresVO {
 	}
 	public void setStoreMinPrice(int storeMinPrice) {
 		this.storeMinPrice = storeMinPrice;
-	}
-	public int getOwnerNo() {
-		return ownerNo;
-	}
-	public void setOwnerNo(int ownerNo) {
-		this.ownerNo = ownerNo;
 	}
 	public int getlCategoryNo() {
 		return lCategoryNo;
@@ -133,6 +127,12 @@ public class OwnerStoresVO {
 	public void setaAgreeNo(int aAgreeNo) {
 		this.aAgreeNo = aAgreeNo;
 	}
+	public int getOwnerNo() {
+		return ownerNo;
+	}
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
+	}
 	public int getoRegisterNo() {
 		return oRegisterNo;
 	}
@@ -150,6 +150,7 @@ public class OwnerStoresVO {
 				+ ", oRegisterNo=" + oRegisterNo + "]";
 	}
 	
+
 	
 	
 }

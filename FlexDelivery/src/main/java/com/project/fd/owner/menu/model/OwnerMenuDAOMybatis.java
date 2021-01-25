@@ -51,4 +51,9 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 		return sqlSession.insert(namespace+"insertMenuGroup", ownerStoreMenuGroupVo);
 	}
 	
+	
+	public List<OwnerMenuAllVO> selectMenuViewBymenuGroupNo(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo){
+		return sqlSession.selectList(namespace+"selectMenuViewBymenuGroupNo", ownerStoreMenuGroupVo);
+	}
+	
 }

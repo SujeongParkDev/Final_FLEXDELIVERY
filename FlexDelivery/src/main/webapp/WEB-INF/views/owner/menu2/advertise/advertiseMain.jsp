@@ -96,7 +96,7 @@
 					                            <h4 class="card-title">현재 걸려있는 광고입니다</h4>
 					                            <p class="card-text">
 								                	<span>광고명 : ${vo.advertiseName } </span><br>
-								                	<a href="#">광고번호 : ${vo.advertiseNo } </a><br>
+								                	<span style="color:purple;">광고번호 : ${vo.advertiseNo } </span><br>
 								                	<span>광고가격 : ${vo.advertisePrice} </span><br>
 								                	<span>만료일 : ${vo.adValidate } 	</span>
 								                		<!-- Q.어떻게해야 시간을 버릴 수 있을까요? -->

@@ -93,10 +93,9 @@ public class LoginController {
 				session.setAttribute("ownerNo",vo.getOwnerNo());
 				session.setAttribute("authorityNo",vo.getAuthorityNo());
 				session.setAttribute("result", result);
-				if(result==OwnerService.HAVE_ALL) {
+				if(auVo.getStoreNo()>0) {
 					session.setAttribute("storeNo", auVo.getStoreNo());
 				}
-				
 				Cookie ck=new Cookie("ck_ownerid", vo.getOwnerId());
 				ck.setPath("/");
 				if(chkSave!=null) {

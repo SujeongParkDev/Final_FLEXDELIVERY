@@ -38,6 +38,15 @@
 	 
 	 
 	 
+	  
+	 <select id="selectMenuViewBymenuGroupNo" parameterType="ownerStoreMenuGroupVO" resultType="ownerMenuAllVo">
+			select * from jaMenuAllview
+		<![CDATA[
+			where s_M_GROUP_NO=#{sMGroupNo} and store_NO=#{storeNo}
+	  	]]>
+	 </select> 
+	 
+	 
 	 <!-- 
 	 	create or replace view jaMenuOptionAllView
 	as
@@ -56,7 +65,7 @@
 	 </select> 
 	
 	
-	<!-- 메뉴그룹 조회 -->
+	<!-- 점포에 따른 메뉴그룹 조회 -->
 	<select id="selectMenuGroupByNo" parameterType="int" resultType="ownerStoreMenuGroupVo">
 		select * from storeMenuGroup
 		where store_no=#{storeNo}

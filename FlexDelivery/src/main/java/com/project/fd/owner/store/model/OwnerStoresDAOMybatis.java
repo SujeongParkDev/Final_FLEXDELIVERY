@@ -15,6 +15,9 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.insert(namespace+"registerStores",vo);
 	}
 
-	
+	public int selectStoreNoByNo(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectStoreNoByNo", ownerNo);
+	}
+
 	
 }

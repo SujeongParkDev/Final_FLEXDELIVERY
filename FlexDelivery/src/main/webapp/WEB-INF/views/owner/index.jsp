@@ -127,7 +127,7 @@
 			                            		<h4><a href="<c:url value='/owner/menu3/notice.do'/>" style="text-decoration:none; class="post-headline">공지사항 </a></h4>
 			                            	</div>
 			                            	<div class="col-12 col-md-1">
-			                           			 <a href="<c:url value='/owner/menu3/notice.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
+			                           			 <a href="<c:url value='/owner/menu3/notice.do'/>"  style="font-size: 15px; text-decoration:none; color: rgb(255,201,14);margin-right:20px;">more</a>
 			                            	</div>
 				                            </div>
 					                            <ul >
@@ -182,7 +182,7 @@
                            		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
                            	</div>
                            	<div class="col-12 col-md-1">
-                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
+                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px;  text-decoration:none; color: rgb(255,201,14); margin-right:20px;">more</a>
                            	</div>
                            	<div class="col-12 col-md-1"> </div>
                            	     <br><br><br><br>
@@ -292,7 +292,7 @@
                            		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black;  "><h4 >이벤트</h4></a>
                            	</div>
                            	<div class="col-12 col-md-1">
-                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; color: gray; margin-right:20px;">more</a>
+                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; margin-right:20px;  text-decoration:none; color: rgb(255,201,14);">more</a>
                            	</div>
                            	<div class="col-12 col-md-1"> </div>
                            	     <br><br><br><br>
@@ -396,23 +396,30 @@
                        		 	<hr style="border: 1px 1solid; border-color: gray;" >
                         	 </div>
                         	<br>
-                        	<div style="height:170px;">
-	                        	<c:set  var="noLicense" value="${NO_LICENSE}"/>
-	                        	<c:set  var="noStore" value="${NO_STORE}"/>
-	                        	<c:set  var="haveAll" value="${HAVE_ALL}"/>
+                        	<div >
+	                        	<c:set  var="noLicense" value="${NO_LICENSE}"/> <!-- 라이센스 없는경우  승인번호 2,4-->
+	                        	<c:set  var="noStore" value="${NO_STORE}"/> <!-- 점포 없는경우 승인번호 2,4 -->
+	                        	<c:set  var="haveAll" value="${HAVE_ALL}"/>	<!-- 점포 있음 -->
+	                        	<c:set  var="licenseStay" value="${LICENSE_STAY}"/> <!-- 라이센스 없는 경우 승인번호 1 -->
+	                        	<c:set  var="storeStay" value="${STORE_STAY}"/> <!-- 점포 없는 경우 승인번호 1 -->
+	                        	
 	                        	
 	                            <!-- 사장님이 로그인 안했을 경우  -->
 		                    	<c:if test="${empty sessionScope.ownerId}">
-		                    		<h6 class="title subscribe-title">사장님, 로그인 해주세요</h6>
-		                            <div class="widget-content">
-		                                <form action="<c:url value='/owner/login/login.do'/>">
-		                                    <button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white; width:250px; height:50px;">로 그 인</button>
-		                                </form>
-		                            </div>
+		                    		<div style="margin-top:-15px;">
+	                        			 <small style="color:gray;">반갑습니다. FLEX DELIVERY 입니다</small>
+			                    		<h2 class="title subscribe-title"><b>사장님, <span style="color:rgb(223,108,220);">로그인 </span>부탁드려요</b></h2>
+			                            <div class="widget-content">
+			                                <form action="<c:url value='/owner/login/login.do'/>">
+			                                    <button type="submit" class="btn original-btn text-white " style="background-color: rgb(223,108,220); width:250px; height:50px;">로 그 인</button>
+			                                </form>
+			                            </div>
+									</div>
 		                        </c:if>
 		                        <!-- 사장님이 로그인했는데 사업자 등록증이 없을때 -->
-		                        <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==noLicense}">
-		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                        <c:if test="${(!empty sessionScope.ownerId) && (sessionScope.result==noLicense || sessionScope.result==licenseStay) }">
+		                        	 <small style="color:gray;">반갑습니다. FLEX DELIVERY 입니다</small>
+		                       		 <h6 class="title mb-3"  ><b><span style="color:rgb(223,108,220); font-size:25px; ">${sessionScope.ownerId}</span> 사장님 <br> 어서오세요</b></h6>
 		                       		  <div class="widget-content">
 		                                <form action="<c:url value='/owner/menu1/launch/launch.do'/>">
 		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
@@ -420,8 +427,9 @@
 		                            </div>
 	                       		 </c:if>
 		                        <!-- 사장님이 점포가없을때 -->
-		                        <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==noStore}">
-		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                        <c:if test="${(!empty sessionScope.ownerId) && (sessionScope.result==noStore || sessionScope.result==storeStay)}">
+		                       		<small style="color:gray;">반갑습니다. FLEX DELIVERY 입니다</small>
+		                       		 <h6 class="title mb-3"><b><span style="color:rgb(223,108,220); font-size:25px; ">${sessionScope.ownerId}</span> 사장님 <br> 어서오세요 </h6></b>
 		                       		  <div class="widget-content">
 		                                <form action="<c:url value='/owner/menu1/launch/launch.do'/>">
 		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">입 점 신 청</button>
@@ -430,7 +438,69 @@
 	                       		 </c:if>
 	                       		 <!-- 사장님 사업자등록도 점포도 다있어서 내가게가 잇을때-->
 	                       		  <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==haveAll}">
-		                       		 <h5 class="title">${sessionScope.ownerId}님 오늘도 플렉스한 하루 보내세요 </h5>
+		                       		<small style="color:gray;">반갑습니다. FLEX DELIVERY 입니다</small>
+		                       		 <h6 class="title mb-3"><b><span style="color:rgb(223,108,220); font-size:25px; ">${sessionScope.ownerId}</span> 사장님 <br> 어서오세요</b> </h6>
+		                       		  	<div>
+		                       		  	<div class="row">
+		                       		  		<div class="col-12 col-md-2"></div>
+		                       		  		<div class="col-12 col-md-2">
+		                       		  			<!-- 리뷰관리 이미지 -->
+		                       		  			<a href="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+			                       		  			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+	  													<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+	  													<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+													</svg>
+												</a>
+											</div>
+											<div class="col-12 col-md-2">
+											<!-- 메뉴관리 이미지 -->
+												<a href="<c:url value='/owner/menu2/foodmenu/menuMain.do'/>">
+													<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+	  														<path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+													</svg>
+												</a>
+											</div>
+											<div class="col-12 col-md-2">
+												<!-- 임시중지 이미지 -->
+												<a href="<c:url value='/owner/index.do'/>">
+													<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
+	  													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+	  													<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>
+													</svg>
+												</a>
+											</div>
+											<div class="col-12 col-md-2">
+												<!-- 현재 주문 현황 -->
+												<a href="<c:url value='/owner/index.do'/>">
+													<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+	  													<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+												   </svg>
+											   </a>
+											</div>
+											<div class="col-12 col-md-2"></div>
+											
+											
+											<!-- 리뷰 메뉴 임시 현재 등 텍스트 부분 -->
+											<div class="col-12 col-md-2"></div>
+											<div class="col-12 col-md-2 pr-0 pl-1">
+												<span style="font-size:2px;">리뷰관리</span>
+											</div>
+											<div class="col-12 col-md-2  pr-0 pl-1">
+												<span style="font-size:2px;">메뉴관리</span>
+											</div>
+											<div class="col-12 col-md-2  pr-0 pl-1">
+												<span style="font-size:2px;">임시중지</span>
+											</div>
+											<div class="col-12 col-md-2  pr-0 pl-1">
+												<span style="font-size:2px;">주문현황</span>
+											</div>
+											<div class="col-12 col-md-2"></div>
+										
+											
+		                       		  	</div>
+		                       		  	</div>
+		                       		  	<br>
+		                       		
 		                       		  <div class="widget-content">
 		                                <form action="<c:url value='/owner/menu2/myStoreIndex.do'/>">
 		                            		<button type="submit" class="btn original-btn" style="background-color: rgb(223,108,220); color: white;">내 점 포</button>
@@ -449,37 +519,44 @@
                         <div class="sidebar-widget-area" style="text-align: center;  margin-bottom:10px;">
                         	<div class="row">
                         		<div class="col-12 col-md-4"></div>
-                        		<div class="col-12 col-md-4">
+                        		<div class="col-12 col-md-4 pl-0">
 	                            	<h5 class="title" style="margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >FLEX TIME</h5>
 	                          	</div>
 	                           	<div class="col-12 col-md-4"></div>
-	                           	<br>
-	                           	<div>
+	                     	</div>
+	                     	
+	                     	 <div class="row ml-2" >
+	                           	<div class="col-12 col-md-10">
 	                            	<a href="#"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA4MjZfMTY2%2FMDAxNTk4NDE1Mzc0OTQ1.aPq6qOIMyi2Qg2hAceeIagADYAXlcrrni_IYTYwjbOcg.4aA4eXV-00Rpndur7X-Ixk0skG4LeM7yQhxg2uVH4Aog.GIF.dloere4%2F1598415371805.gif&type=sc960_832_gif" alt=""></a>
 	                       		</div>
-	                       		<div style="margin-top:20px;">
+	                       		
+	                       		<div  class="col-12 col-md-10" style="margin-top:10px;">
 	                       			<p>저희 플렉스 광고는 믿음직한 광고입니다 <br>다들 광고하나 사주세요</p>
-								</div>	                        
+								</div>
 	                        </div>
                         </div>
                         <br>
                        
                         <div class="sidebar-widget-area" style="margin-bottom:10px; text-align: center;">
-                        	<div class="row">
-                        		<div class="col-12 col-md-4"></div>
-                        		<div class="col-12 col-md-4">
+                        	<div class="row" >
+                        		<div class="col-12 col-sm-4"></div>
+                        		<div class="col-12 col-sm-4 pl-0">
 	                            	<h5 class="title" style=" margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >OPEN TIME</h5>
 	                          	</div>
 	                          	<br>
-	                           	<div class="col-12 col-md-4"></div>
-	                           	<br>
-	                            	<div>
+	                           	<div class="col-12 col-sm-4"></div>
+	                         </div>
+	                         
+	                         
+	                         <div class="row ml-2" > 
+	                            <div class="col-12 col-sm-10">
 	                            	<a href="#"><img src="https://blog.kakaocdn.net/dn/dqh4DR/btqEkMRGLJA/kg9G5hB2nR8Xk9d5zZJIok/img.gif" alt="유빈"></a>
 	                       		</div>
-	                       		<br>
-	                       		<div style="margin-top:20px; " >
-	                       			<p  style="margin-left:40px; " >다른 사이트에서 광고 사지마<br> 오픈리스트 사요</p>
-								</div>	
+	 
+	                       		<div class="col-12 col-sm-10"style="margin-top:10px; " >
+	                       			<p  >다른 사이트에서 광고 사지마<br> 오픈리스트 사요</p>
+	                       		</div>	
+						
 	                        </div>
                         </div>
 						<div >

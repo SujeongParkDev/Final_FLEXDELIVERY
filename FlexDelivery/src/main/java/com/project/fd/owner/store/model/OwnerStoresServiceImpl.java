@@ -15,4 +15,7 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	
 	
 	
+	public int selectStoreNoByNo(int ownerNo) {
+		return ownerStoresDao.selectStoreNoByNo(ownerNo);
+	}
 }

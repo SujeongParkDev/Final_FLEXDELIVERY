@@ -30,6 +30,7 @@ import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseVO;
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 import com.project.fd.owner.model.OwnerService;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 @Controller
 @RequestMapping("/owner/menu2/advertise")
@@ -39,10 +40,16 @@ public class OwnerAdvertiseController {
 
 	@Autowired
 	private OwnerAdvertiseService ownerAdvertiseService;
+	
+	@Autowired
+	private OwnerStoresService ownerStoresService;
 
 	@Autowired
 	private OwnerService ownerService;
 
+	
+	
+	
 	// 테스트용
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
 	public String test_get() {
@@ -53,18 +60,27 @@ public class OwnerAdvertiseController {
 
 	// advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET)
-	public String advertiseMain_get(HttpSession session, Model model) {
-		int storeNo = (Integer) session.getAttribute("storeNo");
-		logger.info("advertiseMain 창 보여주기, storeNo = {}" ,storeNo);
-
+	public String advertiseMain_get( HttpSession session, Model model) {
+		int storeNo=0;
+			
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
 		
-		//list출력
-		List<OwnerAdvertiseAllVO> list = null;
-		list = ownerAdvertiseService.selectAdvertieseView(storeNo);
-		logger.info("현재 진행중 광고 보기 결과 list.size={}", list.size());
-
-		model.addAttribute("list", list);
-
+		logger.info("advertiseMain 창 보여주기, 파라미터 storeNo={}",storeNo);
+		
+		 List<OwnerAdvertiseAllVO> list = null;
+		 list = ownerAdvertiseService.selectAdvertieseView(storeNo);
+	     logger.info("현재 진행중 광고 보기 결과 list.size={}", list.size());
+		 model.addAttribute("list", list); 
+		
+	
 		return "owner/menu2/advertise/advertiseMain";
 	}
 
@@ -76,7 +92,7 @@ public class OwnerAdvertiseController {
 	@RequestMapping(value = "/advertisePwdCheck.do", method = RequestMethod.GET)
 	public String advertisePwdCheck_get() {
 		logger.info("advertisePwdCheck 창 보여주기");
-
+		
 		return "owner/menu2/advertise/advertisePwdCheck";
 	}
 	
@@ -84,10 +100,10 @@ public class OwnerAdvertiseController {
 	
 	// pwd 확인후 choice 창 가기
 	  @RequestMapping(value="/advertisePwdCheck.do", method=RequestMethod.POST)
-	  public String advertisePwdCheck_post(@RequestParam(required = false) String ownerPwd,  Model model) {
-		  logger.info("advertisePwdCheck 창 보여주기 , 파라미터 ownerPwd={}",ownerPwd);
-		
-		  String userid = "owner7";
+	  public String advertisePwdCheck_post(@RequestParam(required = false) String ownerPwd, HttpSession session, Model model) {
+		  String userid = (String) session.getAttribute("ownerId");
+		  logger.info("advertisePwdCheck 창 보여주기 , 파라미터 ownerPwd={}, userid={}",ownerPwd,userid);
+		  
 		   int result =ownerService.loginChk(userid, ownerPwd);
 		   logger.info("비밀번호 확인 결과, result={}", result);
 		  
@@ -120,10 +136,24 @@ public class OwnerAdvertiseController {
 	
 	// choice 페이지에서 버튼 누르면 등록창 가진다.
 	@RequestMapping(value = "/advertiseWrite.do", method = RequestMethod.GET)
-	public String advertiseWrite_get(@RequestParam(defaultValue = "0") int advertiseNo, Model model) {
-		logger.info("advertiseWrite 창 보여주기, 파라미터 advertiseNo={}", advertiseNo);
-		int storeNo = 4;
-		//Q. storeNo 을 고쳐야합니다.
+	public String advertiseWrite_get(@RequestParam(defaultValue = "0") int advertiseNo, 
+				HttpSession session, Model model) {
+		//storeNo 구하기
+		int storeNo=0;
+		
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
+		logger.info("advertiseWrite 창 보여주기, 파라미터 advertiseNo={} , storeNo={}", advertiseNo,storeNo);
+		
+		
+		
 		
 		// 오늘날짜
 		Date date = new Date();
@@ -131,6 +161,8 @@ public class OwnerAdvertiseController {
 		String today = sdf.format(date);
 		logger.info("오늘 날짜 조회 결과 today={}", today);
 		// write 에서 choice를 제목에 박아주기
+		
+		
 		
 		//번호로 광고 가져오기
 		OwnerAdvertiseVO vo = ownerAdvertiseService.selectAdvertiseByNo(advertiseNo);
@@ -169,10 +201,23 @@ public class OwnerAdvertiseController {
 	
 	// main에서 탭의 만료버튼 누르면 나옵니다.
 	@RequestMapping("/advertiseExpire.do")
-	public String advertiseExpire_post(@ModelAttribute OwnerAdvertiseSearchVO searchVo, Model model) {
-	
+	public String advertiseExpire_post(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+				HttpSession session, Model model) {
+			//storeNo 구하기
+				int storeNo=0;
+				
+				String msg="점포가 없습니다.", url="/owner/index.do";
+				if(session.getAttribute("storeNo")==null) {
+					model.addAttribute("msg",msg);
+					model.addAttribute("url",url);
+					return "common/message";
+					
+				}else {
+					storeNo= (Integer)session.getAttribute("storeNo");
+				}
+				
 			//1
-			logger.info("만료된 글 목록 페이지, 파라미터 searchVo={}", searchVo);
+			logger.info("만료된 글 목록 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
 			
 			//2
 			//페이징 처리 관련 셋팅
@@ -183,7 +228,6 @@ public class OwnerAdvertiseController {
 			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 			
 			//[2] SearchVo 셋팅
-			int storeNo = 4;
 			
 			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());

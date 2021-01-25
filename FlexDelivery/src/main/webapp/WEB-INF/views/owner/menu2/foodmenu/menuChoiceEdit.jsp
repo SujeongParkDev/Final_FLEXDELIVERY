@@ -9,8 +9,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴그룹수정</title>
-	  
+    <title>메뉴수정</title>
+
+  
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
@@ -25,17 +26,30 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     
-	<script type="text/javascript">
-	
-		if(${result}==${SUCCESSPOST}){
-			opener.parent.location.reload();
-			self.close();
-		}
 
-		
+	
+	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+	<script type="text/javascript">
+	  $(function(){
+			$('#btMenuChoiceEdit').click(function(){
+				if($('input[type=text]').val().length<1){
+					alert('그룹명을 입력해 주세요');
+					$('input[type=text]').focus();
+					event.preventDefault();
+				}else{
+					window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do";
+					self.close();
+				}
+					
+			});
+		});
+    
+    
+   
+    
 	
 	</script>
-
 </head>
 <body style="overflow-x:hidden;">
 		<br>	<br>	
@@ -47,25 +61,40 @@
 		        <div class="col-md-6 col-sm-12">
 		        <div class="card" >
 		            <div class="card-header" style="background-color:white;">
-		            <h4 class="card-title text-center">메뉴 그룹 등록</h4>
+		            <h4 class="card-title text-center">메뉴 수정</h4>
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">
-		                <form class="form form-vertical" name="frm123" method="post" action='<c:url value="/owner/menu2/foodmenu/menuGroupEdit.do"/>'>
+		                <form class="form form-vertical">
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
 		                        <div class="form-group">
-		                       		<label for="first-name-vertical">메뉴 그룹 번호</label>
-		                        	<input type="text" id="sMGroupNo" class="form-control" name="sMGroupNo" value="${param.sMGroupNo}" readonly="readonly">
-		                       		<label for="first-name-vertical">메뉴 그룹 이름</label>
-		                        	<input type="text" id="sMGroupName" class="form-control" name="sMGroupName" value="${vo.sMGroupName }">
-		                        	<input type="hidden" name="storeNo" value="${vo.storeNo }">
-		                    	 </div>
+		                        	<label for="first-name-vertical">메뉴 번호</label>
+		                        	<input type="text" id="menuName" class="form-control" name="menuNo" readonly="readonly">
+		                       		
+		                       		<label for="first-name-vertical">메뉴 이름</label>
+		                        	<input type="text" id="menuName" class="form-control" name="menuName">
+		                    	  
+		                    	    <label for="first-name-vertical">메뉴 가격</label>
+		                        	<input type="text" id="menuPrice" class="form-control text-right" name="menuPrice">
+		                     		<span>메뉴 이미지</span>
+		                     		<div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text text-right">파일을 선택하세요</span>
+                                            <span class="form-file-button btn-primary "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></span>
+                                        </label>
+                                    </div>
+                            		<label for="exampleFormControlTextarea1" class="form-label">메뉴 내용</label>
+                            		<textarea class="form-control" id="menuContent" rows="3"></textarea>
+                        		</div>
+		                       
 		                      </div>
 		                    </div>
-		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuGroupEdit" value="수정">
+		                    <div class="col-12 d-flex justify-content-end">
+		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuChoiceEdit" value="수정">
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
 		                    </div>
 		                    </div>
 		                </form>
@@ -77,7 +106,9 @@
 		    </div>
 		</section>
 			
-			
+			  
+			  
+			  	
 			
 		 
         <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>

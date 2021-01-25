@@ -45,6 +45,10 @@ public class OwnerServiceImpl implements OwnerService {
 		
 		return result;
 	}
+	
+	
+	public static final int LICENSE_STAY=4; // 라이센스 승인대기중인 경우
+	public static final int STORE_STAY=5; //점포 승인대기중인 경우
 
 	@Override
 	public int checkAuthority(String userid) {
@@ -55,10 +59,18 @@ public class OwnerServiceImpl implements OwnerService {
 		 
 		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
 				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()>3)) {
-			  result=NO_LICENSE;
+			 if(vo.getRagreeno()==1) {
+				 result=LICENSE_STAY;
+			 }else {
+				 result=NO_LICENSE;
+			 }
 		 } else if(vo.getRagreeno()==3
 				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()>3)) {
-			 result = NO_STORE;
+			 if(vo.getSagreeno()==1) {
+				 result=STORE_STAY;
+			 }else {
+				 result=NO_STORE;
+			 }
 		 }else if(vo.getRagreeno()==3 && vo.getSagreeno()==3) {
 			 result=HAVE_ALL;
 		 }
