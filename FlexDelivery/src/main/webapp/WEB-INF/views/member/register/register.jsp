@@ -9,23 +9,23 @@
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){
-			if($('#name').val().length<1){
+			if($('#membername').val().length<1){
 				alert('이름을 입력하세요');
-				$('#name').focus();
+				$('#membername').focus();
 				event.preventDefault();
-			}else if(!validate_userid($('#userid').val())){
+			}else if(!validate_memberid($('#memberid').val())){
 				alert('아이디는 영문,숫자,_만 가능합니다.');
-				$('#userid').focus();
+				$('#memberid').focus();
 				event.preventDefault();				
-			}else if($('#pwd').val().length<1){
+			}else if($('#memberpwd').val().length<1){
 				alert('비밀번호를 입력하세요');
-				$('#pwd').focus();
+				$('#memberpwd').focus();
 				event.preventDefault();
-			}else if($('#pwd').val()!=$('#pwd2').val()){
+			}else if($('#memberpwd').val()!=$('#memberpwd2').val()){
 				alert('비밀번호가 일치하지 않습니다.');
-				$('#pwd2').focus();
+				$('#memberpwd2').focus();
 				event.preventDefault();
-			}else if(!validate_phone($('#hp2').val()) ||
+			}else if(!validate_phone($('#member_hp1').val()) ||
 					!validate_phone($('#hp3').val())){
 				alert('전화번호는 숫자만 가능합니다.');
 				$('#hp2').focus();
@@ -45,7 +45,7 @@
 					url:"<c:url value='/member/ajaxCheckId.do'/>",
 					type:"get",
 					data:{
-						userid:userid
+						memberid:memberid
 					},
 					success:function(res){
 						//alert(res);  //true, false
@@ -125,24 +125,24 @@
 						<label for="exampleInputNumber1" class="text-dark">전화번호</label>
 						<div class="row">
 							<div class="col-md-4" >
-								<input type="text"  placeholder="번호 입력" class="form-control" id="member_hp1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="번호 입력" class="form-control" id="memberhp1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="member_hp2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="memberhp2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="member_hp3" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="memberhp3" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 						</div>
 						<br> 
 						<label for="" class="text-dark">이메일</label>
 						<div class="row" style="line-height: 33px">
 							<div class="col-md-5" >
-								<input type="text"  placeholder="이메일 입력" class="form-control" id="member_hp1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="이메일 입력" class="form-control" id="memberemail1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<p>@</p>
 							<div class="col-md-5">
-								<input type="text" placeholder="이메일 입력" class="form-control" id="member_hp2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="이메일 입력" class="form-control" id="memberemail2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<input type="Button" value="이메일 확인" id="btnEmail" title="새창열림">
 						</div>
