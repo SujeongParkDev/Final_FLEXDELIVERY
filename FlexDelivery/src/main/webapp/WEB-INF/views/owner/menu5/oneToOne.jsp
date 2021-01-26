@@ -10,6 +10,38 @@
 <link rel="stylesheet" type="text/css" href
 ="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css"/>
 <!-- CSS end --> 
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#askTitle').focus();
+		
+	$('form[name=frm1]').find('input[type=button]').click(function(){
+		location.href='<c:url value="/owner/menu5/oneToOne.do"/>';
+	});
+			$('#btAsk').click(function(){
+				if($('#askTitle').val().length<1){
+					alert('문의글 제목을 입력하세요');
+					$('#askTitle').focus();
+					event.preventDefault();
+				}else if($('#askContent').val().length<1){
+					alert('문의하실 내용을 입력하세요');
+					$('#askContent').focus();
+					event.preventDefault();
+						
+				}else if(!$('#checkbox').is(":checked")){
+					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+					$('#checkbox').focus();
+					event.preventDefault();
+				}else{
+					alert('일대일 문의 등록이 완료되었습니다.');
+					location.href = '<c:url value="/owner/menu5/oneToOne.do"/>';
+				}
+				
+			});
+						
+		});
+</script>
+
 <div class="container">
 	<div class="row">
 		<div class="main-content container-fluid">
@@ -38,20 +70,20 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="qwe">
 						  		<br>
-								<form class="form form-horizontal">
+								<form class="form form-horizontal" method="POST" name="frm1" action="<c:url value='/owner/menu5/oneToOne.do'/>" >
 									<div class="form-body">
 										<div class="row">
 											<div class="col-md-4">
 				   								<label>제목</label>
 											</div> 
 				   							<div class="col-md-8 form-group">
-				  								<input type="text" id="first-name" class="form-control" name="fname" placeholder="문의글 제목을 입력하세요">
+				  								<input type="text" id="askTitle" class="form-control" name="askTitle" placeholder="문의글 제목을 입력하세요">
 											</div> 
 				       							<div class="col-md-4">
 				     								<label>내용</label>
 				      							</div> 
 											<div class="col-md-8 form-group">
-												<textarea id="email-id" class="form-control" name="email-id" placeholder="문의글 내용을 입력하세요" style="height: 120px;"></textarea>
+												<textarea id="askContent" class="form-control" name="askContent" placeholder="문의글 내용을 입력하세요" style="height: 120px;"></textarea>
 				   							</div> 
 											<div class="col-12 col-md-8 offset-md-4 form-group">
 												<div class='form-check'>
@@ -62,8 +94,7 @@
 				          								</div> 
 											</div> 
 				  							<div class="col-sm-12 d-flex justify-content-end">
-				  								<button type="submit" class="btn btn-primary mr-1 mb-1">문의하기</button>
-												<button type="reset" class="btn btn-light-secondary mr-1 mb-1">다시 쓰기</button>
+				  								<input type="submit" class="btn btn-primary mr-1 mb-1" id="btAsk" value="문의하기"></button>
 				   							</div> 		
 										</div> 
 									</div> 
@@ -91,14 +122,24 @@
 														</tr>
 													</thead>
 													<tbody>
+													<c:if test="${!empty list}">
+													<c:forEach var="vo" items="${list}">
+													
 							 							<tr>
-															<td class="text-bold-500">3</td>
-															<td colspan="3">음식에서 이물질이 나왔습니다</td>							               
+															<td class="text-bold-500">${vo.askNo }</td>
+															<td colspan="3">${vo.askTitle }</td>							               
 															<td></td>
-															<td>2021-01-19</td>
+															<td>${vo.askRegdate}</td>
+															<c:if test="${vo.askStep >0}">
+																<td><span class="badge bg-success">답변완료</span></td>
+															</c:if>
+															<c:if test="${vo.askStep ==0}">
 							      								<td><span class="badge bg-danger">미답변</span></td>
+							      								</c:if>
 							    								<td><span class="badge bg-dark">취소</span></td>
 							     							</tr>
+													</c:forEach>
+													</c:if>
 														<tr>
 															<td class="text-bold-500">2</td>
 							    								<td colspan="3">배달 지역 변경은 안되나요?</td>							                
@@ -126,6 +167,7 @@
 		</div> 
 	</div> 
 </div> 
+
 
 <!-- script start -->   
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>

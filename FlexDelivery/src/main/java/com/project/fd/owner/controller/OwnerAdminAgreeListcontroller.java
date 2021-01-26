@@ -70,6 +70,7 @@ public class OwnerAdminAgreeListcontroller {
 				OwnerRegisterVO vo=new OwnerRegisterVO();
 				vo.setOwnerNo(ownerNo);
 				vo.setoRegisterNo(no);
+				logger.info("vo={}",vo);
 					cnt=ownerRService.updateAgreeRegi(vo);
 					logger.info("사업자등록증 목록에서 업데이트2 성 여부 cnt={}",cnt);
 				}

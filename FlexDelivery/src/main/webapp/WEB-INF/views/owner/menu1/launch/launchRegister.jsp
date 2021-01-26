@@ -146,17 +146,21 @@
 
 				<!--  -->
 				<!-- 옵션 만들어지면 리스트로 뽑을것임 -->
-				<!-- 지역코드번호가 내가선택하는건가?? 아니면 사업장에서 배달가능한 지역?? 알아서 ??  -->
+				<!-- 지역코드번호가 내가선택하는건가?? 아니면 사업장에서 배달가능한 지역?? 알아서 ??
+				-- 1,강서구 2,양천구 3,구로구 4,영등포구 5,금천구 6,동작구 7,관악구 8,서초구 9,강남구 
+--10,송파구 11,강동구 12,은평구 13,마포구 14,서대문구 15,종로구 16,중구 17,용산구
+--18,도봉구 19,강북구 20,성북구 21,동대문구 22,성동구 23,노원구 24,중랑구 25,광진구
+				  -->
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">송파구</option>
-						<option value="2">강남구</option>
-						<option value="3">금천구</option>
-						<option value="4">가산구</option>
-						<option value="5">마포구</option>
-						<option value="6">강동구</option>
+						<option value="1">강서구</option>
+						<option value="2">양천구</option>
+						<option value="3">구로구</option>
+						<option value="4">영등포구</option>
+						<option value="5">금천구</option>
+						<option value="6">동작구</option>
 					</select>
 				</div>
 
@@ -165,12 +169,14 @@
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">한식</option>
-						<option value="2">중식</option>
-						<option value="3">양식</option>
-						<option value="4">일식</option>
-						<option value="5">아시안</option>
-						<option value="6">디저트</option>
+						<option value="1">치킨</option>
+						<option value="2">피자/양식</option>
+						<option value="3">중국집</option>
+						<option value="4">한식</option>
+						<option value="5">일식/돈까스</option>
+						<option value="6">족발/보쌈</option>
+						<option value="7">분식</option>
+						<option value="8">카페/디저트</option>
 					</select>
 				</div>
 
