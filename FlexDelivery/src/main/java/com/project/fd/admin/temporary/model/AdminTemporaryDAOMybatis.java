@@ -18,4 +18,10 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"approvalList");
 		return list;
 	}
+
+	@Override
+	public AdminTemporaryVO approvalDetail(int no) {
+		AdminTemporaryVO vo= sqlSession.selectOne(namespace+"approvalDetail", no);
+		return vo;
+	}
 }

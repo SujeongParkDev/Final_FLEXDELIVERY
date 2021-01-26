@@ -1,5 +1,7 @@
 package com.project.fd.admin.temporary.model;
 
+import java.sql.Timestamp;
+
 public class AdminTemporaryVO {
 	private int tNo;// number not null, /* 임시저장번호 */
 	private int storeNo;// number not null, /* 점포번호 */
@@ -16,8 +18,8 @@ public class AdminTemporaryVO {
 	private String tOwnerHp2;// varchar2(4) not null, /* 변경점주연락처2 */
 	private String tOwnerHp3;// varchar2(4) not null, /* 변경점주연락처3 */
 	private String tDetail;// varchar2(2000) not null, /* 변경내용상세 */
-	private String tRegdate;// date default sysdate not null, /* 변경신청일 */
-	private String tSubmitdate;// date, /* 변경승인일 */
+	private Timestamp tRegdate;// date default sysdate not null, /* 변경신청일 */
+	private Timestamp tSubmitdate;// date, /* 변경승인일 */
 	private int aAgreeNo;// number default 1 not null /* 관리자승인번호 */
 	public int gettNo() {
 		return tNo;
@@ -109,16 +111,16 @@ public class AdminTemporaryVO {
 	public void settDetail(String tDetail) {
 		this.tDetail = tDetail;
 	}
-	public String gettRegdate() {
+	public Timestamp gettRegdate() {
 		return tRegdate;
 	}
-	public void settRegdate(String tRegdate) {
+	public void settRegdate(Timestamp tRegdate) {
 		this.tRegdate = tRegdate;
 	}
-	public String gettSubmitdate() {
+	public Timestamp gettSubmitdate() {
 		return tSubmitdate;
 	}
-	public void settSubmitdate(String tSubmitdate) {
+	public void settSubmitdate(Timestamp tSubmitdate) {
 		this.tSubmitdate = tSubmitdate;
 	}
 	public int getaAgreeNo() {
@@ -135,7 +137,5 @@ public class AdminTemporaryVO {
 				+ ", tOriginalFilename=" + tOriginalFilename + ", ownerNo=" + ownerNo + ", tOwnerName=" + tOwnerName
 				+ ", tOwnerHp1=" + tOwnerHp1 + ", tOwnerHp2=" + tOwnerHp2 + ", tOwnerHp3=" + tOwnerHp3 + ", tDetail="
 				+ tDetail + ", tRegdate=" + tRegdate + ", tSubmitdate=" + tSubmitdate + ", aAgreeNo=" + aAgreeNo + "]";
-	}
-	
-	
+	}	
 }

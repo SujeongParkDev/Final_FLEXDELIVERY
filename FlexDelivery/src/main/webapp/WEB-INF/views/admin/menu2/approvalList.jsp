@@ -47,7 +47,7 @@
                     <!-- 반복구간 시작 -->
                     <c:if test="${empty list }">
 						<tr>
-							<td colspan="5" class="align_center">데이터가 존재하지 않습니다.</td>
+							<td colspan="6" class="align_center">데이터가 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
 						<c:forEach var="vo" items="${list}">

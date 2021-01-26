@@ -17,5 +17,11 @@ public class AdminTemporaryServiceImpl implements AdminTemporaryService{
 	}
 
 
+	@Override
+	public AdminTemporaryVO approvalDetail(int no) {
+		return temporaryDao.approvalDetail(no);
+	}
+
+
 
 }

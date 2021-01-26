@@ -9,4 +9,11 @@
 			   from temporary
 			   order by t_no desc
 	</select>
+	
+	<select id="approvalDetail" parameterType="int" resultType="adminTemporaryVo">
+		select t_no, t_submitdate, o_register_no, t_owner_name, t_stores_name, t_stores_address,
+       		   t_stores_address_detail, t_owner_hp1, t_owner_hp2, t_owner_hp3, t_detail, a_agree_no 
+       		   from temporary where t_no=#{no}
+	</select>
 </mapper>
+

@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../adminInc/top.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#approvalAgree').click(function () {
+			alert("등록하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.tNo}" />';
+		});
+		
+		$('#approvalDeny').click(function () {
+			alert("반려하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.tNo}" />';
+		});
+			
+	
+	});
+</script>
 <!-- main start -->
 
 <div class="main-content container" style="width: 75%">
@@ -18,8 +34,8 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<c:url value='/admin/main.do'/> ">Main</a></li>
-                        <li class="breadcrumb-item"><a href="<c:url value='/admin/menu2/approval.do'/> ">점포 등록/변경 승인 관리</a></li>
+                        <li class="breadcrumb-item"><a href="<c:url value='/admin/index.do'/> ">Main</a></li>
+                        <li class="breadcrumb-item"><a href="<c:url value='/admin/menu2/approvalList.do'/> ">점포 등록/변경 승인 관리</a></li>
                         <li class="breadcrumb-item active" aria-current="page">점포 등록 세부 조회</li>
                     </ol>
                 </nav>
@@ -35,7 +51,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >승인 요청 내역</h4>
-                        <h4 class="card-title" >[접수번호 : 123456, 접수일자 : 2015년 05월 25일]</h4>
+                        <h4 class="card-title" >[접수번호 : ${vo.tNo}, 접수일자 : 
+                        	<fmt:formatDate value="${vo.tSubmitdate}" pattern="yyyy년 MM월 dd일"/> ]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -44,21 +61,21 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="first-name-column" >사업자 번호</label>
-                                            <input type="text" id="lisence-no-column" class="form-control" value="License No"
+                                            <input type="text" id="lisence-no-column" class="form-control" value="${vo.oRegisterNo }"
                                                 name="fname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="owner-name-column">대표자 성함</label>
-                                            <input type="text" id="owner-name-column" class="form-control" value="Owner Name"
+                                            <input type="text" id="owner-name-column" class="form-control" value="${vo.tOwnerName }"
                                                 name="Oname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shop-name">점포명</label>
-                                            <input type="text" id="shop-name" class="form-control" value="Shop Name" name="shop-name"
+                                            <input type="text" id="shop-name" class="form-control" value="${vo.tStoresName }" name="shop-name"
                                             	disabled="disabled" >
                                         </div>
                                     </div>
@@ -66,21 +83,24 @@
                                         <div class="form-group">
                                             <label for="shop-address">점포 주소</label>
                                             <input type="text" id="shop-address" class="form-control" name="shop-address"
-                                                value="Shop Address" disabled="disabled">
+                                                value="${vo.tStoresAddress} ${vo.tStoresAddressDetail}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="phone-number">연락처</label>
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
-                                                value="Phone Number" disabled="disabled">
+                                                value="${vo.tOwnerHp1}-${vo.tOwnerHp2}-${vo.tOwnerHp3}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
-                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column"
-                                                value="Email" disabled="disabled">
+                                            <label for="appendix-file">첨부파일</label>
+                                            <div>
+												<span> FileName
+													
+												</span>
+											</div>                                       
                                         </div>
                                     </div>
                                     <!-- 요청사항 -->
@@ -94,7 +114,7 @@
                     							<div class="card-body">
                         							<div class="form-group with-title mb-3">
                             							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" 
-                            							 >긴급 승인 부탁드립니다.</textarea>
+                            							 >${vo.tDetail}</textarea>
                             							<label>요청 내용</label>
                         							</div>
                     							</div>
@@ -103,8 +123,10 @@
         							</div>
                                     <!-- 요청사항 끝 -->
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1">승인</button>
-                                        <button type="reset" class="btn btn-danger mr-1 mb-1">반려</button>
+                                    	<c:if test="${vo.aAgreeNo == 1}">
+                                        	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>
+                                        	<button id="approvalDeny"  class="btn btn-danger mr-1 mb-1">반려</button>
+                                        </c:if>
                                     </div>
                                 </div>
                             </form>

@@ -50,15 +50,28 @@ public class AdminApprovalController {
 	}
 	
 	@RequestMapping("/approvalDetail.do")
-	public String adminApprovalDetail(Model model) {
+	public String adminApprovalDetail(@RequestParam(defaultValue = "0")  int no ,Model model) {
 		//승인/변경 상태 목록 보여주기
-		logger.info("점포 등록 세부 화면");
+		logger.info("점포 등록 세부 화면, 파라미터 no={}", no);
 		//1
 		//2
- 
+		AdminTemporaryVO vo= temporaryService.approvalDetail(no);
+		logger.info("점포 등록 세부 화면 결과 vo={} ",vo);
 		//3
+		model.addAttribute("vo", vo);
 		
 		return "admin/menu2/approvalDetail";
+	}
+	
+	@RequestMapping("/approvalAgree.do")
+	public void adminApprovalAgree(@RequestParam(defaultValue = "0") int no, Model mode) {
+		logger.info("점포 등록 승인, 파라미터 no={}", no);
+		
+	}
+	
+	@RequestMapping("/approvalDeny.do")
+	public void adminApprovalDeny(@RequestParam(defaultValue = "0") int no, Model mode) {
+		logger.info("점포 등록 반려, 파라미터 no={}", no);
 	}
 
 }
