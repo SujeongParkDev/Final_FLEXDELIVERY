@@ -44,14 +44,11 @@
             <div class="pt-2 pb-3 title d-flex align-items-center">
                 <h5 class="m-0">전체보기</h5>
             </div>
-            <div class="most_sale">
-                <div class="row mb-3">
-                	<c:import url="/member/store/storeAll.do">
-            			<c:param name="lCategoryNo" value="${param.lCategoryNo}"/>
-            		</c:import>
-                </div>
-            </div>
-            
+           	<c:import url="/member/store/storeAll.do">
+       			<c:param name="lCategoryNo" value="${param.lCategoryNo}"/>
+       			<c:param name="startIndex" value="1"/>
+       			<c:param name="lastIndex" value="6"/>
+       		</c:import>
         </div>
     </div>
 <%@include file="../../memInc/bottom.jsp" %>

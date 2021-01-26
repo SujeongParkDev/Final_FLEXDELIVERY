@@ -10,4 +10,5 @@ public interface MemberStoresDAO {
 	List<MemberStoresVO> selectOpenAdStores(Map<String, Object> map);
 	List<AdminLargeCategoryVO> categorySlider();
 	List<MemberStoresVO> selectAllStores(Map<String, Object> map);
+	int selectAllStoresCount(Map<String , Object> map);
 }
