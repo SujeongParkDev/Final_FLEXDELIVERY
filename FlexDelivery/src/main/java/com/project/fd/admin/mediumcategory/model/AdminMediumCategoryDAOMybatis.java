@@ -31,4 +31,16 @@ public class AdminMediumCategoryDAOMybatis implements AdminMediumCategoryDAO{
 		int cnt=sqlSession.insert(namespace+"insertMediumcategory", mediumCategoryVo);
 		return cnt;
 	}
+
+	@Override
+	public int updateMediumcategory(AdminMediumCategoryVO mediumCategoryVo) {
+		int cnt=sqlSession.update(namespace+"updateMediumcategory", mediumCategoryVo);
+		return cnt;
+	}
+
+	@Override
+	public int deleteMediumcategory(AdminMediumCategoryVO mediumCategoryVo) {
+		int cnt=sqlSession.delete(namespace+"deleteMediumcategory", mediumCategoryVo);
+		return cnt;
+	}
 }

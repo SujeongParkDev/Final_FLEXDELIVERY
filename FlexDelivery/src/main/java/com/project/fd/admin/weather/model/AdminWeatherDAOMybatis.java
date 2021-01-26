@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
+
 @Repository
 public class AdminWeatherDAOMybatis implements AdminWeatherDAO{
 
@@ -36,6 +38,12 @@ public class AdminWeatherDAOMybatis implements AdminWeatherDAO{
 	public int deleteWeather(AdminWeatherVO weatherVo) {
 		int cnt=sqlSession.delete(namespace+"deleteWeather", weatherVo);
 		return cnt;
+	}
+
+	@Override
+	public List<AdminMediumCategoryViewVO> selectAll2() {
+		List<AdminMediumCategoryViewVO> list=sqlSession.selectList(namespace+"selectAll2");
+		return list;
 	}
 	
 	

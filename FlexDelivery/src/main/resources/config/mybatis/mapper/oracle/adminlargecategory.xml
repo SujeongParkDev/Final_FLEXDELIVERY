@@ -24,41 +24,14 @@
 		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY
 		order by L_CATEGORY_NO desc
 	</select>
-	 
-	<!-- <select id="selectAll" parameterType="searchVo" resultType="reBoardVo">
-		select *
-		from
-		(
-		    select A.*, rownum as RNUM
-		    from
-		    (
-		        select no, name, pwd, title, email, regdate,
-				readcount, content, (sysdate-regdate)*24 as newImgTerm,
-				groupno,step, sortno,delflag,filename, filesize,
-				downcount, originalfilename 
-		        from reBoard 
-				<include refid="searchWhere" />	        
-		        order by groupno desc, sortno
-		    )A
-		)
-		<![CDATA[
-		where RNUM > #{firstRecordIndex} 
-		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
-		]]>
+		
+	<select id="selectAll2" parameterType="adminMediumCategoryViewVo" resultType="adminMediumCategoryViewVo">
+		select l.L_CATEGORY_NO, l.L_CATEGORY_NAME, l.L_CATEGORY_FILENAME, count(m.L_CATEGORY_No) as L_C_COUNT
+		from LARGECATEGORY l left join MEDIUMCATEGORY m
+		on l.L_CATEGORY_no = m.L_CATEGORY_NO
+		group by l.L_CATEGORY_NO, l.L_CATEGORY_NAME, l.L_CATEGORY_FILENAME
+		order by l.L_CATEGORY_NO
 	</select>
-	
-	<select id="selectTotalRecord" parameterType="searchVo"
-		resultType="int">
-		select count(*) from reBoard
-		<include refid="searchWhere"></include>
-	</select>
-	
-	<update id="updateReadCount" parameterType="int">
-		update reBoard
-		set readcount=readcount+1 
-		where no=#{no}
-	</update>
-	-->
 	
 	<select id="selectByNo" parameterType="int" resultType="AdminLargeCategoryVo">
 		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
@@ -86,11 +59,6 @@
 	<delete id="deleteLargecategory" parameterMap="adminLargeCategoryDeleteParam">
 		call deleteLargecategory(?)
 	</delete>
-	
-	<update id="updateDownCount" parameterType="int">
-		update reboard
-		set downcount=downcount+1
-		where no=#{no}
-	</update> -->
+	 -->
 	
 </mapper>

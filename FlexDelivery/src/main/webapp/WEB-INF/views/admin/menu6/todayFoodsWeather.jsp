@@ -53,8 +53,8 @@
 			                                                <tbody>
 			                                                   <tr>
 			                                                   	  <td>
-			                                                   	  	  <input type="text" name="weatherNo"  readonly>
-			                                                   	  	  <fmt:formatNumber value="12345.678" pattern="#,###"/>
+			                                                   	  	  <input type="text" name="weatherNo" value="123" readonly>
+			                                                   	  	  <%-- <fmt:formatNumber value="12345.678" pattern="#,###"/> --%>
 			                                                   	  </td>
 			                                                      <td colspan="3"  style="text-align: center;">
 			                                                      	  <input type="text" name="weatherName">
@@ -137,7 +137,7 @@
 														<td class="text-bold-500">${vo.weatherNo }</td>
 														<td colspan="3">${vo.weatherName }</td>
 														
-														<td>숫자넣기~~</td>
+														<td><span class="badge bg-warning">${vo.wCount }</span></td>
 														<td>
 															<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.weatherNo}"
 						                                       data-toggle="modal" data-backdrop="false" data-target="#weatherEdit${vo.weatherNo}">

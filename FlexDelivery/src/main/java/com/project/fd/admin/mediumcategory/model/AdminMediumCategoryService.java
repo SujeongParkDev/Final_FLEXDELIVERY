@@ -8,4 +8,8 @@ public interface AdminMediumCategoryService {
 	
 	int insertMediumcategory(AdminMediumCategoryVO mediumCategoryVo);
 
+	int updateMediumcategory(AdminMediumCategoryVO mediumCategoryVo);
+	
+	int deleteMediumcategory(AdminMediumCategoryVO mediumCategoryVo);
+
 }

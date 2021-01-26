@@ -10,6 +10,9 @@ public class AdminMediumCategoryViewVO {
 	private String lCategoryName;
 	private String weatherName;
 	
+	//largeCategory 에서 사용할 떄 필요한 변수
+	private String lCategoryFilename;
+	
 	//카운트 멤버 변수
 	private int lCCount;
 	private int wCount;
@@ -62,14 +65,23 @@ public class AdminMediumCategoryViewVO {
 	public void setwCount(int wCount) {
 		this.wCount = wCount;
 	}
+	public String getlCategoryFilename() {
+		return lCategoryFilename;
+	}
+	public void setlCategoryFilename(String lCategoryFilename) {
+		this.lCategoryFilename = lCategoryFilename;
+	}
 	
 	
 	@Override
 	public String toString() {
 		return "AdminMediumCategoryViewVO [mCategoryNo=" + mCategoryNo + ", mCategoryName=" + mCategoryName
 				+ ", lCategoryNo=" + lCategoryNo + ", weatherNo=" + weatherNo + ", lCategoryName=" + lCategoryName
-				+ ", weatherName=" + weatherName + ", lCCount=" + lCCount + ", wCount=" + wCount + "]";
+				+ ", weatherName=" + weatherName + ", lCategoryFilename=" + lCategoryFilename + ", lCCount=" + lCCount
+				+ ", wCount=" + wCount + "]";
 	}
+	
+	
 	
 
 }

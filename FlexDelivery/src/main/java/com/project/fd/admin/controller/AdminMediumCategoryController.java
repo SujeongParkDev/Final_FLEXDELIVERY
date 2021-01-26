@@ -101,5 +101,45 @@ public class AdminMediumCategoryController {
 		
 		return "redirect:/admin/menu6/mediumCategory.do";
 	}
+
+	@RequestMapping(value="/mediumCategory/edit.do", method=RequestMethod.POST)
+	public String edit_post(@ModelAttribute AdminMediumCategoryVO mediumCategoryVo,
+			HttpServletRequest request, Model model) {
+		logger.info("edit_post 중분류 카테고리 수정 처리, 파라미터 vo={}", mediumCategoryVo);
+		
+		String msg="중분류 수정 실패", url="/admin/menu6/mediumCategory.do";
+		int cnt=mediumCategoryService.updateMediumcategory(mediumCategoryVo);
+		logger.info("중분류 수정 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="중분류 카테고리를 수정하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//return "redirect:/admin/menu6/todayFoodsWeather.do";
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/mediumCategory/delete.do", method=RequestMethod.POST)
+	public String delete_post(@ModelAttribute AdminMediumCategoryVO mediumCategoryVo,
+			HttpServletRequest request, Model model) {
+		logger.info("delete_post 중분류 삭제처리, 파라미터 vo={}", mediumCategoryVo);
+		
+		String msg="중분류 카테고리 삭제 실패", url="/admin/menu6/mediumCategory.do";
+		int cnt=mediumCategoryService.deleteMediumcategory(mediumCategoryVo);
+		logger.info("중분류 삭제 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="중분류 카테고리를 삭제하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//return "redirect:/admin/menu6/todayFoodsWeather.do";
+		return "common/message";
+	}
 		
 }

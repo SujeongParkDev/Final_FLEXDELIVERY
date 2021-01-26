@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.admin.weather.model.AdminWeatherService;
 import com.project.fd.admin.weather.model.AdminWeatherVO;
 
@@ -25,11 +26,26 @@ public class AdminWeatherController {
 	@Autowired
 	private AdminWeatherService weatherService;
 	
+	/*
 	@RequestMapping(value="/todayFoodsWeather.do", method = RequestMethod.GET)
 	public String list_get(Model model) {
 		logger.info("list_get 날씨 목록 페이지 출력");
 		
 		List<AdminWeatherVO> list=weatherService.selectAll();
+		logger.info("list 출력, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return "/admin/menu6/todayFoodsWeather";
+	}
+	*/
+	
+	@RequestMapping(value="/todayFoodsWeather.do", method = RequestMethod.GET)
+	public String list_get(Model model) {
+		logger.info("list_get 날씨 목록 페이지 출력");
+		
+		
+		List<AdminMediumCategoryViewVO> list=weatherService.selectAll2();
 		logger.info("list 출력, list.size={}", list.size());
 		
 		model.addAttribute("list", list);

@@ -162,7 +162,7 @@
                                             <li><a href="#">음식 메뉴 카테고리</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/largeCategory.do" />">대분류 카테고리</a></li>
-		                                            <li><a href="<c:url value="/admin/menu6/middleCategory.do" />">중분류 카테고리</a></li>                                           
+		                                            <li><a href="<c:url value="/admin/menu6/mediumCategory.do" />">중분류 카테고리</a></li>                                           
 	                                            </ul>
                                             </li>
                                             <li><a href="#">오늘 뭐 먹지</a>
@@ -180,6 +180,7 @@
                                             <li><a href="<c:url value='/admin/menu6/gift.do' />">선물하기</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/giftCategory.do" />">카테고리 관리</a></li>
+		                                            <li><a href="<c:url value="/admin/menu6/giftProduct.do" />">상품 관리</a></li>
 		                                            <li><a href="<c:url value="/admin/menu6/giftPrice.do" />">금액 관리</a></li>                                           
 	                                            </ul>
                                             </li>

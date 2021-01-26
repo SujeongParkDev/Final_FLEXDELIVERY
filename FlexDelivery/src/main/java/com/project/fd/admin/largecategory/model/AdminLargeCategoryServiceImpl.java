@@ -1,11 +1,11 @@
 package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.common.SearchVO;
 
 @Service
@@ -44,9 +44,8 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 	}
 
 	@Override
-	public List<AdminLargeCategoryVO> listLCategoryAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AdminMediumCategoryViewVO> selectAll2() {
+		return largecategoryDao.selectAll2();
 	}
 
 

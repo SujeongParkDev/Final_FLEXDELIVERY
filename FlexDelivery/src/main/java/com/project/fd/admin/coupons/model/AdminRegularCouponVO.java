@@ -2,7 +2,7 @@ package com.project.fd.admin.coupons.model;
 
 public class AdminRegularCouponVO {
 	private int rCouponNo;
-	private int rCouponDv;
+	private int rCouponDc;
 	private int rCouponMin;
 	
 	public int getrCouponNo() {
@@ -11,11 +11,11 @@ public class AdminRegularCouponVO {
 	public void setrCouponNo(int rCouponNo) {
 		this.rCouponNo = rCouponNo;
 	}
-	public int getrCouponDv() {
-		return rCouponDv;
+	public int getrCouponDc() {
+		return rCouponDc;
 	}
-	public void setrCouponDv(int rCouponDv) {
-		this.rCouponDv = rCouponDv;
+	public void setrCouponDc(int rCouponDc) {
+		this.rCouponDc = rCouponDc;
 	}
 	public int getrCouponMin() {
 		return rCouponMin;
@@ -26,8 +26,10 @@ public class AdminRegularCouponVO {
 	
 	@Override
 	public String toString() {
-		return "RegularCouponVO [rCouponNo=" + rCouponNo + ", rCouponDv=" + rCouponDv + ", rCouponMin=" + rCouponMin
-				+ "]";
+		return "AdminRegularCouponVO [rCouponNo=" + rCouponNo + ", rCouponDc=" + rCouponDc + ", rCouponMin="
+				+ rCouponMin + "]";
 	}
+	
+
 	
 }
