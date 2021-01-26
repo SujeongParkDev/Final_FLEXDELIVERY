@@ -1,23 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchRegister.css" />
 <script type="text/javascript"
 	src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 			$('#btRegi').click(function(){
-				if(!$('#chkAgree').is(":checked")){
-					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-					$('#chkAgree').focus();
-					event.preventDefault();
-				}else{
-					alert('축하합니다! \n입점 등록 신청이 완료되었습니다.');
-					// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
-					location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
-				}
+					$('.infobox').each(function(idx, item){
+						if($(this).val().length<1){
+							alert($(this).attr('title')+ '를(을) 입력하세요');
+							$(this).focus();
+							event.preventDefault();
+							return false;  //each 탈출
+						}
+						
+				});
+			});
+					$(function() {
+					$('#btRegi').click(function(){
+						if(!$('#chkAgree').is(":checked")){
+							alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+							$('#chkAgree').focus();
+							event.preventDefault();
+						}else{
+							alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
+							// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
+							location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
+						}
+				});
 		});
+				
 			
 			$('#btnZipcode').click(function(){
 				open(contextPath+"/zipcode/zipcode.do", "chk",
@@ -84,8 +98,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="text" placeholder="20자 이내로 등록해주세요."
-									name="storeName" id="storeName" minlength="1">
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+									name="storeName" id="storeName" minlength="1" title="점포명">
 							</div>
 						</div>
 					</div>
@@ -96,8 +110,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="file" placeholder="최대 (2M)" required=""
-									id="upfile" name="upfile" minlength="1">
+								<input type="file" placeholder="최대 (2M)" required="" class="infobox"
+									id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 							</div>
 						</div>
 					</div>
@@ -112,8 +126,8 @@
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
       						  <span class="sp1">&nbsp;</span>
-								<input type="text" placeholder="20자 이내로 등록해주세요."
-									name="storeAddress" id="storeAddress" minlength="1">
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+									name="storeAddress" id="storeAddress" minlength="1" title="점포주소">
 							</div>
 						</div>
 					</div>
@@ -123,8 +137,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="text" placeholder="점포 상세 주소를 적어주세요. "
-									name="storeAddressDetail" id="storeAddressDetail" minlength="1">
+								<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="infobox"
+									name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
 							</div>
 						</div>
 					</div>

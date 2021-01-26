@@ -39,6 +39,11 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	public int deleteAd(int storeadNo) {
 		return sqlSession.delete(namespace+"deleteAd",storeadNo);
 	}
+
+	@Override
+	public int updateAgreeRegi(OwnerRegisterVO vo) {
+		return sqlSession.update(namespace+"updateAgreeRegi",vo);
+	}
 	
 	
 }

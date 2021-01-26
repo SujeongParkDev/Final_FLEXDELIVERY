@@ -129,7 +129,7 @@ public class OwnerBoardController {
 		
 		
 		
-		
+		/*
 		
 		//이벤트 시작
 		
@@ -207,7 +207,7 @@ public class OwnerBoardController {
 		}
 
 	
-
+*/
 	
 	
 	

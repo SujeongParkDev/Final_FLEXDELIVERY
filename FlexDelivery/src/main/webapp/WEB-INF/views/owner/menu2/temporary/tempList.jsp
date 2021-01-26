@@ -19,15 +19,18 @@
 <!-- CSS end -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
+/*
+  
+ 
 	$(function(){
-		$('form[name=frmDelete]').submit(function(){
+		$('form[name=frmDelete]').click(function(){
 			if(!confirm('취소하시겠습니까?')){
 				event.preventDefault();
 			}
 		});
-		/*
 		
 		var type="";
+		
 		if($(this).attr('id')=='btStores'){
 			type="stores";
 		}else if($(this).attr('id')=='btAd'){
@@ -35,17 +38,29 @@
 		}else if($(this).attr('id')=='btRegi'){
 			type="btRegi";
 		}
-		
 		$('form[name=frmDelete]').prop('action', 
 				'<c:url value="/owner/menu2/tempDelete.do?mode='+type+'" />');
 		$('form[name=frmDelete]').submit();
-		
-		
-		*/
-			
-			
 	
 	});	
+ */
+	
+	function bt_cancle(no){
+		if(confirm('취소하시겠습니까?')){
+			var type="";
+			
+			if($('.buttons').attr('id')=='btStores'){
+				type="stores";
+			}else if($('.buttons').attr('id')=='btAd'){
+				type="adver";				
+			}else if($('.buttons').attr('id')=='btRegi'){
+				type="btRegi";
+			}
+			location.href = "<c:url value='/owner/menu2/tempDelete.do?mode="+type+"&no='/>"+no;
+		} else {
+			event.preventDefault();
+		}
+	}
 </script>
 
 <div class="container">
@@ -99,9 +114,7 @@
 																<td colspan="4">신청 내역이 없습니다.</td>
 															</tr>
 														</c:if>
-														<form name="frmDelete" method="post" >
-																<input type="hidden" name="no" value="${param.no}">
-	
+														
 														<c:if test="${!empty tempList }">
 															<!--반복 시작 -->
 															<c:forEach var="map" items="${tempList }">
@@ -110,59 +123,98 @@
 																	<td class="text-bold-500">${i }</td>
 																	<c:choose>
 																		<c:when
-																			test="${empty  map['STORE_NO'] && !empty map['OWNERREGISTER_REGDATE']
+																			test="${!empty map['STORE_NO'] &&  !empty map['OWNERREGISTER_REGDATE'] && empty map['STOREAD_REGDATE'] 
 																			}">
-																			<td colspan="3">입점 신청</td>
+																			<td colspan="3">입점 신청 ${map['SAGREENO']}</td>
 																			<td></td>
 																			<td><fmt:formatDate value="${map['STORE_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																			<c:if test="${!empty map['STORE_REGDATE'] }  ">
-																				<td><span class="badge bg-green"> 승인 완료
-																				</span></td>
-																				<td><span class="badge bg-dark"></span></td>
-																			</c:if>
+																			<!-- 
+																			<form id="frmDelete" name="frmDelete">
+																		<input type="hidden" value="${map['STORE_NO'] }"/>
+																		<td>
+																		<button type="submit" id="btStores" name="" value="cancle" class="badge bg-dark"></button></td>
+																			</form>
+																			 -->
+																			 <td>
+																	<c:if test="${map['SAGREENO'] == 1}">
+																			<span class="badge bg-light">승인대기</span>
+																		</c:if>
+																		 <c:if test="${ map['SAGREENO'] == 2}">
+																			<span class="badge bg-danger">신청취소</span>
+																		</c:if> 
+																		<c:if test="${ map['SAGREENO'] == 3 }">
+																			<span class="badge bg-success">승인완료</span>
+																		</c:if> 
+																		<c:if test="${ map['SAGREENO'] == 4 }">
+																			<span class="badge bg-danger">승인반려</span>
+																		</c:if>
+																		</td>
+
+																			 <td>
+																			 <c:if test="${map['SAGREENO'] == 1}">
+																			<a href="#" class="buttons badge bg-dark" id="btStores" 
+																			onclick="bt_cancle(${map['STORE_NO'] })" >cancle</a>
+																		</c:if>
+																		</td>
 																		</c:when>
 																		<c:when
-																			test="${!empty  map['STORE_NO'] && !empty map['OWNERREGISTER_REGDATE']}">
+																			test="${map['SAGREENO'] == 3 &&  map['RAGREENO'] == 3}">
 																			<td colspan="3">광고 신청</td>
 																			<td></td>
 																			<td><fmt:formatDate value="${map['STOREAD_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																			<c:if test="${map['AD_PAY_FLAG']=='Y' }">
-																				<td><span class="badge bg-green"> 승인 완료
-																				</span></td>
-																				<td><span class="badge bg-dark"></span></td>
-																			</c:if>
-																			<c:if test="${map['AD_PAY_FLAG']=='N' }">
-																			 <td><span class="badge bg-danger"> 승인 대기
-																			</span></td>
-																		<td><span class="badge bg-dark">
+																		
+																		
+																		<!-- 
+																		<form id="frmDelete" name="frmDelete">
 																		<input type="hidden" value="${map['STOREAD_NO'] }">
 																		<input type="submit" id="btAd" name="" value="cancle"></span></td>
-																			</c:if>
+																		</form>
+																		
+																		 -->
+																		 <td>
+																			<a href="#" class="buttons badge bg-dark" id="btAd" 
+																			onclick="bt_cancle(${map['STOREAD_NO'] })" >cancle</a></td>
 																		</c:when>
+																		
+																		
 																		<c:otherwise>
-																			<td colspan="3">사업자등록 신청</td>
+																			<td colspan="3">사업자등록 신청 ${map['RAGREENO']}</td>
 																			<td></td>
 															<td><fmt:formatDate value="${map['OWNERREGISTER_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																			<c:if test="${ map['A_AGREE_NO']==3 }">
-																				<td><span class="badge bg-green"> 승인 완료
-																				</span></td>
-																				<td><span class="badge bg-dark"></span></td>
-																			</c:if>
+																			
 																		
+																		<!-- 
+																				<form id="frmDelete" name="frmDelete">
+																		<input type="hidden" value="${map['STOREAD_NO'] }">
+																		<button type="button" id="btRegi" name="btRegi" value="cancle" class="badge bg-dark"></td>
+																		</form>
+																		 -->
+																		 
+																		 	<td>
+																	<c:if test="${map['SAGREENO'] == 1 }">
+																			<span class="badge bg-light">승인대기</span>
+																		</c:if>
+																		 <c:if test="${map['SAGREENO'] == 2 }">
+																			<span class="badge bg-danger">신청취소</span>
+																		</c:if> 
+																		<c:if test="${map['SAGREENO'] == 3 }">
+																			<span class="badge bg-success">승인완료</span>
+																		</c:if> 
+																		<c:if test="${map['SAGREENO'] == 4 }">
+																			<span class="badge bg-danger">승인반려</span>
+																		</c:if>
+																		</td>
+
+																	<td>
+																		<a href="#" class="buttons badge bg-dark" id="btRegi" onclick="bt_cancle(${map['STOREAD_NO'] })" >cancle</a>
+																		</td>
 																		</c:otherwise>
 																	</c:choose>
-																	<c:if
-																		test="${(map['STORE_REGDATE']==null
-																			|| map['OWNERREGISTER_REGDATE']==null 
-																			|| map['STOREAD_REGDATE']==null 
-																			 ) && map['AD_PAY_FLAG']=='N' }">
-																			
-																	</c:if>
-																		
+																
 																</tr>
 															</c:forEach>
 														</c:if>
-																		</form>
+																
 													</tbody>
 												</table>
 											</div>
