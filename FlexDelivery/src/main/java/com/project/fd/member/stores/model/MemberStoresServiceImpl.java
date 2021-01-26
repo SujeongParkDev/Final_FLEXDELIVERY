@@ -32,4 +32,9 @@ public class MemberStoresServiceImpl implements MemberStoresService{
 	public List<MemberStoresVO> selectAllStores(Map<String, Object> map) {
 		return memStoresDao.selectAllStores(map);
 	}
+
+	@Override
+	public int selectAllStoresCount(Map<String, Object> map) {
+		return memStoresDao.selectAllStoresCount(map);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.controller.AdminStoreAdController;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
@@ -71,14 +74,49 @@ public class MemberStoreController {
 		model.addAttribute("list",list);
 	}
 	
-	@RequestMapping("/storeAll.do")
-	public void storeAll(HttpSession session,@RequestParam int lCategoryNo,Model model) {
+	@RequestMapping(value="/storeAll.do",method = RequestMethod.GET)
+	public void storeAll_get(HttpSession session,HttpServletRequest req,Model model) {
 		logger.info("메뉴전체 출력");
 		int locationNo=(Integer)session.getAttribute("locationNo");
+		int startIndex=Integer.parseInt(req.getParameter("startIndex"));
+		int lastIndex=Integer.parseInt(req.getParameter("lastIndex"));
+		int lCategoryNo=Integer.parseInt(req.getParameter("lCategoryNo"));
+		
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("locationNo",locationNo);
 		map.put("lCategoryNo",lCategoryNo);
+		map.put("startIndex", startIndex);
+		map.put("lastIndex", lastIndex);
+		logger.info("locationNo={},lCategoryNo={}",locationNo,lCategoryNo);
+		logger.info("startIndex={},lastIndex={}",startIndex,lastIndex);
+		
 		List<MemberStoresVO> list=memStoresServ.selectAllStores(map);
+		int totalRecords=memStoresServ.selectAllStoresCount(map);
+		map.put("totalRecords",totalRecords);
 		model.addAttribute("list",list);
+		model.addAttribute("map",map);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/storeAll.do",method = RequestMethod.POST)
+	public Map<String, Object> storeAll_post(HttpSession session,HttpServletRequest req) {
+		logger.info("ajax반응");
+		int locationNo=(Integer)session.getAttribute("locationNo");
+		int startIndex=Integer.parseInt(req.getParameter("startIndex"));
+		int lastIndex=Integer.parseInt(req.getParameter("lastIndex"));
+		int lCategoryNo=Integer.parseInt(req.getParameter("lCategoryNo"));
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("locationNo",locationNo);
+		map.put("lCategoryNo",lCategoryNo);
+		map.put("startIndex", startIndex);
+		map.put("lastIndex", lastIndex);
+		logger.info("locationNo={},lCategoryNo={}",locationNo,lCategoryNo);
+		logger.info("startIndex={},lastIndex={}",startIndex,lastIndex);
+		List<MemberStoresVO> list=memStoresServ.selectAllStores(map);
+		int totalRecords=memStoresServ.selectAllStoresCount(map);
+		logger.info("list.size={},totalRecords={}",list.size(),totalRecords);
+		map.put("list", list);
+		map.put("totalRecords",totalRecords);
+		return map;
 	}
 }

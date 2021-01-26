@@ -33,5 +33,10 @@ public class MemberStoresDAOMybatis implements MemberStoresDAO{
 	public List<MemberStoresVO> selectAllStores(Map<String, Object> map) {
 		return sqlSession.selectList(namespace+"selectAllStores",map);
 	}
+
+	@Override
+	public int selectAllStoresCount(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"selectAllStoresCount",map);
+	}
 	
 }
