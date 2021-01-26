@@ -48,4 +48,14 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 	public List<OwnerMenuAllVO> selectMenuViewBymenuGroupNo(OwnerStoreMenuGroupVO ownerStoreMenuGroupVo){
 		return ownerMenuDao.selectMenuViewBymenuGroupNo(ownerStoreMenuGroupVo);
 	}
+	
+	
+	public int insertMenu(OwnerMenuVO ownerMenuVo) {
+		return ownerMenuDao.insertMenu(ownerMenuVo);
+	}
+	
+
+	public int deleteMenuByNo(int menuNo) {
+		return ownerMenuDao.deleteMenuByNo(menuNo);
+	}
 }

@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -20,14 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.common.OwnerFileUploadUtil;
 import com.project.fd.owner.menu.model.OwnerMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuOptionAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.menu.model.OwnerMenuVO;
 import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
-
+//메뉴 옵션 할차례 / 그리고 menu delete edit 할때 그자리로 가게끔하는게 필요하다.. ajax
 @Controller
 @RequestMapping("/owner/menu2/foodmenu")
 public class OwnerMenuController {
@@ -36,11 +37,12 @@ public class OwnerMenuController {
 		=LoggerFactory.getLogger(OwnerMenuController.class);
 	
 	@Autowired
-	OwnerMenuService ownerMenuService;
+	private OwnerMenuService ownerMenuService;
 	
 	
-	@Autowired
-	private FileUploadUtil fileUtil;
+	
+	 @Autowired private OwnerFileUploadUtil fileUtil;
+	
 	
 	//내점포 사이드바에서 메뉴관리 누르면 보내짐
 	//현재메뉴 버튼 누르면 보내짐
@@ -73,13 +75,25 @@ public class OwnerMenuController {
 	
 	//main에서 제목누르면 Detail로 오픈창 띄워짐
 	@RequestMapping(value = "/menuDetail.do", method = RequestMethod.GET) 
-	public String menuDetail_get(@RequestParam(defaultValue = "0") int menuNo,  Model model) {
+	public String menuDetail_get(@RequestParam(defaultValue = "0") int menuNo,  Model model,HttpServletRequest request) {
 		logger.info("menuDetail 창 보여주기 파라미터 no={}",menuNo);
 		
 		
 		//전체 메뉴 구하기
 		OwnerMenuAllVO ownerMenuAllVo  = ownerMenuService.selectMenuViewBymenuNo(menuNo);
 		logger.info("번호로 검색한 메뉴 전체 조회 결과  ownerMenuAllVo={}" , ownerMenuAllVo );
+		
+		
+		//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
+		String upPath 
+		= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+		File nowFile = new File(upPath, ownerMenuAllVo.getMenuImg());
+		boolean bool = false;
+		if(nowFile.exists()) {
+			bool=true;
+			logger.info("기존 파일 존재 여부 :{}", bool);
+		}
+		
 		
 		//전체 옵션 구하기
 		List<OwnerMenuOptionAllVO> list=null;
@@ -89,6 +103,8 @@ public class OwnerMenuController {
 		
 		model.addAttribute("menuAllVo" , ownerMenuAllVo);
 		model.addAttribute("list" , list);	
+		model.addAttribute("bool",bool);
+		
 		return "owner/menu2/foodmenu/menuDetail";
 	}
 	
@@ -135,8 +151,10 @@ public class OwnerMenuController {
 			OwnerStoreMenuGroupVO vo = ownerMenuService.selectMenuGroupByGroupNo(sMGroupNo);
 			logger.info("번호로 검색한 메뉴 그룹 전체 조회 결과  vo={}" , vo);
 			
-			model.addAttribute("vo" , vo);
 			
+	
+			model.addAttribute("vo" , vo);
+		
 			return "owner/menu2/foodmenu/menuGroupEdit";
 		}
 		
@@ -152,19 +170,16 @@ public class OwnerMenuController {
 				int cnt = ownerMenuService.updateMenuGroupByNo(ownerStoreMenuGroupVo);
 				logger.info("번호로 메뉴그룹 업데이트 결과 cnt = {}", cnt);
 				
-				int result = OwnerMenuService.SUCCESS_POST;
+				int YorN = OwnerMenuService.FAIL_POST;
 				if(cnt>0){
-					model.addAttribute("result", result);
-					model.addAttribute("SUCCESSPOST", OwnerMenuService.SUCCESS_POST);
-					
-					return "owner/menu2/foodmenu/menuGroupEdit";
+					 YorN = OwnerMenuService.SUCCESS_POST;
 				}
 				
-				String msg="수정 실패!" , url="/owner/menu2/foodmenu/menuGroupEdit.do";
-				model.addAttribute("msg", msg);
-				model.addAttribute("url",url);
+				model.addAttribute("YorN", YorN);
 					
-				return "common/message";
+			
+					
+				return "owner/menu2/foodmenu/menuGroupEdit";
 			}
 	
 		
@@ -211,6 +226,7 @@ public class OwnerMenuController {
 				storeNo= (Integer)session.getAttribute("storeNo");
 			}
 			
+		
 			logger.info("menuGroup 등록하기창 보여주기 파라미터 storeNo={}",storeNo);
 			
 			model.addAttribute("storeNo",storeNo);
@@ -228,19 +244,14 @@ public class OwnerMenuController {
 			int cnt = ownerMenuService.insertMenuGroup(ownerStoreMenuGroupVo);
 			logger.info("menuGroup 입력 결과 cnt = {}",cnt);
 			
-			int result = OwnerMenuService.SUCCESS_POST;
+			int YorN = OwnerMenuService.FAIL_POST;
 			if(cnt>0){
-				model.addAttribute("result", result);
-				model.addAttribute("SUCCESSPOST", OwnerMenuService.SUCCESS_POST);
-				
-				return "owner/menu2/foodmenu/menuGroupWrite";
+				 YorN = OwnerMenuService.SUCCESS_POST;
 			}
 			
-			String msg="입력 실패!" , url="/owner/menu2/foodmenu/menuGroupWrite.do";
-			model.addAttribute("msg", msg);
-			model.addAttribute("url",url);
+			model.addAttribute("YorN", YorN);
 				
-			return "common/message";
+			return "owner/menu2/foodmenu/menuGroupWrite";
 		}
 
 		
@@ -290,16 +301,28 @@ public class OwnerMenuController {
 		
 	 //menuchoice 에서 삭제버튼 누르면 메뉴 삭제
 		@RequestMapping(value = "/menuChoiceDelete.do", method = RequestMethod.GET) 
-		public String  menuChoice_delete(@RequestParam(defaultValue = "0") int menuNo){
+		public String  menuChoice_delete(@RequestParam(defaultValue = "0") int menuNo,Model model){
 			logger.info("menu 삭제하기 , 파라미터 menuNo={}", menuNo);
 			
 			//받아온 menuNo으로 delete 하기 (점포 번호도 필요)
+			int cnt = ownerMenuService.deleteMenuByNo(menuNo);
+			logger.info("번호로 메뉴그룹 삭제 결과 cnt = {}", cnt);
 			
 			
-			return "owner/menu2/foodmenu/menuChoice";
-		}
-	
-	//menuGroup 에서 등록버튼 누르면 메뉴 입력
+			String msg="삭제 실패!" , url="/owner/menu2/foodmenu/menuChoice.do";
+			
+			if(cnt>0) {
+				msg="삭제 성공!";
+			}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+		
+			return "common/message";
+		} 
+		
+		
+	//menuChoice 에서 등록버튼 누르면 메뉴 입력
 		@RequestMapping(value = "/menuChoiceWrite.do", method = RequestMethod.GET) 
 		public String  menuChoice_write(HttpSession session,Model model,
 					@RequestParam (defaultValue = "0") int sMGroupNo){
@@ -322,7 +345,10 @@ public class OwnerMenuController {
 			list = ownerMenuService.selectMenuGroupByNo(storeNo);
 			//점포번호로 menuName insert하기
 			
-			//만약 같은 이름이 있다면 등록못함
+			
+			
+			
+			//만약 같은 이름이 있다면 등록못하게 수정해야함
 			model.addAttribute("sMGroupNo",sMGroupNo);
 			model.addAttribute("storeNo",storeNo);
 			model.addAttribute("list", list);
@@ -334,20 +360,20 @@ public class OwnerMenuController {
 		
 		
 		
-/*
+
 	
 		//메뉴 등록 하기
-		@RequestMapping(value="/menuGroupWrite.do", method = RequestMethod.POST)
-		public String insertPost(@ModelAttribute OwnerMenuVO vo, @RequestParam (defaultValue = "0") int sMGroupNo,
+		@RequestMapping(value = "/menuChoiceWrite.do", method = RequestMethod.POST)
+		public String menuChoice_Write_Post(@ModelAttribute OwnerMenuVO vo,
 				HttpServletRequest request, 
 				Model model) {
-			logger.info("상품 등록 처리, 파라미터 vo={}", vo);
+			logger.info("메뉴 등록 처리, 파라미터 vo={}", vo);
 			
 			//파일 업로드
 			List<Map<String, Object>> list=null;
 			String imageUrl="";
 			try {
-				list=fileUtil.fileUplaod(request, FileUploadUtil.IMAGE_TYPE);
+				list=fileUtil.fileUplaod(request, OwnerFileUploadUtil.OWNER_MENU_TYPE);
 				for(Map<String, Object> map: list) {
 					imageUrl=(String) map.get("fileName");
 				}
@@ -361,19 +387,24 @@ public class OwnerMenuController {
 			
 			//2
 			int cnt=ownerMenuService.insertMenu(vo);
-			String msg="메뉴 등록 실패", url="/owner/menu2/foodmenu/menuChoice?sMGroupNo="+sMGroupNo;
-			if(cnt>0) {
-				msg="메뉴 등록되었습니다.";
+			logger.info("메뉴 등록 경과, 파라미터 vo={}, 결과값  cnt={}", vo,cnt);
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			if(cnt>0){
+				 YorN = OwnerMenuService.SUCCESS_POST;
 			}
 			
+
 			//3
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-			
-			return "common/message";
-		}
-	*/
+			model.addAttribute("YorN", YorN);
 		
+		
+			return "owner/menu2/foodmenu/menuChoiceWrite";
+		}
+
+
+		
+
 	//옵션편집 버튼 누르면  menuOption.jsp
 		@RequestMapping(value = "/menuOption.do", method = RequestMethod.GET) 
 		public String  menuOptionGroup_get(){

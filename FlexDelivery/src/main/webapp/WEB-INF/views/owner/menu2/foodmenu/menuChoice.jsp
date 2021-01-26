@@ -11,30 +11,20 @@
 	<script type="text/javascript">
 	
 	
-	
-
 			
-		/* 	$(function(){
-				$('#btMenuChoiceWrite').on('click', function(){
-					window.screen.width //현재 윈도우창의 가로크기를 가져옴
-					window.screen.height //세로크기 가져옴
+			function goDetail(no){
+				var windowW = 500;  // 창의 가로 길이
+			       var windowH = 700;  // 창의 세로 길이
+			       var left = Math.ceil((window.screen.width - windowW)/2);
+			       var top = Math.ceil((window.screen.height - windowH)/2);
+			       
+			       var url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuDetail.do?menuNo="+no;
+			       
+				window.open(url,"메뉴 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
+				event.preventDefault();
+			}
+			
 					
-					var popupWidth = 400; //띄울 창 가로크기
-					var popupHeight = 500;
-					
-					var popupX = (window.screen.width / 2) - (popupWidth /2);
-					var popupY = (window.screen.height / 2) - (popupHeight /2);
-					
-					window.open(
-						"${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceWrite.do", 
-						"메뉴 그룹 등록", 
-						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
-				});
-			
-			
-			});
-			 */
-			
 			
 			$(function(){
 				$('.btMainMenuChange').click(function(){
@@ -71,18 +61,24 @@
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceEdit.do?menuNo="+menuNo;
 						title="메뉴 수정";
 						popupWidth=400;
-						popupHeight=500;
+						popupHeight=600;
 					}else if($(this).attr('name')=='menuDelete'){
-						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo;
 						if(confirm(menuNo+"을 삭제하시겠습니까?")){
+							var sMGroupNo = ${sMGroupNo};
+							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo+"&sMGroupNo="+sMGroupNo;
 							location.href=url;
+							return false;
+						}else{
+							self.close();
 						}
+						
+					
 					}else if($(this).attr('name')=='menuWrite'){
 						var sMGroupNo=${sMGroupNo};
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceWrite.do?sMGroupNo="+sMGroupNo;
 						title="메뉴 등록";
 						popupWidth=400;
-						popupHeight=500;
+						popupHeight=600;
 					}
 					
 					window.screen.width //현재 윈도우창의 가로크기를 가져옴
@@ -141,10 +137,10 @@
 					            <table class="table">
 					              <thead>
 					                <tr class="text-center">
-					                  <th style="width:30%;">메뉴</th>
-					                  <th style="width:20%;">가격</th>
+					               	 <th style="width:2%;"></th>
+					                  <th style="width:37%;">메뉴</th>
 					                  <th style="width:33%;">수정/삭제</th>
-					                   <th style="width:17%;" class="pl-3"><button class="btn btn-outline-primary p-2 btmenu" name="menuWrite">등록</button></th>
+					                   <th style="width:23%;" class="pl-3"><button class="btn btn-outline-primary p-2 btmenu" name="menuWrite">등록</button></th>
 					                </tr>
 					              </thead>
 					              <tbody>
@@ -156,8 +152,8 @@
 					              	<c:if test="${!empty list }">
 					              		<c:forEach var="vo" items="${list }">
 							                <tr class="text-center">
-							                  <td class="text-bold-500"><strong>${vo.menuName }</strong></td>
-							                  <td>${vo.menuPrice }</td>
+							                  <td></td>
+							                  <td class="text-bold-500"><strong><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></strong></td>
 							                  <td>  
 							                  		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuEdit" >수정</button>
 							                  		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuDelete">삭제</button>

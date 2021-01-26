@@ -12,6 +12,10 @@
     <title>메뉴그룹사이트</title>
  
  
+ 
+ 
+  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+  
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
@@ -21,9 +25,8 @@
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
- <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+	<!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 
 
@@ -32,23 +35,29 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script type="text/javascript">
 
+	  $(document).ready(function(){
+			 var type=1;
+			var YorN = ${YorN};
+			 
+			 if(type==YorN) {
+				opener.parent.location.reload();
+				self.close();
+				} 
+		  });
 	   
 	  $(function(){
 			$('form[name=frm]').submit(function(){
 				if($('input[id=sMGroupName]').val().length<1){
 					alert('그룹명을 입력해 주세요');
-					$('input[id=sMGroupName]').focus();
+					$('input[name=sMGroupName]').focus();
 					event.preventDefault();
 				}
 			});
 			
 		}); 
-
-		 if(${result}==${SUCCESSPOST}){
-			opener.parent.location.reload();
-			self.close();
-		} 
-
+	  
+	
+	  
 	</script>
 </head>
 <body style="overflow-x:hidden;">	
@@ -76,7 +85,7 @@
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-center">
 		                        <input type="submit" class="btn btn-primary mr-1 mb-1" value="등록">
-		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>
 		                </div>
