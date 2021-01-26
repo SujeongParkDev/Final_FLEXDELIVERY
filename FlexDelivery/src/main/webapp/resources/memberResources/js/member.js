@@ -1,24 +1,24 @@
 /**
  * member.js
  */
- var contextPath="/herb";
+ 
+var contextPath="/fd/member";
+ 
 $(function(){
-	
-	
 	$('#btnChkId').click(function(){
 		var type=$(this).attr('class');	//admin , user
 		open(contextPath+"/member/checkId.do?userid="+$('#userid').val()+"&type="+type, "chk",
 "width=400,height=300,left=0,top=0,location=yes,resizable=yes");
 	});
 	
-	$('#btnZipcode').click(function(){
-		open(contextPath+"/zipcode/zipcode.do", "chk",
+	$('#btZipcode').click(function(){
+		open(contextPath+"/register/zipcode.do", "chk",
 "width=500,height=500,left=0,top=0,location=yes,resizable=yes");
 	});
 });
 
 
-	function validate_userid(id){
+	function validate_memberid(id){
 		var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
 		return pattern.test(id);
 		/*
@@ -28,7 +28,7 @@ $(function(){
 		*/
 	};
 	
-	function validate_name(name){
+	function validate_membername(name){
 		var pattern = new RegExp(/^[가-힣]*$/g);
 		return pattern.test(name);
 	};
