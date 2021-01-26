@@ -4,7 +4,7 @@
     <!-- adminInc/bottom.jsp -->
     
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area text-center">
+    <footer class="footer-area text-center" style="background-color: rgba(85,87,85,0.3);	color:white;">
         <div class="container">
             <div class="row">
                 <div class="col-12">

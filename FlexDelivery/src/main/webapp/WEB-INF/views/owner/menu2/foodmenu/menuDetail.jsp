@@ -54,7 +54,9 @@
 				<!-- 메뉴에 관한 내용 -->
 				<div class="card">
 				      <div class="card-body">
-				       		
+				      		<div class="text-center">
+				       			<h4> 메 뉴 상 세 보 기 </h4>
+				       	   	 </div>
 				       	   <!-- 그룹에 관한 내용(테이블) -->
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->
@@ -63,24 +65,32 @@
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
-				                				<img src="${menuAllVo.menuImg}" style="height:250px; width:inherit;"
-		       									src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/aerial-panoramic-image-of-sansonvale-lake-X6TCENW.jpg" alt="Card image cap">
+						                	<c:set var="bool" value="${bool }"></c:set> 
+						                		<c:if test="${bool==true}">
+						                			<img src
+														="<c:url value='/resources/imgs/ownerMenu_images/${menuAllVo.menuImg}'/>" 
+														alt="${menuAllVo.menuName }" style="height:250px; width:inherit;">
+												</c:if>
+												<c:if test="${bool==false}">
+				 		               				<img src="${menuAllVo.menuImg}" style="height:250px; width:inherit;"
+		       											 alt="${menuAllVo.menuName }">
+		       									</c:if>
 				                			</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500">메뉴이름</th>
+							                  <th class="text-bold-500" >메뉴이름</th>
 							                  <td>${menuAllVo.menuName}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500">메뉴그룹</th>
+							                  <th class="text-bold-500" >메뉴그룹</th>
 							                  <td>${menuAllVo.sMGroupName}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500">메뉴가격</th>
+							                  <th class="text-bold-500"  >메뉴가격</th>
 							                  <td>${menuAllVo.menuPrice}원</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500">메뉴내용</th>
+							                  <th class="text-bold-500"  >메뉴내용</th>
 							                  <td>${content}</td>
 						                </tr>
 						              </tbody>

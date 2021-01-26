@@ -104,4 +104,22 @@
 	
 	
 	
+	<insert id="insertMenu" parameterType="ownerMenuVo">
+		<selectKey keyProperty="menuNo" resultType="int" order="BEFORE">
+			select menu_seq.nextval from dual
+		</selectKey>
+		insert into menu(Menu_No, Menu_name, Menu_price, menu_img, menu_content, s_m_group_no)
+		values(#{menuNo}, #{menuName}, #{menuPrice}, #{menuImg}, 
+			#{menuContent}, #{sMGroupNo})
+	</insert>
+	
+	
+	<delete id="deleteMenuByNo" parameterType="int">
+		delete Menu
+		where Menu_No=#{menuNo}
+	</delete>
+	
+	
+	
+	
 </mapper>

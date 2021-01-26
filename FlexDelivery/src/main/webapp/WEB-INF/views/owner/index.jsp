@@ -124,39 +124,39 @@
 			                            <a href="#" class="post-tag"></a>
 			                            <div class="row">
 			                            	<div class="col-12 col-md-11">
-			                            		<h4><a href="<c:url value='/owner/menu3/notice.do'/>" style="text-decoration:none; class="post-headline">공지사항 </a></h4>
+			                            		<h4><a href="<c:url value='/owner/menu3/notice/notice.do'/>" style="text-decoration:none; class="post-headline">공지사항 </a></h4>
 			                            	</div>
 			                            	<div class="col-12 col-md-1">
-			                           			 <a href="<c:url value='/owner/menu3/notice.do'/>"  style="font-size: 15px; text-decoration:none; color: rgb(255,201,14);margin-right:20px;">more</a>
+			                           			 <a href="<c:url value='/owner/menu3/notice/notice.do'/>"  style="font-size: 15px; text-decoration:none; color: rgb(255,201,14);margin-right:20px;">more</a>
 			                            	</div>
 				                            </div>
 					                            <ul >
 					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-					                            		<a style="text-decoration:none; color:black;"href="">
+					                            		<a style="text-decoration:none; color:black;"href="#">
 					                            			<b>[공지]</b>&nbsp;오늘부로 수수료 10% 인하합니..
 					                            		</a>
 					                            		<span style="float:right;">2020-01-20</span>
 					                            	</li>
 					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-					                            		<a style="text-decoration:none; color:black;"href="">
+					                            		<a style="text-decoration:none; color:black;"href="#">
 					                            			<b>[공지]</b>&nbsp;쿠폰도 할인중 
 					                            		</a>
 					                            		<span style="float:right;">2020-01-20</span>
 					                            	</li>
 					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-					                            		<a style="text-decoration:none; color:black;"href="">
+					                            		<a style="text-decoration:none; color:black;"href="#">
 					                            			<b>[공지]</b>&nbsp;광고도 할인할인할인 언제까지...
 					                            		</a>
 					                            		<span style="float:right;">2020-01-20</span>
 					                            	</li>
 					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-					                            		<a style="text-decoration:none; color:black;"href="">
+					                            		<a style="text-decoration:none; color:black;"href="#">
 					                            			<b>[공지]</b>&nbsp;마지막 구매찬스~선착순입니다. 사장님덜 
 					                            		</a>
 					                            		<span style="float:right;">2020-01-20</span>
 					                            	</li>
 					                            	<li style=" font-size:100%; height:30px; margin-left:20px; ">
-					                            		<a style="text-decoration:none; color:black;"href="">
+					                            		<a style="text-decoration:none; color:black;"href="#">
 					                            			<b>[공지] </b> &nbsp;재밋다 하하
 					                            		</a>
 					                            		<span style="float:right;">2020-01-20</span>
@@ -179,10 +179,10 @@
                     <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
                     	 <div class="row align-items-center" >
                            	<div class="col-12 col-md-10">
-                           		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
+                           		<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
                            	</div>
                            	<div class="col-12 col-md-1">
-                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px;  text-decoration:none; color: rgb(255,201,14); margin-right:20px;">more</a>
+                          			 <a href="<c:url value='/owner/menu3/hoenyTip/honeyTip.do'/>" style="font-size: 15px;  text-decoration:none; color: rgb(255,201,14); margin-right:20px;">more</a>
                            	</div>
                            	<div class="col-12 col-md-1"> </div>
                            	     <br><br><br><br>
@@ -198,8 +198,8 @@
 	                              <!-- Blog Content -->
 	                              <div class="single-blog-content" style="margin-bottom: 40px;">
 	                                  <div class="line mb-2"></div>
-	                                  <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
-	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>맛있겠찡? 배고프지?</b></a></h4>
+	                                  <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>맛있겠찡? 배고프지?</b></a></h4>
 	                                  <div class="post-meta">
 	                                      <p>By FLEX DELIVERY</p>
 	                                      <p></p>
@@ -218,8 +218,8 @@
 	                                <!-- Blog Content -->
 	                                <div class="single-blog-content" style="margin-bottom: 40px;">
 	                                    <div class="line mb-2"></div>
-	                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
-	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>삼겹살 <br>입니다.</b></a></h4>
+	                                    <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>삼겹살 <br>입니다.</b></a></h4>
 	                                    <div class="post-meta">
 	                                        <p>By FLEX DELIVERY</p>
 	                                        <p></p>
@@ -241,8 +241,8 @@
 	                              <!-- Blog Content -->
 	                              <div class="single-blog-content" style=" margin-bottom: 40px;">
 	                                  <div class="line mb-2"></div>
-	                                  <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
-	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>칠레의 <br>식사예절</b></a></h4> 
+	                                  <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                  <h4><a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>칠레의 <br>식사예절</b></a></h4> 
 	                                  <div class="post-meta">
 	                                      <p>By FLEX DELIVERY</p>
 	                                      <p></p>
@@ -261,8 +261,8 @@
 	                                <!-- Blog Content -->
 	                                <div class="single-blog-content" style=" margin-bottom: 40px;">
 	                                    <div class="line mb-2"></div>
-	                                    <a href="<c:url value='/owner/menu3/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
-	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>헝가리 <br>식사예절</b></a></h4>
+	                                    <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" class="post-tag">HONEY TIP</a>
+	                                    <h4><a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>헝가리 <br>식사예절</b></a></h4>
 	                                    <div class="post-meta">
 	                                        <p>By FLEX DELIVERY</p>
 	                                        <p></p>
@@ -289,10 +289,10 @@
                      <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
                     	 <div class="row align-items-center" >
                            	<div class="col-12 col-md-10"  style="margin-top:10px;">
-                           		<a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="text-decoration:none; color:black;  "><h4 >이벤트</h4></a>
+                           		<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" style="text-decoration:none; color:black;  "><h4 >이벤트</h4></a>
                            	</div>
                            	<div class="col-12 col-md-1">
-                          			 <a href="<c:url value='/owner/menu3/honeyTip.do'/>" style="font-size: 15px; margin-right:20px;  text-decoration:none; color: rgb(255,201,14);">more</a>
+                          			 <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" style="font-size: 15px; margin-right:20px;  text-decoration:none; color: rgb(255,201,14);">more</a>
                            	</div>
                            	<div class="col-12 col-md-1"> </div>
                            	     <br><br><br><br>

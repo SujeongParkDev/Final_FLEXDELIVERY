@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.model.OwnerService;
 
 
@@ -18,8 +19,10 @@ public class OwnerIndexController {
 	=LoggerFactory.getLogger(OwnerIndexController.class);
 	
 	@Autowired
-	OwnerService ownerService;
+	private OwnerService ownerService;
 	
+	@Autowired
+	private OwnerBoardService ownerBoardService;
 	
 	//관리자, 점포 공통 뷰 보여주기(점포)
 		@RequestMapping("/index.do")
@@ -30,7 +33,8 @@ public class OwnerIndexController {
 			model.addAttribute("HAVE_ALL", OwnerService.HAVE_ALL);
 			model.addAttribute("LICENSE_STAY", OwnerService.LICENSE_STAY);
 			model.addAttribute("STORE_STAY", OwnerService.STORE_STAY);
-			
+			model.addAttribute("NOTICE", OwnerBoardService.BOARD_NOTICE);
+			model.addAttribute("EVENT", OwnerBoardService.BOARD_EVENT);
 			
 			logger.info("점포 공통 뷰 보여주기");
 		

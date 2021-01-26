@@ -9,10 +9,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴수정</title>
+    <title>메뉴등록</title>
 
   
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
+  
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
 
@@ -22,40 +25,122 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-    
+ 
 
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script type="text/javascript">
-	  $(function(){
-			$('#btMenuGroupWriteOpen').click(function(){
-				if($('input[type=text]').val().length<1){
-					alert('그룹명을 입력해 주세요');
-					$('input[type=text]').focus();
-					event.preventDefault();
-				}else{
-					var sMGroupName  =$('input[type=text]').val();
-					window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuGroupWrite.do?sMGroupName="+sMGroupName;
-					self.close();
-				}
-					
-			});
-		});
-    
-	  
-   
-    
+		
 	
+	$(document).ready(function(){
+		 	var type=1;
+			var YorN = ${YorN};
+			 
+			 if(type==YorN) {
+				opener.parent.location.reload();
+				self.close();
+				} 
+	
+	});
+
+	
+	   
+		$(function(){
+			$('#btMenuChoice').click(function(){
+			
+				if($('#menuName').val().length<1){
+					$('#warningName').html('<small>이름을 입력해 주세요</small><br>');
+					$('#menuName').focus();
+					event.preventDefault();
+				}else if($('#menuPrice').val().length<1){
+					$('#warningPrice').html('<small>가격을 입력해 주세요</small><br>');
+					$('#menuPrice').focus();
+					event.preventDefault();				
+				}else if($('#menuContent').val().length<1){
+					$('#warningContent').html('<small>내용을 입력해 주세요</small><br>');
+					$('#menuContent').focus();
+					event.preventDefault();				
+				}
+			});
+			
+		});
+		
+		
+
+		$(function(){
+			$('input[type=text]').change(function(){
+			
+				if($(this).prop('name')=='menuName'){
+					$('#warningName').html('');
+					event.preventDefault();
+				}else if($(this).prop('name')=='menuPrice'){
+					$('#warningPrice').html('');
+					event.preventDefault();				
+				}
+			});
+			
+		});
+		
+		$(function(){
+			$('textarea').change(function(){
+			
+				if($(this).prop('name')=='menuContent'){
+					$('#warningContent').html('');
+					event.preventDefault();				
+				}
+			});
+			
+		});
+		
+		
+		$(function(){
+			$('input[type=text]').click(function(){
+			
+				if($(this).prop('name')=='menuName'){
+					$('#warningName').html('');
+					event.preventDefault();
+				}else if($(this).prop('name')=='menuPrice'){
+					$('#warningPrice').html('');
+					event.preventDefault();				
+				}
+			});
+			
+		});
+		
+		$(function(){
+			$('textarea').click(function(){
+			
+				if($(this).prop('name')=='menuContent'){
+					$('#warningContent').html('');
+					event.preventDefault();				
+				}
+			});
+			
+		});
+		
+		$(function(){
+		   $('#upfile').on('change', function(){
+		       readInputFile(this);
+		   });
+		});
+		
+		
+		function readInputFile(input) {
+		    if(input.files && input.files[0]) {
+		        var reader = new FileReader();
+		       reader.onload = function (e) {
+		            $('#preview').html("<img src="+ e.target.result +"  style='width:90%; margin-left:20px;' >");
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }  
+		} 
 	</script>
+	
+		
 </head>
 <body style="overflow-x:hidden;">
-		<br>	<br>	
-		
-		
+		<br>
 		<section id="basic-vertical-layouts">
 		    <div class="row match-height">
 		    	<div class="col-md-3 col-sm-12"></div>
@@ -66,41 +151,54 @@
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">
-		                <form class="form form-vertical">
+		                <form class="form form-vertical" action="<c:url value='/owner/menu2/foodmenu/menuChoiceWrite.do'/>" method="post" enctype="multipart/form-data" >
 		                	<input type="hidden" name="sMGroupNo" value="${sMGroupNo }">
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
 		                        <div class="form-group">
-		                        	<span>메뉴 그룹</span>
+		                        	<span><small>메뉴 그룹</small></span>
+		                        
 		                     	 	<select class="form-select" id="sMGroupNo" name="sMGroupNo" style="text-align-last: right">
-                                            <c:forEach var="vo" items="${list }">
-                                           	 	<option>${vo.sMGroupName }</option>
+                                            <c:forEach var="vo" items="${list}">
+                                            		<c:set var="sMGroupNo" value="${sMGroupNo }"></c:set>
+                                            		<c:set var="sMGroupNoDB" value="${vo.sMGroupNo }"></c:set>
+                                           	 		<option value="${vo.sMGroupName }"
+                                           	 			<c:if test="${sMGroupNo==sMGroupNoDB}">
+                                            				selected="selected"
+                                            			</c:if>
+                                           	 		>${vo.sMGroupName }</option>
                                            	</c:forEach>
                                     </select>
 		                       		
-		                       		<label for="first-name-vertical">메뉴 이름</label>
-		                        	<input type="text" id="menuName" class="form-control" name="menuName">
-		                    	  
-		                    	    <label for="first-name-vertical">메뉴 가격</label>
-		                        	<input type="text" id="menuPrice" class="form-control text-right" name="menuPrice">
-		                     		<span>메뉴 이미지</span>
+		                       		<label for="first-name-vertical">메뉴 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+		                        	<input type="text" id="menuName" class="form-control text-right" name="menuName">
+		                    	  	<div>
+		                    	  		<span id="warningName" style="color:red; margin-left:210px;"></span>
+		                    	    </div>
+		                    	    <label for="first-name-vertical">메뉴 가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+		                        	<input type="text" id="menuPrice" class="form-control text-right" name="menuPrice"  >
+		                     		<div >
+		                     			<span id="warningPrice" style="color:red; text-align: right; margin-left:210px;"></span>
+		                     		</div>
+		                     		<span><small>메뉴 이미지</small></span>
+		                     		 <div id="preview" style="text-center"></div>
 		                     		<div class="form-file">
-                                        <input type="file" class="form-file-input" id="customFile">
-                                        <label class="form-file-label" for="customFile">
-                                            <span class="form-file-text text-right">파일을 선택하세요</span>
-                                            <span class="form-file-button btn-primary "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></span>
-                                        </label>
+		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" value="${vo.lCategoryFilename }" />
+                                           <br><span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>    
                                     </div>
-                            		<label for="exampleFormControlTextarea1" class="form-label">메뉴 내용</label>
-                            		<textarea class="form-control" id="menuContent" rows="3"></textarea>
+                            		
+                            		<label for="exampleFormControlTextarea1" class="form-label">메뉴 내용<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+                            		<textarea class="form-control" id="menuContent" name="menuContent" rows="3"></textarea>
+                					<span id="warningContent" style="color:red; margin-left:200px;"></span>
+                        		
                         		</div>
 		                       
 		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-end">
-		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuGroupWriteOpen" value="등록">
-		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuChoice" value="등록">
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>
 		                </form>

@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메뉴수정</title>
 
+
+
+   
   
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
@@ -20,12 +23,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-
- <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+	<!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-    
+ <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+ 
 
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
@@ -52,7 +53,7 @@
 	</script>
 </head>
 <body style="overflow-x:hidden;">
-		<br>	<br>	
+		<br>	
 		
 		
 		<section id="basic-vertical-layouts">
@@ -94,7 +95,7 @@
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-end">
 		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuChoiceEdit" value="수정">
-		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>
 		                </form>
