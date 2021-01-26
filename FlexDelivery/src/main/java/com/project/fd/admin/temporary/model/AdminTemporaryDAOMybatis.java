@@ -14,8 +14,8 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	private String namespace="config.mybatis.mapper.oracle.adminTemporary.";	
 	
 	@Override
-	public List<AdminTemporaryVO> approvalList(String approvalFlag) {
-		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"approvalList", approvalFlag);
+	public List<AdminTemporaryVO> approvalList() {
+		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"approvalList");
 		return list;
 	}
 }
