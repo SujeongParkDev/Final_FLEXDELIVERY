@@ -2,6 +2,8 @@ package com.project.fd.admin.weather.model;
 
 import java.util.List;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
+
 public interface AdminWeatherDAO {
 	List<AdminWeatherVO> selectAll();
 
@@ -10,5 +12,7 @@ public interface AdminWeatherDAO {
 	int updateWeather(AdminWeatherVO weatherVo);
 
 	int deleteWeather(AdminWeatherVO weatherVo);
+
+	List<AdminMediumCategoryViewVO> selectAll2();
 
 }

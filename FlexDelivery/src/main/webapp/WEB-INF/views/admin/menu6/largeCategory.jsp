@@ -214,15 +214,11 @@ function readInputFile(input) {
                                        <img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename}' />" alt="${vo.lCategoryFilename}" style="height: 120px" class="mb-1">
                                        <p class="card-text white">${vo.lCategoryNo }</p>
                                        <h4 class="card-title white">${vo.lCategoryName }</h4>
+                                       <p class="card-text white">하위 메뉴 : ${vo.lCCount } 개</p>
                                        <button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.lCategoryNo}"
-                                       data-toggle="modal" data-backdrop="false" data-target="#largeEdit${vo.lCategoryNo}">수정</button>
-                                       <!-- <button class="btn btn-danger round white" id="lcategoryDel" name="lcategoryDel">삭제</button> -->
-                                       
-                                       <!-- Button trigger for warning theme modal -->
+                                       	  data-toggle="modal" data-backdrop="false" data-target="#largeEdit${vo.lCategoryNo}">수정</button>
                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
-                                          data-target="#largeDelete${vo.lCategoryNo}" id="modalDeleteBt${vo.lCategoryNo}">
-                                             삭제
-                                       </button>
+                                          data-target="#largeDelete${vo.lCategoryNo}" id="modalDeleteBt${vo.lCategoryNo}">삭제</button>
                         
                                        <!--warning theme Modal -->
                                        <div class="modal fade text-left" id="largeDelete${vo.lCategoryNo}" tabindex="-1" role="dialog"

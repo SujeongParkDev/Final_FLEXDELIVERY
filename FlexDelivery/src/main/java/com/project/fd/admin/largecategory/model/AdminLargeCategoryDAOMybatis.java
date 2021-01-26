@@ -1,12 +1,12 @@
 package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.common.SearchVO;
 
 @Repository
@@ -50,6 +50,12 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 	public int deleteLargeCategory(AdminLargeCategoryVO largeCategoryVO) {
 		int cnt=sqlSession.delete(namespace+"deleteLargecategory", largeCategoryVO);
 		return cnt;
+	}
+
+	@Override
+	public List<AdminMediumCategoryViewVO> selectAll2() {
+		List<AdminMediumCategoryViewVO> list=sqlSession.selectList(namespace+"selectAll2");
+		return list;
 	}
 
 

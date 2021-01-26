@@ -1,0 +1,15 @@
+package com.project.fd.admin.coupons.model;
+
+import java.util.List;
+
+public interface AdminEventCouponDAO {
+
+	List<AdminEventCouponVO> selectAll();
+
+	int insertEventCoupon(AdminEventCouponVO eventCouponVo);
+
+	int updateEventCoupon(AdminEventCouponVO eventCouponVo);
+
+	int deleteEventCoupon(AdminEventCouponVO eventCouponVo);
+
+}

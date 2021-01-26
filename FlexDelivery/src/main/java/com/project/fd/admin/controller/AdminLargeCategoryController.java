@@ -2,7 +2,6 @@ package com.project.fd.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.common.FileUploadUtil;
-import com.project.fd.common.PaginationInfo;
-import com.project.fd.common.SearchVO;
-import com.project.fd.common.Utility;
 
 @Controller
 @RequestMapping("/admin/menu6")
@@ -139,7 +136,7 @@ public class AdminLargeCategoryController {
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());*/
 		
-		List<AdminLargeCategoryVO> list=largeCategoryService.selectAll();
+		List<AdminMediumCategoryViewVO> list=largeCategoryService.selectAll2();
 		logger.info("글목록 결과, list.size={}", list.size());
 		
 		//int totalRecord=largeCategoryService.selectTotalRecord(searchVo);

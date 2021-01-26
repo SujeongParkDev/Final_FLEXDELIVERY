@@ -3,29 +3,32 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.admineventcoupon">
-
-	<!-- <select id="selectAll" parameterType="adminGiftPriceTypeVo" resultType="adminGiftPriceTypeVo">
-		select G_P_TYPE_NO, G_P_TYPE_PRICE from GIFTPRICETYPE
-		order by G_P_TYPE_NO desc
+	
+	<select id="selectAll" parameterType="adminEventCouponVo" resultType="adminEventCouponVo">
+		select E_COUPON_NO, E_COUPON_NAME, E_COUPON_START_DATE, E_COUPON_END_DATE,
+		E_COUPON_DC, E_COUPON_MIN from EVENTCOUPON
+		order by E_COUPON_NO desc
 	</select>
 	
-	<insert id="insertGiftPriceType" parameterType="adminGiftPriceTypeVo" >
-		<selectKey keyProperty="gPTypeNo" resultType="int" order="BEFORE">
-			select giftPriceType_seq.nextval from dual
+	<insert id="insertEventCoupon" parameterType="adminEventCouponVo" >
+		<selectKey keyProperty="eCouponNo" resultType="int" order="BEFORE">
+			select EVENTCOUPON_seq.nextval from dual
 		</selectKey>
-		insert into GIFTPRICETYPE(G_P_TYPE_NO, G_P_TYPE_PRICE)
-		values(#{gPTypeNo}, #{gPTypePrice})
+		insert into EVENTCOUPON(E_COUPON_NO, E_COUPON_NAME, E_COUPON_START_DATE,
+		E_COUPON_END_DATE, E_COUPON_DC, E_COUPON_MIN)
+		values(#{eCouponNo}, #{eCouponName}, #{eCouponStartDate}, #{eCouponEndDate}, #{eCouponDc}, #{eCouponMin})
 	</insert>
 	
-	<update id="updateGiftPriceType" parameterType="adminGiftPriceTypeVo">
-		update GIFTPRICETYPE
-		set G_P_TYPE_PRICE=#{gPTypePrice}
-		where G_P_TYPE_NO=#{gPTypeNo}
+	<update id="updateEventCoupon" parameterType="adminEventCouponVo">
+		update EVENTCOUPON
+		set E_COUPON_NAME=#{eCouponName}, E_COUPON_START_DATE=#{eCouponStartDate}, E_COUPON_END_DATE=#{eCouponEndDate},
+		E_COUPON_DC=#{eCouponDc}, E_COUPON_MIN=#{eCouponMin}
+		where E_COUPON_NO=#{eCouponNo}
 	</update>
 	
-	<delete id="deleteGiftPriceType" parameterType="adminGiftPriceTypeVo">
-		delete from GIFTPRICETYPE
-		where G_P_TYPE_NO=#{gPTypeNo}
-	</delete> -->
+	<delete id="deleteEventCoupon"  parameterType="adminEventCouponVo">
+		delete from EVENTCOUPON
+		where E_COUPON_NO=#{eCouponNo}
+	</delete>
 	
 </mapper>

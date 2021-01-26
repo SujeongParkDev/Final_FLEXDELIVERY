@@ -20,4 +20,14 @@ public class AdminMediumCategoryServiceImpl implements AdminMediumCategoryServic
 		return mediumCategoryDao.insertMediumcategory(mediumCategoryVo);
 	}
 
+	@Override
+	public int updateMediumcategory(AdminMediumCategoryVO mediumCategoryVo) {
+		return mediumCategoryDao.updateMediumcategory(mediumCategoryVo);
+	}
+
+	@Override
+	public int deleteMediumcategory(AdminMediumCategoryVO mediumCategoryVo) {
+		return mediumCategoryDao.deleteMediumcategory(mediumCategoryVo);
+	}
+
 }

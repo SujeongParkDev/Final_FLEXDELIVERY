@@ -26,14 +26,13 @@
 	</select>
 	
 	<select id="selectAll2" parameterType="adminMediumCategoryViewVo" resultType="adminMediumCategoryViewVo">
-		select l.L_CATEGORY_NO, l.L_CATEGORY_NAME, count(m.L_CATEGORY_NO) as L_C_COUNT, m.M_CATEGORY_NO, m.M_CATEGORY_NAME,
-			w.WEATHER_NO, w.WEATHER_NAME, count(m.WEATHER_NO) as W_COUNT
+		select l.L_CATEGORY_NO, l.L_CATEGORY_NAME, 
+		m.m_category_no, m.m_category_name, w.WEATHER_NO, w.WEATHER_NAME
 		from LARGECATEGORY l left join MEDIUMCATEGORY m
-			on l.L_CATEGORY_NO=m.L_CATEGORY_NO
+		on l.L_CATEGORY_NO=m.L_CATEGORY_NO
 		left join WEATHER w
-			on m.WEATHER_NO=w.WEATHER_NO
-		group by l.L_CATEGORY_NO, l.L_CATEGORY_NAME, m.M_CATEGORY_NO, m.M_CATEGORY_NAME, w.WEATHER_NO, w.WEATHER_NAME
-		order by m.M_CATEGORY_NO
+		on m.WEATHER_NO=w.WEATHER_NO	
+		order by m.M_CATEGORY_NO desc
 	</select>
 	 
 	<!-- 
@@ -47,35 +46,17 @@
 	
 	<!-- <select id="selectByNo" parameterType="int" resultType="AdminLargeCategoryVo">
 		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
-	</select>
+	</select>-->
 	
-	<update id="updateLargecategory" parameterType="adminLargeCategoryVo">
-		update LARGECATEGORY 
-		set L_CATEGORY_NAME=#{lCategoryName},L_CATEGORY_FILENAME=#{lCategoryFilename}
-		<if test="fileName!=null and fileName!=''">
-			, filename=#{fileName}, originalFileName=#{originalFileName},
-			fileSize=#{fileSize}
-		</if>		
-		where L_CATEGORY_NO=#{lCategoryNo}
+	<update id="updateMediumcategory" parameterType="adminMediumCategoryVo">
+		update MEDIUMCATEGORY
+		set M_CATEGORY_NAME=#{mCategoryName}, L_CATEGORY_NO=#{lCategoryNo}, WEATHER_NO=#{weatherNo}
+		where M_CATEGORY_NO=#{mCategoryNo}
 	</update>
 	
-	<delete id="deleteLargecategory" parameterType="adminLargeCategoryVo">
-		delete from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
-	</delete> -->
-	
-	<!--
-	<parameterMap type="map" id="adminLargeCategoryDeleteParam">
-		<parameter property="no" javaType="string" jdbcType="VARCHAR" mode="IN"/>	
-	</parameterMap>
-	
-	<delete id="deleteLargecategory" parameterMap="adminLargeCategoryDeleteParam">
-		call deleteLargecategory(?)
+	<delete id="deleteMediumcategory" parameterType="adminMediumCategoryVo">
+		delete from MEDIUMCATEGORY where M_CATEGORY_NO=#{mCategoryNo}
 	</delete>
-	
-	<update id="updateDownCount" parameterType="int">
-		update reboard
-		set downcount=downcount+1
-		where no=#{no}
-	</update> -->
+
 	
 </mapper>

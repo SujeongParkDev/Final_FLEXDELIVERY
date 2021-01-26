@@ -1,13 +1,15 @@
 package com.project.fd.admin.largecategory.model;
 
 import java.util.List;
-import java.util.Map;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.common.SearchVO;
 
 public interface AdminLargeCategoryService {
 
 	List<AdminLargeCategoryVO> selectAll();
+	
+	List<AdminMediumCategoryViewVO> selectAll2();
 
 	int selectTotalRecord(SearchVO searchVo);
 
@@ -19,5 +21,4 @@ public interface AdminLargeCategoryService {
 
 	int deleteLargeCategory(AdminLargeCategoryVO largecategoryVo);
 
-	List<AdminLargeCategoryVO> listLCategoryAll();
 }

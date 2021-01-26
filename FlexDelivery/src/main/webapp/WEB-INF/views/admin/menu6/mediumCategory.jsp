@@ -215,14 +215,25 @@
 					                                                                           <input type="text" name="mCategoryNo" id="EditMCategoryNo" value="${vo.mCategoryNo }" readonly>	 
 						                                                                     </td>
 																							 <td colspan="2">
-					                                                                           <input type="text" name="lCategoryName" id="EditLCatetoryNamr" value="${vo.lCategoryName }">
+					                                                                            <select name="lCategoryNo" id="lCategoryNo">
+										                                                      		<option value="0">선택하세요</option>
+										                                                      		<c:forEach var="lCVo" items="${lCList }">
+										                                                      		<%-- <option value="NEW" <c:if test="${eventProductVO.eventName=='NEW' }">selected</c:if>>신상품</option> --%>
+																										<option value="${lCVo.lCategoryNo}" <c:if test="${lCVo.lCategoryNo}=${vo.lCategoryNo }"> selected</c:if>>${lCVo.lCategoryName }</option>
+																									</c:forEach> 
+										                                                      	</select>
 																							 </td>					                                                                    
 																							 <td colspan="2">
 					                                                                           <input type="text" name="mCategoryName" id="EditMCategoryName" value="${vo.mCategoryName }">
 																							 </td>					                                                               
 																							 <td>
-																							 	<input type="text" name="weatherName" id="EditWeatherName" value="${vo.weatherName }">
-																							 </td>     
+																								<select name="weatherNo" id="weatherNo">
+										                                                      		<option value="0">선택하세요</option>
+										                                                      		<c:forEach var="wVo" items="${wList }">
+																										<option value="${wVo.weatherNo}" <c:if test="${wVo.weatherNo}=${vo.weatherNo }"> selected</c:if>>${wVo.weatherName }</option>
+																									</c:forEach> 
+										                                                      	</select>			
+									                                                      	</td>   
 					                                                                     </tr>					                                                                    
 					                                                                  </tbody>
 					                                                               </table>                      
