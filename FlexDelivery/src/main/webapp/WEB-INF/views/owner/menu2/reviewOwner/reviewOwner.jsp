@@ -3,63 +3,12 @@
  <%@include file="../../../ownerInc/jianSidebarTop.jsp"%> 
  <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- top 끝 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/reviewOwner.css" />
 
-	<script type="text/javascript">
-	$(function(){
-	$('#frm1').submit(function(){
-		$('#p1').append($.param($(this).serializeArray()));
-		//=> $.param() : 객체를 쿼리 문자열로 바꾼다
-		alert($(this).serializeArray());
-		
-		$.ajax({
-			url:"<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>",
-			type:"post",
-			data:$(this).serializeArray(), //입력양식의 내용을 객체로 만든다
-			dataType:"json",
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			success:function(res){
-				//alert(res);
-				var str=res.message+ "<br>";
-				str+="메모 : " + res.data.content;
-				
-				$('#result').html(str);
-			},
-			error:function(xhr, status, error){
-				alert("error! : " + error);
-			}				
-		});
-				$('#content').val("");
-		
-		event.preventDefault();
-	});
-	
-	function check(){
-		var form = document.form1;
-		//첫번째 라디오 버튼을 선택한 경우
-		if(form.ex[0].checked == true){
-			//현재 폼의 action 값을 menu_1.html이라는 파일로 만든다
-			form.action="menu_1.html";
-		}
-		//두번째 라디오 버튼을 선택한 경우
-		else if(form.ex[1].checked == true){
-			form.action = "menu_2.html";
-		}
-		else{
-			form.action = "menu_3.html";
-		}
-		form.submit();
-	}
-
-	});
-	</script>
 <div class="frame-wrap">
 	<div class="frame-body">
-		<button class="top-button  hide" style="">
-			<i class="icon icon-top"></i>
-		</button>
+	
 		<div>
 			<div class="ShopSelect mb-4 mb-sm-0">
 				<select><option value="13195815">피자피자 잠실점</option></select>
@@ -74,7 +23,7 @@
 				<div class="Card rounded mt-sm-3 mx-sm-2">
 					<div class="card-body pt-sm-2">
 						<h5 class="mb-sm-2">
-							최근 리뷰 353개
+							최근 리뷰 ${fn:length(reviewList) }개
 						</h5>
 						<div class="average-wrap">
 							<div class="star-point">
@@ -122,12 +71,14 @@
 				<div class="radio-group mx-sm-2 mb-3">
 					<label class="radio-button"><input type="radio" value=""
 						checked="">
-					<p class="label">전체(358)</p></label><label class="radio-button"><input
+					<p class="label">전체(${fn:length(reviewList) })</p></label><label class="radio-button"><input
 						type="radio" value="">
 					<p class="label">미답변(0)</p></label><label class="radio-button"><input
 						type="radio" value="">
 					<p class="label">차단(0)</p></label>
 				</div>
+				</div>
+				
 				<div class="review-wrap">
 					<div class="review-list">
 						<div class="Card ">
@@ -190,7 +141,8 @@
 								<br>
 								</c:if>
 							</c:forEach>
-								<c:if test="${empty  reviewList }">
+	
+								<c:if test="${!empty  reviewList }">
 								
 								<!-- 댓글이 없는 경우 활성화  -->
 								<div class="ceo-comment-write-wrap">
@@ -217,9 +169,81 @@
 					</div>
 				</div>
 			</div>
-	<div class="frame-promo">
-		<div class="tip-container"></div>
-	</div>
+			
+			
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	$('#frm1').submit(function(){
+		$('#p1').append($.param($(this).serializeArray()));
+		//=> $.param() : 객체를 쿼리 문자열로 바꾼다
+		alert($(this).serializeArray());
+		
+		$.ajax({
+			url:"<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>",
+			type:"post",
+			data:$(this).serializeArray(), //입력양식의 내용을 객체로 만든다
+			dataType:"json",
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			success:function(res){
+				alert(res);
+				//var str=res.message+ "<br>";
+				//str+="메모 : " + res.data.content;
+				
+				//$('#result').html(str);
+			},
+			error:function(xhr, status, error){
+				alert("error! : " + error);
+			}				
+		});
+				//$('#content').val("");
+		
+		event.preventDefault();
+	});
+	});
+	/*
+	
+	
+	
+	
+	
+	function check(){
+		var form = document.changehtml;
+		//첫번째 라디오 버튼을 선택한 경우
+		if(form.ex[0].checked == true){
+			//현재 폼의 action 값을 menu_1.html이라는 파일로 만든다
+			form.action="menu_2.html";
+		}
+		//두번째 라디오 버튼을 선택한 경우
+		else if(form.ex[1].checked == true){
+			form.action = "menu_2.html";
+		}
+		else{
+			form.action = "menu_3.html";
+		}
+		form.submit();
+	}
+	
+	$(function(){
+	$('.tabgroup > div').hide();
+	$('.tabgroup > div:first-of-type').show();
+	$('.tabs a').click(function(e){
+	  e.preventDefault();
+	    var $this = $(this),
+	        tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+	        others = $this.closest('li').siblings().children('a'),
+	        target = $this.attr('href');
+	    others.removeClass('active');
+	    $this.addClass('active');
+	    $(tabgroup).children('div').hide();
+	    $(target).show();
+	  
+	});
+	});
+	    
+
+	*/
+	</script>
 
 <!--  bottom  -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

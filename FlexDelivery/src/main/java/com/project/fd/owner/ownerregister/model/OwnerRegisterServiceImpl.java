@@ -39,6 +39,11 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 		return ownerRegisterDao.deleteAd(storeadNo);
 	}
 
+	@Override
+	public int updateAgreeRegi(OwnerRegisterVO vo) {
+		return ownerRegisterDao.updateAgreeRegi(vo);
+	}
+
 
 	
 

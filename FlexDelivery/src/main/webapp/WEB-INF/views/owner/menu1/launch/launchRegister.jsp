@@ -1,23 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchRegister.css" />
 <script type="text/javascript"
 	src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 			$('#btRegi').click(function(){
-				if(!$('#chkAgree').is(":checked")){
-					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-					$('#chkAgree').focus();
-					event.preventDefault();
-				}else{
-					alert('축하합니다! \n입점 등록 신청이 완료되었습니다.');
-					// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
-					location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
-				}
+					$('.infobox').each(function(idx, item){
+						if($(this).val().length<1){
+							alert($(this).attr('title')+ '를(을) 입력하세요');
+							$(this).focus();
+							event.preventDefault();
+							return false;  //each 탈출
+						}
+						
+				});
+			});
+					$(function() {
+					$('#btRegi').click(function(){
+						if(!$('#chkAgree').is(":checked")){
+							alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+							$('#chkAgree').focus();
+							event.preventDefault();
+						}else{
+							alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
+							// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
+							location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
+						}
+				});
 		});
+				
 			
 			$('#btnZipcode').click(function(){
 				open(contextPath+"/zipcode/zipcode.do", "chk",
@@ -84,8 +98,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="text" placeholder="20자 이내로 등록해주세요."
-									name="storeName" id="storeName" minlength="1">
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+									name="storeName" id="storeName" minlength="1" title="점포명">
 							</div>
 						</div>
 					</div>
@@ -96,8 +110,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="file" placeholder="최대 (2M)" required=""
-									id="upfile" name="upfile" minlength="1">
+								<input type="file" placeholder="최대 (2M)" required="" class="infobox"
+									id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 							</div>
 						</div>
 					</div>
@@ -112,8 +126,8 @@
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
       						  <span class="sp1">&nbsp;</span>
-								<input type="text" placeholder="20자 이내로 등록해주세요."
-									name="storeAddress" id="storeAddress" minlength="1">
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+									name="storeAddress" id="storeAddress" minlength="1" title="점포주소">
 							</div>
 						</div>
 					</div>
@@ -123,8 +137,8 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="text" placeholder="점포 상세 주소를 적어주세요. "
-									name="storeAddressDetail" id="storeAddressDetail" minlength="1">
+								<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="infobox"
+									name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
 							</div>
 						</div>
 					</div>
@@ -132,17 +146,21 @@
 
 				<!--  -->
 				<!-- 옵션 만들어지면 리스트로 뽑을것임 -->
-				<!-- 지역코드번호가 내가선택하는건가?? 아니면 사업장에서 배달가능한 지역?? 알아서 ??  -->
+				<!-- 지역코드번호가 내가선택하는건가?? 아니면 사업장에서 배달가능한 지역?? 알아서 ??
+				-- 1,강서구 2,양천구 3,구로구 4,영등포구 5,금천구 6,동작구 7,관악구 8,서초구 9,강남구 
+--10,송파구 11,강동구 12,은평구 13,마포구 14,서대문구 15,종로구 16,중구 17,용산구
+--18,도봉구 19,강북구 20,성북구 21,동대문구 22,성동구 23,노원구 24,중랑구 25,광진구
+				  -->
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">송파구</option>
-						<option value="2">강남구</option>
-						<option value="3">금천구</option>
-						<option value="4">가산구</option>
-						<option value="5">마포구</option>
-						<option value="6">강동구</option>
+						<option value="1">강서구</option>
+						<option value="2">양천구</option>
+						<option value="3">구로구</option>
+						<option value="4">영등포구</option>
+						<option value="5">금천구</option>
+						<option value="6">동작구</option>
 					</select>
 				</div>
 
@@ -151,12 +169,14 @@
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">한식</option>
-						<option value="2">중식</option>
-						<option value="3">양식</option>
-						<option value="4">일식</option>
-						<option value="5">아시안</option>
-						<option value="6">디저트</option>
+						<option value="1">치킨</option>
+						<option value="2">피자/양식</option>
+						<option value="3">중국집</option>
+						<option value="4">한식</option>
+						<option value="5">일식/돈까스</option>
+						<option value="6">족발/보쌈</option>
+						<option value="7">분식</option>
+						<option value="8">카페/디저트</option>
 					</select>
 				</div>
 

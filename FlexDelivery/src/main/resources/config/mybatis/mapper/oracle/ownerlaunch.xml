@@ -31,7 +31,6 @@ on  o.OWNER_NO=s.OWNER_NO
  full join STOREAD a
 on a.store_no=s.STORE_NO;
 	 -->
-	
 		<select id="selectLSJAgreeListView" parameterType="int"
 		resultType="map">
 		select * from LSJAgreeListView
@@ -43,5 +42,11 @@ on a.store_no=s.STORE_NO;
 		where STOREAD_NO=#{storeadNo}
 	</delete>
 	
+	<!-- 승인 목록에서 취소하면 2로 업데이트  -->
+	<update id="updateAgreeRegi" parameterType="ownerRegisterVo">
+	update ownerRegister
+	set A_AGREE_NO=2
+	where OWNER_NO=#{ownerNo} and O_REGISTER_NO=#{oRegisterNo}
+	</update>
 	
 </mapper>

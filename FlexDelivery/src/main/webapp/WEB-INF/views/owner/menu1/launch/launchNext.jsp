@@ -19,7 +19,7 @@
 						</a>
 						<div class="Card rounded ">
 							<div class="card-header">
-								<h3>FLEXDELIVERY 입점</h3>
+								<h3>FLEXDELIVERY 입점 🏩</h3>
 							</div>
 							<div class="card-description " style="position: relative;">
 								입점 · 정산에 필요한 가게 정보들을 <br class="d-none d-sm-block">등록하고 광고를

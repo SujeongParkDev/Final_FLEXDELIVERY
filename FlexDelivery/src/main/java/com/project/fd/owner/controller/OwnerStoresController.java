@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.fd.common.FileUploadUtil;
 
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
-/*
+
 import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -92,4 +92,3 @@ public class OwnerStoresController {
 	
 
 }
-*/
