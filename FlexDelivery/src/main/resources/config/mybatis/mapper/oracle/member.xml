@@ -10,7 +10,7 @@
 		</selectKey>
 		insert into member(member_No, member_Name, member_Id, member_Pwd, member_Zipcode,member_Address,
 			member_Address_Detail,member_Hp1,member_Hp2, member_Hp3,member_Email1, member_Email2) 
-		values(#{memberNo}, #{memberName}, #{namemberIdme}, #{memberPwd}, #{memberZipcode}, #{memberAdress},
+		values(#{memberNo}, #{memberName}, #{memberId}, #{memberPwd}, #{memberZipcode}, #{memberAdress},
 			#{memberAdressDetail},#{memberHp1},#{memberHp2}, #{memberHp3},#{memberEmail1}, #{memberEmail2})
 	</insert>
 	
@@ -43,7 +43,7 @@
 	</select>
 	
 	<select id="dupCheck" parameterType="string" resultType="int">
-		select count(*) from member where member_id=#{memberId}
+		select count(*) from member where member_id=#{memberid}
 	</select>
 	
 </mapper>

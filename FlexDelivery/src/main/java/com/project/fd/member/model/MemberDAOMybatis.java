@@ -49,8 +49,8 @@ public class MemberDAOMybatis implements MemberDAO{
 	}
 	
 	@Override
-	public int checkDup(String userid) {
-		int count = sqlSession.selectOne(namespace+"dupCheck", userid);
+	public int checkDup(String memberid) {
+		int count = sqlSession.selectOne(namespace+"dupCheck", memberid);
 		return count;
 	}
 

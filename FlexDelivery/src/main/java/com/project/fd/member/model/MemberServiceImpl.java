@@ -59,8 +59,8 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectAuth(no);
 	}
 	
-	public int checkDup(String userid){
-		int count=memberDao.checkDup(userid);
+	public int checkDup(String memberid){
+		int count=memberDao.checkDup(memberid);
 		
 		int result=0;
 		if(count>0) {
