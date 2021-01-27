@@ -51,14 +51,15 @@
 		from 
 		(
 		    select s.*,rownum as RNUM
-		            from hyStoreList s,storeAd a
-		            where s.STORE_NO = a.STORE_NO 
-		            and a.ad_validate>sysdate 
-		            and a.AD_PAY_FLAG='Y'
-		            and s.LOCATION_NO=#{locationNo}
-		            and s.l_category_No=#{lCategoryNo}
-		            and s.a_agree_no=3
-		            and s.store_outdate is null
+		    from
+		    		(
+			    		select *
+			            from hyStoreList 
+			            where LOCATION_NO=#{locationNo}
+			            and l_category_No=#{lCategoryNo}
+			            and a_agree_no=3
+			            and store_outdate is null
+		            )s
 		)A
 		<![CDATA[
 		where RNUM>=#{startIndex} and RNUM<=#{lastIndex}
@@ -75,5 +76,9 @@
         and s.l_category_No=#{lCategoryNo}
         and s.a_agree_no=3
         and s.store_outdate is null
+	</select>
+	
+	<select id="selectStoresDetail" parameterType="int" resultType="memberStoresVo">
+		select * from hyStoreList where storeNo=#{int}
 	</select>
 </mapper>

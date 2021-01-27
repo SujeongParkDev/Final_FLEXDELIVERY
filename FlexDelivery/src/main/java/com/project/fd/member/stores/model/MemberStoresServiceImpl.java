@@ -37,4 +37,9 @@ public class MemberStoresServiceImpl implements MemberStoresService{
 	public int selectAllStoresCount(Map<String, Object> map) {
 		return memStoresDao.selectAllStoresCount(map);
 	}
+
+	@Override
+	public MemberStoresVO selectStoresDetail(int storeNo) {
+		return memStoresDao.selectStoresDetail(storeNo);
+	}
 }
