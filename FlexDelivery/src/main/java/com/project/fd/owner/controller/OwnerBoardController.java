@@ -130,7 +130,7 @@ public class OwnerBoardController {
 		
 		
 		
-		
+		/*
 		//이벤트 시작
 		
 		@RequestMapping("/event/event.do")
@@ -205,7 +205,7 @@ public class OwnerBoardController {
 			//4
 			return "owner/menu3/event/eventDetail";
 		}
-
+*/
 	
 
 	
