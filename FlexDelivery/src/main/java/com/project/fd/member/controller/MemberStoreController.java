@@ -122,6 +122,9 @@ public class MemberStoreController {
 			model.addAttribute("url","/member/index.do");
 			return "common/message"; 
 		}
-		return "member/store/detail";		
+		MemberStoresVO vo=memStoresServ.selectStoresDetail(storeNo);
+		
+		model.addAttribute("vo",vo);
+		return "member/store/storeDetail";		
 	}
 }
