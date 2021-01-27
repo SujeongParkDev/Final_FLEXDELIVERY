@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
-<script src="https://kit.fontawesome.com/e42a7f130f.js" crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
+<script src="https://kit.fontawesome.com/e42a7f130f.js"
+	crossorigin="anonymous"></script>
 
 
 <link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/operation.css" />
-<link rel="stylesheet" href="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/css/ceo-selfservice.css?ts=20210119110213">
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/operation.css" />
+<link rel="stylesheet"
+	href="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/css/ceo-selfservice.css?ts=20210119110213">
 
 
 <div class="frame-wrap">
@@ -29,10 +32,9 @@
 			<div>
 				<div class="tabs TabNav">
 					<ul>
-						<li><a
-                     href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a></li>
-                  <li><a aria-current="page" class="active" 
-                  href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
+						<li><a href="<c:url value='/owner/menu2/basic/basic.do'/>">기본정보</a></li>
+						<li><a aria-current="page" class="active"
+							href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a></li>
 					</ul>
 				</div>
 				<form class="form-card">
@@ -55,6 +57,125 @@
 						</div>
 					</div>
 				</form>
+
+				<form class="form-card form-card-active">
+					<div>
+						<div class="Card ">
+							<div class="card-header">
+								<h3>영업시간</h3>
+								<div class="card-menu " style="opacity: 1;">
+									<button type="button" class="button mr-1 small secondary">취소</button>
+									<button type="submit" class="button small primary">적용</button>
+								</div>
+							</div>
+							<div class="form-group no-divider">
+								<div class="radio-group ">
+									<label class="radio-button"><input type="radio"
+										value="" checked="">
+									<p class="label">평일/주말 동일</p></label><label class="radio-button"><input
+										type="radio" value="">
+									<p class="label">평일/주말 별도</p></label>
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="form-control-wrap">
+									<div class="form-control ">
+										<h5 class="form-label">매일</h5>
+										<label class="switch-button"><input type="checkbox"
+											value=""><span class="label">24시간</span><span
+											class="checkbox"></span></label>
+									</div>
+								</div>
+								<div class="card-columns ">
+									<div class="form-control-wrap">
+										<div class="form-control ">
+											<h5 class="form-label form-sub-label">시작</h5>
+											<select class="_31CECf9nJyK91ez9apcKQB"><option
+													value="0">밤 12시</option>
+												<option value="1">오전 1시</option>
+												<option value="2">오전 2시</option>
+												<option value="3">오전 3시</option>
+												<option value="4">오전 4시</option>
+												<option value="5">오전 5시</option>
+												<option value="6">오전 6시</option>
+												<option value="7">오전 7시</option>
+												<option value="8">오전 8시</option>
+												<option value="9">오전 9시</option>
+												<option value="10">오전 10시</option>
+												<option value="11">오전 11시</option>
+												<option value="12">낮 12시</option>
+												<option value="13">오후 1시</option>
+												<option value="14">오후 2시</option>
+												<option value="15">오후 3시</option>
+												<option value="16">오후 4시</option>
+												<option value="17">오후 5시</option>
+												<option value="18">오후 6시</option>
+												<option value="19">오후 7시</option>
+												<option value="20">오후 8시</option>
+												<option value="21">오후 9시</option>
+												<option value="22">오후 10시</option>
+												<option value="23">오후 11시</option></select><select
+												class="_1HdZOQKzdMFA822bBz8vnt"><option value="0">0분</option>
+												<option value="5">5분</option>
+												<option value="10">10분</option>
+												<option value="15">15분</option>
+												<option value="20">20분</option>
+												<option value="25">25분</option>
+												<option value="30">30분</option>
+												<option value="35">35분</option>
+												<option value="40">40분</option>
+												<option value="45">45분</option>
+												<option value="50">50분</option>
+												<option value="55">55분</option></select>
+										</div>
+									</div>
+									<div class="form-control-wrap">
+										<div class="form-control ">
+											<h5 class="form-label form-sub-label">종료</h5>
+											<select class="_31CECf9nJyK91ez9apcKQB"><option
+													value="12">낮 12시</option>
+												<option value="13">오후 1시</option>
+												<option value="14">오후 2시</option>
+												<option value="15">오후 3시</option>
+												<option value="16">오후 4시</option>
+												<option value="17">오후 5시</option>
+												<option value="18">오후 6시</option>
+												<option value="19">오후 7시</option>
+												<option value="20">오후 8시</option>
+												<option value="21">오후 9시</option>
+												<option value="22">오후 10시</option>
+												<option value="23">오후 11시</option>
+												<option value="24">밤 12시 (다음 날)</option>
+												<option value="25">오전 1시 (다음 날)</option>
+												<option value="26">오전 2시 (다음 날)</option>
+												<option value="27">오전 3시 (다음 날)</option>
+												<option value="28">오전 4시 (다음 날)</option>
+												<option value="29">오전 5시 (다음 날)</option>
+												<option value="30">오전 6시 (다음 날)</option>
+												<option value="31">오전 7시 (다음 날)</option>
+												<option value="32">오전 8시 (다음 날)</option>
+												<option value="33">오전 9시 (다음 날)</option>
+												<option value="34">오전 10시 (다음 날)</option></select><select
+												class="_1HdZOQKzdMFA822bBz8vnt"><option value="0">0분</option>
+												<option value="5">5분</option>
+												<option value="10">10분</option>
+												<option value="15">15분</option>
+												<option value="20">20분</option>
+												<option value="25">25분</option>
+												<option value="30">30분</option>
+												<option value="35">35분</option>
+												<option value="40">40분</option>
+												<option value="45">45분</option>
+												<option value="50">50분</option>
+												<option value="55">55분</option></select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
 				<form class="form-card">
 					<div>
 						<div class="Card ">
