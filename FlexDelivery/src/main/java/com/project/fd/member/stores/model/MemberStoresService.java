@@ -11,4 +11,5 @@ public interface MemberStoresService {
 	List<AdminLargeCategoryVO> categorySlider();
 	List<MemberStoresVO> selectAllStores(Map<String, Object> map);
 	int selectAllStoresCount(Map<String, Object> map);
+	MemberStoresVO selectStoresDetail(int storeNo);
 }

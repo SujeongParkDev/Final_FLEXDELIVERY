@@ -32,12 +32,6 @@ public class MemberStoreController {
 	=LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired private MemberStoresService memStoresServ;
-
-	@RequestMapping("/storeDetail.do")
-	public String store() {
-		logger.info("점포 화면 보여주기");
-		return "member/store/storeDetail";
-	}
 	
 	@RequestMapping("/storeList.do")
 	public void storeList(@RequestParam int lCategoryNo) {
@@ -118,5 +112,16 @@ public class MemberStoreController {
 		map.put("list", list);
 		map.put("totalRecords",totalRecords);
 		return map;
+	}
+	
+	@RequestMapping(value="/storeDetail.do",method = RequestMethod.GET)
+	public String storeDetail_get(@RequestParam(defaultValue = "0") int storeNo,Model model){
+		logger.info("점포 상세보기");
+		if(storeNo<1) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("url","/member/index.do");
+			return "common/message"; 
+		}
+		return "member/store/detail";		
 	}
 }
