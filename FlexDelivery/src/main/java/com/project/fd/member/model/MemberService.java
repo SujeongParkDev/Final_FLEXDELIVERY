@@ -18,5 +18,5 @@ public interface MemberService {
 		boolean chkMember(MemberVO vo);
 		int pwdUpd(MemberVO vo);
 		String selectAuth(int no);
-		int checkDup(String memberidd);
+		int checkDup(String memberid);
 }

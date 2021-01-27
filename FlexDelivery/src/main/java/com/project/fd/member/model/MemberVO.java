@@ -3,7 +3,7 @@ package com.project.fd.member.model;
 public class MemberVO {
 	private int memberNo;
 	private String memberName;
-	private String memberId;
+	private String memberid;
 	private String memberPwd;
 	private String memberZipcode;
 	private String memberAddress;
@@ -29,11 +29,11 @@ public class MemberVO {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public String getMemberId() {
-		return memberId;
+	public String getMemberid() {
+		return memberid;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 	public String getMemberPwd() {
 		return memberPwd;
@@ -50,14 +50,14 @@ public class MemberVO {
 	public String getMemberAddress() {
 		return memberAddress;
 	}
-	public void setMemberAddress(String memberAdress) {
-		this.memberAddress = memberAdress;
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
 	}
 	public String getMemberAddressDetail() {
 		return memberAddressDetail;
 	}
-	public void setMemberAddressDetail(String memberAdressDetail) {
-		this.memberAddressDetail = memberAdressDetail;
+	public void setMemberAddressDetail(String memberAddressDetail) {
+		this.memberAddressDetail = memberAddressDetail;
 	}
 	public String getMemberRegdate() {
 		return memberRegdate;
@@ -115,13 +115,14 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
-				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAdress=" + memberAddress
-				+ ", memberAdressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate + ", memberOutdate="
-				+ memberOutdate + ", memberHp1=" + memberHp1 + ", memberHp2=" + memberHp2 + ", memberHp3=" + memberHp3
-				+ ", memberEmail1=" + memberEmail1 + ", memberEmail2=" + memberEmail2 + ", authorityNo=" + authorityNo
-				+ ", locationNo=" + locationNo + "]";
+		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberid=" + memberid
+				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress
+				+ ", memberAddressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate
+				+ ", memberOutdate=" + memberOutdate + ", memberHp1=" + memberHp1 + ", memberHp2=" + memberHp2
+				+ ", memberHp3=" + memberHp3 + ", memberEmail1=" + memberEmail1 + ", memberEmail2=" + memberEmail2
+				+ ", authorityNo=" + authorityNo + ", locationNo=" + locationNo + "]";
 	}
+	
 	
 	
 	
