@@ -9,19 +9,26 @@ import org.springframework.stereotype.Service;
 public class AdminTemporaryServiceImpl implements AdminTemporaryService{
 	@Autowired
 	AdminTemporaryDAO temporaryDao;
+
+	@Override
+	public List<AdminTemporaryVO> editList() {
+		return temporaryDao.editList();
+	}
+
+	@Override
+	public AdminTemporaryVO editDetail(int no) {
+		return temporaryDao.editDetail(no);
+	}
+
+	@Override
+	public int editAgree(int no) {
+		return temporaryDao.editAgree(no);
+	}
+
+	@Override
+	public int editDeny(int no) {
+		return temporaryDao.editDeny(no);
+	}
 	
-
-	@Override
-	public List<AdminTemporaryVO> approvalList() {
-		return temporaryDao.approvalList();
-	}
-
-
-	@Override
-	public AdminTemporaryVO approvalDetail(int no) {
-		return temporaryDao.approvalDetail(no);
-	}
-
-
 
 }

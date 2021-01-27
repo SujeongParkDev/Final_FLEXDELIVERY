@@ -6,17 +6,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="${pageContext.request.contextPath}/resources/memberResources/js/jquery/jquery-3.5.1.min.js"></script> -->
 <script type="text/javascript">
 	$(function () {
 		$('#approvalAgree').click(function () {
 			alert("등록하시겠습니까?");
 			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.tNo}" />';
+			event.preventDefault();
 		});
 		
 		$('#approvalDeny').click(function () {
 			alert("반려하시겠습니까?");
 			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.tNo}" />';
+			event.preventDefault();
 		});
 			
 	

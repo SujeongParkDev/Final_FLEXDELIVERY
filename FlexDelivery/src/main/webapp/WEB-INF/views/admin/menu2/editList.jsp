@@ -13,14 +13,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>점포 승인 관리</h3>
-                <p class="text-subtitle text-muted">점포 등록승인/승인 변경 관리 페이지입니다. </p>
+                <h3>점포 변경 관리</h3>
+                <p class="text-subtitle text-muted">점포 등록 변경 관리 페이지입니다. </p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<c:url value='/admin/index.do'/> ">Main</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">점포 승인 관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">점포 변경 관리</li>
                     </ol>
                 </nav>
             </div>
@@ -29,7 +29,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                	승인 관리 현황표
+                	변경 관리 현황표
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
@@ -53,42 +53,37 @@
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >							
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >							
 									<p>${vo.tNo}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
 									<p>${vo.tStoresName}</p></a>								
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
 									<p>${vo.tOwnerName}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
 									<p>${vo.tOwnerHp1}-${vo.tOwnerHp2}-${vo.tOwnerHp3}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/aeditDetail.do?no=${vo.tNo}'/>" >
 									<p>${vo.tStoresAddress} ${vo.tStoresAddressDetail}</p></a>
 								</td>
-								<td><c:if test="${vo.aAgreeNo == 1}">
-										<span class="badge bg-light">승인대기</span>
+								<td><c:if test="${vo.aAgreeNo == 5}">
+										<span class="badge bg-light">변경대기</span>
 									</c:if> 
-									<c:if test="${vo.aAgreeNo == 2}">
-										<span class="badge bg-danger">신청취소</span>
-									</c:if> 
-									<c:if test="${vo.aAgreeNo == 3}">
-										<span class="badge bg-success">승인완료</span>
-									</c:if> 
-									<c:if test="${vo.aAgreeNo == 4}">
-										<span class="badge bg-danger">승인반려</span>
+									<c:if test="${vo.aAgreeNo == 6}">
+										<span class="badge bg-success">변경완료</span>
+									</c:if>
+									<c:if test="${vo.aAgreeNo == 7}">
+										<span class="badge bg-danger">변경반려</span>
 									</c:if>
 								</td>
 							</tr>
 						</c:forEach>
-
-
 						<!-- 반복구간 끝 -->
                     </tbody>
                 </table>

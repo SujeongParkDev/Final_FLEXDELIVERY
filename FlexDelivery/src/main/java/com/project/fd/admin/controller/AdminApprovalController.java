@@ -22,56 +22,54 @@ public class AdminApprovalController {
 	@Autowired
 	AdminTemporaryService temporaryService;
 	
-	@RequestMapping("/approvalList.do")
+	@RequestMapping("/editList.do")
 	public String adminApprovalList(Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 승인/변경 화면");
 		//1
 		//2
-		List<AdminTemporaryVO> list= temporaryService.approvalList();
+		List<AdminTemporaryVO> list= temporaryService.editList();
 		logger.info("승인 list, list.size={}",list.size());
 		//3
 		model.addAttribute("list", list);
 		
-		return "admin/menu2/approvalList";
+		return "admin/menu2/editList";
 	}
 	
-	@RequestMapping("/approvalEdit.do")
-	public String adminApprovalEdit(Model model) {
-		//승인/변경 상태 목록 보여주기
-		logger.info("점포 변경 세부 화면");
-		//1
-		//2
-		
- 
-		//3
-		
-		return "admin/menu2/approvalEdit";
-	}
 	
-	@RequestMapping("/approvalDetail.do")
+	@RequestMapping("/editDetail.do")
 	public String adminApprovalDetail(@RequestParam(defaultValue = "0")  int no ,Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 등록 세부 화면, 파라미터 no={}", no);
 		//1
 		//2
-		AdminTemporaryVO vo= temporaryService.approvalDetail(no);
+		AdminTemporaryVO vo= temporaryService.editDetail(no);
 		logger.info("점포 등록 세부 화면 결과 vo={} ",vo);
 		//3
 		model.addAttribute("vo", vo);
 		
-		return "admin/menu2/approvalDetail";
+		return "admin/menu2/editDetail";
 	}
 	
-	@RequestMapping("/approvalAgree.do")
-	public void adminApprovalAgree(@RequestParam(defaultValue = "0") int no, Model mode) {
-		logger.info("점포 등록 승인, 파라미터 no={}", no);
+	@RequestMapping("/editAgree.do")
+	public String adminEditAgree(@RequestParam(defaultValue = "0") int no) {
+		logger.info("점포 등록 승인 화면, 파라미터 no={}", no);
+		
+		int cnt= temporaryService.editAgree(no);
+		logger.info("점포 등록 승인 처리, cnt={}", cnt);
+		
+		return "redirect:/admin/menu2/editList.do";
 		
 	}
 	
 	@RequestMapping("/approvalDeny.do")
-	public void adminApprovalDeny(@RequestParam(defaultValue = "0") int no, Model mode) {
+	public String adminEditDeny(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 등록 반려, 파라미터 no={}", no);
+		
+		int cnt= temporaryService.editDeny(no);
+		logger.info("점포 등록 승인 처리, cnt={}", cnt);
+		
+		return "redirect:/admin/menu2/editList.do";
 	}
 
 }

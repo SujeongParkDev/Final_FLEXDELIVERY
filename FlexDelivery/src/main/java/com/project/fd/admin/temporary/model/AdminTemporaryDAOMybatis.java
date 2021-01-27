@@ -11,17 +11,27 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 
 	@Autowired private SqlSessionTemplate sqlSession;
 	
-	private String namespace="config.mybatis.mapper.oracle.adminTemporary.";	
-	
+	private String namespace="config.mybatis.mapper.oracle.adminTemporary.";
+
 	@Override
-	public List<AdminTemporaryVO> approvalList() {
-		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"approvalList");
+	public List<AdminTemporaryVO> editList() {
+		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"editList");
 		return list;
 	}
 
 	@Override
-	public AdminTemporaryVO approvalDetail(int no) {
-		AdminTemporaryVO vo= sqlSession.selectOne(namespace+"approvalDetail", no);
+	public AdminTemporaryVO editDetail(int no) {
+		AdminTemporaryVO vo = sqlSession.selectOne(namespace+"editDetail", no);
 		return vo;
 	}
+
+	@Override
+	public int editAgree(int no) {
+		return sqlSession.update(namespace+"editAgree", no);
+	}
+
+	@Override
+	public int editDeny(int no) {
+		return sqlSession.update(namespace+"editDeny", no);
+	}		
 }
