@@ -19,7 +19,7 @@
 	
 	<insert id="insertGiftCategory" parameterType="adminGiftCategoryVo" >
 		<selectKey keyProperty="gCategoryNo" resultType="int" order="BEFORE">
-			select gCategoryNo_seq.nextval from dual
+			select GIFTCATEGORY_seq.nextval from dual
 		</selectKey>
 		insert into GIFTCATEGORY(G_CATEGORY_NO, G_CATEGORY_NAME)
 		values(#{gCategoryNo}, #{gCategoryName})

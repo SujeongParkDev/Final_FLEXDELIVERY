@@ -9,6 +9,11 @@ public class AdminGiftCategoryProductVO {
 	private int gProductNo;
 	private String gProductName;
 	private String gProductFile;
+	
+	//count
+	private int cCount;
+	private int pCount;
+	
 	public int getgCategoryNo() {
 		return gCategoryNo;
 	}
@@ -39,12 +44,26 @@ public class AdminGiftCategoryProductVO {
 	public void setgProductFile(String gProductFile) {
 		this.gProductFile = gProductFile;
 	}
+	public int getcCount() {
+		return cCount;
+	}
+	public int getpCount() {
+		return pCount;
+	}
+	public void setcCount(int cCount) {
+		this.cCount = cCount;
+	}
+	public void setpCount(int pCount) {
+		this.pCount = pCount;
+	}
 	
 	@Override
 	public String toString() {
 		return "AdminGiftCategoryProductVO [gCategoryNo=" + gCategoryNo + ", gCategoryName=" + gCategoryName
 				+ ", gProductNo=" + gProductNo + ", gProductName=" + gProductName + ", gProductFile=" + gProductFile
-				+ "]";
+				+ ", cCount=" + cCount + ", pCount=" + pCount + "]";
 	}
+	
+	
 	
 }

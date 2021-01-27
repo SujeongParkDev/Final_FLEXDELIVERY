@@ -3,7 +3,7 @@ package com.project.fd.admin.gift.model;
 public class AdminGiftProductVO {
 	private int gProductNo;
 	private String gProductName;
-	private String gProductFile;
+	private String gProductFilename;
 	private int gCategoryNo;
 	
 	public int getgProductNo() {
@@ -18,11 +18,11 @@ public class AdminGiftProductVO {
 	public void setgProductName(String gProductName) {
 		this.gProductName = gProductName;
 	}
-	public String getgProductFile() {
-		return gProductFile;
+	public String getgProductFilename() {
+		return gProductFilename;
 	}
-	public void setgProductFile(String gProductFile) {
-		this.gProductFile = gProductFile;
+	public void setgProductFilename(String gProductFilename) {
+		this.gProductFilename = gProductFilename;
 	}
 	public int getgCategoryNo() {
 		return gCategoryNo;
@@ -33,8 +33,8 @@ public class AdminGiftProductVO {
 	
 	@Override
 	public String toString() {
-		return "GiftProductVO [gProductNo=" + gProductNo + ", gProductName=" + gProductName + ", gProductFile="
-				+ gProductFile + ", gCategoryNo=" + gCategoryNo + "]";
+		return "GiftProductVO [gProductNo=" + gProductNo + ", gProductName=" + gProductName + ", gProductFilename="
+				+ gProductFilename + ", gCategoryNo=" + gCategoryNo + "]";
 	}
 	
 	

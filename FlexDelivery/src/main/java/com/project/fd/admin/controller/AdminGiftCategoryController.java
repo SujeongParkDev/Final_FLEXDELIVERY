@@ -1,5 +1,7 @@
 package com.project.fd.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.fd.admin.gift.model.AdminGiftCategoryProductVO;
 import com.project.fd.admin.gift.model.AdminGiftCategoryService;
 import com.project.fd.admin.gift.model.AdminGiftCategoryVO;
-import com.project.fd.admin.gift.model.AdminGiftPriceTypeVO;
 
 @Controller
 @RequestMapping("/admin/menu6")
@@ -24,12 +26,19 @@ public class AdminGiftCategoryController {
 	private AdminGiftCategoryService giftCategoryService;
 	
 	@RequestMapping(value="/giftCategory.do", method = RequestMethod.GET)
-	public String list_get() {
+	public String list_get(Model model) {
 		logger.info("list_get 선물 카테고리 목록 화면 출력");
 		
+		//AllView
+		List<AdminGiftCategoryProductVO> list=giftCategoryService.selectAll2();
+		logger.info("글 목록 결과, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+				
 		return "/admin/menu6/giftCategory";
 	}
 	
+	/*
 	@RequestMapping(value="/giftCategory.do", method = RequestMethod.POST)
 	public String list_post(@ModelAttribute AdminGiftCategoryVO giftCategoryVo , HttpServletRequest request) {
 		logger.info("list_post 작업 후 선물 카테고리 목록 화면 출력, 파라미터 vo={}", giftCategoryVo);
@@ -38,6 +47,7 @@ public class AdminGiftCategoryController {
 		logger.info("선물 카테고리 목록, cnt={}", cnt);
 		return "redirect:/admin/menu6/giftCategory.do";
 	}
+	*/
 
 	@RequestMapping(value="/giftCategory/write.do", method = RequestMethod.POST)
 	public String write_post(@ModelAttribute AdminGiftCategoryVO giftCategoryVo,
