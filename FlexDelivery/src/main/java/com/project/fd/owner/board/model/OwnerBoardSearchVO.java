@@ -4,13 +4,13 @@ import com.project.fd.common.SearchVO;
 
 public class OwnerBoardSearchVO extends SearchVO{
 	
-	private int boardHead;
+	private String boardHead;
 
-	public int getBoardHead() {
+	public String getBoardHead() {
 		return boardHead;
 	}
 
-	public void setBoardHead(int boardHead) {
+	public void setBoardHead(String boardHead) {
 		this.boardHead = boardHead;
 	}
 
@@ -18,7 +18,8 @@ public class OwnerBoardSearchVO extends SearchVO{
 	public String toString() {
 		return "OwnerBoardSearchVO [boardHead=" + boardHead + "]";
 	}
-	
+
+
 	
 	
 }

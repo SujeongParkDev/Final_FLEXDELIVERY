@@ -145,8 +145,8 @@
                                     <li><a href="<c:url value='/owner/menu2/myStoreIndex.do'/>">내 가게</a></li>
                                     <li><a href="#">사장님광장</a>
                                         <ul class="dropdown">
-                                            <li><a href="<c:url value='/owner/menu3/notice/notice.do'/>">공지사항</a></li>
-                                            <li><a href="<c:url value='/owner/menu3/event/event.do'/>">이벤트</a></li>
+                                            <li><a href="<c:url value='/owner/menu3/board/notice.do'/>">공지사항</a></li>
+                                            <li><a href="<c:url value='/owner/menu3/board/event.do'/>">이벤트</a></li>
                                             <li><a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>">사장님 꿀팁</a></li>
                                         </ul>
                                     </li>

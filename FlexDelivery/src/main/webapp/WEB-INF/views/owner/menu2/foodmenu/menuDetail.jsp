@@ -65,13 +65,13 @@
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
-						                	<c:set var="bool" value="${bool }"></c:set> 
-						                		<c:if test="${bool==true}">
+						                	<c:set var="type" value="${type }"></c:set> 
+						                		<c:if test="${type=='file'}">
 						                			<img src
 														="<c:url value='/resources/imgs/ownerMenu_images/${menuAllVo.menuImg}'/>" 
 														alt="${menuAllVo.menuName }" style="height:250px; width:inherit;">
 												</c:if>
-												<c:if test="${bool==false}">
+												<c:if test="${type=='url'}">
 				 		               				<img src="${menuAllVo.menuImg}" style="height:250px; width:inherit;"
 		       											 alt="${menuAllVo.menuName }">
 		       									</c:if>

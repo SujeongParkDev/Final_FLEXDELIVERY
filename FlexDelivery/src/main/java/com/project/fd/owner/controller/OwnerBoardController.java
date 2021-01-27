@@ -24,7 +24,7 @@ import com.project.fd.owner.common.OwnerFileUploadUtil;
 import com.project.fd.owner.model.OwnerService;
 
 @Controller
-@RequestMapping("/owner/menu3")
+@RequestMapping("/owner/menu3/board")
 public class OwnerBoardController {
 
 	private static final Logger logger
@@ -39,7 +39,7 @@ public class OwnerBoardController {
 	private FileUploadUtil fileUtil;
 	
 	
-	
+//저도.. 최대한 중복을 줄이고싶었는데.. 계속 오류나서.. 일단은 notice / event 나눠서 담았습니다 ㅜㅜㅜㅜㅜㅜㅜ 	
 	
 
 	
@@ -50,7 +50,7 @@ public class OwnerBoardController {
 			
 
 
-		@RequestMapping("/notice/notice.do")
+		@RequestMapping("/notice.do")
 		public String noticeList(@ModelAttribute OwnerBoardSearchVO searchVo, Model model) {
 			//1
 			logger.info("공지사항 글 목록, 파라미터 BoardSearchVO={}", searchVo);
@@ -82,63 +82,14 @@ public class OwnerBoardController {
 			model.addAttribute("list", list);
 			model.addAttribute("pagingInfo", pagingInfo);
 
-			return "owner/menu3/notice/notice";
-		}
-
-		
-		@RequestMapping("/notice/noticeDetail.do")
-		public String noticeDetail(@RequestParam(defaultValue = "0") int boardNo,
-				HttpServletRequest request, Model model) {
-			//1
-			logger.info("상세보기 파라미터 no={}", boardNo);
-			if(boardNo==0) {
-				model.addAttribute("msg", "잘못된 url입니다.");
-				model.addAttribute("url", "/owner/menu3/notice/notice.do");
-
-				return "common/message";
-			}
-
-			//2
-			OwnerBoardVO ownerBoardVo=ownerBoardService.selectByNo(boardNo);
-			logger.info("상세보기 결과,vo={}", ownerBoardVo);
-
-			
-			//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
-			String upPath 
-			= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
-			File nowFile = new File(upPath, ownerBoardVo.getBoardThumbnail());
-			boolean bool = false;
-			if(nowFile.exists()) {
-				bool=true;
-				logger.info("기존 파일 존재 여부 :{}", bool);
-			}
-			
-			
-			//3
-			model.addAttribute("ownerBoardVo", ownerBoardVo);
-			model.addAttribute("bool",bool);
-
-
-			//4
-			return "owner/menu3/notice/noticeDetail";
+			return "owner/menu3/board/notice";
 		}
 
 	
 		
-		
-		
-		
-		
-
-		
-
-
-		/*
-		
-
 		//이벤트 시작
 		
-		@RequestMapping("/event/event.do")
+		@RequestMapping("/event.do")
 		public String eventList(@ModelAttribute OwnerBoardSearchVO searchVo, Model model) {
 			//1
 			logger.info(" 이벤트  글 목록, 파라미터 BoardSearchVO={}", searchVo);
@@ -149,11 +100,11 @@ public class OwnerBoardController {
 			//[1] PaginationInfo 생성
 			PaginationInfo pagingInfo = new PaginationInfo();
 			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setRecordCountPerPage(Utility.EVENT_RECORD_COUNT);
 			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
 			//[2] SearchVo 셋팅
-			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			searchVo.setRecordCountPerPage(Utility.EVENT_RECORD_COUNT);
 			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 			searchVo.setBoardHead(OwnerBoardService.BOARD_EVENT);
 			
@@ -170,81 +121,94 @@ public class OwnerBoardController {
 			model.addAttribute("list", list);
 			model.addAttribute("pagingInfo", pagingInfo);
 
-			return "owner/menu3/event/event.do";
+			return "owner/menu3/board/event";
 		}
 
 		
-		@RequestMapping("/event/eventDetail.do")
-		public String eventDetail(@RequestParam(defaultValue = "0") int boardNo,
+	
+	
+	
+	
+	
+		
+		@RequestMapping("/boardDetail.do")
+		public String noticeDetail(@RequestParam(defaultValue = "0") int boardNo
+					,@RequestParam(defaultValue = "0") String boardHead,
 				HttpServletRequest request, Model model) {
 			//1
-			logger.info("상세보기 파라미터 no={}", boardNo);
-			if(boardNo==0) {
+			logger.info("상세보기 파라미터 boardNo={}, boardHead={}", boardNo,boardHead);
+			
+			if(boardHead== null || boardHead.isEmpty()) {
 				model.addAttribute("msg", "잘못된 url입니다.");
-				model.addAttribute("url", "/owner/menu3/event/event.do");
+				model.addAttribute("url", "/owner/index.do");
+			}else if(boardHead.equals(OwnerBoardService.BOARD_EVENT) && boardNo==0) {
+				model.addAttribute("msg", "잘못된 url입니다.");
+				model.addAttribute("url", "/owner/menu3/board/event.do");
+
+				return "common/message";
+			}else if(boardHead.equals(OwnerBoardService.BOARD_NOTICE) && boardNo==0) {
+				model.addAttribute("msg", "잘못된 url입니다.");
+				model.addAttribute("url", "/owner/menu3/board/notice.do");
 
 				return "common/message";
 			}
-
+			
+			
+			
 			//2
 			OwnerBoardVO ownerBoardVo=ownerBoardService.selectByNo(boardNo);
 			logger.info("상세보기 결과,vo={}", ownerBoardVo);
 
-			
+			String type = "url";
 			//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
-			String upPath 
-			= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
-			File nowFile = new File(upPath, ownerBoardVo.getBoardThumbnail());
-			boolean bool = false;
-			if(nowFile.exists()) {
-				bool=true;
-				logger.info("기존 파일 존재 여부 :{}", bool);
+			if(ownerBoardVo.getBoardThumbnail()!=null) {
+				String upPath 
+				= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+				File nowFile = new File(upPath, ownerBoardVo.getBoardThumbnail());
+				if(nowFile.exists()) {
+					 type="file";
+					logger.info("기존 파일 존재여부 type={}",type);
+				}
+			}else if(ownerBoardVo.getBoardThumbnail()==null) {
+				type="null";
 			}
 			
 			
+			//2-2 
+			//공지 이벤트 알기
+			String eventOrNotice="";
+			if(boardHead.equals(OwnerBoardService.BOARD_EVENT)) {
+				eventOrNotice=OwnerBoardService.BOARD_EVENT;
+			}else if(boardHead.equals(OwnerBoardService.BOARD_NOTICE)) {
+				eventOrNotice=OwnerBoardService.BOARD_NOTICE;
+			}
+			
 			//3
 			model.addAttribute("ownerBoardVo", ownerBoardVo);
-			model.addAttribute("bool",bool);
+			model.addAttribute("type",type);
+			model.addAttribute("eventOrNotice",eventOrNotice);
+			model.addAttribute("EVENT",OwnerBoardService.BOARD_EVENT);
+			model.addAttribute("NOTICE",OwnerBoardService.BOARD_NOTICE);
 
+			
 
 			//4
-			return "owner/menu3/event/eventDetail";
+			return "owner/menu3/board/boardDetail";
 		}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-		*/
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//이벤트 부분 시작
-	
-	//관리자, 점포 공통 뷰 보여주기(점포)
-	@RequestMapping("/event/event.do")
-	public void event(){
-		logger.info("이벤트 보여주기");
-	
-	}
-	
 	
 	
 

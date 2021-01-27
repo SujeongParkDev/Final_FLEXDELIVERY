@@ -84,16 +84,19 @@ public class OwnerMenuController {
 		logger.info("번호로 검색한 메뉴 전체 조회 결과  ownerMenuAllVo={}" , ownerMenuAllVo );
 		
 		
+		String type = "url";
 		//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
-		String upPath 
-		= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
-		File nowFile = new File(upPath, ownerMenuAllVo.getMenuImg());
-		boolean bool = false;
-		if(nowFile.exists()) {
-			bool=true;
-			logger.info("기존 파일 존재 여부 :{}", bool);
+		if(ownerMenuAllVo.getMenuImg()!=null) {
+			String upPath 
+			= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+			File nowFile = new File(upPath, ownerMenuAllVo.getMenuImg());
+			if(nowFile.exists()) {
+				 type="file";
+				logger.info("기존 파일 존재여부 type={}",type);
+			}
+		}else if(ownerMenuAllVo.getMenuImg()==null) {
+			type="null";
 		}
-		
 		
 		//전체 옵션 구하기
 		List<OwnerMenuOptionAllVO> list=null;
@@ -103,7 +106,7 @@ public class OwnerMenuController {
 		
 		model.addAttribute("menuAllVo" , ownerMenuAllVo);
 		model.addAttribute("list" , list);	
-		model.addAttribute("bool",bool);
+		model.addAttribute("type",type);
 		
 		return "owner/menu2/foodmenu/menuDetail";
 	}
@@ -151,8 +154,8 @@ public class OwnerMenuController {
 			OwnerStoreMenuGroupVO vo = ownerMenuService.selectMenuGroupByGroupNo(sMGroupNo);
 			logger.info("번호로 검색한 메뉴 그룹 전체 조회 결과  vo={}" , vo);
 			
-			
-	
+			int YorN = OwnerMenuService.FAIL_POST;
+			model.addAttribute("YorN", YorN);
 			model.addAttribute("vo" , vo);
 		
 			return "owner/menu2/foodmenu/menuGroupEdit";
@@ -345,14 +348,14 @@ public class OwnerMenuController {
 			list = ownerMenuService.selectMenuGroupByNo(storeNo);
 			//점포번호로 menuName insert하기
 			
-			
+			int YorN = OwnerMenuService.FAIL_POST;
 			
 			
 			//만약 같은 이름이 있다면 등록못하게 수정해야함
 			model.addAttribute("sMGroupNo",sMGroupNo);
 			model.addAttribute("storeNo",storeNo);
 			model.addAttribute("list", list);
-		
+			model.addAttribute("YorN", YorN);
 			
 			
 			return "owner/menu2/foodmenu/menuChoiceWrite";
