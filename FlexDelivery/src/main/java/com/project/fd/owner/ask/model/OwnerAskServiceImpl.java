@@ -24,6 +24,11 @@ public class OwnerAskServiceImpl implements OwnerAskService{
 	public int selectTotalRecord(OwnerAskSearchVO searchVo) {
 		return ownerAskDao.selectTotalRecord(searchVo);
 	}
+
+	@Override
+	public int deleteAsk(int askNo) {
+		return ownerAskDao.deleteAsk(askNo);
+	}
 	
 	
 }

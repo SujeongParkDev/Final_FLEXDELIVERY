@@ -42,5 +42,9 @@
 		resultType="int">
 		 select count(*) from ask where ask_id=#{askId}
 	</select>
+	
+	<delete id="deleteAsk" parameterType="int">
+		delete from ask where ASK_NO=#{askNo}
+	</delete>
 
 </mapper>

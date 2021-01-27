@@ -12,9 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.common.PaginationInfo;
-import com.project.fd.common.SearchVO;
 import com.project.fd.common.Utility;
 import com.project.fd.owner.ask.model.OwnerAskSearchVO;
 import com.project.fd.owner.ask.model.OwnerAskService;
@@ -30,7 +30,7 @@ public class OwnerOneToOneController {
 	
 
 	
-	@RequestMapping(value="/menu5/oneToOne.do", method=RequestMethod.POST)
+	@RequestMapping(value="/menu5/oneToOneWrite.do", method=RequestMethod.POST)
 	public String write_post(@ModelAttribute OwnerAskVO ownerAskVo,
 			HttpSession session) {
 		logger.info("문의글 등록 페이지 ownerAskVo={}",ownerAskVo);
@@ -84,8 +84,26 @@ public class OwnerOneToOneController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		//4. 뷰페이지 리턴
-		return "redirect:/owner/menu5/oneToOne.do";
+		return "owner/menu5/oneToOne";
 	}
 	
+	@RequestMapping(value="/menu5/oneToOneDelete.do", method = RequestMethod.POST)
+	public String delete_post(@RequestParam int askNo,
+			Model model) {
+		logger.info("글삭제 처리, 파라미터 askNo={}", askNo);
+
+		int cnt=ownerAskService.deleteAsk(askNo);
+		logger.info("글삭제 결과, cnt={}", cnt);
+
+		String msg="글 삭제 실패", url="/owner/menu5/oneToOne.do";
+		if(cnt>0) {
+			msg="글삭제되었습니다.";
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+	}
 	
 }

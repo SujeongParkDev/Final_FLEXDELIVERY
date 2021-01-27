@@ -27,6 +27,12 @@ public class OwnerAskDAOMybatis implements OwnerAskDAO{
 	public int selectTotalRecord(OwnerAskSearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecord", searchVo);
 	}
+
+
+	@Override
+	public int deleteAsk(int askNo) {
+		return sqlSession.selectOne(namespace+"deleteAsk",askNo);
+	}
 	
 	
 }

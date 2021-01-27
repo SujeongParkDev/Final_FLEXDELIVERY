@@ -6,4 +6,5 @@ public interface OwnerAskDAO {
 	int insertASK(OwnerAskVO ownerAskVo);
 	List<OwnerAskVO> selectAllAsk(OwnerAskSearchVO searchVo);
 	int selectTotalRecord(OwnerAskSearchVO searchVo);
+	int deleteAsk(int askNo);
 }
