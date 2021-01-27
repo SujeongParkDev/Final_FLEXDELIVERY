@@ -8,6 +8,7 @@
 		<!-- 태그 목록 start -->
         <div class="sidebar-widget-area">
             <h5 class="title">자주 묻는 질문</h5>
+            <hr>
             <div class="widget-content">
                 <ul class="tags">
                     <li><a href="#">주문</a></li>

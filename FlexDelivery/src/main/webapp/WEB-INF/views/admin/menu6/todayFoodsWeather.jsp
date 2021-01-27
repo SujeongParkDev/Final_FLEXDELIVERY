@@ -19,6 +19,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h4 class="card-title">오늘 뭐 먹지? - 날씨별 추천</h4>
+						<hr>
 					</div>
 					<div class="card-content">
 						<div class="card-body" style="text-align: right;">
@@ -44,19 +45,19 @@
 			                                       <div class="col-12">   
 			                                          <div class="table-responsive" style="text-align: center;">
 			                                             <table class="table mb-0">
-															<thead>
+															<!-- <thead>
 																<tr>
 																	<th>번호</th>
 																	<th colspan="3">이름</th>
 																</tr>
-															</thead>
+															</thead> -->
 			                                                <tbody>
 			                                                   <tr>
-			                                                   	  <td>
-			                                                   	  	  <input type="text" name="weatherNo" value="123" readonly>
+			                                                   	  <input type="hidden" name="weatherNo" value="123" readonly>
 			                                                   	  	  <%-- <fmt:formatNumber value="12345.678" pattern="#,###"/> --%>
-			                                                   	  </td>
-			                                                      <td colspan="3"  style="text-align: center;">
+			                                                   	  
+			                                                   	  <td>날씨 이름</td>
+			                                                      <td colspan="2"  style="text-align: center;">
 			                                                      	  <input type="text" name="weatherName">
 			                                                         <!-- <div>
 			                                                            <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
@@ -87,6 +88,7 @@
 								<!-- #weatherWrite 모달 end -->
 
 						<!--</div><!--card  content-->
+							<div class="card-body">
 							<c:if test="${empty list }">
 			                     <div class="row">
 			                        <div class="col-12">
@@ -199,10 +201,10 @@
 					                                                               <table class="table mb-0">
 					                                                                  <tbody>
 					                                                                     <tr>
-						                                                                     <td class="text-bold-500">
-					                                                                           <input type="text" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
-						                                                                     </td>
-																							 <td colspan="3">
+						                                                                    
+				                                                                           <input type="hidden" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
+						                                                                     <td>날씨 이름</td>
+																							 <td colspan="2">
 					                                                                           <input type="text" name="weatherName" id="EditWeatherName" value="${vo.weatherName }">
 																							 </td>					                                                                    
 					                                                                     </tr>					                                                                    
@@ -234,6 +236,7 @@
 									</div> <!--table responsive end-->
 								</div><!-- row -->
 							</c:if>
+						</div>
 					</div><!--card content end-->
 				</div><!--card end-->
 			</div> <!-- col-12 -->
