@@ -4,7 +4,10 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerstores">
 	
-
+		<!-- 입점 신청 폼에서 뿌려줄 지역 코드 번호   -->
+	<select id="AllLocation" resultType="locationVo">
+		select * from LOCATION
+	</select>
 
 	<insert id="registerStores" parameterType="ownerStoresVo">
 	<selectKey keyProperty="storeNo" resultType="int" order="BEFORE">

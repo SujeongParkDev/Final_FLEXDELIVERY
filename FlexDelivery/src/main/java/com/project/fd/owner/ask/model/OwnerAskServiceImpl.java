@@ -29,6 +29,16 @@ public class OwnerAskServiceImpl implements OwnerAskService{
 	public int deleteAsk(int askNo) {
 		return ownerAskDao.deleteAsk(askNo);
 	}
+
+	@Override
+	public OwnerAskVO selectByNo(int askNo) {
+		return ownerAskDao.selectByNo(askNo);
+	}
+
+	@Override
+	public int updateASK(OwnerAskVO ownerAskVo) {
+		return ownerAskDao.updateASK(ownerAskVo);
+	}
 	
 	
 }

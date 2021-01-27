@@ -65,9 +65,20 @@
 							<button class="icon icon-calendar" type="button"></button>
 						</div>
 					</div>
-					<button type="button" class="button medium">조회</button>
+					<form name="frmDate" method="post" 
+	action="<c:url value='/shop/order/orderList.do'/>" >
+	<!-- 조회기간 include
+	<%@include file="../datePicker/datePicker.jsp" %>	
+	
+	 -->
+		
+	<input type="hidden" name="currentPage" value="1">
+					<input type="submit" class="button medium" value="조회 ">
+					</form>
 					<p class="desc">조회 가능한 최대 기간은 6개월 입니다</p>
 				</div>
+				
+				
 				<div class="radio-group mx-sm-2 mb-3">
 					<label class="radio-button"><input type="radio" value=""
 						checked="">
@@ -77,6 +88,20 @@
 						type="radio" value="">
 					<p class="label">차단(0)</p></label>
 				</div>
+				
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Left</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Middle</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Right</button>
+  </div>
+</div>
+				
+				
 				</div>
 				
 				<div class="review-wrap">
@@ -244,7 +269,20 @@
 
 	*/
 	</script>
-
+<!-- script start -->
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<!-- script end -->
 <!--  bottom  -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

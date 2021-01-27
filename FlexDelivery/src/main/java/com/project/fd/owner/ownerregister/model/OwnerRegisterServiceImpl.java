@@ -45,6 +45,5 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 	}
 
 
-	
 
 }

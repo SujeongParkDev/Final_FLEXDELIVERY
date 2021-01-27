@@ -28,6 +28,8 @@ public class OwnerOneToOneController {
 	
 	@Autowired OwnerAskService ownerAskService;
 	
+	@Autowired private HttpSession session;
+	//private String askId=(String)session.getAttribute("ownerId");
 
 	
 	@RequestMapping(value="/menu5/oneToOneWrite.do", method=RequestMethod.POST)
@@ -99,11 +101,55 @@ public class OwnerOneToOneController {
 		if(cnt>0) {
 			msg="글삭제되었습니다.";
 		}
-
+		//<c:url value='/owner/menu5/OneToOneDetail.do?no=${vo.askNo}'/>
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
 		return "common/message";
 	}
+	//에디트 매핑 안되는거 다시 확인 에러는 안나서 못 잡겠음 
+	@RequestMapping(value="/menu5/OneToOneDetail.do", method=RequestMethod.GET)
+	public String edit_get(@RequestParam(defaultValue = "0") int askNo,
+			HttpSession session,
+			Model model) {
+
+		//String askId=(String)session.getAttribute("ownerId");
+		
+		logger.info("수정화면, 파라미터 askNo={}", askNo);
+		if(askNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/owner/menu5/oneToOne.do");
+			return "common/message";
+		}
+		
+		OwnerAskVO vo=ownerAskService.selectByNo(askNo);
+		logger.info("수정화면, 조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "owner/menu5/OneToOneDetail";
+	}
+	/*
+	@RequestMapping(value="/menu5/OneToOneEdit.do", method = RequestMethod.POST)
+	public String edit_post(@ModelAttribute OwnerAskVO ownerAskVo,
+			Model model) {
+		logger.info("글수정 처리, 파라미터 ownerAskVo={}", ownerAskVo);
 	
+		int cnt=ownerAskService.updateASK(ownerAskVo);
+		logger.info("글수정 결과, cnt={}", cnt);
+		
+		String msg="글 수정 실패", url="/owner/menu5/OneToOneDetail?no="+ownerAskVo.getAskNo();
+		if(cnt>0) {
+			msg="글수정되었습니다.";
+			url="/owner/menu5/oneToOne";
+		}
+		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+
+		return "common/message";
+	}
+	*/
 }

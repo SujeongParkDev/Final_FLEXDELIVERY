@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../ownerInc/top.jsp"%>
 <!-- CSS start -->
 <link rel="stylesheet"
@@ -22,6 +21,10 @@
 	$(function() {
 		$('#askTitle').focus();
 	
+	$('form[name=frm1]').find('input[type=button]').click(function(){
+		location.href='<c:url value="/owner/menu5/oneToOneWrite.do"/>';
+	});
+	
 			$('#btAsk').click(function(){
 				if($('#askTitle').val().length<1){
 					alert('문의글 제목을 입력하세요');
@@ -42,7 +45,6 @@
 				}
 				
 			});
-			
 		});
 	
 			function deleteFunc(no){
@@ -54,8 +56,6 @@
 				}
 			});
 		}
-			
-			
 </script>
 
 <div class="container">
@@ -71,13 +71,16 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header"></div>
+					<div class="card-header">1:1문의</div>
 					<div class="card-body">
 						<ul class="nav nav-tabs">
 
 							<li class="nav-item"><a class="nav-link active"
 								data-toggle="tab" href="#qwe">1:1 문의하기</a></li>
 
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								href="#asd">나의 질문과 답변보기 <span class="badge bg-transparent">3</span></a>
+							</li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="qwe">
@@ -86,15 +89,17 @@
 									action="<c:url value='/owner/menu5/oneToOneWrite.do'/>">
 									<div class="form-body">
 										<div class="row">
-											<div class="col-md-4"></div>
-											<div class="col-md-8 form-group">
-												<label>제목</label> <input type="text" id="askTitle"
-													class="form-control" name="askTitle"
-													placeholder="문의글 제목을 입력하세요">
+											<div class="col-md-4">
+												<label>제목</label>
 											</div>
-											<div class="col-md-4"></div>
 											<div class="col-md-8 form-group">
+												<input type="text" id="askTitle" class="form-control"
+													name="askTitle" placeholder="문의글 제목을 입력하세요">
+											</div>
+											<div class="col-md-4">
 												<label>내용</label>
+											</div>
+											<div class="col-md-8 form-group">
 												<textarea id="askContent" class="form-control"
 													name="askContent" placeholder="문의글 내용을 입력하세요"
 													style="height: 120px;"></textarea>
@@ -111,15 +116,14 @@
 											<div class="col-sm-12 d-flex justify-content-end">
 												<input type="submit" class="btn btn-primary mr-1 mb-1"
 													id="btAsk" value="문의하기">
-
+												</button>
 											</div>
 										</div>
 									</div>
 								</form>
 							</div>
 						</div>
-						<div class="tab-pane fade show active" id="qwe">
-							<!--  -->
+						<div class="tab-pane fade" id="asd">
 							<br>
 							<!-- Hoverable rows start -->
 							<div class="row" id="table-hover-row">
@@ -144,12 +148,10 @@
 															<c:forEach var="vo" items="${list}">
 
 																<tr>
-																	<td class="text-bold-500">${vo.askNo}</td>
-																	<td colspan="3"><a href="<c:url value='/owner/menu5/OneToOneDetail.do?askNo=${vo.askNo}'/>" > ${vo.askTitle } </a></td>
-
+																	<td class="text-bold-500">${vo.askNo }</td>
+																	<td colspan="3"><a href=""> ${vo.askTitle } </a></td>
 																	<td></td>
-																	<td>${vo.askRegdate}
-																	</td>
+																	<td>${vo.askRegdate}</td>
 																	<c:if test="${vo.askStep >0}">
 																		<td><span class="badge bg-success">답변완료</span></td>
 																	</c:if>
@@ -162,69 +164,87 @@
 																</tr>
 															</c:forEach>
 														</c:if>
-
-													</tbody>
+														
+															</tbody>
 												</table>
 
-												<!-- 페이지 시작-->
-												<div class="card-body">
-													<nav aria-label="Page navigation example">
-														<ul
-															class="pagination pagination-primary justify-content-center">
-															<!-- 페이지 번호 추가 -->
-															<!-- 이전 블럭으로 이동 -->
-															<c:if test="${pagingInfo.firstPage>1 }">
-																<li class="page-item"><a class="page-link" href="#"
-																	aria-label="Previous"
-																	onclick="pageFunc(${pagingInfo.firstPage-1})"> <span
-																		aria-hidden="true">&laquo;</span>
-																</a></li>
-															</c:if>
+	<!-- 페이지 시작-->
+		<div class="card-body">
+           <nav aria-label="Page navigation example">				
+               <ul class="pagination pagination-primary justify-content-center">
+		   <!-- 페이지 번호 추가 -->		
+			<!-- 이전 블럭으로 이동 -->
+		 			<c:if test="${pagingInfo.firstPage>1 }">	
+						<li class="page-item">
+			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+        						<span aria-hidden="true">&laquo;</span>
+			                   </a>
+		                   </li>
+					</c:if>
+		                
+	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
+						<c:if test="${i==pagingInfo.currentPage }">
+							 <li class="page-item active"><a class="page-link" href="#" >${i}</a></li>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+						    <li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
+						</c:if>
+					</c:forEach>
 
-															<!-- [1][2][3][4][5][6][7][8][9][10] -->
-															<c:forEach var="i" begin="${pagingInfo.firstPage}"
-																end="${pagingInfo.lastPage}">
-																<c:if test="${i==pagingInfo.currentPage }">
-																	<li class="page-item active"><a class="page-link"
-																		href="#">${i}</a></li>
-																</c:if>
-																<c:if test="${i!=pagingInfo.currentPage }">
-																	<li class="page-item"><a class="page-link"
-																		href="#" onclick="pageFunc(${i})">${i}</a></li>
-																</c:if>
-															</c:forEach>
+				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
+					<li class="page-item">
+		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
+								<span aria-hidden="true">&raquo;</span>
+		                   </a>
+	                   </li>
+				 </c:if>
+               </ul>
+           </nav>
+           
+        </div> 
+        
+        <br>
+		<br>
+		<br>
 
-															<c:if
-																test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-																<li class="page-item"><a class="page-link" href="#"
-																	aria-label="Previous"
-																	onclick="pageFunc(${pagingInfo.lastPage+1})"> <span
-																		aria-hidden="true">&raquo;</span>
-																</a></li>
-															</c:if>
-														</ul>
-													</nav>
 
-												</div>
-
-												<br> <br> <br>
-
+												
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							</div>
-							</div>
-
+						</div>
+					</div>
+					<!-- 
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    ${vo.askTitle }
+  </a>
+</h4>
+</div>
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<div class="panel-body">
+  ${vo.askContent }
+  </div>
+  </div>
+  </div>
+  </div>
+					
+					 -->
+				
+					
 					<!-- card  -->
 				</div>
 			</section>
 		</div>
 	</div>
 </div>
-<!--  -->
-<!--  -->
+
 
 
 <!-- script start -->

@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
+import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.common.FileUploadUtil;
-
-import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
-
+import com.project.fd.owner.common.LocationVO;
 import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -32,19 +32,33 @@ public class OwnerStoresController {
 	
 	@Autowired private FileUploadUtil fileUtil;
 	
+	@Autowired private AdminLargeCategoryService adminlarge;
+	
 	@RequestMapping("/index.do") 
 	public void ownerMain() {
 		logger.info("사장님 메인 화면 보여주기"); 
 	}
 	
 	@RequestMapping("/launch/launchNext.do")
-	 public void ownerlaunchNext() {
+	 public String ownerlaunchNext(Model model) {
 		 logger.info("점포 - 입점 약관 보여주기");
+		 // 지역코드번호
+		List<LocationVO> location=ownerStoresService.AllLocaion();
+			 
+		 // 대분류 카테고리 
+		 List<AdminLargeCategoryVO> large=adminlarge.selectAll();
+		 logger.info("result large.size={}",large.size());
+			model.addAttribute("location", location);
+			model.addAttribute("large", large);
+			
+			return "owner/menu1/launch/launchNext";
 	 }
 	 
 	 @RequestMapping("/launch/launchRegister.do")
-	 public void register_get() { //requestparam=>사업자등록했는지
+	 public void register_get(Model model) { //requestparam=>사업자등록했는지
 		 logger.info("점포 - 입점 시작하기 보여주기");
+		 
+		
 	 }
 	 
 	 @RequestMapping("/launch/launch.do")
