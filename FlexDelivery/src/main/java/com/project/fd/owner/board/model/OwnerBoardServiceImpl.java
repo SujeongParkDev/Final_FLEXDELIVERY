@@ -23,5 +23,8 @@ public class OwnerBoardServiceImpl implements OwnerBoardService{
 	public OwnerBoardVO selectByNo(int boardNo) {
 		return  ownerBoardDao.selectByNo(boardNo);
 	}
-	
+		
+	public List<OwnerBoardVO>  selectMainBoard(String boardHead){
+		return ownerBoardDao.selectMainBoard(boardHead);
+	}
 }

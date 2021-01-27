@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../../ownerInc/top.jsp" %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 
@@ -15,17 +12,18 @@
 	}
 </script>
 
+
 <style>
 	.page-item.active .page-link{
 		background-color: rgb(182,73,197);
 		border-color: rgb(182,73,197);
 	}
 		
-	a.detail{
+	a.event{
 		color:black;	
 	}
 	
-	a.detail:hover{
+	a.event:hover{
 		color: rgb(182,73,197);
 		text-decoration: none;
 	}
@@ -34,7 +32,7 @@
 		color:rgb(182,73,197);
 	}
 	
-	#noticeSearch {
+	#eventSearch {
 		background-color:  rgb(237,242,13);
 
 		border-radius: 2px;
@@ -44,6 +42,9 @@
 	
 </style>
 
+
+
+
 	<br>
 	<br>
 	<br>
@@ -52,15 +53,22 @@
 	<!-- 헤드 시작 -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-center" >
-	 <h3>공 지 사 항</h3>
+	 <h3>이 벤 트</h3>
 	</div>
 	<div class="col-12 col-md-2"></div>
 	
-
+		<br>
+		<br>
+		<Br>
+	
+		<br>
+		
+	
+	
 	
 		<!-- 페이지 이동시 필요한 form -->	
 		<form name="frmPage" method="post" style="float:right;"
-			action="<c:url value='/owner/menu3/notice/notice.do'/>">
+			action="<c:url value='/owner/menu3/board/event.do'/>">
 			<input type="hidden" name="currentPage">
 			<input type="hidden" name="searchCondition" 
 				value="${param.searchCondition }">
@@ -70,10 +78,10 @@
 			
 			
 		<!-- 검색 시 필요한 form -->	 
-		<div class="col-12 col-md-2"></div>	 
-		<div class="col-12 col-md-8 text-right" >
+		<div class="col-12 col-md-3"></div>	 
+		<div class="col-12 col-md-6 text-right" >
 		<form name="frmSearch" method="post" 
-   			action="<c:url value='/owner/menu3/notice/notice.do'/>">
+   			action="<c:url value='/owner/menu3/board/event.do'/>">
 			<select name="searchCondition">
 		            <option value="board_title" 
 		            	<c:if test="${param.searchCondition == 'board_title'}">
@@ -88,73 +96,89 @@
        		</select> 
       	   	<input type="text" name="searchKeyword" title="검색어 입력"
         		value="${param.searchKeyword}">   
-			<input type="submit" id="noticeSearch" value="검색">
+			<input type="submit" id="eventSearch" value="검색">
 		 </form>
 		</div>
-		<div class="col-12 col-md-2"></div>
+		<div class="col-12 col-md-3"></div>
 	
-		
-			
-			
-
-		
-		
-	<br>
-	<br>
-	<!-- 테이블 시작 -->
-	<div class="col-12 col-md-2"></div>
-	<div class="col-12 col-md-8">
-		<table class="table table">
-		  <thead>
-		    <tr class="text-center">
-		      <th scope="col" style="width:30%;">번호</th>
-		      <th scope="col" style="width:40%;">제목</th>
-		
-		      <th scope="col" style="width:30%;">등록일</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		  	<c:if test="${empty list }">
-		  		<tr class="text-center">
-		     	 	<th colspan="3">공지사항이 없습니다</th>
-		    	</tr>
-		  	</c:if>
-		  	<c:if test="${!empty list }">
-			  	<c:forEach var="vo" items="${list}">
-				    <tr class="text-center">
-				      <th scope="row">${vo.RNUM }</th>
-				      <td><a class="detail" href="${pageContext.request.contextPath}/owner/menu3/notice/noticeDetail.do?boardNo=${vo.boardNo}">
-								<!-- 제목이 긴 경우 일부만 보여주기 -->
-								<c:if test="${fn:length(vo.boardTitle)>=30}">
-									${fn:substring(vo.boardTitle, 0,30) } ...
-								</c:if>
-								<c:if test="${fn:length(vo.boardTitle)<30}">						
-									${vo.boardTitle}
-								</c:if>
-							 </a>
-				        </td>
-				      <td>${fn:substring(vo.boardRegdate, 0,10) }</td>
-				    </tr>
-				</c:forEach>
+		<br>
+		<br>
+		<Br>
+	
+	
+		<!-- 이벤트 내용 시작 -->
+		<div class="col-12 col-md-3"></div>
+		<div class="col-12 col-md-6 text-center" >
+			<c:if test="${empty list}">
+				<div class="card">
+		  			<div class="card-body">
+		 				이벤트 준비 중 입니다.
+		  			</div>
+				</div>
 			</c:if>
-		  </tbody>
-		</table>
-	</div>
-	<div class="col-12 col-md-2"></div>
-</div>
+			<div class="row">
+				<c:if test="${!empty list }">
+					<c:forEach var="vo" items="${list}" varStatus="status">
+							<div class="col-12 col-md-4 p-4">
+						  	  	<div class="card h-100" >
+							      <!-- 이미지 띄우기 -->
+								   <!-- 나중에 파일 업로드 후에 아래 주석을 풀어주세요.. 지금은 이미지 확인차.. -->
+								   <%-- 	<img src
+										="<c:url value='/resources/imgs/ownerMenu_images/${vo.boardThumbnail}'/>" 
+										alt="${vo.boardTitle }" class="card-img-top" alt ="${vo.boardTitle }"style="height:250px;"> --%>
+									
+								      	<img src="${vo.boardThumbnail}" class="card-img-top"  alt ="${vo.boardTitle }"  style="height:100px;"
+										 alt="${vo.boardTitle }">
+									
+								        <!-- 내용띄우기 -->
+								     	<div class="card-body">
+								       		 <h5 class="card-title">
+							       		 		<a class="event" href="<c:url value='/owner/menu3/board/boardDetail.do?boardNo=${vo.boardNo }&boardHead=${vo.boardHead }'/>" >
+								       		 		<c:if test="${fn:length(vo.boardTitle)>=12}">
+														${fn:substring(vo.boardTitle, 0,10) } ..
+													</c:if>
+													<c:if test="${fn:length(vo.boardTitle)<10}">				
+														${vo.boardTitle}
+													</c:if>
+																		<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->					
+													<c:if test="${vo.newImgTerm<24 }">
+														<img src="<c:url value='/resources/imgs/new.gif'/>" 
+															alt="new 이미지">
+													</c:if>
+												</a>
+											</h5>
+								        	<p class="card-text"><span><small>${fn:substring(vo.boardRegdate, 0,10) }</small></span></p>
+								     	</div>
+								    </div>
+						     
+								 </div>
+					 </c:forEach>
+				  </c:if>
+			   </div>
+		</div>
 
-
-
-
+		<div class="col-12 col-md-3"></div>
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+<!-- 페이지 시작-->
 		<div class="card-body">
-           <nav aria-label="Page navigation example">				<!-- 페이지 가운데 정렬은  justify-content-center-->
+           <nav aria-label="Page navigation example">				
                <ul class="pagination pagination-primary justify-content-center">
 		   <!-- 페이지 번호 추가 -->		
 			<!-- 이전 블럭으로 이동 -->
 		 			<c:if test="${pagingInfo.firstPage>1 }">	
 						<li class="page-item">
 			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
-        							<span aria-hidden="true">&laquo;</span>
+        						<span aria-hidden="true">&laquo;</span>
 			                   </a>
 		                   </li>
 					</c:if>
@@ -172,7 +196,7 @@
 				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
 					<li class="page-item">
 		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
-								 <span aria-hidden="true">&raquo;</span>
+								<span aria-hidden="true">&raquo;</span>
 		                   </a>
 	                   </li>
 				 </c:if>
@@ -183,8 +207,14 @@
         
         <br>
 		<br>
+	
+</div>
+
+
+		 
+        <br>
+		<br>
 		<br>
 		
-       
-    	
+
 <%@ include file="../../../ownerInc/bottom.jsp" %>

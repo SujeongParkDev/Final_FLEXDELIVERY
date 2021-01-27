@@ -26,4 +26,8 @@ public class OwnerBoardDAOMybatis implements OwnerBoardDAO{
 		return sqlSession.selectOne(namespace+"selectByNo",boardNo);
 	}
 	
+	public List<OwnerBoardVO>  selectMainBoard(String boardHead) {
+		return sqlSession.selectList(namespace+"selectMainBoard",boardHead);
+	}
+	
 }
