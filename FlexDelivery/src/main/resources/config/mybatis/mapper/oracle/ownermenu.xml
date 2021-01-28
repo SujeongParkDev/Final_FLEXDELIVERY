@@ -44,6 +44,7 @@
 		<![CDATA[
 			where s_M_GROUP_NO=#{sMGroupNo} and store_NO=#{storeNo}
 	  	]]>
+	  		order by menu_no desc
 	 </select> 
 	 
 	 
@@ -114,12 +115,85 @@
 	</insert>
 	
 	
+	
+	
 	<delete id="deleteMenuByNo" parameterType="int">
 		delete Menu
 		where Menu_No=#{menuNo}
 	</delete>
 	
 	
+	<!-- 메뉴 번호에 따른 메뉴그룹조회 -->
+	<select id="selectMenuByMenuNo" parameterType="int" resultType="ownerMenuVo">
+		select * from menu
+		where menu_no=#{menuNo}
+	</select>
 	
+	
+	
+	<update id="updateMenuByNo" parameterType="ownerMenuVo" >
+		update menu
+		set menu_name=#{menuName} , menu_price=#{menuPrice}, menu_img=#{menuImg}, 
+			menu_content=#{menuContent} , s_M_Group_NO =#{sMGroupNo}
+		where menu_No=#{menuNo}
+	</update>
+	
+	
+	<!-- 메인 메뉴 구하기 -->
+	<select id="selectCountMainMenu" parameterType="int" resultType="int">
+		select count(*) from storeMainMenu
+		where store_No=#{storeNO}
+	</select>
+	
+	<select id="selectMainMenuByStoreNo" parameterType="int" resultType="ownerStoreMainMenuVo">
+		select * from STOREMAINMENU
+		where store_no=#{storeNo}
+	</select>
+	
+	
+	
+	
+	<!-- 
+	create or replace view jaMediumCategoryAllView
+		as select  m.M_CATEGORY_NO, m.M_CATEGORY_NAME , w.WEATHER_NAME, w.WEATHER_NO , l.L_CATEGORY_NO, 
+		    l.L_CATEGORY_NAME, l.L_CATEGORY_FILENAME
+		from mediumcategory m , weather w , largecategory l 
+		where m.L_CATEGORY_NO = l.L_CATEGORY_NO and m.WEATHER_NO = w.WEATHER_NO;
+	
+	
+	 -->
+	<!-- 중분류 카테고리 필요해서 지안이 임시로 만듬 -->
+	<select id="selectMCAllView" parameterType="int" resultType="adminMediumCategoryViewVo">
+		select * from jaMediumCategoryAllView
+		where m_category_no=#{mCategoryNo}
+	</select>
+	
+	
+	
+	
+	
+	<select id="selectLargeCategoryByStoreNo" parameterType="int" resultType="int">
+		select l_category_no from stores
+		where store_No =#{storeNo}
+	</select>
+	
+	
+	<select id="selectAllMCByLC" parameterType="int" resultType="adminMediumCategoryVo">
+		select  * from mediumCategory
+		where l_category_no = #{lCategoryNo}
+	</select>
+	
+	
+	<insert id="insertMainMenu"  parameterType="ownerStoreMainMenuVo" >
+		insert into storeMainMenu (store_no, menu_no,m_category_No)
+		values (#{storeNo}, #{menuNo}, #{mCategoryNo})
+	</insert>
+	
+	
+	<update id="updateMainMenu" parameterType="ownerStoreMainMenuVo">
+		update storeMainMenu
+		set menu_no= #{menuNo} , m_category_no=#{mCategoryNo}
+		where store_no=#{storeNo}
+	</update>
 	
 </mapper>

@@ -31,14 +31,23 @@
  
 	<script type="text/javascript">
 
-		if(${result}==${checkSuccess}){
-		 	window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
-			self.close();
-		}else if(${result}==${checkFalse}){
-			alert("비밀번호가 틀렸습니다.");
-			$('input[type=password]').focus();
-		}
 		
+		 $(document).ready(function(){
+				 var success=1;
+				 var fail = 3;
+			
+				 
+				var YorN = ${YorN};
+				 
+				 if(success==YorN) {
+					 window.opener.location.href="${pageContext.request.contextPath}/owner/menu2/advertise/advertiseChoice.do";
+					self.close();
+				} else if(fail==YorN){
+					alert("비밀번호가 틀렸습니다.");
+					$('input[type=password]').focus();
+				}
+		});
+	  
 		
 		
 	    $(function(){

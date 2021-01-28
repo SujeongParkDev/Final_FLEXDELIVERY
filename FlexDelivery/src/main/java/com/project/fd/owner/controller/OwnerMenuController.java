@@ -2,6 +2,7 @@ package com.project.fd.owner.controller;
 
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -21,14 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 import com.project.fd.owner.common.OwnerFileUploadUtil;
+import com.project.fd.owner.menu.model.OwnerMainMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuOptionAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.menu.model.OwnerMenuVO;
+import com.project.fd.owner.menu.model.OwnerStoreMainMenuVO;
 import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
-//메뉴 옵션 할차례 / 그리고 menu delete edit 할때 그자리로 가게끔하는게 필요하다.. ajax
+//메뉴 옵션 할차례 / 그리고 menu delete edit 할때 그자리로 가게끔하는게 필요하다.. 
 @Controller
 @RequestMapping("/owner/menu2/foodmenu")
 public class OwnerMenuController {
@@ -283,6 +287,7 @@ public class OwnerMenuController {
 			List<OwnerMenuAllVO> list = null;
 			list = ownerMenuService.selectMenuViewBymenuGroupNo(vo);
 		
+			
 			model.addAttribute("list", list);
 			model.addAttribute("sMGroupNo",vo.getsMGroupNo());
 			//받아온 no 으로 메뉴 no 구하기 , 점포 번호도 받아와햐한다.
@@ -290,17 +295,132 @@ public class OwnerMenuController {
 			return "owner/menu2/foodmenu/menuChoice";
 		}
 	
+		
+		
 	//menuchoice 에서 수정버튼누르면 메뉴 수정
 		@RequestMapping(value = "/menuChoiceEdit.do", method = RequestMethod.GET) 
-		public String  menuChoice_edit(@RequestParam(defaultValue = "0") int menuNo){
+		public String  menuChoiceEdit_get(@RequestParam(defaultValue = "0") int menuNo, 
+					Model model, HttpSession session, HttpServletRequest request){
 			logger.info("menu 수정하기 , 파라미터 menuNo={}", menuNo);
 			
-			//받아온 menuNo으로 update 하기 (점포 번호도 필요)
+			//메뉴 넘버로 메뉴 정보가져오기
+			if(menuNo==0) {
+				model.addAttribute("msg","메뉴 번호가 없습니다.");
+				model.addAttribute("url","/owner/menu2/foodmenu/menuGroup.do");
+				return "common/message";
+			}
 			
+			//스토어넘버로 메뉴 그룹 list 정보가져오기
+			int storeNo=0;
+			
+			String msg="점포가 없습니다.", url="/owner/index.do";
+			if(session.getAttribute("storeNo")==null) {
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				return "common/message";
+				
+			}else {
+				storeNo= (Integer)session.getAttribute("storeNo");
+			}
+			
+			
+			//받아온 storeNo으로 메뉴그룹 구하기
+			List<OwnerStoreMenuGroupVO> list =null;
+			list = ownerMenuService.selectMenuGroupByNo(storeNo);
+			logger.info("store번호로 조회 한 메뉴 list 결과 값 ,list.size={}", list.size());
+			
+			//받아온 menuNo으로 메뉴 구하기
+			OwnerMenuVO vo = ownerMenuService.selectMenuByMenuNo(menuNo);
+			logger.info("menu번호로 조회 한 메뉴 결과값 vo = {}",vo);
+			
+			
+			String type = "url";
+			//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
+			if(vo.getMenuImg()!=null) {
+				String upPath 
+				= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+				File nowFile = new File(upPath, vo.getMenuImg());
+				if(nowFile.exists()) {
+					 type="file";
+					logger.info("기존 파일 존재여부 type={}",type);
+				}
+			}else if(vo.getMenuImg()==null) {
+				type="null";
+			}
+			
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			model.addAttribute("YorN", YorN);
+			model.addAttribute("menuVo",vo);
+			model.addAttribute("list",list);
+			model.addAttribute("type",type);
 			
 			return "owner/menu2/foodmenu/menuChoiceEdit";
 		}
 	
+		
+	
+	//menuchoice 에서 수정버튼누르면 메뉴 수정
+			@RequestMapping(value = "/menuChoiceEdit.do", method = RequestMethod.POST) 
+			public String  menuChoiceEdit_post(@ModelAttribute OwnerMenuVO vo, Model model, 
+					@RequestParam String oldFileName, HttpServletRequest request){
+				logger.info("menu 수정하기 , 파라미터 menuVo={} oldFileName={}",vo,oldFileName);
+				
+				
+
+				//파일 업로드
+				List<Map<String, Object>> list=null;
+				String imageUrl="";
+				try {
+					list=fileUtil.fileUplaod(request, OwnerFileUploadUtil.OWNER_MENU_TYPE);
+					for(Map<String, Object> map: list) {
+						imageUrl=(String) map.get("fileName");
+					}
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				
+				if(imageUrl==null || imageUrl.isEmpty()) {
+					vo.setMenuImg(oldFileName);
+				}else {
+					vo.setMenuImg(imageUrl);
+				}
+				
+				
+				
+				
+				logger.info("menuUrl ,menulUrl = {}",vo.getMenuImg());
+				//받아온 menuNo으로 update 하기 (점포 번호도 필요)
+				int cnt = ownerMenuService.updateMenuByNo(vo);
+				logger.info("메뉴 수정  결과, cnt={}", cnt);	
+				
+				int YorN = OwnerMenuService.FAIL_POST;
+				
+				if(cnt>0) {
+					
+					YorN = OwnerMenuService.SUCCESS_POST;
+					
+					//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
+					if(!vo.getMenuImg().equals(oldFileName)) {
+						String upPath 
+							= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+						File oldFile = new File(upPath, oldFileName);
+						if(oldFile.exists()) {
+							boolean bool=oldFile.delete();
+							logger.info("기존 파일 삭제 여부 :{}", bool);
+						}					
+					}
+				}
+				
+				
+				model.addAttribute("YorN", YorN);
+				
+				return "owner/menu2/foodmenu/menuChoiceEdit";
+			}
+		
 		
 	 //menuchoice 에서 삭제버튼 누르면 메뉴 삭제
 		@RequestMapping(value = "/menuChoiceDelete.do", method = RequestMethod.GET) 
@@ -352,7 +472,7 @@ public class OwnerMenuController {
 			
 			
 			//만약 같은 이름이 있다면 등록못하게 수정해야함
-			model.addAttribute("sMGroupNo",sMGroupNo);
+			model.addAttribute("sMGroupNoNo",sMGroupNo);
 			model.addAttribute("storeNo",storeNo);
 			model.addAttribute("list", list);
 			model.addAttribute("YorN", YorN);
@@ -393,6 +513,7 @@ public class OwnerMenuController {
 			logger.info("메뉴 등록 경과, 파라미터 vo={}, 결과값  cnt={}", vo,cnt);
 			
 			int YorN = OwnerMenuService.FAIL_POST;
+			
 			if(cnt>0){
 				 YorN = OwnerMenuService.SUCCESS_POST;
 			}
@@ -410,23 +531,203 @@ public class OwnerMenuController {
 
 	//옵션편집 버튼 누르면  menuOption.jsp
 		@RequestMapping(value = "/menuOption.do", method = RequestMethod.GET) 
-		public String  menuOptionGroup_get(){
-			logger.info("menuOption 창 보여주기 ");
+		public String  menuOptionGroup_get(HttpSession session, Model model){
+			int storeNo=0;
+			
+			String msg="점포가 없습니다.", url="/owner/index.do";
+			if(session.getAttribute("storeNo")==null) {
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				return "common/message";
+				
+			}else {
+				storeNo= (Integer)session.getAttribute("storeNo");
+			}
+			logger.info("menuOption 창 보여주기 , 파라미터 = {} ", storeNo);
+			
+			//전체 메뉴 그룹 구하기
+			List<OwnerStoreMenuGroupVO> list = null;
+			list = ownerMenuService.selectMenuGroupByNo(storeNo);
+			logger.info("번호로 검색한 메뉴 그룹 리스트 전체 조회 결과  list.size={}" , list.size() );
+			
+			
+			model.addAttribute("list" , list);
+		
+		
 			
 			
 			return "owner/menu2/foodmenu/menuOption";
 		}
 	
+		
+		
+		
+		
+		
+		
+		
+		
 	//대표메뉴버튼 누르면  signatureMenu.jsp
 		@RequestMapping(value = "/signatureMenu.do", method = RequestMethod.GET) 
-		public String  signatureMenu_get(){
-			logger.info("signatureMenu 창 보여주기 ");
+		public String  signatureMenu_get(HttpSession session, Model model,HttpServletRequest request){
+			int storeNo=0;
 			
+			String msg="점포가 없습니다.", url="/owner/index.do";
+			if(session.getAttribute("storeNo")==null) {
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				return "common/message";
+				
+			}else {
+				storeNo= (Integer)session.getAttribute("storeNo");
+			}
+			logger.info("signatureMenu 창 보여주기 , 파라미터 = {} ", storeNo);
+			
+			int countResult = ownerMenuService.selectCountMainMenu(storeNo);
+			logger.info("현재 mainMenu 갯수 결과 , result = {} ", countResult);
+			
+			OwnerMainMenuAllVO mainAllVo =null;
+			
+			
+			
+			
+			
+			String type = "url";
+			if(countResult>0) {
+				mainAllVo = ownerMenuService.selectMainMenuAll(storeNo);
+				logger.info("mainMenu mediumCategory 등의 조회 결과 mainAllVo={} ", mainAllVo);
+				//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
+				
+				if(mainAllVo.getMenuVo().getMenuImg()!=null) {
+					String upPath 
+					= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+					File nowFile = new File(upPath, mainAllVo.getMenuVo().getMenuImg());
+					if(nowFile.exists()) {
+						 type="file";
+						logger.info("기존 파일 존재여부 type={}",type);
+					}
+				}else if(mainAllVo.getMenuVo().getMenuImg()==null) {
+					type="null";
+				}
+			}
+			
+			
+			
+			
+			model.addAttribute("storeNo", storeNo);
+			model.addAttribute("mainAllVo", mainAllVo );
+			model.addAttribute("countResult", countResult);
+			model.addAttribute("type", type);
 			
 			return "owner/menu2/foodmenu/signatureMenu";
 		}
 		
 		
+		
+		
+		@RequestMapping(value = "/signatureMenuWrite.do", method = RequestMethod.GET) 
+		public String  signatureMenuWrite_GET(@RequestParam(defaultValue = "0")  int storeNo, Model model){
+			logger.info("대표메뉴 창 보여주기 파라미터 storeNo={}", storeNo);
+			
+			
+			//중분류 구하기
+			List<AdminMediumCategoryVO> cList = null;
+			cList = ownerMenuService.selectAllMCByLCByStoreNo(storeNo);			
+			logger.info("중분류 카테고리 list ={}",cList.size());
+			
+			
+			//메뉴 리스트 구하기
+			List<OwnerMenuAllVO> mList = null;
+			mList = ownerMenuService.selectMenuAllView(storeNo);		
+			logger.info("멘 카테고리 list ={}",mList.size());
+			
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			model.addAttribute("YorN", YorN);
+			model.addAttribute("mList", mList);
+			model.addAttribute("cList", cList);
+			
+			
+			return "owner/menu2/foodmenu/signatureMenuWrite";
+		}
+		
+		
+		
+		
+		@RequestMapping(value = "/signatureMenuWrite.do", method = RequestMethod.POST) 
+		public String  signatureMenuWrite_POST(@ModelAttribute OwnerStoreMainMenuVO mainVo, Model model){
+			logger.info("대표메뉴 창 보여주기 파라미터 storeNo={}", mainVo);
+			
+			
+			//중분류 구하기
+			
+			
+			int cnt = ownerMenuService.insertMainMenu(mainVo);
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			if(cnt>0){
+				 YorN = OwnerMenuService.SUCCESS_POST;
+			}
+			
+			model.addAttribute("YorN", YorN);
+			
+			return "owner/menu2/foodmenu/signatureMenuWrite";
+		}
 
+		
+		
+		
+		@RequestMapping(value = "/signatureMenuEdit.do", method = RequestMethod.GET) 
+		public String  signatureMenuEdit_GET(@RequestParam(defaultValue = "0") int storeNo, Model model){
+			logger.info("대표메뉴 창 보여주기 파라미터 storeNo={}", storeNo);
+			
+			
+			//storeNo으로 대표메뉴 전체 select하기
+			OwnerStoreMainMenuVO mainVo= ownerMenuService.selectMainMenuByStoreNo(storeNo);
+			logger.info("대표메뉴 전체 조회 결과  mainVo={}",mainVo);
+			
+			//중분류 구하기
+			List<AdminMediumCategoryVO> cList = null;
+			cList = ownerMenuService.selectAllMCByLCByStoreNo(storeNo);			
+			logger.info("중분류 카테고리 list ={}",cList.size());
+			
+			
+			//메뉴 리스트 구하기
+			List<OwnerMenuAllVO> mList = null;
+			mList = ownerMenuService.selectMenuAllView(storeNo);		
+			logger.info("멘 카테고리 list ={}",mList.size());
+			
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			model.addAttribute("YorN", YorN);
+			model.addAttribute("mList", mList);
+			model.addAttribute("cList", cList);
+			model.addAttribute("mainVo", mainVo);
+			
+			return "owner/menu2/foodmenu/signatureMenuEdit";
+		}
+		
+		
+		
+		@RequestMapping(value = "/signatureMenuEdit.do", method = RequestMethod.POST) 
+		public String  signatureMenuEdit_POST(@ModelAttribute OwnerStoreMainMenuVO mainVo, Model model){
+			logger.info("대표메뉴 수정하기 post 전송 mainVo={}", mainVo);
+			
+			
+			
+			int cnt = ownerMenuService.updateMainMenu(mainVo);
+			logger.info("대표메뉴 update 결과 cnt={}", cnt);
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			if(cnt>0){
+				 YorN = OwnerMenuService.SUCCESS_POST;
+			}
+			
+			model.addAttribute("YorN", YorN);
+			
+			
+			return "owner/menu2/foodmenu/signatureMenuEdit";
+		}
+		
 				
 }

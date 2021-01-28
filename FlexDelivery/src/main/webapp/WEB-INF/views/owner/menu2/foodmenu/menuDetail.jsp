@@ -52,7 +52,7 @@
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
 				<!-- 메뉴에 관한 내용 -->
-				<div class="card">
+				<div class="card" >
 				      <div class="card-body">
 				      		<div class="text-center">
 				       			<h4> 메 뉴 상 세 보 기 </h4>
@@ -60,7 +60,7 @@
 				       	   <!-- 그룹에 관한 내용(테이블) -->
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->
-						          <div class="table-responsive">
+						          <div class="table-responsive"  style="overflow-x: hidden;">
 						            <table class="table">
 						              <tbody>
 						                <tr>
@@ -69,10 +69,10 @@
 						                		<c:if test="${type=='file'}">
 						                			<img src
 														="<c:url value='/resources/imgs/ownerMenu_images/${menuAllVo.menuImg}'/>" 
-														alt="${menuAllVo.menuName }" style="height:250px; width:inherit;">
+														alt="${menuAllVo.menuName }" style="height:250px; width:80%;">
 												</c:if>
 												<c:if test="${type=='url'}">
-				 		               				<img src="${menuAllVo.menuImg}" style="height:250px; width:inherit;"
+				 		               				<img src="${menuAllVo.menuImg}" style="height:250px; width:80%;"
 		       											 alt="${menuAllVo.menuName }">
 		       									</c:if>
 				                			</td>

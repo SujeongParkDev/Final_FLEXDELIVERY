@@ -13,20 +13,20 @@
 
   
   
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
+  	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css"> --%>
+   
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
-
+    <!-- CSS only -->
+ 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
+ --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-
- <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+<%--     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
+ --%>	
+	<script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
  
-
 	
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
@@ -43,8 +43,7 @@
 				} 
 	
 	});
-
-	
+ 
 	   
 		$(function(){
 			$('#btMenuChoice').click(function(){
@@ -152,19 +151,19 @@
 		            <div class="card-content">
 		            <div class="card-body">
 		                <form class="form form-vertical" action="<c:url value='/owner/menu2/foodmenu/menuChoiceWrite.do'/>" method="post" enctype="multipart/form-data" >
-		                	<input type="hidden" name="sMGroupNo" value="${sMGroupNo }">
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
 		                        <div class="form-group">
 		                        	<span><small>메뉴 그룹</small></span>
-		                        
+		                        	
 		                     	 	<select class="form-select" id="sMGroupNo" name="sMGroupNo" style="text-align-last: right">
                                             <c:forEach var="vo" items="${list}">
-                                            		<c:set var="sMGroupNo" value="${sMGroupNo }"></c:set>
+                                            		<c:set var="sMGroupNoNo" value="${sMGroupNoNo }"></c:set>
                                             		<c:set var="sMGroupNoDB" value="${vo.sMGroupNo }"></c:set>
-                                           	 		<option value="${vo.sMGroupName }"
-                                           	 			<c:if test="${sMGroupNo==sMGroupNoDB}">
+                                            		
+                                           	 		<option value="${vo.sMGroupNo }"
+                                           	 			<c:if test="${sMGroupNoNo==sMGroupNoDB}">
                                             				selected="selected"
                                             			</c:if>
                                            	 		>${vo.sMGroupName }</option>
@@ -182,9 +181,9 @@
 		                     			<span id="warningPrice" style="color:red; text-align: right; margin-left:210px;"></span>
 		                     		</div>
 		                     		<span><small>메뉴 이미지</small></span>
-		                     		 <div id="preview" style="text-center"></div>
-		                     		<div class="form-file">
-		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" value="${vo.lCategoryFilename }" />
+		                     		 <div id="preview" class="text-center"></div>
+		                     		<div class="form-file text-center">
+		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
                                            <br><span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>    
                                     </div>
                             		
@@ -197,7 +196,7 @@
 		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-end">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuChoice" value="등록">
+		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuChoice" name="btMenuChoice" value="등록">
 		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>
@@ -216,13 +215,13 @@
 			
 		 
         <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-    
+    <%-- 
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/pages/dashboard.js"></script>
+     --%>
+<%--     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.js"></script>
+<%--  --%>  <%--   <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/apexcharts/apexcharts.min.js"></script> --%>
+     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/pages/dashboard.js"></script>
 
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
     
