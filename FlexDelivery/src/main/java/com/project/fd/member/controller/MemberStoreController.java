@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,15 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.fd.admin.controller.AdminStoreAdController;
-import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.member.menu.model.MemberMenuService;
 import com.project.fd.member.stores.model.MemberStoresService;
 import com.project.fd.member.stores.model.MemberStoresVO;
 
@@ -32,6 +29,7 @@ public class MemberStoreController {
 	=LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired private MemberStoresService memStoresServ;
+	@Autowired private MemberMenuService menuServ;
 	
 	@RequestMapping("/storeList.do")
 	public void storeList(@RequestParam int lCategoryNo) {
@@ -125,6 +123,7 @@ public class MemberStoreController {
 		MemberStoresVO vo=memStoresServ.selectStoresDetail(storeNo);
 		
 		model.addAttribute("vo",vo);
+		model.addAttribute("storeNo",storeNo);
 		return "member/store/storeDetail";		
 	}
 }

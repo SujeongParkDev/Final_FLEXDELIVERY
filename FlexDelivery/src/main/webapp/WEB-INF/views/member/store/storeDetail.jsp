@@ -12,163 +12,71 @@
     </div>	
     <div class="offer-section py-4">
         <div class="container position-relative">
-            <img alt="#" src="<c:url value="/resources/memberResources/img/trending1.png "/>" class="restaurant-pic">
+            <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
-                <h2 class="font-weight-bold">콘라드 레스토랑</h2>
-                <p class="text-white m-0">사랑시 행복동 75번지</p>
+                <h2 class="font-weight-bold">${vo.storeName }</h2>
+                <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
                 <div class="rating-wrap d-flex align-items-center mt-2">
                     <ul class="rating-stars list-unstyled">
                         <li>
-                            <i class="feather-star text-warning"></i>
-                            <i class="feather-star text-warning"></i>
-                            <i class="feather-star text-warning"></i>
-                            <i class="feather-star text-warning"></i>
-                            <i class="feather-star"></i>
-                        </li>
+	                    	<c:forEach var="i" begin="1" end="5">
+	                    		<c:if test="${vo.reviewRating>i}">
+	                        		<i class="feather-star star_active"></i>
+	                    		</c:if>
+	                    		<c:if test="${vo.reviewRating<i}">
+	                    			<i class="feather-star"></i>
+	                    		</c:if>
+	                    	</c:forEach>
+	                    </li>
                     </ul>
-                    <p class="label-rating text-white ml-2 small"> (245 리뷰)</p>
+                    <p class="label-rating text-white ml-2 small"> (${vo.reviewCount})</p>
                 </div>
             </div>
             <div class="pb-4">
                 <div class="row">
                     <div class="col-6 col-md-2">
-                        <p class="text-white-50 font-weight-bold m-0 small">배달 팁</p>
-                        <p class="text-white m-0">무료</p>
+                        <p class="text-white-50 font-weight-bold m-0 small">최소주문금액</p>
+                        <p class="text-white m-0">~<fmt:formatNumber value="${vo.storeMinPrice}" type="currency"/></p>
                     </div>
                     <div class="col-6 col-md-2">
-                        <p class="text-white-50 font-weight-bold m-0 small">오픈 시간</p>
-                        <p class="text-white m-0">8:00 AM</p>
+                        <p class="text-white-50 font-weight-bold m-0 small">영업 시간</p>
+                        <p class="text-white m-0">${vo.storeOpenTime} ~ ${vo.storeCloseTime}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Menu -->
+    
     <div class="container position-relative">
         <div class="row">
             <div class="col-md-8 pt-3">
-                <div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
-                    <div class="d-flex item-aligns-center">
-                        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">메뉴판</p>
-                        <!-- <a class="small text-primary font-weight-bold ml-auto" href="#">View all <i class="feather-chevrons-right"></i></a> -->
-                    </div>
-                    <div class="row m-0">
-                        <h6 class="p-3 m-0 bg-light w-100">양식 <small class="text-black-50">3 ITEMS</small></h6>
-                        <div class="col-md-12 px-0 border-top">
-                            <div class="">
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">에그 프라이와 베이컨 토스트</h6>
-                                            <p class="text-muted mb-0">4500원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">에그 프라이와 치즈 토스트<span class="badge badge-danger">BEST SELLER</span></h6>
-                                            <p class="text-muted mb-0">5000원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">비건 토스트 <span class="badge badge-danger text-white"> vegan</span></h6>
-                                            <p class="text-muted mb-0">6000원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row m-0">
-                        <h6 class="p-3 m-0 bg-light w-100">수프 <small class="text-black-50">8 ITEMS</small></h6>
-                        <div class="col-md-12 px-0 border-top">
-                            <div class="bg-white">
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">프랜치 어니언 스프 </h6>
-                                            <p class="text-muted mb-0">4500원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">콘 포타주<span class="badge badge-danger">BEST SELLER</span></h6>
-                                            <p class="text-muted mb-0">5000원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-success veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">크람 챠우더 <span class="badge badge-success">Pure Veg</span></h6>
-                                            <p class="text-muted mb-0">5000원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-success veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">치킨 스프</h6>
-                                            <p class="text-muted mb-0">4500원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 border-bottom gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">감자 스프 <span class="badge badge-danger">BEST SELLER</span></h6>
-                                            <p class="text-muted mb-0">4500원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 gold-members">
-                                    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">장바구니 추가</a></span>
-                                    <div class="media">
-                                        <div class="mr-3 font-weight-bold text-success veg">.</div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">양송이 스프 <span class="badge badge-success">Pure Veg</span></h6>
-                                            <p class="text-muted mb-0">6000원</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            	<!-- Menu -->
+            	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
+				    <div class="d-flex item-aligns-center">
+				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">메뉴</p>
+				    </div>
+		            <c:import url="/member/menu/menuGroupInc.do">
+		            	<c:param name="storeNo" value="${storeNo}" />
+		            </c:import>
                 </div>
+                <!-- /Menu -->
+                <!-- Review -->
                 <div class="mb-3">
                     <div id="ratings-and-reviews" class="bg-white shadow-sm d-flex align-items-center rounded p-3 mb-3 clearfix restaurant-detailed-star-rating">
                         <h6 class="mb-0">별점</h6>
                         <div class="star-rating ml-auto">
-                            <div class="d-inline-block h6 m-0"><i class="feather-star text-warning"></i>
-                                <i class="feather-star text-warning"></i>
-                                <i class="feather-star text-warning"></i>
-                                <i class="feather-star text-warning"></i>
-                                <i class="feather-star"></i>
+                            <div class="d-inline-block h6 m-0">
+	                            <c:forEach var="i" begin="1" end="5">
+		                    		<c:if test="${vo.reviewRating>i}">
+		                        		<i class="feather-star text-warning"></i>
+		                    		</c:if>
+		                    		<c:if test="${vo.reviewRating<i}">
+		                    			<i class="feather-star"></i>
+		                    		</c:if>
+		                    	</c:forEach>
                             </div>
-                            <b class="text-black ml-2">334</b>
+                            <b class="text-black ml-2">${reviewCount}별점테스트</b>
                         </div>
                     </div>
                     <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
@@ -295,7 +203,9 @@
                         </form>
                     </div>
                 </div>
+                <!-- /Review -->
             </div>
+            <!-- 장바구니 -->
             <div class="col-md-4 pt-3">
                 <div class="osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar">
                     <div class="d-flex border-bottom osahan-cart-item-profile bg-white p-3">
@@ -369,45 +279,8 @@
                     </div>
                 </div>
             </div>
+            <!-- /장바구니 -->
         </div>
     </div>
-    <!-- Footer -->
-    <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
-        <div class="row">
-            <div class="col">
-                <a href="home.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-home text-dark"></i></p>
-                    Home
-                </a>
-            </div>
-            <div class="col selected">
-                <a href="trending.html" class="text-danger small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-map-pin"></i></p>
-                    Trending
-                </a>
-            </div>
-            <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
-                <div class="bg-danger rounded-circle mt-n0 shadow">
-                    <a href="checkout.html" class="text-white small font-weight-bold text-decoration-none">
-                        <i class="feather-shopping-cart"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-heart"></i></p>
-                    Favorites
-                </a>
-            </div>
-            <div class="col">
-                <a href="profile.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 </html>
 <%@include file="../../memInc/bottom.jsp" %>
