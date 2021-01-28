@@ -10,6 +10,28 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- css end -->
 
+<!-- script start -->
+<script>
+$(function(){
+	 $('#upfile').on('change', function(){
+	       readInputFile(this);
+	   });
+});
+
+function readInputFile(input) {
+    if(input.files && input.files[0]) {
+        var reader = new FileReader();
+       reader.onload = function (e) {
+            $('#preview').html("<img src="+ e.target.result +">");
+        }
+        reader.readAsDataURL(input.files[0]);
+    }  
+} 
+
+</script>
+<!-- script end -->
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-12 ">
@@ -28,7 +50,7 @@
                         role="dialog" aria-labelledby="선물 상품 등록" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />">
+								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />" enctype="multipart/form-data">
                                 	<div class="modal-header">
 	                                    <h4 class="modal-title">선물 - 상품 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -39,6 +61,28 @@
 	                                    <div class="row">
 	                                       <div class="col-12">   
 	                                          <div class="table-responsive" style="text-align: center;">
+	                                          
+	                                         <!--  <table class="table mb-0">
+													<thead>
+														<tr>
+															<th>번호</th>
+															<th colspan="3">카테고리 이름</th>
+															<th>상품 이름</th>
+															<th>이미지 파일</th>
+															<th>번호</th>
+														</tr>
+													</thead>
+	                                                <tbody>
+	                                                   <tr>
+	                                                   	  <td>
+	                                                   	  	  <input type="text" name="gCategoryNo" value="123" readonly>
+	                                                   	  </td>
+	                                                      <td colspan="3"  style="text-align: center;">
+	                                                      	  <input type="text" name="gCategoryName">
+	                                                      </td>
+	                                                   </tr>
+	                                                </tbody>
+	                                             </table>   -->
 	                                             <table class="table mb-0">
 													<tbody>
 														<tr>
@@ -177,7 +221,7 @@
 			                                          role="dialog" aria-labelledby="선물 상품 수정" aria-hidden="true">
 			                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                                             <div class="modal-content">
-			                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />">
+			                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
 			                                                   <div class="modal-header">
 			                                                      <h4 class="modal-title" id="myModalGiftProductEdit">선물 상품 수정</h4>
 			                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">

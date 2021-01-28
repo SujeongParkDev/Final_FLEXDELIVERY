@@ -24,7 +24,7 @@
 <!-- css end -->
 
 <!-- Title start -->
-<title>플렉스 딜리버리 사장님</title>
+<title>플렉스 딜리버리 : 관리자 페이지</title>
 <!-- Title end -->
 
 <!-- Favicon -->
@@ -82,8 +82,8 @@
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그인</i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">회원가입</i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">마이페이지</i></a>
                             
                         </div>
                     </div>

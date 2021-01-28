@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component
 public class FileUploadUtil {
-   public static final int GIFT_PRODUCT_TYPE=1;  //선물하기-상품등록에서 사용
+
+	//어디서 사용하는지 알려주는 상수
+	public static final int GIFT_PRODUCT_TYPE=1;  //선물하기-상품등록에서 사용
    public static final int HONEYTIP_TYPE=2;  //사장님꿀팁-등록에서 사용
    public static final int NOTICE_EVENT_TYPE=3;   //공지사항&이벤트-등록에서 사용 
    public static final int MENU_TYPE=4;   //메뉴
@@ -30,7 +32,7 @@ public class FileUploadUtil {
    public static final int OWNER_REGISTER_TYPE=6;  //사업자등록
    public static final int TEMPORARY_TYPE=7;  //임시 - 사업자등록 파일
    public static final int LCATEGORY_TYPE=8;  //대분류 카테고리-등록에서 사용
-	
+
 	
 	@Resource(name="fileUploadProperties")
 	private Properties fileUploadProps;

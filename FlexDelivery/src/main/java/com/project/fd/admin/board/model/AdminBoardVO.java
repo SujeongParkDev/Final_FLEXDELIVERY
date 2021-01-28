@@ -1,10 +1,11 @@
-package com.project.fd.admin.menu3.model;
+package com.project.fd.admin.board.model;
 
 public class AdminBoardVO {
 	private int boardNo;
 	private String boardTitle;
 	private String boardContent;
 	private String boardRegdate;
+	private String boardThumbnail;
 	private String boardHead;
 	private int authorityNo;
 	
@@ -44,12 +45,20 @@ public class AdminBoardVO {
 	public void setAuthorityNo(int authorityNo) {
 		this.authorityNo = authorityNo;
 	}
+	public String getBoardThumbnail() {
+		return boardThumbnail;
+	}
+	public void setBoardThumbnail(String boardThumbnail) {
+		this.boardThumbnail = boardThumbnail;
+	}
 	
 	@Override
 	public String toString() {
-		return "BoardVO [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", boardRegdate=" + boardRegdate + ", boardHead=" + boardHead + ", authorityNo=" + authorityNo + "]";
+		return "AdminBoardVO [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", boardRegdate=" + boardRegdate + ", boardThumbnail=" + boardThumbnail + ", boardHead=" + boardHead
+				+ ", authorityNo=" + authorityNo + "]";
 	}
 	
+
 	
 }

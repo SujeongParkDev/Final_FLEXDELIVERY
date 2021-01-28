@@ -26,7 +26,7 @@
 	
 	<update id="updateGiftProduct" parameterType="adminGiftProductVo">
 		update GIFTPRODUCT
-		set G_PRODUCT_NAME=#{gProductName}, G_PRODUCT_FILEName=#{gProductFilename}, G_CATEGORY_NO=#{gCategoryNO}
+		set G_PRODUCT_NAME=#{gProductName}, G_PRODUCT_FILEName=#{gProductFilename}, G_CATEGORY_NO=#{gCategoryNo}
 		where G_PRODUCT_NO=#{gProductNo}
 	</update>
 	

@@ -1,4 +1,4 @@
-package com.project.fd.admin.menu3.model;
+package com.project.fd.admin.hoenytip;
 
 public class AdminHoneytipVO {
 	private int honeytipNo;
@@ -10,29 +10,29 @@ public class AdminHoneytipVO {
 	public int getHoneytipNo() {
 		return honeytipNo;
 	}
-	public void setHoneytipNo(int honeytipNo) {
-		this.honeytipNo = honeytipNo;
-	}
 	public String getHoneytipTitle() {
 		return honeytipTitle;
-	}
-	public void setHoneytipTitle(String honeytipTitle) {
-		this.honeytipTitle = honeytipTitle;
 	}
 	public String getHoneytipContent() {
 		return honeytipContent;
 	}
-	public void setHoneytipContent(String honeytipContent) {
-		this.honeytipContent = honeytipContent;
-	}
 	public String getHoneytipThumbnail() {
 		return honeytipThumbnail;
 	}
-	public void setHoneytipThumbnail(String honeytipThumbnail) {
-		this.honeytipThumbnail = honeytipThumbnail;
-	}
 	public String getHoneytipRegdate() {
 		return honeytipRegdate;
+	}
+	public void setHoneytipNo(int honeytipNo) {
+		this.honeytipNo = honeytipNo;
+	}
+	public void setHoneytipTitle(String honeytipTitle) {
+		this.honeytipTitle = honeytipTitle;
+	}
+	public void setHoneytipContent(String honeytipContent) {
+		this.honeytipContent = honeytipContent;
+	}
+	public void setHoneytipThumbnail(String honeytipThumbnail) {
+		this.honeytipThumbnail = honeytipThumbnail;
 	}
 	public void setHoneytipRegdate(String honeytipRegdate) {
 		this.honeytipRegdate = honeytipRegdate;
@@ -40,11 +40,10 @@ public class AdminHoneytipVO {
 	
 	@Override
 	public String toString() {
-		return "HoneyTipVO [honeytipNo=" + honeytipNo + ", honeytipTitle=" + honeytipTitle + ", honeytipContent="
+		return "AdminHoneytipVO [honeytipNo=" + honeytipNo + ", honeytipTitle=" + honeytipTitle + ", honeytipContent="
 				+ honeytipContent + ", honeytipThumbnail=" + honeytipThumbnail + ", honeytipRegdate=" + honeytipRegdate
 				+ "]";
 	}
-	
 	
 	
 }

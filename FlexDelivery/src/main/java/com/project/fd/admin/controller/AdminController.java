@@ -30,6 +30,8 @@ public class AdminController {
 	@RequestMapping("/index.do")
 	public void adminMain() {
 		logger.info("관리자 메인 화면 보여주기");
+		
+		
 	}
 
 	/*

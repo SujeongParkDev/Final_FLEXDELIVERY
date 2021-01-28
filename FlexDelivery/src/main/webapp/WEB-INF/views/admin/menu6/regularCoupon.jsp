@@ -17,6 +17,7 @@
 		 	
 		  		<div class="card-header">
 					<h4 class="card-title">쿠폰 관리 - 정기 쿠폰</h4>
+					<hr>
 		    	</div>
 		    	<div class="card-content">
 		      		<div class="card-body" style="text-align: right;">
@@ -42,22 +43,25 @@
 		                                       <div class="col-12">   
 		                                          <div class="table-responsive" style="text-align: center;">
 		                                             <table class="table mb-0">
-														<thead>
+														<!-- <thead>
 															<tr>
 																<th>번호</th>
 																<th colspan="3">할인금액</th>
 																<th>최소주문금액</th>
 															</tr>
-														</thead>
-		                                                <tbody>
-		                                                   <tr>
-		                                                   	  <td>
-		                                                   	  	  <input type="text" name="rCouponNo" value="123" readonly>
-		                                                   	  </td>
-		                                                      <td colspan="3"  style="text-align: center;">
+														</thead> -->
+		                                                <tbody   style="text-align: center;">
+                                                   	  	  <input type="hidden" name="rCouponNo" value="123" readonly>
+		                                                   	 
+	                                                   	  <tr>
+	                                                   	  	 <td>할인금액</td>
+		                                                      <td colspan="2">
 		                                                      	  <input type="text" name="rCouponDc">
 		                                                      </td>
-		                                                      <td>
+	                                                      </tr>
+	                                                      <tr>
+	                                                      	  <td>최소 주문 금액</td>
+		                                                      <td colspan="2">
 		                                    	               	<input type="text" name="rCouponMin">
 		                                                      </td>
 		                                                   </tr>
@@ -170,15 +174,21 @@
 			                                                         <div class="col-12">   
 			                                                            <div class="table-responsive" style="text-align: center;">
 			                                                               <table class="table mb-0">
-			                                                                  <tbody>
+			                                                                  <tbody style="text-align: center;">
 			                                                                     <tr>
-				                                                                     <td class="text-bold-500">
-			                                                                           <input type="text" name="rCouponNo" id="regularCouponNo" value="${vo.rCouponNo }" readonly>						                                                                     
-				                                                                     </td>
-																					 <td colspan="3">
+			                                                                     	<td>
+		                                                                           	<input type="hidden" name="rCouponNo" id="regularCouponNo" value="${vo.rCouponNo }" readonly>
+		                                                                           </td>
+		                                                                         </tr>
+		                                                                         <tr>
+		                                                                         	 <td>할인 금액</td>
+																					 <td colspan="2">
 			                                                                           <input type="text" name="rCouponDc" id="regularCouponDc" value="${vo.rCouponDc }">
 			                                                                         </td>
-			                                                                         <td>
+		                                                                         </tr>
+		                                                                         <tr>
+		                                                                         	<td>최소 주문 금액</td>
+			                                                                         <td colspan="2">
 			                                                                           <input type="text" name="rCouponMin" id="regularCouponMin" value="${vo.rCouponMin }">
 																					 </td>					                                                                    
 			                                                                     </tr>					                                                                    

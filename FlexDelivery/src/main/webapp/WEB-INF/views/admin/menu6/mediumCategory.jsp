@@ -44,19 +44,22 @@
 				                                       <div class="col-12">   
 				                                          <div class="table-responsive" style="text-align: center;">
 				                                             <table class="table mb-0">
-																<thead>
+																<!-- <thead>
 																	<tr>
 																		<th>번호</th>
 																		<th colspan="2">대분류</th>
 																		<th colspan="2">중분류 이름</th>
 																		<th>추천 날씨</th>
 																	</tr>
-																</thead>
+																</thead> -->
 				                                                <tbody>
-				                                                   <tr>
+				                                                   <!-- <tr>
 				                                                   	  <td>
 				                                                   	  	  <input type="text" name="mCategoryNo" value="123" readonly>
 				                                                   	  </td>
+			                                                   	  </tr> -->
+			                                                   	  <tr>
+			                                                   	  	<td>대분류 카테고리</td>
 				                                                      <td colspan="2"  style="text-align: center;">
 				                                                      	<select name="lCategoryNo" id="lCategoryNo">
 				                                                      		<option value="0">선택하세요</option>
@@ -64,11 +67,17 @@
 																				<option value="${lCVo.lCategoryNo}">${lCVo.lCategoryName }</option>
 																			</c:forEach> 
 				                                                      	</select>
-				                                                      </td>
+				                                                      </td>			                                                   	  	
+																  </tr>
+																  <tr>
+																  	<td>중분류 카테고리 이름</td>
 				                                                      <td colspan="2"  style="text-align: center;">
 				                                                      	  <input type="text" name="mCategoryName">			                                                      
 				                                                      </td>
-				                                                      <td>
+			                                                      </tr>
+			                                                      <tr>
+			                                                      	<td>추천 날씨</td>
+				                                                      <td colspan="2">
 				                                                      	<select name="weatherNo" id="weatherNo">
 				                                                      		<option value="0">선택하세요</option>
 				                                                      		<c:forEach var="wVo" items="${wList }">
@@ -212,7 +221,8 @@
 					                                                                  <tbody>
 					                                                                     <tr>
 						                                                                     <td class="text-bold-500">
-					                                                                           <input type="text" name="mCategoryNo" id="EditMCategoryNo" value="${vo.mCategoryNo }" readonly>	 
+					                                                                           <input type="hidden" name="mCategoryNo" id="EditMCategoryNo" value="${vo.mCategoryNo }" readonly>
+					                                                                           	대분류 카테고리	 
 						                                                                     </td>
 																							 <td colspan="2">
 					                                                                            <select name="lCategoryNo" id="lCategoryNo">
@@ -222,11 +232,17 @@
 																										<option value="${lCVo.lCategoryNo}" <c:if test="${lCVo.lCategoryNo}=${vo.lCategoryNo }"> selected</c:if>>${lCVo.lCategoryName }</option>
 																									</c:forEach> 
 										                                                      	</select>
-																							 </td>					                                                                    
+																							 </td>
+																						 </tr>
+																						 <tr>
+																						 	<td>중분류 카테고리 이름</td>					                                                                    
 																							 <td colspan="2">
 					                                                                           <input type="text" name="mCategoryName" id="EditMCategoryName" value="${vo.mCategoryName }">
-																							 </td>					                                                               
-																							 <td>
+																							 </td>				
+																						 </tr>
+																						 <tr>	           
+																						 	<td>추천 날씨</td>                                                    
+																							 <td colspan="2">
 																								<select name="weatherNo" id="weatherNo">
 										                                                      		<option value="0">선택하세요</option>
 										                                                      		<c:forEach var="wVo" items="${wList }">
