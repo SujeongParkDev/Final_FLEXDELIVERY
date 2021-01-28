@@ -56,7 +56,8 @@
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
-										<button type="button" class="button p-0 text text">로고
+										<button type="button" a class="button p-0 text text" 
+										href="<c:url value="/owner/menu2/basic/basicLogo.do"/>">로고
 											변경요청</button>
 										에서 하실 수 있습니다.
 										<ul class="bullet-ul small muted">
