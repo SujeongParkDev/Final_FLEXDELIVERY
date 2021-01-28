@@ -18,11 +18,10 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		//aAgreeNo
-	int aAgreeNo
-		=(Integer) request.getSession().getAttribute("aAgreeNo");
+	int aAgreeNo =1;
+		//=(Integer) request.getSession().getAttribute("aAgreeNo");
 	
-	logger.info("사업자등록 확인용 - preHandle() aAgreeNo={}", aAgreeNo);
+	logger.info("사업자등록 확인용 - 인터셉터 1~3이면 사업자등록 페이지로 이동 aAgreeNo={}", aAgreeNo);
 	
 	if(aAgreeNo>=1 && aAgreeNo<=3) {
 		response.setContentType("text/html;charset=utf-8");

@@ -36,8 +36,8 @@ public class OwnerAdminAgreeListcontroller {
 			@RequestMapping("/temporary/tempList.do")
 			public String tempList(HttpSession session,
 					Model model) {
-				//int ownerNo=(Integer) session.getAttribute("ownerNo");
-				int ownerNo=1;
+				int ownerNo=(Integer) session.getAttribute("ownerNo");
+				
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				
 				List<Map<String, Object>> tempList =ownerRService.selectLSJAgreeListView(ownerNo);
@@ -56,8 +56,8 @@ public class OwnerAdminAgreeListcontroller {
 				@RequestParam String mode,
 				HttpSession session,
 					Model model){
-				int ownerNo=1;
-				//int ownerNo=(Integer) session.getAttribute("ownerNo");
+				
+				int ownerNo=(Integer) session.getAttribute("ownerNo");
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				logger.info("승인 신청 리스트 업데이트 페이지 mode={},no={}",mode,no);
 				int cnt=0;

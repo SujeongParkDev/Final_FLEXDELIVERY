@@ -6,6 +6,15 @@ public class OwnerStoreAdVO {
 	private int advertiseNo;
 	private String adValidate;
 	private String AdPayFlag;
+	
+	private String storeadRegdate; /* 광고 신청한 날짜  */
+	
+	public String getStoreadRegdate() {
+		return storeadRegdate;
+	}
+	public void setStoreadRegdate(String storeadRegdate) {
+		this.storeadRegdate = storeadRegdate;
+	}
 	public int getStoreadNo() {
 		return storeadNo;
 	}
@@ -39,7 +48,8 @@ public class OwnerStoreAdVO {
 	@Override
 	public String toString() {
 		return "OwnerStoreAdVO [storeadNo=" + storeadNo + ", storeNo=" + storeNo + ", advertiseNo=" + advertiseNo
-				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + "]";
+				+ ", adValidate=" + adValidate + ", AdPayFlag=" + AdPayFlag + ", storeadRegdate=" + storeadRegdate
+				+ "]";
 	}
 	
 	

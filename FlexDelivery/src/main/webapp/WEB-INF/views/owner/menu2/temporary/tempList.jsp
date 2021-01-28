@@ -78,6 +78,7 @@
 				<div class="card">
 					<div class="card-header">
 						<!--  -->
+						${tempList }
 					</div>
 					<div class="card-body">
 						<ul class="nav nav-tabs">
@@ -191,16 +192,16 @@
 																		 -->
 																		 
 																		 	<td>
-																	<c:if test="${map['SAGREENO'] == 1 }">
+																	<c:if test="${map['RAGREENO'] == 1 }">
 																			<span class="badge bg-light">승인대기</span>
 																		</c:if>
-																		 <c:if test="${map['SAGREENO'] == 2 }">
+																		 <c:if test="${map['RAGREENO'] == 2 }">
 																			<span class="badge bg-danger">신청취소</span>
 																		</c:if> 
-																		<c:if test="${map['SAGREENO'] == 3 }">
+																		<c:if test="${map['RAGREENO'] == 3 }">
 																			<span class="badge bg-success">승인완료</span>
 																		</c:if> 
-																		<c:if test="${map['SAGREENO'] == 4 }">
+																		<c:if test="${map['RAGREENO'] == 4 }">
 																			<span class="badge bg-danger">승인반려</span>
 																		</c:if>
 																		</td>
