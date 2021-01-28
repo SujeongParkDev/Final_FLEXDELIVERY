@@ -3,7 +3,7 @@ package com.project.fd.member.model;
 public class MemberVO {
 	private int memberNo;
 	private String memberName;
-	private String memberid;
+	private String memberId;
 	private String memberPwd;
 	private String memberZipcode;
 	private String memberAddress;
@@ -29,11 +29,11 @@ public class MemberVO {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public String getMemberid() {
-		return memberid;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getMemberPwd() {
 		return memberPwd;
@@ -115,7 +115,7 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberid=" + memberid
+		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
 				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress
 				+ ", memberAddressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate
 				+ ", memberOutdate=" + memberOutdate + ", memberHp1=" + memberHp1 + ", memberHp2=" + memberHp2

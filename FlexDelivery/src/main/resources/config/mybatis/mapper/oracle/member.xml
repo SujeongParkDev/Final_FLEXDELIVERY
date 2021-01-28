@@ -9,9 +9,9 @@
 			select member_seq.nextval from dual
 		</selectKey>
 		insert into member(member_No, member_Name, member_Id, member_Pwd, member_Zipcode,member_Address,
-			member_Address_Detail,member_Hp1,member_Hp2, member_Hp3,member_Email1, member_Email2) 
-		values(#{memberNo}, #{memberName}, #{memberid}, #{memberPwd}, #{memberZipcode}, #{memberAddress},
-			#{memberAddressDetail},#{memberHp1},#{memberHp2}, #{memberHp3},#{memberEmail1}, #{memberEmail2})
+			member_Address_Detail,member_Hp1,member_Hp2, member_Hp3,member_Email1, member_Email2, location_No) 
+		values(#{memberNo}, #{memberName}, #{memberId}, #{memberPwd}, #{memberZipcode}, #{memberAddress},
+			#{memberAddressDetail},#{memberHp1},#{memberHp2}, #{memberHp3},#{memberEmail1}, #{memberEmail2} ,#{locationNo})
 	</insert>
 	
 	<select id="selectPwd" parameterType="String" resultType="String">
