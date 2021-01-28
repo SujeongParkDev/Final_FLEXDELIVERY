@@ -68,8 +68,6 @@
 					<form name="frmDate" method="post" 
 	action="<c:url value='/shop/order/orderList.do'/>" >
 	<!-- 조회기간 include
-	<%@include file="../datePicker/datePicker.jsp" %>	
-	
 	 -->
 		
 	<input type="hidden" name="currentPage" value="1">
@@ -81,31 +79,20 @@
 				
 				<div class="radio-group mx-sm-2 mb-3">
 					<label class="radio-button"><input type="radio" value=""
-						checked="">
+						checked="" id="ck1">
 					<p class="label">전체(${fn:length(reviewList) })</p></label><label class="radio-button"><input
-						type="radio" value="">
+						type="radio" value="" id="ck2">
 					<p class="label">미답변(0)</p></label><label class="radio-button"><input
-						type="radio" value="">
+						type="radio" value="" id="ck3">
 					<p class="label">차단(0)</p></label>
 				</div>
-				
-				<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Left</button>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Middle</button>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default">Right</button>
-  </div>
-</div>
-				
+
 				
 				</div>
 				
 				<div class="review-wrap">
 					<div class="review-list">
+					<div class="visible">.
 						<div class="Card ">
 								<c:if test="${!empty reviewList }">
 					<c:forEach var="map" items="${reviewList }">
@@ -194,7 +181,7 @@
 					</div>
 				</div>
 			</div>
-			
+			</div>
 			
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript">

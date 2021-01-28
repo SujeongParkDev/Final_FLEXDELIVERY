@@ -71,53 +71,9 @@ $(function(){
               </div>
             </section>
           </div>
-          <div
-            class="content-body s2"
-            style="background-color: rgb(243, 248, 255)"
-          >
-            <section id="howto">
-              <h3
-                class="section-title rblADaB1yPUEg7R83HVUs _1xRjW6OBdx_wib_P4X650Y"
-              >
-                <span class="underline">두 가지 방법</span>으로<br />누구나 쉽게
-                할 수 있어요
-              </h3>
-              <div class="item-list">
-                <section class="card-outer p-sm-3 rblADaB1yPUEg7R83HVUs">
-                  <div class="Badge">
-                    <div class="text-badge default">방법1</div>
-                  </div>
-                  <h3 class="mt-1">지금 바로 입점 신청</h3>
-                  <p class="title-desc">
-                    입점할 가게 정보를 직접 입력하면 끝!<br />승인 시간 평균
-                    2-3일 소요.
-                  </p>
-                  <ol class="mt-5 mt-sm-4">
-                    <li>사전 설문 작성</li>
-                    <li>사업자, 가게 정보 입력</li>
-                    <li>광고 심사 승인 후 광고 시작</li>
-                  </ol>
-                </section>
-                <section class="card-outer p-sm-3 rblADaB1yPUEg7R83HVUs">
-                  <div class="Badge">
-                    <div class="text-badge default">방법2</div>
-                  </div>
-                  <h3 class="mt-1">상담 후 입점 신청</h3>
-                  <p class="title-desc">
-                    상담사가 순차적으로 연락을 드려 상담 후
-                    <br class="is-line-break" />가입까지 도와드립니다. 승인 시간
-                    평균 3~4일 소요.
-                  </p>
-                  <ol class="mt-5 mt-sm-4">
-                    <li>사전 설문 작성</li>
-                    <li>전화 상담 신청</li>
-                    <li class="call">상담사와 함께 입점 절차 진행</li>
-                    <li>광고 심사 승인 후 광고 시작</li>
-                  </ol>
-                </section>
-              </div>
-            </section>
-          </div>
+          <!--  -->
+          <!-- 여기 뭐를 더 추가할까....? -->
+     <!--  -->
 </div>
 </div>
 </div>
