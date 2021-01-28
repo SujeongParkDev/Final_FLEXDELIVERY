@@ -60,7 +60,7 @@
 	</select>
 	
 	<resultMap type="memberMenuAllVo" id="menuList">
-		<association property="memberMenuVo" column="menuNo" javaType="MemberMenuVO">
+		<association property="memberMenuVo" column="menu_No" javaType="MemberMenuVO">
 			<id property="menuNo" jdbcType="BIGINT" column="menu_No" />
 			<result property="menuName" jdbcType="VARCHAR" column="menu_name" />
 			<result property="menuPrice" jdbcType="BIGINT" column="menu_price"/>
@@ -68,14 +68,11 @@
 			<result property="menuContent" jdbcType="VARCHAR" column="menu_content" />
 			<result property="sMGroupNo" jdbcType="BIGINT" column="s_m_group_no"/>
 		</association>
-		<collection property="menuOptionList" select="selectMenuOption" column="menuNo" javaType="ArrayList" ofType="com.project.fd.member.menu.model.MemberMenuOptionVO"></collection>
+		<collection property="menuOptionList" select="selectMenuOption" column="menu_No" javaType="ArrayList" ofType="memberMenuOptionVO" />
 	</resultMap>
 	
 	<select id="selectMenuOption" parameterType="int" resultType="memberMenuOptionVo">
-		select * from menuoption where menu_no=#{menu_no}
+		select * from menuoption where menu_no=#{menu_no} order by o_rank_no
 	</select>
-	
-	
-	
 	
 </mapper>
