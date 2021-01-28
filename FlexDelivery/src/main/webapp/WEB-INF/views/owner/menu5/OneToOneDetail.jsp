@@ -75,8 +75,12 @@
 													</div>
 												</div>
 											</div>
+											
+											<div class="col-12 col-md-8 offset-md-4 form-group">
 											<input type="submit" class="btn btn-primary mr-1 mb-1"
 													id="btEdit" value="수정하기">
+											</div>
+										
 
 											</div>
 										</div>

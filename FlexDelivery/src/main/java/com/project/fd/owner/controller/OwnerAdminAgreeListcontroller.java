@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
+import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -46,6 +46,19 @@ public class OwnerAdminAgreeListcontroller {
 				model.addAttribute("tempList", tempList);
 				
 				return "owner/menu2/temporary/tempList";
+			}
+			
+			// 승인신청리스트에서 삭제버튼 누르면 권한 2로 가기 전에 비밀번호 확인 
+			@RequestMapping(value = "/tempListPwdCheck.do", method = RequestMethod.GET)
+			public String advertisePwdCheck_get(Model model) {
+				logger.info("tempListPwdCheck 창 보여주기");
+				
+				
+				int YorN = OwnerService.GO_PWD;
+				model.addAttribute("YorN", YorN);
+				
+				
+				return "owner/menu2/advertise/advertisePwdCheck";
 			}
 	
 			
@@ -177,6 +190,6 @@ public class OwnerAdminAgreeListcontroller {
 			return "";
 		} */
 		
-	
+			
 }
 

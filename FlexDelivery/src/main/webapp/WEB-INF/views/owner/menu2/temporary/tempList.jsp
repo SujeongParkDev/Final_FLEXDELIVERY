@@ -19,34 +19,29 @@
 <!-- CSS end -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-/*
-  
- 
-	$(function(){
-		$('form[name=frmDelete]').click(function(){
-			if(!confirm('취소하시겠습니까?')){
-				event.preventDefault();
-			}
-		});
+$(function(){
+	$('.buttons').on('click', function(){
+		window.screen.width //현재 윈도우창의 가로크기를 가져옴
+		window.screen.height //세로크기 가져옴
 		
-		var type="";
+		var popupWidth = 500; //띄울 창 가로크기
+		var popupHeight = 300;
 		
-		if($(this).attr('id')=='btStores'){
-			type="stores";
-		}else if($(this).attr('id')=='btAd'){
-			type="adver";				
-		}else if($(this).attr('id')=='btRegi'){
-			type="btRegi";
-		}
-		$('form[name=frmDelete]').prop('action', 
-				'<c:url value="/owner/menu2/tempDelete.do?mode='+type+'" />');
-		$('form[name=frmDelete]').submit();
-	
-	});	
- */
+		var popupX = (window.screen.width / 2) - (popupWidth /2);
+		var popupY = (window.screen.height / 2) - (popupHeight /2);
+		
+		window.open(
+			"${pageContext.request.contextPath}/owner/menu2/temporary/tempListPwdCheck.do", 
+			"pwdCheck", 
+			'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+	});
+
+
+});
 	
 	function bt_cancle(no){
 		if(confirm('취소하시겠습니까?')){
+			
 			var type="";
 			
 			if($('.buttons').attr('id')=='btStores'){

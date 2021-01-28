@@ -16,23 +16,44 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter{
 	=LoggerFactory.getLogger(LicenseInterceptor.class);
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler
+			)
 			throws Exception {
-	int aAgreeNo =1;
-		//=(Integer) request.getSession().getAttribute("aAgreeNo");
+		
+		if(request.getSession().getAttribute("result")==null) {
+			request.getSession().setAttribute("result",0);
+		}
+		
+		
+		String ownerId = (String)request.getSession().getAttribute("ownerId");
+		String result=Integer.toString((Integer)request.getSession().getAttribute("result"));
 	
-	logger.info("사업자등록 확인용 - 인터셉터 1~3이면 사업자등록 페이지로 이동 aAgreeNo={}", aAgreeNo);
+		//int aAgreeNo 
+		int ragreeno=(Integer)request.getSession().getAttribute("ragreeno");
+	String oRegisterNo=(String)request.getSession().getAttribute("oRegisterNo");
 	
-	if(aAgreeNo>=1 && aAgreeNo<=3) {
+	logger.info("사업자등록 확인용 - 인터셉터 2이면 사업자등록 페이지로 이동 ,oRegisterNo={}",oRegisterNo);
+	logger.info("ragreeno={}",ragreeno);
+	if(oRegisterNo.isEmpty() || oRegisterNo==null && ragreeno==1) {
 		response.setContentType("text/html;charset=utf-8");
 		
 		PrintWriter out =response.getWriter();
 		out.print("<script>");
-		out.print("alert('먼저 사업자등록증을 등록하세요!');");
+		out.print("alert('먼저 사업자등록증을 등록해주세요 !');");
 		out.print("location.href='"+ request.getContextPath()
 				+"/owner/menu1/businessLicense.do';");
 		out.print("</script>");
 		
+		return false;
+	}else if(ragreeno==1 && oRegisterNo!=null ){
+	response.setContentType("text/html;charset=utf-8");
+		
+		PrintWriter out =response.getWriter();
+		out.print("<script>");
+		out.print("alert('사업자 등록증 확인 승인이 될 때까지 기다려주세요!\n승인 목록 페이지로 이동합니다. ');");
+		out.print("location.href='"+ request.getContextPath()
+				+"/owner/menu2/temporary/tempList.do';");
+		out.print("</script>");
 		return false;
 	}
 	

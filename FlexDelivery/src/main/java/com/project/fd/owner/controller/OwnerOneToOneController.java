@@ -129,12 +129,18 @@ public class OwnerOneToOneController {
 		
 		return "owner/menu5/OneToOneDetail";
 	}
-	/*
+
 	@RequestMapping(value="/menu5/OneToOneEdit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute OwnerAskVO ownerAskVo,
+			//@RequestParam(defaultValue = "0")int authorityNo,
 			Model model) {
+		String askId=(String)session.getAttribute("ownerId");
 		logger.info("글수정 처리, 파라미터 ownerAskVo={}", ownerAskVo);
-	
+		int authorityNo=(Integer)session.getAttribute("authorityNo");
+		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
+		ownerAskVo.setAuthorityNo(authorityNo);
+		ownerAskVo.setAskId(askId);
+		
 		int cnt=ownerAskService.updateASK(ownerAskVo);
 		logger.info("글수정 결과, cnt={}", cnt);
 		
@@ -151,5 +157,5 @@ public class OwnerOneToOneController {
 
 		return "common/message";
 	}
-	*/
+
 }

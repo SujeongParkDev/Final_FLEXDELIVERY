@@ -19,14 +19,11 @@
 
 
 	<!-- 폼 시작 -->
-	<form class="dialog on lg " name="dialog" id="dialog" method="post"
-		enctype="multipart/form-data">
-		<!-- hidden으로 변경할 것  -->
-		<input type="text" name="oRegisterNo" id="oRegisterNo"
-			value="${param.oRegisterNo}" />
-
+	<form class="dialog on lg " name="frm1" id="frm1" method="post"
+		enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
+		
 		<h3 class="mt-2 mb-1">
-			<strong>${sessionScope.ownerName }</strong>님, 맞춤 안내를 위해<br>몇 가지
+			<strong>${sessionScope.ownerName }</strong> 님, 맞춤 안내를 위해<br>몇 가지
 			물어볼게요 : )
 		</h3>
 		<div class="form-group border-top">
@@ -111,10 +108,10 @@
 				
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
-					<select required="required" style="min-width: 140px;" class="form-control "><option
+					<select required="required" style="min-width: 140px;" class="form-control " id="locationNo" name="locationNo"><option
 							value="" disabled="">대분류</option>
 					<c:forEach var="voLo" items="${location }">
-							<option value="${voLo.locationNo}">${voLo.locationName }</option>
+							<option value="${voLo.locationNo}"  id="locationNo" name="locationNo">${voLo.locationName }</option>
 							</c:forEach>
 					</select>
 				</div>
@@ -122,16 +119,13 @@
 
 				<h5 class="form-label">✔ 대분류 카테고리</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
-					<select required="required" style="min-width: 140px;" class="form-control "><option
+					<select required="required" style="min-width: 140px;" class="form-control " id="lCategoryNo" name="lCategoryNo"><option
 							value="" disabled="">대분류</option>
 			<c:forEach var="vo" items="${large }">
-							<option value="${vo.lCategoryNo}">${vo.lCategoryName }</option>
+							<option value="${vo.lCategoryNo}" id="lCategoryNo" name="lCategoryNo">${vo.lCategoryName }</option>
 							</c:forEach>
 					</select>
 				</div>
-
-
-
 
 				<div class="form-control ">
 					<ul class="bullet-ul small muted">
@@ -167,7 +161,7 @@
 						</ul>
 						<div class="modal-footer">
 							<div class="text-right my-3">
-								<button type="button" class="button medium primary" id="btRegi">등록
+								<button type="button" class="button medium primary" id="btRegi" data-dismiss="modal" name="modalWrite"  onclick="form.submit()">등록
 									제출</button>
 
 							</div>
@@ -180,11 +174,11 @@
 	</form>
 </div>
 
-<script type="text/javascript"
-	src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
+
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
+	var chk = 0;
 	$('#btRegi').click(function(){
 			$('.infobox').each(function(idx, item){
 				if($(this).val().length<1){
@@ -192,20 +186,29 @@ $(function() {
 					$(this).focus();
 					event.preventDefault();
 					return false;  //each 탈출
-				}else
-					if(!$('#chkAgree').is(":checked")){
-						alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-						$('#chkAgree').focus();
-						event.preventDefault();
-					}
-				else{
-					alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
-					// 기본정보로 이동 
-					location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
+				}else{
+					chk = 1;
 				}
-			});
-				
-		});
+		}); //each
+		if(chk == 1) {
+			if(!$('#chkAgree').is(":checked")){
+				alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+				$('#chkAgree').focus();
+				event.preventDefault();
+				return false;
+			}else{
+				alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
+				// 기본정보로 이동 
+				//location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
+				$('form[name=frm1]').submit();
+				 window.parent.location.reload();
+			}
+		}
+	});
+	
+	  $('#upfile').on('change', function(){
+	       readInputFile(this);
+	   });
 
 	var contextPath="/fd";
 
@@ -213,9 +216,17 @@ $(function() {
 				open(contextPath+"/zipcode.do", "chk",
 		"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
 			});
+			
+			   /* $('#modalWrite').click(function () {
+		       //location.href='<c:url value="/admin/menu6/largecategory/write.do"/>'; 
+		       $('form[name=frmLCategoryWrite]').submit();
+		       alert("등록 성공");
+		       window.parent.location.reload();
+		   }); */
 });
 			
 
 	
 </script>
+
 

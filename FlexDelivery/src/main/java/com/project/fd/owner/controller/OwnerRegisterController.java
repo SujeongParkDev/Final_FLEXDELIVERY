@@ -53,7 +53,7 @@ public class OwnerRegisterController {
 			long fileSize=0;
 			try {
 				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+				=fileUtil.fileUplaod(request, FileUploadUtil.OWNER_REGISTER_TYPE);
 				for(Map<String, Object> fileMap : fileList) {
 					originName=(String) fileMap.get("originalFileName");
 					fileName=(String) fileMap.get("fileName");
