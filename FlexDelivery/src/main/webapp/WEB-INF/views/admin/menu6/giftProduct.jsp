@@ -50,7 +50,7 @@ function readInputFile(input) {
                         role="dialog" aria-labelledby="선물 상품 등록" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />">
+								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />" enctype="multipart/form-data">
                                 	<div class="modal-header">
 	                                    <h4 class="modal-title">선물 - 상품 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -221,7 +221,7 @@ function readInputFile(input) {
 			                                          role="dialog" aria-labelledby="선물 상품 수정" aria-hidden="true">
 			                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                                             <div class="modal-content">
-			                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />">
+			                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
 			                                                   <div class="modal-header">
 			                                                      <h4 class="modal-title" id="myModalGiftProductEdit">선물 상품 수정</h4>
 			                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">

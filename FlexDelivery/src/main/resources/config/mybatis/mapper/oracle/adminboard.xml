@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.adminboard">
+
+	<select id="selectAll" parameterType="adminBoardVo" resultType="adminBoardVo">
+		select BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_THUMBNAIL, BOARD_REGDATE,
+		BOARD_HEAD, AUTHORITY_NO from BOARD
+		order by BOARD_NO desc
+	</select>
+	
+	<select id="selectByNo" parameterType="adminBoardVo" resultType="adminBoardVo">
+		select BOARD_TITLE, BOARD_CONTENT, BOARD_THUMBNAIL, BOARD_REGDATE,
+		BOARD_HEAD, AUTHORITY_NO from BOARD
+		where BOARD_NO=#{boardNo}	
+	</select>
+	
+	<!-- <select id="selectAll2" parameterType="adminGiftCategoryProductVo" resultType="adminGiftCategoryProductVo">
+		select p.G_PRODUCT_NO, p.G_PRODUCT_NAME, p.G_PRODUCT_FILENAME, c.G_CATEGORY_NAME
+		from GIFTCATEGORY c right join GIFTPRODUCT p
+		on c.G_CATEGORY_NO=p.G_CATEGORY_NO
+		order by p.G_CATEGORY_NO
+	</select> -->
+	
+	<insert id="insertBoard" parameterType="adminBoardVo" >
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+			select BOARD_seq.nextval from dual
+		</selectKey>
+		insert into BOARD(BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_THUMBNAIL, BOARD_REGDATE, BOARD_HEAD)
+		values(#{boardNo}, #{boardTitle}, #{boardContent}, #{boardThumbnail}, #{boardRegdate}, #{boardHead})
+		where AUTHORITY_NO=#{authorityNo}
+	</insert>
+	
+	<update id="updateBoard" parameterType="adminBoardVo">
+		update BOARD
+		set BOARDP_TITLE=#{boardTitle}, BOARD_CONTENT=#{boardContent}, BOARD_THUMBNAIL=#{boardThumbnail},
+			BOARD_REGDATE=#{boardRegdate}, BOARD_HEAD=#{boardHead}
+		where BOARD_NO=#{boardNo} and AUTHORITY_NO=#{authorityNo}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="adminBoardVo">
+		delete from BOARD
+		where BOARD_NO=#{boardNo} and AUTHORITY_NO=#{authorityNo}
+	</delete>
+	
+</mapper>
