@@ -53,24 +53,24 @@
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >							
-									<p>${vo.tNo}</p></a>
+									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.storeNo}'/>" >							
+									<p>${vo.storeNo}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
-									<p>${vo.tStoresName}</p></a>								
+									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.storeNo}'/>" >
+									<p>${vo.storeName}</p></a>								
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
-									<p>${vo.tOwnerName}</p></a>
+									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.storeNo}'/>" >
+									<p>${vo.ownerName}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
-									<p>${vo.tOwnerHp1}-${vo.tOwnerHp2}-${vo.tOwnerHp3}</p></a>
+									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.storeNo}'/>" >
+									<p>${vo.ownerHp1}-${vo.ownerHp2}-${vo.ownerHp3}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.tNo}'/>" >
-									<p>${vo.tStoresAddress} ${vo.tStoresAddressDetail}</p></a>
+									<a href="<c:url value='/admin/menu2/approvalDetail.do?no=${vo.storeNo}'/>" >
+									<p>${vo.storeAddress} ${vo.storeAddressDetail}</p></a>
 								</td>
 								<td><c:if test="${vo.aAgreeNo == 1}">
 										<span class="badge bg-light">승인대기</span>

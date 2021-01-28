@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/menu1")
 public class AdminMemberController {
 	public static final Logger logger
-	= LoggerFactory.getLogger(AdminApprovalController.class);
+	= LoggerFactory.getLogger(AdminStoresApprovalController.class);
 	
 	@RequestMapping("/memberGrade.do")
 	public void adminMemberGrade(Model model) {
