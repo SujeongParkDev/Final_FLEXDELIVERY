@@ -22,9 +22,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component
 public class FileUploadUtil {
-	//자료실에서 사용하는지, 상품 등록에서 사용하는지 구분하는 상수
-	public static final int PDS_TYPE=1;  //자료실에서 사용
-	public static final int IMAGE_TYPE=2; //상품등록에서 사용
+   public static final int GIFT_PRODUCT_TYPE=1;  //선물하기-상품등록에서 사용
+   public static final int HONEYTIP_TYPE=2;  //사장님꿀팁-등록에서 사용
+   public static final int NOTICE_EVENT_TYPE=3;   //공지사항&이벤트-등록에서 사용 
+   public static final int MENU_TYPE=4;   //메뉴
+   public static final int STORES_TYPE=5;  //점포
+   public static final int OWNER_REGISTER_TYPE=6;  //사업자등록
+   public static final int TEMPORARY_TYPE=7;  //임시 - 사업자등록 파일
+   public static final int LCATEGORY_TYPE=8;  //대분류 카테고리-등록에서 사용
 	
 	
 	@Resource(name="fileUploadProperties")
@@ -96,17 +101,53 @@ public class FileUploadUtil {
 		String testGb=fileUploadProps.getProperty("file.upload.type");
 		
 		String upPath="";
-		if(type==PDS_TYPE) {
+		if(type==GIFT_PRODUCT_TYPE) {
 			if(testGb.equals("test")) {
-				upPath=fileUploadProps.getProperty("file.upload.path.test");
+				upPath=fileUploadProps.getProperty("GiftProductImages.upload.path.test");
 			}else {
-				upPath=fileUploadProps.getProperty("file.upload.path");				
+				upPath=fileUploadProps.getProperty("GiftProductImages.upload.path");				
 			}
-		}else if(type==IMAGE_TYPE) {
+		}else if(type==HONEYTIP_TYPE) {
 			if(testGb.equals("test")) {
-				upPath=fileUploadProps.getProperty("imageFile.upload.path.test");
+				upPath=fileUploadProps.getProperty("HoneytipImages.upload.path.test");
 			}else {
-				upPath=fileUploadProps.getProperty("imageFile.upload.path");				
+				upPath=fileUploadProps.getProperty("HoneytipImages.upload.path");				
+			}
+		}else if(type==NOTICE_EVENT_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("NoticeEventImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("NoticeEventImages.upload.path");				
+			}
+		}else if(type==MENU_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("MenuImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("MenuImages.upload.path");				
+			}
+		}else if(type==STORES_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("StoresImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("StoresImages.upload.path");				
+			}
+		}else if(type==OWNER_REGISTER_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("OwnerRegisterImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("OwnerRegisterImages.upload.path");				
+			}
+		}else if(type==TEMPORARY_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("TemporaryImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("TemporaryImages.upload.path");				
+			}
+		}else if(type==LCATEGORY_TYPE) {
+			if(testGb.equals("test")) {
+				upPath=fileUploadProps.getProperty("LCategoryImages.upload.path.test");
+			}else {
+				upPath=fileUploadProps.getProperty("LCategoryImages.upload.path");				
 			}
 		}
 		

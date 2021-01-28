@@ -40,6 +40,21 @@
 				
 			});  
 		
+			
+			
+			
+			
+			
+			/* 
+			$(function(){
+				$('#menuGroupSelect').change(function(){
+					$('#warningPrice').html('');
+					
+					
+				}
+			});
+				 */
+				
 		</script>
 		<!-- 메뉴 버튼 -->
 		<br>
@@ -78,36 +93,23 @@
 				      <div class="card-content">
 				        <div class="card-body">
 							 <div class="row">
-								  <div class="col-md-1 col-sm-12"></div>
-								  <div class="col-md-4 col-sm-12">
-										<select class="form-select" size="10" multiple aria-label="multiple select example" style="overflow:auto;">
-											  <option class="m-3 text-center" style="font-size:17px;" selected disabled="disabled">메뉴 그룹 선택</option>
-											  <option class="m-3 text-center" style="font-size:17px;" value="1">치킨</option>
-											  <option  class="m-3 text-center" style="font-size:17px;" value="2">돈까스</option>
-											  <option class="m-3 text-center" style="font-size:17px;" value="3">피자</option>
+								  <div class="col-md-7 col-12"></div>
+								  <div class="col-md-5 col-sm-12">
+										<select class="form-select" name="menuGroup" id="menuGroupSelect" style="overflow : auto;">
 											
+												<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 그룹 선택</option>
+									
+												<c:if test="${!empty list }">
+												  <c:forEach var="vo" items="${list }">
+												  		<option value="${vo.sMGroupNo }">${vo.sMGroupName }</option>
+												  </c:forEach>
+												</c:if>
 										</select>
-								
+										<br>
+										<div id="menuTable">
+										
+										</div>
 								 </div>
-								 <div class="col-md-4 col-sm-12">
-										<select class="form-select" size="10" multiple aria-label="multiple select example" style="overflow: auto;">
-											  <option class="m-3 text-center"  style="font-size:17px;" selected disabled="disabled">메뉴 선택</option>
-											  <option class="m-3 text-center" style="font-size:17px;" value="1">호랭이 치킨</option>
-											  <option class="m-3 text-center"  style="font-size:17px;" value="2">호랭이 돈까스</option>
-											  <option class="m-3 text-center" style="font-size:17px;" value="3">호랭이 돈까스투</option>
-										</select>
-								</div>
-								<div class="col-md-2 col-sm-12">
-										<select class="form-select" size="13" multiple aria-label="multiple select example" style="overflow: hidden;">
-											  <option class="mb-3 mt-3 text-center"  selected disabled="disabled">옵션그룹</option>
-											  <option class="mb-3 text-center" value="1">상위권</option>
-											  <option class="mb-3 text-center"  value="2">중위권</option>
-											  <option class="mb-3 text-center" value="3">하위권</option>
-											  <option class="mb-3 text-center" value="3">하위권</option>
-										</select>
-								</div>
-								
-						 	 <div class="col-md-1 col-sm-12"></div>
 							</div>
 							<br>
 						</div>
@@ -117,6 +119,10 @@
 				<div class="col-md-2 col-sm-12"></div>
 		</div>
 		
+		
+		
+		
+			
 		
 		<!-- 셀렉 옵션 선택 내용 -->
 		<div class="row" id="basic-table">

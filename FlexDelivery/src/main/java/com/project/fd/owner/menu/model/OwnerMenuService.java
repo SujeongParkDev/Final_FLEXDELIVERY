@@ -2,6 +2,8 @@ package com.project.fd.owner.menu.model;
 
 import java.util.List;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
+
 public interface OwnerMenuService {
 	public static final int SUCCESS_POST = 1;
 	public static final int FAIL_POST = 2;
@@ -18,4 +20,15 @@ public interface OwnerMenuService {
 	
 	public int insertMenu(OwnerMenuVO ownerMenuVo);
 	public int deleteMenuByNo(int menuNo);
+	public OwnerMenuVO selectMenuByMenuNo(int menuNo);
+	public int updateMenuByNo(OwnerMenuVO ownerMenuVo);
+	public int selectCountMainMenu(int storeNo);
+	public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) ;
+	/*public AdminMediumCategoryViewVO selectMCAllView(int mCategoryNo);*/
+	
+	public OwnerMainMenuAllVO selectMainMenuAll(int storeNo);
+
+	public List<AdminMediumCategoryVO> selectAllMCByLCByStoreNo(int storeNo);
+	public int insertMainMenu(OwnerStoreMainMenuVO mainVo);
+	public int updateMainMenu(OwnerStoreMainMenuVO mainVo);
 }
