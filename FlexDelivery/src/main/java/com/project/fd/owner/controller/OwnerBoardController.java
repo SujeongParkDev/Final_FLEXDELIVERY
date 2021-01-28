@@ -20,7 +20,6 @@ import com.project.fd.common.Utility;
 import com.project.fd.owner.board.model.OwnerBoardSearchVO;
 import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.board.model.OwnerBoardVO;
-import com.project.fd.owner.common.OwnerFileUploadUtil;
 import com.project.fd.owner.model.OwnerService;
 
 @Controller
@@ -163,7 +162,7 @@ public class OwnerBoardController {
 			//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
 			if(ownerBoardVo.getBoardThumbnail()!=null) {
 				String upPath 
-				= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+				= fileUtil.getUploadPath(FileUploadUtil.NOTICE_EVENT_TYPE, request);
 				File nowFile = new File(upPath, ownerBoardVo.getBoardThumbnail());
 				if(nowFile.exists()) {
 					 type="file";

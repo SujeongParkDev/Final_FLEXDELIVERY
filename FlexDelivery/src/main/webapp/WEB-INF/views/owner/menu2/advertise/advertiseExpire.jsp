@@ -50,32 +50,8 @@
 	                  <div class="col-md-2 col-sm-12"></div>
 		  </div>
 		  <br>
-	<%-- 
-		<!-- 페이지, 데이터 검색 form보내기 -->
-		<form action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" name="frm1" method="post">
-			<%@include file="../../inc/dateTerm.jsp" %>	
-			<!-- dateTerm 써야할것같아요! -->
-			
-		<input type="hidden" name="currentPage" value="1">
-		<input type="submit" value="조회" >	
-		</form> --%>
-		
-	
-		<div class="row" >
-			  <div class="col-md-2 col-sm-12"></div>
-			  <div class="col-md-8 col-sm-12">
-				<form name="frmPage" method="post" style="float:right;"
-					action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>">
-				
-					<input type="hidden" name="currentPage" value="1">
-					<input type="submit" value="조회" >
-				</form>
-			</div>
-			<div class="col-md-2 col-sm-12"></div>
-	   </div>
-		<br>
-		
-				
+
+
 		<!-- 테이블 감싼 디비 시작 -->
 
 		<div class="row" id="table-hover-row">
@@ -88,43 +64,62 @@
 			      </div>
 			      <div class="card-content">
 			        <div class="card-body text-center">
-			          <p>사장님께서 이용해주신 광고입니다. 감사합니다</p>
-			        </div>
-			        <!-- table hover -->
-			        <div class="table-responsive">
-			          <table class="table table-hover mb-5">
-			            <thead>
-			              <tr class="text-center">
-			              	<th>번호</th>
-			                <th>광고번호</th>
-			                <th>광고명</th>
-			                <th>가격</th>
-			                <th>만료일</th>
-			              </tr>
-			            </thead>
-			            <tbody>
-			            <!-- table 시작 -->
-			            	<c:if test="${!empty lsit }">
-			            	<tr>
-								<td colspan="5" class="align_center">데이터가 존재하지 않습니다.</td>
-							</tr>
-			            	</c:if>
-			            	<c:if test="${empty lsit }">
-			            	<c:forEach var="vo" items="${list }">	
-				              <tr  class="text-center">
-				              		<td>${vo.rnum }</td>
-					                <td class="text-bold-500">FDAD${vo.storeadNo }</td>
-					                <td>${vo.advertiseName }</td>
-					                <td>${vo.advertisePrice }</td>
-					                <td>${vo.adValidate }</td>
-				              </tr>
-				              </c:forEach>
-				           </c:if>
-			            </tbody>
-			          </table>
-			        </div>
-			      </div>
-			    </div>
+			         
+					  	<div class="row" >
+				  			<div class="col-md-5 col-12"></div>
+				  			<div class="col-md-5 col-12 ">
+								<form name="frmPage" method="post" name="frm1"  action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" >
+									 <%@include file="../../../owner/datePicker/datePicker.jsp" %>	
+									<input type="hidden" name="currentPage" value="1">
+								</form>
+							</div>
+							<div class="col-md-2 col-12">
+								<input type="submit" style="background-color:rgb(223,108,220); color:white;" value="조회" >
+							</div>
+						</div>
+					
+			
+						<br>
+			 
+			        
+					        <!-- table hover -->
+					        <div class="table-responsive">
+					          <table class="table table-hover mb-5">
+					            <thead>
+					              <tr class="text-center">
+					              	<th>번호</th>
+					                <th>광고번호</th>
+					                <th>광고명</th>
+					                <th>가격</th>
+					                <th>만료일</th>
+					              </tr>
+					            </thead>
+					            <tbody>
+					            <!-- table 시작 -->
+					            	<c:if test="${empty list }">
+					            	<tr>
+										<td colspan="5" class="align_center">데이터가 존재하지 않습니다.</td>
+									</tr>
+					            	</c:if>
+					            	<c:if test="${!empty list }">
+					            	<c:forEach var="vo" items="${list }">	
+						              <tr  class="text-center">
+						              		<td>${vo.rnum }</td>
+							                <td class="text-bold-500">FDAD${vo.storeadNo }</td>
+							                <td>${vo.advertiseName }</td>
+							                <td>${vo.advertisePrice }</td>
+							                <td>${vo.adValidate }</td>
+						              </tr>
+						              </c:forEach>
+						           </c:if>
+					            </tbody>
+					          </table>
+					        </div>
+					        <!-- table reponsive div 끝 -->
+				      </div>
+				    </div>
+				    <!-- 카드 컨텐츠 div 끝 -->
+			 	 </div>
 			  </div>
 			  <div class="col-md-2 col-sm-12"></div>
 		</div>
