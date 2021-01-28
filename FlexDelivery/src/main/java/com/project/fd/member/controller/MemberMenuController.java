@@ -37,7 +37,6 @@ public class MemberMenuController {
 		List<MemberMenuAllVO> list=menuServ.selectMenuBySMGroupNo(sMGroupNo);
 		logger.info("점포메뉴출력 list.size={}",list.size());
 		model.addAttribute("menuList",list);
-		logger.info("점포 메뉴옵션 출력,size테스트 : ",list.get(0).getMenuOptionList().size());
 		return "member/store/menu/menuInc";
 	}
 }
