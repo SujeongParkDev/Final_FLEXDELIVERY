@@ -17,7 +17,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css" />
 <!-- CSS end -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.buttons').on('click', function(){
@@ -110,107 +111,87 @@ $(function(){
 																<td colspan="4">신청 내역이 없습니다.</td>
 															</tr>
 														</c:if>
-														
+
 														<c:if test="${!empty tempList }">
 															<!--반복 시작 -->
 															<c:forEach var="map" items="${tempList }">
 																<c:set var="i" value="${i+1 }" />
-																<tr>
-																	<td class="text-bold-500">${i }</td>
-																	<c:choose>
-																		<c:when
-																			test="${!empty map['STORE_NO'] &&  !empty map['OWNERREGISTER_REGDATE'] && empty map['STOREAD_REGDATE'] 
+
+																<c:if
+																	test="${!empty map['STORE_NO'] &&  !empty map['OWNERREGISTER_REGDATE'] && empty map['STOREAD_REGDATE'] 
 																			}">
-																			<td colspan="3">입점 신청 ${map['SAGREENO']}</td>
-																			<td></td>
-																			<td><fmt:formatDate value="${map['STORE_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																			<!-- 
-																			<form id="frmDelete" name="frmDelete">
-																		<input type="hidden" value="${map['STORE_NO'] }"/>
-																		<td>
-																		<button type="submit" id="btStores" name="" value="cancle" class="badge bg-dark"></button></td>
-																			</form>
-																			 -->
-																			 <td>
-																	<c:if test="${map['SAGREENO'] == 1}">
-																			<span class="badge bg-light">승인대기</span>
-																		</c:if>
-																		 <c:if test="${ map['SAGREENO'] == 2}">
-																			<span class="badge bg-danger">신청취소</span>
-																		</c:if> 
-																		<c:if test="${ map['SAGREENO'] == 3 }">
-																			<span class="badge bg-success">승인완료</span>
-																		</c:if> 
-																		<c:if test="${ map['SAGREENO'] == 4 }">
-																			<span class="badge bg-danger">승인반려</span>
-																		</c:if>
-																		</td>
-
-																			 <td>
-																			 <c:if test="${map['SAGREENO'] == 1}">
-																			<a href="#" class="buttons badge bg-dark" id="btStores" 
-																			onclick="bt_cancle(${map['STORE_NO'] })" >cancle</a>
-																		</c:if>
-																		</td>
-																		</c:when>
-																		<c:when
-																			test="${map['SAGREENO'] == 3 &&  map['RAGREENO'] == 3}">
-																			<td colspan="3">광고 신청</td>
-																			<td></td>
-																			<td><fmt:formatDate value="${map['STOREAD_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																		
-																		
-																		<!-- 
-																		<form id="frmDelete" name="frmDelete">
-																		<input type="hidden" value="${map['STOREAD_NO'] }">
-																		<input type="submit" id="btAd" name="" value="cancle"></span></td>
-																		</form>
-																		
-																		 -->
-																		 <td>
-																			<a href="#" class="buttons badge bg-dark" id="btAd" 
-																			onclick="bt_cancle(${map['STOREAD_NO'] })" >cancle</a></td>
-																		</c:when>
-																		
-																		
-																		<c:otherwise>
-																			<td colspan="3">사업자등록 신청 ${map['RAGREENO']}</td>
-																			<td></td>
-															<td><fmt:formatDate value="${map['OWNERREGISTER_REGDATE'] }" pattern="yyyy-MM-dd"/></td>
-																			
-																		
-																		<!-- 
-																				<form id="frmDelete" name="frmDelete">
-																		<input type="hidden" value="${map['STOREAD_NO'] }">
-																		<button type="button" id="btRegi" name="btRegi" value="cancle" class="badge bg-dark"></td>
-																		</form>
-																		 -->
-																		 
-																		 	<td>
-																	<c:if test="${map['RAGREENO'] == 1 }">
-																			<span class="badge bg-light">승인대기</span>
-																		</c:if>
-																		 <c:if test="${map['RAGREENO'] == 2 }">
-																			<span class="badge bg-danger">신청취소</span>
-																		</c:if> 
-																		<c:if test="${map['RAGREENO'] == 3 }">
-																			<span class="badge bg-success">승인완료</span>
-																		</c:if> 
-																		<c:if test="${map['RAGREENO'] == 4 }">
-																			<span class="badge bg-danger">승인반려</span>
-																		</c:if>
-																		</td>
-
-																	<td>
-																		<a href="#" class="buttons badge bg-dark" id="btRegi" onclick="bt_cancle(${map['STOREAD_NO'] })" >cancle</a>
-																		</td>
-																		</c:otherwise>
-																	</c:choose>
-																
-																</tr>
-															</c:forEach>
+																	<tr>
+																		<td class="text-bold-500">${i }</td>
+																		<td colspan="3">입점 신청 ${map['SAGREENO']}</td>
+																		<td></td>
+																		<td><fmt:formatDate
+																				value="${map['STORE_REGDATE'] }"
+																				pattern="yyyy-MM-dd" /></td>
+																		<td><c:if test="${map['SAGREENO'] == 1}">
+																				<span class="badge bg-light">승인대기</span>
+																			</c:if> <c:if test="${ map['SAGREENO'] == 2}">
+																				<span class="badge bg-danger">신청취소</span>
+																			</c:if> <c:if test="${ map['SAGREENO'] == 3 }">
+																				<span class="badge bg-success">승인완료</span>
+																			</c:if> <c:if test="${ map['SAGREENO'] == 4 }">
+																				<span class="badge bg-danger">승인반려</span>
+																			</c:if></td>
+																		<td><c:if test="${map['SAGREENO'] == 1}">
+																				<a href="#" class="buttons badge bg-dark"
+																					id="btStores"
+																					onclick="bt_cancle(${map['STORE_NO'] })">cancle</a>
+																	</tr>
+																</c:if>
+																<!--  -->
+																<tr>
 														</c:if>
-																
+														<c:if
+															test="${map['SAGREENO'] == 3 &&  map['RAGREENO'] == 3}">
+															<tr>
+																<td class="text-bold-500">${i }</td>
+																<td colspan="3">광고 신청</td>
+																<td></td>
+																<td><fmt:formatDate
+																		value="${map['STOREAD_REGDATE'] }"
+																		pattern="yyyy-MM-dd" /></td>
+
+																<td><a href="#" class="buttons badge bg-dark"
+																	id="btAd" onclick="bt_cancle(${map['STOREAD_NO'] })">cancle</a></td>
+															</tr>
+														</c:if>
+
+														<!--  -->
+
+														<c:if test="${!empty map['O_REGISTER_NO']}">
+															<tr>
+																<td class="text-bold-500">${i }</td>
+																<td colspan="3">사업자등록 신청 ${map['RAGREENO']}</td>
+																<td></td>
+																<td><fmt:formatDate
+																		value="${map['OWNERREGISTER_REGDATE'] }"
+																		pattern="yyyy-MM-dd" /></td>
+
+
+																<td><c:if test="${map['RAGREENO'] == 1 }">
+																		<span class="badge bg-light">승인대기</span>
+																	</c:if> <c:if test="${map['RAGREENO'] == 2 }">
+																		<span class="badge bg-danger">신청취소</span>
+																	</c:if> <c:if test="${map['RAGREENO'] == 3 }">
+																		<span class="badge bg-success">승인완료</span>
+																	</c:if> <c:if test="${map['RAGREENO'] == 4 }">
+																		<span class="badge bg-danger">승인반려</span>
+																	</c:if></td>
+
+																<td><a href="#" class="buttons badge bg-dark"
+																	id="btRegi" onclick="bt_cancle(${map['STOREAD_NO'] })">cancle</a>
+																</td>
+															</tr>
+														</c:if>
+
+
+														</c:forEach>
+														</c:if>
+
 													</tbody>
 												</table>
 											</div>
