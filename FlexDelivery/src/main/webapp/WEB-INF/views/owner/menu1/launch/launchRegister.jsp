@@ -216,13 +216,7 @@ $(function() {
 				open(contextPath+"/zipcode.do", "chk",
 		"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
 			});
-			
-			   /* $('#modalWrite').click(function () {
-		       //location.href='<c:url value="/admin/menu6/largecategory/write.do"/>'; 
-		       $('form[name=frmLCategoryWrite]').submit();
-		       alert("등록 성공");
-		       window.parent.location.reload();
-		   }); */
+		
 });
 			
 

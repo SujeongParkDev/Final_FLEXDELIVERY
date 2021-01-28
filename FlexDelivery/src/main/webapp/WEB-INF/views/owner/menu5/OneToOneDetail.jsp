@@ -16,16 +16,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css" />
 <!-- CSS end -->
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-			$(function(){
-				$('#btAsk').click(function(){
-					alert('일대일 문의 수정이 완료되었습니다.');
-					//location.href='<c:url value="/owner/menu5/OneToOneEdit.do"/>';
-				});
-			});
-</script>
-
 <div class="container">
 	<div class="row">
 		<div class="main-content container-fluid">
@@ -50,8 +40,7 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="qwe">
 								<br>
-								<form class="form form-horizontal" method="POST" name="frm1"
-									action="<c:url value='/owner/menu5/OneToOneEdit.do'/>">
+								
 									<input type="hidden" name="askNo" value="${vo.askNo}">
 									<input type="hidden" name="askContent" value="${vo.askContent}">
 									<input type="hidden" name="askTitle" value="${vo.askTitle}">
@@ -77,15 +66,15 @@
 											</div>
 											
 											<div class="col-12 col-md-8 offset-md-4 form-group">
-											<input type="submit" class="btn btn-primary mr-1 mb-1"
-													id="btEdit" value="수정하기">
+											<a href="<c:url value='/owner/menu5/OneToOneEdit.do?askNo='/>${vo.askNo}" class="btn btn-primary mr-1 mb-1"
+													id="btEdit" value="수정하기"></a>
 											</div>
 										
 
 											</div>
 										</div>
 									</div>
-								</form>
+		
 							</div>
 						</div>
 							</div>

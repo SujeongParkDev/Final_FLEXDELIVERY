@@ -29,18 +29,16 @@ public class OwnerOneToOneController {
 	@Autowired OwnerAskService ownerAskService;
 	
 	@Autowired private HttpSession session;
-	//private String askId=(String)session.getAttribute("ownerId");
 
 	
 	@RequestMapping(value="/menu5/oneToOneWrite.do", method=RequestMethod.POST)
 	public String write_post(@ModelAttribute OwnerAskVO ownerAskVo,
 			HttpSession session) {
 		logger.info("문의글 등록 페이지 ownerAskVo={}",ownerAskVo);
-		String askId="lee";
-		//String askId=(String)session.getAttribute("ownerId");
-		//int authorityNo=(Integer)session.getAttribute("authorityNo");
+		String askId=(String)session.getAttribute("ownerId");
+		int authorityNo=(Integer)session.getAttribute("authorityNo");
+		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
 		int askGroupNo=1; // tkd수처리??
-		int authorityNo=4; //세션에서 읽어오기
 		ownerAskVo.setAskGroupNo(askGroupNo);
 		ownerAskVo.setAuthorityNo(authorityNo);
 		ownerAskVo.setAskId(askId);
@@ -57,7 +55,9 @@ public class OwnerOneToOneController {
 	
 	@RequestMapping("/menu5/oneToOne.do")
 	public String askList_get(@ModelAttribute OwnerAskSearchVO searchVo, Model model) {
-		String askId="lee";
+		String askId=(String)session.getAttribute("ownerId");
+		int authorityNo=(Integer)session.getAttribute("authorityNo");
+		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
 		searchVo.setAskId(askId);
 		//String askId=(String)session.getAttribute("ownerId");
 		logger.info("점포 - 일대일 문의 보여주기");
@@ -89,8 +89,8 @@ public class OwnerOneToOneController {
 		return "owner/menu5/oneToOne";
 	}
 	
-	@RequestMapping(value="/menu5/oneToOneDelete.do", method = RequestMethod.POST)
-	public String delete_post(@RequestParam int askNo,
+	@RequestMapping(value="/menu5/oneToOneDelete.do", method = RequestMethod.GET)
+	public String delete_post(@RequestParam(defaultValue = "0") int askNo,
 			Model model) {
 		logger.info("글삭제 처리, 파라미터 askNo={}", askNo);
 
@@ -101,21 +101,21 @@ public class OwnerOneToOneController {
 		if(cnt>0) {
 			msg="글삭제되었습니다.";
 		}
-		//<c:url value='/owner/menu5/OneToOneDetail.do?no=${vo.askNo}'/>
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
 		return "common/message";
 	}
-	//에디트 매핑 안되는거 다시 확인 에러는 안나서 못 잡겠음 
+	
 	@RequestMapping(value="/menu5/OneToOneDetail.do", method=RequestMethod.GET)
-	public String edit_get(@RequestParam(defaultValue = "0") int askNo,
+	public String detil_get(@RequestParam(defaultValue = "0") int askNo,
 			HttpSession session,
 			Model model) {
-
-		//String askId=(String)session.getAttribute("ownerId");
+		String askId=(String)session.getAttribute("ownerId");
+		int authorityNo=(Integer)session.getAttribute("authorityNo");
+		logger.info("detail, 파라미터 authorityNo={},askId={}", authorityNo,askId);
 		
-		logger.info("수정화면, 파라미터 askNo={}", askNo);
+		logger.info("detail , 파라미터 askNo={}", askNo);
 		if(askNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/owner/menu5/oneToOne.do");
@@ -129,6 +129,31 @@ public class OwnerOneToOneController {
 		
 		return "owner/menu5/OneToOneDetail";
 	}
+	
+	@RequestMapping(value="/menu5/OneToOneEdit.do", method=RequestMethod.GET)
+	public String edit_get(@RequestParam(defaultValue = "0") int askNo,
+			HttpSession session,
+			Model model) {
+		String askId=(String)session.getAttribute("ownerId");
+		int authorityNo=(Integer)session.getAttribute("authorityNo");
+		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
+		
+		logger.info("수정화면, 파라미터 askNo={}", askNo);
+		if(askNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/owner/menu5/oneToOne.do");
+			return "common/message";
+		}
+		
+		OwnerAskVO vo=ownerAskService.selectByNo(askNo);
+		logger.info("수정화면, 조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "owner/menu5/OneToOneEdit";
+	}
+	
+	
 
 	@RequestMapping(value="/menu5/OneToOneEdit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute OwnerAskVO ownerAskVo,
@@ -146,8 +171,8 @@ public class OwnerOneToOneController {
 		
 		String msg="글 수정 실패", url="/owner/menu5/OneToOneDetail?no="+ownerAskVo.getAskNo();
 		if(cnt>0) {
-			msg="글수정되었습니다.";
-			url="/owner/menu5/oneToOne";
+			msg="문의글이 수정되었습니다.";
+			url="/owner/menu5/oneToOne.do";
 		}
 		
 		

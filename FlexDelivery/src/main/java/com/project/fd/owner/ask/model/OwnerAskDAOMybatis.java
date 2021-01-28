@@ -31,7 +31,7 @@ public class OwnerAskDAOMybatis implements OwnerAskDAO{
 
 	@Override
 	public int deleteAsk(int askNo) {
-		return sqlSession.selectOne(namespace+"deleteAsk",askNo);
+		return sqlSession.delete(namespace+"deleteAsk",askNo);
 	}
 
 
@@ -43,7 +43,7 @@ public class OwnerAskDAOMybatis implements OwnerAskDAO{
 
 	@Override
 	public int updateASK(OwnerAskVO ownerAskVo) {
-		return sqlSession.selectOne(namespace+"updateASK",ownerAskVo);
+		return sqlSession.update(namespace+"updateASK",ownerAskVo);
 	}
 	
 	
