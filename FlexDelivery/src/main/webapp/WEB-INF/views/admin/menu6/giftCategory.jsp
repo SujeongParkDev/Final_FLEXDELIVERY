@@ -15,14 +15,16 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">선물하기 - 상품 카테고리</h4>
+					<h4 class="card-title">선물하기 - 카테고리</h4>
+					<hr>
 				</div>
 				<div class="card-body" style="text-align: right;">
 					<!-- 등록모달 호출하는 등록버튼 -->
 					<button type="button" class="btn btn-dark round block" id="modalWriteBt"
 					   data-toggle="modal" data-backdrop="false" data-target="#giftProductWrite" >
 					     등록
-					</button>						
+					</button>
+					<p></p>						
 					<!-- #giftProductWrite 모달 start -->
 					<div class="modal fade text-left" id="giftProductWrite" tabindex="-1" 
                         role="dialog" aria-labelledby="선물하기  상품등록" aria-hidden="true">
@@ -30,7 +32,7 @@
                            <div class="modal-content">
 								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />">
                                 	<div class="modal-header">
-	                                    <h4 class="modal-title">선물하기 - 상품 등록</h4>
+	                                    <h4 class="modal-title">선물하기 - 카테고리 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -40,26 +42,16 @@
 	                                       <div class="col-12">   
 	                                          <div class="table-responsive" style="text-align: center;">
 	                                             <table class="table mb-0">
-													<thead>
-														<tr>
-															<th>번호</th>
-															<th colspan="3">카테고리 이름</th>
-															<th>상품 이름</th>
-															<th>이미지 파일</th>
-															<th>번호</th>
-														</tr>
-													</thead>
 	                                                <tbody>
 	                                                   <tr>
-	                                                   	  <td>
-	                                                   	  	  <input type="text" name="gCategoryNo" value="123" readonly>
-	                                                   	  </td>
-	                                                      <td colspan="3"  style="text-align: center;">
+	                                                   	  <input type="hidden" name="gCategoryNo" value="123" readonly>
+	                                                   	  <td>카테고리 이름</td>
+	                                                      <td colspan="2"  style="text-align: center;">
 	                                                      	  <input type="text" name="gCategoryName">
 	                                                      </td>
 	                                                   </tr>
 	                                                </tbody>
-	                                             </table>                      
+	                                             </table>                  
 	                                          </div>
 	                                       </div>
 	                                    </div>        
@@ -164,10 +156,9 @@
 	                                                               <table class="table mb-0">
 	                                                                  <tbody>
 	                                                                     <tr>
-		                                                                     <td class="text-bold-500">
-	                                                                           <input type="text" name="gCategoryNo" id="giftCategoryNo" value="${vo.gCategoryNo }" readonly>						                                                                     
-		                                                                     </td>
-																			 <td colspan="3">
+	                                                                         <input type="hidden" name="gCategoryNo" id="giftCategoryNo" value="${vo.gCategoryNo }" readonly>						                                                                     
+		                                                                     <td>카테고리 이름</td>
+																			 <td colspan="2">
 	                                                                           <input type="text" name="gCategoryName" id="giftCategoryName" value="${vo.gCategoryName }">
 																			 </td>					                                                                    
 	                                                                     </tr>					                                                                    

@@ -2,11 +2,13 @@ package com.project.fd.owner.menu.model;
 
 import java.util.List;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.fd.owner.advertise.model.OwnerAdvertiseAllVO;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 
 
 @Repository
@@ -66,4 +68,55 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 	}
 	
 	
+	public OwnerMenuVO selectMenuByMenuNo(int menuNo) {
+		return sqlSession.selectOne(namespace+"selectMenuByMenuNo", menuNo);
+	}
+	
+	
+	
+	public int updateMenuByNo(OwnerMenuVO ownerMenuVo) {
+		return sqlSession.update(namespace+"updateMenuByNo", ownerMenuVo);
+	}
+	
+	
+	//메인메뉴
+	
+	
+	public int selectCountMainMenu(int storeNo) {
+		return sqlSession.selectOne(namespace+"selectCountMainMenu", storeNo);
+	}
+	
+	public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) {
+		return sqlSession.selectOne(namespace+"selectMainMenuByStoreNo", storeNo);
+	}
+	
+	public AdminMediumCategoryViewVO selectMCAllView(int mCategoryNo) {
+		return sqlSession.selectOne(namespace+"selectMCAllView", mCategoryNo);
+	}
+	
+	
+	public int selectLargeCategoryByStoreNo(int storeNo) {
+		return sqlSession.selectOne(namespace+"selectLargeCategoryByStoreNo", storeNo);
+	}
+
+	
+	public List<AdminMediumCategoryVO> selectAllMCByLC(int lCategoryNo){
+		return sqlSession.selectList(namespace+"selectAllMCByLC", lCategoryNo);
+	}
+	
+	
+	public int insertMainMenu(OwnerStoreMainMenuVO mainVo) {
+		return sqlSession.insert(namespace+"insertMainMenu", mainVo);
+	}
+	
+	
+	
+	public int updateMainMenu(OwnerStoreMainMenuVO mainVo) {
+		return sqlSession.update(namespace+"updateMainMenu", mainVo);
+	}
+	
+	
+
+	
+
 }

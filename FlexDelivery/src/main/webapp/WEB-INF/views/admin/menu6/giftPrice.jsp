@@ -17,6 +17,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h4 class="card-title">선물하기 - 금액 카테고리</h4>
+					<hr>
 				</div>
 				<div class="card-body" style="text-align: right;">
 					<!-- 등록모달 호출하는 등록버튼 -->
@@ -41,18 +42,17 @@
 	                                       <div class="col-12">   
 	                                          <div class="table-responsive" style="text-align: center;">
 	                                             <table class="table mb-0">
-													<thead>
+													<!-- <thead>
 														<tr>
 															<th>번호</th>
 															<th colspan="3">금액</th>
 														</tr>
-													</thead>
+													</thead> -->
 	                                                <tbody>
-	                                                   <tr>
-	                                                   	  <td>
-	                                                   	  	  <input type="text" name="gPTypeNo" value="123" readonly>
-	                                                   	  </td>
-	                                                      <td colspan="3"  style="text-align: center;">
+                                                   	  <tr>
+                                                   	  	  <input type="hidden" name="gPTypeNo" value="123" readonly>
+	                                                   	  <td>선물 금액</td>
+	                                                      <td colspan="2"  style="text-align: center;">
 	                                                      	  <input type="text" name="gPTypePrice">
 	                                                      </td>
 	                                                   </tr>
@@ -78,6 +78,7 @@
 					</div>
 				</div><!-- card-body  -->
 				<!-- #giftPriceWrite 모달 end -->
+				<div class="card-body">
 				<div class="card-content">			
 					<table class="table table-hover mb-0" style="text-align: center;">
 						<thead>
@@ -159,10 +160,9 @@
 	                                                               <table class="table mb-0">
 	                                                                  <tbody>
 	                                                                     <tr>
-		                                                                     <td class="text-bold-500">
-	                                                                           <input type="text" name="gPTypeNo" id="giftPRiceTypeNo" value="${vo.gPTypeNo }" readonly>						                                                                     
-		                                                                     </td>
-																			 <td colspan="3">
+                                                                             <input type="hidden" name="gPTypeNo" id="giftPRiceTypeNo" value="${vo.gPTypeNo }" readonly>						                                                                     
+	                                                                     	 <td>선물 금액</td>
+																			 <td colspan="2">
 	                                                                           <input type="text" name="gPTypePrice" id="giftPriceTypePrice" value="${vo.gPTypePrice }">
 																			 </td>					                                                                    
 	                                                                     </tr>					                                                                    
@@ -192,6 +192,7 @@
 							</c:if>	
 						</tbody>
 					</table>
+					</div>
 				</div> <!--card content-->  
 			</div><!-- card-->
 		</div><!--col-12 end-->

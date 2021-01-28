@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.adminStores">
+	<select id="approvalList" resultType="ownerTemporaryVo">
+		select t_no, store_no, t_stores_name, t_owner_name, t_owner_hp1, t_owner_hp2, t_owner_hp3,
+       		   t_stores_address, t_stores_address_detail, a_agree_no
+			   from temporary
+			   order by t_no desc
+	</select>
+	
+	<select id="approvalDetail" parameterType="int" resultType="ownerTemporaryVo">
+		select t_no, t_submitdate, o_register_no, t_owner_name, t_stores_name, t_stores_address,
+       		   t_stores_address_detail, t_owner_hp1, t_owner_hp2, t_owner_hp3, t_detail, a_agree_no 
+       		   from temporary where t_no=#{no}
+	</select>
+	
+	<select id="approvalAgree" parameterType="int">
+		update temporary
+		set a_agree_no = 3
+		where t_no =#{no}
+	</select>
+	
+	<select id="approvalDeny" parameterType="int">
+		update temporary
+		set a_agree_no = 4
+		where t_no =#{no}
+	</select>
+</mapper>
+
+

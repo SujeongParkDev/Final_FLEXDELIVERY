@@ -79,6 +79,51 @@
 	</select>
 	
 	<select id="selectStoresDetail" parameterType="int" resultType="memberStoresVo">
-		select * from hyStoreList where storeNo=#{int}
+		select * from hyStoreList where store_No=#{storeNo}
 	</select>
+	
+	<!-- <resultMap type="orderAllVo" id="orderListResultMap">
+		<association property="orderVo" column="orderNo" javaType="OrderVO">
+			<id property="orderNo" jdbcType="BIGINT" column="orderNO"  />
+			<result property="customerId" jdbcType="VARCHAR" column="customerId" />
+			<result property="totalPrice" jdbcType="BIGINT" column="totalPrice" />
+			<result property="deliveryStatus" jdbcType="VARCHAR" column="deliveryStatuse" />
+			<result property="orderDate" jdbcType="TIMESTAMP" column="orderDate" />
+			<result property="paymentEndDate" jdbcType="TIMESTAMP" column="paymentEndDate" />
+			<result property="deliveryDate" jdbcType="TIMESTAMP" column="deliveryDate" />
+			<result property="message" jdbcType="VARCHAR" column="message" />
+			<result property="customerName" jdbcType="VARCHAR" column="cutomerName" />
+			<result property="hp" jdbcType="VARCHAR" column="hp" />
+			<result property="zipcode" jdbcType="VARCHAR" column="zipcode" />
+			<result property="address" jdbcType="VARCHAR" column="address" />
+			<result property="addressDetail" jdbcType="VARCHAR" column="addressDetail" />
+		</association>
+		<collection property="orderDetailsList" select="selectOrderPd" column="orderNo" javaType="ArrayList" ofType="map" />
+	</resultMap>
+	
+	<select id="selectOrderLists" parameterType="dateSearchVo" resultMap="orderListResultMap">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RNUM, A.*
+			FROM (
+				select * from orders
+				where orderDate>=#{startDay}
+				<![CDATA[
+				and orderDate< to_date(#{endDay})+1
+				]]>
+				<if test="customerId != null and customerId != '' ">
+					and customerId=#{customerId}
+				</if>
+				order by orderno desc
+			) A
+		)
+		<![CDATA[
+		WHERE RNUM > #{firstRecordIndex}
+		AND RNUM <= #{firstRecordIndex} + #{recordCountPerPage} ]]>	
+	</select>
+	
+	<select id="selectOrderPd" parameterType="int" resultType="map">
+		select * from orderProductView
+		where orderno=#{orderNo}	
+	</select> -->
 </mapper>

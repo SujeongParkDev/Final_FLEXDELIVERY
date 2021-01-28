@@ -60,7 +60,7 @@
 					if($(this).attr('name')=='menuEdit'){
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceEdit.do?menuNo="+menuNo;
 						title="메뉴 수정";
-						popupWidth=400;
+						popupWidth=500;
 						popupHeight=600;
 					}else if($(this).attr('name')=='menuDelete'){
 						if(confirm(menuNo+"을 삭제하시겠습니까?")){
@@ -77,7 +77,7 @@
 						var sMGroupNo=${sMGroupNo};
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceWrite.do?sMGroupNo="+sMGroupNo;
 						title="메뉴 등록";
-						popupWidth=400;
+						popupWidth=500;
 						popupHeight=600;
 					}
 					
@@ -98,8 +98,7 @@
 			});  
 		
 		</script>
-		
-		
+	
 		<!-- 메뉴 버튼 -->
 		<br>
 			 <div class="row mt-3">
@@ -118,59 +117,107 @@
 		
 			 
 			 <br>
-			 
+			<br>
+			<br>
+			<div class="text-center">
+				<h2>메뉴 편집</h2>
+			</div>		
+			<br>
+			<br>
+			
+
+				<div class="row">
+				
+				
+					  <div class="col-md-1 col-sm-12"></div>
+					  <div class="col-md-10 col-sm-12">
+					  <div class="text-right">
+						  <button class="btn btn-warning p-2 btmenu"  name="menuWrite"
+						  		style="width:100px; margin-right:50px; margin-bottom:10px;" >등록</button>
+					  </div>
+					    </div>	
+					  <div class="col-md-1 col-sm-12"></div>
+					  
+					 
+					  <div class="col-md-1 col-sm-12"></div>
+					  <div class="col-12 col-md-10">
+							<div class="row">
+								<c:if test="${!empty list }">
+									<c:forEach var="vo" items="${list}" varStatus="status">
+											<div class="col-12 col-md-4 p-4">
+										  	  	<div class="card h-100"  >
+											      <!-- 이미지 띄우기 -->
+												   <!-- 나중에 파일 업로드 후에 아래 주석을 풀어주세요.. 지금은 이미지 확인차.. -->
+												  	<%-- <img src
+														="<c:url value='/resources/imgs/ownerMenu_images/${vo.menuImg}'/>" 
+														alt="${vo.menuImg }" class="card-img-top" alt ="${vo.menuImg }"style="height:150px;">  --%>
+													
+												      	  <%--<img src="${vo.menuImg}" class="card-img-top"  alt ="${vo.menuName }"  style="height:100px;"> --%>
+															<c:if test="${fn:substring(vo.menuImg, 0,4)=='http'}">
+										      					<img src="${vo.menuImg}" class="card-img-top"  style="height:120px;"
+																 alt="${vo.menuName }">
+															</c:if>
+															<c:if test="${fn:substring(vo.menuImg, 0,4)!='http' and (!empty vo.menuImg) }">
+																<img src
+																="<c:url value='/resources/imgs/ownerMenu_images/${vo.menuImg}'/>" 
+																alt="${vo.menuName }" class="card-img-top" style="height:120px;">
+															</c:if>
+												        <!-- 내용띄우기 -->
+												     	<div class="card-body text-center" style="height:130px;">
+												       		 <div class="card-title">
+											       		 		<a class="event" onclick="goDetail(${vo.menuNo})" href="#"   style="font-size:15px;">
+												       		 		<c:if test="${fn:length(vo.menuName)>=12}">
+																		${fn:substring(vo.menuName, 0,12) } ..
+																	</c:if>
+																	<c:if test="${fn:length(vo.menuName)<12}">				
+																		${vo.menuName}
+																	</c:if>
+																</a>
+															</div>
+															<div class="text-center">
+												        		<p class="card-text"><span>${vo.menuPrice}원</span></p>
+												        	</div>
+												        	<br>
+												        	<div class="text-center">
+												        		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuEdit" >수정</button>
+											                	<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuDelete">삭제</button>
+												     		</div>
+												     	</div>
+												    </div>
+												 </div>
+									 </c:forEach>
+								  </c:if>
+							   </div>  
+						 	 </div>
+						   <div class="col-md-1 col-sm-12"></div>
+					   </div>   
+								   
+								   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
+				   
 				   <!-- 내용 -->
 
-					<div class="row" id="basic-table">
-					  <div class="col-md-2 col-sm-12"></div>
-					  <div class="col-12 col-md-8">
-					    <div class="card">
-					      <br>
-					      <!-- <div class="card-header">
-					        <h4 class="card-title text-center" >메뉴</h4>
-					      </div> -->
-					      <div class="card-content">
-					        <div class="card-body">
-					          <p class="card-text text-center" style="font-size:20px;">메뉴</p>
-					          <p class="card-text text-center">메뉴 수정 삭제해주세요</p>
-					          <div class="table-responsive">
-					            <table class="table">
-					              <thead>
-					                <tr class="text-center">
-					               	 <th style="width:2%;"></th>
-					                  <th style="width:37%;">메뉴</th>
-					                  <th style="width:33%;">수정/삭제</th>
-					                   <th style="width:23%;" class="pl-3"><button class="btn btn-outline-primary p-2 btmenu" name="menuWrite">등록</button></th>
-					                </tr>
-					              </thead>
-					              <tbody>
-					              	<c:if test="${empty list }">
-					              		<tr class="text-center">
-					              			<td colspan="4">등록된 메뉴가 없습니다</td>
-					              		</tr>
-					              	</c:if>
-					              	<c:if test="${!empty list }">
-					              		<c:forEach var="vo" items="${list }">
-							                <tr class="text-center">
-							                  <td></td>
-							                  <td class="text-bold-500"><strong><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></strong></td>
-							                  <td>  
-							                  		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuEdit" >수정</button>
-							                  		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuDelete">삭제</button>
-							                  </td>
-							                  <td></td>
-							                </tr>
-						                </c:forEach>
-						             </c:if>  
-					              </tbody>
-					            </table>
-					          </div>
-					        </div>
-					      </div>
-					    </div>
-					  </div>
-				   <div class="col-md-2 col-sm-12"></div>
-				   </div> 
 						<br>
 		<br>
 		<br>

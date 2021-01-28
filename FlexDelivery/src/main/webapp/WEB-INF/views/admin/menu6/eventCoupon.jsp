@@ -18,14 +18,16 @@
 			 	
 			  		<div class="card-header">
 						<h4 class="card-title">쿠폰 관리 - 이벤트 쿠폰</h4>
+						<hr>
 			    	</div>
 			    	<div class="card-content">
 						<div class="card-body" style="text-align: right;">
+			        		<p>
 			        		<!-- 등록모달 호출하는 등록버튼 -->
 							<button type="button" class="btn btn-dark round block" id="modalWriteBt"
 							   data-toggle="modal" data-backdrop="false" data-target="#eventCouponWrite" >
 							     등록
-							</button>						
+							</button>	</p>					
 							<!-- #eventCouponWrite 모달 start -->
 							<div class="modal fade text-left" id="eventCouponWrite" tabindex="-1" 
 		                        role="dialog" aria-labelledby="이벤트 쿠폰 등록" aria-hidden="true">
@@ -43,7 +45,7 @@
 			                                       <div class="col-12">   
 			                                          <div class="table-responsive" style="text-align: center;">
 			                                             <table class="table mb-0" >
-															<thead style="text-align: center;">
+															<!-- <thead style="text-align: center;">
 																<tr>
 																	<th>번호</th>
 																	<th colspan="3">쿠폰이름</th>
@@ -52,25 +54,36 @@
 																	<th>할인가격</th>
 													                <th>최소주문금액</th>
 																</tr>
-															</thead>
+															</thead> -->
 			                                                <tbody style="text-align: center;">
+			                                                	<tr>
+			                                                		<td>쿠폰 이름</td>
+			                                                		<td colspan="2"><input type="text" name="eCouponName"></td>
+			                                                	</tr>
 			                                                   <tr>
 			                                                   	  <td>
-			                                                   	  	  <input type="text" name="eCouponNo" value="123" readonly>
-			                                                   	  </td>
-			                                                      <td colspan="3">
-			                                                      	  <input type="text" name="eCouponName">
+			                                                   	  	  <input type="hidden" name="eCouponNo" value="123" readonly>
+			                                                   	  	  쿠폰 적용 시작일
 			                                                      </td>
-			                                                      <td>
+			                                                      <td colspan="2">
 			                                    	               	<input type="text" name="eCouponStartDate">
 			                                                      </td>
-			                                                      <td>
+		                                                      </tr>
+		                                                      <tr>
+		                                                      	  <td>쿠폰 적용 만료일</td>
+			                                                      <td colspan="2">
 			                                    	               	<input type="text" name="eCouponEndDate">
 			                                                      </td>
-			                                                      <td>
+		                                                      </tr>
+		                                                      <tr>
+		                                                      	  <td>할인가격</td>
+			                                                      <td colspan="2">
 			                                    	               	<input type="text" name="eCouponDc">
 			                                                      </td>
-			                                                      <td>
+		                                                      </tr>
+		                                                      <tr>
+		                                                      	  <td>최소주문금액</td>
+			                                                      <td colspan="2">
 			                                    	               	<input type="text" name="eCouponMin">
 			                                                      </td>
 			                                                   </tr>
@@ -187,7 +200,7 @@
 	                                                         <div class="col-12">   
 	                                                            <div class="table-responsive" style="text-align: center;">
 	                                                               <table class="table mb-0">
-		                                                               <thead>
+		                                                               <!-- <thead>
 															              <tr>
 															                <th>번호</th>
 															                <th colspan="3">쿠폰 이름</th>
@@ -196,25 +209,41 @@
 																			<th>할인가격</th>
 															                <th>최소주문금액</th>
 															              </tr>
-															            </thead>
+															            </thead> -->
 		                                                                <tbody>
 		                                                                    <tr>
-			                                                                     <td class="text-bold-500">
+		                                                                    	<td>쿠폰 번호</td>
+			                                                                     <td class="text-bold-500"colspane="2" >
 		                                                                         	<input type="text" name="eCouponNo" id="eventCouponNo" value="${vo.eCouponNo }" readonly>						                                                                     
 			                                                                     </td>
-																			  	 <td colspan="3">
+		                                                                     </tr>
+		                                                                     <tr>
+		                                                                     	<td>쿠폰 이름</td>
+																			  	 <td colspan="2">
 		                                                                        	 <input type="text" name="eCouponName" id="eventCouponDc" value="${vo.eCouponName }">
 		                                                                         </td>
-			                                                                     <td>
+	                                                                         </tr>
+	                                                                         <tr>
+	                                                                         	<td>쿠폰 적용 시작일</td>
+			                                                                     <td colspan="2">
 		                                                                         	<input type="text" name="eCouponStartDate" id="eventCouponStartDate" value="${vo.eCouponStartDate }">						                                                                     
 			                                                                     </td>
-			                                                                     <td>
+		                                                                     </tr>
+		                                                                     <tr>
+	                                                                         	<td>쿠폰 적용 만료일</td>
+			                                                                     <td colspan="2">
 		                                                                         	<input type="text" name="eCouponEndDate" id="eventCouponEndDate" value="${vo.eCouponEndDate }">						                                                                     
 			                                                                     </td>
-		                                                                         <td>
+		                                                                     </tr>
+		                                                                     <tr>
+		                                                                     	<td>할인 가격</td>
+		                                                                         <td colspan="2">
 		                                                                        	<input type="text" name="eCouponDc" id="eventCouponDc" value="${vo.eCouponDc }">
-																			 	</td>             
-		                                                                         <td>
+																			 	</td>
+																	 		</tr>
+																	 		<tr>             
+																	 			<td>최소 주문 금액</td>
+		                                                                         <td colspan="2">
 		                                                                        	<input type="text" name="eCouponMin" id="eventCouponMin" value="${vo.eCouponMin }">
 																			 	</td>             
 		                                                                    </tr>					                                                                    

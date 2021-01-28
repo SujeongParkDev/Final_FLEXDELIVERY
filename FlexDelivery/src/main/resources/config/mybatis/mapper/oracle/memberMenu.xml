@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.memberMenu">
+	<!-- <resultMap type="orderAllVo" id="orderListResultMap">
+		<association property="orderVo" column="orderNo" javaType="OrderVO">
+			<id property="orderNo" jdbcType="BIGINT" column="orderNO"  />
+			<result property="customerId" jdbcType="VARCHAR" column="customerId" />
+			<result property="totalPrice" jdbcType="BIGINT" column="totalPrice" />
+			<result property="deliveryStatus" jdbcType="VARCHAR" column="deliveryStatuse" />
+			<result property="orderDate" jdbcType="TIMESTAMP" column="orderDate" />
+			<result property="paymentEndDate" jdbcType="TIMESTAMP" column="paymentEndDate" />
+			<result property="deliveryDate" jdbcType="TIMESTAMP" column="deliveryDate" />
+			<result property="message" jdbcType="VARCHAR" column="message" />
+			<result property="customerName" jdbcType="VARCHAR" column="cutomerName" />
+			<result property="hp" jdbcType="VARCHAR" column="hp" />
+			<result property="zipcode" jdbcType="VARCHAR" column="zipcode" />
+			<result property="address" jdbcType="VARCHAR" column="address" />
+			<result property="addressDetail" jdbcType="VARCHAR" column="addressDetail" />
+		</association>
+		<collection property="orderDetailsList" select="selectOrderPd" column="orderNo" javaType="ArrayList" ofType="map" />
+	</resultMap>
+	
+	<select id="selectOrderLists" parameterType="dateSearchVo" resultMap="orderListResultMap">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RNUM, A.*
+			FROM (
+				select * from orders
+				where orderDate>=#{startDay}
+				<![CDATA[
+				and orderDate< to_date(#{endDay})+1
+				]]>
+				<if test="customerId != null and customerId != '' ">
+					and customerId=#{customerId}
+				</if>
+				order by orderno desc
+			) A
+		)
+		<![CDATA[
+		WHERE RNUM > #{firstRecordIndex}
+		AND RNUM <= #{firstRecordIndex} + #{recordCountPerPage} ]]>	
+	</select>
+	
+	<select id="selectOrderPd" parameterType="int" resultType="map">
+		select * from orderProductView
+		where orderno=#{orderNo}	
+	</select> -->
+	
+	<select id="selectMenuGroupByStoreNo" parameterType="int" resultType="memberMenuGroupVo">
+		select g.STORE_NO,g.S_M_GROUP_NO,g.S_M_GROUP_NAME,count(g.S_M_GROUP_NO) as s_m_group_count
+		from storemenugroup g join menu m
+		on g.S_M_GROUP_NO = m.S_M_GROUP_NO and store_no=#{storeNo}
+		group by g.STORE_NO,g.S_M_GROUP_NO,g.S_M_GROUP_NO,g.S_M_GROUP_NAME
+	</select>
+	
+	<select id="selectMenuBySMGroupNo" parameterType="int" resultMap="menuList">
+		select * from menu where s_m_group_no=#{sMGroupNo}
+	</select>
+	
+	<resultMap type="memberMenuAllVo" id="menuList">
+		<association property="memberMenuVo" column="menu_No" javaType="MemberMenuVO">
+			<id property="menuNo" jdbcType="BIGINT" column="menu_No" />
+			<result property="menuName" jdbcType="VARCHAR" column="menu_name" />
+			<result property="menuPrice" jdbcType="BIGINT" column="menu_price"/>
+			<result property="menuImg" jdbcType="VARCHAR" column="menu_img" />
+			<result property="menuContent" jdbcType="VARCHAR" column="menu_content" />
+			<result property="sMGroupNo" jdbcType="BIGINT" column="s_m_group_no"/>
+		</association>
+		<collection property="menuOptionList" select="selectMenuOption" column="menu_No" javaType="ArrayList" ofType="memberMenuOptionVO" />
+	</resultMap>
+	
+	<select id="selectMenuOption" parameterType="int" resultType="memberMenuOptionVo">
+		select * from menuoption where menu_no=#{menu_no} order by o_rank_no
+	</select>
+	
+</mapper>

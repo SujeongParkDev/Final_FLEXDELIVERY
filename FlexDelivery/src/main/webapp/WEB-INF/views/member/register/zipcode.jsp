@@ -143,7 +143,7 @@ caption {
 	
 	function setZipcode(address, zipcode){
 		$(opener.document).find('#zipcode').val(zipcode);
-		$(opener.document).find('input[name=memberaddress]').val(address);
+		$(opener.document).find('input[name=memberAddress]').val(address);
 		self.close();
 	}
 </script>

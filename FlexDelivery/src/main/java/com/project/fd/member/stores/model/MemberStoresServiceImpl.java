@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
 @Service
 public class MemberStoresServiceImpl implements MemberStoresService{

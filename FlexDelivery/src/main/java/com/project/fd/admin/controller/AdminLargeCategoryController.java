@@ -53,7 +53,7 @@ public class AdminLargeCategoryController {
 		
 		try {
 			List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+				=fileUtil.fileUplaod(request, FileUploadUtil.LCATEGORY_TYPE);
 			for(Map<String, Object> fileMap : fileList) {
 				originName=(String) fileMap.get("originalFileName");
 				fileName=(String) fileMap.get("fileName");
@@ -91,7 +91,7 @@ public class AdminLargeCategoryController {
 		
 		try {
 			List<Map<String, Object>> fileList
-			=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+			=fileUtil.fileUplaod(request, FileUploadUtil.LCATEGORY_TYPE);
 			for(Map<String, Object> fileMap : fileList) {
 				logger.info("debug={}", fileMap.get("originalFileName"));
 				logger.info("debug={}", fileMap.get("fileName"));
@@ -188,7 +188,7 @@ public class AdminLargeCategoryController {
 		long fileSize=0;
 		try {
 			List<Map<String, Object>> fileList
-			=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+			=fileUtil.fileUplaod(request, FileUploadUtil.LCATEGORY_TYPE);
 			for(Map<String, Object> map : fileList) {
 				originName=(String) map.get("originalFileName");
 				fileName=(String) map.get("fileName");
@@ -220,7 +220,7 @@ public class AdminLargeCategoryController {
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
 			if(fileName!=null && !fileName.isEmpty()) {
 				String upPath 
-				= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
+				= fileUtil.getUploadPath(FileUploadUtil.LCATEGORY_TYPE, request);
 				File oldFile = new File(upPath, oldFileName);
 				if(oldFile.exists()) {
 					boolean bool=oldFile.delete();
@@ -271,7 +271,7 @@ public class AdminLargeCategoryController {
 		
 		//기존 파일이 존재하면 기존 파일 삭제
 		String upPath 
-		= fileUtil.getUploadPath(FileUploadUtil.PDS_TYPE, request);
+		= fileUtil.getUploadPath(FileUploadUtil.LCATEGORY_TYPE, request);
 		File oldFile = new File(upPath, oldFileName);
 		if(oldFile.exists()) {
 			boolean bool=oldFile.delete();

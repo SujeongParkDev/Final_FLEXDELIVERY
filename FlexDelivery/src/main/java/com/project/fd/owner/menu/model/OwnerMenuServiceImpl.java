@@ -2,9 +2,14 @@ package com.project.fd.owner.menu.model;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseAllVO;
 
 
@@ -58,4 +63,79 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 	public int deleteMenuByNo(int menuNo) {
 		return ownerMenuDao.deleteMenuByNo(menuNo);
 	}
+	
+	public OwnerMenuVO selectMenuByMenuNo(int menuNo) {
+		return ownerMenuDao.selectMenuByMenuNo(menuNo);
+	}
+	
+	public int updateMenuByNo(OwnerMenuVO ownerMenuVo) {
+		return ownerMenuDao.updateMenuByNo(ownerMenuVo);
+	}
+	
+	public int selectCountMainMenu(int storeNo) {
+		return ownerMenuDao.selectCountMainMenu(storeNo);
+	}
+	
+	
+	public int insertMainMenu(OwnerStoreMainMenuVO mainVo) {
+		return ownerMenuDao.insertMainMenu(mainVo);
+	}
+	
+	
+	public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) {
+		return ownerMenuDao.selectMainMenuByStoreNo(storeNo);
+	}
+	
+	
+	public int updateMainMenu(OwnerStoreMainMenuVO mainVo) {
+		return ownerMenuDao.updateMainMenu(mainVo);
+	}
+	/*
+	  public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) { return
+	  ownerMenuDao.selectMainMenuByStoreNo(storeNo); }
+	  
+	  public AdminMediumCategoryViewVO selectMCAllView(int mCategoryNo) { return
+	  ownerMenuDao.selectMCAllView(mCategoryNo); }
+	 */
+	
+	@Override
+	@Transactional
+	public OwnerMainMenuAllVO selectMainMenuAll(int storeNo) {
+		OwnerMainMenuAllVO mmVo = new OwnerMainMenuAllVO();
+		try {			
+			OwnerStoreMainMenuVO mainMenuVo = ownerMenuDao.selectMainMenuByStoreNo(storeNo);
+			if(mainMenuVo.getMenuNo()>0 && mainMenuVo.getmCategoryNo()>0) {
+				OwnerMenuVO  menuVo= ownerMenuDao.selectMenuByMenuNo(mainMenuVo.getMenuNo());
+				AdminMediumCategoryViewVO mCategoryVo = ownerMenuDao.selectMCAllView(mainMenuVo.getmCategoryNo());
+				
+				
+				
+				mmVo.setaMCategoryVo(mCategoryVo);
+				mmVo.setMenuVo(menuVo);
+				
+			}
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+			
+		return mmVo;
+	}
+	
+	@Override
+	@Transactional
+	public List<AdminMediumCategoryVO> selectAllMCByLCByStoreNo(int storeNo) {
+		List<AdminMediumCategoryVO> list = null;
+		try {			
+			
+			int lCategoryNo =  ownerMenuDao.selectLargeCategoryByStoreNo(storeNo);
+			list = ownerMenuDao.selectAllMCByLC(lCategoryNo);
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+			
+		return list;
+	}
+	
 }

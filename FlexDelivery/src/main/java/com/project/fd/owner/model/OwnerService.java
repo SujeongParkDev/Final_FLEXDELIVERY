@@ -5,6 +5,9 @@ public interface OwnerService {
 	public static final int ID_NONE=2; //아이디가 없는 경우
 	public static final int PWD_DISAGREE=3; //비밀번호 불일치
 	
+	//advertise 에서 로그인 창 들어갈때 필요한 상수
+	public static final int GO_PWD=4;
+	
 	//아이디 중복확인시 사용
 	public static final int EXIST_ID=1;  //아이디가 이미 존재하는 경우
 	public static final int NON_EXIST_ID=2; //존재하지 않는 경우

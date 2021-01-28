@@ -29,6 +29,7 @@ import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseVO;
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.store.model.OwnerStoresService;
 
@@ -90,8 +91,13 @@ public class OwnerAdvertiseController {
 	
 	// 광고등록을 누를 시 받아오면 pwd 확인용 창을 보내기위함
 	@RequestMapping(value = "/advertisePwdCheck.do", method = RequestMethod.GET)
-	public String advertisePwdCheck_get() {
+	public String advertisePwdCheck_get(Model model) {
 		logger.info("advertisePwdCheck 창 보여주기");
+		
+		
+		int YorN = OwnerService.GO_PWD;
+		model.addAttribute("YorN", YorN);
+		
 		
 		return "owner/menu2/advertise/advertisePwdCheck";
 	}
@@ -107,9 +113,15 @@ public class OwnerAdvertiseController {
 		   int result =ownerService.loginChk(userid, ownerPwd);
 		   logger.info("비밀번호 확인 결과, result={}", result);
 		  
-		   model.addAttribute("result", result);
-		   model.addAttribute("checkSuccess",OwnerService.LOGIN_OK);
-		   model.addAttribute("checkFalse",OwnerService.PWD_DISAGREE );
+		   int YorN = 0;
+		   if(result==OwnerService.LOGIN_OK) {
+			   YorN=OwnerService.LOGIN_OK;
+		   }else if(result==OwnerService.PWD_DISAGREE) {
+			   YorN=OwnerService.PWD_DISAGREE;
+		   }
+		 
+		   model.addAttribute("YorN",YorN);
+		   
 		   
 		   return "owner/menu2/advertise/advertisePwdCheck";
 	  }

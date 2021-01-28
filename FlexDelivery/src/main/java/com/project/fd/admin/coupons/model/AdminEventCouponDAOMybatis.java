@@ -16,8 +16,8 @@ public class AdminEventCouponDAOMybatis implements AdminEventCouponDAO{
 
 	@Override
 	public List<AdminEventCouponVO> selectAll() {
-		List<AdminEventCouponVO> list=sqlSession.selectList(namespace+"selectAll");
-		return list;
+		return sqlSession.selectList(namespace+"selectAll");
+		
 	}
 
 	@Override
