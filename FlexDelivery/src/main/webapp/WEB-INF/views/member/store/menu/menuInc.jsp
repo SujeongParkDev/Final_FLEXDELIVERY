@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		
+	});
+</script>
 <c:forEach var="mVo" items="${menuList}">
 	<div class="p-3 border-bottom gold-members">
 	    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#option${mVo.memberMenuVo.menuNo}">옵션 선택</a></span>
@@ -16,45 +22,53 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">옵션선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
+	                <h5 class="modal-title">${mVo.memberMenuVo.menuName}</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                	<span aria-hidden="true">&times;</span>
+	                </button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="osahan-filter">
-                        <div class="filter">
-                            <!-- 라디오버튼 -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">SORT BY</h6>
-                            </div>
-                            <c:forEach var="oVo" items="${mVo.menuOptionList}">
-	                            <div class="custom-control border-bottom px-0  custom-radio">
-	                                <input type="radio" id="customRadio${oVo.mOptionNo }f" name="location" class="custom-control-input">
-	                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio${oVo.mOptionNo}f">${oVo.mOptionName} </label>
-	                            </div>
-                            </c:forEach>
-                            <!-- 체크박스 -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">FILTER</h6>
-                            </div>
-                            <c:forEach var="oVo" items="${mVo.menuOptionList}">
-	                            <div class="custom-control border-bottom px-0  custom-checkbox">
-	                                <input type="checkbox" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}">
-	                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">Open Now</label>
-	                            </div>
-                            </c:forEach>
-                        </div>
-                    </div>
+                <div class="col-md-12" style="text-align: center;line-height: 25">
+                	<img src="<c:url value='/resources/imgs/${mVo.memberMenuVo.menuImg}' />" width="250px" height="250px">
+                	<br>
+					<p class="h5">${mVo.memberMenuVo.menuContent}</p>                 	
                 </div>
-                <div class="modal-footer p-0 border-0">
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Apply</button>
-                    </div>
-                </div>
+                <form action="" method="post" id="cartForm">
+                	<input type="hidden" name="menuNo" value="${mVo.memberMenuVo.menuNo}">
+	                <div class="modal-body p-0">
+	                    <div class="osahan-filter">
+	                        <div class="filter">
+	                            <!--옵션선택 -->
+	                            <c:if test="${empty mVo.menuOptionList}">
+		                            <div class="p-3 bg-light border-bottom">
+		                                <h6 class="m-0">옵션상품이 없습니다.</h6>
+		                            </div>
+	                            </c:if>
+	                            <c:if test="${!empty mVo.menuOptionList}">
+		                            <div class="p-3 bg-light border-bottom">
+		                                <h6 class="m-0">옵션선택</h6>
+		                            </div>
+		                            <c:forEach var="oVo" items="${mVo.menuOptionList}">
+			                            <div class="custom-control border-bottom px-0  custom-checkbox">
+			                                <input type="checkbox" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
+			                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">${oVo.mOptionPrice}원</p></label>
+			                            </div>
+		                            </c:forEach>
+	                            </c:if>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="p-3 bg-light border-bottom">
+	                    <h6 class="m-0">수량</h6>
+	                </div>
+	                <div class="modal-footer p-0 border-0">
+	                    <div class="col-6 m-0 p-0">
+	                        <button type="button" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
+	                    </div>
+	                    <div class="col-6 m-0 p-0">
+	                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">취소</button>
+	                    </div>
+	                </div>
+                </form>
             </div>
         </div>
     </div>
