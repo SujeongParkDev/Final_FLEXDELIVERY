@@ -30,4 +30,10 @@
 		select * from menuoption where menu_no=#{menu_no} order by o_rank_no
 	</select>
 	
+	<select id="selectMainMenu" parameterType="int" resultMap="menuList">
+		select m.*
+		from storemainmenu s,menu m
+		where s.menu_no=m.menu_no and s.store_no=#{storeNo}
+	</select>
+	
 </mapper>
