@@ -1,6 +1,5 @@
 package com.project.fd.member.controller;
 
-
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -29,7 +28,7 @@ import com.project.fd.member.model.MemberVO;
 public class MemberController {
 	private static final Logger logger
 		=LoggerFactory.getLogger(MemberController.class);
-
+	
 	@Autowired private MemberService memberService;
 	@Autowired private AdminLargeCategoryService lCategoryServ;
 	
@@ -41,31 +40,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/memberWrite.do")
-	public String write(@ModelAttribute MemberVO vo, @RequestParam String email3,
+	public String write(@ModelAttribute MemberVO vo,
 			ModelMap model) {
 		//1
 		logger.info("회원가입 처리 파라미터 vo={}", vo);
-
 		//2
-		String hp1=vo.getMemberHp1();
-		String hp2=vo.getMemberHp2();
-		String hp3=vo.getMemberHp3();
-
-		if(hp2==null || hp2.isEmpty() || hp3==null || hp3.isEmpty()) {
-			hp1="";
-			hp2="";
-			hp3="";
-		}
-		vo.setMemberHp1(hp1);
-		vo.setMemberHp2(hp2);
-		vo.setMemberHp3(hp3);
-
-		String email1=vo.getMemberEmail1();
-		String email2=vo.getMemberEmail2();
-
-		vo.setMemberEmail1(email1);
-		vo.setMemberEmail2(email2);
-
 		int cnt=memberService.insertMember(vo);
 		logger.info("회원가입 결과, cnt={}", cnt);
 		
@@ -82,7 +61,6 @@ public class MemberController {
 		//4
 		return "common/message";
 	}
-	
 	
 	@RequestMapping("/member.do")
 	public String membermainjw() {

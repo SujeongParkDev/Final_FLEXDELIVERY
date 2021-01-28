@@ -9,6 +9,6 @@ public interface MemberDAO {
 	int chkMember(MemberVO vo);
 	int pwdUpd(MemberVO vo);
 	String selectAuth(int no);
-	public int checkDup(String userid);
+	public int checkDup(String memberid);
 	
 }
