@@ -7,4 +7,6 @@ public interface OwnerAskService {
 	List<OwnerAskVO> selectAllAsk(OwnerAskSearchVO searchVo);
 	int selectTotalRecord(OwnerAskSearchVO searchVo);
 	int deleteAsk(int askNo);
+	OwnerAskVO selectByNo(int askNo);
+	int updateASK(OwnerAskVO ownerAskVo);
 }

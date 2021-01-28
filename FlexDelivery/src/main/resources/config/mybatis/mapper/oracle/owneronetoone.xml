@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.owneronetoone">
-	
+		
 	<select id="selectAuthority" resultType="map">
 		select * from AUTHORITY
 		where AUTHORITY_NO=4 or AUTHORITY_NO=5
@@ -46,5 +46,14 @@
 	<delete id="deleteAsk" parameterType="int">
 		delete from ask where ASK_NO=#{askNo}
 	</delete>
+	
+	<select id="selectByNo" parameterType="int" resultType="ownerAskVo">
+		select * from ask where ask_no=#{askNo}
+	</select>
 
+<update id="updateASK" parameterType="ownerAskVo">
+update ask 
+set ask_title=#{askTitle}, ask_content=#{askContent}
+where ask_no=#{askNo}
+</update>
 </mapper>

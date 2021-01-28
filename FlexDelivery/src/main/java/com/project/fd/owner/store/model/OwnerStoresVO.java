@@ -32,7 +32,6 @@ public class OwnerStoresVO {
 	//date로 언제 승 받았는지 
 	private String storeRegdate;/* 점포등록일 */
 
-
 	public int getStoreNo() {
 		return storeNo;
 	}

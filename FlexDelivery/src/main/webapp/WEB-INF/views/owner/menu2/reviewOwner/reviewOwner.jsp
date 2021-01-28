@@ -65,22 +65,34 @@
 							<button class="icon icon-calendar" type="button"></button>
 						</div>
 					</div>
-					<button type="button" class="button medium">조회</button>
+					<form name="frmDate" method="post" 
+	action="<c:url value='/shop/order/orderList.do'/>" >
+	<!-- 조회기간 include
+	 -->
+		
+	<input type="hidden" name="currentPage" value="1">
+					<input type="submit" class="button medium" value="조회 ">
+					</form>
 					<p class="desc">조회 가능한 최대 기간은 6개월 입니다</p>
 				</div>
+				
+				
 				<div class="radio-group mx-sm-2 mb-3">
 					<label class="radio-button"><input type="radio" value=""
-						checked="">
+						checked="" id="ck1">
 					<p class="label">전체(${fn:length(reviewList) })</p></label><label class="radio-button"><input
-						type="radio" value="">
+						type="radio" value="" id="ck2">
 					<p class="label">미답변(0)</p></label><label class="radio-button"><input
-						type="radio" value="">
+						type="radio" value="" id="ck3">
 					<p class="label">차단(0)</p></label>
 				</div>
+
+				
 				</div>
 				
 				<div class="review-wrap">
 					<div class="review-list">
+					<div class="visible">.
 						<div class="Card ">
 								<c:if test="${!empty reviewList }">
 					<c:forEach var="map" items="${reviewList }">
@@ -169,7 +181,7 @@
 					</div>
 				</div>
 			</div>
-			
+			</div>
 			
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -244,7 +256,20 @@
 
 	*/
 	</script>
-
+<!-- script start -->
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<!-- script end -->
 <!--  bottom  -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

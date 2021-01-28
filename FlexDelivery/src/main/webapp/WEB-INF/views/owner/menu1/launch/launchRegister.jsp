@@ -1,46 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/launchRegister.css" />
-<script type="text/javascript"
-	src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-			$('#btRegi').click(function(){
-					$('.infobox').each(function(idx, item){
-						if($(this).val().length<1){
-							alert($(this).attr('title')+ '를(을) 입력하세요');
-							$(this).focus();
-							event.preventDefault();
-							return false;  //each 탈출
-						}
-						
-				});
-			});
-					$(function() {
-					$('#btRegi').click(function(){
-						if(!$('#chkAgree').is(":checked")){
-							alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-							$('#chkAgree').focus();
-							event.preventDefault();
-						}else{
-							alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
-							// 기본정보로 이동하게 ?준비중입니다 이런거 뜨게해서 
-							location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
-						}
-				});
-		});
-				
-			
-			$('#btnZipcode').click(function(){
-				open(contextPath+"/zipcode/zipcode.do", "chk",
-		"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
-			});
-			
-	});
-	
-</script>
+<!-- start!! 우편번호만 넣으면 완성!! -->
 <div class="modal-body">
 	<div class="modal-title">
 		<div class="header-close">
@@ -118,7 +81,6 @@
 				</div>
 
 
-				<!-- 나중에 지도 api적용 예정임다  -->
 				<h5 class="form-label">✔ 점포 주소</h5>
 							<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
 				<div class="form-control-wrap border 1px solid #ced4da">
@@ -146,21 +108,14 @@
 
 				<!--  -->
 				<!-- 옵션 만들어지면 리스트로 뽑을것임 -->
-				<!-- 지역코드번호가 내가선택하는건가?? 아니면 사업장에서 배달가능한 지역?? 알아서 ??
-				-- 1,강서구 2,양천구 3,구로구 4,영등포구 5,금천구 6,동작구 7,관악구 8,서초구 9,강남구 
---10,송파구 11,강동구 12,은평구 13,마포구 14,서대문구 15,종로구 16,중구 17,용산구
---18,도봉구 19,강북구 20,성북구 21,동대문구 22,성동구 23,노원구 24,중랑구 25,광진구
-				  -->
+				
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">강서구</option>
-						<option value="2">양천구</option>
-						<option value="3">구로구</option>
-						<option value="4">영등포구</option>
-						<option value="5">금천구</option>
-						<option value="6">동작구</option>
+					<c:forEach var="voLo" items="${location }">
+							<option value="${voLo.locationNo}">${voLo.locationName }</option>
+							</c:forEach>
 					</select>
 				</div>
 
@@ -169,14 +124,9 @@
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control "><option
 							value="" disabled="">대분류</option>
-						<option value="1">치킨</option>
-						<option value="2">피자/양식</option>
-						<option value="3">중국집</option>
-						<option value="4">한식</option>
-						<option value="5">일식/돈까스</option>
-						<option value="6">족발/보쌈</option>
-						<option value="7">분식</option>
-						<option value="8">카페/디저트</option>
+			<c:forEach var="vo" items="${large }">
+							<option value="${vo.lCategoryNo}">${vo.lCategoryName }</option>
+							</c:forEach>
 					</select>
 				</div>
 
@@ -229,4 +179,43 @@
 			<!--  -->
 	</form>
 </div>
+
+<script type="text/javascript"
+	src="<c:url value='/resources/ownerResources/assets/js/storesregister.js'/>"></script>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#btRegi').click(function(){
+			$('.infobox').each(function(idx, item){
+				if($(this).val().length<1){
+					alert($(this).attr('title')+ '를(을) 입력하세요');
+					$(this).focus();
+					event.preventDefault();
+					return false;  //each 탈출
+				}else
+					if(!$('#chkAgree').is(":checked")){
+						alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+						$('#chkAgree').focus();
+						event.preventDefault();
+					}
+				else{
+					alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
+					// 기본정보로 이동 
+					location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
+				}
+			});
+				
+		});
+
+	var contextPath="/fd";
+
+			$('#btnZipcode').click(function(){
+				open(contextPath+"/zipcode.do", "chk",
+		"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
+			});
+});
+			
+
+	
+</script>
 
