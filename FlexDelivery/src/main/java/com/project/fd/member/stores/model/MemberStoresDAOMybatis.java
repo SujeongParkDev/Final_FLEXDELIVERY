@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
 @Repository
 public class MemberStoresDAOMybatis implements MemberStoresDAO{
@@ -43,5 +44,6 @@ public class MemberStoresDAOMybatis implements MemberStoresDAO{
 	public MemberStoresVO selectStoresDetail(int storeNo) {
 		return sqlSession.selectOne(namespace+"selectStoresDetail",storeNo);
 	}
+
 	
 }

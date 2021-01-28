@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
 public interface MemberStoresService {
 	List<MemberStoresVO> selectFlexAdStores(Map<String, Object> map);
@@ -12,4 +13,5 @@ public interface MemberStoresService {
 	List<MemberStoresVO> selectAllStores(Map<String, Object> map);
 	int selectAllStoresCount(Map<String, Object> map);
 	MemberStoresVO selectStoresDetail(int storeNo);
+	
 }
