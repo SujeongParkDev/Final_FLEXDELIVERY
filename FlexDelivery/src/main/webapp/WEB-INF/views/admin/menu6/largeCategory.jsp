@@ -211,7 +211,7 @@ function readInputFile(input) {
                               <div class="card text-center bg-lighten-2">
                                  <div class="card-content d-flex">
                                     <div class="card-body">
-                                       <img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename}' />" alt="${vo.lCategoryFilename}" style="height: 120px" class="mb-1">
+                                       <img src="<c:url value='/resources/imgs/LargeCategoryImages/${vo.lCategoryFilename}' />" alt="${vo.lCategoryFilename}" style="height: 120px" class="mb-1">
                                        <p class="card-text white">${vo.lCategoryNo }</p>
                                        <h4 class="card-title white">${vo.lCategoryName }</h4>
                                        <p class="card-text white">하위 메뉴 : ${vo.lCCount } 개</p>

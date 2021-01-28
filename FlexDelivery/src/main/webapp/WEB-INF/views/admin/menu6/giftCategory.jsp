@@ -94,7 +94,7 @@
 									<tr>
 										<td class="text-bold-500">${vo.gCategoryNo }</td>
 										<td colspan="3">${vo.gCategoryName }</td>
-										<td>${vo.cCount }</td>
+										<td><span class="badge bg-dark">${vo.cCount }</span></td>
 										<td>
 											<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.gCategoryNo}"
 		                                       data-toggle="modal" data-backdrop="false" data-target="#giftCategoryEdit${vo.gCategoryNo}">
