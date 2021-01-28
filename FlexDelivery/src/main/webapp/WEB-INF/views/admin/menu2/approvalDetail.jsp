@@ -11,13 +11,13 @@
 	$(function () {
 		$('#approvalAgree').click(function () {
 			alert("등록하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.tNo}" />';
+			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.storeNo}" />';
 			event.preventDefault();
 		});
 		
 		$('#approvalDeny').click(function () {
 			alert("반려하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.tNo}" />';
+			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.storeNo}" />';
 			event.preventDefault();
 		});
 			
@@ -53,8 +53,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >승인 요청 내역</h4>
-                        <h4 class="card-title" >[접수번호 : ${vo.tNo}, 접수일자 : 
-                        	<fmt:formatDate value="${vo.tSubmitdate}" pattern="yyyy년 MM월 dd일"/> ]</h4>
+                        <h4 class="card-title" >[접수번호 : ${vo.storeNo}, 접수일자 : 
+                        	<fmt:formatDate value="${vo.storeRegdate}" pattern="yyyy년 MM월 dd일"/> ]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -70,14 +70,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="owner-name-column">대표자 성함</label>
-                                            <input type="text" id="owner-name-column" class="form-control" value="${vo.tOwnerName }"
+                                            <input type="text" id="owner-name-column" class="form-control" value="${vo.ownerName }"
                                                 name="Oname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shop-name">점포명</label>
-                                            <input type="text" id="shop-name" class="form-control" value="${vo.tStoresName }" name="shop-name"
+                                            <input type="text" id="shop-name" class="form-control" value="${vo.storeName }" name="shop-name"
                                             	disabled="disabled" >
                                         </div>
                                     </div>
@@ -85,14 +85,14 @@
                                         <div class="form-group">
                                             <label for="shop-address">점포 주소</label>
                                             <input type="text" id="shop-address" class="form-control" name="shop-address"
-                                                value="${vo.tStoresAddress} ${vo.tStoresAddressDetail}" disabled="disabled">
+                                                value="${vo.storeAddress} ${vo.storeAddressDetail}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="phone-number">연락처</label>
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
-                                                value="${vo.tOwnerHp1}-${vo.tOwnerHp2}-${vo.tOwnerHp3}" disabled="disabled">
+                                                value="${vo.ownerHp1}-${vo.ownerHp2}-${vo.ownerHp3}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -106,7 +106,8 @@
                                         </div>
                                     </div>
                                     <!-- 요청사항 -->
-                                    <br><br>                                    
+                                    <br><br>
+                                    <%--                                    
                                     <div class="row">
            								<div class="col">
                 							<div class="card">
@@ -124,6 +125,7 @@
             							</div>
         							</div>
                                     <!-- 요청사항 끝 -->
+                                     --%>
                                     <div class="col-12 d-flex justify-content-end">
                                     	<c:if test="${vo.aAgreeNo == 1}">
                                         	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>

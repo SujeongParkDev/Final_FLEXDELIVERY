@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../adminInc/top.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -33,7 +34,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >변경 요청 내역</h4>
-                        <h4 class="card-title" >[접수번호 : 123456, 접수일자 : 2015년 05월 25일]</h4>
+                        <h4 class="card-title" >[접수번호 : ${temporaryVo.tNo }, 접수일자 : 
+                        	<fmt:formatDate value="${temporaryVo.tRegdate}" pattern="yyyy년 MM월 dd일"/> ]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -41,44 +43,45 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column" >사업자 번호</label>
-                                            <input type="text" id="lisence-no-column" class="form-control" value="License No"
+                                            <label for="lisence-no-column1" >사업자 번호</label>
+                                            <input type="text" id="lisence-no-column1" class="form-control" value="${temporaryVo.oRegisterNo }"
                                                 name="fname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="owner-name-column">대표자 성함</label>
-                                            <input type="text" id="owner-name-column" class="form-control" value="Owner Name"
+                                            <label for="owner-name-column1">대표자 성함</label>
+                                            <input type="text" id="owner-name-column1" class="form-control" value="${temporaryVo.tOwnerName }"
                                                 name="Oname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="shop-name">점포명</label>
-                                            <input type="text" id="shop-name" class="form-control" value="Shop Name" name="shop-name"
-                                            	disabled="disabled" >
+                                            <label for="shop-name1">점포명</label>
+                                            <input type="text" id="shop-name1" class="form-control" value="${temporaryVo.tStoresName }" 
+                                            	name="shop-name" disabled="disabled" >
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="shop-address">점포 주소</label>
-                                            <input type="text" id="shop-address" class="form-control" name="shop-address"
-                                                value="Shop Address" disabled="disabled">
+                                            <label for="shop-address1">점포 주소</label>
+                                            <input type="text" id="shop-address1" class="form-control" name="shop-address"
+                                                value="${temporaryVo.tStoresAddress} ${temporaryVo.tStoresAddressDetail}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="phone-number">연락처</label>
-                                            <input type="text" id="phone-number" class="form-control" name="phone-number"
-                                                value="Phone Number" disabled="disabled">
+                                            <label for="phone-number1">연락처</label>
+                                            <input type="text" id="phone-number1" class="form-control" name="phone-number"
+                                                value="${temporaryVo.tOwnerHp1}-${temporaryVo.tOwnerHp2}-${temporaryVo.tOwnerHp3}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
-                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column"
-                                                value="Email" disabled="disabled">
+                                            <label for="appendix-file1">첨부파일</label>
+                                            <div>
+                                            	<span>File</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <br><br>
@@ -92,7 +95,7 @@
                     							<div class="card-body">
                         							<div class="form-group with-title mb-3">
                             							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" 
-                            							 >긴급 승인 부탁드립니다.</textarea>
+                            							 >${temporaryVo.tDetail}</textarea>
                             							<label>요청 내용</label>
                         							</div>
                     							</div>
@@ -114,7 +117,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >기존 등록 내역</h4>
-                        <h4 class="card-title" >[접수번호 : 3456, 접수일자 : 2014년 04월 25일]</h4>
+                        <h4 class="card-title" >[접수번호 : ${storeVo.storeNo}, 
+                        	접수일자 : ${storeVo.storeRegdate}]</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -122,44 +126,45 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column" >사업자 번호</label>
-                                            <input type="text" id="lisence-no-column" class="form-control" value="License No"
-                                                name="fname-column" disabled="disabled">
+                                            <label for="lisence-no-column2" >사업자 번호</label>
+                                            <input type="text" id="lisence-no-column2" class="form-control" 
+                                            	value="${storeVo.oRegisterNo}" name="fname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="owner-name-column">대표자 성함</label>
-                                            <input type="text" id="owner-name-column" class="form-control" value="Owner Name"
+                                            <input type="text" id="owner-name-column" class="form-control" value="${storeVo.ownerName}"
                                                 name="Oname-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shop-name">점포명</label>
-                                            <input type="text" id="shop-name" class="form-control" value="Shop Name" name="shop-name"
-                                            	disabled="disabled" >
+                                            <input type="text" id="shop-name" class="form-control"  name="shop-name" 
+                                           		value="${storeVo.storeName}" disabled="disabled" >
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shop-address">점포 주소</label>
                                             <input type="text" id="shop-address" class="form-control" name="shop-address"
-                                                value="Shop Address" disabled="disabled">
+                                                value="${storeVo.storeAddress} ${storeVo.storeAddressDetail}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="phone-number">연락처</label>
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
-                                                value="Phone Number" disabled="disabled">
+                                                value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp2}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
-                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column"
-                                                value="Email" disabled="disabled">
+                                            <label for="appendix-file2">첨부파일</label>
+                                           	<div>
+                                            	<span>File</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

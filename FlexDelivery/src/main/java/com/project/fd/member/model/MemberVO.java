@@ -3,7 +3,7 @@ package com.project.fd.member.model;
 public class MemberVO {
 	private int memberNo;
 	private String memberName;
-	private String memberid;
+	private String memberId;
 	private String memberPwd;
 	private String memberZipcode;
 	private String memberAddress;

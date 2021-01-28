@@ -10,66 +10,74 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.stores.model.AdminStoresService;
+import com.project.fd.admin.stores.model.AdminStoresVO;
 import com.project.fd.admin.temporary.model.AdminTemporaryService;
 import com.project.fd.admin.temporary.model.AdminTemporaryVO;
+import com.project.fd.owner.store.model.OwnerTemporaryVO;
 
 @RequestMapping("/admin/menu2")
 @Controller
-public class AdminApprovalController {
+public class AdminStoresApprovalController {
 	public static final Logger logger
-	= LoggerFactory.getLogger(AdminApprovalController.class);
+	= LoggerFactory.getLogger(AdminStoresApprovalController.class);
 	
 	@Autowired
-	AdminTemporaryService temporaryService;
+	AdminStoresService storesService;
+
 	
-	@RequestMapping("/editList.do")
+	@RequestMapping("/approvalList.do")
 	public String adminApprovalList(Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 승인/변경 화면");
 		//1
 		//2
-		List<AdminTemporaryVO> list= temporaryService.editList();
+		List<AdminStoresVO> list= storesService.adminApprovalList();
 		logger.info("승인 list, list.size={}",list.size());
+		
+		for (AdminStoresVO vo : list) {
+			logger.info("vo={}",vo);
+		}
 		//3
 		model.addAttribute("list", list);
 		
-		return "admin/menu2/editList";
+		return "admin/menu2/approvalList";
 	}
 	
 	
-	@RequestMapping("/editDetail.do")
+	@RequestMapping("/approvalDetail.do")
 	public String adminApprovalDetail(@RequestParam(defaultValue = "0")  int no ,Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 등록 세부 화면, 파라미터 no={}", no);
 		//1
 		//2
-		AdminTemporaryVO vo= temporaryService.editDetail(no);
+		AdminStoresVO vo= storesService.adminApprovalDetail(no);
 		logger.info("점포 등록 세부 화면 결과 vo={} ",vo);
 		//3
 		model.addAttribute("vo", vo);
 		
-		return "admin/menu2/editDetail";
+		return "admin/menu2/approvalDetail";
 	}
 	
-	@RequestMapping("/editAgree.do")
-	public String adminEditAgree(@RequestParam(defaultValue = "0") int no) {
+	@RequestMapping("/approvalAgree.do")
+	public String adminApprovalAgree(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 등록 승인 화면, 파라미터 no={}", no);
 		
-		int cnt= temporaryService.editAgree(no);
+		int cnt= storesService.adminApprovalAgree(no);
 		logger.info("점포 등록 승인 처리, cnt={}", cnt);
 		
-		return "redirect:/admin/menu2/editList.do";
+		return "redirect:/admin/menu2/approvalList.do";
 		
 	}
 	
 	@RequestMapping("/approvalDeny.do")
-	public String adminEditDeny(@RequestParam(defaultValue = "0") int no) {
+	public String adminApprovalDeny(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 등록 반려, 파라미터 no={}", no);
 		
-		int cnt= temporaryService.editDeny(no);
+		int cnt= storesService.adminApprovalDeny(no);
 		logger.info("점포 등록 승인 처리, cnt={}", cnt);
 		
-		return "redirect:/admin/menu2/editList.do";
+		return "redirect:/admin/menu2/approvalList.do";
 	}
 
 }

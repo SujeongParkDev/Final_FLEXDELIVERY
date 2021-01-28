@@ -53,23 +53,23 @@
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>
-									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >							
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}&sNo=${vo.storeNo }'/>" >							
 									<p>${vo.tNo}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}&sNo=${vo.storeNo }'/>" >
 									<p>${vo.tStoresName}</p></a>								
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}&sNo=${vo.storeNo }'/>" >
 									<p>${vo.tOwnerName}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}&sNo=${vo.storeNo }'/>" >
 									<p>${vo.tOwnerHp1}-${vo.tOwnerHp2}-${vo.tOwnerHp3}</p></a>
 								</td>
 								<td>
-									<a href="<c:url value='/admin/menu2/aeditDetail.do?no=${vo.tNo}'/>" >
+									<a href="<c:url value='/admin/menu2/editDetail.do?no=${vo.tNo}&sNo=${vo.storeNo }'/>" >
 									<p>${vo.tStoresAddress} ${vo.tStoresAddressDetail}</p></a>
 								</td>
 								<td><c:if test="${vo.aAgreeNo == 5}">
