@@ -38,7 +38,7 @@
 			}
 		});
 		
-		$('#memberid').keyup(function(){
+		$('#memberId').keyup(function(){
 			var memberid=$(this).val();
 			
 			if(validate_memberid(memberid) && memberid.length>=2){
@@ -113,7 +113,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNumber1" class="text-dark">아이디</label>
-                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberid" id="memberid" aria-describedby="numberHelp">
+                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberId" id="memberId" aria-describedby="numberHelp">
                             <span class="error" style="color: red"> </span>
                         </div>
                         <div class="form-group">
@@ -121,7 +121,7 @@
                             <input type="password" placeholder="비밀번호를 입력하세요" class="form-control" id="memberPwd" name="memberPwd">
                             <br>
                             <label for="exampleInputPassword1" class="text-dark">비밀번호 확인</label>
-                            <input type="password" placeholder="" class="form-control" id="memberPwd2" name="memberPwd2">
+                            <input type="password" placeholder="비밀번호를 다시 입력하세요." class="form-control" id="memberPwd2" name="memberPwd2">
                         </div>
 						<label for="exampleInputNumber1" class="text-dark">전화번호</label>
 						<div class="row">
@@ -151,7 +151,7 @@
 						<div class="row">
 							<label for="exampleInputaddress" class="text-dark" style="line-height: 33px">주소 검색</label>
 							<div class="col-md-4" >
-								<input type="text"  placeholder="주소 검색" ReadOnly title="주소" class="form-control" name="memberZipcode" id="memberZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="memberZipcode" id="memberZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<input type="Button" value="우편번호 찾기" id="btZipcode" title="새창열림">
 							<!-- <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">검색</a></span> -->
@@ -179,7 +179,8 @@
                     <a href="<c:url value='/member/login/memberLogin.do' />">
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
-                    <input type ="text" name="chkId" id="chkId">
+                    <input type ="hidden" name="chkId" id="chkId">
+                    <input type ="hidden" name="locationNo" id="locationNo">
                 </div>
             </div>
         </div>

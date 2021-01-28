@@ -115,7 +115,6 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-
 		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
 				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress
 				+ ", memberAddressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate
