@@ -125,19 +125,19 @@
 								   <!-- 나중에 파일 업로드 후에 아래 주석을 풀어주세요.. 지금은 이미지 확인차.. -->
 								   
 								   		<c:if test="${fn:substring(vo.boardThumbnail, 0,4)=='http' }">
-											<img src="${vo.boardThumbnail}" class="card-img-top"  alt ="${vo.boardTitle }"  style="height:100px;"
+											<img src="${vo.boardThumbnail}" class="card-img-top"  alt ="${vo.boardTitle }"  style="height:150px;"
 												 alt="${vo.boardTitle }">
 										</c:if>
 										<c:if test="${fn:substring(vo.boardThumbnail, 0,4)!='http' and (!empty vo.boardThumbnail) }">
 											<img src
 												="<c:url value='/resources/imgs/ownerMenu_images/${vo.boardThumbnail}'/>" 
-												alt="${vo.boardTitle }" class="card-img-top" alt ="${vo.boardTitle }"style="height:250px;">
+												alt="${vo.boardTitle }" class="card-img-top" alt ="${vo.boardTitle }"style="height:150px;">
 										</c:if>
 								        <!-- 내용띄우기 -->
 								     	<div class="card-body">
 								       		 <h5 class="card-title">
 							       		 		<a class="event" href="<c:url value='/owner/menu3/board/boardDetail.do?boardNo=${vo.boardNo }&boardHead=${vo.boardHead }'/>" >
-								       		 		<c:if test="${fn:length(vo.boardTitle)>=12}">
+								       		 		<c:if test="${fn:length(vo.boardTitle)>=10}">
 														${fn:substring(vo.boardTitle, 0,10) } ..
 													</c:if>
 													<c:if test="${fn:length(vo.boardTitle)<10}">				

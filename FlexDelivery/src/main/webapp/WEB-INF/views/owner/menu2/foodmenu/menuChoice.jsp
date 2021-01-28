@@ -142,17 +142,21 @@
 					  <div class="col-md-1 col-sm-12"></div>
 					  <div class="col-12 col-md-10">
 							<div class="row">
+								<c:if test="${empty list }">
+											
+										 <div class="card h-100 mt-4"  >
+										 	<div class="card-body text-center" style="height:200px;">
+										 		<br><Br><br>
+										 		<h3>현재 등록 된 메뉴가 없습니다. 메뉴를 등록 해주세요</h3>
+											 </div>
+										</div>
+								</c:if>
 								<c:if test="${!empty list }">
 									<c:forEach var="vo" items="${list}" varStatus="status">
 											<div class="col-12 col-md-4 p-4">
 										  	  	<div class="card h-100"  >
 											      <!-- 이미지 띄우기 -->
 												   <!-- 나중에 파일 업로드 후에 아래 주석을 풀어주세요.. 지금은 이미지 확인차.. -->
-												  	<%-- <img src
-														="<c:url value='/resources/imgs/ownerMenu_images/${vo.menuImg}'/>" 
-														alt="${vo.menuImg }" class="card-img-top" alt ="${vo.menuImg }"style="height:150px;">  --%>
-													
-												      	  <%--<img src="${vo.menuImg}" class="card-img-top"  alt ="${vo.menuName }"  style="height:100px;"> --%>
 															<c:if test="${fn:substring(vo.menuImg, 0,4)=='http'}">
 										      					<img src="${vo.menuImg}" class="card-img-top"  style="height:120px;"
 																 alt="${vo.menuName }">
@@ -166,7 +170,7 @@
 												     	<div class="card-body text-center" style="height:130px;">
 												       		 <div class="card-title">
 											       		 		<a class="event" onclick="goDetail(${vo.menuNo})" href="#"   style="font-size:15px;">
-												       		 		<c:if test="${fn:length(vo.menuName)>=12}">
+															 		<c:if test="${fn:length(vo.menuName)>=12}">
 																		${fn:substring(vo.menuName, 0,12) } ..
 																	</c:if>
 																	<c:if test="${fn:length(vo.menuName)<12}">				

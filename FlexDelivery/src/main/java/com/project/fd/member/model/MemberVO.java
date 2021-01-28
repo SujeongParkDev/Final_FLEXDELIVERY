@@ -32,8 +32,8 @@ public class MemberVO {
 	public String getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(String memberid) {
-		this.memberId = memberid;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getMemberPwd() {
 		return memberPwd;
@@ -115,7 +115,8 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberid=" + memberId
+
+		return "MemberVO [memberNo=" + memberNo + ", memberName=" + memberName + ", memberId=" + memberId
 				+ ", memberPwd=" + memberPwd + ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress
 				+ ", memberAddressDetail=" + memberAddressDetail + ", memberRegdate=" + memberRegdate
 				+ ", memberOutdate=" + memberOutdate + ", memberHp1=" + memberHp1 + ", memberHp2=" + memberHp2

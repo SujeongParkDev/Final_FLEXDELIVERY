@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
-import com.project.fd.owner.common.OwnerFileUploadUtil;
+import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.menu.model.OwnerMainMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuOptionAllVO;
@@ -45,7 +45,7 @@ public class OwnerMenuController {
 	
 	
 	
-	 @Autowired private OwnerFileUploadUtil fileUtil;
+	 @Autowired private FileUploadUtil fileUtil;
 	
 	
 	//내점포 사이드바에서 메뉴관리 누르면 보내짐
@@ -92,7 +92,7 @@ public class OwnerMenuController {
 		//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
 		if(ownerMenuAllVo.getMenuImg()!=null) {
 			String upPath 
-			= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+			= fileUtil.getUploadPath(FileUploadUtil.MENU_TYPE, request);
 			File nowFile = new File(upPath, ownerMenuAllVo.getMenuImg());
 			if(nowFile.exists()) {
 				 type="file";
@@ -338,7 +338,7 @@ public class OwnerMenuController {
 			//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
 			if(vo.getMenuImg()!=null) {
 				String upPath 
-				= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+				= fileUtil.getUploadPath(FileUploadUtil.MENU_TYPE, request);
 				File nowFile = new File(upPath, vo.getMenuImg());
 				if(nowFile.exists()) {
 					 type="file";
@@ -372,7 +372,7 @@ public class OwnerMenuController {
 				List<Map<String, Object>> list=null;
 				String imageUrl="";
 				try {
-					list=fileUtil.fileUplaod(request, OwnerFileUploadUtil.OWNER_MENU_TYPE);
+					list=fileUtil.fileUplaod(request, FileUploadUtil.MENU_TYPE);
 					for(Map<String, Object> map: list) {
 						imageUrl=(String) map.get("fileName");
 					}
@@ -406,7 +406,7 @@ public class OwnerMenuController {
 					//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
 					if(!vo.getMenuImg().equals(oldFileName)) {
 						String upPath 
-							= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+							= fileUtil.getUploadPath(FileUploadUtil.MENU_TYPE, request);
 						File oldFile = new File(upPath, oldFileName);
 						if(oldFile.exists()) {
 							boolean bool=oldFile.delete();
@@ -496,7 +496,7 @@ public class OwnerMenuController {
 			List<Map<String, Object>> list=null;
 			String imageUrl="";
 			try {
-				list=fileUtil.fileUplaod(request, OwnerFileUploadUtil.OWNER_MENU_TYPE);
+				list=fileUtil.fileUplaod(request, FileUploadUtil.MENU_TYPE);
 				for(Map<String, Object> map: list) {
 					imageUrl=(String) map.get("fileName");
 				}
@@ -600,7 +600,7 @@ public class OwnerMenuController {
 				
 				if(mainAllVo.getMenuVo().getMenuImg()!=null) {
 					String upPath 
-					= fileUtil.getUploadPath(OwnerFileUploadUtil.OWNER_MENU_TYPE, request);
+					= fileUtil.getUploadPath(FileUploadUtil.MENU_TYPE, request);
 					File nowFile = new File(upPath, mainAllVo.getMenuVo().getMenuImg());
 					if(nowFile.exists()) {
 						 type="file";
