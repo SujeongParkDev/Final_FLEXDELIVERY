@@ -17,46 +17,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css" />
 <!-- CSS end -->
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#askTitle').focus();
-	
-			$('#btAsk').click(function(){
-				if($('#askTitle').val().length<1){
-					alert('문의글 제목을 입력하세요');
-					$('#askTitle').focus();
-					event.preventDefault();
-				}else if($('#askContent').val().length<1){
-					alert('문의하실 내용을 입력하세요');
-					$('#askContent').focus();
-					event.preventDefault();
-						
-				}else if(!$('#checkbox1').is(":checked")){
-					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-					$('#checkbox').focus();
-					event.preventDefault();
-				}else{
-					alert('일대일 문의 등록이 완료되었습니다.');
-					location.href = '<c:url value="/owner/menu5/oneToOne.do"/>';
-				}
-				
-			});
-			
-		});
-	
-			function deleteFunc(no){
-			$('#btDel').click(function(){
-				if(!confirm('취소하시겠습니까?')){
-				event.preventDefault();
-				}else{
-				location.href = '<c:url value="/owner/menu5/oneToOneDelete.do?no="/>'+no;
-				}
-			});
-		}
-			
-			
-</script>
+
 
 <div class="container">
 	<div class="row">
@@ -156,9 +117,9 @@
 																	<c:if test="${vo.askStep ==0}">
 																		<td><span class="badge bg-danger">미답변</span></td>
 																	</c:if>
-																	<td><span class="badge bg-dark"> <input
-																			type="submit" id="btDel" value="취소"
-																			onclick="deleteFunc(${vo.askNo })"></span></td>
+																	<td><span class="badge bg-dark"> <a
+																			href="#" id="btDel" 
+																			onclick="deleteFunc(${vo.askNo})">취소</a></span></td>
 																</tr>
 															</c:forEach>
 														</c:if>
@@ -225,6 +186,42 @@
 </div>
 <!--  -->
 <!--  -->
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#askTitle').focus();
+	
+			$('#btAsk').click(function(){
+				if($('#askTitle').val().length<1){
+					alert('문의글 제목을 입력하세요');
+					$('#askTitle').focus();
+					event.preventDefault();
+				}else if($('#askContent').val().length<1){
+					alert('문의하실 내용을 입력하세요');
+					$('#askContent').focus();
+					event.preventDefault();
+						
+				}else if(!$('#checkbox1').is(":checked")){
+					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+					$('#checkbox').focus();
+					event.preventDefault();
+				}else{
+					alert('일대일 문의 등록이 완료되었습니다.');
+					location.href = '<c:url value="/owner/menu5/oneToOne.do"/>';
+				}
+				
+			});
+			
+		});
+			function deleteFunc(askNo){
+				if(!confirm('취소하시겠습니까?')){
+				event.preventDefault();
+				}else{
+				location.href = '<c:url value="/owner/menu5/oneToOneDelete.do?askNo="/>'+askNo;
+				}
+			}
+			
+</script>
 
 
 <!-- script start -->

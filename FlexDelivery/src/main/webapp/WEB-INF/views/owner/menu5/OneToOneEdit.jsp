@@ -18,7 +18,6 @@
 <!-- CSS end -->
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-			
 </script>
 
 <div class="container">
@@ -46,7 +45,7 @@
 							<div class="tab-pane fade show active" id="qwe">
 								<br>
 								<form class="form form-horizontal" method="POST" name="frm1"
-									action="<c:url value='/owner/menu5/OneToEdit.do'/>">
+									action="<c:url value='/owner/menu5/OneToOneEdit.do'/>">
 									<input type="hidden" name="askNo" value="${vo.askNo}">
 									<div class="form-body">
 										<div class="row">

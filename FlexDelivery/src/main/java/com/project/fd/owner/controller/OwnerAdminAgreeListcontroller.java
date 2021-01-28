@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
+import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -36,8 +36,8 @@ public class OwnerAdminAgreeListcontroller {
 			@RequestMapping("/temporary/tempList.do")
 			public String tempList(HttpSession session,
 					Model model) {
-				//int ownerNo=(Integer) session.getAttribute("ownerNo");
-				int ownerNo=1;
+				int ownerNo=(Integer) session.getAttribute("ownerNo");
+				
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				
 				List<Map<String, Object>> tempList =ownerRService.selectLSJAgreeListView(ownerNo);
@@ -46,6 +46,19 @@ public class OwnerAdminAgreeListcontroller {
 				model.addAttribute("tempList", tempList);
 				
 				return "owner/menu2/temporary/tempList";
+			}
+			
+			// 승인신청리스트에서 삭제버튼 누르면 권한 2로 가기 전에 비밀번호 확인 
+			@RequestMapping(value = "/tempListPwdCheck.do", method = RequestMethod.GET)
+			public String advertisePwdCheck_get(Model model) {
+				logger.info("tempListPwdCheck 창 보여주기");
+				
+				
+				int YorN = OwnerService.GO_PWD;
+				model.addAttribute("YorN", YorN);
+				
+				
+				return "owner/menu2/advertise/advertisePwdCheck";
 			}
 	
 			
@@ -56,8 +69,8 @@ public class OwnerAdminAgreeListcontroller {
 				@RequestParam String mode,
 				HttpSession session,
 					Model model){
-				int ownerNo=1;
-				//int ownerNo=(Integer) session.getAttribute("ownerNo");
+				
+				int ownerNo=(Integer) session.getAttribute("ownerNo");
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				logger.info("승인 신청 리스트 업데이트 페이지 mode={},no={}",mode,no);
 				int cnt=0;
@@ -177,6 +190,6 @@ public class OwnerAdminAgreeListcontroller {
 			return "";
 		} */
 		
-	
+			
 }
 

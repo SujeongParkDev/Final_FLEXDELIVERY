@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,8 +71,14 @@ public class OwnerStoresController {
 	 //입점신청 
 	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
 	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
-			 HttpServletRequest request,
+			 HttpServletRequest request, HttpSession session,
 			 Model model) { 
+		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		logger.info("입점신청 세션의 ownerNo={}"+ownerNo);
+		ownerStoresVo.setOwnerNo(ownerNo);
+		// int oRegisterNo=(Integer)session.getAttribute("oRegisterNo");
+		// logger.info("입점신청 세션의 oRegisterNo={}"+oRegisterNo);
+		 
 		 logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
 		 
 			//파일 업로드 처리
@@ -79,7 +86,7 @@ public class OwnerStoresController {
 			long fileSize=0;
 			try {
 				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.PDS_TYPE);
+				=fileUtil.fileUplaod(request, FileUploadUtil.OWNER_REGISTER_TYPE);
 				for(Map<String, Object> fileMap : fileList) {
 					originName=(String) fileMap.get("originalFileName");
 					fileName=(String) fileMap.get("fileName");
@@ -97,7 +104,7 @@ public class OwnerStoresController {
 			ownerStoresVo.setStoreLogo(originName);
 
 			int cnt=ownerStoresService.insertOwnerStores(ownerStoresVo);
-			logger.info("점포 입점 신청  처리 결과, cnt={}", cnt);
+			logger.info("점포 입점 신청  처리 결과, cnt={},originName={}", cnt,originName);
 
 			//3
 			return "redirect:/owner/menu2/basic.do";

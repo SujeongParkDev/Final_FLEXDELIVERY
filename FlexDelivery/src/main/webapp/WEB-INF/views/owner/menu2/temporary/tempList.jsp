@@ -19,34 +19,29 @@
 <!-- CSS end -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-/*
-  
- 
-	$(function(){
-		$('form[name=frmDelete]').click(function(){
-			if(!confirm('취소하시겠습니까?')){
-				event.preventDefault();
-			}
-		});
+$(function(){
+	$('.buttons').on('click', function(){
+		window.screen.width //현재 윈도우창의 가로크기를 가져옴
+		window.screen.height //세로크기 가져옴
 		
-		var type="";
+		var popupWidth = 500; //띄울 창 가로크기
+		var popupHeight = 300;
 		
-		if($(this).attr('id')=='btStores'){
-			type="stores";
-		}else if($(this).attr('id')=='btAd'){
-			type="adver";				
-		}else if($(this).attr('id')=='btRegi'){
-			type="btRegi";
-		}
-		$('form[name=frmDelete]').prop('action', 
-				'<c:url value="/owner/menu2/tempDelete.do?mode='+type+'" />');
-		$('form[name=frmDelete]').submit();
-	
-	});	
- */
+		var popupX = (window.screen.width / 2) - (popupWidth /2);
+		var popupY = (window.screen.height / 2) - (popupHeight /2);
+		
+		window.open(
+			"${pageContext.request.contextPath}/owner/menu2/temporary/tempListPwdCheck.do", 
+			"pwdCheck", 
+			'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+	});
+
+
+});
 	
 	function bt_cancle(no){
 		if(confirm('취소하시겠습니까?')){
+			
 			var type="";
 			
 			if($('.buttons').attr('id')=='btStores'){
@@ -78,6 +73,7 @@
 				<div class="card">
 					<div class="card-header">
 						<!--  -->
+						${tempList }
 					</div>
 					<div class="card-body">
 						<ul class="nav nav-tabs">
@@ -191,16 +187,16 @@
 																		 -->
 																		 
 																		 	<td>
-																	<c:if test="${map['SAGREENO'] == 1 }">
+																	<c:if test="${map['RAGREENO'] == 1 }">
 																			<span class="badge bg-light">승인대기</span>
 																		</c:if>
-																		 <c:if test="${map['SAGREENO'] == 2 }">
+																		 <c:if test="${map['RAGREENO'] == 2 }">
 																			<span class="badge bg-danger">신청취소</span>
 																		</c:if> 
-																		<c:if test="${map['SAGREENO'] == 3 }">
+																		<c:if test="${map['RAGREENO'] == 3 }">
 																			<span class="badge bg-success">승인완료</span>
 																		</c:if> 
-																		<c:if test="${map['SAGREENO'] == 4 }">
+																		<c:if test="${map['RAGREENO'] == 4 }">
 																			<span class="badge bg-danger">승인반려</span>
 																		</c:if>
 																		</td>

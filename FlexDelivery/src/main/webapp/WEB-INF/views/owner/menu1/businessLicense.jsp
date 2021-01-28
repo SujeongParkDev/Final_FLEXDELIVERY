@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@include file="../../ownerInc/jianSidebarTop.jsp"%>
+	
+	<!-- css start -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">  
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
+<!-- css end -->
+	
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="<c:url value='${pageContext.request.contextPath}/resources/ownerResources/assets/js/storesregister.js'/>"></script>
 <script type="text/javascript">
@@ -58,7 +67,7 @@ $(function(){
 				            <!-- form 시작 -->
 			                <form class="form form-horizontal" method="post" enctype="multipart/form-data" name="frm1"
 			        action="<c:url value='/owner/menu1/businessLicense.do'/>" >
-			        <input type="text" id="ownerNo"name="ownerNo" value="1">
+			        <input type="text" id="ownerNo"name="ownerNo" value="${ownerNo}">
 			                <div class="form-body">
 			                    <div class="row">
 				                    <div class="col-md-4">
@@ -73,7 +82,7 @@ $(function(){
 				                    <div class="col-md-4">
 				                        <label>사업자등록증 앞면</label>
 				                    </div>
-				                    <div class="col-md-8 form-group">
+				                     <div class="col-md-8 form-group">
 				                    
 				                    <div class="custom-file">
 				                    
@@ -106,5 +115,17 @@ $(function(){
 	              </div>
 	         </div>
 	    <div class="col-md-4 col-12"></div>
+	    
+	    <!-- script start -->
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+
+<!-- script end -->
 
 <%@include file="../../ownerInc/jianSidebarBottom.jsp"%>
+
+

@@ -10,8 +10,8 @@
 	</select>
 
 	<insert id="insertRegister" parameterType="ownerRegisterVo" >
-		insert into ownerregister(O_REGISTER_NO,O_REGISTER_FILENAME, O_REGISTER_ORIGINAL_FILENAME)
-		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName})
+		insert into ownerregister(O_REGISTER_NO,O_REGISTER_FILENAME, O_REGISTER_ORIGINAL_FILENAME,OWNER_NO)
+		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName},#{ownerNo})
 	</insert>
 	
 	<!-- 유저 번호 같은거만 뜨니까 일치한지 안해도되겠지 ??  -->
