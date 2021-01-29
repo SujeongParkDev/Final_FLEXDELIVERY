@@ -11,6 +11,7 @@
 		    	<!-- 메뉴 forEach -->
 				<c:import url="/member/menu/menuInc.do">
 					<c:param name="sMGroupNo" value="${vo.sMGroupNo}" />
+					<c:param name="storeName" value="${storeName}" />
 				</c:import>
 	        </div>
 	    </div>
