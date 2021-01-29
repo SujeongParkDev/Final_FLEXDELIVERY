@@ -114,7 +114,7 @@ function readInputFile(input) {
 					<!-- #giftProductWrite 모달 end -->
                 </div><!--card-body-->
                 <div class="card-body">
-					<section id="groups">
+					
 				        <div class="row match-height">
 				            <div class="col-12 mt-3 mb-1">
 				            	<p class="section-title text-uppercase">카테고리 목록</p>
@@ -126,7 +126,7 @@ function readInputFile(input) {
 				            	</c:forEach>                   
 			               </div>
 				       </div>
-					</section>
+					
 					
 					<div class="row">
 						<c:if test="${empty list }">
