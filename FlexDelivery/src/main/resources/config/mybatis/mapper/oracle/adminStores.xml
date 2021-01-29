@@ -10,19 +10,19 @@
 			   order by store_no desc
 	</select>
 	
-	<select id="approvalDetail" parameterType="int" resultType="adminStoresVo">
+	<select id="approvalDetail" parameterType="long" resultType="adminStoresVo">
 		select store_no, store_regdate, o_register_no, owner_name, store_name, store_address,
        		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no 
        		   from store_reg where store_no=#{no}
 	</select>
 	
-	<select id="approvalAgree" parameterType="int">
+	<select id="approvalAgree" parameterType="long">
 		update ownerregister
 		set a_agree_no = 3
 		where store_no =#{no}
 	</select>
 	
-	<select id="approvalDeny" parameterType="int">
+	<select id="approvalDeny" parameterType="long">
 		update ownerregister
 		set a_agree_no = 4
 		where store_no =#{no}

@@ -3,7 +3,7 @@ package com.project.fd.admin.stores.model;
 import java.sql.Timestamp;
 
 public class AdminStoresVO {
-	private int storeNo; //점포등록신청번호
+	private long storeNo; //점포등록신청번호
 	private Timestamp storeRegdate; //점포등록신청일
 	private int oRegisterNo; //사업자등록증 번호
 	private String ownerName; //점주명
@@ -15,10 +15,10 @@ public class AdminStoresVO {
 	private String ownerHp3; //점주전화번호3
 	private int aAgreeNo; //승인관리번호
 	
-	public int getStoreNo() {
+	public long getStoreNo() {
 		return storeNo;
 	}
-	public void setStoreNo(int storeNo) {
+	public void setStoreNo(long storeNo) {
 		this.storeNo = storeNo;
 	}
 	public Timestamp getStoreRegdate() {

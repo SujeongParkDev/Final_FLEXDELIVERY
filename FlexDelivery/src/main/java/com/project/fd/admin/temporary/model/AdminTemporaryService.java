@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface AdminTemporaryService {
 	public List<AdminTemporaryVO> editList();
-	public AdminTemporaryVO editDetail(int no);
-	public int editAgree(int no);
-	public int editDeny(int no);
+	public AdminTemporaryVO editDetail(long no);
+	public int editAgree(long no);
+	public int editDeny(long no);
 }
