@@ -95,13 +95,15 @@ caption {
 		$(xmlStr).find('juso').each(function(idx, item){
 			var roadAddr = $(this).find("roadAddr").text();
 			var zipNo = $(this).find("zipNo").text();
+			var sggNm = $(this).find("sggNm").text();
 			
 			str+="<tr>";
 			str+="<td>"+zipNo+"</td>";
 			str+="<td>"
 			str+=
-		"<a href='#' onclick='setZipcode(\""+roadAddr+"\",\""+zipNo+"\")'>"; 
-			str+= roadAddr +"</a></td>";			
+		"<a href='#' onclick='setZipcode(\""+roadAddr+"\",\""+zipNo+"\",\""+sggNm+"\")'>"; 
+			str+= roadAddr +"</a></td>";
+			str+="<td>"+sggNm+"</td>";
 			str+="</tr>";
 		});//each
 		str+="</table>";
@@ -141,9 +143,10 @@ caption {
 		$('#divPage').html(str);
 	}
 	
-	function setZipcode(address, zipcode){
+	function setZipcode(address, zipcode,locationname){
 		$(opener.document).find('#memberZipcode').val(zipcode);
 		$(opener.document).find('input[name=memberAddress]').val(address);
+		$(opener.document).find('input[name=locationName]').val(locationname);
 		self.close();
 	}
 </script>
@@ -168,6 +171,5 @@ caption {
 	<div id="divCount"></div>
 	<div id="divZip"></div>
 	<div id="divPage"></div>
-	
 </body>
 </html>
