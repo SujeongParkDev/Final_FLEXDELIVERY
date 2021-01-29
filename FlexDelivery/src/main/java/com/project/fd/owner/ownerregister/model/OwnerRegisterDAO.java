@@ -12,4 +12,5 @@ public interface OwnerRegisterDAO {
 	List<Map<String, Object>> selectLSJAgreeListView(int ownerNo);
 	int deleteAd(int storeadNo);
 	int updateAgreeRegi(OwnerRegisterVO vo);
+	int oRegisterNoDup(long oRegisterNo);
 }

@@ -15,11 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
-import com.project.fd.owner.store.model.OwnerStoresVO;
 
 @Controller
 @RequestMapping("/owner/menu1")
@@ -37,8 +38,6 @@ public class OwnerRegisterController {
 		 logger.info("사업자 등록증 등록  화면 보여주기");
 	 }
 	 
-	 // 번호가 일치하면 등록 못하게 유효성 검사 하쟈.... 관리자가 알아서 비교해서 반려해줬으면....
-	 
 	 //사업자 등록증 처리 
 	 @RequestMapping(value="/businessLicense.do",method=RequestMethod.POST)
 	 public String ownerLicenseOk(@ModelAttribute OwnerRegisterVO vo, 
@@ -47,8 +46,8 @@ public class OwnerRegisterController {
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
 		 vo.setOwnerNo(ownerNo);
 		 logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
-		 
-		//파일 업로드 처리
+
+		 //파일 업로드 처리
 			String originName="", fileName="test";
 			long fileSize=0;
 			try {
@@ -71,15 +70,65 @@ public class OwnerRegisterController {
 			vo.setoRegisterOriginalFileName(originName);
 			logger.info("originName={}",originName);
 			
-			int cnt=ownerRegisterService.insertRegister(vo);
+			int cnt=0;
+			String msg="사업자 등록증 등록이 실패되었습니다. \n다시 작성해주세요. ",
+					url="/owner/menu1/businessLicense.do";
+			logger.info("vo={}",vo);
+			
+			cnt=ownerRegisterService.insertRegister(vo);
+			if(cnt>0) {
+				msg="사업자 등록증 등록 신청이 완료되었습니다.";
+			}
 			logger.info("제출 처리 결과, cnt={}", cnt);
-			String msg="사업자 등록증 등록 실패", url="";
+
 			
 			//3
-			
-			return "/owner/menu1/businessLicense";
-	 }
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+			//4
+			return "common/message";
+		}
 	 
+	 @ResponseBody
+		@RequestMapping("/AjaxRegisterNo.do")
+		public boolean ajaxCheckNO(@RequestParam long oRegisterNo) {
+			logger.info("ajax 이용-아이디 중복확인, oRegisterNo={}", oRegisterNo);
+			
+			boolean bool=false;
+
+			int result=(Integer)ownerRegisterService.oRegisterNoDup(oRegisterNo);
+			logger.info("같은 사업자 등록번호가 있는지  결과, result={}", result);
+			
+			
+			if(result==OwnerRegisterService.EXIST_REGISTER_NO) {
+				bool=true;  //이미 존재
+			}else if(result==OwnerRegisterService.NON_EXIST_REGISTER_NO) {
+				bool=false;	//사용 가능		
+			}
+			
+			return bool;
+		}
+	 
+	 @ResponseBody
+		@RequestMapping("/reviewOwnerOP1.do")
+		public boolean ajaxCheckId(@RequestParam long oRegisterNo) {
+			logger.info("ajax 이용-아이디 중복확인, oRegisterNo={}", oRegisterNo);
+			
+			boolean bool=false;
+
+			int result=(Integer)ownerRegisterService.oRegisterNoDup(oRegisterNo);
+			logger.info("같은 사업자 등록번호가 있는지  결과, result={}", result);
+			
+			
+			if(result==OwnerRegisterService.EXIST_REGISTER_NO) {
+				bool=true;  //이미 존재
+			}else if(result==OwnerRegisterService.NON_EXIST_REGISTER_NO) {
+				bool=false;	//사용 가능		
+			}
+			
+			return bool;
+		}
 	
 	 
 }

@@ -44,6 +44,21 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 		return ownerRegisterDao.updateAgreeRegi(vo);
 	}
 
+	@Override
+	public int oRegisterNoDup(long oRegisterNo) {
+		int count= ownerRegisterDao.oRegisterNoDup(oRegisterNo);
+		
+		int result=0;
+		if(count>0) {
+			result=EXIST_REGISTER_NO;
+		}else {
+			result=NON_EXIST_REGISTER_NO;
+		}
+		
+		return result;
+	}
 
+
+	
 
 }

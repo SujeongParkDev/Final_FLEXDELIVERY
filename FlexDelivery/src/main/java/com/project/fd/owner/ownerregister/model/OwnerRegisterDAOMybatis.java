@@ -44,6 +44,12 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	public int updateAgreeRegi(OwnerRegisterVO vo) {
 		return sqlSession.update(namespace+"updateAgreeRegi",vo);
 	}
+
+	@Override
+	public int oRegisterNoDup(long oRegisterNo) {
+		return sqlSession.selectOne(namespace+"dupckRegiNo",oRegisterNo);
+	}
+
 	
 	
 }

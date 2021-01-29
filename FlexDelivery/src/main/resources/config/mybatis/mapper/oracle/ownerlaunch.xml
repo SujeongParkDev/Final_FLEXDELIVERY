@@ -3,10 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.ownerlaunch">
-<!-- 유효성검사해야하나? 관리자가 알아서 반려해줬으면^^.... -->
-	<select id="dupckRegiNo" parameterType="int">
+<!-- long type 자료형이라 resultMap사용  -->
+
+	<select id="dupckRegiNo" parameterType="long" resultType="int">
 	select count(*) from OWNERREGISTER
-	where O_REGISTER_NO='#{oRegisterNo}
+	where O_REGISTER_NO=#{oRegisterNo}
 	</select>
 
 	<insert id="insertRegister" parameterType="ownerRegisterVo" >
@@ -14,7 +15,7 @@
 		values(#{oRegisterNo}, #{oRegisterFileName},#{oRegisterOriginalFileName},#{ownerNo})
 	</insert>
 	
-	<!-- 유저 번호 같은거만 뜨니까 일치한지 안해도되겠지 ??  -->
+
 	<delete id="deleteRegi">
 	delete from OWNERREGISTER
 		where O_REGISTER_NO=#{oRegisterNo}
