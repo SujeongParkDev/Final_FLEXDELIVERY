@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.menu.model.MemberMenuAllVO;
 import com.project.fd.member.menu.model.MemberMenuService;
 import com.project.fd.member.stores.model.MemberStoresService;
@@ -31,6 +32,7 @@ public class MemberStoreController {
 
 	@Autowired private MemberStoresService memStoresServ;
 	@Autowired private MemberMenuService menuServ;
+	@Autowired private MemberCartService cartServ;
 	
 	@RequestMapping("/storeList.do")
 	public void storeList(@RequestParam int lCategoryNo) {
@@ -114,7 +116,7 @@ public class MemberStoreController {
 	}
 	
 	@RequestMapping(value="/storeDetail.do",method = RequestMethod.GET)
-	public String storeDetail_get(@RequestParam(defaultValue = "0") int storeNo,Model model){
+	public String storeDetail_get(@RequestParam(defaultValue = "0") int storeNo,Model model,HttpSession session){
 		logger.info("점포 상세보기");
 		if(storeNo<1) {
 			model.addAttribute("msg","잘못된 접근입니다.");
@@ -123,10 +125,18 @@ public class MemberStoreController {
 		}
 		MemberStoresVO vo=memStoresServ.selectStoresDetail(storeNo);
 		MemberMenuAllVO menuAllvo=menuServ.selectMainMenu(storeNo);
-		logger.info("메인메뉴 출력,menuAllvo={}",menuAllvo);
+		logger.info("메인메뉴 ,menuAllvo={}",menuAllvo);
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("storeNo", storeNo);
+		boolean cartChk=cartServ.CartChk(map);
+		logger.info("cartChk={}",cartChk);
 		model.addAttribute("vo",vo);
+		model.addAttribute("cartChk",cartChk); //장바구니에 다른점포의 상품이 있는지 확인, true면 다른점포 상품 있음, 유효성검사 통해 장바구니 삭제필요
 		model.addAttribute("storeNo",storeNo);
 		model.addAttribute("menuAllvo",menuAllvo);
-		return "member/store/storeDetail";		
+		return "member/store/storeDetail";
 	}
+	
 }
