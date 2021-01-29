@@ -66,13 +66,33 @@
 		});
 		
 		
-
+			
 		$(function(){
 			$('input[type=text]').change(function(){
 			
 				if($(this).prop('name')=='menuName'){
 					$('#warningName').html('');
+					
+					
+					$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
+						data:"menuName=" + $('#menuName').val(),
+						dataType:"json",
+						type:"GET",
+						success:function(res){
+							//alert(res);
+							if(res==true){
+								$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('input[name=menuName]').focus();
+								event.preventDefault();
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
 					event.preventDefault();
+					
 				}else if($(this).prop('name')=='menuPrice'){
 					$('#warningPrice').html('');
 					event.preventDefault();				
@@ -80,6 +100,55 @@
 			});
 			
 		});
+		
+		
+		
+		
+		
+		 //엔터 누를때 
+		  $(function(){
+				$('input[name=menuName]').keypress(function(event){
+					if(event.key==="Enter"){
+					
+						$.ajax({
+							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
+							data:"menuName=" + $('#menuName').val(),
+							dataType:"json",
+							type:"GET",
+							success:function(res){
+								//alert(res);
+								if(res==true){
+									$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+									$('input[name=menuName]').focus();
+									event.preventDefault();
+									return false;
+								}
+							},
+							error:function(xhr, status, error){
+								alert("error!! : " + error);
+							}
+						});
+					}
+				
+				});
+				
+			}); 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		$(function(){
 			$('textarea').change(function(){
@@ -134,6 +203,37 @@
 		        reader.readAsDataURL(input.files[0]);
 		    }  
 		} 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 	
 		
@@ -171,14 +271,14 @@
                                     </select>
 		                       		
 		                       		<label for="first-name-vertical">메뉴 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-		                        	<input type="text" id="menuName" class="form-control text-right" name="menuName">
-		                    	  	<div>
-		                    	  		<span id="warningName" style="color:red; margin-left:210px;"></span>
+		                        	<input type="text" id="menuName" class="form-control " name="menuName" style="text-align: right;">
+		                    	  	<div style="text-align: right;">
+		                    	  		<span id="warningName" style="color:red; "></span>
 		                    	    </div>
 		                    	    <label for="first-name-vertical">메뉴 가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-		                        	<input type="text" id="menuPrice" class="form-control text-right" name="menuPrice"  >
-		                     		<div >
-		                     			<span id="warningPrice" style="color:red; text-align: right; margin-left:210px;"></span>
+		                        	<input type="text" id="menuPrice" class="form-control " name="menuPrice"  style="text-align: right;" >
+		                     		<div style="text-align: right;">
+		                     			<span id="warningPrice" style="color:red; "></span>
 		                     		</div>
 		                     		<span><small>메뉴 이미지</small></span>
 		                     		 <div id="preview" class="text-center"></div>

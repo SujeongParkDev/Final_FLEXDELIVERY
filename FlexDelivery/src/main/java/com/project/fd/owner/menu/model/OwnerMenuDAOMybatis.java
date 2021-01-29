@@ -1,7 +1,7 @@
 package com.project.fd.owner.menu.model;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +116,37 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 	}
 	
 	
+	public int checkDupGroupName(String sMGroupName) {
+		return sqlSession.selectOne(namespace+"checkDupGroupName", sMGroupName);
+	}
+	
+	public int checkDupMenuName(String menuName) {
+		return sqlSession.selectOne(namespace+"checkDupMenuName", menuName);
+	}
 
 	
-
+	public List<OwnerMenuVO> selectMenuByGroupNo(int sMGroupNo){
+		return sqlSession.selectList(namespace+"selectMenuByGroupNo",  sMGroupNo);
+	}
+	
+	
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo){
+		return sqlSession.selectList(namespace+"selectOptionAllByMenuNo",  menuNo);
+	}
+	
+	public List<OwnerOptionRankVO> selectOptionRankAll(){
+		return sqlSession.selectList(namespace+"selectOptionRankAll");
+	}
+	
+	
+	public int checkOptionName(Map<String, String> map) {
+		return sqlSession.selectOne(namespace+"checkOptionName", map);
+	}
+	
+	
+	public int insertOption(OwnerMenuOptionVO optionVo) {
+		return sqlSession.insert(namespace+"insertOption", optionVo);
+	}
+	
+	
 }

@@ -4,6 +4,7 @@ package com.project.fd.owner.controller;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,18 +18,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.menu.model.OptionResultVO;
 import com.project.fd.owner.menu.model.OwnerMainMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuAllVO;
 import com.project.fd.owner.menu.model.OwnerMenuOptionAllVO;
+import com.project.fd.owner.menu.model.OwnerMenuOptionVO;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.menu.model.OwnerMenuVO;
+import com.project.fd.owner.menu.model.OwnerOptionRankVO;
 import com.project.fd.owner.menu.model.OwnerStoreMainMenuVO;
 import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
@@ -233,9 +239,13 @@ public class OwnerMenuController {
 				storeNo= (Integer)session.getAttribute("storeNo");
 			}
 			
+			
 		
 			logger.info("menuGroup 등록하기창 보여주기 파라미터 storeNo={}",storeNo);
 			
+			
+			int YorN = OwnerMenuService.FAIL_POST;
+			model.addAttribute("YorN", YorN);
 			model.addAttribute("storeNo",storeNo);
 			return "owner/menu2/foodmenu/menuGroupWrite";
 		}
@@ -730,4 +740,141 @@ public class OwnerMenuController {
 		}
 		
 				
+		
+		
+		//에이젝스 도전!
+		@ResponseBody  
+		@RequestMapping("/checkDupGroupName.do")
+		public boolean checkDupGroupName(@RequestParam(defaultValue = "0") String sMGroupName) {
+		logger.info("ajax이용-checkDupGroupName,sMGroupName={}", sMGroupName);
+		
+		
+			int result = ownerMenuService.checkDupGroupName(sMGroupName);
+			logger.info("그룹 이름 중복 확인 결과 result={}", result);
+			boolean bool = false;
+			
+			if(result>0) {
+				bool=true;
+			}
+			
+			
+		return bool; 
+		}
+		
+		
+		
+		@ResponseBody  
+		@RequestMapping("/checkDupMenuName.do")
+		public boolean checkDupMenuName(@RequestParam(defaultValue = "0") String menuName) {
+		logger.info("ajax이용-checkDupMenuName,   menuName={}", menuName);
+		
+		
+			int result = ownerMenuService.checkDupMenuName(menuName);
+			logger.info("메뉴 이름 중복 확인 결과 result={}", result);
+			boolean bool = false;
+			
+			if(result>0) {
+				bool=true;
+			}
+			
+			
+		return bool; 
+		}
+
+		
+		@ResponseBody
+		@RequestMapping("/selectAllByGroupNo.do")
+		public List<OwnerMenuVO> selectMenuAll(@RequestParam(defaultValue = "0") int sMGroupNo){
+			logger.info("ajax이용-selectMenuAll,   sMGroupNo={}", sMGroupNo);
+			
+			List<OwnerMenuVO> list=null;
+			list = ownerMenuService.selectMenuByGroupNo(sMGroupNo);
+			logger.info("그룹 넘버로  메뉴 리스트 조회,   list.size={}", list.size());
+			
+			
+			return list;
+		}
+		
+		
+		@ResponseBody
+		@RequestMapping("/selectOptionByMenuNo.do")
+		public List<OwnerMenuOptionVO> selectOptionByMenuNo(@RequestParam(defaultValue = "0") int menuNo){
+			logger.info("ajax이용-selectMenuAll,   menuNo={}", menuNo);
+			
+			List<OwnerMenuOptionVO> list=null;
+			list = ownerMenuService.selectOptionAllByMenuNo(menuNo);
+			logger.info("메뉴 번호로 옵션 전체 조회,   list.size={}", list.size());
+			
+			
+			return list;
+		}
+		
+		
+		
+		
+		@ResponseBody
+		@RequestMapping("/inputGroupNoMenuNoToOption.do")
+		public OptionResultVO inputGroupNoMenuNoToOption(@RequestParam(defaultValue = "0") int menuNo,
+					@RequestParam(defaultValue = "0") int sMGroupNo){
+			logger.info("ajax이용-inputGroupNoMenuNoToOption,   sMGroupNo={} , menuNo={}", sMGroupNo, menuNo);
+			
+			List<OwnerOptionRankVO> list=null;
+			list = ownerMenuService.selectOptionRankAll();
+			logger.info("옵션 순위 전체 조회,   list.size={}", list.size());
+			
+			
+			OwnerMenuVO menuVo = ownerMenuService.selectMenuByMenuNo(menuNo);
+			logger.info("메뉴 번호로 전체 조회,  menuVo={}", menuVo);
+			
+			OwnerStoreMenuGroupVO groupVo = ownerMenuService.selectMenuGroupByGroupNo(sMGroupNo);
+			logger.info("메뉴 그룹 번호로 전체 조회,  groupVo={}", groupVo);
+			
+			OptionResultVO vo = new OptionResultVO();
+			
+			vo.setList(list);
+			vo.setMenuNo(menuNo);
+			vo.setsMGroupNo(sMGroupNo);
+			vo.setMenuName(menuVo.getMenuName());
+			vo.setsMGroupName(groupVo.getsMGroupName());
+			
+			return vo;
+		}
+	
+		
+		@ResponseBody  
+		@RequestMapping("/checkOptionName.do")
+		public boolean checkOptionName(@RequestParam(defaultValue = "0") int menuNo, 
+				@RequestParam(defaultValue = "0") int oRankNo,@RequestParam(defaultValue = "0") String mOptionName) {
+		logger.info("ajax이용-checkOptionName,   menuNo={}, oRankNo={}", menuNo,oRankNo);
+		
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("menuNo",menuNo+"");
+			map.put("oRankNo", oRankNo+"");
+			map.put("mOptionName", mOptionName);
+			
+			int result = ownerMenuService.checkOptionName(map);
+			logger.info("메뉴 이름 중복 확인 결과 result={}", result);
+			boolean bool = false;
+			
+			if(result>0) {
+				bool=true;
+			}
+			
+			
+		return bool; 
+		}
+
+		
+		@ResponseBody  
+		@RequestMapping("/insertOption.do")
+		public int insertOption(@ModelAttribute OwnerMenuOptionVO optionVo) {
+		logger.info("ajax이용-insertOption,   optionVo={}", optionVo);
+		
+			int cnt = ownerMenuService.insertOption(optionVo);
+			logger.info("옵션 입력 결과 cnt={}", cnt);
+			
+		return cnt; 
+		}
+
+
 }

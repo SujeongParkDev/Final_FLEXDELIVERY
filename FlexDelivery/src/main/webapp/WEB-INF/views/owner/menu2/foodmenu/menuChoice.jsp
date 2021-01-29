@@ -62,17 +62,6 @@
 						title="메뉴 수정";
 						popupWidth=500;
 						popupHeight=600;
-					}else if($(this).attr('name')=='menuDelete'){
-						if(confirm(menuNo+"을 삭제하시겠습니까?")){
-							var sMGroupNo = ${sMGroupNo};
-							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo+"&sMGroupNo="+sMGroupNo;
-							location.href=url;
-							return false;
-						}else{
-							self.close();
-						}
-						
-					
 					}else if($(this).attr('name')=='menuWrite'){
 						var sMGroupNo=${sMGroupNo};
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceWrite.do?sMGroupNo="+sMGroupNo;
@@ -92,6 +81,16 @@
 						title, 
 						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
 					
+					
+					if($(this).attr('name')=='menuDelete'){
+						if(confirm(menuNo+"을 삭제하시겠습니까?")){
+							var sMGroupNo = ${sMGroupNo};
+							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo+"&sMGroupNo="+sMGroupNo;
+							location.href=url;
+							return false;
+						}
+					
+					}
 					/* location.href=url; */
 				});
 				
@@ -163,7 +162,7 @@
 															</c:if>
 															<c:if test="${fn:substring(vo.menuImg, 0,4)!='http' and (!empty vo.menuImg) }">
 																<img src
-																="<c:url value='/resources/imgs/ownerMenu_images/${vo.menuImg}'/>" 
+																="<c:url value='/resources/imgs/MenuImages/${vo.menuImg}'/>" 
 																alt="${vo.menuName }" class="card-img-top" style="height:120px;">
 															</c:if>
 												        <!-- 내용띄우기 -->
@@ -183,7 +182,7 @@
 												        	</div>
 												        	<br>
 												        	<div class="text-center">
-												        		<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuEdit" >수정</button>
+												        		<button class="btn btn-outline-primary p-2 btmenu" value="${vo.menuNo }" name="menuEdit" >수정</button>
 											                	<button class="btn btn-outline-dark p-2 btmenu" value="${vo.menuNo }" name="menuDelete">삭제</button>
 												     		</div>
 												     	</div>
