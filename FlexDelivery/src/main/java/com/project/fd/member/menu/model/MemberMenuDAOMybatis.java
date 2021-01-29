@@ -22,4 +22,9 @@ public class MemberMenuDAOMybatis implements MemberMenuDAO{
 		return sqlSession.selectList(namespace+"selectMenuBySMGroupNo",sMGroupNo);
 	}
 
+	@Override
+	public MemberMenuAllVO selectMainMenu(int storeNo) {
+		return sqlSession.selectOne(namespace+"selectMainMenu",storeNo);
+	}
+
 }

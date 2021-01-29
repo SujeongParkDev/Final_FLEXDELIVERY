@@ -20,4 +20,9 @@ public class MemberMenuServiceImpl implements MemberMenuService{
 		return menuDao.selectMenuBySMGroupNo(sMGroupNo);
 	}
 
+	@Override
+	public MemberMenuAllVO selectMainMenu(int storeNo) {
+		return menuDao.selectMainMenu(storeNo);
+	}
+
 }

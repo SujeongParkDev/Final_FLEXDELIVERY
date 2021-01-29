@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.member.menu.model.MemberMenuAllVO;
 import com.project.fd.member.menu.model.MemberMenuService;
 import com.project.fd.member.stores.model.MemberStoresService;
 import com.project.fd.member.stores.model.MemberStoresVO;
@@ -121,9 +122,11 @@ public class MemberStoreController {
 			return "common/message"; 
 		}
 		MemberStoresVO vo=memStoresServ.selectStoresDetail(storeNo);
-		
+		MemberMenuAllVO menuAllvo=menuServ.selectMainMenu(storeNo);
+		logger.info("메인메뉴 출력,menuAllvo={}",menuAllvo);
 		model.addAttribute("vo",vo);
 		model.addAttribute("storeNo",storeNo);
+		model.addAttribute("menuAllvo",menuAllvo);
 		return "member/store/storeDetail";		
 	}
 }
