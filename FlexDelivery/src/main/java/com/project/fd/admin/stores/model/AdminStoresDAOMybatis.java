@@ -23,18 +23,20 @@ public class AdminStoresDAOMybatis implements AdminStoresDAO{
 	}
 
 	@Override
-	public AdminStoresVO adminApprovalDetail(int no) {
-		AdminStoresVO vo = sqlSession.selectOne(namespace+"approvalDetail", no);
-		return vo;
+	public AdminStoresVO adminApprovalDetail(long no) {
+		AdminStoresVO storesVo =sqlSession.selectOne(namespace+"approvalDetail", no);
+		return storesVo;
 	}
 
 	@Override
-	public int adminApprovalAgree(int no) {
+	public int adminApprovalAgree(long no) {
 		return sqlSession.update(namespace+"approvalAgree", no);
 	}
 
 	@Override
-	public int adminApprovalDeny(int no) {
-		return sqlSession.update(namespace+"approvalDeny");
-	}	
+	public int adminApprovalDeny(long no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+"approvalDeny", no);
+	}
+
 }

@@ -16,17 +16,17 @@ public class AdminTemporaryServiceImpl implements AdminTemporaryService{
 	}
 
 	@Override
-	public AdminTemporaryVO editDetail(int no) {
+	public AdminTemporaryVO editDetail(long no) {
 		return temporaryDao.editDetail(no);
 	}
 
 	@Override
-	public int editAgree(int no) {
+	public int editAgree(long no) {
 		return temporaryDao.editAgree(no);
 	}
 
 	@Override
-	public int editDeny(int no) {
+	public int editDeny(long no) {
 		return temporaryDao.editDeny(no);
 	}
 	
