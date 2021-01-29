@@ -128,7 +128,13 @@
 		select * from menu
 		where menu_no=#{menuNo}
 	</select>
-	
+
+
+	<!-- 메뉴 번호에 따른 메뉴그룹조회 -->
+	<select id="selectMenuByGroupNo" parameterType="int" resultType="ownerMenuVo">
+		select * from menu
+		where s_m_group_no=#{sMGroupNo}
+	</select>	
 	
 	
 	<update id="updateMenuByNo" parameterType="ownerMenuVo" >
@@ -195,5 +201,56 @@
 		set menu_no= #{menuNo} , m_category_no=#{mCategoryNo}
 		where store_no=#{storeNo}
 	</update>
+	
+	
+	
+	<select id="checkDupGroupName" parameterType="string" resultType="int">
+		select count(*) from storeMenuGroup
+		where S_M_GROUP_NAME=#{sMGroupName}
+	</select>
+	
+	
+	<select id="checkDupMenuName" parameterType="string" resultType="int">
+		select count(*) from menu
+		where menu_name=#{menuName}
+	</select>
+	
+	<select id="selectOptionAllByMenuNo" parameterType="int" resultType="ownerMenuOptionVo">
+		select * from menuOption
+		where menu_no = #{menuNo}
+		order by o_rank_no
+	</select>
+	
+	
+	<select id="selectOptionRankAll" resultType="ownerOptionRankVo">
+		select * from optionRank
+		order by o_rank_no
+	</select>
+	
+	
+	
+	
+<!-- 	<parameterMap type="map" id="checkOptionName">
+		<parameter property="oRankNo" javaType="int" jdbcType="BIGINT" mode="IN"/>
+		<parameter property="menuNo" javaType="int" jdbcType="BIGINT" mode="IN"/>
+	</parameterMap>
+	 -->
+	<select id="checkOptionName" parameterType="map" resultType="int" >
+		select count(*) from menuOption
+		where o_Rank_No=#{oRankNo} and menu_no=#{menuNo} and m_option_name=#{mOptionName}
+	</select>
+	
+	
+	<insert id="insertOption"  parameterType="ownerMenuOptionVo" >
+		<selectKey keyProperty="mOptionNo" resultType="int" order="BEFORE">
+			select MENUOPTION_SEQ.nextval from dual
+		</selectKey>
+		insert into menuOption (m_option_no, m_option_name,m_option_price, menu_no,o_rank_no)
+		values (#{mOptionNo}, #{mOptionName}, #{mOptionPrice}, #{menuNo},#{oRankNo})
+	</insert>
+	
+	<!-- <insert id="insertOption" parameterType="">
+	
+	</insert> -->
 	
 </mapper>

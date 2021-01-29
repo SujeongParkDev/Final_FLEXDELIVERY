@@ -130,7 +130,7 @@
 										</c:if>
 										<c:if test="${fn:substring(vo.boardThumbnail, 0,4)!='http' and (!empty vo.boardThumbnail) }">
 											<img src
-												="<c:url value='/resources/imgs/ownerMenu_images/${vo.boardThumbnail}'/>" 
+												="<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>" 
 												alt="${vo.boardTitle }" class="card-img-top" alt ="${vo.boardTitle }"style="height:150px;">
 										</c:if>
 								        <!-- 내용띄우기 -->

@@ -59,7 +59,7 @@
 	    <c:set var="type" value="${type }"></c:set> 
 	   	<c:if test="${type=='file'}">
 	   	<img src
-			="<c:url value='/resources/imgs/ownerMenu_images/${ownerBoardVo.boardThumbnail}'/>" 
+			="<c:url value='/resources/imgs/NoticeEventImages/${ownerBoardVo.boardThumbnail}'/>" 
 			alt="${ownerBoardVo.boardTitle }" style="height:250px;">
 		</c:if>
 		<c:if test="${type=='url'}">

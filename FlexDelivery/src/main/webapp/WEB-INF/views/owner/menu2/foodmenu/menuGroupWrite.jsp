@@ -45,17 +45,108 @@
 				} 
 		  });
 	   
+	  
+	  
+	  //버튼 눌렀을때
 	  $(function(){
-			$('form[name=frm]').submit(function(){
+			$('#groupBT').click(function(){
 				if($('input[id=sMGroupName]').val().length<1){
 					alert('그룹명을 입력해 주세요');
 					$('input[name=sMGroupName]').focus();
 					event.preventDefault();
 				}
+				
+				
+			$.ajax({
+				url:"<c:url value='/owner/menu2/foodmenu/checkDupGroupName.do'/>",
+				data:"sMGroupName=" + $('#sMGroupName').val(),
+				dataType:"json",
+				type:"GET",
+				success:function(res){
+					//alert(res);
+					if(res==true){
+						$('.checkDup').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+						$('input[name=sMGroupName]').focus();
+						event.preventDefault();
+						return false;
+					}else{
+						$('form[name=frm]').submit();
+					}
+				},
+				error:function(xhr, status, error){
+					alert("error!! : " + error);
+				}
+			});
+				event.preventDefault();
 			});
 			
 		}); 
 	  
+	  
+	  //엔터 누를때 
+	  $(function(){
+			$(document).keypress(function(event){
+				if(event.key==="Enter"){
+					if($('input[id=sMGroupName]').val().length<1){
+						alert('그룹명을 입력해 주세요');
+						$('input[name=sMGroupName]').focus();
+						event.preventDefault();
+					}
+					
+				
+					$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/checkDupGroupName.do'/>",
+						data:"sMGroupName=" + $('#sMGroupName').val(),
+						dataType:"json",
+						type:"GET",
+						success:function(res){
+							//alert(res);
+							if(res==true){
+								$('.checkDup').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('input[name=sMGroupName]').focus();
+								event.preventDefault();
+								return false;
+							}else{
+								$('form[name=frm]').submit();
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
+				}
+				event.preventDefault();
+			});
+			
+		}); 
+	  
+	  
+	  //input 에 값입력했을때
+	  $(function(){
+			$('input[type=text]').change(function(){
+			
+				if($(this).prop('name')=='sMGroupName'){
+					$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/checkDupGroupName.do'/>",
+						data:"sMGroupName=" + $('#sMGroupName').val(),
+						dataType:"json",
+						type:"GET",
+						success:function(res){
+							//alert(res);
+							if(res==true){
+								$('.checkDup').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('input[name=sMGroupName]').focus();
+								event.preventDefault();
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
+				}
+			});
+			
+		});
 	
 	  
 	</script>
@@ -78,13 +169,14 @@
 		                    <div class="col-12">
 		                        <div class="form-group">
 		                        <label for="first-name-vertical">메뉴 그룹 이름</label>
-		                        <input type="text" id="sMGroupName" class="form-control" name="sMGroupName">
+		                        <input type="text" id="sMGroupName" class="form-control text-right" name="sMGroupName">
+		                        <span class="checkDup" style="color:red; float:right;"></span>
 		                        <input type="hidden" name="storeNo" value="${storeNo}"> 
 		                        <!-- 나중에 storeNo 수정필요 -->
 		                        </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" value="등록">
+		                        <input type="button" class="btn btn-primary mr-1 mb-1"  id="groupBT" value="등록">
 		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>
