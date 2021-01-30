@@ -2,11 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../adminInc/top.jsp" %>
 
+<script>
+$(function(){
+	$('#btWrite').click(function(){
+		location.href="${pageContext.request.contextPath}/admin/menu3/event/write.do";
+	});
+});
+</script>
+
 <!-- css start -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
-   
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
@@ -14,101 +20,75 @@
 
 <div class="container">
 	<div class="row">
-		<div class="main-content container-fluid">
-			<div class="page-title">
+	    <div class="col-12">
+           <div class="card">
+              <div class="card-header">
+                <h3 class="section-title text-uppercase">이벤트</h3>
+                <p class="text-subtitle text-muted">사장님을 위해 준비한 플렉스 딜리버리의 이벤트.</p>
+                <hr>
+              </div>
+		<!-- 	<div class="page-title">
 		        <div class="row">
+		        </div>
 		            <div class="col-12 col-md-6 order-md-1 order-last">
-		                <h3>이벤트</h3>
-		                <p class="text-subtitle text-muted">플렉스 딜리버리가 사장님께 소개하는 꿀팁!</p>
-		            </div>
-		        </div>
 		    </div>
-
-			<!-- ##### Blog Wrapper Start ##### -->
-		    <div class="blog-wrapper section-padding-100-0 clearfix">
-		        <div class="container">
-		            <div class="row">
-		                <!-- Single Blog Area  -->
-		                <div class="col-12 col-md-6 col-lg-4">
-		                    <div class="single-blog-area blog-style-2 mb-100">
-		                        <div class="single-blog-thumbnail">
-		                            <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/4.jpg" alt="">
-		                            <div class="post-date">
-		                                <a href="#">3 <span>march</span></a>
-		                            </div>
-		                        </div>
-		                        <!-- Blog Content -->
-		                        <div class="single-blog-content mt-50">
-		                            <div class="line"></div>
-		                            <a href="#" class="post-tag">JIAN.B 작가와 플렉스 딜리버리의</a>
-		                            <h4><a href="#" class="post-headline">을지로 사진전 이야기</a></h4>
-		                            <div class="post-meta">
-		                                <!-- <p>By <a href="#">james smith</a></p> -->
-		                                <p>2021-01-19</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <!-- Single Blog Area  -->
-		                <div class="col-12 col-md-6 col-lg-4">
-		                    <div class="single-blog-area blog-style-2 mb-100">
-		                        <div class="single-blog-thumbnail">
-		                            <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/5.jpg" alt="">
-		                            <div class="post-date">
-		                                <a href="#">2<span>march</span></a>
-		                            </div>
-		                        </div>
-		                        <!-- Blog Content -->
-		                        <div class="single-blog-content mt-50">
-		                            <div class="line"></div>
-		                            <a href="#" class="post-tag">테이크아웃도 플렉스 딜리버리에서!</a>
-		                            <h4><a href="#" class="post-headline">집에서 커피 한 잔 어때요?</a></h4>
-		                            <div class="post-meta">
-		                                <!-- <p>3 comments</p> -->
-		                                <p>2021-01-19</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <!-- Single Blog Area  -->
-		                <div class="col-12 col-md-6 col-lg-4">
-		                    <div class="single-blog-area blog-style-2 mb-100">
-		                        <div class="single-blog-thumbnail">
-		                            <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/6.jpg" alt="">
-		                            <div class="post-date">
-		                                <a href="#">1 <span>march</span></a>
-		                            </div>
-		                        </div>
-		                        <!-- Blog Content -->
-		                        <div class="single-blog-content mt-50">
-		                            <div class="line"></div>
-		                            <a href="#" class="post-tag">2020 플렉스 딜리버리</a>
-		                            <h4><a href="#" class="post-headline">떡볶이 마스터즈 온라인</a></h4>
-		                            <div class="post-meta">
-		                                <!-- <p>By <a href="#">james smith</a></p> -->
-		                                <p>2020-12-25</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <!-- ##### Blog Wrapper End ##### -->
+		    </div> -->
 		    
+				<div class="card-content"> 
+		           <!-- modal start -->
+		           <div class="card-body" style="text-align: right;">
+		                <button type="button" class="btn btn-dark round block" id="btWrite"
+		                 >
+					     글쓰기
+						</button>    
+				  </div>
+				  <div class="card-body">
+		            	<c:if test="${empty list }">
+				            <h3 class="card-title white text-center">등록된 이벤트 게시글이 없습니다.</h3>
+				            <br><br>
+		            	</c:if>
+		            	<div class="row">
+
+		            	<c:if test="${!empty list }">                  
+                        	<c:forEach var="vo" items="${list}" varStatus="status">
+				                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+				                    <div class="single-blog-area blog-style-2 mb-100">
+				                        <div class="single-blog-thumbnail">
+				                            <img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/${vo.boardThumbnail}" 
+				                            	alt="글 ${vo.boardTitle }의 이미지">
+				                            <div class="post-date">
+				                                <a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>">${vo.boardNo } <span>EVENT</span></a>
+				                            </div>
+				                        </div>
+				                        <div class="single-blog-content mt-50">
+				                            <div class="line"></div>
+				                            <a href="#" class="post-tag">${vo.boardRegdate }</a>
+				                            <h4><a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>" 
+				                            	class="post-headline">${vo.boardTitle }</a></h4>
+				                            <!-- <div class="post-meta">
+				                                <p>By <a href="#">james smith</a></p>
+				                                <p>3 comments</p>
+				                            </div> -->
+				                        </div>
+				                    </div>
+				                </div>
+		            		</c:forEach>
+	            		</c:if>
+     				    </div>
+		    		</div><!-- card-body -->
+	    		</div><!-- card-content -->
+		    </div><!-- card -->
 	    </div>
     </div>
 </div>
-
+    
 <!-- script start -->
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-   
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>  
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
-
+    
 <%@ include file="../../adminInc/bottom.jsp" %>

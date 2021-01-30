@@ -4,7 +4,7 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.adminfaq">
 
-	<select id="selectAll" parameterType="adminGiftProductVo" resultType="adminGiftProductVo">
+	<select id="selectAll" parameterType="adminFaqVo" resultType="adminFaqVo">
 		select FAQ_NO, F_CATEGORY_NO, FAQ_Q, FAQ_A from FAQ
 		order by FAQ_NO desc
 	</select>
@@ -14,6 +14,11 @@
 		from FAQ f left join FAQCATEGORY c
 		on f.F_CATEGORY_NO=c.F_CATEGORY_NO
 		order by f.FAQ_NO
+	</select>
+	
+	<select id="selectCategoryAll" parameterType="adminFaqCategoryVo" resultType="adminFaqCategoryVo">
+		select F_CATEGORY_NO, F_CATEGORY_NAME, AUTHORITY_NO from FAQCATEGORY
+		order by F_CATEGORY_NO desc
 	</select>
 	
 	<insert id="insertFaq" parameterType="adminFaqVo" >
@@ -33,6 +38,25 @@
 	<delete id="deleteFaq" parameterType="adminFaqVo">
 		delete from FAQ
 		where FAQ_NO=#{faqNo}
+	</delete>
+	
+	<insert id="insertFaqCategory" parameterType="adminFaqCategoryVo" >
+		<selectKey keyProperty="fCategoryNo" resultType="int" order="BEFORE">
+			select FAQCATEGORY_seq.nextval from dual
+		</selectKey>
+		insert into FAQCATEGORY(F_Category_NO, F_CATEGORY_NAME, AUTHORITY_NO)
+		values(#{fCategoryNo}, #{fCategoryName}, #{authorityNo})
+	</insert>
+	
+	<update id="updateFaqCategory" parameterType="adminFaqCategoryVo">
+		update FAQCATEGORY
+		set F_CATEGORY_NAME=#{fCategoryName}
+		where FAQ_NO=#{faqNo} <!--and AUTHORITY_NO=6 -->
+	</update>
+	
+	<delete id="deleteFaqCategory" parameterType="adminFaqCategoryVo">
+		delete from FAQCATEGORY
+		where F_CATEGORY_NO=#{fCategoryNo}
 	</delete>
 	
 </mapper>

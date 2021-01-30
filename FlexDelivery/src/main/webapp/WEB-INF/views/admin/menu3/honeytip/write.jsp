@@ -14,12 +14,12 @@ $(function(){
 		var img=$('#upfile').val();
 		
 		
-		if (contents==''){
-			alert("내용을 입력하세요");
-			return false;
-		}
 		if (title==''){
 			alert("제목을 입력하세요");
+			return false;
+		}
+		if (contents==''){
+			alert("내용을 입력하세요");
 			return false;
 		}
 		/* if (img==''){

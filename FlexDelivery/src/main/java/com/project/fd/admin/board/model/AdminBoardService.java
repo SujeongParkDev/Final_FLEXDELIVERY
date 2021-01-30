@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface AdminBoardService {
 	List<AdminBoardVO> selectAll();
+	List<AdminBoardVO> selectNotice();
+	List<AdminBoardVO> selectEvent();
 	
 	AdminBoardVO selectByNo(int no);
 	

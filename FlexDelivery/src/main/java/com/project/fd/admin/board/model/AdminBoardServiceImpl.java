@@ -15,6 +15,14 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	public List<AdminBoardVO> selectAll() {
 		return boardDao.selectAll();
 	}
+	@Override
+	public List<AdminBoardVO> selectNotice() {
+		return boardDao.selectNotice();
+	}
+	@Override
+	public List<AdminBoardVO> selectEvent() {
+		return boardDao.selectEvent();
+	}
 
 	@Override
 	public AdminBoardVO selectByNo(int no) {

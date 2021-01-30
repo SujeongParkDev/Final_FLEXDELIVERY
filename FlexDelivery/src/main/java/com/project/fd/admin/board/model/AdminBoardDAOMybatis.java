@@ -12,11 +12,21 @@ public class AdminBoardDAOMybatis implements AdminBoardDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String namespace="config.mybatis.mapper.oracle.adminhoneytip.";
+	private String namespace="config.mybatis.mapper.oracle.adminboard.";
 
 	@Override
 	public List<AdminBoardVO> selectAll() {
 		return sqlSession.selectList(namespace+"selectAll");
+	}
+	
+	@Override
+	public List<AdminBoardVO> selectNotice() {
+		return sqlSession.selectList(namespace+"selectNotice");
+	}
+	
+	@Override
+	public List<AdminBoardVO> selectEvent() {
+		return sqlSession.selectList(namespace+"selectEvent");
 	}
 
 	@Override
