@@ -29,8 +29,7 @@ public class OwnerAdminAgreeListcontroller {
 	
 	@Autowired private OwnerRegisterService ownerRService;
 	@Autowired private FileUploadUtil fileUtil;
-	@Autowired private OwnerAdvertiseService ownerAdvertiseService;
-	
+	@Autowired private OwnerService ownerService;
 	
 	// 승인 신청 목록 불러오기 세션의 오너넘버로 조회 
 			@RequestMapping("/temporary/tempList.do")
@@ -63,7 +62,7 @@ public class OwnerAdminAgreeListcontroller {
 	
 			
 			// 딜리트 아니고 업데이트 2번으로 모드 에 따라서 처리하기 
-			@RequestMapping(value="/tempDelete.do", method = RequestMethod.GET)
+			@RequestMapping(value="/temporary/tempListDelete.do", method = RequestMethod.POST)
 			public String temp_Delete(
 					@RequestParam(defaultValue = "0") int no,
 				@RequestParam String mode,
@@ -106,6 +105,43 @@ public class OwnerAdminAgreeListcontroller {
 				//4
 				return "common/message";
 			}
+			
+			 @RequestMapping(value = "/temporary/tempListPwdCheck.do", method = RequestMethod.GET)
+				public String tempPwdCheck_get(Model model) {
+					logger.info("/tempListPwdCheck.do 창 보여주기");
+					
+					
+					int YorN = OwnerService.GO_PWD;
+					model.addAttribute("YorN", YorN);
+					
+					
+					return "owner/menu2/temporary/tempListPwdCheck";
+				}
+			 
+			 @RequestMapping(value="/tempListPwdCheck.do", method=RequestMethod.POST)
+			  public String tempPwdCheck_post(@RequestParam(required = false) String ownerPwd, HttpSession session, Model model) {
+				  String userid = (String) session.getAttribute("ownerId");
+				  logger.info("advertisePwdCheck 창 보여주기 , 파라미터 ownerPwd={}, userid={}",ownerPwd,userid);
+				  
+				   int result =ownerService.loginChk(userid, ownerPwd);
+				   logger.info("비밀번호 확인 결과, result={}", result);
+				  
+				   int YorN = 0;
+				   if(result==OwnerService.ID_NONE) {
+					   YorN=OwnerService.ID_NONE; //2
+				   }else if(result==OwnerService.PWD_DISAGREE) {
+					   YorN=OwnerService.PWD_DISAGREE; //3
+				   }
+				 
+				   model.addAttribute("YorN",YorN);
+				   
+				   
+				   return "owner/menu2/temporary/tempListPwdCheck";
+			  }
+			 
+
+			
+			
 	/* @RequestMapping(value="/temporary/tempList.do",method=RequestMethod.GET)
 	 public void TempList_get() {
 		 logger.info("점포 - 승인 목록 조회  화면");

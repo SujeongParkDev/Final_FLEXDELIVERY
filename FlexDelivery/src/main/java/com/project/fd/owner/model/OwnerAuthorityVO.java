@@ -1,13 +1,14 @@
 package com.project.fd.owner.model;
 
 public class OwnerAuthorityVO {
-	private int oRegisterNo;
+	private long oRegisterNo;
 	private int ragreeno; //별칭이라 혹시몰라 붙여썼습니다. _ 안썼어요
 	private int storeNo;
 	private int sagreeno; // 별칭이라 혹시 몰라 붙여썼어요 언더바 안썼어요
 	private int ownerNo;
 	private String ownerId;
-	public int getoRegisterNo() {
+	
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
 	public int getRagreeno() {
@@ -40,7 +41,7 @@ public class OwnerAuthorityVO {
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
-	public void setoRegisterNo(int oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	@Override
