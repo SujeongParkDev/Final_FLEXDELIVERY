@@ -47,4 +47,7 @@
 		select count(*) from member where member_Id=#{memberId}
 	</select>
 	
+	<select id="memloNo" parameterType="string" resultType="int">
+		select location_No from location where location_Name=#{locationName}
+	</select>
 </mapper>

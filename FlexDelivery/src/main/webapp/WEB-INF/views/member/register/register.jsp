@@ -172,6 +172,7 @@
 <!--					<div class="py-2">
 							<button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
 						</div> -->
+                    	<input type ="text" name="locationName" id="locationName">
 					</form>
 				</div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
@@ -179,8 +180,6 @@
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
                     <input type ="text" name="chkId" id="chkId">
-                    <input type ="text" name="locationName" id="locationName">
-                    <input type ="text" name="locationNo" id="locationNo">
                 </div>
             </div>
         </div>
