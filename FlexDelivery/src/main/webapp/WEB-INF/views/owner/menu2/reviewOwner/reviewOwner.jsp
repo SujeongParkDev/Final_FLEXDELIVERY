@@ -2,13 +2,25 @@
 	pageEncoding="UTF-8"%>
  <%@include file="../../../ownerInc/jianSidebarTop.jsp"%> 
  <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!-- top 끝 -->
+ <!-- CSS start -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg"
+	type="image/x-icon">
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/reviewOwner.css" />
+<!-- CSS end -->
+<div class="container position-relative">
+        <div class="row">
+            <div class="col-md-8 pt-3">
 
-<div class="frame-wrap">
-	<div class="frame-body">
-	
 		<div>
 			<div class="ShopSelect mb-4 mb-sm-0">
 				<select><option value="13195815">피자피자 잠실점</option></select>
@@ -79,11 +91,11 @@
 				
 				<div class="radio-group mx-sm-2 mb-3">
 					<label class="radio-button"><input type="radio" value=""
-						checked="" id="ck1">
+						checked="" id="ck1" value="1">
 					<p class="label">전체(${fn:length(reviewList) })</p></label><label class="radio-button"><input
-						type="radio" value="" id="ck2">
+						type="radio" value="" id="ck2" value="2">
 					<p class="label">미답변(0)</p></label><label class="radio-button"><input
-						type="radio" value="" id="ck3">
+						type="radio" value="" id="ck3" value="3">
 					<p class="label">차단(0)</p></label>
 				</div>
 
@@ -108,9 +120,7 @@
 								<c:if test="${fn:length(map['MEMBER_ID'])>=3}">
 									${fn:substring(map['MEMBER_ID'], 2,10) }*
 								</c:if>
-							
 							 -->
-								
 									<div class="rating-stars">
 										<span style="width: 100%;"></span>${map['REVIEW_RATING'] }점 
 									</div>
@@ -182,6 +192,8 @@
 				</div>
 			</div>
 			</div>
+			        </div>
+           
 			
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -207,54 +219,46 @@
 			error:function(xhr, status, error){
 				alert("error! : " + error);
 			}				
-		});
+		});//ajax
+		
 				//$('#content').val("");
 		
 		event.preventDefault();
 	});
-	});
-	/*
 	
-	
-	
-	
-	
-	function check(){
-		var form = document.changehtml;
-		//첫번째 라디오 버튼을 선택한 경우
-		if(form.ex[0].checked == true){
-			//현재 폼의 action 값을 menu_1.html이라는 파일로 만든다
-			form.action="menu_2.html";
-		}
-		//두번째 라디오 버튼을 선택한 경우
-		else if(form.ex[1].checked == true){
-			form.action = "menu_2.html";
-		}
-		else{
-			form.action = "menu_3.html";
-		}
-		form.submit();
-	}
-	
-	$(function(){
-	$('.tabgroup > div').hide();
-	$('.tabgroup > div:first-of-type').show();
-	$('.tabs a').click(function(e){
-	  e.preventDefault();
-	    var $this = $(this),
-	        tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
-	        others = $this.closest('li').siblings().children('a'),
-	        target = $this.attr('href');
-	    others.removeClass('active');
-	    $this.addClass('active');
-	    $(tabgroup).children('div').hide();
-	    $(target).show();
-	  
-	});
-	});
-	    
+	// 미답변 차단 라디오 버튼으로 구분 
 
-	*/
+	$('#radio').click(function(){
+		if($('#ck1').val()==1){
+			
+		}else if($('#ck2').val()==2){
+			$.ajax({
+				url:"<c:url value='/owner/menu2/reviewOwner/reviewOwnerOP1.do'/>",
+				type:"post",
+				data:$(this).serializeArray(), //입력양식의 내용을 객체로 만든다
+				dataType:"json",
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(res){
+					alert(res);
+					//var str=res.message+ "<br>";
+					//str+="메모 : " + res.data.content;
+					
+					//$('#result').html(str);
+				},
+				error:function(xhr, status, error){
+					alert("error! : " + error);
+				}				
+			});//ajax
+		}else if($('#ck3').val()==3){
+			
+		}
+		
+	});
+	
+});//
+
+
+
 	</script>
 <!-- script start -->
 <script

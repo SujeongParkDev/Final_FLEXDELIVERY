@@ -44,8 +44,7 @@ public class OwnerRegisterController {
 			 HttpServletRequest request, HttpSession session,
 			 Model model) {
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		 vo.setOwnerNo(ownerNo);
-		 logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
+		logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
 
 		 //파일 업로드 처리
 			String originName="", fileName="test";
@@ -110,25 +109,6 @@ public class OwnerRegisterController {
 			return bool;
 		}
 	 
-	 @ResponseBody
-		@RequestMapping("/reviewOwnerOP1.do")
-		public boolean ajaxCheckId(@RequestParam long oRegisterNo) {
-			logger.info("ajax 이용-아이디 중복확인, oRegisterNo={}", oRegisterNo);
-			
-			boolean bool=false;
 
-			int result=(Integer)ownerRegisterService.oRegisterNoDup(oRegisterNo);
-			logger.info("같은 사업자 등록번호가 있는지  결과, result={}", result);
-			
-			
-			if(result==OwnerRegisterService.EXIST_REGISTER_NO) {
-				bool=true;  //이미 존재
-			}else if(result==OwnerRegisterService.NON_EXIST_REGISTER_NO) {
-				bool=false;	//사용 가능		
-			}
-			
-			return bool;
-		}
-	
 	 
 }

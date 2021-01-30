@@ -17,14 +17,16 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectReView(int storeNo) {
-		return ownerReviewCommentDao.selectReView(storeNo);
+	public List<Map<String, Object>> selectReView(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.selectReView(searchVo);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectOptionView(int storeNo) {
-		return ownerReviewCommentDao.selectOptionView(storeNo);
+	public int getTotalRecord(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.getTotalRecord(searchVo);
 	}
+
+
 
 	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface OwnerReivewCommentDAO {
 	 int insertComm(OwnerReviewCommentVO vo);
-	 List<Map<String, Object>> selectReView(int storeNo);
-	 List<Map<String, Object>> selectOptionView(int storeNo);
+	 List<Map<String, Object>> selectReView(OwnerReviewSearchVO searchVo);
+	 int getTotalRecord(OwnerReviewSearchVO searchVo);
+	 
 }
