@@ -23,16 +23,17 @@ public class MemberMenuController {
 	
 	
 	@RequestMapping("/menuGroupInc.do")
-	public String storeMenuGroupInc(@RequestParam int storeNo,Model model) {
+	public String storeMenuGroupInc(@RequestParam int storeNo,@RequestParam String storeName,Model model) {
 		logger.info("점포 메뉴그룹출력 div, storeNo={}",storeNo);
 		List<MemberMenuGroupVO> list=menuServ.selectMenuGroupByStoreNo(storeNo);
 		logger.info("점포 메뉴그룹 list.size={}",list.size());
+		model.addAttribute("storeName",storeName);
 		model.addAttribute("menuGroupList",list);
 		return "member/store/menu/menuGroupInc";
 	}
 	
 	@RequestMapping("/menuInc.do")
-	public String storeMenuInc(@RequestParam int sMGroupNo,Model model) {
+	public String storeMenuInc(@RequestParam int sMGroupNo,@RequestParam String storeName,Model model) {
 		logger.info("점포 메뉴 출력 div, sMGroupNo={}",sMGroupNo);
 		List<MemberMenuAllVO> list=menuServ.selectMenuBySMGroupNo(sMGroupNo);
 		logger.info("점포메뉴출력 list.size={}",list.size());

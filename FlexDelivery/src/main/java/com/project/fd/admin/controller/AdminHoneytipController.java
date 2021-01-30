@@ -45,18 +45,25 @@ public class AdminHoneytipController {
 		return "admin/menu3/honeytip";
 	}
 	
+	@RequestMapping(value="/honeytip/write.do", method = RequestMethod.GET)
+	public String write_get() {
+		logger.info("사장님꿀팁 글쓰기 화면");
+			
+		return "admin/menu3/honeytip/write";
+	}
+
 	@RequestMapping(value="/honeytip/write.do", method = RequestMethod.POST)
 	public String write_post(@ModelAttribute AdminHoneytipVO honeytipVo,
 			HttpServletRequest request) {
-		logger.info("사장님꿀팁 등록 처리, 파라미터 vo={}", honeytipVo);
+		logger.info("write_post 사장님꿀팁 등록 처리, 파라미터 vo={}", honeytipVo);
 	
 		//파일 업로드 처리
 		String originName="", fileName="";
 		long fileSize=0;
 
-		if (honeytipVo.getHoneytipThumbnail()==null) {
+		/*if (honeytipVo.getHoneytipThumbnail()==null) {
 			fileName="honeytipDefulat.jpg";
-		}
+		}*/
 		
 		try {
 			List<Map<String, Object>> fileList
@@ -82,7 +89,7 @@ public class AdminHoneytipController {
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
 		
 		
-		return "admin/menu3/honeytip";
+		return "redirect:/admin/menu3/honeytip.do";
 	}
 	
 	//모달에서 서브밋 하면 폼 정보 가지고 온다~
@@ -128,6 +135,28 @@ public class AdminHoneytipController {
 	}
 	*/
 
+	@RequestMapping("/honeytip/detail.do")
+	public String detail(@RequestParam(defaultValue = "0") int no, Model model) {
+		//1
+		logger.info("detail 상세보기 파라미터 no={}", no);
+		if(no==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/admin/menu3/honeytip.do");
+			
+			return "common/message";
+		}
+		
+		//2
+		AdminHoneytipVO honeytipVo=honeytipService.selectByNo(no);
+		logger.info("상세보기 결과,vo={}", honeytipVo);
+		
+		//3
+		model.addAttribute("vo", honeytipVo);
+		
+		//4
+		return "admin/menu3/honeytip/detail";
+	}
+	
 	@RequestMapping(value="/honeytip/edit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute AdminHoneytipVO honeytipVo,
 			@RequestParam String oldFileName, HttpServletRequest request,
@@ -196,11 +225,12 @@ public class AdminHoneytipController {
 	@RequestMapping(value="/honeytip/delete.do", method=RequestMethod.POST)
 	public String delete_post(@ModelAttribute AdminHoneytipVO honeytipVo,
 			@RequestParam String oldFileName, HttpServletRequest request,
-			Model model) {
+			@RequestParam(defaultValue = "0") int no, Model model) {
 		//1
-		logger.info("delete_post 사장님꿀팁 삭제처리, 파라미터 vo={}, oldFileName={}", honeytipVo, oldFileName);
+		logger.info("delete_post 사장님꿀팁 삭제처리, 파라미터 vo={} oldFileName={}", honeytipVo, oldFileName);
+		logger.info("no={}", no);
 		
-		if(honeytipVo==null) {
+		if(honeytipVo==null || no==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/admin/menu3/honeytip.do");
 			return "common/message";

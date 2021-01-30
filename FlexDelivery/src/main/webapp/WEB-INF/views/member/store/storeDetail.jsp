@@ -3,7 +3,105 @@
 <%@include file="../../memInc/top.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
-
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		var bool = ${cartChk};
+		$('form[name=cartForm]').submit(function(){
+			if($(this).find('input[type=checkbox]:checked').length==0){
+				alert('먼저 상품을 선택해야합니다!');
+				return false;
+			}
+			if(bool){
+				var result=confirm('다른 점포의 상품이 장바구니에 존재합니다. 기존 상품을 삭제할까요?');
+				if(result){
+					var tqtq="memberNo="+${sessionScope.memberNo};
+					var tq = $.param($(this).serializeArray());
+					$.ajax({
+						url:"<c:url value='/member/cart/deleteOtherStore.do'/>",
+						type:"get",
+						data:tqtq,
+						success:function(bool){
+							if(bool){
+								$.ajax({
+									url:"<c:url value='/member/cart/addCart.do'/>",
+									type:"post",
+									data:tq,
+									dataType:"json",
+									success:function(bool){
+										if(bool){
+											alert('장바구니에 상품을 담았습니다');
+											$('.closeBt').click();
+										}else{
+											alert('장바구니 담기 실패ㅠㅠ');
+											$('.closeBt').click();
+										}
+									},
+									error:function(error){
+										alert("error : "+error);
+									}
+								});
+								event.preventDefault();
+							}else{
+								alert('장바구니 삭제 실패ㅠㅠ');
+								$('.closeBt').click();
+							}
+						},
+						error:function(xhr,request,errorThrown){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error+"cnt="+cnt);
+						}
+					});
+					event.preventDefault();
+				}else{
+					event.preventDefault();
+					return false;
+				}
+			}else{
+				$.ajax({
+					url:"<c:url value='/member/cart/addCart.do'/>",
+					type:"post",
+					data:$(this).serializeArray(),
+					dataType:"json",
+					success:function(bool){
+						if(bool){
+							alert('장바구니에 상품을 담았습니다');
+							$('.closeBt').click();
+						}else{
+							alert('장바구니 담기 실패ㅠㅠ');
+							$('.closeBt').click();
+						}
+					},
+					error:function(error){
+						alert("error : "+error);
+					}
+				});
+				event.preventDefault();
+			}
+		});
+		
+		$('.modal').on('hidden.bs.modal',function(){
+			$(this).find('input[name=cartQty]').val(1);
+		});
+		
+		$('.minusBt').click(function(){
+			if(parseInt($(this).next('.count-number-input').val())<2){
+				event.preventDefault();
+				return false;
+			}
+			var s=parseInt($(this).next('input[name=cartQty]').val());
+			$(this).next('input[name=cartQty]').val(s-1);
+		});
+		
+		$('.plusBt').click(function(){
+			if(parseInt($(this).prev('.count-number-input').val())>9){
+				event.preventDefault();
+				return false;
+			}
+			var s=parseInt($(this).prev('input[name=cartQty]').val());
+			$(this).prev('input[name=cartQty]').val(s+1);
+		});
+	});
+</script>
     <div class="d-none">
         <div class="bg-primary p-3 d-flex align-items-center">
             <a class="toggle togglew toggle-2" href="#"><span></span></a>
@@ -14,7 +112,7 @@
         <div class="container position-relative">
             <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
-                <h2 class="font-weight-bold">${vo.storeName }</h2>
+                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}</h2>
                 <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
                 <div class="rating-wrap d-flex align-items-center mt-2">
                     <ul class="rating-stars list-unstyled">
@@ -46,21 +144,111 @@
             </div>
         </div>
     </div>
-    
-    
     <div class="container position-relative">
         <div class="row">
             <div class="col-md-8 pt-3">
             	<!-- Menu -->
+            	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
+	            	<div class="d-flex item-aligns-center">
+				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">대표메뉴</p>
+				    </div>
+            		<div class="row m-0">
+						<div class="col-md-12 px-0 border-top">
+						    <div class="bg-white">
+						    	<!-- 대표메뉴 -->
+						    	<div class="p-3 border-bottom gold-members">
+								    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#option${menuAllvo.memberMenuVo.menuNo}">옵션 선택</a></span>
+								    <div class="media">
+								        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
+								        <div class="media-body">
+								            <h6 class="mb-1">${menuAllvo.memberMenuVo.menuName}</h6>
+								            <p class="text-muted mb-0">${menuAllvo.memberMenuVo.menuPrice}원</p>
+								        </div>
+								    </div>
+								</div>
+								<div class="modal fade" id="option${menuAllvo.memberMenuVo.menuNo}" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
+							        <div class="modal-dialog modal-dialog-centered">
+							            <div class="modal-content">
+							                <div class="modal-header">
+								                <h5 class="modal-title">${menuAllvo.memberMenuVo.menuName}</h5>
+								                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								                	<span aria-hidden="true">&times;</span>
+								                </button>
+							                </div>
+							                <div class="col-md-12" style="text-align: center;line-height: 25">
+							                	<img src="<c:url value='/resources/imgs/${menuAllvo.memberMenuVo.menuImg}' />" width="250px" height="250px">
+							                	<br>
+												<p class="h5">${menuAllvo.memberMenuVo.menuContent}</p>                 	
+							                </div>
+							                <form name="cartForm">
+							                	<input type="hidden" name="menuNo" value="${menuAllvo.memberMenuVo.menuNo}">
+							                	<input type="hidden" name="storeNo" value="${storeNo}">
+							                	<input type="hidden" name="storeName" value="${vo.storeName}">
+								                <div class="modal-body p-0">
+								                    <div class="osahan-filter">
+								                        <div class="filter">
+								                            <!--옵션선택 -->
+								                            <c:if test="${empty menuAllvo.menuOptionList}">
+									                            <div class="p-3 bg-light border-bottom">
+									                                <h6 class="m-0">옵션상품이 없습니다.</h6>
+									                                <div class="custom-control border-bottom px-0  custom-checkbox">
+										                                <input type="checkbox" class="custom-control-input" id="noOption${menuAllvo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
+										                                <label class="custom-control-label py-3 w-100 px-3" for="noOption${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">${menuAllvo.memberMenuVo.menuPrice}원</p></label>
+									                                </div>
+									                            </div>
+								                            </c:if>
+								                            <c:if test="${!empty menuAllvo.menuOptionList}">
+									                            <div class="p-3 bg-light border-bottom">
+									                                <h6 class="m-0">옵션선택</h6>
+									                            </div>
+									                            	<div class="custom-control border-bottom px-0  custom-checkbox">
+										                                <input type="checkbox" class="custom-control-input" id="noOptionMain${menuAllvo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
+										                                <label class="custom-control-label py-3 w-100 px-3" for="noOptionMain${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">${menuAllvo.memberMenuVo.menuPrice}원</p></label>
+									                                </div>
+									                            <c:forEach var="oVo" items="${menuAllvo.menuOptionList}" varStatus="i">
+										                            <div class="custom-control border-bottom px-0  custom-checkbox">
+										                                <input type="checkbox" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="optionList[${i.count}].mOptionNo" value="${oVo.mOptionNo}">
+										                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">${oVo.mOptionPrice}원</p></label>
+										                            </div>
+									                            </c:forEach>
+								                            </c:if>
+								                        </div>
+								                    </div>
+								                </div>
+								                <div class="p-3 bg-light border-bottom">
+								                    <p class="text-muted h6">수량 <span class="count-number float-right">
+								                    	<button type="button" class="btn-sm btn btn-outline-secondary minusBt"><i class="feather-minus"></i></button>
+								                    	<input class="count-number-input qty" type="text" name="cartQty" readonly="readonly" value="1">
+								                    	<button type="button" class="btn-sm btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
+								                    </span></p>
+								                </div>
+								                <div class="modal-footer p-0 border-0">
+								                    <div class="col-6 m-0 p-0">
+								                        <button type="submit" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
+								                    </div>
+								                    <div class="col-6 m-0 p-0">
+								                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">취소</button>
+								                    </div>
+								                </div>
+							                </form>
+							            </div>
+							        </div>
+							    </div>
+					        </div>
+					    </div>
+					</div>
+            	</div>
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
 				    <div class="d-flex item-aligns-center">
 				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">메뉴</p>
 				    </div>
 		            <c:import url="/member/menu/menuGroupInc.do">
 		            	<c:param name="storeNo" value="${storeNo}" />
+		            	<c:param name="storeName" value="${vo.storeName}" />
 		            </c:import>
                 </div>
                 <!-- /Menu -->
+                
                 <!-- Review -->
                 <div class="mb-3">
                     <div id="ratings-and-reviews" class="bg-white shadow-sm d-flex align-items-center rounded p-3 mb-3 clearfix restaurant-detailed-star-rating">

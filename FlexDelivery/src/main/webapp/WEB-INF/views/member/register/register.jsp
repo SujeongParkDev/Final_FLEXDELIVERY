@@ -97,8 +97,8 @@
 <body>
     <div class="osahan-signup login-page">
         <video loop autoplay muted id="vid">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
+            <source src="<c:url value='/resources/memberResources/img/bg4.mp4' />" type="video/mp4">
+            <source src="<c:url value='/resources/memberResources/img/bg4.mp4' />" type="video/ogg">
          </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-110">
             <div class="px-6 col-md-6 ml-auto">
@@ -167,7 +167,6 @@
 							<input type="text" placeholder="상세주소를 입력하세요." class="form-control" id="memberAddressDetail" name="memberAddressDetail" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 						</div>
 						
-						
 						<input type="submit" class="btn btn-primary btn-lg btn-block" id="wr_submit" value="회원 가입">
 						
 <!--					<div class="py-2">
@@ -179,8 +178,9 @@
                     <a href="<c:url value='/member/login/memberLogin.do' />">
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
-                    <input type ="hidden" name="chkId" id="chkId">
-                    <input type ="hidden" name="locationNo" id="locationNo">
+                    <input type ="text" name="chkId" id="chkId">
+                    <input type ="text" name="locationName" id="locationName">
+                    <input type ="text" name="locationNo" id="locationNo">
                 </div>
             </div>
         </div>

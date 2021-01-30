@@ -20,18 +20,18 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	}
 
 	@Override
-	public AdminTemporaryVO editDetail(int no) {
+	public AdminTemporaryVO editDetail(long no) {
 		AdminTemporaryVO vo = sqlSession.selectOne(namespace+"editDetail", no);
 		return vo;
 	}
 
 	@Override
-	public int editAgree(int no) {
+	public int editAgree(long no) {
 		return sqlSession.update(namespace+"editAgree", no);
 	}
 
 	@Override
-	public int editDeny(int no) {
+	public int editDeny(long no) {
 		return sqlSession.update(namespace+"editDeny", no);
 	}		
 }

@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
-<script type="text/javascript">
-	$(function(){
-		
-	});
-</script>
 <c:forEach var="mVo" items="${menuList}">
 	<div class="p-3 border-bottom gold-members">
 	    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#option${mVo.memberMenuVo.menuNo}">옵션 선택</a></span>
@@ -32,8 +26,10 @@
                 	<br>
 					<p class="h5">${mVo.memberMenuVo.menuContent}</p>                 	
                 </div>
-                <form action="" method="post" id="cartForm">
+                <form name="cartForm">
                 	<input type="hidden" name="menuNo" value="${mVo.memberMenuVo.menuNo}">
+                	<input type="hidden" name="storeNo" value="${storeNo}">
+                	<input type="hidden" name="storeName" value="${storeName}">
 	                <div class="modal-body p-0">
 	                    <div class="osahan-filter">
 	                        <div class="filter">
@@ -41,16 +37,24 @@
 	                            <c:if test="${empty mVo.menuOptionList}">
 		                            <div class="p-3 bg-light border-bottom">
 		                                <h6 class="m-0">옵션상품이 없습니다.</h6>
+		                                <div class="custom-control border-bottom px-0  custom-checkbox">
+			                                <input type="checkbox" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
+										    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본선택<p class="text-muted mb-0">${mVo.memberMenuVo.menuPrice}원</p></label>
+									    </div>
 		                            </div>
 	                            </c:if>
 	                            <c:if test="${!empty mVo.menuOptionList}">
 		                            <div class="p-3 bg-light border-bottom">
 		                                <h6 class="m-0">옵션선택</h6>
 		                            </div>
-		                            <c:forEach var="oVo" items="${mVo.menuOptionList}">
 			                            <div class="custom-control border-bottom px-0  custom-checkbox">
-			                                <input type="checkbox" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
-			                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">${oVo.mOptionPrice}원</p></label>
+			                                <input type="checkbox" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
+										    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본선택<p class="text-muted mb-0">${mVo.memberMenuVo.menuPrice}원</p></label>
+			                            </div>
+		                            <c:forEach var="oVo" items="${mVo.menuOptionList}" varStatus="i">
+			                            <div class="custom-control border-bottom px-0  custom-checkbox">
+			                                <input type="checkbox" class="custom-control-input" id="menu${mVo.memberMenuVo.menuNo}Check${oVo.mOptionNo}" name="optionList[${i.count}].mOptionNo" value="${oVo.mOptionNo}">
+			                                <label class="custom-control-label py-3 w-100 px-3" for="menu${mVo.memberMenuVo.menuNo}Check${oVo.mOptionNo}">${oVo.mOptionName}<p class="text-muted mb-0">+${oVo.mOptionPrice}원</p></label>
 			                            </div>
 		                            </c:forEach>
 	                            </c:if>
@@ -58,11 +62,15 @@
 	                    </div>
 	                </div>
 	                <div class="p-3 bg-light border-bottom">
-	                    <h6 class="m-0">수량</h6>
+	                    <p class="m-0 h6">수량<span class="count-number float-right">
+	                    	<button type="button" class="btn-sm left dec btn btn-outline-secondary minusBt"><i class="feather-minus"></i></button>
+	                    	<input class="count-number-input qty" type="text" name="cartQty" readonly="readonly" value="1">
+	                    	<button type="button" class="btn-sm right inc btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
+	                    </span></p>
 	                </div>
 	                <div class="modal-footer p-0 border-0">
 	                    <div class="col-6 m-0 p-0">
-	                        <button type="button" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
+	                        <button type="submit" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
 	                    </div>
 	                    <div class="col-6 m-0 p-0">
 	                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">취소</button>

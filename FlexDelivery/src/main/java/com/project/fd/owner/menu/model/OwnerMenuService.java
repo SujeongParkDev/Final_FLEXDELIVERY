@@ -1,6 +1,7 @@
 package com.project.fd.owner.menu.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 
@@ -31,4 +32,14 @@ public interface OwnerMenuService {
 	public List<AdminMediumCategoryVO> selectAllMCByLCByStoreNo(int storeNo);
 	public int insertMainMenu(OwnerStoreMainMenuVO mainVo);
 	public int updateMainMenu(OwnerStoreMainMenuVO mainVo);
+	
+	public int checkDupGroupName(String sMGroupName);
+	public int checkDupMenuName(String menuName);
+	public List<OwnerMenuVO> selectMenuByGroupNo(int sMGroupNo);
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo);
+	
+	public List<OwnerOptionRankVO> selectOptionRankAll();
+
+	public int checkOptionName(Map<String, String> map);
+	public int insertOption(OwnerMenuOptionVO optionVo);
 }

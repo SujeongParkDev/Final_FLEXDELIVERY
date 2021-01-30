@@ -1,7 +1,7 @@
 package com.project.fd.owner.menu.model;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
-import com.project.fd.owner.advertise.model.OwnerAdvertiseAllVO;
 
 
 @Service
@@ -90,6 +89,38 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 	public int updateMainMenu(OwnerStoreMainMenuVO mainVo) {
 		return ownerMenuDao.updateMainMenu(mainVo);
 	}
+	
+	
+	
+	
+	public int checkDupGroupName(String sMGroupName) {
+		return ownerMenuDao.checkDupGroupName(sMGroupName);
+	}
+	
+	public int checkDupMenuName(String menuName) {
+		return ownerMenuDao.checkDupMenuName(menuName);
+	}
+	
+	
+	public List<OwnerMenuVO> selectMenuByGroupNo(int sMGroupNo){
+		return ownerMenuDao.selectMenuByGroupNo(sMGroupNo);
+	}
+	
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo){
+		return ownerMenuDao.selectOptionAllByMenuNo(menuNo);
+	}
+	
+	public List<OwnerOptionRankVO> selectOptionRankAll(){
+		return ownerMenuDao.selectOptionRankAll();
+	}
+	
+	public int checkOptionName(Map<String, String> map) {
+		return ownerMenuDao.checkOptionName(map);
+	}
+	
+	public int insertOption(OwnerMenuOptionVO optionVo) {
+		return ownerMenuDao.insertOption(optionVo);
+	}
 	/*
 	  public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) { return
 	  ownerMenuDao.selectMainMenuByStoreNo(storeNo); }
@@ -137,5 +168,10 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 			
 		return list;
 	}
+
+
+	
+	
+	
 	
 }

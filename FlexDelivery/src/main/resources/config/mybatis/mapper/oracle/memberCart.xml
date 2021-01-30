@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.cart">
+	<select id="selectCartChk" parameterType="map" resultType="int">
+		select count(*) from cart where member_No=#{memberNo} and store_No!=#{storeNo}
+	</select>
+
+	<delete id="deleteByMemberNo" parameterType="int">
+		delete cart where member_No=#{memberNo}
+	</delete>
+	
+	<insert id="addCart" parameterType="memberCartVo">
+		insert into cart(cart_No,store_no,menu_no,m_option_no,member_no,cart_qty,store_name)
+		values(cart_seq.nextval,#{storeNo},#{menuNo},#{mOptionNo},#{memberNo},#{cartQty},#{storeName})		
+	</insert>
+	
+	<select id="cartExist" parameterType="memberCartVo" resultType="int">
+		select count(*) from cart
+		where menu_no=#{menuNo} and store_no=#{storeNo} and m_Option_No=#{mOptionNo} and member_No=#{memberNo}	
+	</select>
+	
+	<update id="cartQtyPlus" parameterType="memberCartVo">
+		update cart
+		set cart_qty=cart_qty + #{cartQty}
+		where menu_no=#{menuNo} and store_no=#{storeNo} and m_Option_No=#{mOptionNo} and member_No=#{memberNo}	
+	</update>
+</mapper>
