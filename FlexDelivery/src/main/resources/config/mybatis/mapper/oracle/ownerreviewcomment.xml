@@ -55,9 +55,7 @@
 		<![CDATA[
 		REVIEW_REGDATE< to_date(#{endDay})+1
 		]]>
-		<if test="customerId !=null and customerId!=''">
 			and store_no=#{storeNo}
-		</if>
 	</select>
     
           

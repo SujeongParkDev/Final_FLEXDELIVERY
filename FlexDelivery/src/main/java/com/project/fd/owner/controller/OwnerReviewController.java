@@ -14,10 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
+import com.project.fd.owner.reviewcomment.model.OwnerConnentREsultVO;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
+import com.project.fd.owner.reviewcomment.model.OwnerReviewCommentVO;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewSearchVO;
 
 @Controller
@@ -31,13 +35,14 @@ public class OwnerReviewController {
 	
 	
 	// review List 
-	@RequestMapping("/orderList.do")
+	@RequestMapping("/reviewOwner.do")
 	public String orderList(@ModelAttribute OwnerReviewSearchVO searchVo,
 			HttpSession session, Model model) {
-		int storeNo=(Integer)session.getAttribute("storeNo");
-		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
-		
+		//int storeNo=(Integer)session.getAttribute("storeNo");
+		int storeNo=1;
 		searchVo.setStoreNo(storeNo);
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={},searchVo.getStoreNo()={}",storeNo,searchVo.getStoreNo());
+		
 		logger.info("주문내역, 파라미터 searchVo={}", searchVo);
 		
 		//[1]
@@ -61,47 +66,33 @@ public class OwnerReviewController {
 		}
 		
 		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
-		logger.info("주문내역 조회 결과, reviewList.size={}", reviewList.size());
+		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
 		
 		int totalRecord=ownerReCommService.getTotalRecord(searchVo);
-		logger.info("주문내역-레코드 개수 조회 결과, totalRecord={}", totalRecord);
+		logger.info("리뷰 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
 		
 		pagingInfo.setTotalRecord(totalRecord);
 		
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "shop/order/orderList";
+		return "owner/menu2/reviewOwner/reviewOwner";
 	}
 	
-	/*
-	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.GET)
-	public String reviewList_get(HttpSession session, Model model) {
-		//int storeNo=(Integer) session.getAttribute("storeNo");
-		int storeNo=1;
-		 logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
-		 
-		 List<Map<String, Object>> reviewList=ownerReCommService.selectReView(storeNo);
-			logger.info("리뷰 전체 조회, 결과 reviewList.size={}", reviewList.size());
-			
-			List<Map<String, Object>> optionList=ownerReCommService.selectOptionView(storeNo);
-			logger.info("리뷰 점포  조회, 결과 optionList={}", optionList);
-			
-			model.addAttribute("reviewList", reviewList);
-			model.addAttribute("optionList", optionList);
-			
-			return "owner/menu2/reviewOwner/reviewOwner";
-	}
 	@ResponseBody
 	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
 	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo) {
-		int reviewNo=1;
-		int storeNo=1;
-		vo.setReviewNo(reviewNo);
-		vo.setStoreNo(storeNo);
+	
+		logger.info("ownercomment ajax page, vo={}",vo);
 		
 		logger.info("ownercomment ajax page, parameter={}",vo.getrCommentContent());
 	
+		
+		//OwnerConnentREsultVO resultVo=new OwnerConnentREsultVO();
+		//logger.info("ownercomment ajax page, resultVo={}",resultVo);
+		//resultVo.setMessage("등록 성공!");
+		//resultVo.setData(vo);
+		
 		//OwnerReviewCommentVO vo=new OwnerReviewCommentVO();
 		//vo.setrCommentContent(content);
 		
@@ -113,5 +104,4 @@ public class OwnerReviewController {
 		return vo;
 	}
 	
-	 */
 }
