@@ -1,5 +1,8 @@
 package com.project.fd.member.model;
 
+import java.util.List;
+
+import com.project.fd.owner.common.LocationVO;
 
 public interface MemberDAO {
 	public int insertMember(MemberVO vo);
@@ -10,5 +13,5 @@ public interface MemberDAO {
 	int pwdUpd(MemberVO vo);
 	String selectAuth(int no);
 	public int checkDup(String memberid);
-	
+	public int memloNo(String locationName);
 }

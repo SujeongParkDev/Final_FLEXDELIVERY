@@ -10,7 +10,7 @@ $(function(){
 	/* $('#btWrite').click(function(){ */
 	$('form[name=frmEventWrite]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
-		var title=$('#boardTitle').val();
+		var title=$('#noticeTitle').val();
 		var img=$('#upfile').val();
 		
 		
@@ -37,7 +37,7 @@ $(function(){
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
 		if (result){
-			location.href="${pageContext.request.contextPath}/admin/menu3/event.do";			
+			location.href="${pageContext.request.contextPath}/admin/menu3/notice.do";			
 		} else {
 			event.preventDefault;
 		}
@@ -62,8 +62,8 @@ $(function(){
     	<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="section-title text-uppercase">이벤트</h3>
-					<p class="text-subtitle text-muted">글쓰기</p>
+					<h3 class="section-title text-uppercase">공지사항</h3>
+					<p class="text-subtitle text-muted">글 수정하기</p>
 					<hr>
 				</div>
 				
@@ -74,36 +74,28 @@ $(function(){
 								<div class="single-blog-area blog-style-2 mb-50">
 									<div class="single-blog-content">
 										<div class="container">
-											<form name="frmEventWrite" id="frmEventWrite" action="<c:url value='/admin/menu3/event/write.do' />" 
-												method="post" enctype="multipart/form-data">
+											<form name="frmNoticeEdit" id="frmNoticeEdit" action="<c:url value='/admin/menu3/notice/edit.do' />" 
+												method="post">
 										    	<div class="content">
-										    		<input type="hidden" name="boardNo" value="123">
-										    		<input type="hidden" name="boardHead" value="이벤트">
-										    		<input type="hidden" name="authorityNo" value="6">
+										    		<input type="hidden" name="boardNo" value="${vo.boardNo }">
+										    		<input type="hidden" name="boardHead" value="${vo.boardHead }">
+										    		<input type="hidden" name="boardThumbnail" value="">
 										        	<div class="row justify-content-md-center">
 											            <div class="input-group">
 											                <div class="input-group-prepend">
 											                    <label class="input-group-text">제목</label>
 											                </div>            
-											                <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control">              
+											                <input type="text" name="boardTitle" id="noticeTitle" placeholder="제목을 입력하세요" 
+											                	value="${vo.boardTitle }" class="form-control">              
 										                </div>
 									     		 	</div>
 									      			<hr>
-											 		<div class="row justify-content-md-center">
-											            <div class="input-group">
-											              <div class="input-group-prepend">
-											                  <span class="input-group-text" id="inputGroupFileAddon01">썸네일 이미지</span>
-											              </div>
-											              <div class="custom-file">
-											                  <input type="file" name="upfile" class="form-control-file" id="upfile">
-											              </div>
-										                </div>
-										    		</div>
 									      			<hr>
 										      		<div class="row justify-content-md-center">
 											          <div class="col_c" style="margin-bottom: 30px">
 											               <div class="input-group">        
-											                 <textarea name="boardContent" class="form-control" id="editor4" placeholder="내용을 입력하세요"></textarea>   
+											                 <textarea name="boardContent" class="form-control" id="editor4" 
+											                  placeholder="내용을 입력하세요">${vo.boardContent }</textarea>   
 													     	 <script>CKEDITOR.replace('editor4');</script>
 												             
 											               </div>

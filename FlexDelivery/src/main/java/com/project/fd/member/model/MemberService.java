@@ -1,5 +1,8 @@
 package com.project.fd.member.model;
 
+import java.util.List;
+
+import com.project.fd.owner.common.LocationVO;
 
 public interface MemberService {
 	//아이디 중복확인시 사용
@@ -19,4 +22,5 @@ public interface MemberService {
 		int pwdUpd(MemberVO vo);
 		String selectAuth(int no);
 		int checkDup(String memberid);
+		public int memloNo(String locationName);
 }

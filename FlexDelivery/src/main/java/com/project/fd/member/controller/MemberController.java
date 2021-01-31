@@ -40,11 +40,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/memberWrite.do")
-	public String write(@ModelAttribute MemberVO vo,
+	public String write(@ModelAttribute MemberVO vo, @RequestParam String locationName,
 			ModelMap model) {
 		//1
 		logger.info("회원가입 처리 파라미터 vo={}", vo);
 		//2
+		int lono=memberService.memloNo(locationName);
+		vo.setLocationNo(lono);
+		
 		int cnt=memberService.insertMember(vo);
 		logger.info("회원가입 결과, cnt={}", cnt);
 		

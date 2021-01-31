@@ -15,4 +15,6 @@ public class MemberFaqController {
 	public void memberFaqList() {
 		logger.info("FAQ보여주기");
 	}
+	
+	
 }

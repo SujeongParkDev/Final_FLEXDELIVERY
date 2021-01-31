@@ -59,4 +59,12 @@ public class MemberDAOMybatis implements MemberDAO{
 		return count;
 	}
 
+	@Override
+	public int memloNo(String locationName) {
+		return sqlSession.selectOne(namespace+"memloNo",locationName);
+	}
+
+
+
+
 }
