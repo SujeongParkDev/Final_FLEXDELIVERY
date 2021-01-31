@@ -156,6 +156,29 @@ public class AdminHoneytipController {
 		//4
 		return "admin/menu3/honeytip/detail";
 	}
+
+	@RequestMapping(value="/honeytip/edit.do", method = RequestMethod.GET)
+	public String edit_get(@RequestParam(defaultValue = "0") int no, Model model) {
+		logger.info("사장님꿀팁 글 수정하기 화면, 파라미터 no={}", no);
+			
+		//1
+		if(no==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/admin/menu3/honeytip.do");
+			return "common/message";
+		}
+		
+		//2
+		AdminHoneytipVO honeytipVo=honeytipService.selectByNo(no);
+		logger.info("수정화면, 조회 결과 vo={}", honeytipVo);
+		
+		//3
+		model.addAttribute("vo", honeytipVo);
+		
+		//4
+		return "admin/menu3/honeytip/edit";
+	}
+
 	
 	@RequestMapping(value="/honeytip/edit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute AdminHoneytipVO honeytipVo,
@@ -168,9 +191,10 @@ public class AdminHoneytipController {
 		String fileName="", originName="";
 		long fileSize=0;
 		
+		/*
 		if (honeytipVo.getHoneytipThumbnail()==null) {
 			honeytipVo.setHoneytipThumbnail("honeytipDefault.jpg");
-		}else {			
+		}else {*/			
 			try {
 				List<Map<String, Object>> fileList
 				=fileUtil.fileUplaod(request, FileUploadUtil.HONEYTIP_TYPE);
@@ -190,7 +214,7 @@ public class AdminHoneytipController {
 			}	
 			//2
 			honeytipVo.setHoneytipThumbnail(fileName);
-		}
+		
 		
 		String msg="글 수정 실패", url="/admin/menu3/honeytip.do";
 		int cnt=honeytipService.updateHoneytip(honeytipVo);

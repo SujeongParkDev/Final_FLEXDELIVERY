@@ -70,11 +70,8 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="<c:url value='/member/index.do'/>">고객 사이트로 이동</a></li>
+                                    <li><a href="<c:url value='/owner/index.do'/>">사장님 사이트로 이동</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -187,7 +184,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="<c:url value='/member/index.do' />">고객 사이트로 이동</a></li>
                                 </ul>
 
                                 <!-- Search Form start -->

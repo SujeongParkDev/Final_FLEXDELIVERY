@@ -8,9 +8,9 @@
 	
 $(function(){
 	/* $('#btWrite').click(function(){ */
-	$('form[name=frmEventWrite]').submit(function(){
+	$('form[name=frmHoneytipWrite]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
-		var title=$('#boardTitle').val();
+		var title=$('#honeytipTitle').val();
 		var img=$('#upfile').val();
 		
 		
@@ -37,7 +37,7 @@ $(function(){
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
 		if (result){
-			location.href="${pageContext.request.contextPath}/admin/menu3/event.do";			
+			location.href="${pageContext.request.contextPath}/admin/menu3/honeytip.do";			
 		} else {
 			event.preventDefault;
 		}
@@ -62,8 +62,8 @@ $(function(){
     	<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="section-title text-uppercase">이벤트</h3>
-					<p class="text-subtitle text-muted">글쓰기</p>
+					<h3 class="section-title text-uppercase">사장님꿀팁</h3>
+					<p class="text-subtitle text-muted">글 수정하기</p>
 					<hr>
 				</div>
 				
@@ -74,18 +74,17 @@ $(function(){
 								<div class="single-blog-area blog-style-2 mb-50">
 									<div class="single-blog-content">
 										<div class="container">
-											<form name="frmEventWrite" id="frmEventWrite" action="<c:url value='/admin/menu3/event/write.do' />" 
+											<form name="frmHoneytipEdit" id="frmHoneytipEdit" action="<c:url value='/admin/menu3/honeytip/edit.do' />" 
 												method="post" enctype="multipart/form-data">
 										    	<div class="content">
-										    		<input type="hidden" name="boardNo" value="123">
-										    		<input type="hidden" name="boardHead" value="이벤트">
-										    		<input type="hidden" name="authorityNo" value="6">
+										    		<input type="hidden" name="honeytipNo" value="${vo.honeytipNo }">
 										        	<div class="row justify-content-md-center">
 											            <div class="input-group">
 											                <div class="input-group-prepend">
 											                    <label class="input-group-text">제목</label>
 											                </div>            
-											                <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control">              
+											                <input type="text" name="honeytipTitle" id="honeytipTitle" placeholder="제목을 입력하세요" 
+											                	value="${vo.honeytipTitle }" class="form-control">              
 										                </div>
 									     		 	</div>
 									      			<hr>
@@ -95,7 +94,8 @@ $(function(){
 											                  <span class="input-group-text" id="inputGroupFileAddon01">썸네일 이미지</span>
 											              </div>
 											              <div class="custom-file">
-											                  <input type="file" name="upfile" class="form-control-file" id="upfile">
+											                  <input type="file" name="upfile" class="form-control-file" id="upfile" value="${vo.honeytipThumbnail }">
+											                  <input type="hidden" name="oldFileName" value=${vo.honeytipThumbnail }>
 											              </div>
 										                </div>
 										    		</div>
@@ -103,7 +103,8 @@ $(function(){
 										      		<div class="row justify-content-md-center">
 											          <div class="col_c" style="margin-bottom: 30px">
 											               <div class="input-group">        
-											                 <textarea name="boardContent" class="form-control" id="editor4" placeholder="내용을 입력하세요"></textarea>   
+											                 <textarea name="honeytipContent" class="form-control" id="editor4" 
+											                  placeholder="내용을 입력하세요">${vo.honeytipContent }</textarea>   
 													     	 <script>CKEDITOR.replace('editor4');</script>
 												             
 											               </div>
@@ -113,7 +114,7 @@ $(function(){
 											        <div class="row justify-content-md-center">
 												        <button type="submit" class="btn btn-dark round" id="btWrite" style="width: 10%; font-weight: bold">등록</button>
 												        <button type="button" class="btn btn-outline-dark round" id="btCancel" style="width: 10%; font-weight: bold"
-												        	data-toggle="modal" data-backdrop="false" data-target="#boardDelete">취소</button>
+												        	data-toggle="modal" data-backdrop="false" data-target="#honeytipDelete">취소</button>
 	                                                </div>
                                         		 </div>
 							     			 </form>          

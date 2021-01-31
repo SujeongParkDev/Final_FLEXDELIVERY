@@ -14,4 +14,8 @@ public interface AdminBoardDAO {
 
 	int deleteBoard(AdminBoardVO vo);
 
+	List<AdminBoardVO> selectNotice();
+
+	List<AdminBoardVO> selectEvent();
+
 }

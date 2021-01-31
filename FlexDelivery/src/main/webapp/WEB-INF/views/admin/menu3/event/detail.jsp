@@ -13,15 +13,12 @@
 <script>
 $(function(){
 	$('#detailEdit').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/edit.do?no="+${vo.honeytipNo};
+		location.href="${pageContext.request.contextPath}/admin/menu3/event/edit.do?no="+${vo.boardNo};
 	});
 	
-	/* $('#detailDelete').click(function(){
-		loctaion.href="${pageContext.request.contextPath}/admin/menu3/honeytip/delete.do?no="+${vo.honeytipNo};
-	}); */
 	
 	$('#detailList').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip.do";
+		location.href="${pageContext.request.contextPath}/admin/menu3/event.do";
 	});
 });
 </script>
@@ -43,16 +40,16 @@ $(function(){
 					                        <!-- Blog Content -->
 					                        <div class="single-blog-content">
 					                            <div class="line"></div>
-					                            <a href="#" class="post-tag">${vo.honeytipNo }번째 꿀팁</a>
-					                            <h4><a href="#" class="post-headline mb-0">${vo.honeytipTitle }</a></h4>
+					                            <a href="#" class="post-tag">${vo.boardNo }번째 이벤트</a>
+					                            <h4><a href="#" class="post-headline mb-0">${vo.boardTitle }</a></h4>
 					                            <div class="post-meta mb-50">
 					                                <p>By <a href="#">플렉스 딜리버리</a></p>
 					                                <hr>
 					                            </div>
 					                            <div class="text-center">
-					                            	<img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}">
+					                            	<img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/${vo.boardThumbnail}">
 					                            	<br><br><br>
-						                            <p>${vo.honeytipContent }</p>
+						                            <p>${vo.boardContent }</p>
 					                            </div>
 											</div>
 					                    </div>
@@ -74,27 +71,27 @@ $(function(){
 											<br><br>
 											<button type="button" class="btn round block btn-primary" id="detailEdit">수정</button>
 											<button type="button" class="btn round block btn-danger" id="modalDeleteBt" data-toggle="modal" 
-												data-backdrop="false" data-target="#honeytipDetailDelete" >삭제</button>
+												data-backdrop="false" data-target="#eventDetailDelete" >삭제</button>
 											<button type="button" class="btn round block btn-dark" id="detailList">목록</button>
 											
-											<!-- #honeytipDetailDelete 삭제 모달 -->
-	                                       <div class="modal fade text-left" id="honeytipDetailDelete" tabindex="-1" role="dialog"
-	                                          aria-labelledby="사장님꿀팁 삭제" aria-hidden="true">
+											<!-- #eventDetailDelete 삭제 모달 -->
+	                                       <div class="modal fade text-left" id="eventDetailDelete" tabindex="-1" role="dialog"
+	                                          aria-labelledby="이벤트삭제" aria-hidden="true">
 	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                                             <div class="modal-content">
-	                                                <form name="frmHoneytipDel" id="frmHoneytipDel" method="post" action="<c:url value='/admin/menu3/honeytip/delete.do?no=${vo.honeytipNo }' />">
+	                                                <form name="frmEventDel" id="frmEventDel" method="post" action="<c:url value='/admin/menu3/event/delete.do?no=${vo.boardNo }' />">
 	                                                   <div class="modal-header bg-danger">
-	                                                      <h5 class="modal-title white" id="myModalLabel140">사장님꿀팁 삭제</h5>
+	                                                      <h5 class="modal-title white" id="myModalLabel140">이벤트 삭제</h5>
 	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                                          <i data-feather="x"></i>
 	                                                      </button>
 	                                                   </div>
 	                                                   <div class="modal-body">
-	                                                      <input type="hidden" name="honeytipNo" value="${vo.honeytipNo }">
-	                                                      <input type="hidden" name="honeytipTitle" value="${vo.honeytipTitle }">
-	                                                      <input type="hidden" name="honeytipContent" value="${vo.honeytipContent }">
-	                                                      <input type="hidden" name="oldFileName" value="${vo.honeytipThumbnail }">
-	                                                      	[<span style="font-weight: bolder;">${vo.honeytipNo}번 게시글: ${vo.honeytipTitle }</span>] 을 삭제하시겠습니까?
+	                                                      <input type="hidden" name="boardNo" value="${vo.boardNo }">
+	                                                      <input type="hidden" name="boardTitle" value="${vo.boardTitle }">
+	                                                      <input type="hidden" name="boardContent" value="${vo.boardContent }">
+	                                                      <input type="hidden" name="oldFileName" value="${vo.boardThumbnail }">
+	                                                      	[<span style="font-weight: bolder;">${vo.boardNo}번 게시글: ${vo.boardTitle }</span>] 을 삭제하시겠습니까?
 	                                                   </div>
 	                                                   <div class="modal-footer">
 	                                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalDelCancel">
