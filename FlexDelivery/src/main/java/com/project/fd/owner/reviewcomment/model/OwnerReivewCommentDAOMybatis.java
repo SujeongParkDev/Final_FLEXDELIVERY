@@ -29,7 +29,20 @@ public class OwnerReivewCommentDAOMybatis implements OwnerReivewCommentDAO{
 		return sqlSession.selectOne(namespace+"getTotalRecord",searchVo);
 	}
 
-	
+
+	@Override
+	public int deleteComm(int reviewNo) {
+		return sqlSession.delete(namespace+"deleteComm",reviewNo);
+	}
+
+	public int updateComm(OwnerReviewCommentVO vo) {
+		return sqlSession.update(namespace+"updateComm",vo);
+	}
+
+	@Override
+	public OwnerReviewCommentVO selectByNo(int reviewNo) {
+		return sqlSession.selectOne(namespace+"selectByNo",reviewNo);
+	}
 	
 	
 }

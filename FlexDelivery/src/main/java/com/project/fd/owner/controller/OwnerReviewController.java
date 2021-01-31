@@ -15,11 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
-import com.project.fd.owner.reviewcomment.model.OwnerConnentREsultVO;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewCommentVO;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewSearchVO;
@@ -32,7 +32,7 @@ public class OwnerReviewController {
 	
 	@Autowired OwnerReivewCommentService ownerReCommService;
 	//@Autowired MemberReviewService. memberReviewService;
-	
+
 	
 	// review List 
 	@RequestMapping("/reviewOwner.do")
@@ -43,7 +43,7 @@ public class OwnerReviewController {
 		searchVo.setStoreNo(storeNo);
 		logger.info("점포 - 리뷰관리 보여주기 storeNo={},searchVo.getStoreNo()={}",storeNo,searchVo.getStoreNo());
 		
-		logger.info("주문내역, 파라미터 searchVo={}", searchVo);
+		logger.info("리뷰 전체 보여주기 , 파라미터 searchVo={}", searchVo);
 		
 		//[1]
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -79,29 +79,96 @@ public class OwnerReviewController {
 		return "owner/menu2/reviewOwner/reviewOwner";
 	}
 	
+	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
+	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
+		logger.info("ownercomment page, vo={}",vo);
+		int cnt=ownerReCommService.insertComm(vo);
+		logger.info("코멘트 작성  결과, cnt={}", cnt);
+		String msg="답변 작성에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="답변이 정상적으로 등록되었습니다. ";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
+	@RequestMapping(value="/reviewOwnerDelete.do", method = RequestMethod.GET)
+	public String delete_post(@RequestParam(defaultValue = "0") int reviewNo,
+			Model model) {
+		logger.info("글삭제 처리, 파라미터 reviewNo={}", reviewNo);
+
+		int cnt=ownerReCommService.deleteComm(reviewNo);
+		logger.info("글삭제 결과, cnt={}", cnt);
+		String msg="답변 삭제에 실패하였습니다. 다시 시도해주세요. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="답변이 정상적으로 삭제되었습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
+	public OwnerReviewCommentVO edit_get(@RequestParam(defaultValue = "0") int reviewNo,
+			Model model) {
+		logger.info("수정화면, 파라미터 reviewNo={}", reviewNo);
+		
+		OwnerReviewCommentVO vo=ownerReCommService.selectByNo(reviewNo);
+		logger.info("수정화면, 조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return vo;
+	}
+	
+	
+	@RequestMapping(value="/edit.do", method = RequestMethod.POST)
+	public String edit_post(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
+		logger.info("글수정 처리, 파라미터 vo={}", vo);
+		
+		int cnt=ownerReCommService.updateComm(vo);
+		logger.info("글수정 결과, cnt={}", cnt);
+		
+		String msg="리뷰 답변 수정하기를  실패하였습다. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="정상적으로 수정되었습니다.";
+		}
+	
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	/*
 	@ResponseBody
 	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
-	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo) {
+	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
 	
 		logger.info("ownercomment ajax page, vo={}",vo);
 		
 		logger.info("ownercomment ajax page, parameter={}",vo.getrCommentContent());
+		
+		int cnt=ownerReCommService.insertComm(vo); //regdate null나오는데 해결해주세욥 
 	
-		
-		//OwnerConnentREsultVO resultVo=new OwnerConnentREsultVO();
-		//logger.info("ownercomment ajax page, resultVo={}",resultVo);
-		//resultVo.setMessage("등록 성공!");
-		//resultVo.setData(vo);
-		
-		//OwnerReviewCommentVO vo=new OwnerReviewCommentVO();
-		//vo.setrCommentContent(content);
-		
-		int cnt=ownerReCommService.insertComm(vo);
 		logger.info("댓글달기 결과 : cnt={}",cnt);
 		if(cnt>0) {
 			logger.info("댯글 등록 성공");
 		}
+		
+		//vo=ownerReCommService.selectByNo(vo.getReviewNo());
+		model.addAttribute("vo", vo);
 		return vo;
 	}
-	
+	 * */
 }

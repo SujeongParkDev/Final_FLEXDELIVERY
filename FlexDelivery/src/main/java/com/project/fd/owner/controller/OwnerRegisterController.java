@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -30,9 +31,8 @@ public class OwnerRegisterController {
 	
 	@Autowired private OwnerRegisterService ownerRegisterService;
 	
-	@Autowired
-	private FileUploadUtil fileUtil;
-
+	@Autowired private FileUploadUtil fileUtil;
+	
 	 @RequestMapping(value = "/businessLicense.do",method = RequestMethod.GET)
 	 public void ownerLicense() {
 		 logger.info("사업자 등록증 등록  화면 보여주기");

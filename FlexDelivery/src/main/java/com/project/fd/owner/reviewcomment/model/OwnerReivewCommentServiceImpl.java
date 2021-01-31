@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 
+
 	@Autowired private OwnerReivewCommentDAO ownerReviewCommentDao;
 
 	@Override
@@ -26,6 +27,20 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 		return ownerReviewCommentDao.getTotalRecord(searchVo);
 	}
 
+	@Override
+	public int deleteComm(int reviewNo) {
+		return ownerReviewCommentDao.deleteComm(reviewNo);
+	}
+
+	@Override
+	public int updateComm(OwnerReviewCommentVO vo) {
+		return ownerReviewCommentDao.updateComm(vo);
+	}
+
+	@Override
+	public OwnerReviewCommentVO selectByNo(int reviewNo) {
+		return ownerReviewCommentDao.selectByNo(reviewNo);
+	}
 
 
 	
