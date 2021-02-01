@@ -1,5 +1,6 @@
 package com.project.fd.member.cart.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,4 +43,31 @@ public class MemberCartDAOMybatis implements MemberCartDAO {
 	public int cartQtyPlus(MemberCartVO vo) {
 		return sqlSession.update(namespace+"cartQtyPlus",vo);
 	}
+
+
+	@Override
+	public List<MemberCartViewVO> selectCartList(int memberNo) {
+		return sqlSession.selectList(namespace+"selectCartList",memberNo);
+	}
+
+
+	@Override
+	public int cartMinus(int cartNo) {
+		return sqlSession.update(namespace+"cartMinus",cartNo);
+	}
+
+
+	@Override
+	public int cartPlus(int cartNo) {
+		return sqlSession.update(namespace+"cartPlus",cartNo);
+	}
+
+
+	@Override
+	public int deleteCart(int cartNo) {
+		return sqlSession.delete(namespace+"deleteCart",cartNo);
+	}
+	
+	
+	
 }

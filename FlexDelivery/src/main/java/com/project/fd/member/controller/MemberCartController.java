@@ -1,7 +1,8 @@
 package com.project.fd.member.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.cart.model.MemberCartVO;
-import com.project.fd.member.menu.model.MemberMenuOptionListVO;
-import com.project.fd.member.menu.model.MemberMenuOptionVO;
+import com.project.fd.member.cart.model.MemberCartViewVO;
+import com.project.fd.member.stores.model.MemberStoresService;
+import com.project.fd.member.stores.model.MemberStoresVO;
 
 @Controller
 @RequestMapping("/member/cart")
 public class MemberCartController {
 	
 	@Autowired MemberCartService cartServ;
+	@Autowired MemberStoresService storeServ;
 	private static Logger logger=LoggerFactory.getLogger(MemberCartController.class);
 	
 	@ResponseBody
@@ -41,28 +43,59 @@ public class MemberCartController {
 	
 	@ResponseBody
 	@RequestMapping("/addCart.do")
-	public boolean addCart(@ModelAttribute MemberMenuOptionListVO optionList
-			,@ModelAttribute MemberCartVO cartVo
-			,HttpSession session) {
-		
-		List<MemberMenuOptionVO> optionlist=optionList.getOptionList();
-		List<MemberCartVO> cartList=new ArrayList<MemberCartVO>();
-		logger.info("장바구니 담기 메뉴옵션 가져오기, optionList.size={},cartVo={}",optionlist.size(),cartVo);
-		for(int i=0;i<optionlist.size();i++) {
-			logger.info("선택한 메뉴옵션 찍어주기 menuoption={}",optionlist.get(i));
-			if(optionlist.get(i).getmOptionNo()!=0) {
-				if(optionlist.get(i).getmOptionNo()==-1) {
-					optionlist.get(i).setmOptionNo(0);
-				}
-				MemberCartVO tqVo=new MemberCartVO(cartVo.getStoreNo(),cartVo.getMenuNo(),cartVo.getCartQty(),cartVo.getStoreName());
-				tqVo.setmOptionNo(optionlist.get(i).getmOptionNo());
-				tqVo.setMemberNo((Integer)session.getAttribute("memberNo"));
-				cartList.add(tqVo);
-			}
+	public boolean addCart(@ModelAttribute MemberCartVO cartVo,HttpSession session) {
+		logger.info("cartVo={}",cartVo);
+		cartVo.setMemberNo((Integer)session.getAttribute("memberNo"));
+		int cnt=cartServ.addCart(cartVo);
+		if(cnt>0) {
+			return true;
 		}
-		logger.info("cartList.size={}",cartList.size());
+		return false;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/cartList.do")
+	public Map<String , Object> cartList(@RequestParam int memberNo) {
+		logger.info("ajax로 cartList가 출력되면 당근을 흔들어주세요");
+		List<MemberCartViewVO> list=cartServ.selectCartList(memberNo);
+		int storeNo=list.get(0).getStoreNo();
+		MemberStoresVO vo=storeServ.selectStoresDetail(storeNo);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("list", list);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/plusCart.do")
+	public boolean plusCart(@RequestParam int cartNo) {
+		logger.info("장바구니 + 버튼 눌렀음, cartNo={}",cartNo);
+		int cnt=cartServ.cartPlus(cartNo);
+		logger.info("로직결과 cnt={}",cnt);
+		if(cnt>0) {
+			return true;
+		}
+		return false;
 		
-		int cnt=cartServ.addCart(cartList);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/minusCart.do")
+	public boolean minusCart(@RequestParam int cartNo) {
+		logger.info("장바구니 - 버튼 눌렀음, cartNo={}",cartNo);
+		int cnt=cartServ.cartMinus(cartNo);
+		logger.info("로직결과 cnt={}",cnt);
+		if(cnt>0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteCart.do")
+	public boolean deleteCart(@RequestParam int cartNo) {
+		logger.info("장바구니 삭제, cartNo={}",cartNo);
+		int cnt=cartServ.deleteCart(cartNo);
 		if(cnt>0) {
 			return true;
 		}
