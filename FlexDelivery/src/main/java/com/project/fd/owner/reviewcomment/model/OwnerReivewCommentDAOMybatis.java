@@ -20,15 +20,29 @@ public class OwnerReivewCommentDAOMybatis implements OwnerReivewCommentDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectReView(int storeNo) {
-		return sqlSession.selectList(namespace+"selectReView",storeNo);
+	public List<Map<String, Object>> selectReView(OwnerReviewSearchVO searchVo) {
+		return sqlSession.selectList(namespace+"selectReView",searchVo);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectOptionView(int storeNo) {
-		return sqlSession.selectList(namespace+"selectOptionView",storeNo);
+	public int getTotalRecord(OwnerReviewSearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"getTotalRecord",searchVo);
 	}
-	
+
+
+	@Override
+	public int deleteComm(int reviewNo) {
+		return sqlSession.delete(namespace+"deleteComm",reviewNo);
+	}
+
+	public int updateComm(OwnerReviewCommentVO vo) {
+		return sqlSession.update(namespace+"updateComm",vo);
+	}
+
+	@Override
+	public OwnerReviewCommentVO selectByNo(int reviewNo) {
+		return sqlSession.selectOne(namespace+"selectByNo",reviewNo);
+	}
 	
 	
 }

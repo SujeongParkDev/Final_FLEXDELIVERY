@@ -20,27 +20,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function bt_cancle(no){
 	$('.buttons').on('click', function(){
-		window.screen.width //현재 윈도우창의 가로크기를 가져옴
-		window.screen.height //세로크기 가져옴
-		
-		var popupWidth = 500; //띄울 창 가로크기
-		var popupHeight = 300;
-		
-		var popupX = (window.screen.width / 2) - (popupWidth /2);
-		var popupY = (window.screen.height / 2) - (popupHeight /2);
-		
-		window.open(
-			"${pageContext.request.contextPath}/owner/menu2/temporary/tempListPwdCheck.do", 
-			"pwdCheck", 
-			'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
-	});
-
-
-});
-	
-	function bt_cancle(no){
 		if(confirm('취소하시겠습니까?')){
 			
 			var type="";
@@ -52,11 +33,35 @@ $(function(){
 			}else if($('.buttons').attr('id')=='btRegi'){
 				type="btRegi";
 			}
-			location.href = "<c:url value='/owner/menu2/tempDelete.do?mode="+type+"&no='/>"+no;
+			//location.href = "<c:url value='/owner/menu2/tempDelete.;
+	
+		
+		//
+		window.screen.width //현재 윈도우창의 가로크기를 가져옴
+		window.screen.height //세로크기 가져옴
+		
+		var popupWidth = 500; //띄울 창 가로크기
+		var popupHeight = 300;
+		
+		var popupX = (window.screen.width / 2) - (popupWidth /2);
+		var popupY = (window.screen.height / 2) - (popupHeight /2);
+		.$bt_cancle(no){
+			
+		}
+		window.open(
+			"${pageContext.request.contextPath}/owner/menu2/temporary/tempListPwdCheck.do?mode="+type+"&no='/>"+no", 
+			"pwdCheck", 
+			'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+		
 		} else {
 			event.preventDefault();
 		}
-	}
+	});
+
+
+});
+	
+	
 </script>
 
 <div class="container">
@@ -138,7 +143,7 @@ $(function(){
 																			</c:if></td>
 																		<td><c:if test="${map['SAGREENO'] == 1}">
 																				<a href="#" class="buttons badge bg-dark"
-																					id="btStores"
+																					id="btStores" name="buttons"
 																					onclick="bt_cancle(${map['STORE_NO'] })">cancle</a>
 																	</tr>
 																</c:if>
@@ -155,7 +160,7 @@ $(function(){
 																		value="${map['STOREAD_REGDATE'] }"
 																		pattern="yyyy-MM-dd" /></td>
 
-																<td><a href="#" class="buttons badge bg-dark"
+																<td><a href="#" class="buttons badge bg-dark" name="buttons"
 																	id="btAd" onclick="bt_cancle(${map['STOREAD_NO'] })">cancle</a></td>
 															</tr>
 														</c:if>
@@ -182,8 +187,8 @@ $(function(){
 																		<span class="badge bg-danger">승인반려</span>
 																	</c:if></td>
 
-																<td><a href="#" class="buttons badge bg-dark"
-																	id="btRegi" onclick="bt_cancle(${map['STOREAD_NO'] })">cancle</a>
+																<td><a href="#" class="buttons badge bg-dark" name="buttons"
+																	id="btRegi" onclick="bt_cancle(${map['O_REGISTER_NO'] })">cancle</a>
 																</td>
 															</tr>
 														</c:if>

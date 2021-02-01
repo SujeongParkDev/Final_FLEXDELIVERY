@@ -58,7 +58,7 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox form-control-lg"
 									name="storeName" id="storeName" minlength="1" title="점포명">
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="file" placeholder="최대 (2M)" required="" class="infobox"
+								<input type="file" placeholder="최대 (2M)" required="" class="infobox form-control-lg"
 									id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 							</div>
 						</div>
@@ -85,7 +85,7 @@
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
       						  <span class="sp1">&nbsp;</span>
-								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox"
+								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox form-control-lg"
 									name="storeAddress" id="storeAddress" minlength="1" title="점포주소">
 							</div>
 						</div>
@@ -108,7 +108,7 @@
 				
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
-					<select required="required" style="min-width: 140px;" class="form-control " id="locationNo" name="locationNo"><option
+					<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="locationNo" name="locationNo"><option
 							value="" disabled="">대분류</option>
 					<c:forEach var="voLo" items="${location }">
 							<option value="${voLo.locationNo}"  id="locationNo" name="locationNo">${voLo.locationName }</option>
@@ -119,7 +119,7 @@
 
 				<h5 class="form-label">✔ 대분류 카테고리</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
-					<select required="required" style="min-width: 140px;" class="form-control " id="lCategoryNo" name="lCategoryNo"><option
+					<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="lCategoryNo" name="lCategoryNo"><option
 							value="" disabled="">대분류</option>
 			<c:forEach var="vo" items="${large }">
 							<option value="${vo.lCategoryNo}" id="lCategoryNo" name="lCategoryNo">${vo.lCategoryName }</option>
@@ -127,7 +127,7 @@
 					</select>
 				</div>
 
-				<div class="form-control ">
+				<div class="form-control form-control-lg">
 					<ul class="bullet-ul small muted">
 						<li>상담 현황에 따라 상담시간은 변동될 수 있습니다.</li>
 					</ul>

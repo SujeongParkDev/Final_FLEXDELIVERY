@@ -2,45 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="config.mybatis.mapper.oracle.ownerreviewcomment">
+<mapper
+	namespace="config.mybatis.mapper.oracle.ownerreviewcomment">
 
 	<insert id="insertComm" parameterType="ownerReviewCommentVo">
-		insert into REVIEWCOMMENT(REVIEW_NO,STORE_NO,R_COMMENT_CONTENT)
+		insert into
+		REVIEWCOMMENT(REVIEW_NO,STORE_NO,R_COMMENT_CONTENT)
 		values(#{reviewNo},#{storeNo},#{rCommentContent})
 	</insert>
-	
-	<!-- 
-	       create or replace view LSJreviewmemView
-   as
-     select r.*, m.MEMBER_ID
-      from MEMBER m full outer join  REVIEW r
-        on r.MEMBER_NO=m.MEMBER_NO;
-        
-        이거  사용!! 스토어넘버로 리뷰 조회하고 유저 아이디 사용하려고 
-        
-     오더 + 오더디테일 + 리뷰 + 메뉴옵션 
-        메뉴 뭐 주문했는지 보려고 
-      create or replace view LSJreviewDetailView
-   as
-     select  r.STORE_NO, m.MENU_NAME, d.ORDERS_NO,d.O_DETAIL_QTY, o.M_OPTION_NAME
-      from  REVIEW r full outer join  ORDERDETAIL d
-        on r.ORDERS_NO=d.ORDERS_NO join MENU m
-        on m.MENU_NO=d.MENU_NO
-        join MENUOPTION o
-        on d.M_OPTION_NO=o.M_OPTION_NO;
-        
-	 -->
-	
-	<select id="selectReView" parameterType="int" resultType="map">
+
+	<!-- create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
+		c.R_COMMENT_CONTENT,c.R_COMMENT_REGDATE, n.MENU_NAME,d.O_DETAIL_QTY, o.M_OPTION_NAME 
+		from MEMBER m full outer join REVIEW r on r.MEMBER_NO=m.MEMBER_NO full outer 
+		join REVIEWCOMMENT c on c.store_no=r.store_no and c.REVIEW_NO=r.REVIEW_NO 
+		full outer join ORDERDETAIL d on r.ORDERS_NO=d.ORDERS_NO full outer join 
+		MENU n on n.MENU_NO=d.MENU_NO full outer join MENUOPTION o on d.M_OPTION_NO=o.M_OPTION_NO; 
+		<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map"> 
+		select * from ( select A.*, rownum as RNUM from ( select * from LSJCommentDDetailView 
+		where REVIEW_REGDATE >= #{startDay} and <![CDATA[ REVIEW_REGDATE< to_date(#{endDay})+1 
+		]]> and store_no=#{storeNo} order by ORDERS_NO desc )A ) <![CDATA[ where 
+		RNUM > #{firstRecordIndex} and RNUM <= #{firstRecordIndex} + #{recordCountPerPage} 
+		]]> </select> -->
+	<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map">
 		select * from LSJCommentDDetailView
-        where STORE_NO=#{storeNo}
-        order by ORDERS_NO desc
+		where store_no=#{storeNo}
+		order by ORDERS_NO desc
 	</select>
-    
-    <select id="selectOptionView" parameterType="int" resultType="map">
-    	 select * from LSJreviewDetailView
-        where STORE_NO=#{storeNo}
-        order by ORDERS_NO desc
-    </select>
-          
+
+	<select id="getTotalRecord" parameterType="ownerReviewSearchVo" resultType="int">
+		select count(*) from LSJCommentDDetailView
+		where REVIEW_REGDATE >=
+		#{startDay} and
+		<![CDATA[
+		REVIEW_REGDATE< to_date(#{endDay})+1
+		]]>
+		and store_no=#{storeNo}
+	</select>
+
+	<select id="memberInfoView" parameterType="int" resultType="map">
+		select * from LSJreviewidView where store_no=#{storeNo}
+	</select>
+
+	<delete id="deleteComm" parameterType="int">
+		delete from reviewcomment where review_no=#{reviewNo}
+	</delete>
+
+	<select id="selectByNo" parameterType="int" resultType="ownerReviewCommentVo">
+		select * from reviewcomment where review_no=#{reviewNo}
+	</select>
+
+	<update id="updateComm" parameterType="ownerReviewCommentVo">
+		update reviewcomment
+		set R_COMMENT_CONTENT=#{rCommentContent}
+		where review_no=#{reviewNo}
+	</update>
 </mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 
@@ -30,9 +31,8 @@ public class OwnerRegisterController {
 	
 	@Autowired private OwnerRegisterService ownerRegisterService;
 	
-	@Autowired
-	private FileUploadUtil fileUtil;
-
+	@Autowired private FileUploadUtil fileUtil;
+	
 	 @RequestMapping(value = "/businessLicense.do",method = RequestMethod.GET)
 	 public void ownerLicense() {
 		 logger.info("사업자 등록증 등록  화면 보여주기");
@@ -44,8 +44,7 @@ public class OwnerRegisterController {
 			 HttpServletRequest request, HttpSession session,
 			 Model model) {
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		 vo.setOwnerNo(ownerNo);
-		 logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
+		logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
 
 		 //파일 업로드 처리
 			String originName="", fileName="test";
@@ -110,25 +109,6 @@ public class OwnerRegisterController {
 			return bool;
 		}
 	 
-	 @ResponseBody
-		@RequestMapping("/reviewOwnerOP1.do")
-		public boolean ajaxCheckId(@RequestParam long oRegisterNo) {
-			logger.info("ajax 이용-아이디 중복확인, oRegisterNo={}", oRegisterNo);
-			
-			boolean bool=false;
 
-			int result=(Integer)ownerRegisterService.oRegisterNoDup(oRegisterNo);
-			logger.info("같은 사업자 등록번호가 있는지  결과, result={}", result);
-			
-			
-			if(result==OwnerRegisterService.EXIST_REGISTER_NO) {
-				bool=true;  //이미 존재
-			}else if(result==OwnerRegisterService.NON_EXIST_REGISTER_NO) {
-				bool=false;	//사용 가능		
-			}
-			
-			return bool;
-		}
-	
 	 
 }

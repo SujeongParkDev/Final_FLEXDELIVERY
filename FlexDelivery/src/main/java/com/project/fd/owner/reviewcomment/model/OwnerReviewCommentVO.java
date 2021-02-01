@@ -4,7 +4,7 @@ public class OwnerReviewCommentVO {
 	private int reviewNo; /* 리뷰번호 */
 	private int storeNo; /* 점포번호 - fk */
 	private String rCommentContent; /* 코멘트내용 */
-	private String rCommentRegdate; /* 코멘트등록일 */
+
 	
 	public int getReviewNo() {
 		return reviewNo;
@@ -24,16 +24,11 @@ public class OwnerReviewCommentVO {
 	public void setrCommentContent(String rCommentContent) {
 		this.rCommentContent = rCommentContent;
 	}
-	public String getrCommentRegdate() {
-		return rCommentRegdate;
-	}
-	public void setrCommentRegdate(String rCommentRegdate) {
-		this.rCommentRegdate = rCommentRegdate;
-	}
 	@Override
 	public String toString() {
-		return "ReviewCommentVO [reviewNo=" + reviewNo + ", storeNo=" + storeNo + ", rCommentContent=" + rCommentContent
-				+ ", rCommentRegdate=" + rCommentRegdate + "]";
+		return "OwnerReviewCommentVO [reviewNo=" + reviewNo + ", storeNo=" + storeNo + ", rCommentContent="
+				+ rCommentContent + "]";
 	}
 	
+
 }

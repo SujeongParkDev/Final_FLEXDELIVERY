@@ -1,5 +1,7 @@
 package com.project.fd.owner.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,58 +15,160 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.fd.member.model.MemberVO;
+import com.project.fd.common.PaginationInfo;
+import com.project.fd.common.Utility;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewCommentVO;
+import com.project.fd.owner.reviewcomment.model.OwnerReviewSearchVO;
 
 @Controller
-@RequestMapping("/owner/menu2")
+@RequestMapping("/owner/menu2/reviewOwner")
 public class OwnerReviewController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerReviewController.class);
 	
 	@Autowired OwnerReivewCommentService ownerReCommService;
 	//@Autowired MemberReviewService. memberReviewService;
+
 	
-	@RequestMapping(value="/reviewOwner/reviewOwner.do",method=RequestMethod.GET)
-	public String reviewList_get(HttpSession session, Model model) {
-		//int storeNo=(Integer) session.getAttribute("storeNo");
+	// review List 
+	@RequestMapping("/reviewOwner.do")
+	public String orderList(@ModelAttribute OwnerReviewSearchVO searchVo,
+			HttpSession session, Model model) {
+		//int storeNo=(Integer)session.getAttribute("storeNo");
 		int storeNo=1;
-		 logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
-		 
-		 List<Map<String, Object>> reviewList=ownerReCommService.selectReView(storeNo);
-			logger.info("리뷰 전체 조회, 결과 reviewList.size={}", reviewList.size());
-			
-			List<Map<String, Object>> optionList=ownerReCommService.selectOptionView(storeNo);
-			logger.info("리뷰 점포  조회, 결과 optionList={}", optionList);
-			
-			model.addAttribute("reviewList", reviewList);
-			model.addAttribute("optionList", optionList);
-			
-			return "owner/menu2/reviewOwner/reviewOwner";
+		searchVo.setStoreNo(storeNo);
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={},searchVo.getStoreNo()={}",storeNo,searchVo.getStoreNo());
+		
+		logger.info("리뷰 전체 보여주기 , 파라미터 searchVo={}", searchVo);
+		
+		//[1]
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		//[2]
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		
+		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
+		String startDay=searchVo.getStartDay();
+		if(startDay==null || startDay.isEmpty()) {
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today=sdf.format(d);
+			searchVo.setStartDay(today);
+			searchVo.setEndDay(today);			
+		}
+		
+		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
+		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
+		
+		int totalRecord=ownerReCommService.getTotalRecord(searchVo);
+		logger.info("리뷰 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "owner/menu2/reviewOwner/reviewOwner";
+	}
+	
+	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
+	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
+		logger.info("ownercomment page, vo={}",vo);
+		int cnt=ownerReCommService.insertComm(vo);
+		logger.info("코멘트 작성  결과, cnt={}", cnt);
+		String msg="답변 작성에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="답변이 정상적으로 등록되었습니다. ";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
+	@RequestMapping(value="/reviewOwnerDelete.do", method = RequestMethod.GET)
+	public String delete_post(@RequestParam(defaultValue = "0") int reviewNo,
+			Model model) {
+		logger.info("글삭제 처리, 파라미터 reviewNo={}", reviewNo);
+
+		int cnt=ownerReCommService.deleteComm(reviewNo);
+		logger.info("글삭제 결과, cnt={}", cnt);
+		String msg="답변 삭제에 실패하였습니다. 다시 시도해주세요. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="답변이 정상적으로 삭제되었습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/reviewOwner/reviewOwnerWrite.do",method=RequestMethod.POST)
-	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo) {
-		int reviewNo=1;
-		int storeNo=1;
-		vo.setReviewNo(reviewNo);
-		vo.setStoreNo(storeNo);
+	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
+	public OwnerReviewCommentVO edit_get(@RequestParam(defaultValue = "0") int reviewNo,
+			Model model) {
+		logger.info("수정화면, 파라미터 reviewNo={}", reviewNo);
+		
+		OwnerReviewCommentVO vo=ownerReCommService.selectByNo(reviewNo);
+		logger.info("수정화면, 조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return vo;
+	}
+	
+	
+	@RequestMapping(value="/edit.do", method = RequestMethod.POST)
+	public String edit_post(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
+		logger.info("글수정 처리, 파라미터 vo={}", vo);
+		
+		int cnt=ownerReCommService.updateComm(vo);
+		logger.info("글수정 결과, cnt={}", cnt);
+		
+		String msg="리뷰 답변 수정하기를  실패하였습다. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+		if(cnt>0) {
+			msg="정상적으로 수정되었습니다.";
+		}
+	
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	/*
+	@ResponseBody
+	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
+	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
+			Model model) {
+	
+		logger.info("ownercomment ajax page, vo={}",vo);
 		
 		logger.info("ownercomment ajax page, parameter={}",vo.getrCommentContent());
-	
-		//OwnerReviewCommentVO vo=new OwnerReviewCommentVO();
-		//vo.setrCommentContent(content);
 		
-		int cnt=ownerReCommService.insertComm(vo);
+		int cnt=ownerReCommService.insertComm(vo); //regdate null나오는데 해결해주세욥 
+	
 		logger.info("댓글달기 결과 : cnt={}",cnt);
 		if(cnt>0) {
 			logger.info("댯글 등록 성공");
 		}
+		
+		//vo=ownerReCommService.selectByNo(vo.getReviewNo());
+		model.addAttribute("vo", vo);
 		return vo;
 	}
-	
+	 * */
 }
