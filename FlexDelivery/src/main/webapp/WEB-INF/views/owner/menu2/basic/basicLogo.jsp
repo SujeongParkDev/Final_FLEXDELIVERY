@@ -43,6 +43,7 @@
 										type="button" class="button uploader-btn  small text">
 										<i class="icon icon-plus"></i>
 										<div>이미지 (0/5)</div>
+										
 									</button></span></span>
 						</div>
 						<ul class="bullet-ul small muted">
