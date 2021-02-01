@@ -240,6 +240,17 @@ public class OwnerAdvertiseController {
 			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 			
 			//[2] SearchVo 셋팅
+			//날짜가 넘어오지 않은 경우 현재일자를 셋팅
+			String startDay=searchVo.getStartDay();
+			if(startDay==null || startDay.isEmpty()) {
+				Date d = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String today=sdf.format(d);
+				searchVo.setStartDay(today);
+				searchVo.setEndDay(today);			
+			}
+			logger.info("searchVo ={}",searchVo);
+			
 			
 			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
@@ -257,6 +268,7 @@ public class OwnerAdvertiseController {
 			//3. 모델에 결과 저장
 			model.addAttribute("list", list);
 			model.addAttribute("pagingInfo", pagingInfo);
+			model.addAttribute("searchVo", searchVo);
 			//4. 뷰페이지 리턴
 			return "owner/menu2/advertise/advertiseExpire";
 		}

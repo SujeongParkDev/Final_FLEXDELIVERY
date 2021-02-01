@@ -17,8 +17,7 @@
     
 <!-- admin.css -->
 
-	 
-	  
+
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
@@ -76,12 +75,6 @@
 			                        <li>
 			                            <a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a>
 			                        </li>
-			                        <li>
-			                            <a href="#">주문접수</a>
-			                        </li>
-			                        <li>
-			                            <a href="#">주문완료</a>
-			                        </li>
 			                         <li>
 			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록</a>
 			                        </li>
@@ -92,6 +85,23 @@
 			                </li>
 							
 			            
+			            
+			            	   	<!-- 주문정산view -->
+			                <li class="sidebar-item  has-sub">
+			                    <a href="#" class='sidebar-link'>
+			                        <img data-feather="file-text" width="20"></img> 
+			                        <span>주문</span>
+			                    </a>
+			                    <ul class="submenu ">
+			                        <li>
+			                            <a href="<c:url value='/owner/menu2/order/orderMain.do'/>">주문현황</a>
+			                        </li>
+			                         <li>
+			                            <a href="#">주문내역</a>
+			                            <!-- 주문상세view는 오픈창으로 띄워야 합니다. -->
+			                        </li>
+			                    </ul>
+			                </li>
 			            	<!-- 메뉴관리view -->
 			                <li class="sidebar-item  has-sub">
 			                    <a href="#" class='sidebar-link'>
@@ -156,22 +166,7 @@
 			            
 			            
 			            
-			                 	<!-- 주문정산view -->
-			                <li class="sidebar-item  has-sub">
-			                    <a href="#" class='sidebar-link'>
-			                        <img data-feather="file-text" width="20"></img> 
-			                        <span>주문정산</span>
-			                    </a>
-			                    <ul class="submenu ">
-			                        <li>
-			                            <a href="#">정산내역</a>
-			                        </li>
-			                         <li>
-			                            <a href="#">주문내역</a>
-			                            <!-- 주문상세view는 오픈창으로 띄워야 합니다. -->
-			                        </li>
-			                    </ul>
-			                </li>
+			              
 			                
 			                
 			                <div class="dropdown-divider"></div>

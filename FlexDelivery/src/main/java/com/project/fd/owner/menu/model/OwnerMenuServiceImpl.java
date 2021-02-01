@@ -106,8 +106,8 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 		return ownerMenuDao.selectMenuByGroupNo(sMGroupNo);
 	}
 	
-	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo){
-		return ownerMenuDao.selectOptionAllByMenuNo(menuNo);
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(Map<String, String> map){
+		return ownerMenuDao.selectOptionAllByMenuNo(map);
 	}
 	
 	public List<OwnerOptionRankVO> selectOptionRankAll(){
@@ -120,6 +120,19 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 	
 	public int insertOption(OwnerMenuOptionVO optionVo) {
 		return ownerMenuDao.insertOption(optionVo);
+	}
+	
+	
+	public OwnerMenuOptionVO selectOptionByOptionNo(int mOptionNo) {
+		return ownerMenuDao.selectOptionByOptionNo(mOptionNo);
+	};
+	
+	public int updateOption(OwnerMenuOptionVO optionVo) {
+		return ownerMenuDao.updateOption(optionVo);
+	};
+	
+	public int deleteOption(int mOptionNo) {
+		return ownerMenuDao.deleteOption(mOptionNo);
 	}
 	/*
 	  public OwnerStoreMainMenuVO selectMainMenuByStoreNo(int storeNo) { return

@@ -29,7 +29,14 @@
 <!-- Favicon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/adminResources/img/core-img/favicon.ico">
 
+<script type="text/javascript">
+	function goWithdraw(){
+		if(confirm('탈퇴하시겠습니까?')){
+			location.href="<c:url value='/owner/withdraw.do'/>";
+		}
+	};
 
+</script>
 </head>
 <body style="background-color: white;" >
 
@@ -91,9 +98,9 @@
                         	 </c:if>
 	                        <!-- 사장님이  로그인 했을때 -->
 	                        <c:if test="${!empty sessionScope.ownerId }">
-	                        	 <a href="<c:url value='/owner/logout.do'/>" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
-	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">내 정보 수정</i></a>
-	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">회원 탈퇴</i></a>
+	                        	 <a href="<c:url value='/owner/logout.do'/>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i  aria-hidden="false">로그아웃</i></a>
+	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="myinfo"><i  aria-hidden="false">내 정보</i></a>
+	                        	 <a href="#" onclick="goWithdraw()" data-toggle="tooltip" data-placement="bottom" title="withdraw"><i  aria-hidden="false">회원 탈퇴</i></a>
 	                        </c:if>
                             
                         </div>

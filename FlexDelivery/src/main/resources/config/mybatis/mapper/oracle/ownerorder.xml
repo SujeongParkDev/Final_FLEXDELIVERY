@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.ownerorder">
+	
+	
+	
+	<sql id="searchDate">
+		<where>
+			<if test="oStatusNo == 4">
+				<![CDATA[           
+					and (orders_date + (orders_duration/(24*60)))  >= #{startDay} and	(orders_date + (orders_duration/(24*60))) < to_date(#{endDay})+1 
+				]]>
+			</if>
+			and store_no=#{searchVo.storeNo} and o_status_no=#{oStatusNo}
+		</where>	
+	</sql>
+	
+	<sql id="OrderByOrders">
+			<if test="oStatusNo == 1">
+				order by orders_pay_end_date desc
+			</if>
+			<if test="oStatusNo == 2">
+				order by orders_date desc
+			</if>
+			<if test="oStatusNo == 3 || oStatusNo == 4">
+				order by orders_date + (orders_duration/(24*60)) desc
+			</if>
+	</sql>
+<!-- 
+create or replace view jaOrderAllView
+	as
+	  select o.* , s.O_STATUS_NAME,  m.MEMBER_ID
+	  from orders o , orderstatus s , member m
+	  where o.MEMBER_NO = m.MEMBER_NO and s.O_STATUS_NO = o.O_STATUS_NO;
+	   -->
+ 
+ 
+ 
+	<select id="selectOrderAllView" parameterType="map" resultType="map">
+		select *
+		from
+		(
+		    select A.*,rownum as RNUM
+		    from
+		    (
+		    
+		        select * from jaOrderAllView
+				<include refid="searchDate" />	
+				<include refid="OrderByOrders" />	
+			
+		    )A
+		)
+		<![CDATA[
+		where RNUM > #{searchVo.firstRecordIndex} 
+		and RNUM <= #{searchVo.firstRecordIndex} + #{searchVo.recordCountPerPage}
+		]]>
+	</select>
+	
+	
+ 
+ 	<select id="selectTotalRecord" parameterType="map"
+		resultType="int">
+		select count(*) from jaOrderAllView
+		<include refid="searchDate" />	
+		<include refid="OrderByOrders" />	
+	</select>
+ 
+ 
+ 	
+ 	
+	
+	<select id="selectMenuNoByOrderNo" parameterType="int" resultType="map">
+		select * from
+			(
+			    select rownum as RNUM, A.*  from 
+			    (
+			        select *
+			        from JAORDERDETAILALLVIEW
+			        where orders_No=#{ordersNo}
+			    )A
+			)
+		where RNUM =1
+	</select>
+	
+	
+	<select id="selectCountByOrderNo" parameterType="int" resultType="int">
+		select count(*) from orderdetail
+		where orders_no=#{ordersNo};
+	</select>
+		
+ 
+ 
+ 
+  <!-- 
+  
+
+create or replace view jaOrderDetailAllView
+	as
+	  select o.* , m.menu_name, m.menu_price, p.M_OPTION_NAME,p.M_OPTION_PRICE
+	  from orderdetail o inner join menu m 
+	  on o.MENU_NO = m.MENU_NO 
+	  left  join menuoption p
+	  on p.M_OPTION_NO = o.M_OPTION_NO;
+	
+	 -->        
+</mapper>

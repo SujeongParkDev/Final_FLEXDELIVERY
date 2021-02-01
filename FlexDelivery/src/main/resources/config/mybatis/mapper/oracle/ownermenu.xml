@@ -4,6 +4,8 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ownermenu">
 
+	
+
 <!-- 	create or replace view jaMenuAllView
 	as
 	  select m.* , g.S_M_GROUP_NAME, g.STORE_NO, s.L_CATEGORY_NO , s.A_AGREE_NO
@@ -215,10 +217,9 @@
 		where menu_name=#{menuName}
 	</select>
 	
-	<select id="selectOptionAllByMenuNo" parameterType="int" resultType="ownerMenuOptionVo">
+	<select id="selectOptionAllByMenuNo" parameterType="map" resultType="ownerMenuOptionVo">
 		select * from menuOption
-		where menu_no = #{menuNo}
-		order by o_rank_no
+		where menu_no = #{menuNo} and o_rank_no = #{oRankNo}
 	</select>
 	
 	
@@ -237,7 +238,7 @@
 	 -->
 	<select id="checkOptionName" parameterType="map" resultType="int" >
 		select count(*) from menuOption
-		where o_Rank_No=#{oRankNo} and menu_no=#{menuNo} and m_option_name=#{mOptionName}
+		where m_option_name=#{mOptionName} and o_Rank_No=#{oRankNo} and menu_no=#{menuNo} 
 	</select>
 	
 	
@@ -249,8 +250,21 @@
 		values (#{mOptionNo}, #{mOptionName}, #{mOptionPrice}, #{menuNo},#{oRankNo})
 	</insert>
 	
-	<!-- <insert id="insertOption" parameterType="">
 	
-	</insert> -->
+	<select id="selectOptionByOptionNo" parameterType="int" resultType="ownerMenuOptionVo" > 
+		select * from menuOption
+		where m_option_no =#{mOptionNo}
+	</select>
+	
+	<update id="updateOption" parameterType="ownerMenuOptionVo">
+			update menuOption
+			set m_option_name=#{mOptionName}, m_option_price=#{mOptionPrice}, o_rank_no=#{oRankNo}
+			where m_option_no =#{mOptionNo}
+	</update>
+	
+	<delete id="deleteOption" parameterType="int">
+		delete menuOption
+		where m_option_No=#{moptionNo}
+	</delete>
 	
 </mapper>

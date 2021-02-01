@@ -4,7 +4,7 @@
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 
-<!-- 이건 진짜 뷰만 만듬.. 시간없어서.. ㅜㅜ  -->
+
 
 
 <!-- 창 띄우기 -->

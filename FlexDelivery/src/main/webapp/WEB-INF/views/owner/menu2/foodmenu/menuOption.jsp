@@ -83,51 +83,69 @@
 			 
 			
 			
-			
-			//메뉴를 클릭하면 옵션 테이블이 보인다.
+	
+		 	//메뉴를 클릭하면 옵션 테이블이 보인다.
 		 	$(function(){
-				$('.menuSelect').change(function(){
-					
-					
-					$.ajax({
-						url:"<c:url value='/owner/menu2/foodmenu/selectOptionByMenuNo.do'/>",
-						data:"menuNo=" + $(this).val(),
-						dataType:"json",
-						type:"GET",
-						success:function(res){
-							//alert(res);
-							//alert(res.length);
-							if(res.length>0){
-								var str="";
-								$.each(res, function(idx, item){
-									str+="<tr class='text-center'><br><td>"+item.oRankNo+"순위</td><br>";
-									str+="<td class='text-bold-500'><strong>"+item.mOptionName+"</strong></td><br>";
-									str+="<td>"+item.mOptionPrice+"원</td><br>";
-									str+="<td class='p-0'><button class='btn btn-outline-info p-2 btmenu' value='"+item.mOptionNo+"' name='menuEdit' >수정</button>";
-				                  	str+="<button class='btn btn-outline-dark p-2 btmenu' value='"+item.mOptionNo+"' name='menuDelete'>삭제</button><br></td>";	
-									str+=" <td></td><br></tr>";
-								});
-								
-								$('#optionTable').html(str);
-							}else{
-								var str="";
-								str+="<tr class='text-center'><td colspan='5' style='font-size:15px;' >등록된 옵션이 없습니다</td><tr>"
-									$('#optionTable').html(str);
-							}
-						},
-						error:function(xhr, status, error){
-							alert("error!! : " + error);
-						}
-					});
-					
-					
-					
-					
+				$('.menuSelect').click(function(){
+					$.optionSelectFunction();
 				});
-				
 			});
-		 
 			
+			//메뉴 순위 선택하면 옵션 테이블이 보인다.
+		 	$(function(){
+				$('#oRankSelect').click(function(){
+					$.optionSelectFunction();
+				});
+			});
+			
+		 	
+			//메뉴와 순위를 받아서 옵션 테이블 보여주는 에이젝스
+		 	$.optionSelectFunction=function(){
+			 	$.ajax({
+					url:"<c:url value='/owner/menu2/foodmenu/selectOptionByMenuNo.do'/>",
+					data:"menuNo=" + $('.menuSelect').val()+"&oRankNo="+$('#oRankSelect').val(),
+					dataType:"json",
+					type:"GET",
+					success:function(res){
+						//alert(res);
+						//alert(res.length);
+						if(res.length>0){
+							var str="";
+							$.each(res, function(idx, item){
+								str+="<tr class='text-center'><br><td>"+item.oRankNo+"순위</td><br>";
+								str+="<td class='text-bold-500'><strong>"+item.mOptionName+"</strong></td><br>";
+								str+="<td>"+item.mOptionPrice+"원</td><br>";
+								str+="<td class='p-0'><button class='btn btn-outline-info p-2 btmenuEdit' data-toggle='modal' data-target='#inlineForm2'  value='"+item.mOptionNo+"' name='menuEdit' >수정</button>";
+			                  	str+="<button class='btn btn-outline-dark p-2 btmenuDelete' value='"+item.mOptionNo+"' name='menuDelete'>삭제</button><br></td>";	
+								str+=" <td></td><br></tr>";
+							});
+							
+							$('#optionTable').html(str);
+							
+							$.optionEditFunction();
+							$.optionDeleteFunction();
+						}else{
+							var str="";
+							str+="<tr class='text-center'><td colspan='5' style='font-size:15px;' >등록된 옵션이 없습니다</td><tr>"
+								$('#optionTable').html(str);
+						}
+					},
+					error:function(xhr, status, error){
+						alert("error!! : " + error);
+					}
+				});
+		 	};
+			
+			
+		
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	//등록 시작 
 			
 			//메뉴 등록을 누르면 모달창이 뜬다.
 		 	$(function(){
@@ -155,17 +173,17 @@
 									str+="<input type='hidden'name='menuNo' id='menuNo' value='"+res.menuNo+"'>";
 									str+="<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.menuName+"'>";
 									
-									
 									$('.groupMenuInput').html(str);
 									
-									 if(res.list.length>0){
+									
+									if(res.list.length>0){
 										var str2="";
 										$.each(res.list, function(idx, item){
 											str2+="<option value='"+item.oRankNo+"'>"+item.oRankName+"</option><br>";
 										});
-										
 										$('.menuOptionSelect').html(str2);
-									} 
+									}
+									
 								},
 								error:function(xhr, status, error){
 									alert("error!! : " + error);
@@ -182,7 +200,7 @@
 			});
 		 	
 		 	
-		 	
+		 	 
 		 
 		///input 클릭시 유효성 검사 span 사라지게 하기
 	 	$(function(){
@@ -238,35 +256,7 @@
 		
 		
 		
-		/*  //엔터 누를때 
-		  $(function(){
-				$('input[name=mOptionName]').keypress(function(event){
-					if(event.key==="Enter"){
-					
-						$.ajax({
-							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-							data:"menuName=" + $('#menuName').val(),
-							dataType:"json",
-							type:"GET",
-							success:function(res){
-								//alert(res);
-								if(res==true){
-									$('#warningOptionName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
-									$('input[name=mOptionName]').focus();
-									event.preventDefault();
-									return false;
-								}
-							},
-							error:function(xhr, status, error){
-								alert("error!! : " + error);
-							}
-						});
-					}
-				
-				});
-				
-			}); 
-		 */
+		//서브밋 클릭할때 유효성 검사
 		 $(function(){
 			  $('.submitWriteOption').click(function(){
 				  
@@ -315,6 +305,11 @@
 		 });
 		 	
 		 
+		
+		
+		
+		
+		//에이젝스로 서브밋하기
 		 $(function(){
 				//{"message":"등록 성공!","data":{"no":10,"name":"hong","content":"hi"}}
 				$('form[name=frm123]').submit(function(){
@@ -342,6 +337,131 @@
 			
 		 	
 		 	
+			//등록끝
+			
+			
+			//수정 버튼 누르면 그 번호에 대한 값을 가져와서 집어넣기
+		 	$.optionEditFunction=function(){
+				$(".btmenuEdit").click(function(){
+			
+			 		$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/optionSelectOne.do'/>",
+						data:"mOptionNo="+$(this).val()+"&menuNo="+$('.menuSelect').val(),
+						dataType:"json",
+						type:"GET",
+						success:function(optionReVo){
+							
+							var str ="";
+							var str2="";
+							var str3="";
+							str+="<label>그룹이름</label>&nbsp;";
+							str+="<input type='hidden'name='sMGroupNo' value='"+optionReVo.sMGroupNo+"'>";
+							str+="<input type='text' readonly='readonly' class='form-control text-right' name='sMGroupName' value='"+optionReVo.sMGroupName+"'>&nbsp;&nbsp;";
+							str+="<label>메뉴 이름</label>&nbsp;";
+							str+="<input type='hidden' name='menuNo' value='"+optionReVo.menuNo+"'>";
+							str+="<input type='text' readonly='readonly' class='form-control text-right' name='menuName'  value='"+optionReVo.menuName+"'>";
+							str+="<input type='hidden'   name='mOptionNo'  value='"+optionReVo.optionVo.mOptionNo+"'><br>";
+							
+							
+							
+							str2+="<input type='text'  class='form-control text-right'  name='mOptionName' id='optionName2' value='"+optionReVo.optionVo.mOptionName+"' style='width:100%;'><br>"
+							str3+="<input type='text'  class='form-control text-right'  name='mOptionPrice' id='optionPrice2' value='"+optionReVo.optionVo.mOptionPrice+"' style='width:100%;'><br>";
+	
+							var str4="";
+							if(optionReVo.list.length>0){
+								$.each(optionReVo.list, function(idx, item){
+									if(item.oRankNo==optionReVo.optionVo.oRankNo){
+										str4+="<option value='"+item.oRankNo+"' selected='selected'>"+item.oRankName+"</option><br>";
+									}else{
+										str4+="<option value='"+item.oRankNo+"'>"+item.oRankName+"</option><br>";
+									}
+									
+								});
+							}
+								
+								$('.groupMenuInputInput').html(str);
+							
+							    $('.optionNameInputInput').html(str2);
+							    $('.optionPriceInputInput').html(str3);
+								$('.menuOptionSelectSelect').html(str4);
+								
+								
+								
+								
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
+			 		
+			 		event.preventDefault(); 
+			});
+		};
+		  
+
+	
+		$(function(){
+			  $('.submitEditOption').click(function(){
+				  $('form[name=frm12345]').submit();
+			  });
+		 });
+				  
+	
+	
+	//에이젝스로 서브밋하기
+	 $(function(){
+			//{"message":"등록 성공!","data":{"no":10,"name":"hong","content":"hi"}}
+			$('form[name=frm12345]').submit(function(){
+				
+				$.ajax({
+					url:"<c:url value='/owner/menu2/foodmenu/optionUpdate.do'/>",
+					type:"post",
+					data:$(this).serializeArray(), 
+					dataType:"json",
+					success:function(res){
+						//alert(res);
+						if(res>0){
+						
+							alert('성공');
+						}else{
+							alert('실패');
+						}
+					},
+					error:function(xhr, status, error){
+						alert("error! : " + error);
+					}				
+				});
+				event.preventDefault();
+			});
+
+		});
+	
+
+	
+		//에이젝스로 삭제하기
+ 	$.optionDeleteFunction=function(){
+		$(".btmenuDelete").click(function(){
+			if(confirm($(this).val()+'번 옵션을 삭제하시겠습니까?')){
+		 		$.ajax({
+					url:"<c:url value='/owner/menu2/foodmenu/optionDelete.do'/>",
+					data:"mOptionNo="+$(this).val(),
+					dataType:"json",
+					type:"GET",
+					success:function(optionReVo){
+							alert('삭제완료!');
+					},
+					error:function(xhr, status, error){
+						alert("error!! : " + error);
+					}
+				});
+	 		
+	 			event.preventDefault(); 
+			}
+	});
+};
+  
+		
+	  
 			
 		</script>
 		<!-- 메뉴 버튼 -->
@@ -410,11 +530,19 @@
 					            <table class="table">
 					              <thead>
 					                <tr class="text-center" style="font-size:13px;">
-					                  <th style="width:22%;">순위</th>
-					                  <th style="width:22%;">메뉴 옵션</th>
-					                  <th style="width:22%;">가격</th>
+					                  <th style="width:22%;">
+											<select class="form-select menuSelect p-2" name="oRankNo" id="oRankSelect" style="overflow : auto; ">
+												<c:if test="${!empty oList }">
+													<c:forEach var="vo" items="${oList }">
+														<option value="${vo.oRankNo }">${vo.oRankName }</option>
+													</c:forEach>
+												</c:if>
+											</select>
+								      </th>
+					                  <th style="width:20%;">메뉴 옵션</th>
+					                  <th style="width:21%;">가격</th>
 					                  <th style="width:20%;">수정/삭제</th>
-					                  <th style="width:14%;" class="pl-3">
+					                  <th style="width:19%;" class="pl-3">
 					                  		<button class="btn btn-outline-primary p-2" data-toggle="modal" data-target="#inlineForm" 
 					                  			id="btOptionWrite" style="display:none;">등록</button>
 					                  </th>
@@ -453,14 +581,14 @@
 										</select>
 	                                </div>
 	                                <label>옵션 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-	                                 <div class="form-group" >
+	                                 <div class="form-group optionNameInput" >
 	                               		 <input type="text"  class="form-control text-right" id="mOptionName" name="mOptionName"  style="width:100%;">
 	                                </div>
 	                                <div style="text-align: right;">
 		                    	  		<span id="warningOptionName" style="color:red; "></span>
 		                    	    </div>
 		                    	    <label>옵션  가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-	                                 <div class="form-group" >
+	                                 <div class="form-group optionPriceInput" >
 	                               		 <input type="text"  class="form-control text-right" id="mOptionPrice" name="mOptionPrice"  style="width:100%;">
 	                                </div>
 	                                <div style="text-align: right;">
@@ -471,6 +599,54 @@
 	                                <button type="button" class="btn btn-light-secondary submitWriteOption">  
 	                                	<i class="bx bx-x d-block d-sm-none "></i>
 	                                	<span class="d-none d-sm-block">등록</span>
+	                                </button>
+	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+	                               		<i class="bx bx-check d-block d-sm-none"></i>
+	                                	<span class="d-none d-sm-block">취소</span>
+	                                </button>
+	                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+				   	<br>
+				   	
+				   	
+				   	
+				   	<!-- 등록 모달! -->
+			 <div class="modal fade text-left" id="inlineForm2" tabindex="-1" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">옵션 수정</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                            </div>
+                            <form  name="frm12345" >
+	                            <div class="modal-body">
+	                               	 <div class="form-group groupMenuInputInput">
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>옵션 순위 선택</label>
+		                                <select class="form-select menuOptionSelectSelect p-2" name="oRankNo" id="RankNo" style="overflow : auto; text-align-last:center;">
+										</select>
+	                                </div>
+	                                <label>옵션 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+	                                 <div class="form-group optionNameInputInput" >
+	                                </div>
+	                                
+	                               
+		                    	    <label>옵션  가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+	                                 <div class="form-group optionPriceInputInput" >
+	                                </div>
+	                                
+	                              
+	                            </div>
+	                            <div class="modal-footer">
+	                                <button type="button" class="btn btn-light-secondary submitEditOption">  
+	                                	<i class="bx bx-x d-block d-sm-none "></i>
+	                                	<span class="d-none d-sm-block">수정</span>
 	                                </button>
 	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
 	                               		<i class="bx bx-check d-block d-sm-none"></i>
