@@ -560,8 +560,12 @@ public class OwnerMenuController {
 			list = ownerMenuService.selectMenuGroupByNo(storeNo);
 			logger.info("번호로 검색한 메뉴 그룹 리스트 전체 조회 결과  list.size={}" , list.size() );
 			
+			List<OwnerOptionRankVO> oList = null;
+			oList= ownerMenuService.selectOptionRankAll();
+			logger.info("옵션 랭크 전체 결과  oList.size={}" , oList.size() );
 			
 			model.addAttribute("list" , list);
+			model.addAttribute("oList", oList);
 		
 		
 			
@@ -798,11 +802,19 @@ public class OwnerMenuController {
 		
 		@ResponseBody
 		@RequestMapping("/selectOptionByMenuNo.do")
-		public List<OwnerMenuOptionVO> selectOptionByMenuNo(@RequestParam(defaultValue = "0") int menuNo){
-			logger.info("ajax이용-selectMenuAll,   menuNo={}", menuNo);
+		public List<OwnerMenuOptionVO> selectOptionByMenuNo(@RequestParam(defaultValue = "0") int menuNo,
+				@RequestParam(defaultValue = "0") int oRankNo){
+			logger.info("ajax이용-selectOptionByMenuNo,   menuNo={}, oRankNo={}", menuNo ,oRankNo);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			
+			map.put("menuNo", menuNo+"");
+			map.put("oRankNo",oRankNo+"");
+			
+			
 			
 			List<OwnerMenuOptionVO> list=null;
-			list = ownerMenuService.selectOptionAllByMenuNo(menuNo);
+			list = ownerMenuService.selectOptionAllByMenuNo(map);
 			logger.info("메뉴 번호로 옵션 전체 조회,   list.size={}", list.size());
 			
 			
@@ -845,12 +857,13 @@ public class OwnerMenuController {
 		@RequestMapping("/checkOptionName.do")
 		public boolean checkOptionName(@RequestParam(defaultValue = "0") int menuNo, 
 				@RequestParam(defaultValue = "0") int oRankNo,@RequestParam(defaultValue = "0") String mOptionName) {
-		logger.info("ajax이용-checkOptionName,   menuNo={}, oRankNo={}", menuNo,oRankNo);
+			logger.info("ajax이용-checkOptionName,   menuNo={}, oRankNo={}", menuNo,oRankNo);
 		
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("menuNo",menuNo+"");
 			map.put("oRankNo", oRankNo+"");
 			map.put("mOptionName", mOptionName);
+		
 			
 			int result = ownerMenuService.checkOptionName(map);
 			logger.info("메뉴 이름 중복 확인 결과 result={}", result);
@@ -875,6 +888,69 @@ public class OwnerMenuController {
 			
 		return cnt; 
 		}
+		
+		
+		
+		
+		@ResponseBody  
+		@RequestMapping("/optionSelectOne.do")
+		public OptionResultVO editOption(@RequestParam(defaultValue = "0") int mOptionNo,
+				@RequestParam(defaultValue = "0") int menuNo) {
+		logger.info("ajax이용-optionSelectOne,   mOptionNo={},,menuNo={}", mOptionNo,menuNo);
+		
+			OwnerMenuOptionVO optionVo = ownerMenuService.selectOptionByOptionNo(mOptionNo);
+			logger.info("옵션 select 결과 cnt={}", optionVo);
+			
+			
+			
+				OwnerMenuAllVO vo= ownerMenuService.selectMenuViewBymenuNo(menuNo);
+				logger.info("메뉴 select 결과 vo={}", vo);
+				List<OwnerOptionRankVO> list = ownerMenuService.selectOptionRankAll();
+				logger.info("메뉴 optionRank 결과 list={}", list.size());
+				
+				OptionResultVO optionReVo  = new OptionResultVO();
+				optionReVo.setMenuName(vo.getMenuName());
+				optionReVo.setMenuNo(menuNo);
+				optionReVo.setsMGroupName(vo.getsMGroupName());
+				optionReVo.setsMGroupNo(vo.getsMGroupNo());
+				optionReVo.setList(list);	
+				optionReVo.setOptionVo(optionVo);
+				logger.info("메뉴 optionReVo 결과 optionReVo={}", optionReVo);
+			
+			
+		return optionReVo; 
+		}
+		
+		
+		
+		
+		
+		@ResponseBody  
+		@RequestMapping("/optionUpdate.do")
+		public int optionUpdate(@ModelAttribute OwnerMenuOptionVO optionVo) {
+		logger.info("ajax이용-optionUpdate,   optionVo={}", optionVo);
+			
+			int cnt = ownerMenuService.updateOption(optionVo);
+			logger.info("메뉴 옵션 업데이트 결과 cnt ={}", cnt);
+		
+		return cnt; 
+		}
 
+		
+		
+		@ResponseBody  
+		@RequestMapping("/optionDelete.do")
+		public int optionDelete(@RequestParam(defaultValue = "0") int mOptionNo) {
+		logger.info("ajax이용-optionDelete,   mOptionNo={}", mOptionNo);
+			
+			int cnt = ownerMenuService.deleteOption(mOptionNo);
+			logger.info("메뉴 옵션 업데이트 결과 cnt ={}", cnt);
+		
+		return cnt; 
+		}
+
+			
+		
+		
 
 }

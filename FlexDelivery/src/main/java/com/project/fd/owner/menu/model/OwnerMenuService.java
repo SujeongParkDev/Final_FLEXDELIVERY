@@ -36,10 +36,14 @@ public interface OwnerMenuService {
 	public int checkDupGroupName(String sMGroupName);
 	public int checkDupMenuName(String menuName);
 	public List<OwnerMenuVO> selectMenuByGroupNo(int sMGroupNo);
-	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo);
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(Map<String, String> map);
 	
 	public List<OwnerOptionRankVO> selectOptionRankAll();
 
 	public int checkOptionName(Map<String, String> map);
 	public int insertOption(OwnerMenuOptionVO optionVo);
+	public OwnerMenuOptionVO selectOptionByOptionNo(int mOptionNo);
+	public int updateOption(OwnerMenuOptionVO optionVo);
+	
+	public int deleteOption(int mOptionNo);
 }

@@ -31,6 +31,8 @@
 					'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
 			});
 		});
+		
+		 
 	</script>
 
 		 <!-- 광고등록 탭 + 버튼-->
@@ -65,18 +67,20 @@
 			      <div class="card-content">
 			        <div class="card-body text-center">
 			         
-					  	<div class="row" >
-				  			<div class="col-md-5 col-12"></div>
-				  			<div class="col-md-5 col-12 ">
-								<form name="frmPage" method="post" name="frm1"  action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" >
-									 <%@include file="../../../owner/datePicker/datePicker.jsp" %>	
-									<input type="hidden" name="currentPage" value="1">
-								</form>
-							</div>
-							<div class="col-md-2 col-12">
-								<input type="submit" style="background-color:rgb(223,108,220); color:white;" value="조회" >
-							</div>
-						</div>
+					  	
+					  		<form name="frmPage" method="post" name="frm1"  action="<c:url value='/owner/menu2/advertise/advertiseExpire.do'/>" >
+					  			<div class="row" >
+						  			<div class="col-md-5 col-12"></div>
+						  			<div class="col-md-6 col-12 ">
+										 <%@include file="../../../owner/datePicker/datePicker.jsp" %>	
+										<input type="hidden" name="currentPage" value="1">
+									</div>
+									<div class="col-md-1 col-12">
+										<input type="submit" style="background-color:rgb(223,108,220); color:white;" value="조회" >
+									</div>
+								</div>
+							</form>
+						
 					
 			
 						<br>
@@ -108,7 +112,7 @@
 							                <td class="text-bold-500">FDAD${vo.storeadNo }</td>
 							                <td>${vo.advertiseName }</td>
 							                <td>${vo.advertisePrice }</td>
-							                <td>${vo.adValidate }</td>
+							                <td>${fn:substring(vo.adValidate , 0,10) }</td>
 						              </tr>
 						              </c:forEach>
 						           </c:if>

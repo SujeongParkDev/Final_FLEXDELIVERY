@@ -82,7 +82,7 @@
 					</span>
 						<input type="hidden" name="idx" value="${idx}"> 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input type="text" class="input100 text-right" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid" autocomplete="off">${cookie.ck_ownerid}
+						<input type="text" class="input100 text-right" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid" autocomplete="off" value="${cookie.ck_ownerid}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 

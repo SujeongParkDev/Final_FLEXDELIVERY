@@ -1,5 +1,9 @@
 package com.project.fd.owner.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 
 
@@ -12,8 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.fd.common.Utility;
-import com.project.fd.member.model.MemberVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
 
@@ -36,7 +38,6 @@ public class OwnerController {
 	
 	
 
-	
 	
 	
 	//회원정보 등록
@@ -127,6 +128,51 @@ public class OwnerController {
 	}
 	
 
+	
+	
+
+	
+	//회원탈퇴 (점포)
+	@RequestMapping("/withdraw.do")
+	public String withdraw(HttpSession session,Model model,HttpServletResponse response) {
+		String ownerId=(String) session.getAttribute("ownerId");
+		
+		int cnt = ownerService.withdrawOwner(ownerId);
+		logger.info("회원 탈퇴 결과 cnt = {}", cnt);
+		
+		String msg="회원탈퇴 실패",url="/owner/index.do";
+		if(cnt>0){
+			msg="회원탈퇴처리 되었습니다.";
+		
+			
+			if(session.getAttribute("storeNo")!=null) {
+				session.removeAttribute("storeNo");
+			}
+		
+			logger.info("로그아웃 처리, 파라미터 userid={}, storeNO={}", ownerId);
+			
+			
+			
+			session.removeAttribute("ownerId");
+			session.removeAttribute("ownerName");
+			session.removeAttribute("ownerNo");
+			session.removeAttribute("authorityNo");
+			session.removeAttribute("result");
+		
+			
+			
+			Cookie ck = new Cookie("ck_userid", ownerId);
+			ck.setPath("/");
+			ck.setMaxAge(0); //쿠키제거
+			response.addCookie(ck);
+		}
+		
+		//3. 
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 	
 	
 		

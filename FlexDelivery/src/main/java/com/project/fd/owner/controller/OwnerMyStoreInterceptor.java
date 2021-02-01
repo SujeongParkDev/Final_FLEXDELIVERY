@@ -27,7 +27,7 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 		
 		String ownerId = (String)request.getSession().getAttribute("ownerId");
 		String result=Integer.toString((Integer)request.getSession().getAttribute("result"));
-		
+		System.out.println("인터셉터에서 result"+result);
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
