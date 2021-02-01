@@ -120,7 +120,7 @@
 					<!-- #faqWrite2 모달 start -->
 					<div class="modal fade text-left" id="faqWrite2" tabindex="-1" 
                         role="dialog" aria-labelledby="FAQ 등록" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                            <div class="modal-content">
 								<form name="frmFAQWrite" method="post" action="<c:url value='/admin/menu5/faq/write.do' />">
                                 	<div class="modal-header">
@@ -150,13 +150,13 @@
                                                    	  <tr>
                                                    	  	<td>질문</td>
 	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	<textarea rows="3" cols="40" name="faqQ"></textarea>
+	                                                      	<textarea rows="3" cols="80" name="faqQ"></textarea>
 	                                                      </td>			                                                   	  	
 													  </tr>
 													  <tr>
 													  	<td>답변</td>
 													  	<td colspan="2">
-													  		<textarea rows="10" cols="40" name="faqA"></textarea>
+													  		<textarea rows="10" cols="80" name="faqA"></textarea>
 													  	</td>
 													  </tr>
 	                                                </tbody>

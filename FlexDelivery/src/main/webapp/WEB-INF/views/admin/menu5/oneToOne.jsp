@@ -12,21 +12,20 @@
 
 <div class="container">
 	<div class="row">
-		<div class="main-content container-fluid">
-		    <div class="page-title">
-		        <div class="row">
-		            <div class="col-12 col-md-6 order-md-1 order-last">
-		                <h3>1:1 문의내역 조회</h3>
-		                <p class="text-subtitle text-muted">글번호, 제목, 아이디, 회원종류, 답변여부에 따른 정렬이 가능합니다.</p>
-		            </div>
-		        </div>
-		    </div>
-		    <section class="section">
-		        <div class="card">
-		            <div class="card-header">
-		            </div>
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header" style="padding-bottom: 2px;">
+					 <h3 class="section-title text-uppercase">1:1 문의내역 조회</h3>
+					 <p class="text-subtitle text-muted">글번호, 제목, 아이디, 회원종류, 답변여부에 따른 정렬이 가능합니다.</p>
+					 <hr>
+				</div>
+	    		<section class="section">
+	       			<div class="card-header"></div>
 		            <div class="card-body">
 		                <table class='table table-striped' id="table1">
+		                <c:if test="${empty list }">
+		                </c:if>
+		                <c:if test="${!empty list }">
 		                    <thead>
 		                        <tr>
 		                            <th>글번호</th>
@@ -46,7 +45,7 @@
 		                                <span class="badge bg-success">답변완료</span>
 		                            </td>
 		                        </tr>
-		                        <tr>
+		                        <!-- <tr>
 		                            <td>2</td>
 		                            <td>선물쿠폰 잔액 조회</td>
 		                            <td>park</td>
@@ -109,15 +108,13 @@
 		                            <td>
 		                                <span class="badge bg-success">답변</span>
 		                            </td>
-		                        </tr>
+		                        </tr> -->
 		                    </tbody>
+       		                </c:if>
 		                </table>
-		                
-		                
 					</div>
-				</div>
-				<!-- Hoverable rows end -->
-		    </section>
+				</section>
+			</div>
 		</div>
 	</div>
 </div>

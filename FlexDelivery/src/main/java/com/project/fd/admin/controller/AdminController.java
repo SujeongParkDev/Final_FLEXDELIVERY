@@ -33,6 +33,14 @@ public class AdminController {
 		
 		
 	}
+	
+
+	@RequestMapping("/menu4/introduce.do")
+	public void adminIntroduce() {
+		logger.info("관리자 - 플렉스 딜리버리 소개 보여주기");
+		
+		/* return "/admin/menu4/introduce"; */
+	}
 
 	/*
 	@RequestMapping("/chart/index.do")
@@ -105,10 +113,6 @@ public class AdminController {
 		logger.info("관리자 - 이벤트 화면 보여주기");
 	}
 
-	@RequestMapping("/menu4/introduce.do")
-	public void adminIntroduce() {
-		logger.info("관리자 - 플렉스 딜리버리 소개 보여주기");
-	}
 		
 	@RequestMapping("/menu5/faq.do")
 	public void adminFaq() {
