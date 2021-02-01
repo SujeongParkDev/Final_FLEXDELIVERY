@@ -22,6 +22,4 @@ public class MemberMenuAllVO {
 		return "MemberMenuAllVO [vo=" + memberMenuVo + ", menuOptionList=" + menuOptionList + "]";
 	}
 	
-	
-	
 }

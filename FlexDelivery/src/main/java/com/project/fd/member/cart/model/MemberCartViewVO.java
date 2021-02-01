@@ -1,6 +1,6 @@
 package com.project.fd.member.cart.model;
 
-public class MemberCartVO {
+public class MemberCartViewVO {
 	private int cartNo;
 	private int storeNo;
 	private int menuNo;
@@ -9,7 +9,10 @@ public class MemberCartVO {
 	private int cartQty;
 	private String storeName;
 	private String cartRegdate;
-	
+	private String mOptionName;
+	private int mOptionPrice;
+	private String menuName;
+	private int menuPrice;
 	public int getCartNo() {
 		return cartNo;
 	}
@@ -58,11 +61,36 @@ public class MemberCartVO {
 	public void setCartRegdate(String cartRegdate) {
 		this.cartRegdate = cartRegdate;
 	}
+	public String getmOptionName() {
+		return mOptionName;
+	}
+	public void setmOptionName(String mOptionName) {
+		this.mOptionName = mOptionName;
+	}
+	public int getmOptionPrice() {
+		return mOptionPrice;
+	}
+	public void setmOptionPrice(int mOptionPrice) {
+		this.mOptionPrice = mOptionPrice;
+	}
+	public String getMenuName() {
+		return menuName;
+	}
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+	public int getMenuPrice() {
+		return menuPrice;
+	}
+	public void setMenuPrice(int menuPrice) {
+		this.menuPrice = menuPrice;
+	}
 	@Override
 	public String toString() {
-		return "MemberCartVO [cartNo=" + cartNo + ", storeNo=" + storeNo + ", menuNo=" + menuNo + ", mOptionNo="
+		return "MemberCartViewVO [cartNo=" + cartNo + ", storeNo=" + storeNo + ", menuNo=" + menuNo + ", mOptionNo="
 				+ mOptionNo + ", memberNo=" + memberNo + ", cartQty=" + cartQty + ", storeName=" + storeName
-				+ ", cartRegdate=" + cartRegdate + "]";
+				+ ", cartRegdate=" + cartRegdate + ", mOptionName=" + mOptionName + ", mOptionPrice=" + mOptionPrice
+				+ ", menuName=" + menuName + ", menuPrice=" + menuPrice + "]";
 	}
 	
 	

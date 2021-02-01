@@ -7,7 +7,6 @@ public class MemberMenuOptionVO {
 	private int menuNo;
 	private int oRankNo;
 	
-	
 	public int getmOptionNo() {
 		return mOptionNo;
 	}

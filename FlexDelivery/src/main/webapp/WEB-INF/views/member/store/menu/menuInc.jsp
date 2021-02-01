@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <c:forEach var="mVo" items="${menuList}">
 	<div class="p-3 border-bottom gold-members">
-	    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#option${mVo.memberMenuVo.menuNo}">옵션 선택</a></span>
+	    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#menu${mVo.memberMenuVo.menuNo}Option">옵션 선택</a></span>
 	    <div class="media">
 	        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
 	        <div class="media-body">
@@ -12,7 +12,7 @@
 	        </div>
 	    </div>
 	</div>
-	<div class="modal fade" id="option${mVo.memberMenuVo.menuNo}" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
+	<div class="modal fade" id="menu${mVo.memberMenuVo.menuNo}Option" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -36,24 +36,27 @@
 	                            <!--옵션선택 -->
 	                            <c:if test="${empty mVo.menuOptionList}">
 		                            <div class="p-3 bg-light border-bottom">
-		                                <h6 class="m-0">옵션상품이 없습니다.</h6>
-		                                <div class="custom-control border-bottom px-0  custom-checkbox">
-			                                <input type="checkbox" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
-										    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본선택<p class="text-muted mb-0">${mVo.memberMenuVo.menuPrice}원</p></label>
-									    </div>
+		                                <h6 class="m-0">기본선택만 가능</h6>
 		                            </div>
+	                                <div class="custom-control custom-radio border-bottom py-2">
+		                                <input type="radio" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+									    <input type="hidden" value="${mVo.memberMenuVo.menuPrice}">
+									    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
+								    </div>
 	                            </c:if>
 	                            <c:if test="${!empty mVo.menuOptionList}">
 		                            <div class="p-3 bg-light border-bottom">
 		                                <h6 class="m-0">옵션선택</h6>
 		                            </div>
-			                            <div class="custom-control border-bottom px-0  custom-checkbox">
-			                                <input type="checkbox" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
-										    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본선택<p class="text-muted mb-0">${mVo.memberMenuVo.menuPrice}원</p></label>
+			                            <div class="custom-control custom-radio border-bottom py-2">
+			                                <input type="radio" class="custom-control-input" id="noOption${mVo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+										    <input type="hidden" value="${mVo.memberMenuVo.menuPrice}">
+										    <label class="custom-control-label py-3 w-100 px-3" for="noOption${mVo.memberMenuVo.menuNo}">기본선택<p class="text-muted mb-0">추가 없음</p></label>
 			                            </div>
-		                            <c:forEach var="oVo" items="${mVo.menuOptionList}" varStatus="i">
-			                            <div class="custom-control border-bottom px-0  custom-checkbox">
-			                                <input type="checkbox" class="custom-control-input" id="menu${mVo.memberMenuVo.menuNo}Check${oVo.mOptionNo}" name="optionList[${i.count}].mOptionNo" value="${oVo.mOptionNo}">
+		                            <c:forEach var="oVo" items="${mVo.menuOptionList}">
+			                            <div class="custom-control custom-radio border-bottom py-2">
+			                                <input type="radio" class="custom-control-input" id="menu${mVo.memberMenuVo.menuNo}Check${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
+			                               	<input type="hidden" value="${mVo.memberMenuVo.menuPrice+oVo.mOptionPrice}">
 			                                <label class="custom-control-label py-3 w-100 px-3" for="menu${mVo.memberMenuVo.menuNo}Check${oVo.mOptionNo}">${oVo.mOptionName}<p class="text-muted mb-0">+${oVo.mOptionPrice}원</p></label>
 			                            </div>
 		                            </c:forEach>
@@ -68,12 +71,19 @@
 	                    	<button type="button" class="btn-sm right inc btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
 	                    </span></p>
 	                </div>
+	                <div class="p-3 bg-light border-bottom">
+	                    <p class="text-muted fs-5 fw-bold font-monospace">Total 
+	                    <span class="float-right font-monospace totalPrice" style="font-weight: 700">
+	                    ${mVo.memberMenuVo.menuPrice}원
+	                    </span>
+	                    </p>
+	                </div>
 	                <div class="modal-footer p-0 border-0">
 	                    <div class="col-6 m-0 p-0">
 	                        <button type="submit" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
 	                    </div>
 	                    <div class="col-6 m-0 p-0">
-	                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">취소</button>
+	                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">취소</button>
 	                    </div>
 	                </div>
                 </form>
