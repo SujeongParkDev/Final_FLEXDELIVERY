@@ -58,6 +58,11 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 		return list;
 	}
 
+	@Override
+	public boolean checkDu(String content) {
+		return true;
+	}
+
 
 
 }

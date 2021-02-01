@@ -48,6 +48,11 @@ public class AdminLargeCategoryServiceImpl implements AdminLargeCategoryService{
 		return largecategoryDao.selectAll2();
 	}
 
+	@Override
+	public boolean checkDu(String content) {
+		return largecategoryDao.checkDu(content);
+	}
+
 
 	
 }

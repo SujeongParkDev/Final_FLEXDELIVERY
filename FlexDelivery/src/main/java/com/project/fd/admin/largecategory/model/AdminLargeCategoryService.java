@@ -21,4 +21,6 @@ public interface AdminLargeCategoryService {
 
 	int deleteLargeCategory(AdminLargeCategoryVO largecategoryVo);
 
+	boolean checkDu(String content);
+
 }
