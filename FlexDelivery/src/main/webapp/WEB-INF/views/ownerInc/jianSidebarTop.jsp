@@ -178,7 +178,7 @@
 			                
 			                <!-- 요청처리현황 view -->
 			                <li class="sidebar-item  ">
-			                    <a href="#" class='sidebar-link'>
+			                    <a href="/fd/owner/menu2/requests/requests.do" class='sidebar-link'>
 			                        <img data-feather="layout" width="20"></img> 
 			                        <span>요청처리현황</span>
 			                    </a>

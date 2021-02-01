@@ -5,6 +5,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	$('#btLogo').click(function(){
+		location.href='<c:url value="/owner/menu2/basic/basicLogo.do"/>';
+	});
+});
+</script>
+
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/basic.css" />
 <link rel="stylesheet"
@@ -56,9 +65,8 @@
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
-										<button type="button" a class="button p-0 text text" 
-										href="<c:url value="/owner/menu2/basic/basicLogo.do"/>">로고
-											변경요청</button>
+										<button type="button" id="btLogo" class="button p-0 text text">
+										로고변경요청</button>
 										에서 하실 수 있습니다.
 										<ul class="bullet-ul small muted">
 											<li>영업일 기준 최대 5일 이내 처리됩니다.</li>
