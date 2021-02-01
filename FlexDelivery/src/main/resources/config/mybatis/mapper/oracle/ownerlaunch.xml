@@ -50,5 +50,4 @@ on a.store_no=s.STORE_NO;
 	where OWNER_NO=#{ownerNo} and O_REGISTER_NO=#{oRegisterNo}
 	</update>
 	
-
 </mapper>

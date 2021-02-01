@@ -15,9 +15,9 @@
 	</selectKey> 
 	 insert into STORES(STORE_NO,STORE_NAME,STORE_LOGO,STORE_ADDRESS,
 	 STORE_ADDRESS_DETAIL,OWNER_NO,L_CATEGORY_NO,LOCATION_NO,
-	 O_REGISTER_NO)
+	 O_REGISTER_NO,STORE_CONTENT)
 	values(#{storeNo},#{storeName},#{storeLogo},#{storeAddress},#{storeAddressDetail},
-	#{ownerNo},#{lCategoryNo},#{locationNo},#{oRegisterNo})
+	#{ownerNo},#{lCategoryNo},#{locationNo},#{oRegisterNo},#{storeContent})
 	</insert>
 	
 
@@ -36,5 +36,11 @@
 		select store_No from stores
 		where owner_No=#{ownerNo}
 	</select>
+	
+		<select id="selectOwnerAuthorityAll"  parameterType="string" resultType="ownerAuthorityVo">
+		select * from jaOwnerAuthorityAllView
+		where owner_id = #{userid}
+	</select>
+	
 
 </mapper>

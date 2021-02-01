@@ -18,6 +18,9 @@
 							style="width: 146px; height: 22px;"> --> FLEXDELIVERY 주문 페이지
 						</a>
 						<div class="Card rounded ">
+						<img
+							src="file://Users/nagyeom/Desktop/KakaoTalk_Photo_2021-02-01-15-05-45.png"
+															width="200" class="rounded float-right">
 							<div class="card-header">
 								<h3>FLEXDELIVERY 입점 🏩</h3>
 							</div>

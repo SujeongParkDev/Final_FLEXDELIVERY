@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.common.LocationVO;
+import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -34,14 +36,25 @@ public class OwnerStoresController {
 	@Autowired private FileUploadUtil fileUtil;
 	
 	@Autowired private AdminLargeCategoryService adminlarge;
-	
-	@RequestMapping("/index.do") 
-	public void ownerMain() {
-		logger.info("사장님 메인 화면 보여주기"); 
+
+	 @RequestMapping("/launch/launch.do")
+	 public void ownerlaunch(Model model) {
+
+		 logger.info("점포 - 입점 메인 화면 보여주기");
+		 
 	}
-	
+	 
 	@RequestMapping("/launch/launchNext.do")
 	 public String ownerlaunchNext(Model model) {
+		
+		model.addAttribute("NO_LICENSE", OwnerService.NO_LICENSE);
+		model.addAttribute("NO_STORE", OwnerService.NO_STORE);
+		model.addAttribute("HAVE_ALL", OwnerService.HAVE_ALL);
+		model.addAttribute("LICENSE_STAY", OwnerService.LICENSE_STAY);
+		model.addAttribute("STORE_STAY", OwnerService.STORE_STAY);
+		model.addAttribute("NOTICE", OwnerBoardService.BOARD_NOTICE);
+		model.addAttribute("EVENT", OwnerBoardService.BOARD_EVENT);
+		
 		 logger.info("점포 - 입점 약관 보여주기");
 		 // 지역코드번호
 		List<LocationVO> location=ownerStoresService.AllLocaion();
@@ -58,15 +71,8 @@ public class OwnerStoresController {
 	 @RequestMapping("/launch/launchRegister.do")
 	 public void register_get(Model model) { //requestparam=>사업자등록했는지
 		 logger.info("점포 - 입점 시작하기 보여주기");
-		 
 		
 	 }
-	 
-	 @RequestMapping("/launch/launch.do")
-	 public void ownerlaunch() {
-		 logger.info("점포 - 입점 메인 화면 보여주기");
-	}
-	 
 	 
 	 //입점신청 
 	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
@@ -100,16 +106,25 @@ public class OwnerStoresController {
 				e.printStackTrace();
 			}
 
-			//2
 			ownerStoresVo.setStoreLogo(originName);
 
 			int cnt=ownerStoresService.insertOwnerStores(ownerStoresVo);
 			logger.info("점포 입점 신청  처리 결과, cnt={},originName={}", cnt,originName);
+			
+			String msg="점포 입점 신청 실패 !", url="/owner/menu1/launch/launchNext.do";
+			if(cnt>0) {
+				msg="점포 입점 신청이 완료되었습니다. \n승인 처리 진행은 최대 3일 경과 됩니다.";
+				url="/owner/menu1/launch/launchNext.do";
+			}
 
-			//3
-			return "redirect:/owner/menu2/basic.do";
-		 
-	 }
+			//3		
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+
+			//4
+			return "common/message";
+		}
+	 
 	
 
 }

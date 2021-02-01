@@ -79,14 +79,16 @@
 
 
 				<h5 class="form-label">✔ 점포 주소</h5>
+				<div class="col-md-4" >
+								<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="OwnerZipcode" id="OwnerZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							</div>
 							<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
       						  <span class="sp1">&nbsp;</span>
-								<input type="text" placeholder="20자 이내로 등록해주세요." class="infobox form-control-lg"
-									name="storeAddress" id="storeAddress" minlength="1" title="점포주소">
+								<input type="text" class="infobox form-control-lg" name="storeAddress" id="storeAddress" minlength="1" title="점포주소">
 							</div>
 						</div>
 					</div>
@@ -131,7 +133,7 @@
 					<ul class="bullet-ul small muted">
 						<li>상담 현황에 따라 상담시간은 변동될 수 있습니다.</li>
 					</ul>
-
+						<!-- 이거 삭제할까 고민중... 컬럼에 없긴함!  -->
 					<h5 class="form-label">✔ 전화 받을 연락처를 확인해주세요.</h5>
 					<div class="form-control-wrap border 1px solid #ced4da">
 						<div class="form-control only-one-input">
@@ -140,6 +142,18 @@
 									<input type="number" placeholder="8~12자리 숫자만 입력해주세요."
 										required="" pattern="[0-9]{8,12}" minlength="8" maxlength="12">
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<h5 class="form-label">✔ 상담 시 요청사항 </h5>
+				<div class="form-control-wrap border 1px solid #ced4da">
+					<div class="form-control only-one-input">
+						<div class="input-label-container" style="width: inherit;">
+							<div class="input-container left">
+								<input type="text" placeholder="300자 이내로 등록해주세요." class="infobox form-control-lg"
+									name="storeContent" id="storeContent" minlength="1" >
 							</div>
 						</div>
 					</div>
@@ -196,12 +210,6 @@ $(function() {
 				$('#chkAgree').focus();
 				event.preventDefault();
 				return false;
-			}else{
-				alert('🎉축하합니다!🎉 \n입점 등록 신청이 완료되었습니다. \n내 가게 정보로 이동합니다.');
-				// 기본정보로 이동 
-				//location.href = '<c:url value="/owner/menu2/basic/basic.do"/>';
-				$('form[name=frm1]').submit();
-				 window.parent.location.reload();
 			}
 		}
 	});
@@ -213,7 +221,7 @@ $(function() {
 	var contextPath="/fd";
 
 			$('#btnZipcode').click(function(){
-				open(contextPath+"/zipcode.do", "chk",
+				open(contextPath+"/owner/menu1/launch/zipcode.do", "chk",
 		"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
 			});
 		
