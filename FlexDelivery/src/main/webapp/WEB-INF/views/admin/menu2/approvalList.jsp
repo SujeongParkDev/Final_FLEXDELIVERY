@@ -87,18 +87,25 @@
 								</td>
 							</tr>
 						</c:forEach>
-
-
 						<!-- 반복구간 끝 -->
                     </tbody>
                 </table>
             </div>
         </div>
-
+		<form id="excelFrm" name="excelFrm" method="post" enctype="multipart/form-data">
+    		<button type="button" onclick="doExcelDownloadProcess()">엑셀다운로드 작업</button>
+		</form>
     </section>
 </div>
 
 <!-- script start -->
+<script type="text/javascript">    
+    function doExcelDownloadProcess(){
+        var f = document.excelFrm;
+        f.action = "downloadExcelFile.do";
+        f.submit();
+    }
+</script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>   
