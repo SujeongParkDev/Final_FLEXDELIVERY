@@ -40,7 +40,15 @@
 						var str="<div class='col-md-6 mb-3' onclick=\"location.href='<c:url value='/member/store/storeDetail.do?storeNo="+map.list[i].storeNo+"'/>'\">";
 						str+="<div class='d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm'>";
 						str+=" <div class='list-card-image'>";
-						str+="<div class='favourite-heart text-danger position-absolute'><a href='<c:url value='/member/memberLike.do?storeNo="+map.list[i].storeNo+"' />'><i class='feather-heart'></i></a></div>";
+						str+="<div class='favourite-heart text-danger position-absolute'>";
+						if(map.likeList.length>0){
+							for(var j=0;j<map.likeList.length;i++){
+								if(map.likeList[i].storeNo==map.list[i].storeNo){
+									str+="<i class='feather-heart'></i>";
+								}
+							}
+						}
+						str+="</div>";
 						if(map.list[i].sStatusNo==2){
 							str+="<div class='member-plan position-absolute'><span class='badge badge-primary'>영업중</span></div>";
 						}else if(map.list[i].sStatusNo==1 || map.list[i].sStatusNo==3){
@@ -98,7 +106,15 @@
 			<div class="col-md-6 mb-3" onclick="location.href='<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />'">
 			    <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
 			        <div class="list-card-image">
-			            <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+			            <div class="favourite-heart text-danger position-absolute">
+			            <c:if test="${!empty likeList}">
+		                <c:forEach var="lVo" items="${likeList}">
+		                	<c:if test="${lVo.storeNo==vo.storeNo}">
+			                	<i class="feather-heart"></i>
+		                	</c:if>
+		                </c:forEach>
+	                	</c:if>
+			            </div>
 			            <c:if test="${vo.sStatusNo==2}">
 			                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
 		                </c:if>

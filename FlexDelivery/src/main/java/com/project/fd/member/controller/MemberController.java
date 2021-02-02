@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class MemberController {
 		//2
 		int lono=memberService.memloNo(locationName);
 		vo.setLocationNo(lono);
+		
+		String hashPwd=BCrypt.hashpw(vo.getMemberPwd(), BCrypt.gensalt());
+		vo.setMemberPwd(hashPwd);
 		
 		int cnt=memberService.insertMember(vo);
 		logger.info("회원가입 결과, cnt={}", cnt);
