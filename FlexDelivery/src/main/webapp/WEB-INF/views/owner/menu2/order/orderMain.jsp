@@ -8,80 +8,22 @@
 	<script type="text/javascript">
 	
 	
-	
-	
-	$(function(){
-			//{"no":7,"name":"김길동","content":"안녕"}
-			$('.test').click(function(){
-				$.ajax({
-					url:"<c:url value='/owner/menu2/order/orderListRequest.do'/>",
-					type:"GET",
-					data:"ordersNo='3'",
-					dataType:"json",
-					success:function(test){
-						alert(test);
-					},
-					error:function(xhr, status, error){
-						alert("error!! : " + error);
-					}
-						
-						/* //alert(res);
-						var str="";
-						str+="<tr><td colspan='5' class='align_center'>데이터가 존재하지 않습니다.</td></tr>";
-						if(mapResult.list==null){
-							str+="<tr><td colspan='5' class='align_center'>데이터가 존재하지 않습니다.</td></tr>";
-						}   else{
-							
-						   $.each(mapResult, function(idx, item){
-								str+="<tr  class='text-center'><td>"+item.map['RNUM'] +"</td><br>";
-								str+="<td class='text-bold-500'>"+item.map['ORDERS_PAY_END_DATE'] +"</td>";
-								
-							 	$.ajax({
-									url:"<c:url value='/owner/menu2/order/findOrderMenu.do'/>",
-									data:"ordersNo=" + item.map['ORDERS_NO'],
-									dataType:"json",
-									type:"GET",
-									success:function(mapResultTwo){
-										
-										str+="<td><a href='#' class='goDetail' data-toggle='modal' data-target='#orderDetail'>"+mapResultTwo.title+"</a></td>";
-									},
-									error:function(xhr, status, error){
-										alert("error!! : " + error);
-									}
-								}); 
-								
-								str+="<td>"+item.map['ORDERS_PRICE'] - item.map['ORDERS_DISCOUNT'] +"</td>";
-								str+="<td>"+item.map['O_STATUS_NAME']+"</td></tr>";
-					    		
-							});
-							
-						}
-						  
-						
-						$('#requestResult').html(str);
-					},
-					error:function(xhr, status, error){
-						alert("error!! : " + error);
-					} */
-				});
-			});
+	/*
+ 	$.ajax({
+		url:"<c:url value='/owner/menu2/order/findOrderMenu.do'/>",
+		data:"ordersNo=" + item.map['ORDERS_NO'],
+		dataType:"json",
+		type:"GET",
+		success:function(mapResultTwo){
 			
-	});
-	
-	
-	
-	
-			
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+			str+="<td><a href='#' class='goDetail' data-toggle='modal' data-target='#orderDetail'>"+mapResultTwo.title+"</a></td>";
+		},
+		error:function(xhr, status, error){
+			alert("error!! : " + error);
+		}
+	}); 
+	*/							
+								
 	
 	
 	//submit 구간
@@ -136,7 +78,7 @@
                                 <form name="frmRequest" method="post" name="frm1"  action="<c:url value='/owner/menu2/order/orderMain.do'/>" >
 									<input type="hidden" name="currentPage" value="1">
 								</form>
-								<button class="test" value="확인">확인</button>
+								
 								
 			                             <!-- table hover -->
 							        <div class="table-responsive">
@@ -144,14 +86,32 @@
 							            <thead>
 							              <tr class="text-center">
 							              	<th style="width:15%;">번호</th>
-							                <th style="width:20%;">주문시각</th> <!-- 다급한거 이미지 -->
+							              	<th style="width:20%;">회원</th>
+							                <!-- 다급한거 이미지 -->
 							                <th style="width:30%;">주문내역</th>
+							                <th style="width:20%;">주문시각</th>
 							                <th style="width:15%;">결제금액</th>
-							                <th style="width:20%;">주문상태</th>
+							               
 							              </tr>
 							            </thead>
-							            <tbody id="requestResult">
+							            <tbody>
 							            <!-- table 시작 -->
+							            	<c:if test="${empty list }">
+						            			<tr class="text-center">
+													<td colspan="5" class="align_center">데이터가 존재하지 않습니다.</td>
+												</tr>
+							            	</c:if>
+							            	<c:if test="${!empty list }">
+								            	<c:forEach var="map" items="${list }">	
+									              <tr  class="text-center">
+									              		<td>${map['RNUM'] }</td>
+										                <td>${map['MEMBER_ID'] }</td>
+										                <td></td>
+										                <td class="text-bold-500">${map['ORDERS_PAY_END_DATE']}</td>
+										                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
+									             </tr>
+									             </c:forEach>
+								           </c:if>
 							          	
 							            </tbody>
 							          </table>

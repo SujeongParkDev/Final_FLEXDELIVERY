@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 import java.io.InputStream;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,9 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
-import com.project.fd.owner.advertise.model.OwnerAdvertiseAllVO;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
-import com.project.fd.owner.menu.model.OwnerMenuOptionVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
 
 
@@ -40,25 +39,23 @@ public class OwnerOrderController {
 	
 	
 	//필요한 매개변수값이 ownerAdvertiseSearchVO와 같아 굳이 searchVO를 추가적으로 만들진 않았습니다.
-	@RequestMapping("/orderMain.do")
-	public String orderMain_get() {
+	
+	
 		
-		return "owner/menu2/order/orderMain";
-	}
+		
 	
 	
 	
 	
-	/*
 	
-	@ResponseBody  
-	@RequestMapping("/orderListRequest.do")
-	public String orderListRequest(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+	
+		@RequestMapping("/orderMain.do")
+		public String orderMain_get(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 			HttpSession session, Model model) {
 		//storeNo 구하기
 			int storeNo=0;
 			
-			String msg="점포가 없습니다.", url="/owner/index.do";
+			
 			if(session.getAttribute("storeNo")!=null) {
 				storeNo= (Integer)session.getAttribute("storeNo");
 			}
@@ -107,43 +104,34 @@ public class OwnerOrderController {
 		logger.info("글목록 결과, list.size={}", list.size());
 		
 		
+		model.addAttribute("list",list);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("searchVo", searchVo);
+		model.addAttribute("type",type);
 		
-		Map<String, Object> mapResult = new HashMap<String, Object>();
-		//3. 맵에 결과 저장
-		mapResult.put("list",list);
-		mapResult.put("pagingInfo", pagingInfo);
-		mapResult.put("searchVo", searchVo); 
-		mapResult.put("type", type);
-		logger.info("글목록 결과, mapResult={}", mapResult);
+		
+
+
 		
 		//4. 뷰페이지 리턴) {
 		
-		return "mapResult";
+		return "owner/menu2/order/orderMain";
 	}
 	
-	*/
 	
 	
 	
-	
-	@ResponseBody  
-	@RequestMapping("/orderListRequest.do")
-	public String orderListRequest(@RequestParam(defaultValue = "0") String ordersNo, 
-			HttpSession session, Model model) {
-		logger.info("test, ordersNo={}", ordersNo);
-		String test = ordersNo;
-		return "test";
-	}
-	
-	@ResponseBody  
-	@RequestMapping("/findOrderMenu.do")
-	public String findOrderMenu(@RequestParam(defaultValue = "0") int ordersNo) {
-		logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}", ordersNo);
-		
-		
-		Map<String, Object> mapResultTwo = ownerOrderService.getTitle(ordersNo);
-		
-		
-		return "mapResultTwo";
-	}
+	/*
+	  @ResponseBody
+	  
+	  @RequestMapping("/findOrderMenu.do") public String
+	  findOrderMenu(@RequestParam(defaultValue = "0") int ordersNo) {
+	  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}", ordersNo);
+	  
+	  
+	  Map<String, Object> mapResultTwo = ownerOrderService.getTitle(ordersNo);
+	  
+	  
+	  return "mapResultTwo"; }
+	 */
 }
