@@ -33,7 +33,6 @@ public class AdminController {
 		
 		
 	}
-	
 
 	@RequestMapping("/menu4/introduce.do")
 	public void adminIntroduce() {
@@ -43,6 +42,11 @@ public class AdminController {
 	}
 
 	/*
+	@RequestMapping("/menu1/member.do")
+	public void adminMember() {
+		logger.info("관리자 - 회원조회 화면 보여주기");
+	}
+	
 	@RequestMapping("/chart/index.do")
 	public void adminChartMain() {
 		logger.info("관리자 - 통계용 화면 보여주기");
@@ -53,14 +57,15 @@ public class AdminController {
 		logger.info("관리자 - 회원관리 요약화면 보여주기");
 	}
 	
-	@RequestMapping("/menu1/member.do")
-	public void adminMember() {
-		logger.info("관리자 - 회원조회 화면 보여주기");
-	}
 	
 	@RequestMapping("/menu1/memberGrade.do")
 	public void admin() {
 		logger.info("관리자 - 회원등급관리 화면 보여주기");
+	}
+	
+	@RequestMapping("/menu2/storeMg.do")
+	public void adminStoreManage() {
+		logger.info("관리자 - 점포 현황 화면 보여주기");
 	}
 
 	@RequestMapping("/menu1/review.do")
@@ -93,10 +98,6 @@ public class AdminController {
 		logger.info("관리자 - 광고승인 리스트 화면 보여주기");
 	}
 	
-	@RequestMapping("/menu2/storeMg.do")
-	public void adminStoreManage() {
-		logger.info("관리자 - 점포 현황 화면 보여주기");
-	}
 
 	@RequestMapping("/menu3/honeyTip.do")
 	public void adminHoneyTip() {

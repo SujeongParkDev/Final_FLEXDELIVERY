@@ -37,6 +37,9 @@
 	     <beans:property name="order" value="0" />
 	</beans:bean>
 	
+	<beans:bean id="excelDownloadView" class="com.project.fd.common.ExcelDownloadView"/>
+    
+    <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>	
 	
 	<interceptors>
 		<interceptor>
