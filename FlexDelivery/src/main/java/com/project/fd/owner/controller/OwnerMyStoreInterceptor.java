@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,12 +15,14 @@ import com.project.fd.owner.model.OwnerService;
 
 @Component
 public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
-	
+	private static final Logger logger
+	=LoggerFactory.getLogger(OwnerMyStoreInterceptor.class);
 
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		
 		
 		if(request.getSession().getAttribute("result")==null) {
 			request.getSession().setAttribute("result",0);
@@ -37,25 +41,29 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 			out.print("location.href='"+request.getContextPath()+"/owner/login/login.do';");
 		}else{
 			if(result.equals(OwnerService.NO_LICENSE+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('사업자 등록 부터 부탁드려요');");
 				out.print("location.href='"+request.getContextPath()+"/owner/menu1/businessLicense.do';");
 			}else if(result.equals(OwnerService.NO_STORE+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('점포 등록 부터 부탁드려요');");
 				out.print("location.href='"+request.getContextPath()+"/owner/menu1/launch/launch.do';");
 			}else if(result.equals(OwnerService.LICENSE_STAY+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('사업자 등록 승인 대기 중입니다.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.STORE_STAY+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('점포 승인 대기 중입니다.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.HAVE_ALL+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				return true;
-			}
 		}
-		
+		}		
 		out.print("</script>");
 		return false;
 	
-	}
+		}
 	
 }

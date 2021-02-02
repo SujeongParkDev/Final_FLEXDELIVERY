@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.fd.common.DateSearchVO;
+import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 public interface OwnerRegisterService {
 	public static final int EXIST_REGISTER_NO=1;  //REGISTER_NO가 이미 존재하는 경우
@@ -16,4 +18,7 @@ public interface OwnerRegisterService {
 	int deleteAd(int storeadNo);
 	int updateAgreeRegi(OwnerRegisterVO vo);
 	int oRegisterNoDup(long oRegisterNo);
+	
+	public OwnerStoreAdVO selectAD(int storeadNo);
+	public OwnerStoresVO selecSt(int storeNo);
 }

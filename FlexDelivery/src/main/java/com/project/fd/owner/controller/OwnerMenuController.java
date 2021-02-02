@@ -60,6 +60,7 @@ public class OwnerMenuController {
 	public String menuMain_get(HttpSession session, Model model) {
 		int storeNo=0;
 		
+	
 		String msg="점포가 없습니다.", url="/owner/index.do";
 		if(session.getAttribute("storeNo")==null) {
 			model.addAttribute("msg",msg);
@@ -69,7 +70,7 @@ public class OwnerMenuController {
 		}else {
 			storeNo= (Integer)session.getAttribute("storeNo");
 		}
-		
+	
 		logger.info("menuMain 창 보여주기 파라미터 no={}",storeNo);
 		//=>Q.점포 번호가 필요합니다. 세션으로 두는게 편할까??
 		
@@ -126,7 +127,7 @@ public class OwnerMenuController {
 	//메뉴편집 버튼 누르면  menuGroup보여주기
 		@RequestMapping(value = "/menuGroup.do", method = RequestMethod.GET) 
 		public String  menuGroup_get(HttpSession session, Model model){
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -227,7 +228,7 @@ public class OwnerMenuController {
 		@RequestMapping(value ="/menuGroupWrite.do", method = RequestMethod.GET) 
 		public String  menuGroup_write_get(HttpSession session, Model model){
 
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -278,7 +279,7 @@ public class OwnerMenuController {
 		@RequestMapping(value = "/menuChoice.do", method = RequestMethod.GET) 
 		public String  menuChoice_get(@ModelAttribute OwnerStoreMenuGroupVO vo,
 							HttpSession session, Model model){
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -321,7 +322,7 @@ public class OwnerMenuController {
 			}
 			
 			//스토어넘버로 메뉴 그룹 list 정보가져오기
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -460,7 +461,7 @@ public class OwnerMenuController {
 		public String  menuChoice_write(HttpSession session,Model model,
 					@RequestParam (defaultValue = "0") int sMGroupNo){
 			
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -542,7 +543,7 @@ public class OwnerMenuController {
 	//옵션편집 버튼 누르면  menuOption.jsp
 		@RequestMapping(value = "/menuOption.do", method = RequestMethod.GET) 
 		public String  menuOptionGroup_get(HttpSession session, Model model){
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
@@ -580,7 +581,7 @@ public class OwnerMenuController {
 	//대표메뉴버튼 누르면  signatureMenu.jsp
 		@RequestMapping(value = "/signatureMenu.do", method = RequestMethod.GET) 
 		public String  signatureMenu_get(HttpSession session, Model model,HttpServletRequest request){
-			int storeNo=0;
+			int storeNo=1;
 			
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {

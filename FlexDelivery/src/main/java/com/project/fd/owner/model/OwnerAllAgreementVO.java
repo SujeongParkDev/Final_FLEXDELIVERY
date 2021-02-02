@@ -1,5 +1,7 @@
 package com.project.fd.owner.model;
 
+import com.project.fd.admin.temporary.model.AdminTemporaryVO;
+import com.project.fd.owner.advertise.model.OwnerAdvertiseVO;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -10,8 +12,27 @@ public class OwnerAllAgreementVO {
 	//입점
 	private OwnerStoresVO ownerStoresVo;
 
-	//광고 ?? 광고에 aAgreeNo 없는데??
+	// 광고 
+	private OwnerAdvertiseVO ownerAdVo;
 	
+	// temp Stores
+	private AdminTemporaryVO tempVo;
+	
+	public OwnerAdvertiseVO getOwnerAdVo() {
+		return ownerAdVo;
+	}
+
+	public void setOwnerAdVo(OwnerAdvertiseVO ownerAdVo) {
+		this.ownerAdVo = ownerAdVo;
+	}
+
+	public AdminTemporaryVO getTempVo() {
+		return tempVo;
+	}
+
+	public void setTempVo(AdminTemporaryVO tempVo) {
+		this.tempVo = tempVo;
+	}
 	
 	public OwnerRegisterVO getOwnerRegisterVo() {
 		return ownerRegisterVo;
@@ -31,7 +52,8 @@ public class OwnerAllAgreementVO {
 
 	@Override
 	public String toString() {
-		return "OwnerAllAgreementVO [ownerRegisterVo=" + ownerRegisterVo + ", ownerStoresVo=" + ownerStoresVo + "]";
+		return "OwnerAllAgreementVO [ownerRegisterVo=" + ownerRegisterVo + ", ownerStoresVo=" + ownerStoresVo
+				+ ", ownerAdVo=" + ownerAdVo + ", tempVo=" + tempVo + "]";
 	}
 	
 	
