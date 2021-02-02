@@ -32,6 +32,7 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		out.print("<script>");
+		
 		if(ownerId==null || ownerId.isEmpty()) {
 			out.print("alert('로그인 부탁드려요');");
 			out.print("location.href='"+request.getContextPath()+"/owner/login/login.do';");
@@ -49,9 +50,12 @@ public class LicenseInterceptor extends HandlerInterceptorAdapter {
 				out.print("alert('점포 승인 대기 중입니다.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.HAVE_ALL+"")) {
-				return true;
+				out.print("alert('사업자 등록과 점포 승인 내역이 존재합니다. 취소 후 신청 바랍니다. ');");
+				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}
+			return true;
 		}
+		
 		
 		out.print("</script>");
 		return false;

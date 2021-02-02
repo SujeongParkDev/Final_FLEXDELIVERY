@@ -58,17 +58,15 @@ public class OwnerServiceImpl implements OwnerService {
 		 int result = NO_LICENSE;
 		 System.out.println("vo.getRagreeno()"+vo.getRagreeno());
 		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
-				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()==4)) {
-			 if(vo.getRagreeno()==1) {
+				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()>3)) {
+			 if(vo.getRagreeno()==1 && vo.getoRegisterNo()!=0) {
 				 result=LICENSE_STAY;
-				
 			 }else {
 				 result=NO_LICENSE;
 			 }
 		 } else if(vo.getRagreeno()==3
-				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()==4)) {
-			 
-			 if(vo.getSagreeno()==1) {
+				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()>3)) {
+			 if(vo.getSagreeno()==1 && vo.getStoreNo()!=0) {
 				 result=STORE_STAY;
 			 }else {
 				 result=NO_STORE;

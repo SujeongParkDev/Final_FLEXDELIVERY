@@ -83,8 +83,8 @@
 						</div>
 						<div class="col-sm-12 d-flex justify-content-end pt-5">
 							<button type="submit" class="btn btn-primary mr-1 mb-1"
-								id="wr_submit" name="wr_submit">djfkd</button>
-							<a href="<c:url value='/owner/menu1/businessLicense.do'/>">dfdfdf</a>
+								id="wr_submit" name="wr_submit">등록하기 </button>
+							<a href="<c:url value='/owner/menu1/businessLicense.do'/>">취소하기 </a>
 						</div>
 					</div>
 				</form>

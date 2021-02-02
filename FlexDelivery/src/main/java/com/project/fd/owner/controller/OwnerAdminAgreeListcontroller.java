@@ -36,7 +36,6 @@ public class OwnerAdminAgreeListcontroller {
 			public String tempList(HttpSession session,
 					Model model) {
 				int ownerNo=(Integer) session.getAttribute("ownerNo");
-				
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				
 				List<Map<String, Object>> tempList =ownerRService.selectLSJAgreeListView(ownerNo);

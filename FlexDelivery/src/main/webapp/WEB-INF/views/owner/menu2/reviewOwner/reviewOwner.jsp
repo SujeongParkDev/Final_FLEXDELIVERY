@@ -19,7 +19,7 @@
 <style type="text/css">
 </style>
 <!-- CSS end -->
-<div class="container position-relative">
+<div class="container position-relative"><!--데이트 피커랑 사용자스토어 불러오기랑 답변 미답변 차단 플래그만 하면 완성 !! -->
 	<div class="row">
 		<div class="col-md-8 pt-3">
 			<div>
@@ -82,15 +82,12 @@
 							<div class="col-md-5 col-12 ">
 								<form name="frmPage" method="post" name="frmDate"
 									action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
-									<%@include
-										file="../../../owner/datePicker/SJdatePickerTest.jsp"%>
+									<%@include file="../../../owner/datePicker/SJdatePickerTest.jsp"%>
 									<input type="hidden" name="currentPage" value="1">
 								</form>
 							</div>
 							<div class="col-md-2 col-12">
-								<input type="submit"
-									style="background-color: rgb(223, 108, 220); color: white;"
-									value="조회">
+								<input type="submit" style="background-color: rgb(223, 108, 220); color: white;" value="조회">
 							</div>
 							<c:if test="${!empty reviewList }">
 								<p style="padding: 15px 0 0 0">${dateSearchVO.startDay }~
@@ -98,6 +95,8 @@
 							</c:if>
 						</div>
 					</div>
+					<!-- 
+					
 					<div class="radio-group mx-sm-2 mb-3">
 						<label class="radio-button"> 
 						<input type="radio" value="" checked="" id="ck1" value="1">
@@ -112,6 +111,7 @@
 							<p class="label">차단(0)</p>
 							</label>
 					</div>
+					 -->
 					<div class="review-wrap">
 						<div class="review-list">
 							<div class="visible">
