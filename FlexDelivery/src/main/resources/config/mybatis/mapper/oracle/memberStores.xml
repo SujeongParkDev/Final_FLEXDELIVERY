@@ -82,6 +82,10 @@
 		select * from hyStoreList where store_No=#{storeNo}
 	</select>
 	
+	<select id="selectLikeStore" parameterType="int" resultType="memberLikeStoreVo">
+		select * from likeStore where member_no=#{memberNo}
+	</select>
+	
 	<!-- <resultMap type="orderAllVo" id="orderListResultMap">
 		<association property="orderVo" column="orderNo" javaType="OrderVO">
 			<id property="orderNo" jdbcType="BIGINT" column="orderNO"  />

@@ -14,20 +14,21 @@
 				data:data,
 				success:function(map){
 					var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
-				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-				    str+="<div class='d-flex flex-column'>";
-				    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
-				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
-				    str+="<div class='bg-white border-bottom py-2 cartDiv'>";
+					if(map.list.length>0){
+					    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
+					    str+="<div class='d-flex flex-column'>";
+					    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
+					    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
+					    str+="<div class='bg-white border-bottom py-2 cartDiv'>";
+					}
 			   		var buyPrice=0;
 			   		var totalPrice=0;
 			   		var delivery=0;
-			    	if(map.list.length<1){
+					if(map.list.length<1){
 			    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
 		    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
 			    		str+="</div>";
-			    	}
-			    	if(map.list.length>0){
+			    	}else{
 			    		for (var i = 0; i < map.list.length; i++) {
 			    			var sum=(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty;
 			    			buyPrice=buyPrice+sum;
@@ -44,29 +45,27 @@
 					        str+="<input class='count-number-input' type='text' readonly value='"+map.list[i].cartQty+"'>";
 					        str+="<button type='button' class='btn-sm right inc btn btn-outline-secondary' onclick='plus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-plus'></i> </button></span>";
 					        str+="</div></div>";
-						            
 						}
-			    	}
-			    	str+="</div>";
-				    if(buyPrice <= map.vo.storeMinPrice){
-				    	delivery=3000;
-				    }
-				    totalPrice=buyPrice+delivery;
-				    if(map.list.length>0){
+				    	str+="</div>";
+					    if(buyPrice <= map.vo.storeMinPrice){
+					    	delivery=3000;
+					    }
+					    totalPrice=buyPrice+delivery;
 					    str+="<div class='bg-white p-3 clearfix border-bottom'>";
 					    str+="<p class='mb-1'>총액 <span class='float-right text-dark' id='cartTotalPrice'>"+buyPrice+"원</span></p>";
 					    str+="<p class='mb-1'>배달팁<span class='text-info ml-1'><i class='feather-info'></i></span><span class='float-right text-dark'>"+delivery+"원</span></p><hr>";
 					    str+="<h6 class='font-weight-bold mb-0'>TO PAY <span class='float-right'>"+totalPrice+"원</span></h6></div>";
 					    str+="<div class='p-3'>";
-				    }
-				   	if (map.vo.sStatusNo==2){
-					   	if(map.list.length<1){
+			    	}
+				    
+					if(map.list.length<1){
 						    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
-					   	}else{
+				   	}else{
+				   		if (map.vo.sStatusNo==2){
 							str+="<a class='btn btn-success btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
-					   	}
-				   	}else if (map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
-					    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
+				   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
+					    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
+				   		}
 				   	}
 				    str+="</div></div>";
 				    

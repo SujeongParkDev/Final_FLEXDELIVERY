@@ -21,6 +21,7 @@ import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.menu.model.MemberMenuAllVO;
 import com.project.fd.member.menu.model.MemberMenuService;
+import com.project.fd.member.stores.model.MemberLikeStoreVO;
 import com.project.fd.member.stores.model.MemberStoresService;
 import com.project.fd.member.stores.model.MemberStoresVO;
 
@@ -48,6 +49,9 @@ public class MemberStoreController {
 		map.put("lCategoryNo",lCategoryNo);
 		List<MemberStoresVO> list=memStoresServ.selectFlexAdStores(map);
 		logger.info("리스트 출력결과 list.size={}",list.size());
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
+		model.addAttribute("likeList",likeList);
 		model.addAttribute("list",list);
 	}
 	
@@ -60,6 +64,9 @@ public class MemberStoreController {
 		map.put("lCategoryNo",lCategoryNo);
 		List<MemberStoresVO> list=memStoresServ.selectOpenAdStores(map);
 		logger.info("리스트 출력결과 list.size={}",list.size());
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
+		model.addAttribute("likeList",likeList);
 		model.addAttribute("list",list);
 	}
 	@RequestMapping("/categorySlider.do")
@@ -88,6 +95,11 @@ public class MemberStoreController {
 		List<MemberStoresVO> list=memStoresServ.selectAllStores(map);
 		int totalRecords=memStoresServ.selectAllStoresCount(map);
 		map.put("totalRecords",totalRecords);
+		
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
+		model.addAttribute("likeList",likeList);
+		
 		model.addAttribute("list",list);
 		model.addAttribute("map",map);
 	}
@@ -110,8 +122,12 @@ public class MemberStoreController {
 		List<MemberStoresVO> list=memStoresServ.selectAllStores(map);
 		int totalRecords=memStoresServ.selectAllStoresCount(map);
 		logger.info("list.size={},totalRecords={}",list.size(),totalRecords);
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
+		
 		map.put("list", list);
 		map.put("totalRecords",totalRecords);
+		map.put("likeList", likeList);
 		return map;
 	}
 	

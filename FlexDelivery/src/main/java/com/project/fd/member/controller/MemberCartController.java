@@ -58,9 +58,13 @@ public class MemberCartController {
 	public Map<String , Object> cartList(@RequestParam int memberNo) {
 		logger.info("ajax로 cartList가 출력되면 당근을 흔들어주세요");
 		List<MemberCartViewVO> list=cartServ.selectCartList(memberNo);
+		Map<String, Object> map=new HashMap<String, Object>();
+		if(list.isEmpty() || list.size()==0) {
+			map.put("list", list);
+			return map;
+		}
 		int storeNo=list.get(0).getStoreNo();
 		MemberStoresVO vo=storeServ.selectStoresDetail(storeNo);
-		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("vo", vo);
 		map.put("list", list);
 		return map;

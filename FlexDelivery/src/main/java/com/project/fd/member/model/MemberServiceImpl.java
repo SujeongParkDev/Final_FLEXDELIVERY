@@ -1,12 +1,10 @@
 package com.project.fd.member.model;
 
-import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.fd.owner.common.LocationVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{

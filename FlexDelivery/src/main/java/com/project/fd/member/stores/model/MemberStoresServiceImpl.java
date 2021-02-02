@@ -43,4 +43,9 @@ public class MemberStoresServiceImpl implements MemberStoresService{
 	public MemberStoresVO selectStoresDetail(int storeNo) {
 		return memStoresDao.selectStoresDetail(storeNo);
 	}
+
+	@Override
+	public List<MemberLikeStoreVO> selectLikeStore(int memberNo) {
+		return memStoresDao.selectLikeStore(memberNo);
+	}
 }

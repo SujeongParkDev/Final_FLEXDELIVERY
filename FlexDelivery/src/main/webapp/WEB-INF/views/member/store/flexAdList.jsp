@@ -18,7 +18,15 @@
 	           	<!-- 카드 이미지 -->
 	            <div class="list-card-image">
 	                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${vo.reviewRating} (${vo.reviewCount})</span></div>
-	                <div class="favourite-heart text-danger position-absolute"><a href="<c:url value='/resources/memberResources/#' />"><i class="feather-heart"></i></a></div>
+	                <div class="favourite-heart text-danger position-absolute">
+	                <c:if test="${!empty likeList}">
+		                <c:forEach var="lVo" items="${likeList}">
+		                	<c:if test="${lVo.storeNo==vo.storeNo}">
+			                	<i class="feather-heart"></i>
+		                	</c:if>
+		                </c:forEach>
+	                </c:if>
+	                </div>
 	                <c:if test="${vo.sStatusNo==2}">
 		                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
 	                </c:if>

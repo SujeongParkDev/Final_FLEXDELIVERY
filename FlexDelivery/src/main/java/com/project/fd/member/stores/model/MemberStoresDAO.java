@@ -13,4 +13,5 @@ public interface MemberStoresDAO {
 	List<MemberStoresVO> selectAllStores(Map<String, Object> map);
 	int selectAllStoresCount(Map<String , Object> map);
 	MemberStoresVO selectStoresDetail(int storeNo);
+	List<MemberLikeStoreVO> selectLikeStore(int memberNo);
 }
