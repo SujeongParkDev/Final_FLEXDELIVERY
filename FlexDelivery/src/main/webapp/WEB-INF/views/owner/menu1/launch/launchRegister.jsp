@@ -202,6 +202,7 @@ $(function() {
 					return false;  //each 탈출
 				}else{
 					chk = 1;
+					event.preventDefault();
 				}
 		}); //each
 		if(chk == 1) {
