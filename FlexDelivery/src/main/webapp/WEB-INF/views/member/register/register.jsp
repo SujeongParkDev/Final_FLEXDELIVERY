@@ -97,8 +97,8 @@
 <body>
     <div class="osahan-signup login-page">
         <video loop autoplay muted id="vid">
-            <source src="<c:url value='/resources/memberResources/img/bg4.mp4' />" type="video/mp4">
-            <source src="<c:url value='/resources/memberResources/img/bg4.mp4' />" type="video/ogg">
+            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
+            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
          </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-110">
             <div class="px-6 col-md-6 ml-auto">
