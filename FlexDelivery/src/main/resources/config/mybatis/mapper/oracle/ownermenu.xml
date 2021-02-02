@@ -22,7 +22,7 @@
 		    (	
 					select * from jaMenuAllView
 				<![CDATA[
-					where store_no=#{storeNo} and a_agree_no=3
+					where store_no=#{storeNo} and a_agree_no=3 
 					order by S_M_GROUP_No , MENU_NO
 			  	]]>
 			   )A
