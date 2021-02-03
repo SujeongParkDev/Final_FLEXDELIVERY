@@ -85,15 +85,6 @@
 		                        </tr>
 		                        
 		                        <tr>
-		                            <td>5</td>
-		                            <td>입점 승인은 언제 나나요?</td>
-		                            <td>YHY</td>
-		                            <td>점포</td>
-		                            <td>
-		                                <span class="badge bg-success">답변</span>
-		                            </td>
-		                        </tr>
-		                        <tr>
 		                            <td>6</td>
 		                            <td>배송지를 잘못 입력했어요.</td>
 		                            <td>BJA</td>
