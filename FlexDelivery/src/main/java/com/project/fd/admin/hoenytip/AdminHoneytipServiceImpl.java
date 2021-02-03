@@ -35,6 +35,11 @@ public class AdminHoneytipServiceImpl implements AdminHoneytipService{
 	public int deleteHoneytip(AdminHoneytipVO vo) {
 		return honeytipDao.deleteHoneytip(vo);
 	}
+
+	@Override
+	public List<AdminHoneytipVO> ownerHoneyTip() {
+		return honeytipDao.ownerHoneyTip();
+	}
 	
 	
 }

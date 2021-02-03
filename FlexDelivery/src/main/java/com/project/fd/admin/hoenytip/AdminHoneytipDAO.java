@@ -13,5 +13,7 @@ public interface AdminHoneytipDAO {
 	int updateHoneytip(AdminHoneytipVO vo);
 
 	int deleteHoneytip(AdminHoneytipVO vo);
+	
+	List<AdminHoneytipVO> ownerHoneyTip();
 
 }
