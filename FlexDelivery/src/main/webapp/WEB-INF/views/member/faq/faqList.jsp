@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../../memInc/top.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="osahan-home-page">
 	<div class="bg-primary p-3 d-none">
 		<div class="text-white">
@@ -48,8 +49,9 @@
 								class="feather-arrow-right-circle ml-auto text-primary"></i>
 						</div>
 					</div>
+					<p> faq </p>
 					<c:import url="/member/faq/faqQ.do">
-						<c:param name="faq"></c:param>
+						<c:param name="faqC" value="basics"></c:param>
 					</c:import>
 					
 					<!-- <div id="basics">
