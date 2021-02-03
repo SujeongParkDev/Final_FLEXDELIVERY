@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,6 +52,22 @@ public class MemberCartController {
 			return true;
 		}
 		return false;
+	}
+	
+	@RequestMapping("/cartView.do")
+	public String cartView(HttpSession session,Model model) {
+		logger.info("top.jsp 장바구니 버튼 클릭");
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberCartViewVO> list=cartServ.selectCartList(memberNo);
+		if(list.isEmpty() || list.size()==0) {
+			model.addAttribute("list",list);
+			return "member/store/cart/cartList";
+		}
+		int storeNo=list.get(0).getStoreNo();
+		MemberStoresVO vo=storeServ.selectStoresDetail(storeNo);
+		model.addAttribute("list",list);
+		model.addAttribute("vo",vo);
+		return "member/store/cart/cartList";
 	}
 	
 	@ResponseBody

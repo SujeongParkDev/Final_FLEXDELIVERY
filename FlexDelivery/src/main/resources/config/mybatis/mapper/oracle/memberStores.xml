@@ -86,6 +86,20 @@
 		select * from likeStore where member_no=#{memberNo}
 	</select>
 	
+	<select id="chkLike" parameterType="map" resultType="int">
+		select count(*)	from likeStore where member_no=#{memberNo} and store_no=#{storeNo}	
+	</select>
+	
+	<insert id="addLike" parameterType="memberLikeStoreVo">
+		insert into likeStore
+		values(#{memberNo},#{storeNo})
+	</insert>
+	
+	<delete id="delLike" parameterType="memberLikeStoreVo">
+		delete likeStore
+		where member_No=#{memberNo} and store_No=#{storeNo}
+	</delete>
+	
 	<!-- <resultMap type="orderAllVo" id="orderListResultMap">
 		<association property="orderVo" column="orderNo" javaType="OrderVO">
 			<id property="orderNo" jdbcType="BIGINT" column="orderNO"  />

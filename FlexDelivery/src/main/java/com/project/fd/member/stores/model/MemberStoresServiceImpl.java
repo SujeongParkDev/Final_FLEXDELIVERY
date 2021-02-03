@@ -48,4 +48,28 @@ public class MemberStoresServiceImpl implements MemberStoresService{
 	public List<MemberLikeStoreVO> selectLikeStore(int memberNo) {
 		return memStoresDao.selectLikeStore(memberNo);
 	}
+
+	@Override
+	public boolean chkLike(MemberLikeStoreVO vo) {
+		int cnt=memStoresDao.chkLike(vo);
+		if(cnt>0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public int likeControll(MemberLikeStoreVO vo) {
+		int chkLike=memStoresDao.chkLike(vo);
+		int cnt=0;
+		if(chkLike>0) {
+			cnt=memStoresDao.delLike(vo);
+			cnt++;
+		}else {
+			cnt=memStoresDao.addLike(vo);
+		}
+		return cnt;
+	}
+	
+	
 }

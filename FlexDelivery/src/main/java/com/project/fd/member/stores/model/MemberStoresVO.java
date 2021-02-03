@@ -22,10 +22,10 @@ public class MemberStoresVO {
 	/*포린키*/
 	private int lCategoryNo;  /* 대분류카테고리번호 */
 	private int locationNo;  /* 지역코드번호 */
-	private int  sStatusNo;  /* 점포영업상태번호1 */
+	private int sStatusNo;  /* 점포영업상태번호1 */
 	private int hCategoryNo; /* 휴무요일번호 7*/
 	
-	private int aAgreeNo; /* 관리자승인번호1 */
+	private int aAgreeNo; /* 관리자승인번호 */
 	private int ownerNo; /* 점주번호 */
 	private int oRegisterNo;/* 사업자등록번호 */
 	
