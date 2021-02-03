@@ -1,8 +1,10 @@
 package com.project.fd.owner.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseService;
+import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.menu.model.OwnerMenuAllVO;
+import com.project.fd.owner.menu.model.OwnerMenuOptionAllVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 
 @Controller
@@ -35,7 +41,8 @@ public class OwnerAdminAgreeListcontroller {
 			@RequestMapping("/temporary/tempList.do")
 			public String tempList(HttpSession session,
 					Model model) {
-				int ownerNo=(Integer) session.getAttribute("ownerNo");
+				int ownerNo=5;
+						//(Integer) session.getAttribute("ownerNo");
 				logger.info("승인 신청  목록 조회, 파라미터 ownerNo = {}", ownerNo);
 				
 				List<Map<String, Object>> tempList =ownerRService.selectLSJAgreeListView(ownerNo);
@@ -48,7 +55,9 @@ public class OwnerAdminAgreeListcontroller {
 			
 			// 승인신청리스트에서 삭제버튼 누르면 권한 2로 가기 전에 비밀번호 확인 
 			@RequestMapping(value = "/tempListPwdCheck.do", method = RequestMethod.GET)
-			public String advertisePwdCheck_get(Model model) {
+			public String advertisePwdCheck_get(@RequestParam(defaultValue = "0")int no,
+					@RequestParam String type,
+					Model model) {
 				logger.info("tempListPwdCheck 창 보여주기");
 				
 				
@@ -59,7 +68,7 @@ public class OwnerAdminAgreeListcontroller {
 				return "owner/menu2/advertise/advertisePwdCheck";
 			}
 	
-			
+			/*
 			// 딜리트 아니고 업데이트 2번으로 모드 에 따라서 처리하기 
 			@RequestMapping(value="/temporary/tempListDelete.do", method = RequestMethod.POST)
 			public String temp_Delete(
@@ -96,7 +105,6 @@ public class OwnerAdminAgreeListcontroller {
 					msg="취소 처리 성공 ";
 				}
 				
-				
 				//3
 				model.addAttribute("msg", msg);
 				model.addAttribute("url", url);
@@ -104,6 +112,7 @@ public class OwnerAdminAgreeListcontroller {
 				//4
 				return "common/message";
 			}
+			 */
 			
 			 @RequestMapping(value = "/temporary/tempListPwdCheck.do", method = RequestMethod.GET)
 				public String tempPwdCheck_get(Model model) {
@@ -120,7 +129,7 @@ public class OwnerAdminAgreeListcontroller {
 			 @RequestMapping(value="/tempListPwdCheck.do", method=RequestMethod.POST)
 			  public String tempPwdCheck_post(@RequestParam(required = false) String ownerPwd, HttpSession session, Model model) {
 				  String userid = (String) session.getAttribute("ownerId");
-				  logger.info("advertisePwdCheck 창 보여주기 , 파라미터 ownerPwd={}, userid={}",ownerPwd,userid);
+				  logger.info("tempListPwdCheck 창 보여주기 , 파라미터 ownerPwd={}, userid={}",ownerPwd,userid);
 				  
 				   int result =ownerService.loginChk(userid, ownerPwd);
 				   logger.info("비밀번호 확인 결과, result={}", result);
@@ -137,15 +146,51 @@ public class OwnerAdminAgreeListcontroller {
 				   
 				   return "owner/menu2/temporary/tempListPwdCheck";
 			  }
+			
+
+				//Detail로 오픈창 띄워짐
+				@RequestMapping(value = "/temporary/tempAD.do", method = RequestMethod.GET) 
+				public String ADDetail_get(@RequestParam(defaultValue = "0") int no,  Model model,HttpServletRequest request) {
+					logger.info("/temporary/tempAD.do 창 보여주기 파라미터 no={}",no);
+					//select By no = storeadNo
+					OwnerStoreAdVO adVo=ownerRService.selectAD(no);
+					logger.info("/temporary/tempAD result 파라미터 adVo={}",adVo);
+					
+					model.addAttribute("adVo" , adVo);
+					
+					return "owner/menu2//temporary/tempAD";
+				}
+				
+				//Detail로 오픈창 띄워짐
+				@RequestMapping(value = "/temporary/tempStore.do", method = RequestMethod.GET) 
+				public String STOREDetail_get(@RequestParam(defaultValue = "0") int no,  Model model,HttpServletRequest request) {
+					logger.info("/temporary/tempAD.do 창 보여주기 파라미터 no={}",no);
+					//select By no = storeNo
+					OwnerStoresVO stVo=ownerRService.selecSt(no);
+					
+					logger.info("/temporary/temp stVo result 파라미터  stVo={}", stVo);
+					
+					String type = "url";
+					//현재 파일이 인터넷 url 인지 파일 업로드한 url 인지 확인위해서
+					if(stVo.getStoreLogo()!=null) {
+						String upPath 
+						= fileUtil.getUploadPath(FileUploadUtil.STORES_TYPE, request);
+						File nowFile = new File(upPath, stVo.getStoreLogo());
+						if(nowFile.exists()) {
+							 type="file";
+							logger.info("기존 파일 존재여부 type={}",type);
+						}
+					}else if(stVo.getStoreLogo()==null) {
+						type="null";
+					}
+					
+					model.addAttribute("stVo" ,  stVo);
+					model.addAttribute("type",type);
+					
+					return "owner/menu2/temporary/tempStore";
+				}
 			 
 
-			
-			
-	/* @RequestMapping(value="/temporary/tempList.do",method=RequestMethod.GET)
-	 public void TempList_get() {
-		 logger.info("점포 - 승인 목록 조회  화면");
-	 }
-	 */
 	 //datapicker 사용 리스트 조회
 	/* 
 	 @RequestMapping("/temporary/tempList.do")

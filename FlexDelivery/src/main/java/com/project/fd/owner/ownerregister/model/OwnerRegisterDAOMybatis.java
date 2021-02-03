@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.fd.common.DateSearchVO;
+import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 @Repository
 public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
@@ -50,6 +52,13 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 		return sqlSession.selectOne(namespace+"dupckRegiNo",oRegisterNo);
 	}
 
-	
+	public OwnerStoreAdVO selectAD(int storeadNo) {
+		return sqlSession.selectOne(namespace+"selectAD",storeadNo);
+	}
+
+	@Override
+	public OwnerStoresVO selecSt(int storeNo) {
+		return sqlSession.selectOne(namespace+"selecSt",storeNo);
+	}
 	
 }

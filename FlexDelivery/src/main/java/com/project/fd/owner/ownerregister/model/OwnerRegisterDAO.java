@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.fd.common.DateSearchVO;
+import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 public interface OwnerRegisterDAO {
 	int insertRegister(OwnerRegisterVO vo);
@@ -13,4 +15,8 @@ public interface OwnerRegisterDAO {
 	int deleteAd(int storeadNo);
 	int updateAgreeRegi(OwnerRegisterVO vo);
 	int oRegisterNoDup(long oRegisterNo);
+	
+	//취소 딜리트 다시 츄라이하는중 
+	public OwnerStoreAdVO selectAD(int storeadNo);
+	public OwnerStoresVO selecSt(int storeNo);
 }

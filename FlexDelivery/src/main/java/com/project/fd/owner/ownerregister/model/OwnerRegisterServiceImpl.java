@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fd.common.DateSearchVO;
+import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 @Service
 public class OwnerRegisterServiceImpl implements OwnerRegisterService{
@@ -56,6 +58,16 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public OwnerStoreAdVO selectAD(int storeadNo) {
+		return ownerRegisterDao.selectAD(storeadNo);
+	}
+
+	@Override
+	public OwnerStoresVO selecSt(int storeNo) {
+		return ownerRegisterDao.selecSt(storeNo);
 	}
 
 

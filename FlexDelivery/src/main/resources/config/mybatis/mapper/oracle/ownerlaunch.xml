@@ -34,7 +34,7 @@ on a.store_no=s.STORE_NO;
 	 -->
 		<select id="selectLSJAgreeListView" parameterType="int"
 		resultType="map">
-		select * from LSJAgreeListView
+		select * from LSJAgreeListView2
 		where OWNER_NO=#{ownerNo}
 	</select>
 	
@@ -49,5 +49,14 @@ on a.store_no=s.STORE_NO;
 	set A_AGREE_NO=2
 	where OWNER_NO=#{ownerNo} and O_REGISTER_NO=#{oRegisterNo}
 	</update>
+	
+	<!-- 각자 디테일 뽑아주기  -->
+	<select id="selectAD" parameterType="int" resultType="ownerStoreAdVo">
+	select * from storead where storead_no=#{storeadNo}
+	</select>
+	
+	<select id="selecSt" parameterType="int" resultType="ownerStoresVo">
+	select * from stores where store_no=#{storeNo}
+	</select>
 	
 </mapper>
