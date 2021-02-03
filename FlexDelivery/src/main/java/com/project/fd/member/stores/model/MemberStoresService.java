@@ -14,6 +14,6 @@ public interface MemberStoresService {
 	int selectAllStoresCount(Map<String, Object> map);
 	MemberStoresVO selectStoresDetail(int storeNo);
 	List<MemberLikeStoreVO> selectLikeStore(int memberNo);
-	
-	
+	boolean chkLike(MemberLikeStoreVO vo);
+	int likeControll(MemberLikeStoreVO vo);
 }

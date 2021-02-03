@@ -16,10 +16,10 @@
 					var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
 					if(map.list.length>0){
 					    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
+					    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
 					    str+="<div class='d-flex flex-column'>";
 					    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
 					    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
-					    str+="<div class='bg-white border-bottom py-2 cartDiv'>";
 					}
 			   		var buyPrice=0;
 			   		var totalPrice=0;
@@ -29,6 +29,7 @@
 		    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
 			    		str+="</div>";
 			    	}else{
+				    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";
 			    		for (var i = 0; i < map.list.length; i++) {
 			    			var sum=(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty;
 			    			buyPrice=buyPrice+sum;
@@ -55,8 +56,8 @@
 					    str+="<p class='mb-1'>총액 <span class='float-right text-dark' id='cartTotalPrice'>"+buyPrice+"원</span></p>";
 					    str+="<p class='mb-1'>배달팁<span class='text-info ml-1'><i class='feather-info'></i></span><span class='float-right text-dark'>"+delivery+"원</span></p><hr>";
 					    str+="<h6 class='font-weight-bold mb-0'>TO PAY <span class='float-right'>"+totalPrice+"원</span></h6></div>";
-					    str+="<div class='p-3'>";
 			    	}
+				    str+="<div class='p-3'>";
 				    
 					if(map.list.length<1){
 						    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
@@ -272,14 +273,23 @@
     <div class="d-none">
         <div class="bg-primary p-3 d-flex align-items-center">
             <a class="toggle togglew toggle-2" href="#"><span></span></a>
-            <h4 class="font-weight-bold m-0 text-white">Osahan Bar</h4>
+            <h4 class="font-weight-bold m-0 text-white">FLEX-DELIVERY</h4>
         </div>
     </div>	
     <div class="offer-section py-4">
         <div class="container position-relative">
             <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
-                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}</h2>
+                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}
+	                <span class="ml-5">
+	                <c:if test="${likeChk}">
+		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/heart.png'/>" > </a>
+	                </c:if>
+	                <c:if test="${!likeChk}">
+		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/emptyHeart.png'/>" > </a>
+	                </c:if>
+	                </span>
+                </h2>
                 <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
                 <div class="rating-wrap d-flex align-items-center mt-2">
                     <ul class="rating-stars list-unstyled">
@@ -453,12 +463,15 @@
 		                    		</c:if>
 		                    	</c:forEach>
                             </div>
-                            <b class="text-black ml-2">${reviewCount}별점테스트</b>
+                            <b class="text-black ml-2">${reviewCount}건</b>
                         </div>
                     </div>
-                    <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
+                    <c:import url="/member/store/storeReview.do">
+                    	<c:param name="storeNo" value="${vo.storeNo}"/>
+                    </c:import>
+                    <!-- <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
                         <h6 class="mb-0 mb-1">리뷰와 평점</h6>
-                        <p class="text-muted mb-4 mt-1 small">Rated 3.5 out of 5</p>
+                        <p class="text-muted mb-4 mt-1 small">실제 주문고객들의 리뷰와 평점입니다</p>
                         <div class="graph-star-rating-body">
                             <div class="rating-list">
                                 <div class="rating-list-left font-weight-bold small">5 Star</div>
@@ -563,22 +576,26 @@
                     </div>
                     <div class="bg-white p-3 rating-review-select-page rounded shadow-sm">
                         <h6 class="mb-3">리뷰 작성</h6>
-                        <div class="d-flex align-items-center mb-3">
-                            <p class="m-0 small">이 가게를 평가해주세요!</p>
-                            <div class="star-rating ml-auto">
-                                <div class="d-inline-block"><i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star"></i>
-                                </div>
-                            </div>
-                        </div>
                         <form>
-                            <div class="form-group"><label class="form-label small">내용</label><textarea class="form-control"></textarea></div>
-                            <div class="form-group mb-0"><button type="button" class="btn btn-primary btn-block"> 리뷰 작성 </button></div>
+	                        <div class="d-flex align-items-center mb-3">
+	                            <p class="m-0 small">이 가게를 평가해주세요!</p>
+	                            <div class="star-rating ml-auto">
+	                                <div class="d-inline-block"><i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star"></i>
+	                                </div>
+	                            </div>
+	                        </div>
+                            <div class="form-group"><label class="form-label small">내용</label>
+                            	<textarea class="form-control"></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                            	<button type="button" class="btn btn-primary btn-block"> 리뷰 작성 </button>
+                            </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- /Review -->
             </div>
