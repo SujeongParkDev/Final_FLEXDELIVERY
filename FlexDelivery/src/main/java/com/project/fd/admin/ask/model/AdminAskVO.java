@@ -8,7 +8,7 @@ public class AdminAskVO {
 	private String askRegdate;
 	private int askGroupNo;
 	private int askStep;
-	private String askReplyflag;
+	private String askReplyFlag;
 	private int authorityNo;
 	
 	public int getAskNo() {
@@ -53,11 +53,11 @@ public class AdminAskVO {
 	public void setAskStep(int askStep) {
 		this.askStep = askStep;
 	}
-	public String getAskReplyflag() {
-		return askReplyflag;
+	public String getAskReplyFlag() {
+		return askReplyFlag;
 	}
-	public void setAskReplyflag(String askReplyflag) {
-		this.askReplyflag = askReplyflag;
+	public void setAskReplyFlag(String askReplyFlag) {
+		this.askReplyFlag = askReplyFlag;
 	}
 	public int getAuthorityNo() {
 		return authorityNo;
@@ -70,7 +70,7 @@ public class AdminAskVO {
 	public String toString() {
 		return "AskVO [askNo=" + askNo + ", askTitle=" + askTitle + ", askId=" + askId + ", askContent=" + askContent
 				+ ", askRegdate=" + askRegdate + ", askGroupNo=" + askGroupNo + ", askStep=" + askStep
-				+ ", askReplyflag=" + askReplyflag + ", authorityNo=" + authorityNo + "]";
+				+ ", askReplyFlag=" + askReplyFlag + ", authorityNo=" + authorityNo + "]";
 	}
 	
 	

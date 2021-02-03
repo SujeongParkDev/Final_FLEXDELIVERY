@@ -24,27 +24,38 @@
 		            <div class="card-body">
 		                <table class='table table-striped' id="table1">
 		                <c:if test="${empty list }">
+		                	<tr>
+		                		<td style="text-align: center;">작성된 1:1 문의글이 없습니다.</td>
+		                	</tr>
 		                </c:if>
 		                <c:if test="${!empty list }">
 		                    <thead>
-		                        <tr>
+		                        <tr style="text-align: center;">
 		                            <th>글번호</th>
-		                            <th>제목</th>
-		                            <th>아이디</th>
 		                            <th>회원종류</th>
+		                            <th style="width: 30%;">제목</th>
+		                            <th>아이디</th>
 		                            <th>답변여부</th>
+		                            <th>등록일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
-		                        <tr>
-		                            <td>1</td>
-		                            <td>유료광고 월정액 중복이체</td>
-		                            <td>hong</td>
-		                            <td>점포</td>
-		                            <td>
-		                                <span class="badge bg-success">답변완료</span>
-		                            </td>
-		                        </tr>
+		                        <c:forEach var="vo" items="${list}" varStatus="status">
+		                        	<tr style="text-align: center;">
+		                        		<td>${vo.askNo }</td>
+		                        		<td>
+		                        			<c:if test="${vo.authorityNo==1 }"><span class="badge bg-dark">회원</span></c:if>
+		                        			<c:if test="${vo.authorityNo==4 }"><span class="badge bg-dark">점포</span></c:if>
+		                        		</td>
+		                        		<td style="text-align: left;"><a href="<c:url value='/admin/menu5/oneToOne/detail.do?no=${vo.askNo }'/>">${vo.askTitle }</a></td>
+		                        		<td>${vo.askId }</td>
+		                        		<td>
+		                        			<c:if test="${vo.askReplyFlag=='Y' }"><span class="badge bg-success">답변완료</span></c:if>
+		                        			<c:if test="${vo.askReplyFlag=='N' }"><span class="badge bg-danger">미답변</span></c:if>
+		                        		</td>
+		                        		<td>${vo.askRegdate }</td>
+		                        	</tr>
+		                        </c:forEach>
 		                        <!-- <tr>
 		                            <td>2</td>
 		                            <td>선물쿠폰 잔액 조회</td>

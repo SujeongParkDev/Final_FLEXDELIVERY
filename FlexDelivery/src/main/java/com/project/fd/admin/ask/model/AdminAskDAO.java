@@ -14,8 +14,10 @@ public interface AdminAskDAO {
 
 	int updateAskReply(AdminAskVO askVo);
 
-	int deleteAskReply(AdminAskVO askVo);
+	int deleteAskReply(int no);
 
 	AdminAskVO selectByNo(int no);
+
+	AdminAskVO selectReplyByNo(int no);
 
 }

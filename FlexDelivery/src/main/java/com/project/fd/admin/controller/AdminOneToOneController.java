@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.admin.ask.model.AdminAskService;
 import com.project.fd.admin.ask.model.AdminAskVO;
-
+/*
 @Controller
 @RequestMapping("/admin/menu5")
 public class AdminOneToOneController {
@@ -114,3 +114,4 @@ public class AdminOneToOneController {
 	}
 	
 }
+*/
