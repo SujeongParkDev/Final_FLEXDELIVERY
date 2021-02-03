@@ -8,6 +8,7 @@ public class OptionResultVO {
 	private int menuNo;
 	private String sMGroupName;
 	private String menuName;
+	private OwnerMenuOptionVO optionVo;
 	public List<OwnerOptionRankVO> getList() {
 		return list;
 	}
@@ -38,11 +39,18 @@ public class OptionResultVO {
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
+	public OwnerMenuOptionVO getOptionVo() {
+		return optionVo;
+	}
+	public void setOptionVo(OwnerMenuOptionVO optionVo) {
+		this.optionVo = optionVo;
+	}
 	@Override
 	public String toString() {
 		return "OptionResultVO [list=" + list + ", sMGroupNo=" + sMGroupNo + ", menuNo=" + menuNo + ", sMGroupName="
-				+ sMGroupName + ", menuName=" + menuName + "]";
+				+ sMGroupName + ", menuName=" + menuName + ", optionVo=" + optionVo + "]";
 	}
+	
 	
 	
 	

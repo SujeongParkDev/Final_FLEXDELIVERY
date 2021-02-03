@@ -12,41 +12,51 @@
 
 <div class="container">
 	<div class="row">
-		<div class="main-content container-fluid">
-		    <div class="page-title">
-		        <div class="row">
-		            <div class="col-12 col-md-6 order-md-1 order-last">
-		                <h3>1:1 문의내역 조회</h3>
-		                <p class="text-subtitle text-muted">글번호, 제목, 아이디, 회원종류, 답변여부에 따른 정렬이 가능합니다.</p>
-		            </div>
-		        </div>
-		    </div>
-		    <section class="section">
-		        <div class="card">
-		            <div class="card-header">
-		            </div>
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header" style="padding-bottom: 2px;">
+					 <h3 class="section-title text-uppercase">1:1 문의내역 조회</h3>
+					 <p class="text-subtitle text-muted">글번호, 제목, 아이디, 회원종류, 답변여부에 따른 정렬이 가능합니다.</p>
+					 <hr>
+				</div>
+	    		<section class="section">
+	       			<div class="card-header"></div>
 		            <div class="card-body">
 		                <table class='table table-striped' id="table1">
+		                <c:if test="${empty list }">
+		                	<tr>
+		                		<td style="text-align: center;">작성된 1:1 문의글이 없습니다.</td>
+		                	</tr>
+		                </c:if>
+		                <c:if test="${!empty list }">
 		                    <thead>
-		                        <tr>
+		                        <tr style="text-align: center;">
 		                            <th>글번호</th>
-		                            <th>제목</th>
-		                            <th>아이디</th>
 		                            <th>회원종류</th>
+		                            <th style="width: 30%;">제목</th>
+		                            <th>아이디</th>
 		                            <th>답변여부</th>
+		                            <th>등록일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
-		                        <tr>
-		                            <td>1</td>
-		                            <td>유료광고 월정액 중복이체</td>
-		                            <td>hong</td>
-		                            <td>점포</td>
-		                            <td>
-		                                <span class="badge bg-success">답변완료</span>
-		                            </td>
-		                        </tr>
-		                        <tr>
+		                        <c:forEach var="vo" items="${list}" varStatus="status">
+		                        	<tr style="text-align: center;">
+		                        		<td>${vo.askNo }</td>
+		                        		<td>
+		                        			<c:if test="${vo.authorityNo==1 }"><span class="badge bg-dark">회원</span></c:if>
+		                        			<c:if test="${vo.authorityNo==4 }"><span class="badge bg-dark">점포</span></c:if>
+		                        		</td>
+		                        		<td style="text-align: left;"><a href="<c:url value='/admin/menu5/oneToOne/detail.do?no=${vo.askNo }'/>">${vo.askTitle }</a></td>
+		                        		<td>${vo.askId }</td>
+		                        		<td>
+		                        			<c:if test="${vo.askReplyFlag=='Y' }"><span class="badge bg-success">답변완료</span></c:if>
+		                        			<c:if test="${vo.askReplyFlag=='N' }"><span class="badge bg-danger">미답변</span></c:if>
+		                        		</td>
+		                        		<td>${vo.askRegdate }</td>
+		                        	</tr>
+		                        </c:forEach>
+		                        <!-- <tr>
 		                            <td>2</td>
 		                            <td>선물쿠폰 잔액 조회</td>
 		                            <td>park</td>
@@ -109,15 +119,13 @@
 		                            <td>
 		                                <span class="badge bg-success">답변</span>
 		                            </td>
-		                        </tr>
+		                        </tr> -->
 		                    </tbody>
+       		                </c:if>
 		                </table>
-		                
-		                
 					</div>
-				</div>
-				<!-- Hoverable rows end -->
-		    </section>
+				</section>
+			</div>
 		</div>
 	</div>
 </div>

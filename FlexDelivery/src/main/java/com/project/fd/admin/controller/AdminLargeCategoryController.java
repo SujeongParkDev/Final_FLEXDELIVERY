@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
@@ -33,6 +34,20 @@ public class AdminLargeCategoryController {
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
+	
+	@RequestMapping("/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam(required=false) String lCategoryName) {
+		logger.info("이름 중복확인, lCategoryName={}", lCategoryName);
+		
+		boolean isExist=false;
+		if(lCategoryName!=null && !lCategoryName.isEmpty()) {
+			isExist=largeCategoryService.checkDu(lCategoryName);
+			logger.debug("이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
+	}
 	
 	@RequestMapping(value="/largecategory/write.do", method=RequestMethod.GET)
 	public String write_get() {

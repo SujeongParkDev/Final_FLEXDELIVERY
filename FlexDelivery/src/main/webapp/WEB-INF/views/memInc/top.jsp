@@ -90,7 +90,7 @@
 	                            </div>
 	                        </c:if>
                             <!-- signin -->
-                            <a href="${pageContext.request.contextPath}/member/cart.do" class="widget-header mr-4 text-dark">
+                            <a href="${pageContext.request.contextPath}/member/cart/cartView.do" class="widget-header mr-4 text-dark">
                                 <div class="icon d-flex align-items-center">
                                     <i class="feather-shopping-cart h6 mr-2 mb-0"></i> <span>장바구니</span>
                                 </div>

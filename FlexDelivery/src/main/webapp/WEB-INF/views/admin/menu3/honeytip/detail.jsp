@@ -60,7 +60,7 @@ $(function(){
 					                    <!-- About Author -->
 					                    <div class="blog-post-author mt-100 d-flex">
 					                        <div class="author-thumbnail">
-					                            <img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/fd_writtenby.png" alt="플렉스딜리버리"
+					                            <img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/fdMemberLineTp.png" alt="플렉스딜리버리"
 					                            	>
 					                        </div>
 					                        <div class="author-info">

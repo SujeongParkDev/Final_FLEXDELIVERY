@@ -56,7 +56,7 @@ public class OwnerServiceImpl implements OwnerService {
 		 OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid);
 		 
 		 int result = NO_LICENSE;
-		 
+		 System.out.println("vo.getRagreeno()"+vo.getRagreeno());
 		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
 				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()>3)) {
 			 if(vo.getRagreeno()==1 && vo.getoRegisterNo()!=0) {
@@ -77,7 +77,12 @@ public class OwnerServiceImpl implements OwnerService {
 		
 		return result;
 	}
+	
 	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid) {
 		return ownerDao.selectOwnerAuthorityAll(userid);
+	}
+	
+	public int withdrawOwner(String ownerId) {
+		return ownerDao.withdrawOwner(ownerId);
 	}
 }

@@ -1,6 +1,5 @@
 package com.project.fd.member.cart.model;
 
-
 public class MemberCartVO {
 	private int cartNo;
 	private int storeNo;
@@ -10,17 +9,6 @@ public class MemberCartVO {
 	private int cartQty;
 	private String storeName;
 	private String cartRegdate;
-	
-	public MemberCartVO() {
-		super();
-	}
-
-	public MemberCartVO(int storeNo, int menuNo, int cartQty,String storeName) {
-		this.storeNo = storeNo;
-		this.menuNo = menuNo;
-		this.cartQty = cartQty;
-		this.storeName = storeName;
-	}
 	
 	public int getCartNo() {
 		return cartNo;

@@ -106,8 +106,7 @@
                                         </div>
                                     </div>
                                     <!-- 요청사항 -->
-                                    <br><br>
-                                    <%--                                    
+                                    <br><br>                                    
                                     <div class="row">
            								<div class="col">
                 							<div class="card">
@@ -117,7 +116,7 @@
                     							<div class="card-body">
                         							<div class="form-group with-title mb-3">
                             							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" 
-                            							 >${vo.tDetail}</textarea>
+                            							 >${vo.storeContent}</textarea>
                             							<label>요청 내용</label>
                         							</div>
                     							</div>
@@ -125,7 +124,6 @@
             							</div>
         							</div>
                                     <!-- 요청사항 끝 -->
-                                     --%>
                                     <div class="col-12 d-flex justify-content-end">
                                     	<c:if test="${vo.aAgreeNo == 1}">
                                         	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>

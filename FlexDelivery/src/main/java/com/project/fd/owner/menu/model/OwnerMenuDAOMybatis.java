@@ -130,8 +130,8 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 	}
 	
 	
-	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(int menuNo){
-		return sqlSession.selectList(namespace+"selectOptionAllByMenuNo",  menuNo);
+	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(Map<String, String> map){
+		return sqlSession.selectList(namespace+"selectOptionAllByMenuNo",   map);
 	}
 	
 	public List<OwnerOptionRankVO> selectOptionRankAll(){
@@ -146,6 +146,20 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 	
 	public int insertOption(OwnerMenuOptionVO optionVo) {
 		return sqlSession.insert(namespace+"insertOption", optionVo);
+	}
+	
+	
+	public OwnerMenuOptionVO selectOptionByOptionNo(int mOptionNo) {
+		return sqlSession.selectOne(namespace+"selectOptionByOptionNo",  mOptionNo);
+	}
+	
+	public int updateOption(OwnerMenuOptionVO optionVo) {
+		return sqlSession.update(namespace+"updateOption",  optionVo);
+	}
+	
+	
+	public int deleteOption(int mOptionNo) {
+		return sqlSession.delete(namespace+"deleteOption",  mOptionNo);
 	}
 	
 	

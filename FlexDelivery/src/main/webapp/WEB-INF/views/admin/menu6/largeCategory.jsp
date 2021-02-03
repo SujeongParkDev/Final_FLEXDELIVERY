@@ -59,6 +59,33 @@ $(function(){
       
    }); */
    
+   $('#lCategoryName').keyup(function(){
+	  var data=$('#lCategoryName').val();
+	  if(chkDu(data) && data.length>=2){
+		  data='lCategoryName'+data;
+		  $.ajax({
+			  type:"POST",
+			  url:"<c:url value='/admin/menu6/ajaxCheck.do' />",
+			  data:data,
+			  success: function (result) {
+				  if(result){
+				  output = "이미 등록된 카테고리 이름입니다.";
+				  event.preventDefault();
+				  /* $("#chkId").val('N'); */
+				  }else{
+				  output = "사용 가능한 카테고리 이름입니다.";
+				  /* $("#chkId").val('Y'); */
+				  }
+				  $('#message').text(output);
+			}
+
+		  });
+	  }else{
+		  $('#message').text("한글만 사용 가능합니다.");
+		  event.preventDefault();
+		  /* $("#chkId").val('N'); */
+	}
+   });
 });
 
 /*    var sel_file;
@@ -94,11 +121,10 @@ function readInputFile(input) {
     }  
 } 
  
-/* function edit(){
-   $('form[name=frmLCategoryEdit]').submit();
-   alert("수정 성공");
-   window.parent.location.reload();
-} */
+function chkDu(content){
+	car pateern=new RegExp(/^[가-힣]+$/g);
+	return pattern.test(content);
+}
 
 
 </script>
@@ -166,6 +192,8 @@ function readInputFile(input) {
                                                       <td colspan="1"><span>대분류 이름</span></td>
                                                       <td colspan="2">
                                                          <input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요">
+                                                         <br><span id="message">메시지 출력</span>
+                                                        <!--  <form:errors path="lCategoryName" /> -->
                                                       </td>
                                                    </tr>
                                                 </tbody>

@@ -34,4 +34,7 @@ public class OwnerDAOMybatis implements OwnerDAO {
 		return sqlSession.selectOne(namespace+"selectOwnerAuthorityAll", userid);
 	}
 	
+	public int withdrawOwner(String ownerId) {
+		return sqlSession.update(namespace+"withdrawOwner", ownerId);
+	}
 }

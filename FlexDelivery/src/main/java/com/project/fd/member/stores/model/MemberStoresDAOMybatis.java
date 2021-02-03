@@ -45,5 +45,25 @@ public class MemberStoresDAOMybatis implements MemberStoresDAO{
 		return sqlSession.selectOne(namespace+"selectStoresDetail",storeNo);
 	}
 
+	@Override
+	public List<MemberLikeStoreVO> selectLikeStore(int memberNo) {
+		return sqlSession.selectList(namespace+"selectLikeStore",memberNo);
+	}
+
+	@Override
+	public int chkLike(MemberLikeStoreVO vo) {
+		return sqlSession.selectOne(namespace+"chkLike",vo);
+	}
+
+	@Override
+	public int addLike(MemberLikeStoreVO vo) {
+		return sqlSession.insert(namespace+"addLike",vo);
+	}
+
+	@Override
+	public int delLike(MemberLikeStoreVO vo) {
+		return sqlSession.delete(namespace+"delLike",vo);
+	}
+
 	
 }

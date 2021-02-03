@@ -22,5 +22,7 @@ public interface AdminLargeCategoryDAO {
 
 	List<AdminMediumCategoryViewVO> selectAll2();
 
+	boolean checkDu(String content);
+
 	
 }

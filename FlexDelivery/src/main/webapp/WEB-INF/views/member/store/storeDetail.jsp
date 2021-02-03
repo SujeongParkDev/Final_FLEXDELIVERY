@@ -5,15 +5,89 @@
 <html lang="ko">
 <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
+		function cartList(){
+			var data="memberNo="+${sessionScope.memberNo};
+			
+			$.ajax({
+				url:"<c:url value='/member/cart/cartList.do'/>",
+				type:"get",
+				data:data,
+				success:function(map){
+					var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
+					if(map.list.length>0){
+					    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
+					    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+					    str+="<div class='d-flex flex-column'>";
+					    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
+					    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
+					}
+			   		var buyPrice=0;
+			   		var totalPrice=0;
+			   		var delivery=0;
+					if(map.list.length<1){
+			    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
+		    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
+			    		str+="</div>";
+			    	}else{
+				    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";
+			    		for (var i = 0; i < map.list.length; i++) {
+			    			var sum=(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty;
+			    			buyPrice=buyPrice+sum;
+					        str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
+					        str+="<div class='media align-items-center'>";
+					        str+="<div class='mr-3 text-danger' style='font-size:18px'><a href='' onclick='deletecart("+map.list[i].cartNo+")'>&times;</a></div>";
+					        str+="<input type='hidden' value='"+map.list[i].cartNo+"' name='cartNoHidden'>";
+					        str+="<div class='media-body'>";
+					        str+="<p class='m-0'>"+map.list[i].menuName+"<span class='font-monospace text-dark'><small><br>"+map.list[i].mOptionName+"</small></span></p></div></div>";
+					        str+="<div class='d-flex align-items-center'>";
+					        str+="<p class='text-gray mb-0 float-right mr-3 text-muted small'>"+(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty+"원</p>";
+					        str+="<span class='count-number float-right'>";
+					        str+="<button type='button' class='btn-sm left dec btn btn-outline-secondary' onclick='minus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-minus'></i> </button>";
+					        str+="<input class='count-number-input' type='text' readonly value='"+map.list[i].cartQty+"'>";
+					        str+="<button type='button' class='btn-sm right inc btn btn-outline-secondary' onclick='plus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-plus'></i> </button></span>";
+					        str+="</div></div>";
+						}
+				    	str+="</div>";
+					    if(buyPrice <= map.vo.storeMinPrice){
+					    	delivery=3000;
+					    }
+					    totalPrice=buyPrice+delivery;
+					    str+="<div class='bg-white p-3 clearfix border-bottom'>";
+					    str+="<p class='mb-1'>총액 <span class='float-right text-dark' id='cartTotalPrice'>"+buyPrice+"원</span></p>";
+					    str+="<p class='mb-1'>배달팁<span class='text-info ml-1'><i class='feather-info'></i></span><span class='float-right text-dark'>"+delivery+"원</span></p><hr>";
+					    str+="<h6 class='font-weight-bold mb-0'>TO PAY <span class='float-right'>"+totalPrice+"원</span></h6></div>";
+			    	}
+				    str+="<div class='p-3'>";
+				    
+					if(map.list.length<1){
+						    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
+				   	}else{
+				   		if (map.vo.sStatusNo==2){
+							str+="<a class='btn btn-success btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+				   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
+					    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
+				   		}
+				   	}
+				    str+="</div></div>";
+				    
+				    $('#cartDiv').html(str);
+				},
+				error:function(){
+					alert("error!");
+				}
+			})
+		};
+	
 	$(function(){
+		cartList();
 		var bool = ${cartChk};
 		$('form[name=cartForm]').submit(function(){
-			if($(this).find('input[type=checkbox]:checked').length==0){
+			if($(this).find('input[type=radio]:checked').length==0){
 				alert('먼저 상품을 선택해야합니다!');
 				return false;
 			}
 			if(bool){
-				var result=confirm('다른 점포의 상품이 장바구니에 존재합니다. 기존 상품을 삭제할까요?');
+				var result=confirm('다른 점포의 메뉴가 담겨 있어요. 기존 상품을 삭제하고 담으시겠어요?');
 				if(result){
 					var tqtq="memberNo="+${sessionScope.memberNo};
 					var tq = $.param($(this).serializeArray());
@@ -30,9 +104,11 @@
 									dataType:"json",
 									success:function(bool){
 										if(bool){
+											cartList();
 											alert('장바구니에 상품을 담았습니다');
 											$('.closeBt').click();
 										}else{
+											cartList();
 											alert('장바구니 담기 실패ㅠㅠ');
 											$('.closeBt').click();
 										}
@@ -43,6 +119,7 @@
 								});
 								event.preventDefault();
 							}else{
+								cartList();
 								alert('장바구니 삭제 실패ㅠㅠ');
 								$('.closeBt').click();
 							}
@@ -54,7 +131,6 @@
 					event.preventDefault();
 				}else{
 					event.preventDefault();
-					return false;
 				}
 			}else{
 				$.ajax({
@@ -64,9 +140,11 @@
 					dataType:"json",
 					success:function(bool){
 						if(bool){
+							cartList();
 							alert('장바구니에 상품을 담았습니다');
 							$('.closeBt').click();
 						}else{
+							cartList();
 							alert('장바구니 담기 실패ㅠㅠ');
 							$('.closeBt').click();
 						}
@@ -79,8 +157,15 @@
 			}
 		});
 		
+		
 		$('.modal').on('hidden.bs.modal',function(){
 			$(this).find('input[name=cartQty]').val(1);
+			$(this).find('input[type=radio]:eq(0)').prop('checked',true);
+		});
+		
+		$('.modal').on('shown.bs.modal',function(){
+			var price=$(this).find('input[type=radio]:checked').next('input[type=hidden]').val();
+			$(this).find('.totalPrice').html(price+'원');
 		});
 		
 		$('.minusBt').click(function(){
@@ -90,6 +175,8 @@
 			}
 			var s=parseInt($(this).next('input[name=cartQty]').val());
 			$(this).next('input[name=cartQty]').val(s-1);
+			var price=$(this).parent().parent().parent().prev('.modal-body').find('input[type=radio]:checked').next('input[type=hidden]').val();
+			$('.totalPrice').html(price*(s-1)+'원');
 		});
 		
 		$('.plusBt').click(function(){
@@ -99,20 +186,110 @@
 			}
 			var s=parseInt($(this).prev('input[name=cartQty]').val());
 			$(this).prev('input[name=cartQty]').val(s+1);
+			var price=$(this).parent().parent().parent().parent().find('input[type=radio]:checked').next('input[type=hidden]').val();
+			$('.totalPrice').html(price*(s+1)+'원');
 		});
-	});
+		
+		$('input[type=radio]').change(function(){
+			$(this).parent().parent().parent().parent().parent().find('input[name=cartQty]').val(1);
+			var price=$(this).next('input[type=hidden]').val();
+			$('.totalPrice').html(price+'원');
+		});
+		
+	});//$(function)
+	
+	function minus(no,qty){
+		if(qty<2){
+			event.preventDefault();
+			return false;
+		}
+		var data="cartNo="+no; 
+		$.ajax({
+			url:"<c:url value='/member/cart/minusCart.do'/>",
+			type:"get",
+			data:data,
+			success:function(bool){
+				if(bool){
+					cartList();
+				}else{
+					alert('미션 실패!');
+				}
+			},
+			error:function(){
+				alert('도전 실패!');
+			}
+			
+		});
+	};
+	
+	function plus(no,qty){
+		if(qty>9){
+			event.preventDefault();
+			return false;
+		}
+		var data="cartNo="+no;
+		$.ajax({
+			url:"<c:url value='/member/cart/plusCart.do'/>",
+			type:"get",
+			data:data,
+			success:function(bool){
+				if(bool){
+					cartList();
+				}else{
+					alert('미션 실패!');
+				}
+			},
+			error:function(){
+				alert('도전 실패!');
+			}
+			
+		});
+	};
+	
+	function deletecart(cartNo){
+		if(confirm('장바구니 항목을 삭제하시겠습니까?')){
+			var data="cartNo="+cartNo;
+			$.ajax({
+				url:"<c:url value='/member/cart/deleteCart.do'/>",
+				type:"get",
+				data:data,
+				success:function(bool){
+					if(bool){
+						cartList();
+					}else{
+						cartList();
+						alert('미션 실패!');
+					}
+				},
+				error:function(){
+					alert('도전 실패!');
+				}
+			});
+			event.preventDefault();
+		}
+	};
+	
 </script>
     <div class="d-none">
         <div class="bg-primary p-3 d-flex align-items-center">
             <a class="toggle togglew toggle-2" href="#"><span></span></a>
-            <h4 class="font-weight-bold m-0 text-white">Osahan Bar</h4>
+            <h4 class="font-weight-bold m-0 text-white">FLEX-DELIVERY</h4>
         </div>
     </div>	
     <div class="offer-section py-4">
         <div class="container position-relative">
             <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
-                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}</h2>
+                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}
+	                <span class="ml-5">
+	                <c:if test="${likeChk}">
+		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/heart.png'/>" > </a>
+	                </c:if>
+	                <c:if test="${!likeChk}">
+		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/emptyHeart.png'/>" > </a>
+	                </c:if>
+	                </span>
+                </h2>
                 <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
                 <div class="rating-wrap d-flex align-items-center mt-2">
                     <ul class="rating-stars list-unstyled">
@@ -149,15 +326,28 @@
             <div class="col-md-8 pt-3">
             	<!-- Menu -->
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
+	            	
 	            	<div class="d-flex item-aligns-center">
-				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">대표메뉴</p>
+				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">대표메뉴      <span class="badge bg-primary text-white">MAIN</span></p>
 				    </div>
             		<div class="row m-0">
+            			<div class="col-md-12 col-12 border-top">
+					    	<div class="bg-light">
+						    	<div class="row m-0">
+						    		<div class="col-md-4 col-4 p-2">
+										<img src="<c:url value='/resources/imgs/${menuAllvo.memberMenuVo.menuImg}' />" class="img-fluid rounded float-start" alt="...">
+							    	</div>
+							    	<div class="col-md-8 col-8 p-5">
+										<p class="mb-0 h4 fw-bold font-monospace" style="line-height: 1;text-align: end">${menuAllvo.memberMenuVo.menuContent}</p>
+									</div>
+								</div>
+						    </div>
+						</div>
 						<div class="col-md-12 px-0 border-top">
 						    <div class="bg-white">
 						    	<!-- 대표메뉴 -->
 						    	<div class="p-3 border-bottom gold-members">
-								    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#option${menuAllvo.memberMenuVo.menuNo}">옵션 선택</a></span>
+								    <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#mainMenuModal">옵션 선택</a></span>
 								    <div class="media">
 								        <div class="mr-3 font-weight-bold text-danger non_veg">.</div>
 								        <div class="media-body">
@@ -166,7 +356,7 @@
 								        </div>
 								    </div>
 								</div>
-								<div class="modal fade" id="option${menuAllvo.memberMenuVo.menuNo}" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
+								<div class="modal fade" id="mainMenuModal" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
 							        <div class="modal-dialog modal-dialog-centered">
 							            <div class="modal-content">
 							                <div class="modal-header">
@@ -190,10 +380,11 @@
 								                            <!--옵션선택 -->
 								                            <c:if test="${empty menuAllvo.menuOptionList}">
 									                            <div class="p-3 bg-light border-bottom">
-									                                <h6 class="m-0">옵션상품이 없습니다.</h6>
-									                                <div class="custom-control border-bottom px-0  custom-checkbox">
-										                                <input type="checkbox" class="custom-control-input" id="noOption${menuAllvo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
-										                                <label class="custom-control-label py-3 w-100 px-3" for="noOption${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">${menuAllvo.memberMenuVo.menuPrice}원</p></label>
+									                                <h6 class="m-0">기본선택만 가능</h6>
+									                                <div class="custom-control custom-radio border-bottom py-2">
+										                                <input type="radio" class="custom-control-input" id="noOption${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+										                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
+										                                <label class="custom-control-label py-3 w-100 px-3" for="noOption${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
 									                                </div>
 									                            </div>
 								                            </c:if>
@@ -201,14 +392,16 @@
 									                            <div class="p-3 bg-light border-bottom">
 									                                <h6 class="m-0">옵션선택</h6>
 									                            </div>
-									                            	<div class="custom-control border-bottom px-0  custom-checkbox">
-										                                <input type="checkbox" class="custom-control-input" id="noOptionMain${menuAllvo.memberMenuVo.menuNo}" name="optionList[0].mOptionNo" value="-1" checked>
-										                                <label class="custom-control-label py-3 w-100 px-3" for="noOptionMain${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">${menuAllvo.memberMenuVo.menuPrice}원</p></label>
+									                            	<div class="custom-control custom-radio border-bottom py-2">
+										                                <input type="radio" class="custom-control-input" id="noOptionMain${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+										                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
+										                                <label class="custom-control-label py-3 w-100 px-3" for="noOptionMain${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
 									                                </div>
-									                            <c:forEach var="oVo" items="${menuAllvo.menuOptionList}" varStatus="i">
-										                            <div class="custom-control border-bottom px-0  custom-checkbox">
-										                                <input type="checkbox" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="optionList[${i.count}].mOptionNo" value="${oVo.mOptionNo}">
-										                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">${oVo.mOptionPrice}원</p></label>
+									                            <c:forEach var="oVo" items="${menuAllvo.menuOptionList}">
+										                            <div class="custom-control custom-radio border-bottom py-2">
+										                                <input type="radio" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
+										                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice+oVo.mOptionPrice}">
+										                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">+${oVo.mOptionPrice}원</p></label>
 										                            </div>
 									                            </c:forEach>
 								                            </c:if>
@@ -221,6 +414,12 @@
 								                    	<input class="count-number-input qty" type="text" name="cartQty" readonly="readonly" value="1">
 								                    	<button type="button" class="btn-sm btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
 								                    </span></p>
+								                </div>
+								                <div class="p-3 bg-light border-bottom">
+								                    <p class="text-muted fs-5 fw-bold font-monospace">Total
+									                    <span class="float-right font-monospace totalPrice" style="font-weight: 700">
+									                    ${menuAllvo.memberMenuVo.menuPrice}원</span>
+								                    </p>
 								                </div>
 								                <div class="modal-footer p-0 border-0">
 								                    <div class="col-6 m-0 p-0">
@@ -264,12 +463,15 @@
 		                    		</c:if>
 		                    	</c:forEach>
                             </div>
-                            <b class="text-black ml-2">${reviewCount}별점테스트</b>
+                            <b class="text-black ml-2">${reviewCount}건</b>
                         </div>
                     </div>
-                    <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
+                    <c:import url="/member/store/storeReview.do">
+                    	<c:param name="storeNo" value="${vo.storeNo}"/>
+                    </c:import>
+                    <!-- <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
                         <h6 class="mb-0 mb-1">리뷰와 평점</h6>
-                        <p class="text-muted mb-4 mt-1 small">Rated 3.5 out of 5</p>
+                        <p class="text-muted mb-4 mt-1 small">실제 주문고객들의 리뷰와 평점입니다</p>
                         <div class="graph-star-rating-body">
                             <div class="rating-list">
                                 <div class="rating-list-left font-weight-bold small">5 Star</div>
@@ -374,99 +576,31 @@
                     </div>
                     <div class="bg-white p-3 rating-review-select-page rounded shadow-sm">
                         <h6 class="mb-3">리뷰 작성</h6>
-                        <div class="d-flex align-items-center mb-3">
-                            <p class="m-0 small">이 가게를 평가해주세요!</p>
-                            <div class="star-rating ml-auto">
-                                <div class="d-inline-block"><i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star text-warning"></i>
-                                    <i class="feather-star"></i>
-                                </div>
-                            </div>
-                        </div>
                         <form>
-                            <div class="form-group"><label class="form-label small">내용</label><textarea class="form-control"></textarea></div>
-                            <div class="form-group mb-0"><button type="button" class="btn btn-primary btn-block"> 리뷰 작성 </button></div>
+	                        <div class="d-flex align-items-center mb-3">
+	                            <p class="m-0 small">이 가게를 평가해주세요!</p>
+	                            <div class="star-rating ml-auto">
+	                                <div class="d-inline-block"><i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star text-warning"></i>
+	                                    <i class="feather-star"></i>
+	                                </div>
+	                            </div>
+	                        </div>
+                            <div class="form-group"><label class="form-label small">내용</label>
+                            	<textarea class="form-control"></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                            	<button type="button" class="btn btn-primary btn-block"> 리뷰 작성 </button>
+                            </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- /Review -->
             </div>
             <!-- 장바구니 -->
-            <div class="col-md-4 pt-3">
-                <div class="osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar">
-                    <div class="d-flex border-bottom osahan-cart-item-profile bg-white p-3">
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-1 font-weight-bold">콘라드 레스토랑</h6>
-                            <p class="mb-0 small text-muted"><i class="feather-map-pin"></i> 사랑시 행복동 75번지</p>
-                        </div>
-                    </div>
-                    <div class="bg-white border-bottom py-2">
-                        <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
-                            <div class="media align-items-center">
-                                <div class="mr-2 text-danger">&middot;</div>
-                                <div class="media-body">
-                                    <p class="m-0">에그 프라이과 베이컨 토스트</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="count-number float-right"><button type="button" class="btn-sm left dec btn btn-outline-secondary"> <i class="feather-minus"></i> </button><input class="count-number-input" type="text" readonly="" value="2"><button type="button" class="btn-sm right inc btn btn-outline-secondary"> <i class="feather-plus"></i> </button></span>
-                                <p class="text-gray mb-0 float-right ml-2 text-muted small">4500원</p>
-                            </div>
-                        </div>
-                        <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
-                            <div class="media align-items-center">
-                                <div class="mr-2 text-danger">&middot;</div>
-                                <div class="media-body">
-                                    <p class="m-0">비건 토스트
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="count-number float-right"><button type="button" class="btn-sm left dec btn btn-outline-secondary"> <i class="feather-minus"></i> </button><input class="count-number-input" type="text" readonly="" value="2"><button type="button" class="btn-sm right inc btn btn-outline-secondary"> <i class="feather-plus"></i> </button></span>
-                                <p class="text-gray mb-0 float-right ml-2 text-muted small">6000원</p>
-                            </div>
-                        </div>
-                        <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
-                            <div class="media align-items-center">
-                                <div class="mr-2 text-success">&middot;</div>
-                                <div class="media-body">
-                                    <p class="m-0">양송이 스프
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="count-number float-right"><button type="button" class="btn-sm left dec btn btn-outline-secondary"> <i class="feather-minus"></i> </button><input class="count-number-input" type="text" readonly="" value="2"><button type="button" class="btn-sm right inc btn btn-outline-secondary"> <i class="feather-plus"></i> </button></span>
-                                <p class="text-gray mb-0 float-right ml-2 text-muted small">6000원</p>
-                            </div>
-                        </div>
-                        <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2">
-                            <div class="media align-items-center">
-                                <div class="mr-2 text-success">&middot;</div>
-                                <div class="media-body">
-                                    <p class="m-0">감자 스프</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="count-number float-right"><button type="button" class="btn-sm left dec btn btn-outline-secondary"> <i class="feather-minus"></i> </button><input class="count-number-input" type="text" readonly="" value="2"><button type="button" class="btn-sm right inc btn btn-outline-secondary"> <i class="feather-plus"></i> </button></span>
-                                <p class="text-gray mb-0 float-right ml-2 text-muted small">4500원</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white p-3 clearfix border-bottom">
-                        <p class="mb-1">총합 <span class="float-right text-dark">21000원</span></p>
-                        <p class="mb-1">배달팁<span class="text-info ml-1"><i class="feather-info"></i></span><span class="float-right text-dark">무료</span></p>
-<!--                         <p class="mb-1 text-success">Total Discount<span class="float-right text-success">$1884</span></p> -->
-                        <hr>
-                        <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">21000원</span></h6>
-                    </div>
-                    <div class="p-3">
-                        <a class="btn btn-success btn-block btn-lg" href="successful.html">PAY 21000원<i class="feather-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-4 pt-3" id="cartDiv"></div>
             <!-- /장바구니 -->
         </div>
     </div>

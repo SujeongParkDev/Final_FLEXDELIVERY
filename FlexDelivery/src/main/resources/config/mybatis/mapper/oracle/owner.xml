@@ -27,6 +27,12 @@
 	</select>
 	
 	
+	<update id="withdrawOwner" parameterType="string">
+		update owner
+		set owner_outdate=sysdate 
+		where owner_id=#{ownerId}
+	</update>
+	
 <!-- 	
 create or replace view jaOwnerAuthorityAllView
     as
