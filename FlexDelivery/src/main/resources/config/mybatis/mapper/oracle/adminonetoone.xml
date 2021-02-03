@@ -31,12 +31,25 @@
 		order by ASK_NO desc, ASK_GROUP_NO desc, ASK_STEP
 	</select>
 	
+	<select id="selectReplyByNo" parameterType="int" resultType="adminAskVo">
+		select ASK_NO, ASK_TITLE, ASK_ID, ASK_CONTENT, ASK_REGDATE,
+		ASK_GROUP_NO, ASK_STEP, ASK_REPLY_FLAG, AUTHORITY_NO from ASK
+		where ASK_GROUP_No=#{askNo} and ASK_NO!=#{askNo}
+	</select>
+	
+	<update id="updateAsk" parameterType="adminAskVo">
+		update ASK
+		set ASK_REPLY_FLAG=#{askReplyFlag}
+		where ASK_NO=#{askNo}
+	</update>
+	
+	
 	<insert id="insertAskReply" parameterType="adminAskVo" >
 		<selectKey keyProperty="askNo" resultType="int" order="BEFORE">
 			select ASK_seq.nextval from dual
 		</selectKey>
 		insert into ASK(ASK_NO, ASK_TITLE, ASK_CONTENT, ASK_ID, ASK_GROUP_NO, ASK_STEP, ASK_REPLY_FLAG, AUTHORITY_NO )
-		values(#{askNo}, #{askTitle}, #{askContent}, #{askId}, #{askGroupNo}, #{askStep}, #{askReplyFlag}, #{authorityNo})
+		values(#{askNo}, #{askTitle}, #{askContent}, #{askId}, #{askGroupNo}, #{askStep}, default, #{authorityNo})
 	</insert>
 	
 	<update id="updateAskReply" parameterType="adminAskVo">
@@ -46,28 +59,10 @@
 		where ASK_NO=#{askNo}
 	</update>
 	
-	<delete id="deleteAskReply" parameterType="adminAskVo">
+	<delete id="deleteAskReply" parameterType="int">
 		delete from ASK
 		where ASK_NO=#{askNo}
 	</delete>
 	
-	<!-- <insert id="insertFaqCategory" parameterType="adminAskVo" >
-		<selectKey keyProperty="fCategoryNo" resultType="int" order="BEFORE">
-			select FAQCATEGORY_seq.nextval from dual
-		</selectKey>
-		insert into FAQCATEGORY(F_Category_NO, F_CATEGORY_NAME, AUTHORITY_NO)
-		values(#{fCategoryNo}, #{fCategoryName}, #{authorityNo})
-	</insert>
-	
-	<update id="updateFaqCategory" parameterType="adminAskVo">
-		update FAQCATEGORY
-		set F_CATEGORY_NAME=#{fCategoryName}
-		where FAQ_NO=#{faqNo} and AUTHORITY_NO=6
-	</update>
-	
-	<delete id="deleteFaqCategory" parameterType="adminAskVo">
-		delete from FAQCATEGORY
-		where F_CATEGORY_NO=#{fCategoryNo}
-	</delete> -->
 	
 </mapper>

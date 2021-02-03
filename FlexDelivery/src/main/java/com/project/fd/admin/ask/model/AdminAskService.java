@@ -10,6 +10,7 @@ public interface AdminAskService {
 	
 	int insertAskReply(AdminAskVO askVo);
 	int updateAskReply(AdminAskVO askVo);
-	int deleteAskReply(AdminAskVO askVo);
+	int deleteAskReply(int no);
+	AdminAskVO selectReplyByNo(int no);
 	
 }

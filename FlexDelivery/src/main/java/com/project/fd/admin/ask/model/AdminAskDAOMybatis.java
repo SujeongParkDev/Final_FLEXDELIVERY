@@ -37,19 +37,25 @@ public class AdminAskDAOMybatis implements AdminAskDAO{
 
 	@Override
 	public int updateAskReply(AdminAskVO askVo) {
-		int cnt=sqlSession.update(namespace+"insertAskReply", askVo);
+		int cnt=sqlSession.update(namespace+"updateAskReply", askVo);
 		return cnt;
 	}
 
 	@Override
-	public int deleteAskReply(AdminAskVO askVo) {
-		int cnt=sqlSession.delete(namespace+"insertAskReply", askVo);
+	public int deleteAskReply(int no) {
+		int cnt=sqlSession.delete(namespace+"deleteAskReply", no);
 		return cnt;
 	}
 
 	@Override
 	public AdminAskVO selectByNo(int no) {
 		return sqlSession.selectOne(namespace+"selectByNo", no);
+	}
+
+	@Override
+	public AdminAskVO selectReplyByNo(int no) {
+		AdminAskVO askVo=sqlSession.selectOne(namespace+"selectReplyByNo", no);
+		return askVo;
 	}
 
 }

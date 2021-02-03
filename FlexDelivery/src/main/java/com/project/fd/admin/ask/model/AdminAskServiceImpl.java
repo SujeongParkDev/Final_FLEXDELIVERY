@@ -37,13 +37,18 @@ public class AdminAskServiceImpl implements AdminAskService{
 	}
 
 	@Override
-	public int deleteAskReply(AdminAskVO askVo) {
-		return askDao.deleteAskReply(askVo);
+	public int deleteAskReply(int no) {
+		return askDao.deleteAskReply(no);
 	}
 
 	@Override
 	public AdminAskVO selectByNo(int no) {
 		return askDao.selectByNo(no);
+	}
+
+	@Override
+	public AdminAskVO selectReplyByNo(int no) {
+		return askDao.selectReplyByNo(no);
 	}
 
 }
