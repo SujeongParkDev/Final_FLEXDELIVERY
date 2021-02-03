@@ -67,7 +67,7 @@
 						<div class="col-md-5 col-12"></div>
 						<div class="col-md-5 col-12 ">
 							<form name="frmPage" method="post" name="frm1"
-								action="<c:url value='/owner/menu2//reviewOwner/reviewOwner.do'/>">
+								action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 								<input type="hidden" name="currentPage" value="1">
 							</form>
@@ -229,8 +229,6 @@
 
 <!-- two  -->
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	function btDel(reviewNo){
 		if(confirm("리뷰 답변을 삭제하시겠습니까?")) {

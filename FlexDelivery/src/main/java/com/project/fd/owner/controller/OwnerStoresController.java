@@ -92,7 +92,7 @@ public class OwnerStoresController {
 			long fileSize=0;
 			try {
 				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.OWNER_REGISTER_TYPE);
+				=fileUtil.fileUplaod(request, FileUploadUtil.STORES_TYPE);
 				for(Map<String, Object> fileMap : fileList) {
 					originName=(String) fileMap.get("originalFileName");
 					fileName=(String) fileMap.get("fileName");

@@ -118,15 +118,7 @@ public class OwnerController {
 		logger.info("플렉스 소개 뷰 보여주기");
 	
 	}
-	
-	
-	//faq 뷰 보여주기 (점포)
-	@RequestMapping("/menu5/faq.do")
-	public void faq(){
-		logger.info("faq 뷰 보여주기");
-	
-	}
-	
+
 
 	
 	

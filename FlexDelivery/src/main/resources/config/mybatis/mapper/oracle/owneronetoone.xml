@@ -56,4 +56,6 @@ update ask
 set ask_title=#{askTitle}, ask_content=#{askContent}
 where ask_no=#{askNo}
 </update>
+
+
 </mapper>
