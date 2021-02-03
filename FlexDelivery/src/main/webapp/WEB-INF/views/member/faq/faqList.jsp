@@ -50,8 +50,8 @@
 						</div>
 					</div>
 					<p> faq </p>
-					<c:import url="/member/faq/faqQ.do">
-						<c:param name="faqC" value="basics"></c:param>
+					<c:import url="/member/faq/faqC.do">
+						<c:param name="fCategoryNo" value="10"></c:param>
 					</c:import>
 					
 					<!-- <div id="basics">

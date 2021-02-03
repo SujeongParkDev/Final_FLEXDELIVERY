@@ -1,5 +1,8 @@
 package com.project.fd.member.faq.model;
 
-public interface MemberFaqDAO {
+import java.util.List;
 
+public interface MemberFaqDAO {
+	public List<MemberFaqVo> selectFaq(int fCategoryNo);
+	
 }
