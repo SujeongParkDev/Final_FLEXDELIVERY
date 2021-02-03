@@ -17,22 +17,17 @@
 	</select>
 	
 	<select id="approvalAgree" parameterType="long">
-		update ownerregister
-		set a_agree_no = 3
+		update stores
+		set store_content='', a_agree_no=3, store_regdate=sysdate
 		where store_no =#{no}		
 	</select>
 	
 	<select id="approvalDeny" parameterType="long">
-		update ownerregister
-		set a_agree_no = 4
+		update stores
+		set a_agree_no = 4, store_content='', store_regdate=''
 		where store_no =#{no}
 	</select>
 	
-	<select id="initContent" parameterType="long">
-		update stores
-		set storeContent = ''
-		where store_no =#{no}
-	</select>
 </mapper>
 
 
