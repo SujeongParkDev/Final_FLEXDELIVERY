@@ -32,4 +32,10 @@ public class AdminStoresServiceImpl implements AdminStoresService{
 	public int adminApprovalDeny(long no) {
 		return adminStoresDao.adminApprovalDeny(no);
 	}
+
+	@Override
+	public int adminInitContent(long no) {
+		// TODO Auto-generated method stub
+		return adminStoresDao.adminInitContent(no);
+	}
 }

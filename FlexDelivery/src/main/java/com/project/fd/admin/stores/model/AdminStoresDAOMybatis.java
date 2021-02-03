@@ -35,8 +35,12 @@ public class AdminStoresDAOMybatis implements AdminStoresDAO{
 
 	@Override
 	public int adminApprovalDeny(long no) {
-		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"approvalDeny", no);
+	}
+
+	@Override
+	public int adminInitContent(long no) {
+		return sqlSession.update(namespace+"initContent", no);
 	}
 
 }

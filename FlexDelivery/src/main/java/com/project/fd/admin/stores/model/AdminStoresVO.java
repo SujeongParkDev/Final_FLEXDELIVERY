@@ -13,8 +13,8 @@ public class AdminStoresVO {
 	private String ownerHp1; //점주전화번호1
 	private String ownerHp2; //점주전화번호2
 	private String ownerHp3; //점주전화번호3
+	private String storeContent;//점포요청사항
 	private int aAgreeNo; //승인관리번호
-	
 	public long getStoreNo() {
 		return storeNo;
 	}
@@ -75,6 +75,12 @@ public class AdminStoresVO {
 	public void setOwnerHp3(String ownerHp3) {
 		this.ownerHp3 = ownerHp3;
 	}
+	public String getStoreContent() {
+		return storeContent;
+	}
+	public void setStoreContent(String storeContent) {
+		this.storeContent = storeContent;
+	}
 	public int getaAgreeNo() {
 		return aAgreeNo;
 	}
@@ -86,6 +92,6 @@ public class AdminStoresVO {
 		return "AdminStoresVO [storeNo=" + storeNo + ", storeRegdate=" + storeRegdate + ", oRegisterNo=" + oRegisterNo
 				+ ", ownerName=" + ownerName + ", storeName=" + storeName + ", storeAddress=" + storeAddress
 				+ ", storeAddressDetail=" + storeAddressDetail + ", ownerHp1=" + ownerHp1 + ", ownerHp2=" + ownerHp2
-				+ ", ownerHp3=" + ownerHp3 + ", aAgreeNo=" + aAgreeNo + "]";
-	}
+				+ ", ownerHp3=" + ownerHp3 + ", storeContent=" + storeContent + ", aAgreeNo=" + aAgreeNo + "]";
+	}	
 }

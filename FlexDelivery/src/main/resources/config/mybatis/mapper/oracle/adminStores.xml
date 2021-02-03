@@ -12,19 +12,25 @@
 	
 	<select id="approvalDetail" parameterType="long" resultType="adminStoresVo">
 		select store_no, store_regdate, o_register_no, owner_name, store_name, store_address,
-       		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no 
+       		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no, STORE_CONTENT
        		   from store_reg where store_no=#{no}
 	</select>
 	
 	<select id="approvalAgree" parameterType="long">
 		update ownerregister
 		set a_agree_no = 3
-		where store_no =#{no}
+		where store_no =#{no}		
 	</select>
 	
 	<select id="approvalDeny" parameterType="long">
 		update ownerregister
 		set a_agree_no = 4
+		where store_no =#{no}
+	</select>
+	
+	<select id="initContent" parameterType="long">
+		update stores
+		set storeContent = ''
 		where store_no =#{no}
 	</select>
 </mapper>
