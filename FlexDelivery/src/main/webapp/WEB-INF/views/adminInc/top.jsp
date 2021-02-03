@@ -79,8 +79,14 @@
                     <!-- Top Social Area -->
                     <div class="col-12 col-sm-4">
                         <div class="top-social-area">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그아웃</i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">마이페이지</i></a>
+                        <c:if test="${!empty sessionScope.adminId}">
+							<span style="color:gray;font-size: 1em">
+							관리자 [${sessionScope.adminName}] 님 </span>
+                            <a href="<c:url value='/admin/myPage/myPage.do' />" data-toggle="tooltip" data-placement="bottom" title="Mypage">
+                            	<i  aria-hidden="false">마이페이지</i></a>
+                            <a href="<c:url value='/logout.do?idx=3' />" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                            	<i  aria-hidden="false">로그아웃</i></a>
+						</c:if>
                             
                         </div>
                     </div>
@@ -94,7 +100,8 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                     	<!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="<c:url value='/admin/index.do' />" class="original-logo"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
+                        <a href="<c:url value='/admin/index.do' />" class="original-logo">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
                     </div>
                 </div>
             </div>

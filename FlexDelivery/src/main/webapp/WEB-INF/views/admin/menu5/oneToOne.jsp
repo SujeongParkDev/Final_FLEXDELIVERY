@@ -74,15 +74,6 @@
 		                                <span class="badge bg-danger">미답변</span>
 		                            </td>
 		                        </tr>
-		                        <tr>
-		                            <td>4</td>
-		                            <td>주문을 잘못 했는데 취소하고 싶어요.</td>
-		                            <td>YHJ</td>
-		                            <td>회원</td>
-		                            <td>
-		                                <span class="badge bg-success">답변</span>
-		                            </td>
-		                        </tr>
 		                        
 		                        <tr>
 		                            <td>6</td>

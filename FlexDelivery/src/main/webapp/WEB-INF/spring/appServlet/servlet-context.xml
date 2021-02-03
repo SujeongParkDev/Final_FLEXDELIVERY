@@ -64,4 +64,16 @@
 		</interceptor>
 	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/myPage/**/*" />
+			<mapping path="/admin/menu3/**/*" />
+			<mapping path="/admin/menu4/**/*" />
+			<mapping path="/admin/menu5/**/*" />
+			<mapping path="/admin/menu6/**/*" />
+			<exclude-mapping path="/adimn/login/login.do"/>
+			<beans:ref bean ="adminLoginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

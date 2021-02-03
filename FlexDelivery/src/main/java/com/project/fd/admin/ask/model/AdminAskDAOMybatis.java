@@ -58,4 +58,10 @@ public class AdminAskDAOMybatis implements AdminAskDAO{
 		return askVo;
 	}
 
+	@Override
+	public int updateAsk(AdminAskVO askVo) {
+		int cnt=sqlSession.update(namespace+"updateAsk", askVo);
+		return cnt;
+	}
+
 }

@@ -38,7 +38,6 @@ public class AdminController {
 	public void adminIntroduce() {
 		logger.info("관리자 - 플렉스 딜리버리 소개 보여주기");
 		
-		/* return "/admin/menu4/introduce"; */
 	}
 
 	/*
@@ -96,88 +95,6 @@ public class AdminController {
 	@RequestMapping("/menu2/storeAdDetail.do")
 	public void adminStoreDetail() {
 		logger.info("관리자 - 광고승인 리스트 화면 보여주기");
-	}
-	
-
-	@RequestMapping("/menu3/honeyTip.do")
-	public void adminHoneyTip() {
-		logger.info("관리자 - 사장님꿀팁 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu3/notice.do")
-	public void adminNotice() {
-		logger.info("관리자 - 공지사항 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu3/event.do")
-	public void adminEvent() {
-		logger.info("관리자 - 이벤트 화면 보여주기");
-	}
-
-		
-	@RequestMapping("/menu5/faq.do")
-	public void adminFaq() {
-		logger.info("관리자 - 자주하는질문 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu5/oneToOne.do")
-	public void adminOneToOne() {
-		logger.info("관리자 - 1:1 문의 내역 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/category.do")
-	public void adminCategory() {
-		logger.info("관리자 - 카테고리 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/categoryLarge.do")
-	public void adminCategoryLarge() {
-		logger.info("관리자 - 카테고리 대분류 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/categoryMiddle.do")
-	public void adminCategoryMiddle() {
-		logger.info("관리자 - 카테고리 중분류 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/coupons.do")
-	public void adminCoupons() {
-		logger.info("관리자 - 쿠폰 요약 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/storeCoupon.do")
-	public void adminStoreCoupon() {
-		logger.info("관리자 - 정기 쿠폰 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/eventCoupon.do")
-	public void adminEventCoupon() {
-		logger.info("관리자 - 이벤트 쿠폰 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/todayFoodsRandom.do")
-	public void adminTodayFoodsRandom() {
-		logger.info("관리자 - 오늘 뭐 먹지 - 랜덤 추천 화면 보여주기");
-	}
-
-	@RequestMapping("/menu6/todayFoodsWeather.do")
-	public void adminTodayFoodsWeather() {
-		logger.info("관리자 - 오늘 뭐 먹지 - 날씨 추천 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/gift.do")
-	public void adminGift() {
-		logger.info("관리자 - 선물하기 관리 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/giftCategory.do")
-	public void adminGiftCategory() {
-		logger.info("관리자 - 선물하기 - 카테고리 화면 보여주기");
-	}
-	
-	@RequestMapping("/menu6/giftPrice.do")
-	public void adminGiftPrice() {
-		logger.info("관리자 - 선물하기 - 금액 화면 보여주기");
 	}
 	*/
 

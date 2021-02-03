@@ -67,23 +67,20 @@
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Hello Universe!</a></li>
-                                    <li><a href="#">Hello Original!</a></li>
-                                    <li><a href="#">Hello Earth!</a></li>
-                                    <li><a href="#">Hello Colorlib!</a></li>
+                                    <li><a href="<c:url value='/member/index.do'/>">고객 사이트로 이동</a></li>
+                                    <li><a href="<c:url value='/owner/index.do'/>">사장님 사이트로 이동</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <!-- Top Social Area -->
-                    <div class="col-12 col-sm-4">
+                    <!-- div class="col-12 col-sm-4">
                         <div class="top-social-area">
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Login"><i  aria-hidden="false">로그인</i></a>
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Join"><i  aria-hidden="false">회원가입</i></a>
                             
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -93,8 +90,8 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                    	<!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="<c:url value='/admin/index.do' />" class="original-logo"><img src="${pageContext.request.contextPath}/resources/adminResources/img/core-img/logo.png" alt=""></a>
+                        <a href="<c:url value='/admin/index.do' />" class="original-logo">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
                     </div>
                 </div>
             </div>

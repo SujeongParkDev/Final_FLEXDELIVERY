@@ -74,8 +74,11 @@ public class AdminAskController {
 				
 		if (cnt>0) {
 			logger.info("1:1 문의 답변 등록 완료, cnt={}", cnt);
+			
+			askVo.setAskReplyFlag("Y");
 			//원글 답글 플래그 y로 바꾸기
-			//askService.update
+			int cnt2=askService.updateAsk(askVo);
+			logger.info("1:1 문의 원글 플래그 변경, cnt2={}", cnt2);
 		}
 		
 		return "redirect:/admin/menu5/oneToOne/detail.do?no="+askVo.getAskGroupNo();
@@ -103,7 +106,7 @@ public class AdminAskController {
 	@RequestMapping(value="/oneToOne/deleteReply.do", method=RequestMethod.POST)
 	public String delete_post(@ModelAttribute AdminAskVO askVo,
 			HttpServletRequest request, Model model, @RequestParam(defaultValue = "0") int no) {
-		logger.info("1:1 문의 답변 삭제처리, 파라미터 vo={}, no={}", askVo, no);
+		logger.info("1:1 문의 답변 삭제처리, 파라미터 vo={}, no={}", no);
 		
 		String msg="1:1 문의 답변 삭제 실패", url="/admin/menu5/oneToOne.do";
 		int cnt=askService.deleteAskReply(no);
@@ -111,6 +114,11 @@ public class AdminAskController {
 		
 		if (cnt>0) {
 			msg="답변을 삭제하였습니다.";
+			
+			askVo.setAskReplyFlag("N");
+			//원글 답글 플래그 N으로 바꾸기
+			int cnt2=askService.updateAsk(askVo);
+			logger.info("1:1 문의 원글 플래그 변경, cnt2={}", cnt2);
 		}
 		
 		model.addAttribute("msg", msg);
