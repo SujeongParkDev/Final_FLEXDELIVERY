@@ -45,6 +45,10 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 		return sqlSession.update(namespace+"updateOrdersToDeliveryIng",map);
 	}
 	
+	public int updateOrdersCancel(int ordersNo){
+		return sqlSession.update(namespace+"updateOrdersCancel",ordersNo);
+	}
+	
 	
 	
 	

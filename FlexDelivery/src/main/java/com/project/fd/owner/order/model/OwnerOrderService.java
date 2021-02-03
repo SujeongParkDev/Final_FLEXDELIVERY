@@ -19,4 +19,5 @@ public interface OwnerOrderService {
 	public List<Map<String, Object>> selectMenuDetailByOrdersNo(int ordersNo);
 	public int updateOrdersToRequestIng(int ordersNo);
 	public int updateOrdersToDeliveryIng(Map<String, Object> map);
+	public int updateOrdersCancel(int ordersNo);
 }

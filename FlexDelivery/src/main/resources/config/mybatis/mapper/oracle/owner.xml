@@ -52,6 +52,11 @@ create or replace view jaOwnerAuthorityAllView
 		where owner_id = #{userid}
 	</select>
 
-
+	
+	<update id="updateOwner" parameterType="ownerVo">
+		update owner
+		set owner_name=#{ownerName} , owner_hp1=#{ownerHp1}, owner_hp2=#{ownerHp2}, owner_hp3=#{ownerHp3}
+		where owner_id=#{ownerId}
+	</update>
           
 </mapper>

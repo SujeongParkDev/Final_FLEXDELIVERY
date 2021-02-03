@@ -44,6 +44,9 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 	public int updateOrdersToDeliveryIng(Map<String, Object> map) {
 		return ownerOrderDao.updateOrdersToDeliveryIng(map);
 	}
+	public int updateOrdersCancel(int ordersNo) {
+		return ownerOrderDao.updateOrdersCancel(ordersNo);
+	}
 	
 	@Override
 	@Transactional

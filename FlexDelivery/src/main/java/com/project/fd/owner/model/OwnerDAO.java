@@ -7,4 +7,5 @@ public interface OwnerDAO {
 	public int checkDup(String ownerId);
 	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid);
 	public int withdrawOwner(String ownerId);
+	public int updateOwner(OwnerVO vo);
 }

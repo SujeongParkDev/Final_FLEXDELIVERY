@@ -28,6 +28,7 @@ public interface OwnerService {
 	public int checkAuthority(String userid);
 	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid);
 	public int withdrawOwner(String ownerId);
+	public int updateOwner(OwnerVO vo);
 	
 	
 }
