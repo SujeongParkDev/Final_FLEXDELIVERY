@@ -16,13 +16,13 @@ $(function(){
 		location.href="${pageContext.request.contextPath}/admin/menu5/oneToOne/edit.do?no="+${vo.askNo};
 	}); */
 	
-	$('#btReplyWriteSubmit').click(function(){
+	/* $('#btReplyWriteSubmit').click(function(){
 		var content=$('#replyAskContent').val();
 		if (content.length==0){
 			alert("내용을 입력해주세요!");
 			prevent.eventDefault();
 		}
-	});
+	}); */
 	
 	
 	$('#detailList').click(function(){
@@ -66,12 +66,63 @@ $(function(){
 										</div>
 				                    </div><!-- 본문 내용 col-12 -->
 				                    
-									<div class="col-12 mt-50">
+									<div class="col-12 mt-50 text-center">
 										<hr>
 										<c:if test="${empty rVo}">
 										
-											등록된 답변이 없습니다.
-											
+											<p class="mt-50 mb-50" style="font-weight: bolder;">등록된 답변이 없습니다.</p>
+											<hr>
+	                                       <div class="post-a-comment-area mt-70">
+						                        <!-- <h5 style="text-algin: left;">답변</h5> -->
+						                        <div class="card-body">
+							                        <!-- Reply Form -->
+							                        <form name="frmReplyWrite" action="<c:url value='/admin/menu5/oneToOne/writeReply.do' />" method="post">
+							                            <div class="row">
+							                                <div class="col-12 col-md-6">
+							                                    <div class="group">
+							                                    	<input type="hidden" name="askNo" value="3">
+							                                    	<input type="hidden" name="askId" value="admin">
+							                                    	<input type="hidden" name="askGroupNo" value="${vo.askNo }">
+							                                    	<input type="hidden" name="askStep" value="${vo.askStep +1}">
+							                                    	<input type="hidden" name="authorityNo" value="6">
+							                                        <input style="text-align: right;" type="text" name="askId" id="replyAskId" value="플렉스 딜리버리" readonly required>
+							                                        <span class="highlight"></span>
+							                                        <span class="bar"></span>
+							                                        <label>작성자</label>
+							                                    </div>
+							                                </div>
+							                                <div class="col-12 col-md-6">
+							                                    <div class="group">
+							                                        <input style="text-align: right;" type="text" name="askTitle" id="replyAskTitle" value="RE:${vo.askTitle }" readonly required>
+							                                        <span class="highlight"></span>
+							                                        <span class="bar"></span>
+							                                        <label>제목</label>
+							                                    </div>
+							                                </div>
+							                                <div class="col-12">
+							                                    <div class="group">
+							                                        <textarea name="askContent" id="replyAskContent" required></textarea>
+							                                        <span class="highlight"></span>
+							                                        <span class="bar"></span>
+							                                        <label>답변내용</label>
+							                                    </div>
+							                                </div>
+		<!-- 					                                <div class="col-12">
+							                                    <div class="group">
+							                                        <span class="highlight"></span>
+							                                        <span class="bar"></span>
+							                                        <label>Comment</label>
+							                                    </div>
+							                                </div>
+		 -->					                                <div class="col-12">
+							                                    <!-- <button type="submit" class="btn original-btn">답변 등록</button> -->
+							                                    <button type="submit" id="btReplyWriteSubmit" class="btn round block btn-primary">답변 등록</button>
+							                                </div>
+							                            </div>
+							                        </form>
+						                        </div>
+						                    </div>
+                  
 										</c:if>
 	                                    
 										<c:if test="${!empty rVo}">
@@ -100,58 +151,7 @@ $(function(){
 					                        </ol>
 					                    </div>
 					                    </c:if>
-	                                       
-                                       <div class="post-a-comment-area mt-70">
-					                        <!-- <h5 style="text-algin: left;">답변</h5> -->
-					                        <div class="card-body">
-						                        <!-- Reply Form -->
-						                        <form name="frmReplyWrite" action="<c:url value='/admin/menu5/oneToOne/writeReply.do' />" method="post">
-						                            <div class="row">
-						                                <div class="col-12 col-md-6">
-						                                    <div class="group">
-						                                    	<input type="hidden" name="askNo" value="3">
-						                                    	<input type="hidden" name="askId" value="admin">
-						                                    	<input type="hidden" name="askGroupNo" value="${vo.askNo }">
-						                                    	<input type="hidden" name="askStep" value="${vo.askStep +1}">
-						                                    	<input type="hidden" name="authorityNo" value="6">
-						                                        <input style="text-align: right;" type="text" name="askId" id="replyAskId" value="플렉스 딜리버리" readonly required>
-						                                        <span class="highlight"></span>
-						                                        <span class="bar"></span>
-						                                        <label>작성자</label>
-						                                    </div>
-						                                </div>
-						                                <div class="col-12 col-md-6">
-						                                    <div class="group">
-						                                        <input style="text-align: right;" type="text" name="askTitle" id="replyAskTitle" value="RE:${vo.askTitle }" readonly required>
-						                                        <span class="highlight"></span>
-						                                        <span class="bar"></span>
-						                                        <label>제목</label>
-						                                    </div>
-						                                </div>
-						                                <div class="col-12">
-						                                    <div class="group">
-						                                        <textarea name="askContent" id="replyAskContent" required></textarea>
-						                                        <span class="highlight"></span>
-						                                        <span class="bar"></span>
-						                                        <label>답변내용</label>
-						                                    </div>
-						                                </div>
-	<!-- 					                                <div class="col-12">
-						                                    <div class="group">
-						                                        <span class="highlight"></span>
-						                                        <span class="bar"></span>
-						                                        <label>Comment</label>
-						                                    </div>
-						                                </div>
-	 -->					                                <div class="col-12">
-						                                    <!-- <button type="submit" class="btn original-btn">답변 등록</button> -->
-						                                    <button type="submit" id="btReplyWriteSubmit" class="btn round block btn-primary">답변 등록</button>
-						                                </div>
-						                            </div>
-						                        </form>
-					                        </div>
-					                    </div>
-                  
+	                                   
                     
                     <!-- #noticeDetailDelete 삭제 모달 -->
 	                                       <div class="modal fade text-left" id="askReplylDelete" tabindex="-1" role="dialog"
