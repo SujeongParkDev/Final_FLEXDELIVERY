@@ -13,7 +13,10 @@ public interface OwnerOrderService {
 	
 	public int selectTotalRecord(Map<String, Object> map);
 	public List<Map<String, Object>> selectOrderAllView(Map<String, Object> map);
-	public Map<String, Object> selectMenuNoByOrderNo(int ordersNo);
+	public String selectMenuNoByOrderNo(int ordersNo);
 	public int selectCountByOrderNo(int ordersNo);
-	public Map<String, Object> getTitle(int ordersNo);
+	public String getTitle(int ordersNo);
+	public List<Map<String, Object>> selectMenuDetailByOrdersNo(int ordersNo);
+	public int updateOrdersToRequestIng(int ordersNo);
+	public int updateOrdersToDeliveryIng(Map<String, Object> map);
 }

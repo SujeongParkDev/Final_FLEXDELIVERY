@@ -8,11 +8,6 @@
 	
 	<sql id="searchDate">
 		<where>
-			<if test="oStatusNo == 4">
-				<![CDATA[           
-					and (orders_date + (orders_duration/(24*60)))  >= #{startDay} and	(orders_date + (orders_duration/(24*60))) < to_date(#{endDay})+1 
-				]]>
-			</if>
 			and store_no=#{searchVo.storeNo} and o_status_no=#{oStatusNo}
 		</where>	
 	</sql>
@@ -38,11 +33,12 @@ create or replace view jaOrderAllView
  
  
  
+ 
 	<select id="selectOrderAllView" parameterType="map" resultType="map">
 		select *
 		from
 		(
-		    select A.*,rownum as RNUM
+		    select A.*,rownum as RNUM,  (A.orders_date + (A.orders_duration/(24*60))) as deliverySuccess
 		    from
 		    (
 		    
@@ -71,8 +67,8 @@ create or replace view jaOrderAllView
  	
  	
 	
-	<select id="selectMenuNoByOrderNo" parameterType="int" resultType="map">
-		select * from
+	<select id="selectMenuNoByOrderNo" parameterType="int" resultType="string">
+		select menu_name from
 			(
 			    select rownum as RNUM, A.*  from 
 			    (
@@ -86,13 +82,27 @@ create or replace view jaOrderAllView
 	
 	
 	<select id="selectCountByOrderNo" parameterType="int" resultType="int">
-		select count(*) from orderdetail
-		where orders_no=#{ordersNo};
+		select count(distinct(menu_no)) from orderdetail
+		where orders_no= #{ordersNo}
 	</select>
 		
+ 	<select id="selectMenuDetailByOrdersNo" parameterType="int" resultType="map">
+		select * from jaorderdetailAllview
+		where orders_no=#{ordersNo}
+	</select>
+ 	
  
- 
- 
+ 	<update id="updateOrdersToRequestIng" parameterType="int">
+ 		update orders
+ 		set o_status_no = 2, orders_date=sysdate
+ 		where orders_no=#{ordersNo}
+ 	</update>
+ 	
+ 	<update id="updateOrdersToDeliveryIng" parameterType="map">
+ 		update orders
+ 		set o_status_no = 3,  orders_duration=#{ordersDuration}
+ 		where orders_no=#{ordersNo}
+ 	</update>
   <!-- 
   
 

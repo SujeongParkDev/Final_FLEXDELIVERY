@@ -25,7 +25,7 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 		return sqlSession.selectList(namespace+"selectOrderAllView", map);
 	}
 	
-	public Map<String, Object> selectMenuNoByOrderNo(int ordersNo){
+	public String selectMenuNoByOrderNo(int ordersNo){
 		return sqlSession.selectOne(namespace+"selectMenuNoByOrderNo", ordersNo);
 	}
 	
@@ -33,6 +33,19 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 		return sqlSession.selectOne(namespace+"selectCountByOrderNo", ordersNo);
 	}
 	
+	public List<Map<String, Object>> selectMenuDetailByOrdersNo(int ordersNo){
+		return sqlSession.selectList(namespace+"selectMenuDetailByOrdersNo",ordersNo);
+	}
 	
-
+	public int updateOrdersToRequestIng(int ordersNo){
+		return sqlSession.update(namespace+"updateOrdersToRequestIng",ordersNo);
+	}
+	
+	public int updateOrdersToDeliveryIng(Map<String, Object> map){
+		return sqlSession.update(namespace+"updateOrdersToDeliveryIng",map);
+	}
+	
+	
+	
+	
 }

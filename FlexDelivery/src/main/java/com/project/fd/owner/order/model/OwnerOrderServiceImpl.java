@@ -1,6 +1,6 @@
 package com.project.fd.owner.order.model;
 
-import java.util.HashMap;
+
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 		return ownerOrderDao.selectOrderAllView(map);
 	}
 		
-	public Map<String, Object> selectMenuNoByOrderNo(int ordersNo){
+	public String selectMenuNoByOrderNo(int ordersNo) {
 		return ownerOrderDao.selectMenuNoByOrderNo(ordersNo);
 	}
 	
@@ -33,25 +33,40 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 		return ownerOrderDao.selectCountByOrderNo(ordersNo);
 	}
 	
+	public List<Map<String, Object>> selectMenuDetailByOrdersNo(int ordersNo){
+		return ownerOrderDao.selectMenuDetailByOrdersNo(ordersNo);
+	}
+	
+	public int updateOrdersToRequestIng(int ordersNo) {
+		return ownerOrderDao.updateOrdersToRequestIng(ordersNo);
+	}
+	
+	public int updateOrdersToDeliveryIng(Map<String, Object> map) {
+		return ownerOrderDao.updateOrdersToDeliveryIng(map);
+	}
 	
 	@Override
 	@Transactional
-	public Map<String, Object> getTitle(int ordersNo) {
-		Map<String, Object> mapResultTwo = new HashMap<String, Object>();
+	public String getTitle(int ordersNo) {
+		String title="";
 		try {			
-			Map<String, Object> map = ownerOrderDao.selectMenuNoByOrderNo(ordersNo);
+			String menuName = ownerOrderDao.selectMenuNoByOrderNo(ordersNo);
 			
-			int count =ownerOrderDao.selectCountByOrderNo(ordersNo);
+			int count =ownerOrderDao.selectCountByOrderNo(ordersNo)-1;
+			if(count==0) {
+				title=menuName;
+			}else {
+				title = menuName+"<br>"+"외 "+count+"건";
+			}
 			
-			String title = ((String)map.get("menuName"))+"<br>"+"외 "+count+"건";
-			mapResultTwo.put("title", title);
-			mapResultTwo.put("menuNo", (Integer)map.get("menuNo"));
+			
+			
 		}
 		catch(RuntimeException e) {
 			e.printStackTrace();
-			mapResultTwo.clear();
+			title="";
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 		}
-		return mapResultTwo;
+		return title;
 	}
 }
