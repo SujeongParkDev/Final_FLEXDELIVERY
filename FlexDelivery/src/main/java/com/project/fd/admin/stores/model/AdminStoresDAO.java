@@ -10,5 +10,4 @@ public interface AdminStoresDAO {
 	public AdminStoresVO adminApprovalDetail(long no);
 	public int adminApprovalAgree(long no);
 	public int adminApprovalDeny(long no);
-	public int adminInitContent(long no);
 }

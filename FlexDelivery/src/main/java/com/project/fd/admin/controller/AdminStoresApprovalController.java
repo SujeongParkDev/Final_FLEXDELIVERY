@@ -66,9 +66,6 @@ public class AdminStoresApprovalController {
 		int cnt= storesService.adminApprovalAgree(no);
 		logger.info("점포 등록 승인 처리, cnt={}", cnt);
 		
-		int cnt1= storesService.adminInitContent(no);
-		logger.info("점포 등록 승인 처리, cnt1={}", cnt1);
-		
 		return "redirect:/admin/menu2/approvalList.do";
 		
 	}
@@ -79,9 +76,6 @@ public class AdminStoresApprovalController {
 		
 		int cnt= storesService.adminApprovalDeny(no);
 		logger.info("점포 등록 승인 처리, cnt={}", cnt);
-		
-		int cnt1= storesService.adminInitContent(no);
-		logger.info("점포 등록 승인 처리, cnt1={}", cnt1);
 		
 		return "redirect:/admin/menu2/approvalList.do";
 	}

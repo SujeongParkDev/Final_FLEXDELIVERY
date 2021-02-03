@@ -43,8 +43,6 @@ public class AdminDownLoadExcelFile{
         model.addAttribute("workbookName", "점포 승인 목록");
         
         return "excelDownloadView";
-    }
-
-	
+    }	
 
 }

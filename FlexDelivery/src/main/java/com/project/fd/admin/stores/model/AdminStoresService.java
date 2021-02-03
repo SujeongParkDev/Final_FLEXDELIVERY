@@ -9,5 +9,4 @@ public interface AdminStoresService {
 	public AdminStoresVO adminApprovalDetail(long no);
 	public int adminApprovalAgree(long no);
 	public int adminApprovalDeny(long no);
-	public int adminInitContent(long no);
 }
