@@ -6,7 +6,22 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-
+<script type="text/javascript">
+	$(function () {
+		$('#editAgree').click(function () {
+			alert("등록하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/editAgree.do?no=${temporaryVo.tNo}" />';
+			event.preventDefault();
+		});
+		
+		$('#editDeny').click(function () {
+			alert("반려하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/editDeny.do?no=${temporaryVo.tNo}" />';
+			event.preventDefault();
+		});		
+	
+	});
+</script>
 <!-- main start -->
 <div class="main-content container" >
     <div class="page-title">
@@ -103,10 +118,12 @@
             							</div>
         							</div>
                                     <!-- 요청사항 끝 -->
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1">승인</button>
-                                        <button type="reset" class="btn btn-danger mr-1 mb-1">반려</button>
-                                    </div>
+                                    <c:if test="${temporaryVo.aAgreeNo==5 }">
+                                    	<div class="col-12 d-flex justify-content-end">
+                                        	<button id="editAgree" class="btn btn-primary mr-1 mb-1">승인</button>
+                                       		<button id="editDeny" class="btn btn-danger mr-1 mb-1">반려</button>
+                                    	</div>
+                                    </c:if>
                                 </div>
                             </form>
                         </div>

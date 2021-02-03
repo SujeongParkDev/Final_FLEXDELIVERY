@@ -29,7 +29,7 @@ public class AdminStoresEditController {
 	@RequestMapping("/editList.do")
 	public String adminEditList(Model model) {
 		//승인/변경 상태 목록 보여주기
-		logger.info("점포 승인/변경 화면");
+		logger.info("점포 변경 목록 화면");
 		//1
 		//2
 		List<AdminTemporaryVO> list= temporaryService.editList();
@@ -43,7 +43,7 @@ public class AdminStoresEditController {
 	
 	
 	@RequestMapping("/editDetail.do")
-	public String adminEditDetail(@RequestParam(defaultValue = "0")  int no ,
+	public String adminEditDetail(@RequestParam(defaultValue = "0")  long no ,
 			@RequestParam(defaultValue = "0") int sNo, Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 변경 세부 화면, 파라미터 no={}", no);
@@ -63,22 +63,22 @@ public class AdminStoresEditController {
 	}
 	
 	@RequestMapping("/editAgree.do")
-	public String adminEditAgree(@RequestParam(defaultValue = "0") int no) {
-		logger.info("점포 등록 승인 화면, 파라미터 no={}", no);
+	public String adminEditAgree(@RequestParam(defaultValue = "0") long no) {
+		logger.info("점포 변경 승인 화면, 파라미터 no={}", no);
 		
 		int cnt= temporaryService.editAgree(no);
-		logger.info("점포 등록 승인 처리, cnt={}", cnt);
+		logger.info("점포 변경 승인 처리, cnt={}", cnt);
 		
 		return "redirect:/admin/menu2/editList.do";
 		
 	}
 	
 	@RequestMapping("/editDeny.do")
-	public String adminEditDeny(@RequestParam(defaultValue = "0") int no) {
-		logger.info("점포 등록 반려, 파라미터 no={}", no);
+	public String adminEditDeny(@RequestParam(defaultValue = "0") long no) {
+		logger.info("점포 변경 반려, 파라미터 no={}", no);
 		
 		int cnt= temporaryService.editDeny(no);
-		logger.info("점포 등록 승인 처리, cnt={}", cnt);
+		logger.info("점포 변경 승인 처리, cnt={}", cnt);
 		
 		return "redirect:/admin/menu2/editList.do";
 	}

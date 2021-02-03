@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class AdminTemporaryVO {
 	private int tNo;// number not null, /* 임시저장번호 */
-	private int storeNo;// number not null, /* 점포번호 */
+	private long storeNo;// number not null, /* 점포번호 */
 	private String tStoresName;// varchar2(150) not null, /* 변경점포명 */
 	private String tStoresAddress;// varchar2(300) not null, /* 변경점포주소 */
 	private String tStoresAddressDetail;// varchar2(200) not null, /* 변경점포상세주소 */
@@ -21,16 +21,17 @@ public class AdminTemporaryVO {
 	private Timestamp tRegdate;// date default sysdate not null, /* 변경신청일 */
 	private Timestamp tSubmitdate;// date, /* 변경승인일 */
 	private int aAgreeNo;// number default 1 not null /* 관리자승인번호 */
+	
 	public int gettNo() {
 		return tNo;
 	}
 	public void settNo(int tNo) {
 		this.tNo = tNo;
 	}
-	public int getStoreNo() {
+	public long getStoreNo() {
 		return storeNo;
 	}
-	public void setStoreNo(int storeNo) {
+	public void setStoreNo(long storeNo) {
 		this.storeNo = storeNo;
 	}
 	public String gettStoresName() {
@@ -137,5 +138,5 @@ public class AdminTemporaryVO {
 				+ ", tOriginalFilename=" + tOriginalFilename + ", ownerNo=" + ownerNo + ", tOwnerName=" + tOwnerName
 				+ ", tOwnerHp1=" + tOwnerHp1 + ", tOwnerHp2=" + tOwnerHp2 + ", tOwnerHp3=" + tOwnerHp3 + ", tDetail="
 				+ tDetail + ", tRegdate=" + tRegdate + ", tSubmitdate=" + tSubmitdate + ", aAgreeNo=" + aAgreeNo + "]";
-	}	
+	}
 }
