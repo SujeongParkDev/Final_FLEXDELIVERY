@@ -13,8 +13,11 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg"
 	type="image/x-icon">
+	<!-- 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css" />
+	
+	 -->
 <!-- CSS end -->
 
 <div class="container">
@@ -56,7 +59,7 @@
 															<th></th>
 															<th>신청 일시</th>
 															<th>상태</th>
-															<th>취소하기</th>
+															<th>상세 보기 </th>
 														</tr>
 													</thead>
 													<tbody>
@@ -124,7 +127,8 @@
 																	</td>
 																		<td>
 																		<c:if test="${map['SAGREENO'] == 1}">
-																			<a href="#" class="buttons badge bg-dark" id="btStores" name="buttons" onclick="goDetail(${map['STORE_NO'] })">cancle</a>
+																			<button  class="buttons badge bg-dark" value="btStores"name="buttons" onclick="goDetail(${map['STORE_NO'] })">상세보기 </button>
+																			
 																		</c:if>
 																	</td>
 																</tr>
@@ -140,8 +144,7 @@
 																<c:if test="${map['AD_PAY_FLAG'] == 'N'}">
 																			<span class="badge bg-light">승인대기</span>
 																</td>
-																<td><button class="buttons badge bg-dark" name="buttons"
-																	id="btAd" onclick="goDetail(${map['STOREAD_NO'] })">cancle</button></td>
+																<td><button class="buttons badge bg-dark" name="buttons"onclick="goDetail(${map['STOREAD_NO'] })" value="btAd">상세 보기 </button></td>
 																</c:if> 
 																	<c:if test="${map['AD_PAY_FLAG'] == 'Y'}">
 																	<td>
@@ -180,20 +183,23 @@ function goDetail(no){
     
     // 정상 작동이프 제거하면 됨 
     var url="";
-    if($('.buttons').attr('id')=='btAd'){
+$(function(){
+	
+    if($(this).attr('value')=='btAd'){
     	url="<c:url value='/owner/menu2/temporary/tempAD.do?no='/>"+no;
-    	return false;
-    }else if($('.buttons').attr('id')=='btStores'){
-    	url="<c:url value='/owner/menu2/temporary/tempStore.do?no='/>"+no;
+		url="${pageContext.request.contextPath}/owner/menu2/temporary/tempAD.do?no="+no;
+    	
+    }else if($(this).attr('value')=='btStores'){
+  	  url="<c:url value='/owner/menu2/temporary/tempStore.do?no='/>"+no;
+	 	url="${pageContext.request.contextPath}/owner/menu2/temporary/tempStore.do?no="+no;
     }
-		//url="${pageContext.request.contextPath}/owner/menu2/temporary/tempAD.do?no="+no;
 		
-  // url="${pageContext.request.contextPath}/owner/menu2/temporary/tempDetail.do?no="+no;
     
 	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
 	event.preventDefault();
-}
 	
+});
+}
 
 </script>
 <!-- script start -->

@@ -64,6 +64,7 @@ public class OwnerReviewController {
 			searchVo.setStartDay(today);
 			searchVo.setEndDay(today);			
 		}
+		logger.info("searchVo={}",searchVo);
 		
 		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
 		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
@@ -75,6 +76,7 @@ public class OwnerReviewController {
 		
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("searchVo", searchVo);
 		
 		return "owner/menu2/reviewOwner/reviewOwner";
 	}
