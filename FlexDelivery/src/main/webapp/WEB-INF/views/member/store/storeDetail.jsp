@@ -280,16 +280,7 @@
         <div class="container position-relative">
             <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
-                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}
-	                <span class="ml-5">
-	                <c:if test="${likeChk}">
-		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/heart.png'/>" > </a>
-	                </c:if>
-	                <c:if test="${!likeChk}">
-		                <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>"><img src="<c:url value='/resources/memberResources/img/emptyHeart.png'/>" > </a>
-	                </c:if>
-	                </span>
-                </h2>
+                <h2 class="font-weight-bold" id="tqtq">${vo.storeName}</h2>
                 <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
                 <div class="rating-wrap d-flex align-items-center mt-2">
                     <ul class="rating-stars list-unstyled">
@@ -304,7 +295,7 @@
 	                    	</c:forEach>
 	                    </li>
                     </ul>
-                    <p class="label-rating text-white ml-2 small"> (${vo.reviewCount})</p>
+                    <p class="label-rating text-white ml-2 small"> (${vo.reviewCount} 리뷰)</p>
                 </div>
             </div>
             <div class="pb-4">
@@ -318,6 +309,112 @@
                         <p class="text-white m-0">${vo.storeOpenTime} ~ ${vo.storeCloseTime}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="p-3 bg-primary bg-primary mt-n3 rounded position-relative">
+            <div class="d-flex align-items-center">
+            	<c:if test="${likeChk}">
+	                <div class="feather_icon">
+	                    <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>" class="text-decoration-none text-dark mx-2">
+		                    <i class="p-2 bg-light rounded-circle font-weight-bold">
+			                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" fill="red" class="bi bi-star" viewBox="0 1 16 16">
+								  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+								</svg>
+							</i>
+						</a>
+	                </div>
+                </c:if>
+                <c:if test="${!likeChk}">
+	                <div class="feather_icon">
+	                    <a href="<c:url value='/member/store/likeControll.do?storeNo=${vo.storeNo}'/>" class="text-decoration-none text-dark mx-2">
+		                    <i class="p-2 bg-light rounded-circle font-weight-bold">
+			                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" fill="currentColor" class="bi bi-star" viewBox="0 1 16 16">
+								  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+								</svg>
+							</i>
+						</a>
+	                </div>
+                </c:if>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                	<button class="col-12 btn btn-outline-light" type="button" data-toggle="modal" data-target="#couponBox">쿠폰 발급받기</button>
+                </div>
+                <div class="modal fade" id="couponBox" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
+			        <div class="modal-dialog modal-dialog-centered">
+			            <div class="modal-content">
+			                <div class="modal-header">
+				                <h5 class="modal-title">쿠폰 발급받기</h5>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                	<span aria-hidden="true">&times;</span>
+				                </button>
+			                </div>
+			                <div class="col-md-12" style="text-align: center;line-height: 25">
+								<p class="h5">p class="h5"</p>                 	
+			                </div>
+			                <%-- <form name="couponForm">
+			                	<input type="hidden" name="menuNo" value="">
+			                	<input type="hidden" name="storeNo" value="">
+			                	<input type="hidden" name="storeName" value="">
+				                <div class="modal-body p-0">
+				                    <div class="osahan-filter">
+				                        <div class="filter">
+				                            <!--옵션선택 -->
+				                            <c:if test="${empty menuAllvo.menuOptionList}">
+					                            <div class="p-3 bg-light border-bottom">
+					                                <h6 class="m-0">기본선택만 가능</h6>
+					                                <div class="custom-control custom-radio border-bottom py-2">
+						                                <input type="radio" class="custom-control-input" id="noOption${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
+						                                <label class="custom-control-label py-3 w-100 px-3" for="noOption${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
+					                                </div>
+					                            </div>
+				                            </c:if>
+				                            <c:if test="${!empty menuAllvo.menuOptionList}">
+					                            <div class="p-3 bg-light border-bottom">
+					                                <h6 class="m-0">옵션선택</h6>
+					                            </div>
+					                            	<div class="custom-control custom-radio border-bottom py-2">
+						                                <input type="radio" class="custom-control-input" id="noOptionMain${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
+						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
+						                                <label class="custom-control-label py-3 w-100 px-3" for="noOptionMain${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
+					                                </div>
+					                            <c:forEach var="oVo" items="${menuAllvo.menuOptionList}">
+						                            <div class="custom-control custom-radio border-bottom py-2">
+						                                <input type="radio" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
+						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice+oVo.mOptionPrice}">
+						                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">+${oVo.mOptionPrice}원</p></label>
+						                            </div>
+					                            </c:forEach>
+				                            </c:if>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="p-3 bg-light border-bottom">
+				                    <p class="text-muted h6">수량 <span class="count-number float-right">
+				                    	<button type="button" class="btn-sm btn btn-outline-secondary minusBt"><i class="feather-minus"></i></button>
+				                    	<input class="count-number-input qty" type="text" name="cartQty" readonly="readonly" value="1">
+				                    	<button type="button" class="btn-sm btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
+				                    </span></p>
+				                </div>
+				                <div class="p-3 bg-light border-bottom">
+				                    <p class="text-muted fs-5 fw-bold font-monospace">Total
+					                    <span class="float-right font-monospace totalPrice" style="font-weight: 700">
+					                    ${menuAllvo.memberMenuVo.menuPrice}원</span>
+				                    </p>
+				                </div>
+				                <div class="modal-footer p-0 border-0">
+				                    <div class="col-6 m-0 p-0">
+				                        <button type="submit" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
+				                    </div>
+				                    <div class="col-6 m-0 p-0">
+				                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">취소</button>
+				                    </div>
+				                </div>
+			                </form> --%>
+			            </div>
+			        </div>
+			    </div>
             </div>
         </div>
     </div>
