@@ -67,18 +67,18 @@ input {
 									<c:forEach var="regiVo" items="${RegiList }">
 							<tr class="text-center"><br>
 							<td>사업자 등록 신청 </td><br>
-							<td>${regiVo.ownerregisterRegdate}</td><br>
+							<td><fmt:formatDate value="${regiVo['OWNERREGISTER_REGDATE']}" </td><br>
 									<td class="text-bold-500">
-									<c:if test="${regiVo.aAgreeNo == 1 }">
+									<c:if test="${regiVo['A_AGREE_NO'] == 1 }">
 										<span class="badge bg-light">승인대기</span>
 									</c:if>
-									<c:if test="${regiVo.aAgreeNo== 2 }">
+									<c:if test="${regiVo['A_AGREE_NO']== 2 }">
 										<span class="badge bg-danger">신청취소</span>
 									</c:if> 
-									<c:if test="${regiVo.aAgreeNo== 3 }">
+									<c:if test="${regiVo['A_AGREE_NO']== 3 }">
 										<span class="badge bg-success">승인완료</span>
 									</c:if> 
-										<c:if test="${regiVo.aAgreeNo == 4 }">
+										<c:if test="${regiVo['A_AGREE_NO'] == 4 }">
 									<span class="badge bg-danger">승인반려</span>
 									</c:if>
 									</td><br>
@@ -92,18 +92,18 @@ input {
 									<c:forEach var="stVo" items="${selectStore }">
 							<tr class="text-center"><br>
 								<td>입점 신청 </td><br>
-								<td>${stVo.storeRegdate}</td><br>
+								<td><fmt:formatDate value="${stVo['STORE_NO']}" pattern="yyyy-MM-dd"/></td><br>
 									<td class="text-bold-500">
-									<c:if test="${stVo.aAgreeNo == 1 }">
+									<c:if test="${stVo['A_AGREE_NO'] == 1 }">
 										<span class="badge bg-light">승인대기</span>
 									</c:if>
-									<c:if test="${stVo.aAgreeNo== 2 }">
+									<c:if test="${stVo['A_AGREE_NO']== 2 }">
 										<span class="badge bg-danger">신청취소</span>
 									</c:if> 
-									<c:if test="${stVo.aAgreeNo== 3 }">
+									<c:if test="${stVo['A_AGREE_NO']== 3 }">
 										<span class="badge bg-success">승인완료</span>
 									</c:if> 
-										<c:if test="${stVo.aAgreeNo == 4 }">
+										<c:if test="${stVo['A_AGREE_NO'] == 4 }">
 									<span class="badge bg-danger">승인반려</span>
 									</c:if>
 									</td><br>
@@ -120,14 +120,14 @@ input {
 								<td>광고 신청 </td><br>
 								<td>${adVo.storeadRegdate}</td><br>
 									<td class="text-bold-500">
-									<!-- 
-									<c:if test="${adVo.AdPayFlag == 'N' }">
+									<td>${adVo.storeadRegdate}</td><br>
+									<td class="text-bold-500">
+									<c:if test="${adVo['AD_PAY_FLAG'] == 'N' }">
 										<span class="badge bg-light">승인대기</span>
 									</c:if>
-									<c:if test="${adVo.AdPayFlag== 'Y' }">
+									<c:if test="${adVo['AD_PAY_FLAG'] == 'Y' }">
 										<span class="badge bg-success">승인완료</span>
 									</c:if> 
-								 -->
 									</td><br>
 									<td class="p-0"><button class="btn btn-outline-dark p-2 btmenu" value="" name="" >취소 </button>
 				                  <button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button><br></td>
@@ -139,18 +139,18 @@ input {
 									<c:forEach var="tempVo" items="${selectTemp }">
 								<tr class="text-center"><br>
 									<td>점포 정보 변경 신청</td><br>
-									<td>${tempVo.storeRegdate}</td><br>
+									<td><fmt:formatDate value="${tempVo['STOREAD_REGDATE']}" pattern="yyyy-MM-dd"/></td><br>
 									<td class="text-bold-500">
-									<c:if test="${tempVo.aAgreeNo == 1 }">
+									<c:if test="${tempVo['A_AGREE_NO'] == 1 }">
 										<span class="badge bg-light">승인대기</span>
 									</c:if>
-									<c:if test="${tempVo.aAgreeNo== 2 }">
+									<c:if test="${tempVo['A_AGREE_NO'] == 2 }">
 										<span class="badge bg-danger">신청취소</span>
 									</c:if> 
-									<c:if test="${tempVo.aAgreeNo== 3 }">
+									<c:if test="${tempVo['A_AGREE_NO'] == 3 }">
 										<span class="badge bg-success">승인완료</span>
 									</c:if> 
-										<c:if test="${tempVo.aAgreeNo == 4 }">
+										<c:if test="${tempVo['A_AGREE_NO']  == 4 }">
 									<span class="badge bg-danger">승인반려</span>
 									</c:if>
 									</td><br>
