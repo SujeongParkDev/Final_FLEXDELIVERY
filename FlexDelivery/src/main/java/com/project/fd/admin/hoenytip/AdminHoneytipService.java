@@ -12,4 +12,6 @@ public interface AdminHoneytipService {
 	int updateHoneytip(AdminHoneytipVO vo);
 	
 	int deleteHoneytip(AdminHoneytipVO vo);
+	
+	List<AdminHoneytipVO> ownerHoneyTip();
 }

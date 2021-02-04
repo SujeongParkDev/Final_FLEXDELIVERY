@@ -96,11 +96,6 @@
 	              <hr style="border: 1px 1solid; border-color: gray;" >
 	         </div>	
 
-					
-			
-		
-
-		
 			<!-- 사장님 꿀팁 부분 -->		
 			  <!-- 메인 공지 부분 -->
                <article id="mainNotice">
@@ -124,10 +119,6 @@
  				 <article id="mainEvent">
 	          	 	<c:import url="/owner/ownerInc/ownerMainEvent.do"></c:import>
                  </article>
-                 
-                 
-                 
-                 
                  
                  
                     <!-- Load More -->

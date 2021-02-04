@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.hoenytip.AdminHoneytipService;
+import com.project.fd.admin.hoenytip.AdminHoneytipVO;
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
 import com.project.fd.owner.board.model.OwnerBoardSearchVO;
@@ -31,6 +33,9 @@ public class OwnerIndexController {
 	
 	@Autowired
 	private OwnerBoardService ownerBoardService;
+	
+	@Autowired
+	private AdminHoneytipService honeytipService;
 	
 	//관리자, 점포 공통 뷰 보여주기(점포)
 		@RequestMapping("/index.do")
@@ -85,8 +90,13 @@ public class OwnerIndexController {
 		
 		
 		@RequestMapping("/ownerInc/ownerMainHoneyTip.do")
-		public String mainHoneyTip() {
+		public String mainHoneyTip(Model model) {
 			logger.info("메인에 표시될 사장님 꿀팁 글 목록");
+			
+			List<AdminHoneytipVO> list=honeytipService.ownerHoneyTip();
+			logger.info("ownerHoneyTip list 출력, list.size={}", list.size()); //4개 출력되면 정상 ! 
+			
+			model.addAttribute("list", list);
 		
 			return "ownerInc/ownerMainHoneyTip";
 		}

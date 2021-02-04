@@ -43,4 +43,11 @@ public class AdminHoneytipDAOMybatis implements AdminHoneytipDAO{
 		int cnt=sqlSession.delete(namespace+"deleteHoneytip", vo);
 		return cnt;
 	}
+	
+	//owner에서 추가했습니다.
+	@Override
+	public List<AdminHoneytipVO> ownerHoneyTip() {
+		List<AdminHoneytipVO> ownerList=sqlSession.selectList(namespace+"ownerHoneyTip");
+		return ownerList;
+	}
 }
