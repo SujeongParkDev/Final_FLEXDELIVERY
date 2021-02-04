@@ -1,13 +1,8 @@
 package com.project.fd.owner.store.model;
 
-import com.project.fd.owner.ownerregister.model.OwnerAllRequestVO;
-
 public class OwnerStoresVO{
-	//private OwnerStoresFormVO ownerStoresFormVo;
-
 	/*NOT NULL*/
 	private int storeNo; /*점포번호 => 지안 20210125 추가함 필요해서.. */
-
 	private String storeName; /* 점포명 */
 	private String storeLogo;/* 점포로고이미지 */
 	private String storeAddress;/* 점포주소 */
@@ -16,7 +11,7 @@ public class OwnerStoresVO{
 	private int ownerNo; /* 점주번호 */
 	private int lCategoryNo;  /* 대분류카테고리번호 */
 	private int locationNo;  /* 지역코드번호 */
-	private int oRegisterNo;/* 사업자등록번호 */
+	private long oRegisterNo;/* 사업자등록번호 */
 	
 	//널 
 	private String storeContent; /* 점포소개 */
@@ -154,10 +149,10 @@ public class OwnerStoresVO{
 	public void setOwnerNo(int ownerNo) {
 		this.ownerNo = ownerNo;
 	}
-	public int getoRegisterNo() {
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
-	public void setoRegisterNo(int oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	@Override

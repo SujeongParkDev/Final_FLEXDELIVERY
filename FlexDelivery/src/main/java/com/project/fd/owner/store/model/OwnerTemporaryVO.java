@@ -7,7 +7,7 @@ public class OwnerTemporaryVO {
 	private String tStoreAddress ; /* 변경점포주소 */
 	private String tStoreAddressDetail; /* 변경점포상세주소 */
 	private int locationNo ;/* 지역코드번호 */
-	private String oRegisterNo ;/* 사업자등록번호 */
+	private long oRegisterNo ;/* 사업자등록번호 */
 	private String tFileName ; /* 변경사업자등록증파일이름 */
 	private String tOriginalFileName; /* 변경사업자등록증원본파일이름 */
 	private int ownerno;/* 점주번호 */
@@ -55,10 +55,10 @@ public class OwnerTemporaryVO {
 	public void setLocationNo(int locationNo) {
 		this.locationNo = locationNo;
 	}
-	public String getoRegisterNo() {
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
-	public void setoRegisterNo(String oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	public String gettFileName() {
