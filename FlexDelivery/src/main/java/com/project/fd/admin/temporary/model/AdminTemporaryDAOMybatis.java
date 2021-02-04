@@ -6,6 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.fd.owner.model.OwnerVO;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
+
 @Repository
 public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 
@@ -33,5 +37,20 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	@Override
 	public int editDeny(long no) {
 		return sqlSession.update(namespace+"editDeny", no);
+	}
+
+	@Override
+	public int editOwner(OwnerVO ownerVo) {
+		return 0;
+	}
+
+	@Override
+	public int editOwnerRegister(OwnerRegisterVO registerVo) {
+		return 0;
+	}
+
+	@Override
+	public int editStores(OwnerStoresVO storesVo) {
+		return 0;
 	}		
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,11 +64,13 @@ public class AdminStoresEditController {
 	}
 	
 	@RequestMapping("/editAgree.do")
-	public String adminEditAgree(@RequestParam(defaultValue = "0") long no) {
-		logger.info("점포 변경 승인 화면, 파라미터 no={}", no);
+	public String adminEditAgree(@ModelAttribute AdminTemporaryVO vo) {
+		logger.info("점포 변경 승인 화면, 파라미터 vo={}", vo);
 		
-		int cnt= temporaryService.editAgree(no);
-		logger.info("점포 변경 승인 처리, cnt={}", cnt);
+		/*
+		 * int cnt= temporaryService.editAgree(no); logger.info("점포 변경 승인 처리, cnt={}",
+		 * cnt);
+		 */
 		
 		return "redirect:/admin/menu2/editList.do";
 		

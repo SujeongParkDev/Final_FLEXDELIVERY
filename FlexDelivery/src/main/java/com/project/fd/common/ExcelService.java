@@ -299,7 +299,11 @@ public class ExcelService {
             bodyCell.setCellStyle(bodyStyle);
             // 해당 행의 두번째 열 셀 생성
             bodyCell = bodyRow.createCell(1);
-            bodyCell.setCellValue(sdf.format(vo.gettSubmitdate()));
+            if(vo.gettSubmitdate() == null) {
+            	bodyCell.setCellValue("");
+            }else {
+            	bodyCell.setCellValue(sdf.format(vo.gettSubmitdate()));            	
+            }
             bodyCell.setCellStyle(bodyStyle);
             // 해당 행의 세번째 열 셀 생성
             bodyCell = bodyRow.createCell(2);
