@@ -93,7 +93,7 @@
             </div>
         </div>
 		<form id="excelFrm" name="excelFrm" method="post" enctype="multipart/form-data">
-    		<button type="button" onclick="doExcelDownloadProcess()">엑셀다운로드 작업</button>
+    		<button type="button" class="badge bg-success" onclick="doExcelDownloadProcess()">LIST 엑셀다운로드</button>
 		</form>
     </section>
 </div>
@@ -102,7 +102,7 @@
 <script type="text/javascript">    
     function doExcelDownloadProcess(){
         var f = document.excelFrm;
-        f.action = "downloadExcelFile.do";
+        f.action = "approvalDownloadExcel.do";
         f.submit();
     }
 </script>

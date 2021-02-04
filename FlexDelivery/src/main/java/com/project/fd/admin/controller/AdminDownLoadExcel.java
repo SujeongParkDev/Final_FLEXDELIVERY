@@ -14,21 +14,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.fd.admin.stores.model.AdminStoresService;
 import com.project.fd.admin.stores.model.AdminStoresVO;
+import com.project.fd.admin.temporary.model.AdminTemporaryService;
+import com.project.fd.admin.temporary.model.AdminTemporaryVO;
 import com.project.fd.common.ExcelService;
 
 @Controller
 @RequestMapping(value = "/admin/menu2")
-public class AdminDownLoadExcelFile{
+public class AdminDownLoadExcel{
 	private static final Logger logger
-	= LoggerFactory.getLogger(AdminDownLoadExcelFile.class);
+	= LoggerFactory.getLogger(AdminDownLoadExcel.class);
 	
 	@Autowired
 	AdminStoresService storesService;
 	@Autowired
+	AdminTemporaryService temporaryService;
+	@Autowired
 	ExcelService excelService;
 	
-	@RequestMapping(value = "/downloadExcelFile.do", method = RequestMethod.POST)
-    public String downloadExcelFile(Model model) {
+	@RequestMapping(value = "/approvalDownloadExcel.do", method = RequestMethod.POST)
+    public String approvalDownloadExcelFile(Model model) {
 		
 		logger.info("점포 승인 ExcelDownLoad 화면");
 		//1
@@ -36,7 +40,25 @@ public class AdminDownLoadExcelFile{
 		List<AdminStoresVO> list= storesService.adminApprovalList();
 		logger.info("승인 list, list.size={}",list.size());
         
-        SXSSFWorkbook workbook = excelService.excelFileDownloadProcess(list);
+        SXSSFWorkbook workbook = excelService.approvalExcelDownloadProcess(list);
+        
+        model.addAttribute("locale", Locale.KOREA);
+        model.addAttribute("workbook", workbook);
+        model.addAttribute("workbookName", "점포 승인 목록");
+        
+        return "excelDownloadView";
+    }
+	
+	@RequestMapping(value = "/editDownloadExcel.do", method = RequestMethod.POST)
+    public String editDownloadExcelFile(Model model) {
+		
+		logger.info("점포 변경 ExcelDownLoad 화면");
+		//1
+		//2
+		List<AdminTemporaryVO> list= temporaryService.editList();
+		logger.info("승인 list, list.size={}",list.size());
+        
+        SXSSFWorkbook workbook = excelService.editExcelDownloadProcess(list);
         
         model.addAttribute("locale", Locale.KOREA);
         model.addAttribute("workbook", workbook);

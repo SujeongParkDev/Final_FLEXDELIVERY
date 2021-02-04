@@ -89,11 +89,20 @@
                 </table>
             </div>
         </div>
-
+		<form id="excelFrm" name="excelFrm" method="post" enctype="multipart/form-data">
+    		<button type="button" class="badge bg-success" onclick="doExcelDownloadProcess()">LIST 엑셀다운로드</button>
+		</form>
     </section>
 </div>
 
 <!-- script start -->
+<script type="text/javascript">    
+    function doExcelDownloadProcess(){
+        var f = document.excelFrm;
+        f.action = "editDownloadExcel.do";
+        f.submit();
+    }
+</script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>   

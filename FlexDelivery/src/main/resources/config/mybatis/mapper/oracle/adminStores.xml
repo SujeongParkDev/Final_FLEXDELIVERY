@@ -24,7 +24,7 @@
 	
 	<select id="approvalDeny" parameterType="long">
 		update stores
-		set a_agree_no = 4, store_content='', store_regdate=''
+		set a_agree_no = 4, store_content=''
 		where store_no =#{no}
 	</select>
 	
