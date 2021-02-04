@@ -70,15 +70,18 @@ input {
 											<td class="text-bold-500">
 											<c:if test="${tempVo['A_AGREE_NO'] == 1 }">
 													<span class="badge bg-light">승인대기</span>
-												</c:if> <c:if test="${tempVo['A_AGREE_NO'] == 2 }">
+												</c:if> 
+												<c:if test="${tempVo['A_AGREE_NO'] == 2 }">
 													<span class="badge bg-danger">신청취소</span>
-												</c:if> <c:if test="${tempVo['A_AGREE_NO'] == 3 }">
+												</c:if> 
+												<c:if test="${tempVo['A_AGREE_NO'] == 3 }">
 													<span class="badge bg-success">승인완료</span>
-												</c:if> <c:if test="${tempVo['A_AGREE_NO']  == 4 }">
+												</c:if> 
+												<c:if test="${tempVo['A_AGREE_NO']  == 4 }">
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
-											<td class="p-0"><button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
-												</button>
+											<td class="p-0">
+											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소 </button>
 												<button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button>
 												<br></td>
 											<td></td>
@@ -93,17 +96,17 @@ input {
 										<tr class="text-center">
 											<td>광고 신청 내역 </td>
 											<td>${fn:substring(adVo['STOREAD_REGDATE'] , 0,10) }</td>
-											<td class="text-bold-500"><c:if
-													test="${adVo['AD_PAY_FLAG'] == 'N' }">
+											<td class="text-bold-500">
+												<c:if test="${adVo['AD_PAY_FLAG'] == 'N' }">
 													<span class="badge bg-light">승인대기</span>
-												</c:if> <c:if test="${adVo['AD_PAY_FLAG'] == 'Y' }">
+												</c:if> 
+												<c:if test="${adVo['AD_PAY_FLAG'] == 'Y' }">
 													<span class="badge bg-success">승인완료</span>
 												</c:if></td>
-											<td class="p-0"><button
-													class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
+											<td class="p-0">
+											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
 												</button>
-												<button class="btn btn-outline-info p-2 btmenu" value=""
-													name="">상세 보기</button></td>
+												<button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -114,14 +117,17 @@ input {
 										<tr class="text-center">
 											<td>입점 등록 신청</td>
 											<td>${fn:substring(stVo['STORE_REGDATE'] , 0,10) }</td>
-											<td class="text-bold-500"><c:if
-													test="${stVo['A_AGREE_NO'] == 1 }">
+											<td class="text-bold-500">
+												<c:if test="${stVo['A_AGREE_NO'] == 1 }">
 													<span class="badge bg-light">승인대기</span>
-												</c:if> <c:if test="${stVo['A_AGREE_NO']== 2 }">
+												</c:if>
+												 <c:if test="${stVo['A_AGREE_NO']== 2 }">
 													<span class="badge bg-danger">신청취소</span>
-												</c:if> <c:if test="${stVo['A_AGREE_NO']== 3 }">
+												</c:if>
+												 <c:if test="${stVo['A_AGREE_NO']== 3 }">
 													<span class="badge bg-success">승인완료</span>
-												</c:if> <c:if test="${stVo['A_AGREE_NO'] == 4 }">
+												</c:if> 
+												<c:if test="${stVo['A_AGREE_NO'] == 4 }">
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
 											<td class="p-0"><button
@@ -139,21 +145,22 @@ input {
 										<tr class="text-center">
 											<td>사업자 등록 신청</td>
 											<td>${fn:substring(regiVo['OWNERREGISTER_REGDATE'] , 0,10) }</td>
-											<td class="text-bold-500"><c:if
-													test="${regiVo['A_AGREE_NO'] == 1 }">
+											<td class="text-bold-500">
+												<c:if test="${regiVo['A_AGREE_NO'] == 1 }">
 													<span class="badge bg-light">승인대기</span>
-												</c:if> <c:if test="${regiVo['A_AGREE_NO']== 2 }">
+												</c:if>
+												 <c:if test="${regiVo['A_AGREE_NO']== 2 }">
 													<span class="badge bg-danger">신청취소</span>
-												</c:if> <c:if test="${regiVo['A_AGREE_NO']== 3 }">
+												</c:if>
+												 <c:if test="${regiVo['A_AGREE_NO']== 3 }">
 													<span class="badge bg-success">승인완료</span>
-												</c:if> <c:if test="${regiVo['A_AGREE_NO'] == 4 }">
+												</c:if>
+												 <c:if test="${regiVo['A_AGREE_NO'] == 4 }">
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
-											<td class="p-0"><button
-													class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
-												</button>
-												<button class="btn btn-outline-info p-2 btmenu" value=""
-													name="">상세 보기</button></td>
+											<td class="p-0">
+											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소</button>
+												<button class="btn btn-outline-info p-2 btmenu" value=""name="" id="">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -303,115 +310,58 @@ input {
 
 	});
 
-	//메뉴를 클릭하면 옵션 테이블이 보인다.
-	$(function() {
-		$('.menuSelect').change(
-						function() {
-							$.ajax({
-										url : "<c:url value='/owner/menu2/foodmenu/selectOptionByMenuNo.do'/>",
-										data : "menuNo=" + $(this).val(),
-										dataType : "json",
-										type : "GET",
-										success : function(res) {
-											//alert(res);
-											//alert(res.length);
-											if (res.length > 0) {
-												var str = "";
-												$.each(
-																res,
-																function(idx,
-																		item) {
-																	str += "<tr class='text-center'><br><td>"
-																			+ item.oRankNo
-																			+ "순위</td><br>";
-																	str += "<td class='text-bold-500'><strong>"
-																			+ item.mOptionName
-																			+ "</strong></td><br>";
-																	str += "<td>"
-																			+ item.mOptionPrice
-																			+ "원</td><br>";
-																	str += "<td class='p-0'><button class='btn btn-outline-info p-2 btmenu' value='"+item.mOptionNo+"' name='menuEdit' >수정</button>";
-																	str += "<button class='btn btn-outline-dark p-2 btmenu' value='"+item.mOptionNo+"' name='menuDelete'>삭제</button><br></td>";
-																	str += " <td></td><br></tr>";
-																});
-
-												$('#optionTable').html(str);
-											} else {
-												var str = "";
-												str += "<tr class='text-center'><td colspan='5' style='font-size:15px;' >등록된 옵션이 없습니다</td><tr>"
-												$('#optionTable').html(str);
-											}
-										},
-										error : function(xhr, status, error) {
-											alert("error!! : " + error);
-										}
-									});
-
-						});
-
-	});
-
 	//메뉴 등록을 누르면 모달창이 뜬다.
 	$(function() {
-		$('#btOptionWrite')
-				.click(
-						function() {
-							if ($('#menuGroupSelect').val() == 0
-									|| $('#menuSelect').val() == 0) {
-								alert('유효하지 않은 선택입니다');
+		$('#btOptionWrite').click(function() {
+			if ($('#menuGroupSelect').val() == 0|| $('#menuSelect').val() == 0) {
+				alert('유효하지 않은 선택입니다');
+				event.preventDefault();
+				return false;
+			} else {
+				$.ajax({
+					url : "<c:url value='/owner/menu2/requests/detail.do'/>",
+					data : "sMGroupNo="
+							+ $('.groupChoice').val()
+							+ "&menuNo="
+							+ $('.menuSelect').val(),
+					dataType : "json",
+					type : "GET",
+					success : function(res) {
+						//alert(res);
+						//alert(res.length);
 
-								event.preventDefault();
-								return false;
-							} else {
-								$
-										.ajax({
-											url : "<c:url value='/owner/menu2/requests/detail.do'/>",
-											data : "sMGroupNo="
-													+ $('.groupChoice').val()
-													+ "&menuNo="
-													+ $('.menuSelect').val(),
-											dataType : "json",
-											type : "GET",
-											success : function(res) {
-												//alert(res);
-												//alert(res.length);
+						var str = "";
+						str += "<label>그룹이름</label>&nbsp;";
+						str += "<input type='hidden'name='sMGroupNo' value='"+res.sMGroupNo+"'>";
+						str += "<input type='text' readonly='readonly' class='form-control text-right' name='sMGroupName' value='"+res.sMGroupName+"'>&nbsp;&nbsp;";
+						str += "<label>메뉴 이름</label>&nbsp;";
+						str += "<input type='hidden'name='menuNo' id='menuNo' value='"+res.menuNo+"'>";
+						str += "<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.menuName+"'>";
 
-												var str = "";
-												str += "<label>그룹이름</label>&nbsp;";
-												str += "<input type='hidden'name='sMGroupNo' value='"+res.sMGroupNo+"'>";
-												str += "<input type='text' readonly='readonly' class='form-control text-right' name='sMGroupName' value='"+res.sMGroupName+"'>&nbsp;&nbsp;";
-												str += "<label>메뉴 이름</label>&nbsp;";
-												str += "<input type='hidden'name='menuNo' id='menuNo' value='"+res.menuNo+"'>";
-												str += "<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.menuName+"'>";
+						$('.groupMenuInput').html(str);
 
-												$('.groupMenuInput').html(str);
-
-												if (res.list.length > 0) {
-													var str2 = "";
-													$
-															.each(
-																	res.list,
-																	function(
-																			idx,
-																			item) {
-																		str2 += "<option value='"+item.oRankNo+"'>"
-																				+ item.oRankName
-																				+ "</option><br>";
-																	});
-
-													$('.menuOptionSelect')
-															.html(str2);
-												}
-											},
-											error : function(xhr, status, error) {
-												alert("error!! : " + error);
-											}
+						if (res.list.length > 0) {
+							var str2 = "";
+									$.each(
+										res.list,
+										function(
+												idx,
+												item) {
+											str2 += "<option value='"+item.oRankNo+"'>"+ item.oRankName+ "</option><br>";
 										});
-								event.preventDefault();
 
+						$('.menuOptionSelect').html(str2);
 							}
-
+						},
+						error : function(xhr, status, error) {
+							alert("error!! : " + error);
+							}
 						});
+					event.preventDefault();
+
+			}
+
+		});
 
 	});
 
