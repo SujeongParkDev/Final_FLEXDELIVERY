@@ -7,7 +7,7 @@
 	<select id="selectAll" parameterType="adminAskVo" resultType="adminAskVo">
 		select ASK_NO, ASK_TITLE, ASK_ID, ASK_CONTENT, ASK_REGDATE,
 		ASK_GROUP_NO, ASK_STEP, ASK_REPLY_FLAG, AUTHORITY_NO from ASK
-		order by ASK_NO desc, ASK_GROUP_NO desc, ASK_STEP
+		order by ASK_GROUP_NO desc, ASK_STEP
 	</select>
 	
 	<select id="selectByAuthority" parameterType="int" resultType="adminAskVo">
@@ -40,7 +40,7 @@
 	<update id="updateAsk" parameterType="adminAskVo">
 		update ASK
 		set ASK_REPLY_FLAG=#{askReplyFlag}
-		where ASK_NO=#{askNo}
+		where ASK_NO=#{askGroupNo}
 	</update>
 	
 	

@@ -51,4 +51,9 @@ public class AdminAskServiceImpl implements AdminAskService{
 		return askDao.selectReplyByNo(no);
 	}
 
+	@Override
+	public int updateAsk(AdminAskVO askVo) {
+		return askDao.updateAsk(askVo);
+	}
+
 }

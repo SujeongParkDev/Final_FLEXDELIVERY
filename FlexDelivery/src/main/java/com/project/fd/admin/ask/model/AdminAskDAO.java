@@ -20,4 +20,6 @@ public interface AdminAskDAO {
 
 	AdminAskVO selectReplyByNo(int no);
 
+	int updateAsk(AdminAskVO askVo);
+
 }
