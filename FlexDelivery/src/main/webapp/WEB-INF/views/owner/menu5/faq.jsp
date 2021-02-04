@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../ownerInc/top.jsp"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript">
-$(function(){
-$('#collapseTwo').hide();
-if($('#cgName').on('click',function(idx,item))){
-	$('#collapseTwo').find().show();
-}
-});
-	function pageFunc(curPage){
-		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
-		$('form[name=frmPage]').submit();
-	}
-
-</script>
-
 <style>
 .page-item.active .page-link {
 	background-color: #007bff;
@@ -49,8 +32,6 @@ a.detail:hover {
 <br>
 <br>
 <div class="row">
-	<!-- 자주하는 질문을 검색해야하지 않을까?  -->
-	<!-- 헤드 시작 -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-center">
 		<h3>자주하는 질문</h3>
@@ -62,7 +43,6 @@ a.detail:hover {
 		<input type="hidden" name="currentPage"> <input type="hidden"
 			name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
-	<!-- 검색 시 필요한 form -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
 		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faq.do'/>">
@@ -135,8 +115,6 @@ a.detail:hover {
 	<div class="col-12 col-md-2"></div>
 </div>
 
-
-
 <!-- 페이지 시작-->
 <div class="card-body">
 	<nav aria-label="Page navigation example">
@@ -169,5 +147,18 @@ a.detail:hover {
 <br>
 <br>
 <br>
+<script type="text/javascript">
+$(function(){
+$('#collapseTwo').hide();
+if($('#cgName').on('click',function(idx,item))){
+	$('#collapseTwo').find().show();
+}
+});
+	function pageFunc(curPage){
+		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
+		$('form[name=frmPage]').submit();
+	}
+
+</script>
 
 <%@ include file="../../ownerInc/bottom.jsp"%>

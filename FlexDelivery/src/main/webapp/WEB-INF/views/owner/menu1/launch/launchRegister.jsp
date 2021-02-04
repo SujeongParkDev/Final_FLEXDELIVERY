@@ -20,8 +20,8 @@
 		enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
 		
 		<h3 class="mt-2 mb-1">
-			<strong>${sessionScope.ownerName }</strong> 님, 맞춤 안내를 위해<br>몇 가지
-			물어볼게요 : )
+			<strong>${sessionScope.ownerName }</strong> 님, 맞춤 안내를 위해<br>
+			몇 가지 물어볼게요 : )
 		</h3>
 		<div class="form-group border-top">
 			<h5 class="form-label">✔ 현재 매장을 운영중이신가요?</h5>
@@ -62,23 +62,23 @@
 					</div>
 				</div>
 				
-				 <div id="preview" class="text-center"></div>
+				
 				<h5 class="form-label">✔ 점포 로고 이미지</h5>
 				<div class="form-control-wrap ">
 					<div class="form-control only-one-input">
 						<div class="input-label-container" style="width: inherit;">
 							<div class="input-container left">
-								<input type="file" placeholder="최대 (2M)" required="" class="infobox form-control-lg"
-									id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
+								<input type="file" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 							</div>
 						</div>
 					</div>
 				</div>
+				 <div id="preview" class="text-center"></div>
 
 
 				<h5 class="form-label">✔ 점포 주소</h5>
 				<div class="col-md-4" >
-								<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="OwnerZipcode" id="OwnerZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+					<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="OwnerZipcode" id="OwnerZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
 							<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
 				<div class="form-control-wrap border 1px solid #ced4da">
@@ -103,9 +103,6 @@
 					</div>
 				</div>
 
-				<!--  -->
-				<!-- 옵션 만들어지면 리스트로 뽑을것임 -->
-				
 				<h5 class="form-label">✔ 지역 코드 번호</h5>
 				<div class="form-control-wrap border 1px solid #ced4da">
 					<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="locationNo" name="locationNo"><option
