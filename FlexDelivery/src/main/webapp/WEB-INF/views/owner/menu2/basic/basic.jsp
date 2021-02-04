@@ -65,7 +65,7 @@
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
-										<button type="button" class="button p-0 text text">
+										<button type="button" class="button p-0 text text" method="post" enctype="multipart/form-data">
 											로고변경요청</button>
 										에서 하실 수 있습니다.
 										<ul class="bullet-ul small muted">
@@ -325,6 +325,8 @@
 									</button></span></span>
 						</div>
 						<ul class="bullet-ul small muted">
+		                     <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
+                             <br><span style="margin-left:60px;"></span>  
 							<li>15MB 이하, JPG, PNG, ZIP, PDF 형식의 파일만 등록할 수 있습니다. (최대 5개까지
 								첨부가능)</li>
 						</ul>
