@@ -1,9 +1,5 @@
 package com.project.fd.owner.controller;
 
-import java.io.InputStream;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.fd.common.PaginationInfo;
-import com.project.fd.common.Utility;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
 
@@ -58,42 +52,17 @@ public class OwnerOrderController {
 			
 		//1
 		logger.info("주문 접수중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
-		
-		//2
-		//페이징 처리 관련 셋팅
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVo 셋팅
-		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
-		String startDay=searchVo.getStartDay();
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			searchVo.setStartDay(today);
-			searchVo.setEndDay(today);			
-		}
-		logger.info("searchVo ={}",searchVo);
-		
-		
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	
 		searchVo.setStoreNo(storeNo);
 		
 		
-		int type= ownerOrderService.OSTATUSNO_REQUEST;
+		int type= OwnerOrderService.OSTATUSNO_REQUEST;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchVo", searchVo);
 		map.put("oStatusNo", type );
 		
-		int totalRecord=ownerOrderService.selectTotalRecord(map);
-		logger.info("글 개수, totalRecord={}", totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
+		
 		
 		List<Map<String, Object>> list;
 		list=ownerOrderService.selectOrderAllView(map);
@@ -101,7 +70,7 @@ public class OwnerOrderController {
 		
 		
 		model.addAttribute("list",list);
-		model.addAttribute("pagingInfo", pagingInfo);
+	
 		model.addAttribute("searchVo", searchVo);
 		model.addAttribute("type",type);
 		
@@ -129,41 +98,21 @@ public class OwnerOrderController {
 		//1
 		logger.info("조리중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
 		
-		//2
-		//페이징 처리 관련 셋팅
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVo 셋팅
-		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
-		String startDay=searchVo.getStartDay();
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			searchVo.setStartDay(today);
-			searchVo.setEndDay(today);			
-		}
-		logger.info("searchVo ={}",searchVo);
+
+	
 		
 		
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	
 		searchVo.setStoreNo(storeNo);
 		
 		
-		int type= ownerOrderService.OSTATUSNO_ORDERING;
+		int type= OwnerOrderService.OSTATUSNO_ORDERING;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchVo", searchVo);
 		map.put("oStatusNo", type );
 		
-		int totalRecord=ownerOrderService.selectTotalRecord(map);
-		logger.info("글 개수, totalRecord={}", totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
+		
 		
 		List<Map<String, Object>> list;
 		list=ownerOrderService.selectOrderAllView(map);
@@ -171,7 +120,7 @@ public class OwnerOrderController {
 		
 		
 		model.addAttribute("list",list);
-		model.addAttribute("pagingInfo", pagingInfo);
+
 		model.addAttribute("searchVo", searchVo);
 		model.addAttribute("type",type);
 		
@@ -203,46 +152,24 @@ public class OwnerOrderController {
 		//2
 		//페이징 처리 관련 셋팅
 		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		//[2] SearchVo 셋팅
-		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
-		String startDay=searchVo.getStartDay();
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			searchVo.setStartDay(today);
-			searchVo.setEndDay(today);			
-		}
-		logger.info("searchVo ={}",searchVo);
-		
-		
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		searchVo.setStoreNo(storeNo);
 		
 		
-		int type= ownerOrderService.OSTATUSNO_DELIVERYING;
+		int type= OwnerOrderService.OSTATUSNO_DELIVERYING;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchVo", searchVo);
 		map.put("oStatusNo", type );
 		
-		int totalRecord=ownerOrderService.selectTotalRecord(map);
-		logger.info("글 개수, totalRecord={}", totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
-		
+	
 		List<Map<String, Object>> list;
 		list=ownerOrderService.selectOrderAllView(map);
 		logger.info("글목록 결과, list.size={}", list.size());
 		
 		
 		model.addAttribute("list",list);
-		model.addAttribute("pagingInfo", pagingInfo);
+		
 		model.addAttribute("searchVo", searchVo);
 		model.addAttribute("type",type);
 		
@@ -268,42 +195,18 @@ public class OwnerOrderController {
 		//1
 		logger.info("주문완료 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
 		
-		//2
-		//페이징 처리 관련 셋팅
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVo 셋팅
-		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
-		String startDay=searchVo.getStartDay();
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			searchVo.setStartDay(today);
-			searchVo.setEndDay(today);			
-		}
-		logger.info("searchVo ={}",searchVo);
-		
-		
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	
 		searchVo.setStoreNo(storeNo);
 		
 		
-		int type= ownerOrderService.OSTATUSNO_DELIVERYSUCCESS;
+		int type= OwnerOrderService.OSTATUSNO_DELIVERYSUCCESS;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchVo", searchVo);
 		map.put("oStatusNo", type );
 		
-		int totalRecord=ownerOrderService.selectTotalRecord(map);
-		logger.info("글 개수, totalRecord={}", totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
-		
+	
+	
 		List<Map<String, Object>> list;
 		list=ownerOrderService.selectOrderAllView(map);
 		logger.info("글목록 결과, list.size={}", list.size());
@@ -311,7 +214,7 @@ public class OwnerOrderController {
 		
 		
 		model.addAttribute("list",list);
-		model.addAttribute("pagingInfo", pagingInfo);
+
 		model.addAttribute("searchVo", searchVo);
 		model.addAttribute("type",type);
 		
@@ -328,7 +231,7 @@ public class OwnerOrderController {
 	  
 	  @RequestMapping("/orderTd.do") 
 	  public String findOrderMenu(@RequestParam(defaultValue = "0") int ordersNo,  
-			  @RequestParam(defaultValue = "0") int ordersDiscount, Model model) {
+			  @RequestParam(defaultValue = "0") int ordersDiscount,Model model) {
 		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, ordersDiscount={}", ordersNo,ordersDiscount);
 		  
 		  
@@ -336,6 +239,7 @@ public class OwnerOrderController {
 		  model.addAttribute("title",title);
 		  model.addAttribute("ordersNo",ordersNo);
 		  model.addAttribute("ordersDiscount",ordersDiscount);
+		
 		  
 		  return "owner/menu2/order/orderTd"; 
 	  
@@ -414,6 +318,24 @@ public class OwnerOrderController {
 		  return bool;
 	  }
 	  
+	  
+	  
+	  
+	  @RequestMapping("/cancelOrder.do")
+		public String cancelOrder(@RequestParam(defaultValue = "0") int ordersNo,Model model) {
+		  logger.info("주문 취소 업데이트, ordersNo={}", ordersNo);
+		  
+		  int cnt = ownerOrderService.updateOrdersCancel(ordersNo);
+		  String msg="주문취소에 실패하셨습니다.", url="/owner/menu2/order/orderMain.do";
+		  if(cnt>0) {
+			  msg="주문취소에 성공하셨습니다.";
+		  }
+		  
+		  	model.addAttribute("msg",msg);
+		  	model.addAttribute("url",url);
+		  	
+		  return "common/message";
+	  }
 	 
 	
 }

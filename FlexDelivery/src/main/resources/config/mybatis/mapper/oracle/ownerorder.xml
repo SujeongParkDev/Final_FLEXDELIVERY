@@ -14,13 +14,13 @@
 	
 	<sql id="OrderByOrders">
 			<if test="oStatusNo == 1">
-				order by orders_pay_end_date desc
+				order by orders_pay_end_date 
 			</if>
 			<if test="oStatusNo == 2">
-				order by orders_date desc
+				order by orders_date
 			</if>
 			<if test="oStatusNo == 3 || oStatusNo == 4">
-				order by orders_date + (orders_duration/(24*60)) desc
+				order by orders_date + (orders_duration/(24*60)) 
 			</if>
 	</sql>
 <!-- 
@@ -35,9 +35,9 @@ create or replace view jaOrderAllView
  
  
 	<select id="selectOrderAllView" parameterType="map" resultType="map">
-		select *
+		<!-- select *
 		from
-		(
+		( -->
 		    select A.*,rownum as RNUM,  (A.orders_date + (A.orders_duration/(24*60))) as deliverySuccess
 		    from
 		    (
@@ -47,11 +47,11 @@ create or replace view jaOrderAllView
 				<include refid="OrderByOrders" />	
 			
 		    )A
-		)
-		<![CDATA[
+		
+		<!-- <![CDATA[
 		where RNUM > #{searchVo.firstRecordIndex} 
 		and RNUM <= #{searchVo.firstRecordIndex} + #{searchVo.recordCountPerPage}
-		]]>
+		]]> -->
 	</select>
 	
 	
@@ -101,6 +101,13 @@ create or replace view jaOrderAllView
  	<update id="updateOrdersToDeliveryIng" parameterType="map">
  		update orders
  		set o_status_no = 3,  orders_duration=#{ordersDuration}
+ 		where orders_no=#{ordersNo}
+ 	</update>
+ 	
+ 	
+ 	<update id="updateOrdersCancel" parameterType="map">
+ 		update orders
+ 		set o_status_no = 5
  		where orders_no=#{ordersNo}
  	</update>
   <!-- 

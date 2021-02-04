@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.owner.model.OwnerService;
@@ -174,6 +176,66 @@ public class OwnerController {
 		return "common/message";
 	}
 	
+	
+	
+	
+	//회원정보 등록
+	@RequestMapping(value="/register/registerEdit.do", method=RequestMethod.GET)
+	public String edit(HttpSession session,Model model) {
+		String ownerId=(String) session.getAttribute("ownerId");
+		OwnerVO vo = ownerService.selectOwner(ownerId);
+		
+		model.addAttribute("vo", vo);
+		
+		//4
+		return "/owner/register/registerEdit";
+	}
+	
+	
+	@RequestMapping(value="/register/registerEdit.do", method=RequestMethod.POST)
+	public String memberEdit_post(@ModelAttribute OwnerVO vo,HttpSession session, 
+			ModelMap model) {
+		//1
+
+		logger.info("회원수정 처리, 파라미터 vo={}", vo);
+		
+		//2
+		String hp1=vo.getOwnerHp1();
+		String hp2=vo.getOwnerHp2();
+		String hp3=vo.getOwnerHp3();
+
+		if(hp2==null || hp2.isEmpty() || hp3==null || hp3.isEmpty()) {
+			hp1="";
+			hp2="";
+			hp3="";
+		}
+		vo.setOwnerHp1(hp1);
+		vo.setOwnerHp2(hp2);
+		vo.setOwnerHp3(hp3);
+
+		String msg="회원수정 실패!", url="/owner/register/registerEdit.do";
+		int result=ownerService.loginChk(vo.getOwnerId(), vo.getOwnerPwd());
+		if(result==OwnerService.LOGIN_OK) {
+			int cnt=ownerService.updateOwner(vo);
+			logger.info("회원수정 결과, cnt={}", cnt);
+
+			if(cnt>0) {
+				msg="회원정보 수정되었습니다.";
+			}
+		}else if(result==OwnerService.PWD_DISAGREE) {
+			msg="비밀번호가 일치하지 않습니다.";
+		}
+
+		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		//4
+		return "common/message";
+
+		
+	}
+
 	
 		
 		

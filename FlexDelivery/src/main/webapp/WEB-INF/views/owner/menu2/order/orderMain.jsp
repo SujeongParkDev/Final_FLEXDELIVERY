@@ -7,24 +7,15 @@
 		
 	<script type="text/javascript">
 	
-	
-	/*
- 	$.ajax({
-		url:"<c:url value='/owner/menu2/order/findOrderMenu.do'/>",
-		data:"ordersNo=" + item.map['ORDERS_NO'],
-		dataType:"json",
-		type:"GET",
-		success:function(mapResultTwo){
-			
-			str+="<td><a href='#' class='goDetail' data-toggle='modal' data-target='#orderDetail'>"+mapResultTwo.title+"</a></td>";
-		},
-		error:function(xhr, status, error){
-			alert("error!! : " + error);
+	$(document).ready(function(){
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+			localStorage.setItem('activeTab', $(e.target).attr('href'));
+		});
+		var activeTab = localStorage.getItem('activeTab');
+		if(activeTab){
+			$('#myTab a[href="' + activeTab + '"]').tab('show');
 		}
-	}); 
-	*/	
-	
-	
+	});
 	
 
 			  
@@ -99,6 +90,16 @@
 				});
 		  });
 		 
+		  
+		  $(function(){
+				$('.btRequestCancel').click(function(){
+					var ordersNo = $(this).val();
+					if(confirm(ordersNo+'의 주문을 취소하시겠습니까?')){
+						location.href="${pageContext.request.contextPath}/owner/menu2/order/cancelOrder.do?ordersNo="+ordersNo;
+					}
+				});
+		  });
+		  
 		  
 		  
 		  $(function(){
@@ -270,12 +271,13 @@
 							            <thead>
 							              <tr class="text-center">
 							              	<th style="width:10%;">번호</th>
-							              	<th style="width:15%;">회원</th>
+							              	<th style="width:10%;">회원</th>
 							                <!-- 다급한거 이미지 -->
-							                <th style="width:30%;">주문내역</th>
+							                <th style="width:25%;">주문내역</th>
 							                <th style="width:20%;">주문시각</th>
 							                <th style="width:10%;">결제금액</th>
 							                <th style="width:10%;">접수</th>
+							                <th style="width:10%;">취소</th>
 							               
 							              </tr>
 							            </thead>
@@ -300,6 +302,10 @@
 										                <td>
 										                	<button class="btn btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;"
 										                				data-toggle="modal" data-target="#requestOk">접수</button>
+										                </td>
+										                <td>
+										                	<button class="btn btRequestCancel" value="${map['ORDERS_NO'] }" 
+										                		style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,200); color:white; border: none;">취소</button>
 										                </td>
 									             </tr>
 									             </c:forEach>
@@ -352,7 +358,7 @@
 			         
 						<!-- 계속 페이지 첫 시작에서 문제 생김 -->
 						<!-- 페이징 시작 -->
-			
+			<%-- 
 				           <nav aria-label="Page navigation example">				<!-- 페이지 가운데 정렬은  justify-content-center-->
 				               <ul class="pagination pagination-primary justify-content-center">
 						   <!-- 페이지 번호 추가 -->		
@@ -383,7 +389,7 @@
 					                   </li>
 								 </c:if>
 				               </ul>
-				           </nav>
+				           </nav> --%>
 				      
 		
 			    

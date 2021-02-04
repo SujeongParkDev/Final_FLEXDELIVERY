@@ -85,4 +85,8 @@ public class OwnerServiceImpl implements OwnerService {
 	public int withdrawOwner(String ownerId) {
 		return ownerDao.withdrawOwner(ownerId);
 	}
+	
+	public int updateOwner(OwnerVO vo) {
+		return ownerDao.updateOwner(vo);
+	}
 }

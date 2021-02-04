@@ -99,7 +99,7 @@
 	                        <!-- 사장님이  로그인 했을때 -->
 	                        <c:if test="${!empty sessionScope.ownerId }">
 	                        	 <a href="<c:url value='/owner/logout.do'/>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i  aria-hidden="false">로그아웃</i></a>
-	                        	 <a href="#" data-toggle="tooltip" data-placement="bottom" title="myinfo"><i  aria-hidden="false">내 정보</i></a>
+	                        	 <a href="<c:url value='/owner/register/registerEdit.do'/>" data-toggle="tooltip" data-placement="bottom" title="myinfo"><i  aria-hidden="false">내 정보</i></a>
 	                        	 <a href="#" onclick="goWithdraw()" data-toggle="tooltip" data-placement="bottom" title="withdraw"><i  aria-hidden="false">회원 탈퇴</i></a>
 	                        </c:if>
                             
