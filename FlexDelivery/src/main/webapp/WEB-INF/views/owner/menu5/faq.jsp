@@ -5,30 +5,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
+$(function(){
 $('#collapseTwo').hide();
+if($('#cgName').on('click',function(idx,item))){
+	$('#collapseTwo').find().show();
+}
+});
 	function pageFunc(curPage){
 		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmPage]').submit();
 	}
-	$('#myCollapsible').collapse({
-		  toggle: false
-		})
-		$(function(){
-			$('#button').collapse('toggle');
-			$('.collapse').collapse();
-			
-		});
-	
+
 </script>
 
 <style>
 .page-item.active .page-link {
-	background-color: rgb(182, 73, 197);
-	border-color: rgb(182, 73, 197);
+	background-color: #007bff;
+	border-color: #007bff;
 }
 
-a.detail {
-	color: black;
+button.btn.btn-link {
+	color: #333;
+	text-decoration: none;
 }
 
 a.detail:hover {
@@ -36,12 +34,13 @@ a.detail:hover {
 	text-decoration: none;
 }
 
-a.page-link {
-	color: rgb(182, 73, 197);
+.dropdown-item {
+	color: black;
+	text-decoration: none;
 }
 
 #noticeSearch {
-	background-color: rgb(237, 242, 13);
+	background-color: #007bff;
 	border-radius: 2px;
 	width: 55px;
 }
@@ -60,41 +59,27 @@ a.page-link {
 	<!-- 페이지 이동시 필요한 form -->
 	<form name="frmPage" method="post" style="float: right;"
 		action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="text" name="currentPage">
-		<input type="text" name="searchCondition" value="${param.searchCondition }">
-			<input type="text" name="searchKeyword" value="${param.searchKeyword }">	
+		<input type="hidden" name="currentPage"> <input type="hidden"
+			name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
-
 	<!-- 검색 시 필요한 form -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
-		<form name="frmSearch" method="post"
-			action="<c:url value='/owner/menu5/faq.do'/>">
-			<select name="searchCondition" id="searchCondition">
-				<option value="0">선택</option>
+		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faq.do'/>">
+			<div class="dropdown">
+				<a class="btn btn-primary dropdown-toggle" href="#none" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 카테고리 </a>
 				<!-- 반복문 시작 -->
-				<c:forEach var="cgVo" items="${cgList }">
-				<c:set var="i" value=""/>
-					<option value="${cgVo.fCategoryNo}" 
-					<c:if test="${param.searchCondition == cgVo.fCategoryNo}">
-		            		selected="selected"
-		            	</c:if>
-					>
-					<!-- 
-					<a href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}" >
-					</a>
-					 -->
-					${cgVo.fCategoryName }
-					</option>
-				</c:forEach>
-				<!-- 반복문 끝 -->
-			</select> <input type="text" name="searchKeyword" title="검색어 입력"
-				value="${param.searchKeyword}">
-				 <input type="submit" id="noticeSearch" value="검색">
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+					style="text-decoration: none;">
+					<c:forEach var="cgVo" items="${cgList }">
+						<a class="dropdown-item" id="cgName" href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
+					</c:forEach>
+				</div>
+			</div>
+			<!-- 반복문 끝 -->
 		</form>
 	</div>
 	<div class="col-12 col-md-2"></div>
-
 	<br> <br>
 	<!-- 테이블 시작 -->
 	<div class="col-12 col-md-2"></div>
@@ -126,8 +111,8 @@ a.page-link {
 										<div style="display: block; padding: 10px;">${vo.fCategoryName }</div>
 									</td>
 									<td class="text-left">
-										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
-											aria-expanded="false" aria-controls="collapseTwo">${vo.faqQ} </button>
+										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" 
+										aria-controls="collapseTwo">${vo.faqQ} </button>
 									</td>
 								</tr>
 							</div>
@@ -141,7 +126,7 @@ a.page-link {
 								</td>
 							</tr>
 						</div>
-					</div>
+						</div>
 					</c:forEach>
 				</c:if>
 			</tbody>
@@ -159,12 +144,10 @@ a.page-link {
 			<!-- 페이지 번호 추가 -->
 			<!-- 이전 블럭으로 이동 -->
 			<c:if test="${pagingInfo.firstPage>1 }">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+				<li class="page-item"><a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:if>
-
 			<!-- [1][2][3][4][5][6][7][8][9][10] -->
 			<c:forEach var="i" begin="${pagingInfo.firstPage}"
 				end="${pagingInfo.lastPage}">
@@ -172,15 +155,12 @@ a.page-link {
 					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
 				</c:if>
 				<c:if test="${i!=pagingInfo.currentPage }">
-					<li class="page-item"><a class="page-link" href="#"
-						onclick="pageFunc(${i})">${i}</a></li>
+					<li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
 				</c:if>
 			</c:forEach>
-
 			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
-						<span aria-hidden="true">&raquo;</span>
+				<li class="page-item"><a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
+					<span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:if>
 		</ul>

@@ -6,18 +6,15 @@
 <!-- start!! 우편번호만 넣으면 완성!! -->
 <div class="modal-body">
 	<div class="modal-title">
-		<div class="header-close">
+		<div class="header-close text-right">
 			<button type="button" class="btn btn-default" data-dismiss="modal">나가기
 			</button>
 		</div>
 		<div class="header-title">
 			<h3>사업자 정보</h3>
-
 		</div>
 		<div class="header-hint"></div>
 	</div>
-
-
 	<!-- 폼 시작 -->
 	<form class="dialog on lg " name="frm1" id="frm1" method="post"
 		enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
@@ -64,7 +61,8 @@
 						</div>
 					</div>
 				</div>
-
+				
+				 <div id="preview" class="text-center"></div>
 				<h5 class="form-label">✔ 점포 로고 이미지</h5>
 				<div class="form-control-wrap ">
 					<div class="form-control only-one-input">
@@ -228,7 +226,22 @@ $(function() {
 		
 });
 			
-
+$(function(){
+	   $('#upfile').on('change', function(){
+	       readInputFile(this);
+	   });
+	});
+	
+	
+	function readInputFile(input) {
+	    if(input.files && input.files[0]) {
+	        var reader = new FileReader();
+	       reader.onload = function (e) {
+	            $('#preview').html("<img src="+ e.target.result +"  style='width:90%; margin-left:20px;' >");
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }  
+	} 
 	
 </script>
 

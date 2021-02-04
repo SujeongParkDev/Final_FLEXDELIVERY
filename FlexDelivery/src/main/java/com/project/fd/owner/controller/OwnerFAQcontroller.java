@@ -41,7 +41,7 @@ public class OwnerFAQcontroller {
 		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT); // 0 이 나오는데 ? 왜 ? 
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 	
 		
@@ -52,8 +52,40 @@ public class OwnerFAQcontroller {
 		int totalRecord=faqService.getTotalRecord(searchVo);
 		logger.info("글 개수, totalRecord={}", totalRecord);		
 		pagingInfo.setTotalRecord(totalRecord);
+		
+		List<AdminFaqCategoryVO> cgList = categoryService.selectCategoryAll();
+		//List<AdminFaqAllViewVO> list = categoryService.selectAll2();
+		
+		//List<AdminFaqCategoryVO> cgList = faqService.selectCategoryAll();
+		model.addAttribute("cgList",cgList);
+		model.addAttribute("list",list);
+		model.addAttribute("pagingInfo",pagingInfo);
+	
+		return "owner/menu5/faq";
+	}
+	
+	@RequestMapping("/menu5/faqDetail.do")
+	public String faq_detail(@ModelAttribute OwnerFaqSearchVO searchVo,
+			//@RequestParam int fCategoryNo,
+			Model model){
+		logger.info("공지사항 글 목록, 파라미터 BoardSearchVO={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		model.addAttribute("pagingInfo", pagingInfo);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT); // 0 이 나오는데 ? 왜 ? 
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	
+		
+		//List<> list=ownerBoardService.selectAll(searchVo);
+		List<OwnerFaqVO> list=faqService.selectAll(searchVo);
+		logger.info("공지사항 또는 이벤트  조회 결과, list.size={}", list.size());
+
+		int totalRecord=faqService.getTotalRecord(searchVo);
+		logger.info("글 개수, totalRecord={}", totalRecord);		
+		pagingInfo.setTotalRecord(totalRecord);
 		
 		List<AdminFaqCategoryVO> cgList = categoryService.selectCategoryAll();
 		//List<AdminFaqAllViewVO> list = categoryService.selectAll2();
