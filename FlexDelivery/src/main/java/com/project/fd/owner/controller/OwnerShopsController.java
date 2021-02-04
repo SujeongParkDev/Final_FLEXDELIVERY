@@ -39,9 +39,5 @@ public class OwnerShopsController {
 	public void ownercouponused() {
 		logger.info("혜택 - 쿠폰관리 보여주기");
 	}
-	
-	@RequestMapping("/menu2/requests/requests.do")
-	public void ownerrequests() {
-		logger.info("요청처리현황 보여주기");
-	}
+
 }

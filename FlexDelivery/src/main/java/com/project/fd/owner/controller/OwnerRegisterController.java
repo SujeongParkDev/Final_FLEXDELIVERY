@@ -67,7 +67,9 @@ public class OwnerRegisterController {
 			
 			vo.setoRegisterFileName(fileName);
 			vo.setoRegisterOriginalFileName(originName);
-			logger.info("originName={}",originName);
+			logger.info("originName={}",vo.getoRegisterOriginalFileName());
+			logger.info("originName={}",vo.getoRegisterFileName());
+			logger.info("vo={}",vo);
 			
 			int cnt=0;
 			String msg="사업자 등록증 등록이 실패되었습니다. \n다시 작성해주세요. ",

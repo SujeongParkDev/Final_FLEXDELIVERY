@@ -13,11 +13,6 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg"
 	type="image/x-icon">
-	<!-- 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/oneToOne.css" />
-	
-	 -->
 <!-- CSS end -->
 
 <div class="container">
@@ -190,9 +185,9 @@ $(function(){
 		url="${pageContext.request.contextPath}/owner/menu2/temporary/tempAD.do?no="+no;
     	
     }else if($(this).attr('value')=='btStores'){
-  	  url="<c:url value='/owner/menu2/temporary/tempStore.do?no='/>"+no;
 	 	url="${pageContext.request.contextPath}/owner/menu2/temporary/tempStore.do?no="+no;
     }
+  	  url="<c:url value='/owner/menu2/temporary/tempStore.do?no='/>"+no;
 		
     
 	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);

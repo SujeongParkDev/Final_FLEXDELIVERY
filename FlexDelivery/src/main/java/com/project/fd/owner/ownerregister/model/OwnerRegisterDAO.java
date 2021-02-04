@@ -9,7 +9,7 @@ import com.project.fd.owner.store.model.OwnerStoresVO;
 
 public interface OwnerRegisterDAO {
 	int insertRegister(OwnerRegisterVO vo);
-	List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo);
+	List<OwnerAllRequestVO> selectTempList(DateSearchVO searchVo);
 	int getTotalRecord(DateSearchVO searchVo);
 	List<Map<String, Object>> selectLSJAgreeListView(int ownerNo);
 	int deleteAd(int storeadNo);

@@ -80,11 +80,10 @@
 							<br>
 							<div id="preview" class="text-center"></div>
 							<div class="col-md-8 form-group">
-							
 						</div>
 						<div class="col-md-11 form-group">
 						<div class="col-sm-12 d-flex justify-content-end pt-5">
-							<button type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit">등록하기 </button>
+							<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 ">
 						</div>
 					</div>
 				</form>

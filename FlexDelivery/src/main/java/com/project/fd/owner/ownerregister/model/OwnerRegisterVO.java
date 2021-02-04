@@ -1,6 +1,6 @@
 package com.project.fd.owner.ownerregister.model;
 
-public class OwnerRegisterVO {
+public class OwnerRegisterVO extends OwnerAgreeCategory {
 	private long oRegisterNo; /* 사업자등록번호 */
 	private String oRegisterFileName; /* 사업자등록증파일이름 */
 	private String oRegisterOriginalFileName;/* 사업자등록증원본파일이름 */

@@ -77,12 +77,12 @@
 							                  <td>${stVo.storeAddressDetail}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500"> 지역 코드 번호</th> <!-- 나중에 네임으로 다 바꾸기  -->
-							                  <td>${stVo.locationNo}</td>
+							                  <th class="text-bold-500">점포 지역명 </th> <!-- 나중에 네임으로 다 바꾸기  -->
+							                  <td>${stVo.locationName}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500"> 메뉴 대분류 카테고리</th>
-							                  <td>${stVo.lCategoryNo}</td>
+							                  <th class="text-bold-500"> 메뉴 대분류 </th>
+							                  <td>${stVo.lCategoryName}</td>
 						                </tr>
 						              </tbody>
 						            </table>

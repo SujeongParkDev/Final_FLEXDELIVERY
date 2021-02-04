@@ -1,6 +1,8 @@
 package com.project.fd.owner.store.model;
 
-public class OwnerStoresVO {
+import com.project.fd.owner.ownerregister.model.OwnerAllRequestVO;
+
+public class OwnerStoresVO{
 	//private OwnerStoresFormVO ownerStoresFormVo;
 
 	/*NOT NULL*/
@@ -31,7 +33,25 @@ public class OwnerStoresVO {
 	
 	//date로 언제 승 받았는지 
 	private String storeRegdate;/* 점포등록일 => 변경 입점 신청한 날짜  */
+	
+	//	지역 이름  대분류 카테고리 네암 
+	private String locationName;
+	private String lCategoryName;
+	
+	
 
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String getlCategoryName() {
+		return lCategoryName;
+	}
+	public void setlCategoryName(String lCategoryName) {
+		this.lCategoryName = lCategoryName;
+	}
 	public int getStoreNo() {
 		return storeNo;
 	}
@@ -143,12 +163,13 @@ public class OwnerStoresVO {
 	@Override
 	public String toString() {
 		return "OwnerStoresVO [storeNo=" + storeNo + ", storeName=" + storeName + ", storeLogo=" + storeLogo
-				+ ", storeAddress=" + storeAddress + ", storeAddressDetail=" + storeAddressDetail + ", storeContent="
-				+ storeContent + ", storeRegdate=" + storeRegdate + ", storeOutdate=" + storeOutdate
-				+ ", storeOpenTime=" + storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice="
-				+ storeMinPrice + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", sStatusNo="
-				+ sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo + ", ownerNo=" + ownerNo
-				+ ", oRegisterNo=" + oRegisterNo + "]";
+				+ ", storeAddress=" + storeAddress + ", storeAddressDetail=" + storeAddressDetail + ", ownerNo="
+				+ ownerNo + ", lCategoryNo=" + lCategoryNo + ", locationNo=" + locationNo + ", oRegisterNo="
+				+ oRegisterNo + ", storeContent=" + storeContent + ", storeOutdate=" + storeOutdate + ", storeOpenTime="
+				+ storeOpenTime + ", storeCloseTime=" + storeCloseTime + ", storeMinPrice=" + storeMinPrice
+				+ ", sStatusNo=" + sStatusNo + ", hCategoryNo=" + hCategoryNo + ", aAgreeNo=" + aAgreeNo
+				+ ", storeRegdate=" + storeRegdate + ", locationName=" + locationName + ", lCategoryName="
+				+ lCategoryName + "]";
 	}
 	
 

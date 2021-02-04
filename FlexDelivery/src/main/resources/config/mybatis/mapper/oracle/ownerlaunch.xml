@@ -56,7 +56,12 @@ on a.store_no=s.STORE_NO;
 	</select>
 	
 	<select id="selecSt" parameterType="int" resultType="ownerStoresVo">
-	select * from stores where store_no=#{storeNo}
+	select s.* ,c.LOCATION_NAME, l.L_CATEGORY_NAME
+		from STORES s join LOCATION c
+		on s.LOCATION_NO=c.LOCATION_NO
+        join LARGECATEGORY l
+        on s.L_CATEGORY_NO=l.L_CATEGORY_NO
+        where s.store_no=#{storeNo}
 	</select>
 	
 </mapper>

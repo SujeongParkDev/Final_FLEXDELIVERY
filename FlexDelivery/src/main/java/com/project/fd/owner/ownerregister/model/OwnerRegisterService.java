@@ -12,7 +12,7 @@ public interface OwnerRegisterService {
 	public static final int NON_EXIST_REGISTER_NO=2; //REGISTER_NO 허용 
 	
 	int insertRegister(OwnerRegisterVO vo);
-	List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo);
+	List<OwnerAllRequestVO> selectTempList(DateSearchVO searchVo);
 	int getTotalRecord(DateSearchVO searchVo);
 	List<Map<String, Object>> selectLSJAgreeListView(int ownerNo);
 	int deleteAd(int storeadNo);

@@ -12,11 +12,6 @@ button.btn.btn-link {
 	text-decoration: none;
 }
 
-a.detail:hover {
-	color: rgb(182, 73, 197);
-	text-decoration: none;
-}
-
 .dropdown-item {
 	color: black;
 	text-decoration: none;
@@ -38,18 +33,17 @@ a.detail:hover {
 	</div>
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
-	<form name="frmPage" method="post" style="float: right;"
-		action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage"> <input type="hidden"
-			name="fCategoryNo" value="${param.fCategoryNo }">
+	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
+		<input type="hidden" name="currentPage" value="1"> 
+		<input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
 		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faq.do'/>">
-			<div class="dropdown">
-				<a class="btn btn-primary dropdown-toggle" href="#none" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 카테고리 </a>
+			<div class="dropdown" >
+				<a class="btn btn-primary " href="#none" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 카테고리 </a>
 				<!-- 반복문 시작 -->
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink"
 					style="text-decoration: none;">
 					<c:forEach var="cgVo" items="${cgList }">
 						<a class="dropdown-item" id="cgName" href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
@@ -122,13 +116,13 @@ a.detail:hover {
 			<!-- 페이지 번호 추가 -->
 			<!-- 이전 블럭으로 이동 -->
 			<c:if test="${pagingInfo.firstPage>1 }">
-				<li class="page-item"><a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+				<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:if>
 			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage}"
-				end="${pagingInfo.lastPage}">
+			<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
 				<c:if test="${i==pagingInfo.currentPage }">
 					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
 				</c:if>
@@ -137,7 +131,8 @@ a.detail:hover {
 				</c:if>
 			</c:forEach>
 			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-				<li class="page-item"><a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
+				<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
 					<span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:if>
@@ -148,17 +143,28 @@ a.detail:hover {
 <br>
 <br>
 <script type="text/javascript">
-$(function(){
-$('#collapseTwo').hide();
-if($('#cgName').on('click',function(idx,item))){
-	$('#collapseTwo').find().show();
-}
-});
 	function pageFunc(curPage){
 		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmPage]').submit();
 	}
-
+	
+$(function(){
+	$('#collapseTwo').hide();
+	if($('#cgName').on('click',function(idx,item)){
+		$('#collapseTwo').child().show();
+	}
+});
+/*
+  	$(document).ready(function(){
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+			localStorage.setItem('activeTab', $(e.target).attr('href'));
+		});
+		var activeTab = localStorage.getItem('activeTab');
+		if(activeTab){
+			$('#myTab a[href="' + activeTab + '"]').tab('show');
+		}
+	}); 
+ */
 </script>
 
 <%@ include file="../../ownerInc/bottom.jsp"%>

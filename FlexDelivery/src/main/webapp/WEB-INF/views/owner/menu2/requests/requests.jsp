@@ -1,9 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
-
 <style>
 input {
 	border: 1px solid rgb(212, 212, 212);
@@ -25,41 +21,32 @@ input {
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
 </div>
-
 <br>
-
 <!-- 셀렉 옵션 선택 내용 -->
 <div class="row" id="basic-table">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-12 col-md-8">
 		<div class="card">
 			<br>
-			<!-- <div class="card-header">
-					        <h4 class="card-title text-center" >메뉴</h4>
-					      </div> -->
 			<div class="card-content">
 				<div class="card-body">
-					<p class="card-text text-center" style="font-size: 20px;">메뉴옵션</p>
-					<p class="card-text text-center">메뉴 옵션 수정 및 삭제 및 등록 해주세요</p>
+					<p class="card-text text-center" style="font-size: 20px;">요청 처리 현황 </p>
+					<p class="card-text text-center">요청 처리 현황 상세보기에서 취소하실 수 있습니다.</p>
 					<br> <br>
 					<div class="row">
-						<div class="col-md-3 col-12"></div>
+					<!-- 데이터 피커  -->
+						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
-
-							<select class="form-select groupChoice p-2 " name="menuGroup"
-								id="menuGroupSelect" style="overflow: auto;">
-								<option class="m-3 text-center" style="font-size: 17px;"
-									selected value="0">승인 목록 선택 </option>
-								<c:if test="${!empty list }">
-									<c:forEach var="vo" items="${list }">
+							<select class="form-select groupChoice p-2 " name="menuGroup" id="menuGroupSelect" style="overflow: auto;">
+								<option class="m-3 text-center" style="font-size: 17px;" selected value="0">승인 목록 선택 </option>
+								<c:if test="">
+									<c:forEach var="allVo" items="">
 										<option value=""></option>
 									</c:forEach>
 								</c:if>
 							</select> <br>
 						</div>
 						<div class="col-md-4 col-sm-12">
-
-						
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -69,13 +56,36 @@ input {
 									<th style="width: 22%;">번호 </th>
 									<th style="width: 22%;">신청 내용 </th>
 									<th style="width: 22%;">승인 상태 </th>
-									<th style="width: 20%;">수정/삭제</th>
+									<th style="width: 20%;">상세 보기 </th>
 									<th style="width: 14%;" class="pl-3">
 									</th>
 								</tr>
 							</thead>
+							${RegiList}
 							<tbody id="optionTable">
-
+							<c:if test="${!empty RegiList }">
+									<c:forEach var="allVo" items="${RegiList }">
+							<tr class="text-center"><br><td>${allVo.oRegisterNo}</td><br>
+								<td>사업자 등록 신청 </td><br>
+									<td class="text-bold-500">
+									<c:if test="${allVo.aAgreeNo == 1 }">
+										<span class="badge bg-light">승인대기</span>
+									</c:if>
+									<c:if test="${allVo.aAgreeNo== 2 }">
+										<span class="badge bg-danger">신청취소</span>
+									</c:if> 
+									<c:if test="${allVo.aAgreeNo== 3 }">
+										<span class="badge bg-success">승인완료</span>
+									</c:if> 
+										<c:if test="${allVo.aAgreeNo == 4 }">
+									<span class="badge bg-danger">승인반려</span>
+									</c:if>
+									</td><br>
+									<td class="p-0"><button class="btn btn-outline-dark p-2 btmenu" value="" name="" >취소 </button>
+				                  <button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button><br></td>
+									<td></td><br></tr><!-- 상ㅇ세보기 타ㅣㅇ틀로 ㄱ ㄱ  -->
+									</c:forEach>
+								</c:if>
 							</tbody>
 						</table>
 					</div>
@@ -86,22 +96,17 @@ input {
 	<div class="col-md-2 col-sm-12"></div>
 </div>
 
-
 <!-- 등록 모달! -->
 <div class="modal fade text-left" id="inlineForm" tabindex="-1"
 	aria-labelledby="myModalLabel33" style="display: none;"
 	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-		role="document">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel33">옵션 등록</h4>
+				<h4 class="modal-title" id="myModalLabel33">상세 보기 </h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						class="feather feather-x">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
 						<line x1="18" y1="6" x2="6" y2="18"></line>
 						<line x1="6" y1="6" x2="18" y2="18"></line></svg>
 				</button>
@@ -110,15 +115,13 @@ input {
 				<div class="modal-body">
 					<div class="form-group groupMenuInput"></div>
 					<div class="form-group">
-						<label>옵션 순위 선택</label> <select
-							class="form-select menuOptionSelect p-2" name="oRankNo"
-							id="oRankNo" style="overflow: auto; text-align-last: center;">
+						<label>옵션 순위 선택</label> 
+						<select class="form-select menuOptionSelect p-2" name="oRankNo" id="oRankNo" style="overflow: auto; text-align-last: center;">
 						</select>
 					</div>
 					<label>옵션 이름<span style="color: red; margin-left: 4px;"><b>*</b></span></label>
 					<div class="form-group">
-						<input type="text" class="form-control text-right"
-							id="mOptionName" name="mOptionName" style="width: 100%;">
+						<input type="text" class="form-control text-right" id="mOptionName" name="mOptionName" style="width: 100%;">
 					</div>
 					<div style="text-align: right;">
 						<span id="warningOptionName" style="color: red;"></span>
@@ -133,15 +136,13 @@ input {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button"
-						class="btn btn-light-secondary submitWriteOption">
-						<i class="bx bx-x d-block d-sm-none "></i> <span
-							class="d-none d-sm-block">등록</span>
+					<button type="button" class="btn btn-light-secondary submitWriteOption">
+						<i class="bx bx-x d-block d-sm-none "></i> 
+						<span class="d-none d-sm-block">등록</span>
 					</button>
-					<button type="button" class="btn btn-primary ml-1"
-						data-dismiss="modal">
-						<i class="bx bx-check d-block d-sm-none"></i> <span
-							class="d-none d-sm-block">취소</span>
+					<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+						<i class="bx bx-check d-block d-sm-none"></i> 
+						<span class="d-none d-sm-block">취소</span>
 					</button>
 				</div>
 			</form>
@@ -277,7 +278,7 @@ input {
 						return false;
 					}else{
 							$.ajax({
-								url:"<c:url value='/owner/menu2/foodmenu/inputGroupNoMenuNoToOption.do'/>",
+								url:"<c:url value='/owner/menu2/requests/detail.do'/>",
 								data:"sMGroupNo=" + $('.groupChoice').val() +"&menuNo="+$('.menuSelect').val(), 
 								dataType:"json",
 								type:"GET",
