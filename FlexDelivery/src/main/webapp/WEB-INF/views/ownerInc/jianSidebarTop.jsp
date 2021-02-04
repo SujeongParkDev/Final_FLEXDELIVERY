@@ -97,7 +97,7 @@
 			                            <a href="<c:url value='/owner/menu2/order/orderMain.do'/>">주문현황</a>
 			                        </li>
 			                         <li>
-			                            <a href="#">주문내역</a>
+			                            <a href="<c:url value='/owner/menu2/order/orderList.do'/>">주문내역</a>
 			                            <!-- 주문상세view는 오픈창으로 띄워야 합니다. -->
 			                        </li>
 			                    </ul>

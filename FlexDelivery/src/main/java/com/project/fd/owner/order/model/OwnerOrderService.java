@@ -10,6 +10,7 @@ public interface OwnerOrderService {
 	public static final int OSTATUSNO_ORDERING=2;
 	public static final int OSTATUSNO_DELIVERYING=3;
 	public static final int OSTATUSNO_DELIVERYSUCCESS=4;
+	public static final int OSTATUSNO_CANCLE=5;
 	
 	public int selectTotalRecord(Map<String, Object> map);
 	public List<Map<String, Object>> selectOrderAllView(Map<String, Object> map);
@@ -20,4 +21,7 @@ public interface OwnerOrderService {
 	public int updateOrdersToRequestIng(int ordersNo);
 	public int updateOrdersToDeliveryIng(Map<String, Object> map);
 	public int updateOrdersCancel(int ordersNo);
+	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map);
+	public int selectTotalRecordTWO(Map<String, Object> map);
+	
 }

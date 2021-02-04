@@ -10,9 +10,9 @@
 	</select>
 	
 	<select id="faqSelect" parameterType="string"
-		resultType="faqVo">
+		resultType="memberFaqVo">
 		select * from faq
-		where f_category_no = #{};
+		where f_category_no = #{fCategoryNo};
 	</select>
 	
 	

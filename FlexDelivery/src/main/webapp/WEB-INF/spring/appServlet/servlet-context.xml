@@ -64,6 +64,25 @@
 		</interceptor>
 	</interceptors>
 	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/owner/withdraw.do"/>
+			<beans:ref bean="ownerWidthrowInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/owner/register/registerEdit.do"/>
+			<beans:ref bean="ownerEditInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	
+	
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/myPage/**/*" />

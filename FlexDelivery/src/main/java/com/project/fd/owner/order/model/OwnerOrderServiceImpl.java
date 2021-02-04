@@ -48,6 +48,13 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 		return ownerOrderDao.updateOrdersCancel(ordersNo);
 	}
 	
+	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map){
+		return ownerOrderDao.selectOrderListView(map);
+	}
+	
+	public int selectTotalRecordTWO(Map<String, Object> map) {
+		return ownerOrderDao.selectTotalRecordTWO(map);
+	}
 	@Override
 	@Transactional
 	public String getTitle(int ordersNo) {

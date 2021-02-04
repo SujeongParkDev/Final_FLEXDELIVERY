@@ -19,6 +19,8 @@ public interface OwnerService {
 	public static final int HAVE_ALL=3; // 모든것을 다 가진 경우 
 	public static final int LICENSE_STAY=4; // 라이센스 승인대기중인 경우
 	public static final int STORE_STAY=5; //점포 승인대기중인 경우
+	public static final int WITHDRAW_STAY=6; //점포 탈퇴 신청중
+	public static final int WITHDRAW_SUCCESS=7; //점포 탈퇴 성공
 	
 	int loginChk(String userid,String pwd);
 	OwnerVO selectOwner(String userid);

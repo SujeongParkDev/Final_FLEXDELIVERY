@@ -68,6 +68,16 @@
 						title="메뉴 등록";
 						popupWidth=500;
 						popupHeight=600;
+					}else if($(this).attr('name')=='menuDelete'){
+						if(confirm(menuNo+"을 삭제하시겠습니까?")){
+							var sMGroupNo = ${sMGroupNo};
+							url2="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo+"&sMGroupNo="+sMGroupNo;
+							location.href=url2;
+							return false;
+						}else{
+							return false;
+						}
+					
 					}
 					
 					window.screen.width //현재 윈도우창의 가로크기를 가져옴
@@ -82,15 +92,7 @@
 						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
 					
 					
-					if($(this).attr('name')=='menuDelete'){
-						if(confirm(menuNo+"을 삭제하시겠습니까?")){
-							var sMGroupNo = ${sMGroupNo};
-							url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceDelete.do?menuNo="+menuNo+"&sMGroupNo="+sMGroupNo;
-							location.href=url;
-							return false;
-						}
 					
-					}
 					/* location.href=url; */
 				});
 				

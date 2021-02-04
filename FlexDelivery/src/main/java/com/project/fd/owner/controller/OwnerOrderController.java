@@ -1,5 +1,7 @@
 package com.project.fd.owner.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.fd.common.PaginationInfo;
+import com.project.fd.common.Utility;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
 
@@ -231,14 +235,19 @@ public class OwnerOrderController {
 	  
 	  @RequestMapping("/orderTd.do") 
 	  public String findOrderMenu(@RequestParam(defaultValue = "0") int ordersNo,  
-			  @RequestParam(defaultValue = "0") int ordersDiscount,Model model) {
-		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, ordersDiscount={}", ordersNo,ordersDiscount);
+			  @RequestParam(defaultValue = "0") int ordersDiscount, 
+			  @RequestParam(defaultValue = "0") int type, 
+			  @RequestParam(defaultValue = "0") long hurryImgTerm,
+			  Model model) {
+		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, hurryImgTerm={}", ordersNo,hurryImgTerm);
 		  
 		  
 		  String title = ownerOrderService.getTitle(ordersNo);
 		  model.addAttribute("title",title);
 		  model.addAttribute("ordersNo",ordersNo);
 		  model.addAttribute("ordersDiscount",ordersDiscount);
+		  model.addAttribute("type",type);
+		  model.addAttribute("hurryImgTerm",hurryImgTerm);
 		
 		  
 		  return "owner/menu2/order/orderTd"; 
@@ -337,5 +346,79 @@ public class OwnerOrderController {
 		  return "common/message";
 	  }
 	 
+	  
+	  
+	  @RequestMapping("/orderList.do")
+		public String orderList(@ModelAttribute OwnerAdvertiseSearchVO searchVo, @RequestParam(defaultValue = "0") int oStatusNo,
+					HttpSession session, Model model) {
+				//storeNo 구하기
+					int storeNo=0;
+					
+					
+					if(session.getAttribute("storeNo")!=null) {
+						storeNo= (Integer)session.getAttribute("storeNo");
+					}
+					
+				//1
+				logger.info("주문완료 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
+				
+			
+	
+				
+				PaginationInfo pagingInfo = new PaginationInfo();
+				pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+				pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+				pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+				
+				//[2] SearchVo 셋팅
+				//날짜가 넘어오지 않은 경우 현재일자를 셋팅
+				String startDay=searchVo.getStartDay();
+				if(startDay==null || startDay.isEmpty()) {
+					Date d = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String today=sdf.format(d);
+					searchVo.setStartDay(today);
+					searchVo.setEndDay(today);			
+				}
+				logger.info("searchVo ={}",searchVo);
+				
+				
+				searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+				searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				searchVo.setStoreNo(storeNo);
+				
+				int type= OwnerOrderService.OSTATUSNO_DELIVERYSUCCESS;;
+				if(oStatusNo==OwnerOrderService.OSTATUSNO_CANCLE) {
+					type=OwnerOrderService.OSTATUSNO_CANCLE;
+				}
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("searchVo", searchVo);
+				map.put("oStatusNo", type );
+				
+				logger.info("type ={}",type);
+				
+				
+				List<Map<String, Object>> list = null;
+				list = ownerOrderService.selectOrderListView(map);
+				logger.info("list ={}",list);
+				
+				
+				
+				int totalRecord = ownerOrderService.selectTotalRecordTWO(map);
+				logger.info("글 개수, totalRecord={}", totalRecord);		
+				pagingInfo.setTotalRecord(totalRecord);
+				
+				
+				
+				model.addAttribute("oStatusNo",oStatusNo);
+				model.addAttribute("list",list);
+				model.addAttribute("pagingInfo", pagingInfo);
+				model.addAttribute("searchVo", searchVo);
+				
+				//4. 뷰페이지 리턴) {
+		  return "owner/menu2/order/orderList";
+	  }
+		
 	
 }

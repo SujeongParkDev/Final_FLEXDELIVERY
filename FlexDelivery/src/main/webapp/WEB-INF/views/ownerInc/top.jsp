@@ -166,7 +166,7 @@
                                             </c:if>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">고객 사이트로 이동</a></li>
+                                    <li><a href="<c:url value='/member/index.do'/>">고객 사이트로 이동</a></li>
                                 </ul>
 
                                 <!-- Search Form  -->

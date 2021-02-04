@@ -4,9 +4,7 @@
 
 
  
-<style>
-
-	a.event{
+<style>	a.event{
 		color:black;	
 	}
 	
