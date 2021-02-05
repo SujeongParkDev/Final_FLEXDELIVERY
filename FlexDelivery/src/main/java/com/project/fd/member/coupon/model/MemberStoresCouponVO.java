@@ -1,4 +1,4 @@
-package com.project.fd.member.stores.model;
+package com.project.fd.member.coupon.model;
 
 import java.sql.Timestamp;
 
@@ -11,6 +11,22 @@ public class MemberStoresCouponVO {
 	private Timestamp sCEndDate;//쿠폰 만료일
 	private int rCouponDc; //쿠폰 할인금액
 	private int rCouponMin; //쿠폰 최소사용금액
+	private int dupChk; //점포의 쿠폰이 현재회원이 이미 발급받았는지 확인, 0보다 크면 이미 발급받음
+	private String rCBoxUse; //점포의 쿠폰을 사용한적 있는지 확인, Y면 이미 사용, N면 사용전
+	
+	
+	public String getrCBoxUse() {
+		return rCBoxUse;
+	}
+	public void setrCBoxUse(String rCBoxUse) {
+		this.rCBoxUse = rCBoxUse;
+	}
+	public int getDupChk() {
+		return dupChk;
+	}
+	public void setDupChk(int dupChk) {
+		this.dupChk = dupChk;
+	}
 	public int getsCBoxNo() {
 		return sCBoxNo;
 	}
@@ -63,7 +79,7 @@ public class MemberStoresCouponVO {
 	public String toString() {
 		return "MemberStoresCouponVO [sCBoxNo=" + sCBoxNo + ", rCouponNo=" + rCouponNo + ", storeNo=" + storeNo
 				+ ", sCService=" + sCService + ", sCStartDate=" + sCStartDate + ", sCEndDate=" + sCEndDate
-				+ ", rCouponDc=" + rCouponDc + ", rCouponMin=" + rCouponMin + "]";
+				+ ", rCouponDc=" + rCouponDc + ", rCouponMin=" + rCouponMin + ", dupChk=" + dupChk + "]";
 	}
 	
 	

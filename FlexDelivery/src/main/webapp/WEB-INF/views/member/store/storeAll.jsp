@@ -36,20 +36,19 @@
 				dataType:"JSON",
 				data:$('#frmPlus').serialize(),
 				success:function(map){
-					var storeNo=0;
 					for(var i=0;i<map.list.length;i++){
 						var str="<div class='col-md-6 mb-3' onclick=\"location.href='<c:url value='/member/store/storeDetail.do?storeNo="+map.list[i].storeNo+"'/>'\">";
 						str+="<div class='d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm'>";
 						str+=" <div class='list-card-image'>";
-						/* if(map.likeList.length>0){
-							for(var j=0;j<map.likeList.length;i++){
-								if(map.likeList[j].storeNo == map.list[i].storeNo){
+						if(map.likeList.length>0){
+							$.each(map.likeList,function(idx,item){
+								if(item.storeNo == map.list[i].storeNo){
 									str+="<div class='favourite-heart text-danger position-absolute'>";
 									str+="<i class='feather-heart'></i>";
 									str+="</div>";
 								}
-							}
-						} */
+							})
+						}
 						if(map.list[i].sStatusNo==2){
 							str+="<div class='member-plan position-absolute'><span class='badge badge-primary'>영업중</span></div>";
 						}else if(map.list[i].sStatusNo==1 || map.list[i].sStatusNo==3){

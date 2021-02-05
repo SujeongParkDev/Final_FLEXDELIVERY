@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.member.cart.model.MemberCartService;
+import com.project.fd.member.coupon.model.MemberCouponService;
+import com.project.fd.member.coupon.model.MemberStoresCouponVO;
 import com.project.fd.member.menu.model.MemberMenuAllVO;
 import com.project.fd.member.menu.model.MemberMenuService;
 import com.project.fd.member.stores.model.MemberLikeStoreVO;
@@ -35,6 +37,8 @@ public class MemberStoreController {
 	@Autowired private MemberStoresService memStoresServ;
 	@Autowired private MemberMenuService menuServ;
 	@Autowired private MemberCartService cartServ;
+	@Autowired private MemberCouponService coupServ;
+	
 	
 	@RequestMapping("/storeList.do")
 	public void storeList(@RequestParam int lCategoryNo) {
@@ -156,11 +160,15 @@ public class MemberStoreController {
 		logger.info("cartChk={}",cartChk);
 		likeVo.setMemberNo(memberNo);
 		boolean likeChk=memStoresServ.chkLike(likeVo); //관심등록 체크, true면 관심등록한 점포임
+		List<MemberStoresCouponVO> coupList=coupServ.storeCouponList(map); //점포 쿠폰함 리스트
+		logger.info("coupList.size={}",coupList.size());
+		
 		model.addAttribute("vo",vo);
 		model.addAttribute("cartChk",cartChk); 
 		model.addAttribute("likeChk",likeChk);
 		model.addAttribute("storeNo",storeNo);
 		model.addAttribute("menuAllvo",menuAllvo);
+		model.addAttribute("coupList",coupList);
 		return "member/store/storeDetail";
 	}
 	
