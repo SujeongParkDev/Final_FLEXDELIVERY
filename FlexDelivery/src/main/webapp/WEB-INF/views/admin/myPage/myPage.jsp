@@ -14,15 +14,17 @@
 	<div class="row">
 			<div class="col-12">
                 <div class="card mt-70 mb-70">
-                    <div class="card-header">
+                    <div class="card-header mt-50">
                         <h4 class="card-title">마이페이지</h4>
                         <!-- <a href="#" class="btn btn-dark round">등록</a> -->
                     </div>
-                    <div class="card-body">
+                    <div class="card-body mb-50">
 	                    <form name="frmAdminMypage" id="frmAdminMypage" action="<c:url value='/admin/myPage/myPageConfirm.do' />" method="post">
 		                    <div>
 								<div class="group col-6" style="text-align: center;">
-								    <input type="password" name="pwd" id="adminPwd" required>
+								    <input type="hidden" name="adminPwd" id="adminPwd" value="${vo.adminPwd }">
+								    <input type="hidden" name="adminNo" id="adminNo" value="${vo.adminNo }">
+								    <input type="password" name="pwd" id="pwdConfirm" required>
 								    <span class="highlight"></span>
 								    <span class="bar"></span>
 								    <label>비밀번호를 입력해주세요</label>

@@ -10,11 +10,6 @@
 	</select>	
 
 	<select id="faqSelect" parameterType="int"
-		resultType="memberFaqVo">
-		select * from faq
-		where f_category_no = #{fCategoryNo};
-
-	<select id="faqSelect" parameterType="int"
 		resultType="memberfaqVo">
 		select * from faq
 		where f_category_no = #{fCategoryNo}

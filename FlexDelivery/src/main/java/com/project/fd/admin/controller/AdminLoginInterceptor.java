@@ -20,13 +20,13 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
 			Object handler, Exception ex)throws Exception {
-		logger.info("view 생성 후 호출-afterCompletion()");
+		//logger.info("view 생성 후 호출-afterCompletion()");
 	}
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object
 			handler,ModelAndView modelAndView) throws Exception {
-		logger.info("컨트롤러 수행 후 호출 - postHandle()");
+		//logger.info("컨트롤러 수행 후 호출 - postHandle()");
 	}
 	
 	@Override

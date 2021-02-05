@@ -14,7 +14,6 @@ import com.project.fd.member.faq.model.MemberFaqService;
 import com.project.fd.member.faq.model.MemberFaqVo;
 
 /*
-
 @Controller
 @RequestMapping("/member/faq")
 public class MemberFaqController {
