@@ -28,16 +28,29 @@ public class MemberFaqController {
 	}
 	
 	@RequestMapping("/faqC.do")
-	public String faaQ(@RequestParam int fCategoryNo, Model model) {
+	public String faqC(@RequestParam int fCategoryNo, Model model) {
 		logger.info("faq 카테고리 보여주기, 파라미터 fCategoryNo={}", fCategoryNo);
 		
 		List<MemberFaqVo> list= memberFaqService.selectFaq(fCategoryNo);
-		logger.info("faq카테고리 조회, 결과 list.size={}"+ list.size());
+		logger.info("faq카테고리 조회, 결과 list.size={}, 결과들 ={}", list.size(), list);
 		
 		model.addAttribute("faqCList", list);
 		
 		return "member/faq/faqC";
-		
 	}
+	
+	@RequestMapping("/faqA.do")
+	public String faqA(@RequestParam int fCategoryNo, Model model) {
+		logger.info("faq 카테고리 보여주기, 파라미터 fCategoryNo={}", fCategoryNo);
+		
+		List<MemberFaqVo> list= memberFaqService.selectFaq(fCategoryNo);
+		logger.info("faq카테고리 조회, 결과 list.size={}, 결과들 ={}", list.size(), list);
+		
+		model.addAttribute("faqAList", list);
+		
+		return "member/faq/faqA";
+	}
+	
+
 }
 */
