@@ -10,13 +10,31 @@
 	regularcoupon r,storecouponbox s
 	where r.R_COUPON_NO = s.R_COUPON_NO; -->
 
-	<select id="storeCouponList">
-		select * from hystorecouponboxview
-		where store_no=#{storeNo}
-		and s_c_service='Y'
-		and sysdate>s_c_start_date
+	<select id="storeCouponList" parameterType="map" resultType="memberStoresCouponVo">
+		select hy.*,
+		(select count(*) from regularcouponbox b where hy.s_c_box_no=b.s_c_box_no and b.member_no=#{memberNo})
+		as dupChk,
+		(select b.r_c_box_use from regularcouponbox b where hy.s_c_box_no=b.s_c_box_no and b.member_no=#{memberNo})
+		as r_c_box_use
+		from
+		hystorecouponboxview hy
+		where hy.store_no=#{storeNo}
+		and hy.s_c_service='Y'
+		and sysdate>hy.s_c_start_date
 		<![CDATA[
-		and sysdate<s_c_end_date;
+		and sysdate<hy.s_c_end_date
 		]]>
+		order by hy.r_coupon_min
 	</select>
+	
+	<select id="memberCouponList" parameterType="int" resultType="memberRegularCouponBoxVo">
+		select * from regularcouponbox
+		where member_No=#{memberNo}
+		and r_c_box_end>sysdate
+	</select>
+	
+	<insert id="addCoupon" parameterType="memberRegularCouponBoxVo">
+		insert into regularCouponBox(member_no,s_c_box_no)
+		values(#{memberNo},#{sCBoxNo})
+	</insert>
 </mapper>

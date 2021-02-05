@@ -5,78 +5,82 @@
 <html lang="ko">
 <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
-		function cartList(){
-			var data="memberNo="+${sessionScope.memberNo};
-			
-			$.ajax({
-				url:"<c:url value='/member/cart/cartList.do'/>",
-				type:"get",
-				data:data,
-				success:function(map){
-					var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
-					if(map.list.length>0){
-					    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-					    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
-					    str+="<div class='d-flex flex-column'>";
-					    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
-					    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
-					}
-			   		var buyPrice=0;
-			   		var totalPrice=0;
-			   		var delivery=0;
-					if(map.list.length<1){
-			    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
-		    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
-			    		str+="</div>";
-			    	}else{
-				    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";
-			    		for (var i = 0; i < map.list.length; i++) {
-			    			var sum=(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty;
-			    			buyPrice=buyPrice+sum;
-					        str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
-					        str+="<div class='media align-items-center'>";
-					        str+="<div class='mr-3 text-danger' style='font-size:18px'><a href='' onclick='deletecart("+map.list[i].cartNo+")'>&times;</a></div>";
-					        str+="<input type='hidden' value='"+map.list[i].cartNo+"' name='cartNoHidden'>";
-					        str+="<div class='media-body'>";
-					        str+="<p class='m-0'>"+map.list[i].menuName+"<span class='font-monospace text-dark'><small><br>"+map.list[i].mOptionName+"</small></span></p></div></div>";
-					        str+="<div class='d-flex align-items-center'>";
-					        str+="<p class='text-gray mb-0 float-right mr-3 text-muted small'>"+(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty+"원</p>";
-					        str+="<span class='count-number float-right'>";
-					        str+="<button type='button' class='btn-sm left dec btn btn-outline-secondary' onclick='minus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-minus'></i> </button>";
-					        str+="<input class='count-number-input' type='text' readonly value='"+map.list[i].cartQty+"'>";
-					        str+="<button type='button' class='btn-sm right inc btn btn-outline-secondary' onclick='plus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-plus'></i> </button></span>";
-					        str+="</div></div>";
-						}
-				    	str+="</div>";
-					    if(buyPrice <= map.vo.storeMinPrice){
-					    	delivery=3000;
-					    }
-					    totalPrice=buyPrice+delivery;
-					    str+="<div class='bg-white p-3 clearfix border-bottom'>";
-					    str+="<p class='mb-1'>총액 <span class='float-right text-dark' id='cartTotalPrice'>"+buyPrice+"원</span></p>";
-					    str+="<p class='mb-1'>배달팁<span class='text-info ml-1'><i class='feather-info'></i></span><span class='float-right text-dark'>"+delivery+"원</span></p><hr>";
-					    str+="<h6 class='font-weight-bold mb-0'>TO PAY <span class='float-right'>"+totalPrice+"원</span></h6></div>";
-			    	}
-				    str+="<div class='p-3'>";
-				    
-					if(map.list.length<1){
-						    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
-				   	}else{
-				   		if (map.vo.sStatusNo==2){
-							str+="<a class='btn btn-success btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
-				   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
-					    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
-				   		}
-				   	}
-				    str+="</div></div>";
-				    
-				    $('#cartDiv').html(str);
-				},
-				error:function(){
-					alert("error!");
+	function cartList(){
+		var data="memberNo="+${sessionScope.memberNo};
+		
+		$.ajax({
+			url:"<c:url value='/member/cart/cartList.do'/>",
+			type:"get",
+			data:data,
+			success:function(map){
+				var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
+				if(map.list.length>0){
+				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
+				    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+				    str+="<div class='d-flex flex-column'>";
+				    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
+				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
 				}
-			})
-		};
+		   		var buyPrice=0;
+		   		var totalPrice=0;
+		   		var delivery=0;
+				if(map.list.length<1){
+		    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
+	    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
+		    		str+="</div>";
+		    	}else{
+			    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";
+		    		for (var i = 0; i < map.list.length; i++) {
+		    			var sum=(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty;
+		    			buyPrice=buyPrice+sum;
+				        str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
+				        str+="<div class='media align-items-center'>";
+				        str+="<div class='mr-3 text-danger' style='font-size:18px'><a href='' onclick='deletecart("+map.list[i].cartNo+")'>&times;</a></div>";
+				        str+="<input type='hidden' value='"+map.list[i].cartNo+"' name='cartNoHidden'>";
+				        str+="<div class='media-body'>";
+				        str+="<p class='m-0'>"+map.list[i].menuName+"<span class='font-monospace text-dark'><small><br>"+map.list[i].mOptionName+"</small></span></p></div></div>";
+				        str+="<div class='d-flex align-items-center'>";
+				        str+="<p class='text-gray mb-0 float-right mr-3 text-muted small'>"+(map.list[i].menuPrice+map.list[i].mOptionPrice)*map.list[i].cartQty+"원</p>";
+				        str+="<span class='count-number float-right'>";
+				        str+="<button type='button' class='btn-sm left dec btn btn-outline-secondary' onclick='minus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-minus'></i> </button>";
+				        str+="<input class='count-number-input' type='text' readonly value='"+map.list[i].cartQty+"'>";
+				        str+="<button type='button' class='btn-sm right inc btn btn-outline-secondary' onclick='plus("+map.list[i].cartNo+","+map.list[i].cartQty+")'> <i class='feather-plus'></i> </button></span>";
+				        str+="</div></div>";
+					}
+			    	str+="</div>";
+				    if(buyPrice <= map.vo.storeMinPrice){
+				    	delivery=3000;
+				    }
+				    totalPrice=buyPrice+delivery;
+				    str+="<div class='bg-white p-3 clearfix border-bottom'>";
+				    str+="<p class='mb-1'>총액 <span class='float-right text-dark' id='cartTotalPrice'>"+buyPrice+"원</span></p>";
+				    str+="<p class='mb-1'>배달팁<span class='text-info ml-1'><i class='feather-info'></i></span><span class='float-right text-dark'>"+delivery+"원</span></p><hr>";
+				    str+="<h6 class='font-weight-bold mb-0'>TO PAY <span class='float-right'>"+totalPrice+"원</span></h6></div>";
+		    	}
+			    str+="<div class='p-3'>";
+			    
+				if(map.list.length<1){
+					    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
+			   	}else{
+			   		if (map.vo.sStatusNo==2){
+						str+="<a class='btn btn-success btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+			   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
+				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
+			   		}
+			   	}
+			    str+="</div></div>";
+			    
+			    $('#cartDiv').html(str);
+			},
+			error:function(){
+				alert("error!");
+			}
+		})
+	};
+	
+	function couponBox(){
+		
+	}
 	
 	$(function(){
 		cartList();
@@ -194,6 +198,27 @@
 			$(this).parent().parent().parent().parent().parent().find('input[name=cartQty]').val(1);
 			var price=$(this).next('input[type=hidden]').val();
 			$('.totalPrice').html(price+'원');
+		});
+		
+		$('#couponForm').submit(function(){
+			$.ajax({
+				url:"<c:url value='/member/coupon/addCoupon.do' />",
+				type:"post",
+				data:$(this).serializeArray(),
+				dataType:"json",
+				success:function(bool){
+					if(bool){
+						alert('쿠폰발급 되었습니다');
+						$('.closeBt').click();
+					}else{
+						alert('쿠폰발급실패');
+						$('.closeBt').click();
+					}
+				},error:function(error){
+					alert("error : "+error);
+				}
+			});
+			event.preventDefault();
 		});
 		
 	});//$(function)
@@ -337,84 +362,79 @@
 						</a>
 	                </div>
                 </c:if>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                	<button class="col-12 btn btn-outline-light" type="button" data-toggle="modal" data-target="#couponBox">쿠폰 발급받기</button>
-                </div>
-                <div class="modal fade" id="couponBox" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
-			        <div class="modal-dialog modal-dialog-centered">
-			            <div class="modal-content">
-			                <div class="modal-header">
-				                <h5 class="modal-title">쿠폰 발급받기</h5>
-				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                	<span aria-hidden="true">&times;</span>
-				                </button>
-			                </div>
-			                <div class="col-md-12" style="text-align: center;line-height: 25">
-								<p class="h5">p class="h5"</p>                 	
-			                </div>
-			                <%-- <form name="couponForm">
-			                	<input type="hidden" name="menuNo" value="">
-			                	<input type="hidden" name="storeNo" value="">
-			                	<input type="hidden" name="storeName" value="">
-				                <div class="modal-body p-0">
-				                    <div class="osahan-filter">
-				                        <div class="filter">
-				                            <!--옵션선택 -->
-				                            <c:if test="${empty menuAllvo.menuOptionList}">
+                <!-- 쿠폰 버튼 -->
+                <c:if test="${!empty coupList}">
+	                <div class="d-grid gap-2 col-6 mx-auto">
+	                	<button class="col-12 btn btn-outline-light" type="button" data-toggle="modal" data-target="#couponBox">쿠폰 발급받기</button>
+	                </div>
+                	<!-- 쿠폰 모달 -->
+	                <div class="modal fade" id="couponBox" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
+				        <div class="modal-dialog modal-dialog-centered">
+				            <div class="modal-content">
+				                <div class="modal-header">
+					                <h5 class="modal-title text-align-center">쿠폰함</h5>
+					                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                	<span aria-hidden="true">&times;</span>
+					                </button>
+				                </div>
+				                <form action="" method="post" id="couponForm" >
+					                <div class="modal-body p-0">
+					                    <div class="osahan-filter">
+					                        <div class="filter">
 					                            <div class="p-3 bg-light border-bottom">
-					                                <h6 class="m-0">기본선택만 가능</h6>
-					                                <div class="custom-control custom-radio border-bottom py-2">
-						                                <input type="radio" class="custom-control-input" id="noOption${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
-						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
-						                                <label class="custom-control-label py-3 w-100 px-3" for="noOption${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
-					                                </div>
+					                                <h6 class="m-0">쿠폰선택</h6>
 					                            </div>
-				                            </c:if>
-				                            <c:if test="${!empty menuAllvo.menuOptionList}">
-					                            <div class="p-3 bg-light border-bottom">
-					                                <h6 class="m-0">옵션선택</h6>
-					                            </div>
-					                            	<div class="custom-control custom-radio border-bottom py-2">
-						                                <input type="radio" class="custom-control-input" id="noOptionMain${menuAllvo.memberMenuVo.menuNo}" name="mOptionNo" value="0" checked>
-						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice}">
-						                                <label class="custom-control-label py-3 w-100 px-3" for="noOptionMain${menuAllvo.memberMenuVo.menuNo}">기본<p class="text-muted mb-0">추가 없음</p></label>
-					                                </div>
-					                            <c:forEach var="oVo" items="${menuAllvo.menuOptionList}">
+												<c:set var="i" value="0" />
+												<input type="hidden" name="memberNo" value="${sessionScope.memberNo}">
+					                            <c:forEach var="coupVo" items="${coupList}">
 						                            <div class="custom-control custom-radio border-bottom py-2">
-						                                <input type="radio" class="custom-control-input" id="defaultCheck${oVo.mOptionNo}" name="mOptionNo" value="${oVo.mOptionNo}">
-						                                <input type="hidden" value="${menuAllvo.memberMenuVo.menuPrice+oVo.mOptionPrice}">
-						                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck${oVo.mOptionNo}">${oVo.mOptionName} <p class="text-muted mb-0">+${oVo.mOptionPrice}원</p></label>
+						                            <c:if test="${coupVo.dupChk==0 }">
+						                                <input type="radio" class="custom-control-input" id="couponRadio${coupVo.sCBoxNo}" name="sCBoxNo" value="${coupVo.sCBoxNo}" checked="checked">
+						                                <label class="custom-control-label py-3 w-100 px-3" for="couponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
+						                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
+						                                </label>
+						                                <c:set var="i" value="1" />
+						                            </c:if>
+						                            <c:if test="${coupVo.dupChk>0}">
+						                            	<c:if test="${coupVo.rCBoxUse=='Y'}">
+							                                <p class="text-muted mb-0 strong"><strong>이미 사용한 쿠폰입니다</strong></p>
+							                                <input type="radio" class="custom-control-input" id="existCouponRadio${coupVo.sCBoxNo}" disabled="disabled" >
+							                                <label class="custom-control-label py-3 w-100 px-3" for="existCouponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
+							                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
+							                                </label>
+						                            	</c:if>
+						                            	<c:if test="${coupVo.rCBoxUse!='Y'}">
+							                                <p class="text-muted mb-0"><strong>이미 발급된 쿠폰입니다 </strong></p>
+							                                <input type="radio" class="custom-control-input" id="useCouponRadio${coupVo.sCBoxNo}" disabled="disabled" >
+							                                <label class="custom-control-label py-3 w-100 px-3" for="useCouponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
+							                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
+							                                </label>
+						                            	</c:if>
+						                            </c:if>
 						                            </div>
 					                            </c:forEach>
-				                            </c:if>
-				                        </div>
-				                    </div>
-				                </div>
-				                <div class="p-3 bg-light border-bottom">
-				                    <p class="text-muted h6">수량 <span class="count-number float-right">
-				                    	<button type="button" class="btn-sm btn btn-outline-secondary minusBt"><i class="feather-minus"></i></button>
-				                    	<input class="count-number-input qty" type="text" name="cartQty" readonly="readonly" value="1">
-				                    	<button type="button" class="btn-sm btn btn-outline-secondary plusBt"><i class="feather-plus"></i></button>
-				                    </span></p>
-				                </div>
-				                <div class="p-3 bg-light border-bottom">
-				                    <p class="text-muted fs-5 fw-bold font-monospace">Total
-					                    <span class="float-right font-monospace totalPrice" style="font-weight: 700">
-					                    ${menuAllvo.memberMenuVo.menuPrice}원</span>
-				                    </p>
-				                </div>
-				                <div class="modal-footer p-0 border-0">
-				                    <div class="col-6 m-0 p-0">
-				                        <button type="submit" class="btn btn-primary btn-lg btn-block">장바구니담기</button>
-				                    </div>
-				                    <div class="col-6 m-0 p-0">
-				                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">취소</button>
-				                    </div>
-				                </div>
-			                </form> --%>
-			            </div>
-			        </div>
-			    </div>
+					                        </div>
+					                    </div>
+					                </div>
+					                <div class="modal-footer p-0 border-0">
+					                    <div class="col-6 m-0 p-0">
+					                    	<c:if test="${i>0}">
+						                        <button type="submit" class="btn btn-primary btn-lg btn-block">해당쿠폰 발급받기</button>
+					                    	</c:if>
+					                    	<c:if test="${i==0}">
+						                        <button type="button" class="btn btn-primary btn-lg btn-block disabled">발급가능한 쿠폰이 없습니다</button>
+					                    	</c:if>
+					                    </div>
+					                    <div class="col-6 m-0 p-0">
+					                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">닫기</button>
+					                    </div>
+					                </div>
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+			    </c:if>
+			    <!-- /쿠폰 모달 -->
             </div>
         </div>
     </div>
