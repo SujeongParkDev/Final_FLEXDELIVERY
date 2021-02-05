@@ -16,16 +16,6 @@ public class AdminController {
 	public void adminLogin() {
 		logger.info("관리자 - 로그인 화면");
 	}
-
-	@RequestMapping("/myPage/myPage.do")
-	public void adminMyPage() {
-		logger.info("관리자 - 마이페이지 비밀번호 확인 화면");
-	}
-	
-	@RequestMapping("/myPage/myPage2.do")
-	public void adminMyPage2() {
-		logger.info("관리자 - 마이페이지 화면");
-	}
 	
 	@RequestMapping("/index.do")
 	public void adminMain() {

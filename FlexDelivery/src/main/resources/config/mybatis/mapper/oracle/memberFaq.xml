@@ -9,10 +9,10 @@
 		order by FAQ_NO desc
 	</select>
 	
-	<select id="faqSelect" parameterType="string"
-		resultType="faqVo">
+	<select id="faqSelect" parameterType="int"
+		resultType="memberFaqVo">
 		select * from faq
-		where f_category_no = #{};
+		where f_category_no = #{fCategoryNo};
 	</select>
 	
 	
