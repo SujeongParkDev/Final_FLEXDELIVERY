@@ -65,7 +65,7 @@
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
-										<button type="button" class="button p-0 text text" method="post" enctype="multipart/form-data">
+										<button type="button" class="button p-0 text text" id="open">
 											로고변경요청</button>
 										에서 하실 수 있습니다.
 										<ul class="bullet-ul small muted">
@@ -299,11 +299,13 @@
 </div>
 
 <div>
-	<div class="Dialog     on  " style="display: none;" >
-		<form novalidate="" class="dialog on lg ">
+<div class="modal-wrapper" style="display: none;">
+	<div class="Dialog     on  " >
+		<form novalidate="" class="dialog on lg " 
+		action="<c:url value='/owner/menu2/basic/basic.do'/>" method="post" enctype="multipart/form-data">
 			<div class="header">
 				<div class="header-close">
-					<button class="close" type="button">나가기</button>
+					<button id="close" type="button" >나가기</button>
 				</div>
 				<div class="header-title">
 					<h3>가게 로고 변경</h3>
@@ -325,13 +327,13 @@
 									</button></span></span>
 						</div>
 						<ul class="bullet-ul small muted">
-		                     <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
-                             <br><span style="margin-left:60px;"></span>  
+		                    <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
+                             <br><span style="margin-left:60px;"></span> 
 							<li>15MB 이하, JPG, PNG, ZIP, PDF 형식의 파일만 등록할 수 있습니다. (최대 5개까지
 								첨부가능)</li>
 						</ul>
 					</div>
-					<div class="form-group ">
+					<!-- <div class="form-group ">
 						<h5 class="form-label">요청 내용</h5>
 						<div class="form-control-wrap">
 							<div class="form-control ">
@@ -342,15 +344,27 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="footer">
-				<button type="submit" class="button popup primary">요청</button>
+				<button type="submit" class="button popup primary">변경</button>
 			</div>
 		</form>
 	</div>
 </div>
+</div>
+<script type="text/javascript">
+const open = document.getElementById("open");
+const close = document.getElementById("close");
+const modal = document.querySelector(".modal-wrapper");
+open.onclick = () => {
+  modal.style.display = "flex";
+};
+close.onclick = () => {
+  modal.style.display = "none";
+};
+</script>
 
 <script src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/js/venders.js?ts=20210202090306"></script>
 <script src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/js/ceo-selfservice.js?ts=20210202090306"></script>

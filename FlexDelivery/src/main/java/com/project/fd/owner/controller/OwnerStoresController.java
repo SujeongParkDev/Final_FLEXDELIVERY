@@ -95,7 +95,7 @@ public class OwnerStoresController {
 				=fileUtil.fileUplaod(request, FileUploadUtil.STORES_TYPE);
 				for(Map<String, Object> fileMap : fileList) {
 					originName=(String) fileMap.get("originalFileName");
-					fileName=(String) fileMap.get("fileName");
+					fileName=(String) fileMap.get("fileName");//
 					fileSize=(Long)fileMap.get("fileSize");				
 				}//for
 			} catch (IllegalStateException e) {
