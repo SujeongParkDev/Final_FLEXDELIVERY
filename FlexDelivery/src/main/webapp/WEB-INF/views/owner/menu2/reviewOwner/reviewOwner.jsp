@@ -36,15 +36,15 @@
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
-		<ul class="nav nav-pills" style="float: left;">
-			<li class="nav-item"><a class="nav-link " aria-current="page"
-				href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">전체(${fn:length(reviewList) })</a>
+		<ul class="nav nav-pills" style="float: right;">
+			<li class="nav-item">
+				<a class="nav-link " aria-current="page" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">전체(${fn:length(reviewList) })</a>
 			</li>
-			<li class="nav-item"><a class="nav-link active"
-				href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">미답변()
+			<li class="nav-item">
+				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">미답변()
 			</a></li>
-			<li class="nav-item"><a class="nav-link active"
-				href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">차단()
+			<li class="nav-item">
+				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">차단()
 			</a></li>
 		</ul>
 	</div>
@@ -54,18 +54,19 @@
 <!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>
-
 	<div class="col-md-8 col-sm-12">
 		<div class="card">
-			<div class="card-header text-center">
-				<h4 class="card-title">전체 리뷰</h4>
-			</div>
+		<br>
+			<div class="card-content">
+				<div class="card-body">
+					<p class="card-text text-center" style="font-size: 20px; font:bold;">리뷰 관리 </p>
+					<p class="card-text text-left" >평균 별점 입니다. </p>
+					<br> <br>
 			<div class="card-content">
 				<div class="card-body text-center">
-
 					<div class="row">
-						<div class="col-md-5 col-12"></div>
-						<div class="col-md-5 col-12 ">
+						<div class="col-md-4 col-12"></div>
+						<div class="col-md-6 col-12 ">
 							<form name="frmPage" method="post" name="frm1"
 								action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
@@ -73,9 +74,7 @@
 							</form>
 						</div>
 						<div class="col-md-2 col-12">
-							<input type="submit"
-								style="background-color: rgb(223, 108, 220); color: white;"
-								value="조회">
+							<input type="submit" style="background-color: rgb(223, 108, 220); color: white;" value="조회">
 						</div>
 					</div>
 					<br>
@@ -85,10 +84,10 @@
 						</div>
 					</c:if>
 					<div class="all-div" id="AllDiv">
-					
 					<c:if test="${!empty reviewList }">
 						<c:forEach var="map" items="${reviewList }">
 							<hr>
+							<br>
 							<div class="review-list">
 								<div class="row ">
 									<div class="col-md-3">
@@ -108,7 +107,6 @@
 									</div>
 									<div class="col-md-7 text-left">${map['REVIEW_CONTENT']}</div>
 									<div class="col-md-1"></div>
-
 								</div>
 							</div>
 							<br>
@@ -119,7 +117,6 @@
 									<div class="col-xs-12 col-sm-6 col-md-8"> </div>
 									<div class="col-xs-6 col-md-4"></div>
 								</div>
-
 								<!-- CEO comment start !! -->
 								<c:if test="${!empty map['R_COMMENT_CONTENT']}">
 								<div class="CEO-comment" style="background-color:rgba(208, 201, 208, 0.12); color: #333;">
@@ -128,6 +125,7 @@
 										<input type="hidden" id="reviewNo" name="reviewNo"
 											value="${map['REVIEW_NO'] }"> <input type="hidden"
 											id="storeNo" name="storeNo" value="1">
+										<div class="reply" style="padding:7%;">
 										<div class="row" >
 											<div class="col-md-3">
 												<h4>사장님&nbsp;</h4>
@@ -142,18 +140,20 @@
 											</div>
 											<div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
 											<div class="result" id="resultDiv"></div>
-										</div>
+											</div>
 										<div class="row">
 											<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
-											<div class="button-group button-group-row align-right ">
-												<button type="button" class="button small danger inGroup"
-													onclick="btDel(${map['REVIEW_NO']})"
-													style="background-color: rgb(223, 108, 220); color: white;">삭제</button>
-												<button type="submit" class="button small secondary inGroup"
+											<div class="text-right" style="margin-bottom:10px;">
+											<div class="button-group button-group-row align-right "><br><br>
+												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
+													style="background-color: rgb(223, 108, 220); color: white;" value="삭제 ">
+												<input type="submit" class="button small secondary inGroup"
 													id="btEdit" onclick="Edit_form(${map['REVIEW_NO']})"
-													style="background-color: rgb(223, 108, 220); color: white;">수정</button>
+													style="background-color: rgb(223, 108, 220); color: white;" value="수정 ">
+												</div>
 											</div>
 										</div>
+									</div>
 										<!-- ${sessionScope.storeNo} 변경하기  -->
 									</form>
 									</div>
@@ -171,9 +171,11 @@
 											<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }">
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
-											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" placeholder="댓글을 등록해주세요"></textarea>
-											<button class="button medium" type="submit" onclick="" style="background-color: rgb(223, 108, 220); color: white;">댓글작성
-											</button>
+												 <div style="border: radius 2px solid lightgray;">
+											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" placeholder="사장님 ! 댓글을 등록해주세요.">
+											</textarea>
+												<input class="button medium" type="submit" onclick="" style="background-color: rgb(223, 108, 220); color: white;" value="댓글작성">
+												 </div>
 										</form>
 									</div>
 								</c:if>
@@ -183,6 +185,8 @@
 					</div><!-- AllDiv -->
 				</div>
 			</div>
+		</div>
+		</div>
 		</div>
 	</div>
 </div><!-- The end -->

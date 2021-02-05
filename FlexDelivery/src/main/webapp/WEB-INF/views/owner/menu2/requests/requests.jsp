@@ -10,19 +10,6 @@ input {
 </style>
 <!-- 버튼 4개 쓸까 말까 ? ? 깔끔하게 지우는게 낫겟지 ?-->
 <br>
-<div class="row mt-3">
-	<div class="col-md-2 col-sm-12"></div>
-	<div class="col-md-8 col-sm-12">
-		<div class="text-right">
-			<button id="btWair" class="btn btn-primary btWair">승인 대기 </button>
-			<button id="btWan" class="btn btn-primary btWan">승인 완료 </button>
-			<button id="btRe" class="btn btn-primary btRe ">승인 반려</button>
-			<button id="btCan" class="btn btn-primary btCan">승인 취소 </button>
-		</div>
-	</div>
-	<div class="col-md-2 col-sm-12"></div>
-</div>
-<br>
 <!-- 셀렉 옵션 선택 내용 -->
 <div class="row" id="basic-table">
 	<div class="col-md-2 col-sm-12"></div>

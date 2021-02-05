@@ -52,16 +52,14 @@
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
-						                	<c:set var="type" value="${type }"></c:set> 
-						                		<c:if test="${type=='file'}">
-						                			<img src
-														="${pageContext.request.contextPath}/resources/imgs/StoresImages/${stVo.storeLogo}" 
-														alt="${stVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
-												</c:if>
-												<c:if test="${type=='url'}">
-				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/StoresImages/${stVo.storeLogo}"  style="height:250px; width:80%;"
-		       											 alt="${stVo.storeLogo }" class="thumbnail">
-		       									</c:if>
+						                	
+						                		<c:if test="${fn:substring(stVo.storeLogo, 0,4)=='http' }">
+											<img src="${stVo.storeLogo}" class="card-img-top"  alt ="${rgVo.oRegisterNo}"  style="height:150px;">
+										</c:if>
+										<c:if test="${fn:substring(stVo.storeLogo, 0,4)!='http' and (!empty stVo.storeLogo) }">
+											<img src
+												="<c:url value='${pageContext.request.contextPath}/resources/imgs/StoresImages/${stVo.storeLogo}'/>"  class="card-img-top" alt ="${rgVo.oRegisterNo}"style="height:150px;">
+										</c:if>	
 				                			</td>
 						                </tr>
 						                <tr class="text-center">

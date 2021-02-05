@@ -58,16 +58,14 @@
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
-						                	<c:set var="type" value="${type }"></c:set> 
-						                		<c:if test="${type=='file'}">
-						                			<img src
-														="${pageContext.request.contextPath}/resources/imgs/OwnerRegisterImages/${rgVo.oRegisterFileName}" 
-														alt="${rgVo.oRegisterFileName }" style="height:250px; width:80%;"  class="thumbnail">
-												</c:if>
-												<c:if test="${type=='url'}">
-				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/OwnerRegisterImages/${rgVo.oRegisterFileName}"  style="height:250px; width:80%;"
-		       											 alt="${rgVo.oRegisterFileName }" class="thumbnail">
-		       									</c:if>
+						                	<c:if test="${fn:substring(rgVo.oRegisterFileName, 0,4)=='http' }">
+											<img src="${rgVo.oRegisterFileName}" class="card-img-top"  alt ="${rgVo.oRegisterNo}"  style="height:150px;">
+										</c:if>
+										<c:if test="${fn:substring(rgVo.oRegisterFileName, 0,4)!='http' and (!empty rgVo.oRegisterFileName) }">
+											<img src
+												="<c:url value='/resources/imgs/OwnerRegisterImages/${rgVo.oRegisterFileName}'/>"  class="card-img-top" alt ="${rgVo.oRegisterNo}"style="height:150px;">
+										</c:if>	
+						                	
 				                			</td>
 						                </tr>
 						                <tr class="text-center">

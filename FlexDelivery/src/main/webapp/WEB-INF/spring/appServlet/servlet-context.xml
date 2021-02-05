@@ -62,6 +62,10 @@
 			<mapping path="/owner/menu1/launch/launchNext.do"/>
 			<beans:ref bean="ownerMyStoreInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/owner/menu1/launch/launchNext.do"/>
+			<beans:ref bean="licenseInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	

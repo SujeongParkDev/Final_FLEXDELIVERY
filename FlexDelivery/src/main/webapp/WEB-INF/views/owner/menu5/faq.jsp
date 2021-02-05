@@ -33,20 +33,25 @@ button.btn.btn-link {
 	</div>
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
-	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage" value="1"> 
-		<input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
+	<form name="frmPage" method="post" style="float: right;"
+		action="<c:url value='/owner/menu5/faq.do'/>">
+		<input type="hidden" name="currentPage" value="1"> <input
+			type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
-		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faq.do'/>">
-			<div class="dropdown" >
-				<a class="btn btn-primary " href="#none" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 카테고리 </a>
+		<form name="frmSearch" method="post"
+			action="<c:url value='/owner/menu5/faq.do'/>">
+			<div class="dropdown">
+				<a class="btn btn-primary " href="#none" role="button"
+					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> 카테고리 </a>
 				<!-- 반복문 시작 -->
 				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink"
 					style="text-decoration: none;">
 					<c:forEach var="cgVo" items="${cgList }">
-						<a class="dropdown-item" id="cgName" href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
+						<a class="dropdown-item" id="cgName"
+							href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
 					</c:forEach>
 				</div>
 			</div>
@@ -74,39 +79,44 @@ button.btn.btn-link {
 				</c:if>
 				<c:if test="${!empty list }">
 					<c:forEach var="vo" items="${list}">
-						<div class="accordion" id="accordionExample">
-							<div class="accodionTitle" id="headingTwo">
+						<div class="bg-white mb-2 rounded shadow-sm overflow-hidden">
+							<div id="accountHeading${vo.faqNo }">
 								<tr class="text-center">
 									<th scope="row">
 										<div style="display: block; padding: 10px;">${vo.faqNo }</div>
 									</th>
-									<!-- 옵션 선택을 안 할 경우 desc로 전체  -->
-									<td class="">
-										<div style="display: block; padding: 10px;">${vo.fCategoryName }</div>
-									</td>
-									<td class="text-left">
-										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" 
-										aria-controls="collapseTwo">${vo.faqQ} </button>
-									</td>
-								</tr>
-							</div>
-							<tr class="text-center">
-								<th scope="row"></th>
-								<td></td>
+							<!-- 옵션 선택을 안 할 경우 desc로 전체  -->
+								<td class="">
+									<div style="display: block; padding: 10px;">${vo.fCategoryName }</div>
+								</td>
 								<td class="text-left">
-									<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-										<div style="display: block; padding: 10px;">${vo.faqA}</div>
+									<button style="border:none;" class="shadow-none btn btn-block d-flex justify-content-between card-btn collapsed p-3"
+										data-toggle="collapse" data-target="#accountCollapse${vo.faqNo}" aria-expanded="false" 
+										aria-controls="accountCollapse${vo.faqNo}">${vo.faqQ}
+										<span class="card-btn-arrow"> 
+										<span class="feather-chevron-down">
+										</span>
+									</span>
+								</button>
+							</td>
+						</tr>
+					</div>
+					<tr class="text-center">
+						<th scope="row"></th>
+						<td></td>
+						<td class="text-left">
+							<div id="accountCollapse${vo.faqNo}" class="collapse" aria-labelledby="accountHeading${vo.faqNo}" data-parent="#Accordion">
+								<div class="card-body  text-muted">${vo.faqA }</div>
 									</div>
 								</td>
 							</tr>
-						</div>
 						</div>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
 	</div>
-	<div class="col-12 col-md-2"></div>
+<div class="col-12 col-md-2"></div>
 </div>
 
 <!-- 페이지 시작-->
@@ -116,24 +126,26 @@ button.btn.btn-link {
 			<!-- 페이지 번호 추가 -->
 			<!-- 이전 블럭으로 이동 -->
 			<c:if test="${pagingInfo.firstPage>1 }">
-				<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:if>
 			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
+			<c:forEach var="i" begin="${pagingInfo.firstPage}"
+				end="${pagingInfo.lastPage}">
 				<c:if test="${i==pagingInfo.currentPage }">
 					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
 				</c:if>
 				<c:if test="${i!=pagingInfo.currentPage }">
-					<li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="pageFunc(${i})">${i}</a></li>
 				</c:if>
 			</c:forEach>
 			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-				<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
-					<span aria-hidden="true">&raquo;</span>
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
+						<span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:if>
 		</ul>
@@ -150,7 +162,7 @@ button.btn.btn-link {
 	
 $(function(){
 	$('#collapseTwo').hide();
-	if($('#cgName').on('click',function(idx,item)){
+	if($('#cgName').on('click',function(idx,item){
 		$('#collapseTwo').child().show();
 	}
 });
