@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>점포 입점 신청 상세 보기 </title>
+    <title>사업자 등록증 등록 신청 상세 보기 </title>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -27,7 +27,13 @@
 		$('#btclose').click(function(){
 				self.close();
 		});
-	});
+		
+});
+    function cancle(no){
+			location.href='<c:url value="/owner/menu2/requests/deleteRegi.do?no="/>'+no;
+			alret('정상적으로 취소 되었습니다.');
+			window.open("about:blank","_self").close();
+    }
 	</script>
 </head>	
 		<!-- 메뉴 컨텐츠 내용 br 바꾸기 -->
@@ -55,43 +61,32 @@
 						                	<c:set var="type" value="${type }"></c:set> 
 						                		<c:if test="${type=='file'}">
 						                			<img src
-														="<c:url value='/resources/imgs/StoresImages/${stVo.storeLogo}'/>" 
-														alt="${stVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
+														="${pageContext.request.contextPath}/resources/imgs/OwnerRegisterImages/${rgVo.oRegisterFileName}" 
+														alt="${rgVo.oRegisterFileName }" style="height:250px; width:80%;"  class="thumbnail">
 												</c:if>
 												<c:if test="${type=='url'}">
-				 		               				<img src="<c:url value='/resources/imgs/StoresImages/${stVo.storeLogo}'/>"  style="height:250px; width:80%;"
-		       											 alt="${stVo.storeLogo }" class="thumbnail">
+				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/OwnerRegisterImages/${rgVo.oRegisterFileName}"  style="height:250px; width:80%;"
+		       											 alt="${rgVo.oRegisterFileName }" class="thumbnail">
 		       									</c:if>
 				                			</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500" >점포명  </th>
-							                  <td>${stVo.storeName}</td>
+							                  <th class="text-bold-500" >사업자 등록 번호  </th>
+							                  <td>${rgVo.oRegisterNo}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500"  >점포 주소 </th>
-							                  <td>${stVo.storeAddress}</td>
-						                </tr>
-						                <tr class="text-center">
-							                  <th class="text-bold-500">상세 주소 </th>
-							                  <td>${stVo.storeAddressDetail}</td>
-						                </tr>
-						                <tr class="text-center">
-							                  <th class="text-bold-500">점포 지역명 </th> <!-- 나중에 네임으로 다 바꾸기  -->
-							                  <td>${stVo.locationName}</td>
-						                </tr>
-						                <tr class="text-center">
-							                  <th class="text-bold-500"> 메뉴 대분류 </th>
-							                  <td>${stVo.lCategoryName}</td>
+							                  <th class="text-bold-500"  >신청일  </th>
+							                  <td>${rgVo.ownerregisterRegdate}</td>
 						                </tr>
 						              </tbody>
 						            </table>
 						          </div>
 						       </div>
 				       	   <!-- 끝  -->
-				       	     <div class="text-center">
+				       	   <div class="text-center">
 				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
-				       	     </div>
+				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" onclick="cancle(${rgVo.oRegisterNo})">취소</button>
+				       	   </div>
 				       </div>
 				   </div>
 				</div>

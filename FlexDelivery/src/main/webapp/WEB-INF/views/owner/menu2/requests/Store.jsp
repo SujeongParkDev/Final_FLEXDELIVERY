@@ -55,11 +55,11 @@
 						                	<c:set var="type" value="${type }"></c:set> 
 						                		<c:if test="${type=='file'}">
 						                			<img src
-														="<c:url value='/resources/imgs/StoresImages/${stVo.storeLogo}'/>" 
+														="${pageContext.request.contextPath}/resources/imgs/StoresImages/${stVo.storeLogo}" 
 														alt="${stVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
 												</c:if>
 												<c:if test="${type=='url'}">
-				 		               				<img src="<c:url value='/resources/imgs/StoresImages/${stVo.storeLogo}'/>"  style="height:250px; width:80%;"
+				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/StoresImages/${stVo.storeLogo}"  style="height:250px; width:80%;"
 		       											 alt="${stVo.storeLogo }" class="thumbnail">
 		       									</c:if>
 				                			</td>

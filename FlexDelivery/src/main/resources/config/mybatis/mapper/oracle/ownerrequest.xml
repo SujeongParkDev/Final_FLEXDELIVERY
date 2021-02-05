@@ -43,4 +43,46 @@
 		select * from ownerregister where o_register_no=#{oRegisterNo}
 	</select>
 	
+	<select id="selectStoresVO" parameterType="int" resultType="ownerStoresVo">
+		select s.* ,c.LOCATION_NAME, l.L_CATEGORY_NAME
+		from STORES s join LOCATION c
+		on s.LOCATION_NO=c.LOCATION_NO
+        join LARGECATEGORY l
+        on s.L_CATEGORY_NO=l.L_CATEGORY_NO
+        where s.store_no=#{storeNo}
+	</select>
+	
+	<select id="selectAD" parameterType="int" resultType="ownerStoreAdVo">
+		select * from storead where storead_no=#{storeadNo}
+	</select>
+	
+	<!-- tempstore에는 라지 카테고리 번호가 없다 ! 어디서 바꾸지 ?  -->
+	<select id="selectTempVO" parameterType="int" resultType="ownerTemporaryVo">
+		select t.* ,c.LOCATION_NAME
+		from TEMPORARY t left join LOCATION c
+		on t.LOCATION_NO=c.LOCATION_NO
+        where t.t_no=#{tNo}
+	</select>
+	
+	<!-- 삭제 요청 시 A_AGREE_NO 2 로 변경  -->
+	<update id="updateRegi" parameterType="long">
+		update ownerregister
+		set a_agree_no=2
+		where o_register_no=#{oRegisterNo}
+	</update>
+	
+	<update id="updateStore" parameterType="int">
+		update STORES
+		set a_agree_no=2
+		where store_no=#{storeNo}
+	</update>
+	
+<!-- 광고 취소는 광고 페이지에서 ?  -->
+	
+	<update id="updateTempstore" parameterType="int">
+		update TEMPORARY
+		set a_agree_no=2
+		where t_no=#{tNo}
+	</update>
+	
 </mapper>

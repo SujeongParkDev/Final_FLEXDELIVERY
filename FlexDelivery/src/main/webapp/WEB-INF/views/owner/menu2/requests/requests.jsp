@@ -8,16 +8,16 @@ input {
 	height: 35px;
 }
 </style>
-<!-- 메뉴 버튼 -->
+<!-- 버튼 4개 쓸까 말까 ? ? 깔끔하게 지우는게 낫겟지 ?-->
 <br>
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
 		<div class="text-right">
-			<button id="btNowMenu" class="btn btn-primary btMainMenuChange">현재메뉴</button>
-			<button id="btMenuChange" class="btn btn-primary btMainMenuChange">메뉴편집</button>
-			<button id="btOptionChange" class="btn btn-primary btMainMenuChange ">옵션편집</button>
-			<button id="btMainMenu" class="btn btn-primary btMainMenuChange">대표메뉴</button>
+			<button id="btWair" class="btn btn-primary btWair">승인 대기 </button>
+			<button id="btWan" class="btn btn-primary btWan">승인 완료 </button>
+			<button id="btRe" class="btn btn-primary btRe ">승인 반려</button>
+			<button id="btCan" class="btn btn-primary btCan">승인 취소 </button>
 		</div>
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
@@ -32,7 +32,7 @@ input {
 			<div class="card-content">
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px;">요청 처리 현황</p>
-					<p class="card-text text-center">요청 처리 현황 상세보기에서 취소하실 수 있습니다.</p>
+					<p class="card-text text-center">승인 대기 상태일 경우 상세보기에서 확인 후 취소하실 수 있습니다.</p>
 					<br> <br>
 					<div class="row">
 						<!-- 데이터 피커  -->
@@ -66,7 +66,7 @@ input {
 									<c:forEach var="tempVo" items="${selectTemp }">
 										<tr class="text-center">
 											<td>점포 정보 변경 신청</td>
-											<td>${tempVo['STOREAD_REGDATE']}</td>
+											<td>${fn:substring(tempVo['STOREAD_REGDATE'], 0,10) }</td>
 											<td class="text-bold-500">
 											<c:if test="${tempVo['A_AGREE_NO'] == 1 }">
 													<span class="badge bg-light">승인대기</span>
@@ -81,9 +81,7 @@ input {
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
 											<td class="p-0">
-											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소 </button>
-												<button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button>
-												<br></td>
+												<button class="buttons badge bg-dark" onclick="gotempVo(${tempVo['T_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -104,15 +102,13 @@ input {
 													<span class="badge bg-success">승인완료</span>
 												</c:if></td>
 											<td class="p-0">
-											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
-												</button>
-												<button class="btn btn-outline-info p-2 btmenu" value="" name="">상세 보기</button></td>
+												<button class="buttons badge bg-dark" onclick="goAD(${adVo['STOREAD_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
 								</c:if>
 								<!--  -->
-								<c:if test="${!empty RegiList }">
+								<c:if test="${!empty selectStore }">
 									<c:forEach var="stVo" items="${selectStore }">
 										<tr class="text-center">
 											<td>입점 등록 신청</td>
@@ -130,11 +126,8 @@ input {
 												<c:if test="${stVo['A_AGREE_NO'] == 4 }">
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
-											<td class="p-0"><button
-													class="btn btn-outline-dark p-2 btmenu" value="" name="">취소
-												</button>
-												<button class="btn btn-outline-info p-2 btmenu" value=""
-													name="">상세 보기</button></td>
+											<td class="p-0">
+												<button class="buttons badge bg-dark" onclick="goStores(${stVo['STORE_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -159,9 +152,7 @@ input {
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
 											<td class="p-0">
-											<input type="hidden" value="${regiVo['O_REGISTER_NO'] }" id="regiNo">
-											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소</button>
-												<button class="btn btn-outline-info p-2 btmenu" value=""name="" id="detailRegi">상세 보기</button></td>
+												<button class="buttons badge bg-dark" onclick="goDetail(${regiVo['O_REGISTER_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -177,160 +168,73 @@ input {
 	<div class="col-md-2 col-sm-12"></div>
 </div>
 
-<!-- 등록 모달! -->
-<div class="modal fade text-left" id="inlineForm" tabindex="-1"
-	aria-labelledby="myModalLabel33" style="display: none;"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-		role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel33">상세 보기</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						class="feather feather-x">
-						<line x1="18" y1="6" x2="6" y2="18"></line>
-						<line x1="6" y1="6" x2="18" y2="18"></line></svg>
-				</button>
-			</div>
-			<form name="frm123">
-				<div class="modal-body">
-					<div class="form-group groupMenuInput"></div>
-					<div class="form-group">
-						<label>옵션 순위 선택</label> <select
-							class="form-select menuOptionSelect p-2" name="oRankNo"
-							id="oRankNo" style="overflow: auto; text-align-last: center;">
-						</select>
-					</div>
-					<label>옵션 이름<span style="color: red; margin-left: 4px;"><b>*</b></span></label>
-					<div class="form-group">
-						<input type="text" class="form-control text-right"
-							id="mOptionName" name="mOptionName" style="width: 100%;">
-					</div>
-					<div style="text-align: right;">
-						<span id="warningOptionName" style="color: red;"></span>
-					</div>
-					<label>옵션 가격<span style="color: red; margin-left: 4px;"><b>*</b></span></label>
-					<div class="form-group">
-						<input type="text" class="form-control text-right"
-							id="mOptionPrice" name="mOptionPrice" style="width: 100%;">
-					</div>
-					<div style="text-align: right;">
-						<span id="warningOptionPrice" style="color: red;"></span>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button"
-						class="btn btn-light-secondary submitWriteOption">
-						<i class="bx bx-x d-block d-sm-none "></i> <span
-							class="d-none d-sm-block">등록</span>
-					</button>
-					<button type="button" class="btn btn-primary ml-1"
-						data-dismiss="modal">
-						<i class="bx bx-check d-block d-sm-none"></i> <span
-							class="d-none d-sm-block">취소</span>
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<br>
-<br>
-<br>
 
- <!-- 등록 모달! -->
-			 <div class="modal fade text-left" id="inlineForm" tabindex="-1" aria-labelledby="myModalLabel33" style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel33">옵션 등록</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                            </button>
-                            </div>
-                            <form  name="frm123" >
-	                            <div class="modal-body">
-	                               	 <div class="form-group groupMenuInput">
-	                                </div>
-	                                <div class="form-group">
-	                                	<label>옵션 순위 선택</label>
-		                                <select class="form-select menuOptionSelect p-2" name="oRankNo" id="oRankNo" style="overflow : auto; text-align-last:center;">
-										</select>
-	                                </div>
-	                                <label>옵션 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-	                                 <div class="form-group optionNameInput" >
-	                               		 <input type="text"  class="form-control text-right" id="mOptionName" name="mOptionName"  style="width:100%;">
-	                                </div>
-	                                <div style="text-align: right;">
-		                    	  		<span id="warningOptionName" style="color:red; "></span>
-		                    	    </div>
-		                    	    <label>옵션  가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-	                                 <div class="form-group optionPriceInput" >
-	                               		 <input type="text"  class="form-control text-right" id="mOptionPrice" name="mOptionPrice"  style="width:100%;">
-	                                </div>
-	                                <div style="text-align: right;">
-		                    	  		<span id="warningOptionPrice" style="color:red; "></span>
-		                    	    </div>
-	                            </div>
-	                            <div class="modal-footer">
-	                                <button type="button" class="btn btn-light-secondary submitWriteOption">  
-	                                	<i class="bx bx-x d-block d-sm-none "></i>
-	                                	<span class="d-none d-sm-block">등록</span>
-	                                </button>
-	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-	                               		<i class="bx bx-check d-block d-sm-none"></i>
-	                                	<span class="d-none d-sm-block">취소</span>
-	                                </button>
-	                            </div>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-				   	<br>
 
 <script type="text/javascript">
-	function goDetail(no) {
-		var windowW = 650; // 창의 가로 길이
-		var windowH = 700; // 창의 세로 길이
-		var left = Math.ceil((window.screen.width - windowW) / 2);
-		var top = Math.ceil((window.screen.height - windowH) / 2);
+function goDetail(no){
+	var windowW = 500;  // 창의 가로 길이
+    var windowH = 500;  // 창의 세로 길이
+    var left = Math.ceil((window.screen.width - windowW)/2);
+    var top = Math.ceil((window.screen.height - windowH)/2);
+    
+    // 정상 작동이프 제거하면 됨 
+$(function(){
+  var url="<c:url value='/owner/menu2/requests/tempRegi.do?no='/>"+no;
+  
+	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
+	event.preventDefault();
+	
+});
+}//detail
+function goStores(no){
+	var windowW = 500;  // 창의 가로 길이
+    var windowH = 700;  // 창의 세로 길이
+    var left = Math.ceil((window.screen.width - windowW)/2);
+    var top = Math.ceil((window.screen.height - windowH)/2);
+    
+    // 정상 작동이프 제거하면 됨 
+$(function(){
+  	  var url="<c:url value='/owner/menu2/requests/Store.do?no='/>"+no;
+	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
+	event.preventDefault();
+	
+});
+}//detail
 
-		var url = "${pageContext.request.contextPath}/owner/menu2/foodmenu/menuDetail.do?menuNo="
-				+ no;
+function goTemp(no){
+	var windowW = 500;  // 창의 가로 길이
+    var windowH = 700;  // 창의 세로 길이
+    var left = Math.ceil((window.screen.width - windowW)/2);
+    var top = Math.ceil((window.screen.height - windowH)/2);
+    
+    // 정상 작동이프 제거하면 됨 
+$(function(){
+  	  var url="<c:url value='/owner/menu2/requests/tempStore.do?no='/>"+no;
+	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
+	event.preventDefault();
+	
+});
+}//detail
 
-		window.open(url, "메뉴 상세 정보", "l top=" + top + ", left=" + left
-				+ ", height=" + windowH + ", width=" + windowW, "scroll-x="
-				+ no);
-		event.preventDefault();
-	}
+function goAD(no){
+	var windowW = 500;  // 창의 가로 길이
+    var windowH = 500;  // 창의 세로 길이
+    var left = Math.ceil((window.screen.width - windowW)/2);
+    var top = Math.ceil((window.screen.height - windowH)/2);
+    
+    // 정상 작동이프 제거하면 됨 
+$(function(){
+  	  var url="<c:url value='/owner/menu2/requests/tempAD.do?no='/>"+no;
+	window.open(url,"승인 목록 상세 정보","l top="+top+", left="+left+", height="+windowH+", width="+windowW,"scroll-x="+no);
+	event.preventDefault();
+	
+});
+}//detail
 
-	$(function() {
-		$('.btMainMenuChange')
-				.click(
-						function() {
+/*
+ * 
 
-							var url = '<c:url value="/owner/menu2/foodmenu/menuMain.do"/>';
-
-							if ($(this).attr('id') == 'btNowMenu') {
-								url = '<c:url value="/owner/menu2/foodmenu/menuMain.do"/>';
-							} else if ($(this).attr('id') == 'btMenuChange') {
-								url = '<c:url value="/owner/menu2/foodmenu/menuGroup.do"/>';
-							} else if ($(this).attr('id') == 'btOptionChange') {
-								url = '<c:url value="/owner/menu2/foodmenu/menuOption.do"/>';
-							} else if ($(this).attr('id') == 'btMainMenu') {
-								url = '<c:url value="/owner/menu2/foodmenu/signatureMenu.do"/>';
-							}
-
-							location.href = url;
-						});
-
-	});
-
-	//메뉴 그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
+	//그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
 	$(function() {
 		$('.groupChoice').change(function() {
 			$('#btOptionWrite').css('display', 'block');
@@ -393,173 +297,7 @@ input {
 		});
 
 	});
-
-	///input 클릭시 유효성 검사 span 사라지게 하기
-	$(function() {
-		$('input[type=text]').click(function() {
-			if ($(this).prop('name') == 'mOptionName') {
-				$('#warningOptionName').html('');
-				event.preventDefault();
-			} else if ($(this).prop('name') == 'mOptionPrice') {
-				$('#warningOptionPrice').html('');
-				event.preventDefault();
-			}
-		});
-
-	});
-
-	//input 에 값 입력시 중복 값 있는지 확인하기 1) input 값 change 될때 2)엔터 누를때
-	$(function() {
-		$('input[name=mOptionName]')
-				.change(
-						function() {
-
-							if ($(this).prop('name') == 'mOptionName') {
-								$('#warningOptionName').html('');
-
-								$
-										.ajax({
-											url : "<c:url value='/owner/menu2/foodmenu/checkOptionName.do'/>",
-											data : "menuNo="
-													+ $('#menuNo').val()
-													+ "&oRankNo="
-													+ $('#oRankNo').val()
-													+ "&mOptionName="
-													+ $('#mOptionName').val(),
-											dataType : "json",
-											type : "GET",
-											success : function(res) {
-												//alert(res);
-												if (res == true) {
-													$('#warningOptionName')
-															.html(
-																	"<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
-													$('input[name=mOptionName]')
-															.focus();
-													event.preventDefault();
-												}
-											},
-											error : function(xhr, status, error) {
-												alert("error!! : " + error);
-											}
-										});
-								event.preventDefault();
-
-							} else if ($(this).prop('name') == 'mOptionPrice') {
-								$('#warningOptionPrice').html('');
-								event.preventDefault();
-							}
-						});
-
-	});
-
-	/*  //엔터 누를때 
-	  $(function(){
-			$('input[name=mOptionName]').keypress(function(event){
-				if(event.key==="Enter"){
-				
-					$.ajax({
-						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-						data:"menuName=" + $('#menuName').val(),
-						dataType:"json",
-						type:"GET",
-						success:function(res){
-							//alert(res);
-							if(res==true){
-								$('#warningOptionName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
-								$('input[name=mOptionName]').focus();
-								event.preventDefault();
-								return false;
-							}
-						},
-						error:function(xhr, status, error){
-							alert("error!! : " + error);
-						}
-					});
-				}
-			
-			});
-			
-		}); 
 	 */
-	$(function() {
-		$('.submitWriteOption')
-				.click(
-						function() {
-
-							if ($('#mOptionName').val().length < 1) {
-								$('#warningOptionName').html(
-										'<small>이름을 입력해 주세요</small><br>');
-								$('#mOptionName').focus();
-								event.preventDefault();
-								return false;
-							} else if ($('#mOptionPrice').val().length < 1) {
-								$('#warningOptionPrice').html(
-										'<small>가격을 입력해 주세요</small><br>');
-								$('#mOptionPrice').focus();
-								event.preventDefault();
-								return false;
-							}
-
-							$
-									.ajax({
-										url : "<c:url value='/owner/menu2/foodmenu/checkOptionName.do'/>",
-										data : "menuNo=" + $('#menuNo').val()
-												+ "&oRankNo="
-												+ $('#oRankNo').val()
-												+ "&mOptionName="
-												+ $('#mOptionName').val(),
-										dataType : "json",
-										type : "GET",
-										success : function(res) {
-											//alert(res);
-											if (res == true) {
-												$('#warningOptionName')
-														.html(
-																"<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
-												$('input[name=mOptionName]')
-														.focus();
-												event.preventDefault();
-												return false;
-											} else {
-
-												$('form[name=frm123]').submit();
-											}
-										},
-										error : function(xhr, status, error) {
-											alert("error!! : " + error);
-										}
-									});
-
-							event.preventDefault();
-						});
-
-	});
-
-	$(function() {
-		//{"message":"등록 성공!","data":{"no":10,"name":"hong","content":"hi"}}
-		$('form[name=frm123]').submit(function() {
-
-			$.ajax({
-				url : "<c:url value='/owner/menu2/foodmenu/insertOption.do'/>",
-				type : "post",
-				data : $(this).serializeArray(),
-				dataType : "json",
-				success : function(res) {
-					//alert(res);
-					if (res > 0) {
-
-						$('#warningOptionName').html('성공');
-					}
-				},
-				error : function(xhr, status, error) {
-					alert("error! : " + error);
-				}
-			});
-			event.preventDefault();
-		});
-
-	});
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

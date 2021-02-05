@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
+import com.project.fd.owner.store.model.OwnerStoresVO;
+import com.project.fd.owner.store.model.OwnerTemporaryVO;
 
 @Service
 public class OwnerRequestServiceImpl implements OwnerRequestService{
@@ -38,6 +40,37 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 	public OwnerRegisterVO selectRegiVo(long oRegisterNo) {
 		return requestDao.selectRegiVo(oRegisterNo);
 	}
-	
+
+	@Override
+	public OwnerStoresVO selectStoresVO(int storeNo) {
+		return requestDao.selectStoresVO(storeNo);
+	}
+
+	@Override
+	public OwnerTemporaryVO selectTempVO(int tNo) {
+		return requestDao.selectTempVO(tNo);
+	}
+
+	@Override
+	public OwnerStoreAdVO selectAD(int storeadNo) {
+		return requestDao.selectAD(storeadNo);
+	}
+
+	@Override
+	public int updateRegi(long oRegisterNo) {
+		return requestDao.updateRegi(oRegisterNo);
+	}
+
+	@Override
+	public int updateStore(int storeNo) {
+		return requestDao.updateStore(storeNo);
+	}
+
+	@Override
+	public int updateTempstore(int tNo) {
+		return requestDao.updateTempstore(tNo);
+	}
+
+
 	
 }
