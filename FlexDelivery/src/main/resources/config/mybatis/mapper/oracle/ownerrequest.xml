@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.request">
+<!-- 4가지 불러와야하는데 스토어 먼저 어그리 타입까지 받으려고 올브이오 사용  -->
+	<select id="selectRegi" parameterType="int" resultType="map">
+		select r.* , a.a_agree_type
+		from ADMINAGREE a left join ownerregister r
+		on a.a_agree_no=r.a_agree_no
+        where r.owner_no=#{ownerNo}
+	</select>
+	
+	<select id="selectStore" parameterType="int" resultType="map">
+		select s.* , a.a_agree_type
+		from ADMINAGREE a left join stores s
+		on a.a_agree_no=s.a_agree_no
+        where s.owner_no=#{ownerNo}
+	</select>
+	
+	<select id="selectAd" parameterType="int" resultType="map">
+		select a.*, s.owner_no
+		from storead a join stores s
+		on a.store_no=s.store_no
+		where owner_no=#{ownerNo}
+		order by storead_regdate desc
+	</select>
+	
+	<select id="selectTemp" parameterType="int" resultType="map">
+		select * from temporary
+		where owner_no=#{ownerNo}
+		order by T_regdate desc
+	</select>
+	
+	<!-- resultMap 으로 해결 안 될 거 같아서 웨어조건으로 츄라이  -->
+		<select id="selectStores" parameterType="int" resultType="map">
+		select * from LSJAgreeListView2
+		where OWNER_NO=#{ownerNo}
+		order by store_regdate desc
+	</select>
+	
+	<select id="selectRegiVo" parameterType="long" resultType="ownerRegisterVo">
+		select * from ownerregister where o_register_no=#{oRegisterNo}
+	</select>
+	
+</mapper>

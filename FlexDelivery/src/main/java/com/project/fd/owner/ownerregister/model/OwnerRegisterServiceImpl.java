@@ -22,7 +22,7 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 
 	//tempList
 	@Override
-	public List<OwnerAllRequestVO> selectTempList(DateSearchVO searchVo) {
+	public List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo) {
 		return ownerRegisterDao.selectTempList(searchVo);
 	}
 	//tempList

@@ -159,8 +159,9 @@ input {
 													<span class="badge bg-danger">승인반려</span>
 												</c:if></td>
 											<td class="p-0">
+											<input type="hidden" value="${regiVo['O_REGISTER_NO'] }" id="regiNo">
 											<button class="btn btn-outline-dark p-2 btmenu" value="" name="">취소</button>
-												<button class="btn btn-outline-info p-2 btmenu" value=""name="" id="">상세 보기</button></td>
+												<button class="btn btn-outline-info p-2 btmenu" value=""name="" id="detailRegi">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -240,6 +241,57 @@ input {
 <br>
 <br>
 <br>
+
+ <!-- 등록 모달! -->
+			 <div class="modal fade text-left" id="inlineForm" tabindex="-1" aria-labelledby="myModalLabel33" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel33">옵션 등록</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                            </div>
+                            <form  name="frm123" >
+	                            <div class="modal-body">
+	                               	 <div class="form-group groupMenuInput">
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>옵션 순위 선택</label>
+		                                <select class="form-select menuOptionSelect p-2" name="oRankNo" id="oRankNo" style="overflow : auto; text-align-last:center;">
+										</select>
+	                                </div>
+	                                <label>옵션 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+	                                 <div class="form-group optionNameInput" >
+	                               		 <input type="text"  class="form-control text-right" id="mOptionName" name="mOptionName"  style="width:100%;">
+	                                </div>
+	                                <div style="text-align: right;">
+		                    	  		<span id="warningOptionName" style="color:red; "></span>
+		                    	    </div>
+		                    	    <label>옵션  가격<span style="color:red; margin-left:4px;"><b>*</b></span></label>
+	                                 <div class="form-group optionPriceInput" >
+	                               		 <input type="text"  class="form-control text-right" id="mOptionPrice" name="mOptionPrice"  style="width:100%;">
+	                                </div>
+	                                <div style="text-align: right;">
+		                    	  		<span id="warningOptionPrice" style="color:red; "></span>
+		                    	    </div>
+	                            </div>
+	                            <div class="modal-footer">
+	                                <button type="button" class="btn btn-light-secondary submitWriteOption">  
+	                                	<i class="bx bx-x d-block d-sm-none "></i>
+	                                	<span class="d-none d-sm-block">등록</span>
+	                                </button>
+	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+	                               		<i class="bx bx-check d-block d-sm-none"></i>
+	                                	<span class="d-none d-sm-block">취소</span>
+	                                </button>
+	                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+				   	<br>
+
 <script type="text/javascript">
 	function goDetail(no) {
 		var windowW = 650; // 창의 가로 길이
@@ -312,18 +364,10 @@ input {
 
 	//메뉴 등록을 누르면 모달창이 뜬다.
 	$(function() {
-		$('#btOptionWrite').click(function() {
-			if ($('#menuGroupSelect').val() == 0|| $('#menuSelect').val() == 0) {
-				alert('유효하지 않은 선택입니다');
-				event.preventDefault();
-				return false;
-			} else {
-				$.ajax({
-					url : "<c:url value='/owner/menu2/requests/detail.do'/>",
-					data : "sMGroupNo="
-							+ $('.groupChoice').val()
-							+ "&menuNo="
-							+ $('.menuSelect').val(),
+		$('#detailRegi').click(function() {
+			$.ajax({
+					url : "<c:url value='/owner/menu2/requests/detailRegi.do'/>",
+					data : "oRegisterNo="+ $('#regiNo').val(),
 					dataType : "json",
 					type : "GET",
 					success : function(res) {
@@ -332,34 +376,19 @@ input {
 
 						var str = "";
 						str += "<label>그룹이름</label>&nbsp;";
-						str += "<input type='hidden'name='sMGroupNo' value='"+res.sMGroupNo+"'>";
-						str += "<input type='text' readonly='readonly' class='form-control text-right' name='sMGroupName' value='"+res.sMGroupName+"'>&nbsp;&nbsp;";
+						str += "<input type='text' readonly='readonly' class='form-control text-right' 'name='oRegisterNo' value='"+res.oRegisterNo+"'>";
+						//str += "<img src='"+${pageContext.request.contextPath}+"/resources/imgs/OwnerRegisterImages/"+res.oRegisterFileName+"'/>' alt='"+res.oRegisterFileName+"' style='height:250px; width:80%;'  class='thumbnail'>"
+						str += "<input type='text' readonly='readonly' class='form-control text-right' name='oRegisterFileName' value='"+res.oRegisterFileName+"'>&nbsp;&nbsp;";
 						str += "<label>메뉴 이름</label>&nbsp;";
-						str += "<input type='hidden'name='menuNo' id='menuNo' value='"+res.menuNo+"'>";
-						str += "<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.menuName+"'>";
+						str += "<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.ownerregisterRegdate+"'>";
 
 						$('.groupMenuInput').html(str);
-
-						if (res.list.length > 0) {
-							var str2 = "";
-									$.each(
-										res.list,
-										function(
-												idx,
-												item) {
-											str2 += "<option value='"+item.oRankNo+"'>"+ item.oRankName+ "</option><br>";
-										});
-
-						$('.menuOptionSelect').html(str2);
-							}
 						},
 						error : function(xhr, status, error) {
 							alert("error!! : " + error);
 							}
 						});
 					event.preventDefault();
-
-			}
 
 		});
 

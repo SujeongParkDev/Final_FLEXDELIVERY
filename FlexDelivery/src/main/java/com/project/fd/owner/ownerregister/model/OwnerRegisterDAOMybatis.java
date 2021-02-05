@@ -23,7 +23,7 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 	}
 
 	@Override
-	public List<OwnerAllRequestVO> selectTempList(DateSearchVO searchVo) {
+	public List<OwnerAllRegisterVO> selectTempList(DateSearchVO searchVo) {
 		return sqlSession.selectList(namespace+"selectTempList",searchVo);
 	}
 
