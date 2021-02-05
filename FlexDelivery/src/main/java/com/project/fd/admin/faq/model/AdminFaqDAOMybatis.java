@@ -39,8 +39,8 @@ public class AdminFaqDAOMybatis implements AdminFaqDAO{
 	}
 
 	@Override
-	public int deleteFaq(AdminFaqVO faqVo) {
-		int cnt=sqlSession.delete(namespace+"deleteFaq", faqVo);
+	public int deleteFaq(int no) {
+		int cnt=sqlSession.delete(namespace+"deleteFaq", no);
 		return cnt;
 	}
 }

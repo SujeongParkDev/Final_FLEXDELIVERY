@@ -32,8 +32,8 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	}
 
 	@Override
-	public int deleteFaq(AdminFaqVO faqVo) {
-		return faqDao.deleteFaq(faqVo);
+	public int deleteFaq(int no) {
+		return faqDao.deleteFaq(no);
 	}
 
 }

@@ -12,7 +12,7 @@ public interface AdminFaqCategoryDAO {
 
 	int updateFaqCategory(AdminFaqCategoryVO faqCategoryVo);
 
-	int deleteFaqCategory(AdminFaqCategoryVO faqCategoryVo);
+	int deleteFaqCategory(int no);
 
 
 }

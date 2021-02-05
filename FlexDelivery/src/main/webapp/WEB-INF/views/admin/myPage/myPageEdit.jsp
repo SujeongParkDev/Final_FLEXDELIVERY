@@ -10,6 +10,106 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- CSS end -->    
 
+<script>
+$(function(){
+	
+	$('#adminPwd1').keyup(function(){
+		var pwd1=$('#adminPwd1').val();
+		
+		if (pwd1.length<4){
+			
+			$.ajax({
+				url:"<c:url value='/admin/myPage/myPageEditChkPwd1.do'/>",
+				type:"get",
+				data:"pwd1="+pwd1,
+				dataType:"json",
+				success:function(bool){
+					if(!bool){
+						result="비밀번호는 4자리 이상이어야 합니다.";
+					}else{
+						alert('실패!');
+					}
+					$('#chkPwd1').text(result);
+				},
+				error:function(xhr, status, error){
+					alert("error!! : " + error);
+				}
+				
+			});
+		} else if(pwd1.length>3&&validate_pwd(pwd1)){
+			result="사용 가능한 비밀번호 입니다."
+			$('#chkPwd1').text(result);
+			
+		} else if (!validate_pwd(pwd1)){
+			result="비밀번호는 숫자와 특수문자만 사용할 수 있습니다."
+			$('#chkPwd1').text(result);
+			
+		}
+		event.preventDefault();
+		return false;
+	});
+	
+	$('#adminPwd2').keyup(function(){
+		var pwd1=$('#adminPwd1').val();
+		var pwd2=$('#adminPwd2').val();
+		
+		if (pwd1==pwd2){
+			
+			$.ajax({
+				url:"<c:url value='/admin/myPage/myPageEditChkPwd2.do'/>",
+				type:"get",
+				data:"pwd1="+pwd1+"&pwd2="+pwd2,
+				dataType:"json",
+				success:function(bool){
+					if(bool){
+						result="비밀번호가 일치합니다.";
+					}else{
+						alert('실패!');
+					}
+					$('#chkPwd2').text(result);
+				},
+				error:function(xhr, status, error){
+					alert("error!! : " + error);
+				}
+				
+			});
+		} else {
+			result="비밀번호가 일치하지 않습니다."
+			$('#chkPwd2').text(result);
+			
+			$('#adminPwd2').focus();
+		}
+		event.preventDefault();
+		return false;
+	});
+	
+	
+	/*$('form[name=frmMyPage]').submit(function(){
+		var pwd1=$('#adminPwd1').val();
+		var pwd2=$('#adminPwd2').val();
+		
+		if (pwd1.length<1){
+			
+			alert('')
+			$('#adminPwd1').focus();
+		}
+	});*/
+	
+});
+
+function validate_pwd(pwd){
+	 var pattern= new RegExp(/^[a-z0-9_]+$/g);
+	 return pattern.test(pwd);
+}
+
+function validate_name(name){
+	 var pattern= new RegExp(/^[가_힣]+$/g);
+	 return pattern.test(name);
+}
+
+
+</script>
+
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -20,16 +120,23 @@
                  </div>
                  <div class="card-body">
 	                 <div class="col-md-6">
-	                 	 <form name="frmMyPage" action="#">
+	                 	 <form name="frmMyPage" action="<c:url value='/admin/myPage/myPageEdit.do' />" method="post">
 		                     <div class="form-group">
+		                     	<input type="hidden" name="adminNo" value="${vo.adminNo }">
+		                     
 		                         <label for="disabledInput">아이디 </label>
-		                         <input type="text" class="form-control" id="disabledInput" placeholder="admin" disabled>
+		                         <input type="text" class="form-control" id="adminId" placeholder="admin" disabled>
 		                         <label for="basicInput">비밀번호</label>
-	                             <input type="password" class="form-control" id="basicInput" placeholder="비밀번호를 입력해주세요">
+	                             <span id="chkPwd1"></span>
+	                             <input type="password" class="form-control" id="adminPwd1" placeholder="비밀번호를 입력해주세요"
+	                             	name="adminPwd" required >
 		                         <label for="basicInput">비밀번호 확인</label>
-	                             <input type="password" class="form-control" id="basicInput" placeholder="비밀번호를 다시 입력해주세요">
+	                             <span id="chkPwd2"></span>
+	                             <input type="password" class="form-control" id="adminPwd2" placeholder="비밀번호를 다시 입력해주세요" required>
 		                         <label for="basicInput">이름</label>
-	                             <input type="text" class="form-control" id="basicInput" placeholder="이름을 입력해주세요" value="박수정">
+	                             <span id="chkName"></span>
+	                             <input type="text" class="form-control" id="basicInput" placeholder="이름을 입력해주세요" 
+	                             	name="adminName" value="${vo.adminName }">
 		                     </div>
 		                     <!-- <div class="form-group">
 		                         <label for="disabledInput">Readonly Input</label>

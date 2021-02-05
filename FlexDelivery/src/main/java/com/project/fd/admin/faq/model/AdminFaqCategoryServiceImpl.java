@@ -32,8 +32,8 @@ public class AdminFaqCategoryServiceImpl implements AdminFaqCategoryService {
 	}
 
 	@Override
-	public int deleteFaqCategory(AdminFaqCategoryVO faqCategoryVo) {
-		return faqCategoryDao.deleteFaqCategory(faqCategoryVo);
+	public int deleteFaqCategory(int no) {
+		return faqCategoryDao.deleteFaqCategory(no);
 	}
 
 }

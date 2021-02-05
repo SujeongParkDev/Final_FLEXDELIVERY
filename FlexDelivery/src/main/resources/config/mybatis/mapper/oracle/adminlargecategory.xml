@@ -37,6 +37,10 @@
 	<select id="selectByNo" parameterType="int" resultType="AdminLargeCategoryVo">
 		select L_CATEGORY_NO, L_CATEGORY_NAME, L_CATEGORY_FILENAME from LARGECATEGORY where L_CATEGORY_NO=#{lCategoryNo}
 	</select>
+
+	<select id="checkDu" parameterType="string" resultType="int">
+		select count(L_CATEGORY_NAME) from LARGECATEGORY where L_CATEGORY_NAME like #{lCategoryName}
+	</select>
 	
 	<update id="updateLargecategory" parameterType="adminLargeCategoryVo">
 		update LARGECATEGORY 

@@ -12,6 +12,6 @@ public interface AdminFaqService {
 	
 	int updateFaq(AdminFaqVO faqVo);
 	
-	int deleteFaq(AdminFaqVO faqVo);
+	int deleteFaq(int no);
 	
 }

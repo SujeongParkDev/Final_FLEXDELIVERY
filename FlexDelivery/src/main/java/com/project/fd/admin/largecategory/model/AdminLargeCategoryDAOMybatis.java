@@ -61,6 +61,12 @@ public class AdminLargeCategoryDAOMybatis implements AdminLargeCategoryDAO{
 	@Override
 	public boolean checkDu(String content) {
 		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", content);
+		if (cnt==0) {
+			bool=true;
+		} else {
+			bool=false;
+		}
 		
 		return bool;
 	}

@@ -33,7 +33,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		
-		logger.info("컨트롤러 수행 전 호출 - preHandle()");
+		//logger.info("컨트롤러 수행 전 호출 - preHandle()");
 		/*
 		String uri = request.getRequestURI();
 		logger.info("uri={}",uri);

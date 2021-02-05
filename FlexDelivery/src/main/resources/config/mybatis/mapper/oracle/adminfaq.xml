@@ -35,7 +35,7 @@
 		where FAQ_NO=#{faqNo}
 	</update>
 	
-	<delete id="deleteFaq" parameterType="adminFaqVo">
+	<delete id="deleteFaq" parameterType="int">
 		delete from FAQ
 		where FAQ_NO=#{faqNo}
 	</delete>
@@ -54,7 +54,7 @@
 		where FAQ_NO=#{faqNo} <!--and AUTHORITY_NO=6 -->
 	</update>
 	
-	<delete id="deleteFaqCategory" parameterType="adminFaqCategoryVo">
+	<delete id="deleteFaqCategory" parameterType="int">
 		delete from FAQCATEGORY
 		where F_CATEGORY_NO=#{fCategoryNo}
 	</delete>

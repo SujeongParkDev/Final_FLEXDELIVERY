@@ -12,7 +12,7 @@ public interface AdminFaqDAO {
 
 	int updateFaq(AdminFaqVO faqVo);
 
-	int deleteFaq(AdminFaqVO faqVo);
+	int deleteFaq(int no);
 
 
 }

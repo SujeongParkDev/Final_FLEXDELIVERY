@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.ask.model.AdminAskService;
 import com.project.fd.admin.ask.model.AdminAskVO;
@@ -46,11 +47,12 @@ public class AdminMypageController {
 		String msg="비밀번호 불일치! 이전 페이지로 돌아갑니다.";
 		String url="/admin/myPage/myPage.do";
 		int no=0;
+		
 		if (pwd.equals(vo.getAdminPwd())) {
 			logger.info("비밀번호 일치");
 			msg="비밀번호 일치! 정보 수정 페이지로 이동합니다.";
-			url="/admin/myPage/myPageEdit.do";
 			no=vo.getAdminNo();
+			url="/admin/myPage/myPageEdit.do?no="+no;
 		} else {
 			logger.info("비밀번호 불일치!");
 		}
@@ -104,16 +106,16 @@ public class AdminMypageController {
 		logger.info("관리자 정보 조회, vo={}", vo);
 		
 		model.addAttribute("vo", vo);
-		model.addAttribute("msg", "개인정보 수정 화면!");
-		model.addAttribute("url", "/admin/myPage/myPageEdit.do");
+		//model.addAttribute("msg", "개인정보 수정 화면!");
+		//model.addAttribute("url", "/admin/myPage/myPageEdit.do?no="+no);
 		
-		return "common/message";
+		return "admin/myPage/myPageEdit";
 	}
 	
 	@RequestMapping(value="/myPageEdit.do", method=RequestMethod.POST)
 	public String edit_info_post(@ModelAttribute AdminVO vo,
 			HttpServletRequest request, Model model) {
-		logger.info("edit_info_post 관리자 개인정보 수정 처리, 파라미터 vo={}", vo);
+		logger.info("관리자 개인정보 수정 처리, 파라미터 vo={}", vo);
 		
 		String msg="개인정보 수정 실패", url="/admin/myPage/myPage.do";
 		int cnt=mypageService.updateInfo(vo);
@@ -121,7 +123,7 @@ public class AdminMypageController {
 		
 		if (cnt>0) {
 			msg="개인정보를 수정하였습니다.";
-			url="/admin/myPage.do";
+			url="/admin/myPage/myPage.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -129,6 +131,33 @@ public class AdminMypageController {
 		
 		return "common/message";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/myPageEditChkPwd1.do")
+	public boolean pwd1_chk(@RequestParam String pwd1) {
+		logger.info("비밀번호 ajax, pwd1={}", pwd1);
+		boolean bool=true;
+		
+		if(pwd1.length()<4) {
+			bool=false;
+		}
+		
+		return bool;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/myPageEditChkPwd2.do")
+	public boolean pwd2_chk(@RequestParam String pwd1, @RequestParam String pwd2) {
+		logger.info("비밀번호 ajax, pwd1={}, pwd2={}", pwd1, pwd2);
+		boolean bool=false;
+		
+		if (pwd2.equals(pwd1)) {
+			bool=true;
+		} 
+		return bool;
+	}
+	
+	
 	
  }
 

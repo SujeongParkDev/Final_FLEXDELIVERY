@@ -60,32 +60,40 @@ $(function(){
    }); */
    
    $('#lCategoryName').keyup(function(){
-	  var data=$('#lCategoryName').val();
-	  if(chkDu(data) && data.length>=2){
-		  data='lCategoryName'+data;
+	  var name=$('#lCategoryName').val();
+	  
+	  if(chkDu(name) && name.length>0){
 		  $.ajax({
-			  type:"POST",
+			  type:"get",
 			  url:"<c:url value='/admin/menu6/ajaxCheck.do' />",
-			  data:data,
-			  success: function (result) {
-				  if(result){
-				  output = "이미 등록된 카테고리 이름입니다.";
-				  event.preventDefault();
-				  /* $("#chkId").val('N'); */
+			  data:"lCategoryName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 카테고리 이름입니다.";
 				  }else{
-				  output = "사용 가능한 카테고리 이름입니다.";
-				  /* $("#chkId").val('Y'); */
+					  result = "이미 등록된 카테고리 이름입니다.";
+					  
 				  }
-				  $('#message').text(output);
+				  $('#message').text(result);
 			}
 
 		  });
-	  }else{
+	  }else if (name.length<1){
+		  $('#message').text("대분류 카테고리 이름을 입력해주세요.");
+	  	
+   	  }else if(!chkDu(name)){
 		  $('#message').text("한글만 사용 가능합니다.");
-		  event.preventDefault();
-		  /* $("#chkId").val('N'); */
-	}
+		  //return false;
+		
+	  }
+	  
+	  event.preventDefault();
+	  
+	  
    });
+   
+   
 });
 
 /*    var sel_file;
@@ -111,6 +119,7 @@ function readInputFile(e){
       
    });
 } */
+
 function readInputFile(input) {
     if(input.files && input.files[0]) {
         var reader = new FileReader();
@@ -122,7 +131,7 @@ function readInputFile(input) {
 } 
  
 function chkDu(content){
-	car pateern=new RegExp(/^[가-힣]+$/g);
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
 	return pattern.test(content);
 }
 
@@ -192,7 +201,7 @@ function chkDu(content){
                                                       <td colspan="1"><span>대분류 이름</span></td>
                                                       <td colspan="2">
                                                          <input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요">
-                                                         <br><span id="message">메시지 출력</span>
+                                                         <br><span id="message"></span>
                                                         <!--  <form:errors path="lCategoryName" /> -->
                                                       </td>
                                                    </tr>
@@ -304,7 +313,7 @@ function chkDu(content){
                                                                   <tbody>
                                                                      <tr>
                                                                         <td colspan="3"  style="text-align: center;">
-                                                                           <div id="preview"><img src="<c:url value='/resources/imgs/largeCategory/${vo.lCategoryFilename }' />" id="previewImg"/></div>
+                                                                           <div id="preview"><img src="<c:url value='/resources/imgs/largeCategoryImages/${vo.lCategoryFilename }' />" id="previewImg"/></div>
                                                                         </td>
                                                                      </tr>
                                                                      <tr>

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.faq.model.AdminFaqAllViewVO;
@@ -19,6 +20,7 @@ import com.project.fd.admin.faq.model.AdminFaqCategoryService;
 import com.project.fd.admin.faq.model.AdminFaqCategoryVO;
 import com.project.fd.admin.faq.model.AdminFaqService;
 import com.project.fd.admin.faq.model.AdminFaqVO;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 
 @Controller
 @RequestMapping("/admin/menu5")
@@ -87,5 +89,83 @@ public class AdminFaqController {
 		}
 		
 		return "redirect:/admin/menu5/faq.do";
+	}
+	
+
+	@RequestMapping(value="/faq/edit.do", method=RequestMethod.POST)
+	public String edit_post(@ModelAttribute AdminFaqVO faqVo,
+			HttpServletRequest request, Model model) {
+		logger.info("FAQ 수정 처리, 파라미터 vo={}", faqVo);
+		
+		String msg="FAQ 수정 실패", url="/admin/menu5/faq.do";
+		
+		int cnt=faqService.updateFaq(faqVo);
+		logger.info("FAQ 수정 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="FAQ를 수정하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/faq/category/edit.do", method=RequestMethod.POST)
+	public String category_edit_post(@ModelAttribute AdminFaqCategoryVO faqCategoryVo,
+			HttpServletRequest request, Model model) {
+		logger.info("FAQ 카테고리 수정 처리, 파라미터 vo={}", faqCategoryVo);
+		
+		String msg="FAQ 카테고리 수정 실패", url="/admin/menu5/faq.do";
+		int cnt=faqCategoryService.updateFaqCategory(faqCategoryVo);
+		logger.info("FAQ 카테고리 수정 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="FAQ 카테고리를 수정하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//return "redirect:/admin/menu6/todayFoodsWeather.do";
+		return "common/message";
+	}
+	
+	
+	@RequestMapping(value="/faq/delete.do", method=RequestMethod.POST)
+	public String delete_post(@RequestParam int no, HttpServletRequest request, Model model) {
+		logger.info("delete_post FAQ 삭제처리, 파라미터 no={}", no);
+		
+		String msg="FAQ 삭제 실패", url="/admin/menu5/faq.do";
+		int cnt=faqService.deleteFaq(no);
+		logger.info("FAQ 삭제 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="FAQ를 삭제하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/faq/category/delete.do", method=RequestMethod.POST)
+	public String category_delete_post(@RequestParam int no, HttpServletRequest request, Model model) {
+		logger.info("delete_post FAQ 카테고리 삭제처리, 파라미터 no={}", no);
+		
+		String msg="FAQ 카테고리 삭제 실패", url="/admin/menu5/faq.do";
+		int cnt=faqCategoryService.deleteFaqCategory(no);
+		logger.info("FAQ 카테고리 삭제 처리 결과, cnt={}", cnt);
+		
+		if (cnt>0) {
+			msg="FAQ 카테고리를 삭제하였습니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

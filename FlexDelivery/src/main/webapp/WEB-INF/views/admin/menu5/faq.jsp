@@ -114,7 +114,7 @@
                             </div>
                          </div>
                      </div>    
-					<!-- #faqWrite 모달 end -->
+					<!-- #faqCategoryWrite 모달 end -->
 
                             					
 					<!-- #faqWrite2 모달 start -->
@@ -184,6 +184,7 @@
 					
 			        <div class="sidebar-widget-area">
 			            <div class="widget-content">
+			            	<ul class="tags"><li><a href='#'>전체보기</a></li></ul>
 			                <ul class="tags" id="returnCList">
 			                </ul>
 			                <span class="badge bg-transparent">4</span>
@@ -196,7 +197,7 @@
 							
 						  <div class="card" style="text-align: center;">
 							<p>등록된 자주 묻는 질문이 없습니다.</p>
-						    <div class="card-header" id="headingOne">
+						    <!-- <div class="card-header" id="headingOne">
 						      <h2 class="mb-0">
 						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 						          Q. 배달이 시작되면 점포 측에서 직접 배달시작 버튼을 눌러야 하는 건가요?
@@ -209,7 +210,7 @@
 						      	  네, 직접 눌러주셔야 합니다. 배달시작 버튼을 누른 후에 배달 완료 버튼을 누를 수 있으며, 배달 시작 버튼을 눌렀을 때 현재 주문 상태가 '조리중'에서 '배달중'으로 바뀌게 됩니다. 
 						      	  이렇게 바뀐 정보는 점포의 주문 내역에 반영되어 노출되며, 고객님의 주문 내역에 반영되어 주문한 음식이 현재 어떤 상태인지를 알립니다. 모쪼록 바쁘신 와중에도 정확한 정보 전달을 위해 빠짐없이 버튼을 눌러주시길 부탁드립니다. 
 						      </div>
-						    </div>
+						    </div> -->
 						  </div>
 						 
 						</c:if>
@@ -223,15 +224,24 @@
 						        	aria-expanded="false" aria-controls="collapse${vo.faqNo }">
 						          Q. ${vo.faqQ }
 						        </button>
+						        
+						        <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
+					              id="btFaqEdit${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqEdit${vo.faqNo }">수정</button> 
+					            <span style="font-size: 12px;"> | </span> 
+					            <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
+					              id="btFaqDelete${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqDelete${vo.faqNo }" >삭제</button>
 						      </h2>
 						    </div>
 						    <div id="collapse${vo.faqNo }" class="collapse" aria-labelledby="heading${vo.faqNo }" data-parent="#accordionList">
 						      <div class="card-body">
+						      	<div>
+						      		
+						      	</div>
 						      	${vo.faqA }
 				 		      </div>
 						    </div>
 						    
-						    <div class="card-header" id="headingTwo">
+						    <%-- <div class="card-header" id="headingTwo">
 						      <h2 class="mb-0">
 						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 						          Q. 주문 상태가 조리중일 때 고객이 주문취소 요청을 할 수 있나요?
@@ -243,10 +253,110 @@
 						      	플렉스 딜리버리 측에서는 '배달중' 상태가 되기 전까지 주문취소가 가능합니다. '주문접수' 상태일 때는 고객과 점포 측에, '조리중' 일 때에는 점포 측에 주문취소 권한이 있습니다.
 						      	
 				 		      </div>
-						    </div>
+						    </div> --%>
+                           <!-- FAQ 수정 start -->
+							<div class="modal fade text-left" id="modalFaqEdit${vo.faqNo }" tabindex="-1" 
+		                        role="dialog" aria-labelledby="FAQ 수정" aria-hidden="true">
+		                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+		                           <div class="modal-content">
+										<form name="frmFaqEdit" method="post" action="<c:url value='/admin/menu5/faq/edit.do' />">
+		                                	<div class="modal-header">
+			                                    <h4 class="modal-title">자주 하는 질문 - 질문과 답변 수정</h4>
+			                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                                       <i data-feather="x"></i>
+			                                    </button>
+			                                </div>
+		                                	<div class="modal-body">                                 
+			                                    <div class="row">
+			                                       <div class="col-12">   
+			                                          <div class="table-responsive" style="text-align: center;">
+			                                             <table class="table mb-0">
+			                                                <tbody>
+		                                                   	  <tr>
+		                                                   	  	<input type="hidden" name="faqNo" value=${vo.faqNo }>
+		                                                   	  	<td>카테고리 종류</td>
+			                                                      <td colspan="2"  style="text-align: center;">
+			                                                      	<select name="fCategoryNo" id="selectFCategory">
+		                                                      			<option value="0">선택하세요</option>
+			                                                      		<c:forEach var="cVo2" items="${ctList }">
+			                                                      			<option value="${cVo2.fCategoryNo }">${cVo2.fCategoryName }</option>
+			                                                      		</c:forEach>
+			                                                      	</select>
+			                                                      </td>			                                                   	  	
+															  </tr>
+		                                                   	  <tr>
+		                                                   	  	<td>질문</td>
+			                                                      <td colspan="2"  style="text-align: center;">
+			                                                      	<textarea rows="3" cols="80" name="faqQ">${vo.faqQ }</textarea>
+			                                                      </td>			                                                   	  	
+															  </tr>
+															  <tr>
+															  	<td>답변</td>
+															  	<td colspan="2">
+															  		<textarea rows="10" cols="80" name="faqA">${vo.faqA }</textarea>
+															  	</td>
+															  </tr>
+			                                                </tbody>
+			                                             </table>                      
+			                                          </div>
+			                                       </div>
+			                                    </div>        
+			                                 </div>
+			                                 <div class="modal-footer">
+			                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+			                                       <i class="bx bx-x d-block d-sm-none"></i>
+			                                       <span class="d-none d-sm-block">닫기</span>
+			                                    </button>
+			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit"
+			                                     id="btModalEdit" onclick="form.submit()">
+			                                       <i class="bx bx-check d-block d-sm-none"></i>
+			                                       <span class="d-none d-sm-block">등록</span>
+			                                    </button>
+			                                 </div>
+		                              	</form><!-- frmFAQEdit 폼 모달 -->
+		                            </div>
+		                         </div>
+		                     </div>
+							<!-- #faqEdit모달 end -->
 						    
+						 <!-- FAQ 삭제 모달 -->
+                          <div class="modal fade text-left" id="modalFaqDelete${vo.faqNo }" tabindex="-1" role="dialog" 
+                              aria-labelledby="FAQ 삭제" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                 <div class="modal-content">
+                                    <form name="frmFaqDel" id="frmFaqDel" method="post" action="<c:url value='/admin/menu5/faq/deleteFaq.do?no=${vo.faqNo }' />">
+                                       <div class="modal-header bg-danger">
+                                          <h5 class="modal-title white" id="myModalFaqEdit">자주 묻는 질문 삭제</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <i data-feather="x"></i>
+                                          </button>
+                                       </div>
+                                       <div class="modal-body">
+                                            <input type="hidden" name="faqNo" value="${vo.faqNo }" >
+                                           
+                                          	[<span style="font-weight: bolder;">${vo.faqQ}</span>] 에 대한 답변을 삭제하시겠습니까?
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalFaqDelCancel">
+                                             <i class="bx bx-x d-block d-sm-none"></i>
+                                             <span class="d-none d-sm-block">취소</span>
+                                          </button>
+                                          
+                                          <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalFaqDelOk" onclick="form.submit()">
+                                             <i class="bx bx-check d-block d-sm-none"></i>
+                                             <span class="d-none d-sm-block">삭제</span>
+                                          </button>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div> <!-- 삭제 모달 end-->
+                           
 						  	</c:forEach>
 						  </div>
+						  
+						 
+						  <!--  -->
 						  </c:if>
 						  
 						</div>

@@ -32,7 +32,7 @@ public class LogoutController {
 		logger.info("로그아웃처리, idx={}",idx);
 		String msg="로그아웃 실패!",url="";
 		
-		if(idx==Utility.MEMBER_LOGIN) {
+		if(idx==Utility.MEMBER_LOGOUT) {
 			logger.info("회원 로그아웃처리");
 		
 			session.removeAttribute("memberId");
@@ -46,7 +46,7 @@ public class LogoutController {
 			url="/member/index.do";
 			
 			
-		}else if(idx==Utility.OWNER_LOGIN) {
+		}else if(idx==Utility.OWNER_LOGOUT) {
 	
 			session.removeAttribute("ownerId");
 			session.removeAttribute("ownerName");
@@ -63,7 +63,7 @@ public class LogoutController {
 			msg="성공적으로 로그아웃 되었습니다!";
 			url="/owner/index.do";
 		
-		}else if(idx==Utility.ADMIN_LOGIN) {
+		}else if(idx==Utility.ADMIN_LOGOUT) {
 			
 			session.removeAttribute("adminId");
 			session.removeAttribute("adminName");
