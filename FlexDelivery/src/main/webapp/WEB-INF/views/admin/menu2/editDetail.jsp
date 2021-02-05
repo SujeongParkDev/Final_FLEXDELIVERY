@@ -8,9 +8,9 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <script type="text/javascript">
 	$(function () {
-		$('#editAgree').click(function () {
+		$('#editFrm').submit(function () {
 			alert("등록하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/editAgree.do?no=${temporaryVo.tNo}" />';
+			return;
 			event.preventDefault();
 		});
 		
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form">
+                            <form id="editFrm" name="editFrm" class="form" action="<c:url value='/admin/menu2/editAgree.do'/>" >
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -99,6 +99,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div>
+                                    	<input type="hidden" name="storeNo" value="${temporaryVo.storeNo}">
+                                    	<input type="hidden" name="storeNo" value="${temporaryVo.ownerNo}">
+                                    </div>
                                     <br><br>
                                     <!-- 요청사항 -->
                                     <div class="row">
@@ -120,7 +124,7 @@
                                     <!-- 요청사항 끝 -->
                                     <c:if test="${temporaryVo.aAgreeNo==5 }">
                                     	<div class="col-12 d-flex justify-content-end">
-                                        	<button id="editAgree" class="btn btn-primary mr-1 mb-1">승인</button>
+                                        	<input type="submit" id="editAgree" class="btn btn-primary mr-1 mb-1" value="승인">
                                        		<button id="editDeny" class="btn btn-danger mr-1 mb-1">반려</button>
                                     	</div>
                                     </c:if>
