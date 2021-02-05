@@ -14,4 +14,6 @@ public interface OwnerOrderDAO {
 	public int updateOrdersToRequestIng(int ordersNo);
 	public int updateOrdersToDeliveryIng(Map<String, Object> map);
 	public int updateOrdersCancel(int ordersNo);
+	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map);
+	public int selectTotalRecordTWO(Map<String, Object> map);
 }

@@ -40,7 +40,7 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 			out.print("alert('로그인 부탁드려요');");
 			out.print("location.href='"+request.getContextPath()+"/owner/login/login.do';");
 		}else{
-			if(result.equals(OwnerService.NO_LICENSE+"")) {
+			if(result.equals(OwnerService.NO_LICENSE+"") || result.equals(OwnerService.WITHDRAW_SUCCESS)) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('사업자 등록 부터 부탁드려요');");
 				out.print("location.href='"+request.getContextPath()+"/owner/menu1/businessLicense.do';");
@@ -56,10 +56,14 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('점포 승인 대기 중입니다.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
+			}else if(result.equals(OwnerService.WITHDRAW_STAY+"")) {
+				logger.info("점포 로그인 - preHandle() result={}", result);
+				out.print("alert('점포 탈퇴 승인 대기 중입니다.');");
+				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.HAVE_ALL+"")) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
 				return true;
-		}
+			}
 		}		
 		out.print("</script>");
 		return false;

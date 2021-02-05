@@ -49,7 +49,7 @@
 		        <div class="col-md-6 col-sm-12">
 		        <div class="card" >
 		            <div class="card-header" style="background-color:white;">
-		            <h4 class="card-title text-center">메뉴 그룹 등록</h4>
+		            <h4 class="card-title text-center">메뉴 그룹 수정</h4>
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">

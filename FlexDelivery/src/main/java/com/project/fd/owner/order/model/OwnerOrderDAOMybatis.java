@@ -49,6 +49,14 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 		return sqlSession.update(namespace+"updateOrdersCancel",ordersNo);
 	}
 	
+	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map){
+		return sqlSession.selectList(namespace+"selectOrderListView",map);
+	}
+	
+	public int selectTotalRecordTWO(Map<String, Object> map){
+		return sqlSession.selectOne(namespace+"selectTotalRecordTWO",map);
+	}
+	
 	
 	
 	

@@ -271,7 +271,7 @@
                                     </select>
 		                       		
 		                       		<label for="first-name-vertical">메뉴 이름<span style="color:red; margin-left:4px;"><b>*</b></span></label>
-		                        	<input type="text" id="menuName" class="form-control " name="menuName" style="text-align: right;">
+		                        	<input type="text" id="menuName" class="form-control " name="menuName"  style="text-align: right;">
 		                    	  	<div style="text-align: right;">
 		                    	  		<span id="warningName" style="color:red; "></span>
 		                    	    </div>
@@ -283,7 +283,8 @@
 		                     		<span><small>메뉴 이미지</small></span>
 		                     		 <div id="preview" class="text-center"></div>
 		                     		<div class="form-file text-center">
-		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
+		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right"  accept=".gif, .jpg, .png" />
+		                     			 
                                            <br><span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>    
                                     </div>
                             		

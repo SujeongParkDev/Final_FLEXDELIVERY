@@ -279,8 +279,7 @@ public class OwnerMenuController {
 		@RequestMapping(value = "/menuChoice.do", method = RequestMethod.GET) 
 		public String  menuChoice_get(@ModelAttribute OwnerStoreMenuGroupVO vo,
 							HttpSession session, Model model){
-			int storeNo=1;
-			
+			int storeNo=0;
 			String msg="점포가 없습니다.", url="/owner/index.do";
 			if(session.getAttribute("storeNo")==null) {
 				model.addAttribute("msg",msg);
@@ -443,7 +442,7 @@ public class OwnerMenuController {
 			logger.info("번호로 메뉴그룹 삭제 결과 cnt = {}", cnt);
 			
 			
-			String msg="삭제 실패!" , url="/owner/menu2/foodmenu/menuChoice.do";
+			String msg="삭제 실패!" , url="/owner/menu2/foodmenu/menuGroup.do";
 			
 			if(cnt>0) {
 				msg="삭제 성공!";

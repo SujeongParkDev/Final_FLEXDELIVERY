@@ -47,8 +47,8 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 	
 	
-	public static final int LICENSE_STAY=4; // 라이센스 승인대기중인 경우
-	public static final int STORE_STAY=5; //점포 승인대기중인 경우
+	
+	
 
 	@Override
 	public int checkAuthority(String userid) {
@@ -58,20 +58,26 @@ public class OwnerServiceImpl implements OwnerService {
 		 int result = NO_LICENSE;
 		 System.out.println("vo.getRagreeno()"+vo.getRagreeno());
 		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
-				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()>3)) {
+				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()==4)) {
 			 if(vo.getRagreeno()==1 && vo.getoRegisterNo()!=0) {
 				 result=LICENSE_STAY;
 			 }else {
 				 result=NO_LICENSE;
 			 }
 		 } else if(vo.getRagreeno()==3
-				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()>3)) {
+				 	&& (vo.getSagreeno()<3|| vo.getSagreeno()==4)) {
 			 if(vo.getSagreeno()==1 && vo.getStoreNo()!=0) {
 				 result=STORE_STAY;
 			 }else {
 				 result=NO_STORE;
 			 }
-		 }else if(vo.getRagreeno()==3 && vo.getSagreeno()==3) {
+		 }else if(vo.getoRegisterNo()==3) {
+			 if(vo.getSagreeno()==8) {
+				 result=WITHDRAW_STAY;
+			 }else if(vo.getSagreeno()==9) {
+				 result=WITHDRAW_SUCCESS;
+			 }
+		 } else if(vo.getRagreeno()==3 && vo.getSagreeno()==3) {
 			 result=HAVE_ALL;
 		 }
 		
