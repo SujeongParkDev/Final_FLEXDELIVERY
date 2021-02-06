@@ -38,9 +38,20 @@ public class OwnerStoresController {
 	@Autowired private AdminLargeCategoryService adminlarge;
 
 	 @RequestMapping("/launch/launch.do")
-	 public void ownerlaunch(Model model) {
+	 public String ownerlaunch(Model model) {
 
 		 logger.info("점포 - 입점 메인 화면 보여주기");
+		 
+		 // 지역코드번호
+		List<LocationVO> location=ownerStoresService.AllLocaion();
+				 
+		// 대분류 카테고리 
+		List<AdminLargeCategoryVO> large=adminlarge.selectAll();
+		 logger.info("result large.size={}",large.size());
+		model.addAttribute("location", location);
+		model.addAttribute("large", large);
+				
+		return "owner/menu1/launch/launch";
 		 
 	}
 	 

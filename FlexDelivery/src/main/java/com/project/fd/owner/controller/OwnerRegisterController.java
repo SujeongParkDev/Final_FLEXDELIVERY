@@ -39,7 +39,7 @@ public class OwnerRegisterController {
 	 }
 	 
 	 //사업자 등록증 처리 
-	 @RequestMapping(value="/businessLicense.do",method=RequestMethod.POST)
+	 @RequestMapping(value="/launch/launchWrite.do",method=RequestMethod.POST)
 	 public String ownerLicenseOk(@ModelAttribute OwnerRegisterVO vo, 
 			 HttpServletRequest request, HttpSession session,
 			 Model model) {
@@ -73,7 +73,7 @@ public class OwnerRegisterController {
 			
 			int cnt=0;
 			String msg="사업자 등록증 등록이 실패되었습니다. \n다시 작성해주세요. ",
-					url="/owner/menu1/businessLicense.do";
+					url="/owner/menu1/launch/launch.do";
 			logger.info("vo={}",vo);
 			
 			cnt=ownerRegisterService.insertRegister(vo);
@@ -83,11 +83,9 @@ public class OwnerRegisterController {
 			logger.info("제출 처리 결과, cnt={}", cnt);
 
 			
-			//3
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 
-			//4
 			return "common/message";
 		}
 	 
