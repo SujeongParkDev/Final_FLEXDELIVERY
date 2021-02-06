@@ -135,7 +135,6 @@ public class OwnerStoresController {
 			//4
 			return "common/message";
 		}
-	 
-	
+
 
 }

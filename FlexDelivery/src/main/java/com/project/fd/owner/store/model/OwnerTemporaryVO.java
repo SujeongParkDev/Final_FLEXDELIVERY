@@ -2,23 +2,33 @@ package com.project.fd.owner.store.model;
 
 public class OwnerTemporaryVO {
 	private int tNo ; /* 임시저장번호 */
+	// session 
 	private int storeNo; /* 점포번호 */
+	private int ownerno;/* 점주번호 */
+	
+	// ownerregister table
+	private long oRegisterNo ;/* 사업자등록번호 */
+	private String tFileName ; /* 변경사업자등록증파일이름 */
+	private String tOriginalFileName; /* 변경사업자등록증원본파일이름 */
+	
+	// stores table 
 	private String tStoreName; /* 변경점포명 */
 	private String tStoreAddress ; /* 변경점포주소 */
 	private String tStoreAddressDetail; /* 변경점포상세주소 */
 	private int locationNo ;/* 지역코드번호 */
-	private long oRegisterNo ;/* 사업자등록번호 */
-	private String tFileName ; /* 변경사업자등록증파일이름 */
-	private String tOriginalFileName; /* 변경사업자등록증원본파일이름 */
-	private int ownerno;/* 점주번호 */
+	
+	// owner table 
 	private String tOwnerName ;/* 변경점주이름 */
 	private int tOwnerHp1 ;/* 변경점주연락처1 */
 	private int tOwnerHp2 ; /* 변경점주연락처2 */
 	private int tOwnerHp3 ; /* 변경점주연락처3 */
+	
+	// 관리자용 
 	private String tDetail ;/* 변경내용상세 */
 	private String tRegdate ;/* 변경신청일 */
 	private String tSubmitDate;/* 변경승인일 */
 	private int aAgreeNo; /* 관리자승인번호 */
+	
 	public int gettNo() {
 		return tNo;
 	}
