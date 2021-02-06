@@ -150,13 +150,13 @@
                                                    	  <tr>
                                                    	  	<td>질문</td>
 	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	<textarea rows="3" cols="80" name="faqQ"></textarea>
+	                                                      	<textarea rows="3" cols="70" name="faqQ"></textarea>
 	                                                      </td>			                                                   	  	
 													  </tr>
 													  <tr>
 													  	<td>답변</td>
 													  	<td colspan="2">
-													  		<textarea rows="10" cols="80" name="faqA"></textarea>
+													  		<textarea rows="10" cols="70" name="faqA"></textarea>
 													  	</td>
 													  </tr>
 	                                                </tbody>
@@ -287,13 +287,13 @@
 		                                                   	  <tr>
 		                                                   	  	<td>질문</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	<textarea rows="3" cols="80" name="faqQ">${vo.faqQ }</textarea>
+			                                                      	<textarea rows="3" cols="70" name="faqQ">${vo.faqQ }</textarea>
 			                                                      </td>			                                                   	  	
 															  </tr>
 															  <tr>
 															  	<td>답변</td>
 															  	<td colspan="2">
-															  		<textarea rows="10" cols="80" name="faqA">${vo.faqA }</textarea>
+															  		<textarea rows="10" cols="70" name="faqA">${vo.faqA }</textarea>
 															  	</td>
 															  </tr>
 			                                                </tbody>

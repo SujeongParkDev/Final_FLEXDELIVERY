@@ -1,9 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../adminInc/top.jsp" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css"/>
 
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">
+<!-- <div style="text-align: center; font-family: 'Poppins', sans-serif;">
+    
+ <ul id="testUl">
+  <li id="testLi">
+    <input type="checkbox" checked />
+    <div id="testDiv">F</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">L</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">E</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">X</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" checked />
+    <div id="testDiv">D</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">E</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">L</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">I</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">V</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">E</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">R</div>
+  </li>
+  <li id="testLi">
+    <input type="checkbox" />
+    <div id="testDiv">Y</div>
+  </li>
+</ul>
+</div>  -->
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
             <!-- Single Slide -->
