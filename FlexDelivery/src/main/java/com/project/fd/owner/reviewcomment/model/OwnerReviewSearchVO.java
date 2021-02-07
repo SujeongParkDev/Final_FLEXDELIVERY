@@ -7,9 +7,6 @@ public class OwnerReviewSearchVO extends SearchVO{
 	private String startDay;  //시작일
 	private String endDay; //종료일
 	
-	private String year;
-	private String month;
-
 	public int getStoreNo() {
 		return storeNo;
 	}
@@ -36,26 +33,10 @@ public class OwnerReviewSearchVO extends SearchVO{
 		this.endDay = endDay;
 	}
 
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
-	}
 
 	@Override
 	public String toString() {
-		return "OwnerReviewSearchVO [storeNo=" + storeNo + ", startDay=" + startDay + ", endDay=" + endDay + ", year="
-				+ year + ", month=" + month + "]";
+		return "OwnerReviewSearchVO [storeNo=" + storeNo + ", startDay=" + startDay + ", endDay=" + endDay + "]";
 	}
 	
 }

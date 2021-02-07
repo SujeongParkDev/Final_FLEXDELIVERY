@@ -11,10 +11,11 @@
 				<a class="nav-link " aria-current="page" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">전체(${fn:length(reviewList) })</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">미답변()
+			<button type="button" class="btn btn-primary" id="btNocomment">미답변 </button>
+				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/nocomment.do"/>">미답변()
 			</a></li>
 			<li class="nav-item">
-				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>">차단()
+				<a class="nav-link active" href="<c:url value="/owner/menu2/reviewOwner/blockcmt.do"/>">차단()
 			</a></li>
 		</ul>
 	</div>
@@ -34,18 +35,19 @@
 					<br> <br>
 			<div class="card-content">
 				<div class="card-body text-center">
+					<div class="all-div" id="AllDiv">
 					<div class="row">
-						<div class="col-md-4 col-12"></div>
+						<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
 						<div class="col-md-6 col-12 ">
 							<form name="frmPage" method="post" name="frm1"
 								action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 								<input type="hidden" name="currentPage" value="1">
-							</form>
 						</div>
 						<div class="col-md-2 col-12">
 							<input type="submit" style="background-color: rgb(223, 108, 220); color: white;" value="조회">
 						</div>
+							</form>
 					</div>
 					<br>
 					<c:if test="${empty reviewList }">
@@ -53,7 +55,6 @@
 							<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
 						</div>
 					</c:if>
-					<div class="all-div" id="AllDiv">
 					<c:if test="${!empty reviewList }">
 						<c:forEach var="map" items="${reviewList }">
 							<hr>
@@ -242,6 +243,13 @@ $(function(){
 	});
 event.preventDefault();
 }
+	
+	$(function(){
+		$('#btNocomment').click(function(){
+			$('#AllDiv').hide();
+			$('#Nocomment').show();
+		});
+	});
 	
 	// 탭 
 	$(function(){
