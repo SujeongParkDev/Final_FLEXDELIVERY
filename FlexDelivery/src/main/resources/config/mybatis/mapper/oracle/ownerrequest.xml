@@ -85,4 +85,8 @@
 		where t_no=#{tNo}
 	</update>
 	
+	<select id="selectPwd" parameterType="int" resultType="string">
+		select owner_pwd from owner where owner_no=#{ownerNo}
+	</select>
+	
 </mapper>

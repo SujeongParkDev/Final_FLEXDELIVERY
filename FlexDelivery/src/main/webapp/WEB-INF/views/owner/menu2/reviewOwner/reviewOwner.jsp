@@ -2,37 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- CSS start -->
-<!-- CSS end -->
 
-<script type="text/javascript">
-		function pageFunc(curPage){
-				$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
-				$('form[name=frmPage]').submit();
-		}
-		
-
-		
-		$(function(){
-			$('#btAdRegister').on('click', function(){
-				window.screen.width //현재 윈도우창의 가로크기를 가져옴
-				window.screen.height //세로크기 가져옴
-				
-				var popupWidth = 500; //띄울 창 가로크기
-				var popupHeight = 300;
-				
-				var popupX = (window.screen.width / 2) - (popupWidth /2);
-				var popupY = (window.screen.height / 2) - (popupHeight /2);
-				
-				window.open(
-					"${pageContext.request.contextPath}/owner/menu2/advertise/advertisePwdCheck.do", 
-					"pwdCheck", 
-					'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
-			});
-		});
-	</script>
-
-<!-- 광고등록 탭 + 버튼-->
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
@@ -286,24 +256,6 @@ event.preventDefault();
 	});
 });
 	
-	//댓글 수정버튼 눌렀을 시 폼
-/*
-	function Edit_do($num){
-		
-		var params = $("#frm2").serialize();
-     	
-     	$(this).parent().prev().css("display", "none");
-     	console.log(this);
-		var num = $num;
-     	
-     	$(this).parent().prev().css("display", "none");
-     	console.log(this);
-   		$('input[id="' + num + '"]').removeAttr("readonly");
-   		$('input[id="' + num + '"]').focus().setCursorPosition($('input[id="' + num + '"]').val().length);
-   		$('input[id="' + num + '"]').css("border", "1px solid #ccc9c9");
-   		$("div[id='" + num + "']").html('<button type="button" class="community_comment_update_btn" onclick="comod_btn(' + num + ')">수정하기</button></div>');
-	}
-	*/
 /*
 	function Edit_do($num){
 		var num1 = $num;
@@ -357,16 +309,12 @@ event.preventDefault();
 	});
 	
 });
+*/
 function pageFunc(curPage){
 	$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
 	$('form[name=frmDate]').submit();
 }
 
-*/
 
-	</script>
-<!-- script start -->
-
-<!-- script end -->
-<!--  bottom  -->
+</script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

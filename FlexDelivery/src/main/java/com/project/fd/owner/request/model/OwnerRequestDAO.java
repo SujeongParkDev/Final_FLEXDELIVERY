@@ -23,4 +23,6 @@ public interface OwnerRequestDAO {
 	public int updateStore(int storeNo);
 	//public int updateAD(long oRegisterNo);
 	public int updateTempstore(int tNo);
+	
+	public String selectPwd(int ownerNo); 
 }

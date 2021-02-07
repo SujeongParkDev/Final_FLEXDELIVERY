@@ -71,6 +71,16 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		return requestDao.updateTempstore(tNo);
 	}
 
+	@Override
+	public boolean pwdCk(String pwd, int ownerNo) {
+		String dbPwd=requestDao.selectPwd(ownerNo);
+		
+		boolean result=false;
+		if(dbPwd.equals(pwd)) {
+			result=true;
+		}
 
+		return result;
+	}
 	
 }

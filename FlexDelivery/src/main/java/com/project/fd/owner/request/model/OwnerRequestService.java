@@ -9,6 +9,9 @@ import com.project.fd.owner.store.model.OwnerStoresVO;
 import com.project.fd.owner.store.model.OwnerTemporaryVO;
 
 public interface OwnerRequestService {
+	public static final int SUCCESS_POST = 1;
+	public static final int FAIL_POST = 2;
+	
 	public List<Map<String, Object>> selectRegi(int ownerNo);
 	public List<Map<String, Object>> selectStore(int ownerNo);
 	public List<Map<String, Object>>  selectAd(int ownerNo);
@@ -23,4 +26,6 @@ public interface OwnerRequestService {
 	public int updateStore(int storeNo);
 	//public int updateAD(long oRegisterNo);
 	public int updateTempstore(int tNo);
+	
+	public boolean pwdCk(String pwd, int ownerNo);
 }

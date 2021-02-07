@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
+import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 import com.project.fd.owner.request.model.OwnerRequestService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
@@ -34,11 +36,11 @@ public class OwnerRequestController {
 	@Autowired private FileUploadUtil fileUtil;
 	
 	@RequestMapping("/requests.do")
-	public String ownerrequests(@RequestParam(defaultValue = "0")int no,
+	public String ownerrequests(
 			HttpSession session,Model model) {
 		int ownerNo=5;
 		//int ownerNo=(Integer)session.getAttribute("ownerNo");
-		logger.info("요청처리현황 보여주기 no={}",no);
+		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
 		
 		//List<OwnerAllRegisterVO> list =selectStore(ownerNo);
 		
@@ -196,35 +198,53 @@ public class OwnerRequestController {
 	//
 	//
 		//delete - ownerregister
-		@RequestMapping(value = "/deleteRegi.do", method = RequestMethod.GET) 
-		public String deleteRegi_get(@RequestParam(defaultValue = "0") long no,  Model model,HttpServletRequest request) {
-			logger.info("삭제  처리  파라미터 no={}",no);
-			//select By no = storeNo
-			int cnt =requestService.updateRegi(no);
-			
-			logger.info("삭제  결과, cnt={}", cnt);
+		@RequestMapping(value = "/deleteRegi.do", method = RequestMethod.POST) 
+		public String deleteRegi_get(@RequestParam(defaultValue = "0") long no,
+				@RequestParam String pwd, Model model,HttpServletRequest request, HttpSession session) {
+			logger.info("삭제  처리  파라미터 ownerregisterNo={}",no);
+			//select By no = ownerNo
+			int ownerNo=(Integer)session.getAttribute("ownerNo");
+			logger.info("pwdCK  처리  파라미터 ownerNo={}",ownerNo);
 			
 			String msg="사업자 등록 신청 취소에  실패하였습다. ", url="/owner/menu2/requests/tempRegi.do?no="+no;
-			if(cnt>0) {
+			int YorN =OwnerRequestService.FAIL_POST;
+			if(requestService.pwdCk(pwd,ownerNo)) {
+				int cnt =requestService.updateRegi(no);
+				logger.info("삭제  결과, cnt={}", cnt);
+				
+				if(cnt>0) {
 				msg="정상적으로 취소되었습니다.";
+				 YorN =OwnerRequestService.SUCCESS_POST;
+				}
+			}else {
+				msg="비밀번호가 일치하지 않습니다.";
 			}
 		
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
+			model.addAttribute("YorN", YorN);
 			
 			return "common/message";
 		}
 		
 		//delete  - stores 
-		@RequestMapping(value = "/deleteStore.do", method = RequestMethod.GET) 
-		public String deleteStores_get(@RequestParam(defaultValue = "0") int no,  Model model,HttpServletRequest request) {
-			logger.info("삭제  처리  파라미터 no={}",no);
-			int cnt =requestService.updateStore(no);
-			logger.info("삭제  결과, cnt={}", cnt);
+		@RequestMapping(value = "/deleteStore.do", method = RequestMethod.POST) 
+		public String deleteStores_get(@RequestParam(defaultValue = "0") int no,
+				@RequestParam String pwd, HttpSession session, Model model,HttpServletRequest request) {
+			logger.info("삭제  처리  파라미터 storeNo={}",no);
 			
+			int ownerNo=(Integer)session.getAttribute("ownerNo");
+			logger.info("pwdCK  처리  파라미터 ownerNo={}",ownerNo);
 			String msg="삭제에  실패하였습다. ", url="/owner/menu2/requests/Store.do?no="+no;
-			if(cnt>0) {
-				msg="정상적으로 취소되었습니다.";
+			if(requestService.pwdCk(pwd,ownerNo)) {
+				int cnt =requestService.updateStore(no);
+				logger.info("삭제  결과, cnt={}", cnt);
+				
+				if(cnt>0) {
+					msg="정상적으로 취소되었습니다.";
+				}
+			}else {
+				msg="비밀번호가 일치하지 않습니다.";
 			}
 		
 			model.addAttribute("msg", msg);
@@ -235,15 +255,23 @@ public class OwnerRequestController {
 	
 		
 		//delete - tempStore
-		@RequestMapping(value = "/deletetempStore.do", method = RequestMethod.GET) 
-		public String deleteTemp_get(@RequestParam(defaultValue = "0") int no,  Model model,HttpServletRequest request) {
-			logger.info("임시저장함 취소 신청 no={}",no);
+		@RequestMapping(value = "/deletetempStore.do", method = RequestMethod.POST) 
+		public String deleteTemp_get(@RequestParam(defaultValue = "0") int no, @RequestParam String pwd,
+				HttpSession session,   Model model,HttpServletRequest request) {
+			logger.info("임시저장함 취소 신청 tNo={}",no);
 			
-			int cnt =requestService.updateTempstore(no);
-			logger.info("삭제  결과, cnt={}", cnt);
+			int ownerNo=(Integer)session.getAttribute("ownerNo");
+			logger.info("pwdCK  처리  파라미터 ownerNo={}",ownerNo);
+
 			String msg="삭제에  실패하였습다. ", url="/owner/menu2/requests/tempStore.do?no="+no;
-			if(cnt>0) {
-				msg="정상적으로 취소되었습니다.";
+			if(requestService.pwdCk(pwd,ownerNo)) {
+				int cnt =requestService.updateTempstore(no);
+				logger.info("삭제  결과, cnt={}", cnt);
+				if(cnt>0) {
+					msg="정상적으로 취소되었습니다.";
+				}
+			}else {
+				msg="비밀번호가 일치하지 않습니다.";
 			}
 		
 			model.addAttribute("msg", msg);

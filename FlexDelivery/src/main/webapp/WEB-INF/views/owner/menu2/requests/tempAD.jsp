@@ -30,7 +30,6 @@
 	});
 	</script>
 </head>	
-		<!-- 메뉴 컨텐츠 내용 br 바꾸기 -->
 		<div></div>
 		<br>
 		<br>
@@ -38,17 +37,13 @@
 		<div class="row">
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
-				<!-- 메뉴에 관한 내용 -->
-				<div class="card" >
-				      <div class="card-body">
 				      		<div class="text-center">
 				       			<h4> 사업자 정보 상세보기  </h4>
 				       	   	 </div>
-				       	   <!-- 그룹에 관한 내용(테이블) -->
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->
 						          <div class="table-responsive"  style="overflow-x: hidden;">
-						            <table class="table">
+						            <table class="table table-striped">
 						              <tbody>
 						                <tr class="text-center">
 							                  <th class="text-bold-500" >광고 번호  </th>
@@ -72,8 +67,6 @@
 				       	   </div>
 				       </div>
 				   </div>
-				</div>
-				</div>
 				<div class="col-md-3 col-sm-12"></div>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

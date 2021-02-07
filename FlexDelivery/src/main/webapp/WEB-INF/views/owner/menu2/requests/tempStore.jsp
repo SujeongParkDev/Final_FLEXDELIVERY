@@ -38,17 +38,13 @@
 		<div class="row">
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
-				<!-- 메뉴에 관한 내용 -->
-				<div class="card" >
-				      <div class="card-body">
 				      		<div class="text-center">
 				       			<h4> 사업자 정보 상세보기  </h4>
 				       	   	 </div>
-				       	   <!-- 그룹에 관한 내용(테이블) -->
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->
 						          <div class="table-responsive"  style="overflow-x: hidden;">
-						            <table class="table">
+						            <table  class="table table-striped">
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
@@ -77,7 +73,7 @@
 							                  <td>${stVo.storeAddressDetail}</td>
 						                </tr>
 						                <tr class="text-center">
-							                  <th class="text-bold-500">점포 지역명 </th> <!-- 나중에 네임으로 다 바꾸기  -->
+							                  <th class="text-bold-500">점포 지역명 </th>
 							                  <td>${stVo.locationName}</td>
 						                </tr>
 						                <tr class="text-center">
@@ -91,12 +87,58 @@
 				       	   <!-- 끝  -->
 				       	     <div class="text-center">
 				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
+				       	     	 <c:if test="${rgVo.aAgreeNo == 1}">
+				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" 
+				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
+				       	   	 </c:if>
 				       	     </div>
 				       </div>
 				   </div>
-				</div>
-				</div>
 				<div class="col-md-3 col-sm-12"></div>
+			<!--비밀 번호 확인 모달  -->			
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="text-right">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="text-left">
+        <h4 class="modal-title" id="exampleModalLabel">본인 확인 </h4>
+      </div>
+      </div>
+        <form name="frmDelete" method="post"  action="<c:url value='/owner/menu2/requests/deletetempStore.do'/>" >
+        <input type="hidden" id="no" name="no" value="${rgVo.tNo}">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">비밀번호를 입력하세요. </label>
+            <input type="password" class="form-control" id="pwd"name="pwd"/>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">나가기</button>
+        <input type="submit" class="btn btn-primary" value="확인 ">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>	
+	<script>
+    $(function(){
+		$('form[name=frmDelete]').submit(function(){
+			if($('#pwd').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#pwd').focus();
+				event.preventDefault();
+			}else if(!confirm('삭제하시겠습니까?')){
+				event.preventDefault();
+			}
+		});
+	});	
+	</script>
+	<!--  -->		
+				
+	<!--  -->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>

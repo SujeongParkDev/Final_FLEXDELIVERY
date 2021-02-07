@@ -164,7 +164,7 @@ function goDetail(no){
     var left = Math.ceil((window.screen.width - windowW)/2);
     var top = Math.ceil((window.screen.height - windowH)/2);
     
-    // 정상 작동이프 제거하면 됨 
+   
 $(function(){
   var url="<c:url value='/owner/menu2/requests/tempRegi.do?no='/>"+no;
   

@@ -73,6 +73,11 @@ public class OwnerRequestDAOMybatis implements OwnerRequestDAO{
 	public int updateTempstore(int tNo) {
 		return sqlSession.update(namespace+"updateTempstore",tNo);
 	}
+
+	@Override
+	public String selectPwd(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectPwd",ownerNo);
+	}
 	
 	
 	
