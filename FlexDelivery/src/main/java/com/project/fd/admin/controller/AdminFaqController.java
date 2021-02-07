@@ -64,6 +64,20 @@ public class AdminFaqController {
 		return cList;
 	}
 	
+	@RequestMapping(value="/faq/list.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<AdminFaqAllViewVO> list_for_category_get(@RequestParam int categoryNo, Model model) {
+		
+		logger.info("자주 하는 질문: 선택 카테고리, categoryNo={}", categoryNo);
+		
+		List<AdminFaqAllViewVO> forList=faqService.selectFor2(categoryNo);
+		logger.info("카테고리  따른 list 출력, forList.size={}", forList.size());
+		
+		model.addAttribute("forList", forList);
+		
+		return forList;
+	}
+	
 	@RequestMapping(value="/faq/category/write.do", method=RequestMethod.POST)
 	public String category_write_post(@ModelAttribute AdminFaqCategoryVO faqCategoryVo,
 			HttpServletRequest request) {
@@ -128,7 +142,6 @@ public class AdminFaqController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
-		//return "redirect:/admin/menu6/todayFoodsWeather.do";
 		return "common/message";
 	}
 	
@@ -151,7 +164,7 @@ public class AdminFaqController {
 		return "common/message";
 	}
 	
-	@RequestMapping(value="/faq/category/delete.do", method=RequestMethod.POST)
+	@RequestMapping(value="/faq/category/delete.do", method=RequestMethod.GET)
 	public String category_delete_post(@RequestParam int no, HttpServletRequest request, Model model) {
 		logger.info("delete_post FAQ 카테고리 삭제처리, 파라미터 no={}", no);
 		

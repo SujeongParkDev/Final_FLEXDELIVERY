@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../adminInc/top.jsp" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <script>
 	$(function(){
@@ -12,7 +13,8 @@
 				if (res.length > 0) {
 					$('#returnCList').empty();
 					$.each(res, function(idx, item) {
-						var info = "<li>"+"<a href='#'>"+ item.fCategoryName + "</a>"+"</li>";
+						var info = "<li>"+"<a onclick='listForCategory("+item.fCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver()'>"
+							+ item.fCategoryName + "</a>"+"</li>";
 						$('#returnCList').append( info );
 					});
 				}
@@ -31,7 +33,150 @@
 			
 		}); */
 		
+		
+		$('#frmTr').hide();
+		$('#frmTr2').hide();
+		
 	});
+	
+	/* function readySubmit(){
+		var num=$('#frmFAQCategoryWrite').find('input[type=radio]').val();
+		if (num==0){
+			alert("종류를 선택해주세요!");
+			event.preventDefault();
+			//return false;
+		} 
+	} */
+	
+	function chkModalOpt(){
+		var inModalOpt=$('#inModalOpt').val();
+		
+		if (inModalOpt==0){
+			$('#frmTr').hide();			
+			$('#frmTr2').hide();			
+		} else {
+			$('#frmTr').show();	
+			$('#frmTr2').show();	
+			
+			//var result=result.find('option:selected').text();
+			var result=$('#inModalOpt').find('option:selected').text();
+			var textVal=result;
+			//alert(textVal);
+			//$('#inModalOpt').text();
+			$('#afterCategoryName').val(textVal);
+			
+			var authorityVal=$('#inModalOpt').find('option:selected').attr('title');
+			//alert(authorityVal);
+			
+			//#frmTd2 > input[type=radio]:nth-child(1) => 회원
+			//#frmTd2 > input[type=radio]:nth-child(2) => 사장님
+
+			if (authorityVal==1){
+				$('#frmTd2').find('input[type=radio]:nth-child(1)').prop('checked', true);
+				$('#frmTd2').find('input[type=radio]:nth-child(2)').prop('checked', false);
+				
+			} else if (authorityVal==4){
+				$('#frmTd2').find('input[type=radio]:nth-child(1)').prop('checked', false);
+				$('#frmTd2').find('input[type=radio]:nth-child(2)').prop('checked', true);	
+				
+			}
+			
+		}
+	}
+
+	
+	function beforeSubmit(){
+		var delNo=$('#inModalOpt').find('option:selected').val();
+		//alert(delNo);
+		location.href = "<c:url value='/admin/menu5/faq/category/delete.do?no="+ delNo +"' />";
+	}
+	
+	function onMouseOver(){
+		$(this).css("color: white");
+	}
+	
+	function listForCategory(no){
+		var categoryNo=no;
+		var str="";
+		
+		//var data=${fn:length(forList) };
+		
+		
+		/*
+	        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${vo.faqNo }" 
+	        	aria-expanded="false" aria-controls="collapse${vo.faqNo }">
+	          Q. ${vo.faqQ }
+	        </button>
+	        
+	        <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
+              id="btFaqEdit${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqEdit${vo.faqNo }">수정</button> 
+            <span style="font-size: 12px;"> | </span> 
+            
+            <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
+              id="btFaqDelete${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqDelete${vo.faqNo }" >삭제</button>
+	      
+              </h2>
+	    </div>
+	    
+	    
+	    <div id="collapse${vo.faqNo }" class="collapse" aria-labelledby="heading${vo.faqNo }" data-parent="#accordionList">
+	      <div class="card-body">
+	      	${vo.faqA }
+		      </div>
+	    */
+	   
+		$.ajax({
+			type:"GET",
+			url :"<c:url value='/admin/menu5/faq/list.do?categoryNo="+categoryNo+"' />",
+			dataType:'json',
+			//data: data,
+			success: function(res){
+				if (res.length == 0){
+					
+					str+="<div class='mb-70' style='text-align: center;'>";
+					str+="<p>등록된 자주 묻는 질문이 없습니다.</p>";
+					str+="</div>";
+				} else {
+					str+="<c:forEach var='vo' items='${list }' varStatus='status'>";
+					str+="<div class='card'>";
+					str+="<div class='card-header' id='heading${vo.faqNo }'>";
+					str+="<h2 class='mb-0'>";
+					
+					str+="<div class='accordion mb-70' id='accordionList${vo.faqNo}'>";
+					str+="<ul class='accordion'>";
+				    str+="<li class='item'>";
+				    str+="<h2 class='accordionTitle'>${vo.faqQ} <span class='accIcon'></span></h2>";
+				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'";
+				    str+="id='btFaqEdit${vo.faqNo }' data-toggle='modal' data-backdrop='false' data-target='#modalFaqEdit${vo.faqNo }'>수정</button>";
+				    str+="<span style='font-size: 12px;'> | </span>"; 
+				            
+				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'"; 
+				    str+="id='btFaqDelete${vo.faqNo }' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete${vo.faqNo }' >삭제</button>";
+				    str+="</h2>"
+				    
+				    /*var newFaqA=${vo.faqA}.replace(/\r/gi, '\\r').replace(/\n/gi, '\\n');*/
+				    /*var newFaqA=str_replace("\r\n", "<br>", ${vo.faqA});
+				    str+=" <div class='text'>"+newFaqA+"</div>";*/
+				    str+="</li>";
+				    str+="</ul>";
+				    str+="</div>"; //accordionList
+				    
+				    str+="</h2>";
+				    str+="</div>"; //card-header
+				    
+				    str+="</div>";
+				    str+="</c:forEach>";
+				}
+				
+				alert(categoryNo+":"+res.length);
+				$('#forPrint').html(str);
+				
+			},
+			error: function(xhr, status, error){
+				console.log(error);
+			}
+		});
+	}
 
 </script>
 
@@ -41,7 +186,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-<!-- css end -->
+
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css">
+ --%><!-- css end -->
 
 <div class="container">
 	<div class="row">    
@@ -61,6 +208,10 @@
 						   data-toggle="modal" data-backdrop="false" data-target="#faqCategoryWrite" >
 						     카테고리 등록
 						</button>
+						<button type="button" class="btn btn-dark" id="modalCategoryEditDeleteBt"
+						   data-toggle="modal" data-backdrop="false" data-target="#faqCategoryEditDelete" >
+						     카테고리 수정 / 삭제
+						</button>
 						<button type="button" class="btn btn-dark" id="modalFaqWriteBt"
 						   data-toggle="modal" data-backdrop="false" data-target="#faqWrite2" >
 						     자주 하는 질문 등록
@@ -72,7 +223,7 @@
                         role="dialog" aria-labelledby="FAQ 카테고리 등록" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-								<form name="frmFAQCategoryWrite" method="post" action="<c:url value='/admin/menu5/faq/category/write.do' />">
+								<form name="frmFAQCategoryWrite" id="frmFAQCategoryWrite" method="post" action="<c:url value='/admin/menu5/faq/category/write.do' />">
                                 	<div class="modal-header">
 	                                    <h4 class="modal-title" id="faqWrite">자주 하는 질문 - 카테고리 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -90,7 +241,14 @@
 	                                                      <td colspan="2"  style="text-align: center;">
 	                                                      	<input type="text" name="fCategoryName">
 	                                                      	<input type="hidden" name="fCategoryNo" value="1">
-	                                                      	<input type="hidden" name="authorityNo" value="6">
+	                                                      </td>			                                                   	  	
+													  </tr>
+                                                   	  <tr>
+                                                   	  	 <td>종류</td>
+	                                                      <td colspan="2"  style="text-align: center;">
+	                                                      	<input type="radio" name="authorityNo" value="0" checked>선택해주세요
+	                                                      	<input type="radio" name="authorityNo" value="1">회원
+	                                                      	<input type="radio" name="authorityNo" value="4">사장님
 	                                                      </td>			                                                   	  	
 													  </tr>
 	                                                </tbody>
@@ -105,7 +263,8 @@
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
 	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite"
-	                                     id="modalWrite" onclick="form.submit()">
+ 	                                     id="modalWrite" onclick="form.submit()">
+	                                     <!-- id="modalWrite" onclick="readySubmit()"> -->
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>
@@ -113,6 +272,75 @@
                               	</form><!-- frmFaqCategoryWrite등록 폼 모달 -->
                             </div>
                          </div>
+                     </div>    
+					<!-- #faqCategoryWrite 모달 end -->
+					
+					<!-- #faqCategoryEditDelete 모달 start -->
+					<div class="modal fade text-left" id="faqCategoryEditDelete" tabindex="-1" 
+                        role="dialog" aria-labelledby="FAQ 카테고리 수정 및 삭제" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                           <div class="modal-content">
+							<form name="frmFAQCategorEditDelete" method="post" action="<c:url value='/admin/menu5/faq/category/edit.do' />">
+                               	<div class="modal-header">
+                                    <h4 class="modal-title" id="faqEditAndDel">자주 하는 질문 - 카테고리 수정 / 삭제</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <i data-feather="x"></i>
+                                    </button>
+                                </div>
+                               	<div class="modal-body">                                 
+                                    <div class="row">
+                                       <div class="col-12">   
+                                          <div class="table-responsive" style="text-align: center;">
+                                             <table class="table mb-0">
+                                                <tbody>
+                                                  	  <tr>
+                                                  	  	<td>카테고리</td>
+                                                      	<td colspan="2"  style="text-align: center;">
+	                                                      	<select id="inModalOpt" name="fCategoryNo" onchange="chkModalOpt()">
+	                                                      		<option value="0">선택하세요</option>
+		                                                      		<c:forEach var="cVo2" items="${ctList }">
+		                                                      			<option value="${cVo2.fCategoryNo }" title="${cVo2.authorityNo }">${cVo2.fCategoryName }</option>
+		                                                      		</c:forEach>
+	                                                      	</select>
+                                                       </td>			                                                   	  	
+												     </tr>
+												     <tr id="frmTr">
+												     	<td>변경 후 카테고리 이름</td>
+												     	<td colspan="2"><input type="text" id="afterCategoryName" name="fCategoryName"></td>
+											     	</tr>
+												     <tr id="frmTr2">
+												     	<td>종류</td>
+		                                              	<td colspan="2" id="frmTd2">
+	                                                      	<input type="radio" name="authorityNo" value="1">회원
+	                                                      	<input type="radio" name="authorityNo" value="4">사장님
+	                                                      		
+		                                              	</td>
+												     </tr>
+                                                 </tbody>
+                                              </table>                      
+                                          </div>
+                                       </div>
+                                    </div>        
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+                                       <i class="bx bx-x d-block d-sm-none"></i>
+                                       <span class="d-none d-sm-block">닫기</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEditDelete1"
+                                     id="modalEditBt1" onclick="form.submit()">
+                                       <i class="bx bx-check d-block d-sm-none"></i>
+                                       <span class="d-none d-sm-block">수정</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEditDelete2"
+                                     id="modalDeleteBt1" onclick="beforeSubmit()">
+                                       <i class="bx bx-check d-block d-sm-none"></i>
+                                       <span class="d-none d-sm-block">삭제</span>
+                                    </button>
+                                 </div>
+						     	</form>
+                              </div>
+                          </div>
                      </div>    
 					<!-- #faqCategoryWrite 모달 end -->
 
@@ -191,32 +419,10 @@
 			            </div>
 			        </div>
 			        
-			        <div class="card-body">
-						<div class="accordion" id="accordionList">
-						<c:if test="${empty list }">
-							
-						  <div class="card" style="text-align: center;">
-							<p>등록된 자주 묻는 질문이 없습니다.</p>
-						    <!-- <div class="card-header" id="headingOne">
-						      <h2 class="mb-0">
-						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          Q. 배달이 시작되면 점포 측에서 직접 배달시작 버튼을 눌러야 하는 건가요?
-						        </button>
-						      </h2>
-						    </div>
-						
-						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionList">
-						      <div class="card-body">
-						      	  네, 직접 눌러주셔야 합니다. 배달시작 버튼을 누른 후에 배달 완료 버튼을 누를 수 있으며, 배달 시작 버튼을 눌렀을 때 현재 주문 상태가 '조리중'에서 '배달중'으로 바뀌게 됩니다. 
-						      	  이렇게 바뀐 정보는 점포의 주문 내역에 반영되어 노출되며, 고객님의 주문 내역에 반영되어 주문한 음식이 현재 어떤 상태인지를 알립니다. 모쪼록 바쁘신 와중에도 정확한 정보 전달을 위해 빠짐없이 버튼을 눌러주시길 부탁드립니다. 
-						      </div>
-						    </div> -->
-						  </div>
-						 
-						</c:if>
+			        <div class="card-body" id="forPrint">
+						<!-- 카테고리 클릭 시 list 개수 따라 다른 출력 -->
 						  
-						  <c:if test="${!empty list }">
-						  <div class="card">
+						  <%-- <div class="card">
 						  	<c:forEach var="vo" items="${list }" varStatus="status">
 						    <div class="card-header" id="heading${vo.faqNo }">
 						      <h2 class="mb-0">
@@ -240,7 +446,9 @@
 						      	${vo.faqA }
 				 		      </div>
 						    </div>
-						    
+						    </c:forEach>
+						  	</div> --%>
+						  	
 						    <%-- <div class="card-header" id="headingTwo">
 						      <h2 class="mb-0">
 						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -254,6 +462,9 @@
 						      	
 				 		      </div>
 						    </div> --%>
+						    
+					</div>
+						    <c:forEach var="vo" items="${list }" varStatus="status">
                            <!-- FAQ 수정 start -->
 							<div class="modal fade text-left" id="modalFaqEdit${vo.faqNo }" tabindex="-1" 
 		                        role="dialog" aria-labelledby="FAQ 수정" aria-hidden="true">
@@ -319,48 +530,39 @@
 		                     </div>
 							<!-- #faqEdit모달 end -->
 						    
-						 <!-- FAQ 삭제 모달 -->
-                          <div class="modal fade text-left" id="modalFaqDelete${vo.faqNo }" tabindex="-1" role="dialog" 
-                              aria-labelledby="FAQ 삭제" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                 <div class="modal-content">
-                                    <form name="frmFaqDel" id="frmFaqDel" method="post" action="<c:url value='/admin/menu5/faq/deleteFaq.do?no=${vo.faqNo }' />">
-                                       <div class="modal-header bg-danger">
-                                          <h5 class="modal-title white" id="myModalFaqEdit">자주 묻는 질문 삭제</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <i data-feather="x"></i>
-                                          </button>
-                                       </div>
-                                       <div class="modal-body">
-                                            <input type="hidden" name="faqNo" value="${vo.faqNo }" >
-                                           
-                                          	[<span style="font-weight: bolder;">${vo.faqQ}</span>] 에 대한 답변을 삭제하시겠습니까?
-                                       </div>
-                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalFaqDelCancel">
-                                             <i class="bx bx-x d-block d-sm-none"></i>
-                                             <span class="d-none d-sm-block">취소</span>
-                                          </button>
-                                          
-                                          <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalFaqDelOk" onclick="form.submit()">
-                                             <i class="bx bx-check d-block d-sm-none"></i>
-                                             <span class="d-none d-sm-block">삭제</span>
-                                          </button>
-                                       </div>
-                                    </form>
-                                 </div>
-                              </div>
-                           </div> <!-- 삭제 모달 end-->
-                           
-						  	</c:forEach>
-						  </div>
-						  
-						 
-						  <!--  -->
-						  </c:if>
-						  
-						</div>
-					</div>
+							 <!-- FAQ 삭제 모달 -->
+	                          <div class="modal fade text-left" id="modalFaqDelete${vo.faqNo }" tabindex="-1" role="dialog" 
+	                              aria-labelledby="FAQ 삭제" aria-hidden="true">
+	                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+	                                 <div class="modal-content">
+	                                    <form name="frmFaqDel" id="frmFaqDel" method="post" action="<c:url value='/admin/menu5/faq/deleteFaq.do?no=${vo.faqNo }' />">
+	                                       <div class="modal-header bg-danger">
+	                                          <h5 class="modal-title white" id="myModalFaqEdit">자주 묻는 질문 삭제</h5>
+	                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                              <i data-feather="x"></i>
+	                                          </button>
+	                                       </div>
+	                                       <div class="modal-body">
+	                                            <input type="hidden" name="faqNo" value="${vo.faqNo }" >
+	                                           
+	                                          	[<span style="font-weight: bolder;">${vo.faqQ}</span>] 에 대한 답변을 삭제하시겠습니까?
+	                                       </div>
+	                                       <div class="modal-footer">
+	                                          <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalFaqDelCancel">
+	                                             <i class="bx bx-x d-block d-sm-none"></i>
+	                                             <span class="d-none d-sm-block">취소</span>
+	                                          </button>
+	                                          
+	                                          <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalFaqDelOk" onclick="form.submit()">
+	                                             <i class="bx bx-check d-block d-sm-none"></i>
+	                                             <span class="d-none d-sm-block">삭제</span>
+	                                          </button>
+	                                       </div>
+	                                    </form>
+	                                 </div>
+	                              </div>
+	                           </div> <!-- 삭제 모달 end-->
+							</c:forEach>
 				</div><!-- card-content -->
 				
 			</div><!-- card -->

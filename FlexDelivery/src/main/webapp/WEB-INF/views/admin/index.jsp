@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../adminInc/top.jsp" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css"/>
-
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css"/>
+ --%>
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">
 <!-- <div style="text-align: center; font-family: 'Poppins', sans-serif;">

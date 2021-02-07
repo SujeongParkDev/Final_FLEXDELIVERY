@@ -36,4 +36,14 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		return faqDao.deleteFaq(no);
 	}
 
+	@Override
+	public List<AdminFaqVO> selectFor(int categoryNo) {
+		return faqDao.selectFor(categoryNo);
+	}
+
+	@Override
+	public List<AdminFaqAllViewVO> selectFor2(int categoryNo) {
+		return faqDao.selectFor2(categoryNo);
+	}
+
 }
