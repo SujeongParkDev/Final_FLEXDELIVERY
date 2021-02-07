@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 
 
 <!DOCTYPE html>
   <html>
   <head>
-  
+	<script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>  
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
@@ -18,11 +18,47 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
 
-  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script type="text/javascript">
 	<!-- js -->
 	
+ 	
+	  $(document).ready(function() {
+          $("#test_btn").click(function() {
+              $.ajax({
+                  url:"<c:url value='/owner/VerifyRecaptcha.do'/>",
+                  type: 'post',
+                  data: {
+                      recaptcha: $("#g-recaptcha-response").val()
+                  },
+                  success: function(data) {
+                      switch (data) {
+                          case 0:
+                              alert("자동 가입 방지 봇 통과");
+                              break;
+
+                          case 1:
+                              alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+                              break;
+
+                          default:
+                              alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                              break;
+                      }
+                  }
+              });
+          });
+      });
+
+
+
 	
 	
+	
+	
+
+	
+</script>
 <style>
 	input{
 		border:none;
@@ -39,110 +75,8 @@
 </style>
   </head>
   <body>
-  			<br><br><Br>
-  			<div class="text-center">
-			   <h4>주문 상세</h4>
-			</div>
-	  	<div class="row">
-	  	 	<div class="col-12 col-md-5"></div>
-	  		 <div class="col-12 col-md-2">
-	                    <div class="row">
-	                    	<hr>
-	                    	<div class="text-center">
-			                   	<h6>회원 정보</h6>
-			                 </div>
-	                    	<table>
-	                    		<thead>
-							 		<tr>
-							 			<td style="width:40%;"></td>
-							 			<td style="width:60%;"></td>
-							 		</tr>
-						 		</thead>
-	                    		<tbody>
-				                     <tr class="text-center">
-				                     	<th>회원 아이디</th>
-				                     	<td>user1</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<th>회원 이름</th>
-				                     	<td>김쟁쟁</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<th>회원 주소</th>
-				                     	<td>강남구 어쩌구</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<th>요청사항</th>
-				                     	<td>김가루좀 뿌려주세요</td>
-				                     </tr>
-				                  </tbody>      
-			                   </table> 
-			                   	<hr>
-			                   	<div class="text-center">
-			                   		<h6>메뉴 / 옵션</h6>
-			                  	</div>
-			                  <table>
-			                  	<thead>
-							 		<tr>
-							 			<td style="width:40%;"></td>
-							 			<td style="width:60%;"></td>
-							 		</tr>
-						 		</thead>
-	                    		<tbody>
-				                     <tr class="text-center">
-				                     	<th><b>새우</b></th>
-				                     	<td>3개  / 12000원</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<th><b>도우</b></th>
-				                     	<td>3개  / 12000원</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<td>ㄴ[파추가]</td>
-				                     	<td>3개 / 12000원</td>
-				                     </tr>
-				                     <tr class="text-center">
-				                     	<td>ㄴ[밥추가]</td>
-				                     	<td>3개 / 12000원</td>
-				                     </tr>
-				                  </tbody>      
-			                   </table>
-	               
-						
-						<hr>  
-						<div class="text-center">
-			               <h6>가격</h6>
-			           	</div>
-						 <table>
-						 	
-                    		<tbody>
-                    			<tr class="text-center">
-			                     	
-			                     	<td>가격 : 40000원</td>
-				                 </tr>
-				                 <tr class="text-center">
-			                     	
-			                     	<td>- 할인: 3000원</td>
-				                 </tr>
-				                 <tr class="text-center">
-			                     	<td>+ 배달팁 : 3000원<br>
-			                     	<hr></td>
-				                 </tr>
-				                 <tr class="text-center">
-			                     	<td>총 : 30000원</td>
-				                 </tr>
-                    		</tbody>
-	                    </table>
-						
-	                    <div class="col-12  mt-3 d-flex justify-content-center">
-	                        <button type="button" class="btn btn-primary mr-1 mb-1">확인</button>
-	                    </div>
-							 
-	                    </div>
-	                </div>
-	              
-                </div>
-                <div class="col-12 col-md-5"></div>
-           
+  	<button id="test_btn">테스트 버튼</button>
+                        	<!--recaptcha-->
+	<div class="g-recaptcha" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow"></div>
   </body>
 </html>

@@ -33,7 +33,8 @@
     
     
     <!-- JavaScript Bundle with Popper -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript">
 		function goHome(){
 			location.href="<c:url value='/owner/index.do'/>";
@@ -74,7 +75,32 @@
 					alert('약관에 동의하여주세요');
 					$('#agreeCheck').focus();
 					event.preventDefault();
+				}else{
+					$.ajax({
+		                  url:"<c:url value='/owner/VerifyRecaptcha.do'/>",
+		                  type: 'post',
+		                  data: {
+		                      recaptcha: $("#g-recaptcha-response").val()
+		                  },
+		                  success: function(data) {
+		                      switch (data) {
+		                          case 0:
+		                              alert("자동 가입 방지 봇 통과");
+		                              $('form[name=registerfrm]').submit();
+		                              break;
+	
+		                          case 1:
+		                              alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+		                              break;
+	
+		                          default:
+		                              alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+		                              break;
+		                      }
+		                  }
+		              });
 				}
+				
 			});
 		});
 		
@@ -134,6 +160,14 @@
 	 		
 	 	};
 	
+	 	
+
+
+	 	
+	 	
+	 	
+	 	
+	 
 		
 	</script>
 </head>
@@ -148,7 +182,7 @@
            			</div>
                 <div class="card-body ">
                     <h2 class="title" style="text-align: center;">R E G I S T E R</h2>
-                    <form method="POST" action="<c:url value='/owner/ownerWrite.do'/>">
+                    <form method="POST" name="registerfrm" action="<c:url value='/owner/ownerWrite.do'/>">
                         <div class="input-group" style="margin-bottom:10px;">
                             	이름  <input class="input--style-1" type="text" id="ownerName" name="ownerName" style="text-align:center; ime-mode:active;" >
                         </div>
@@ -210,8 +244,12 @@
                        		<label for="agreeCheck">약관에 동의합니다.</label>
                         </div>
                         <br>
+                        <div class="text-center">
+                        	<!--recaptcha-->
+							<div class="g-recaptcha" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-left:100px; margin-bottom:20px;"></div>
+						</div>
                         <div align="center">
-                            <button class="btn btn--radius btn--green " type="submit" style="background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btOwnerWrite">가입</button>
+                            <button class="btn btn--radius btn--green " type="button" style="background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btOwnerWrite">가입</button>
                             <button class="btn btn--radius btn--green" type="button" onclick="goHome()"
                             		style="border:1px solid rgb(223,108,220); color:rgb(118,18,118); background-color: white">취소</button>
                         </div>
