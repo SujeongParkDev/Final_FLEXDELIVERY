@@ -79,13 +79,13 @@
                     <!-- Breaking News Area -->
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
-                            <div id="breakingNewsTicker" class="ticker">
+                            <!-- <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-									<!-- 왼쪽 상단에 뜨는 휠 같은거 -->                                    
+									왼쪽 상단에 뜨는 휠 같은거                                    
                                     <li><a href="#">고객센터</a></li>
                                     <li><a href="#">사장님꿀팁</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- Top Social Area -->
@@ -98,9 +98,8 @@
                         	 </c:if>
 	                        <!-- 사장님이  로그인 했을때 -->
 	                        <c:if test="${!empty sessionScope.ownerId }">
+	                        	 <a href="<c:url value='/owner/mypage/mypageMain.do'/>" data-toggle="tooltip" data-placement="bottom" title="mypage"><i  aria-hidden="false">마이페이지</i></a>
 	                        	 <a href="<c:url value='/owner/logout.do'/>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i  aria-hidden="false">로그아웃</i></a>
-	                        	 <a href="<c:url value='/owner/register/registerEdit.do'/>" data-toggle="tooltip" data-placement="bottom" title="myinfo"><i  aria-hidden="false">내 정보</i></a>
-	                        	 <a href="#" onclick="goWithdraw()" data-toggle="tooltip" data-placement="bottom" title="withdraw"><i  aria-hidden="false">회원 탈퇴</i></a>
 	                        </c:if>
                             
                         </div>

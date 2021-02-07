@@ -29,44 +29,54 @@
 		
 	});  
 
-	
-	
+
 	function goDetail(ordersNo,ordersDiscount){
 		$.ajax({
 			url:"<c:url value='/owner/menu2/order/orderRequestResult.do'/>",
 			data:"ordersNo="+ordersNo,
 			dataType:"json",
 			type:"GET",
-			success:function(dList){
+			success:function(map){
 				var str="";
-				console.log(dList);
-       
-            	if(dList.length==0){
-					   str+="<tr class='text-center'><td colspan='4'>데이터가 존재하지 않습니다.</td></tr>";         		
-            	}else{
-            			 str+="<tr><th colspan='2'>주문 번호</th><br><td colspan='2'>"+ordersNo+"</td></tr>";
+				console.log(map);
+				
+       				str+="<div class='text-center' style='height:15px;'><bR><h6>회원 정보</h6><br></div>";
+       				str+="<table><thead><tr><td style='width:40%;'></td><br><td style='width:60%;'></td></tr></thead>";
+       				str+="<tbody><tr class='text-center'><br><th>회원 아이디</th><td>"+map.oMap['MEMBER_ID']+"</td></tr>";
+       				str+="<tbody><tr class='text-center'><th>회원 이름</th><br><td>"+map.oMap['MEMBER_NAME']+"</td></tr>";
+       				str+="<tbody><tr class='text-center'><th>회원 주소</th><td>"+map.oMap['ORDERS_ADDRESS']+"</td></tr>";
+       				str+="<tbody><tr class='text-center'><br><th>회원 요청사항</th><td>"+map.oMap['ORDERS_MESSAGE']+"</td></tr></tbody></table><div class='mt-3 mb-2'><hr></div>";
+       				str+="<br><div class='text-center' style='height:15px;'><h6>메뉴 / 옵션</h6></div><br>";
+       				str+="<table><thead><tr><td style='width:40%;'></td><td style='width:60%;'></td></tr></thead>";
+					str+="<tbody>";
+       				if(map.dList.length==0){
+					   str+="<tr class='text-center'><td colspan='2'>주문 데이터가 존재하지 않습니다.</td></tr>";         		
+            		}else{
             			 var price = 0;
-            		$.each(dList, function(idx, item){
-            			if(item['M_OPTION_NO']==0){
-            				str+="<tr><th>메뉴 이름</th><br><td>"+item['MENU_NAME']+"</td><td>"+item['O_DETAIL_QTY']+"개</td><td><small>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+"원</small></td></tr>";
-            				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
-            			}else{
-            				str+="<tr style='font-size:5px;'><th>ㄴ옵션 </th><br><td>"+item['M_OPTION_NAME']+"</td><td>"+item['O_DETAIL_QTY']+"개</td><td><small>"+(item['O_DETAIL_QTY']*item['M_OPTION_PRICE'])+"원</small></td></tr>";
-            				price+=(item['O_DETAIL_QTY']*item['M_OPTION_PRICE']);
-            			}
+	            		$.each(map.dList, function(idx, item){
+	            			if(item['M_OPTION_NO']==0){
+	            				str+="<tr class='text-center'><th><b>"+item['MENU_NAME']+"</b></th>";
+	            				str+="<td>"+item['O_DETAIL_QTY']+"개 / "+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+"원</td></tr>";
+	            				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
+	            			}else{
+	            				str+="<tr class='text-center' style='font-size:10px;'><td class='pl-4'>ㄴ["+item['M_OPTION_NAME']+"]</td><td>"+item['O_DETAIL_QTY']+"개 / "+(item['O_DETAIL_QTY']*item['M_OPTION_PRICE'])+"원</td></tr>";
+	            				price+=(item['O_DETAIL_QTY']*item['M_OPTION_PRICE']);
+	            			}
             		});
+            		str+="</tbody><br></table><br><div class='mt-3'><hr></div>";
             		
-            		str+="<br><tr><td colspan='2'>합계 </td><td colspan='2'> "+price+"원</td></tr><br>";
+            		str+="<div class='text-center' style='height:15px;'><h6>가격</h6></div><table><br><tbody>";
+            		str+="<tr class='text-center'><td>가격 : "+price+"원</td></tr>";
             		if(ordersDiscount>0){
-            			str+="<tr><td colspan='2'></td><td> - 할인금액</td><td>"+ordersDiscount+"원</td></tr><br>";
+            			str+="<tr class='text-center'><td> - 할인 : "+ordersDiscount+"원</td></tr>";
             			price-=ordersDiscount;
             		}
-            		str+="<tr><td colspan='2'></td><td> + 배달팁</td><td>3000원</td></tr><br>";
+            		str+="<tr class='text-center'><td> + 배달팁 : 3000원<br></tr>";
             		price+=3000;
-            		str+="<hr><br><tr><td colspan='2'>총 금액</td><td colspan='2'>"+price+"</td></tr><br>";
-            			
+            		str+="<tr class='text-center'><td> 총 : "+price+"</td></tr></tbody></table>";
+            		
             	}
-            	$('#orderDetailModal').html(str);
+            	$('#detailStart').html(str);
 				
 				
 				
@@ -77,21 +87,19 @@
 		}); 
   };	
 
-</script>
 
-<br><br>
-	<div class="text-center">
-		<h3>주문현황</h3>
-	</div>
-	><br><br>
+
+	
+</script>
+<br><br><br>
 	 <div class="row">
-  		<div class="col-md-2 col-sm-12"></div>
-  		<div class="col-md-9 col-sm-12">
+  		<div class="col-md-1 col-sm-12"></div>
+  		<div class="col-md-10 col-sm-12">
 	  		 <div class="text-right">
-               	 <button id="btRequestTop" class="btn btn-primary btOrderChange" >주문신청</button>
-               	 <button id="btOrderTop" class="btn btn-primary btOrderChange" >조리중</button>
-               	 <button id="btOrderIngTop" class="btn btn-primary btOrderChange " >배달중</button>
-               	 <button id="btOrderSuccessTop" class="btn btn-primary btOrderChange" >배달완료</button>
+               	 <button id="btRequestTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >주문신청</button>
+               	 <button id="btOrderTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">조리중</button>
+               	 <button id="btOrderIngTop" class="btn btn-primary btOrderChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">배달중</button>
+               	 <button id="btOrderSuccessTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >배달완료</button>
               	 </div>
            </div>
            <div class="col-md-1 col-sm-12"></div>
@@ -106,7 +114,7 @@
 	            	<br>
 	            	<br>
 	            	<br>
-	                <h4 class="card-title">배달중</h4>
+	                <p class="card-title mb-5 mt-3" style="font-size:30px; color:#ffb703;"><b>🛵배달중🛵</b></p>
 	            </div>
 	            <div class="card-body">
 	                <div class="row">
@@ -120,7 +128,7 @@
 						        <div class="table-responsive">
 						          <table class="table table mb-5">
 						            <thead>
-						              <tr class="text-center">
+						              <tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
 						              	<th style="width:10%;">번호</th>
 						              	<th style="width:10%;">회원</th>
 						                <!-- 다급한거 이미지 -->
@@ -145,11 +153,10 @@
 									                <td>${map['MEMBER_ID'] }</td>
 									                	<c:import url="/owner/menu2/order/orderTd.do">
 									                	 	<c:param name="ordersNo" value = "${map['ORDERS_NO'] }"/>
-									                	 	<c:param name="ordersDiscount" value = "${map['ORDERS_DISCOUNT'] }"/>
-									                	 	<c:param name="type" value = "${type }"/>
+										                	 <c:param name="ordersDiscount" value = "${map['ORDERS_DISCOUNT'] }"/>
 									               		 </c:import>
-									                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
-									                <td class="text-bold-500">${map['ORDERS_DURATION']}</td>
+									                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] } 원</td>
+									                <td class="text-bold-500">${map['ORDERS_DURATION']} 분</td>
 									                <td class="text-bold-500">${map['DELIVERYSUCCESS']}</td>
 								             </tr>
 								             </c:forEach>
@@ -172,8 +179,8 @@
 						      
 						      
 						      
-						      
-						 <!-- 주문 상세 내역 관련 모달 -->
+					    
+                    <!-- 주문 상세 내역 관련 모달 -->
                     <div class="modal fade" id="orderDetail" tabindex="-1" aria-labelledby="orderDetailTitle" style="display: none;" aria-hidden="true" role="dialog">
 	                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
 	                        <div class="modal-content">
@@ -184,16 +191,13 @@
 		                            </button>
 		                        </div>
 		                        <div class="modal-body">
-		                        	 <div class="table-responsive">
-								          <table class="table table mb-5">
-							          			<tbody id="orderDetailModal">
-							          			
-							          			</tbody>
-								          </table>
-								      </div>
+		                        	
+								  	<div class="row" id="detailStart">
+								  	 	
+								    </div>             
 		                          <!-- 내용 -->
 		                        </div>
-		                        <div class="modal-footer justify-content-center">
+		                        <div class="modal-footer justify-content-center mt-3">
 		                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
 		                           		 <i class="bx bx-check d-block d-sm-none"></i>
 		                           		 <span class="d-none d-sm-block">확인</span>

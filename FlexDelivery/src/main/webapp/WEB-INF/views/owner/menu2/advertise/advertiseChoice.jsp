@@ -19,16 +19,15 @@
 		
 	});
 </script>
-	
+		<br>
 		<br>
 		<br>
 		<br>
 			<div class="text-center">
-				<h3>광고 선택 부탁드려요</h3>
+				  <p class="card-text text-center mb-5 mt-3" style="font-size:30px; color:#023047;"><b>✅광고 선택 부탁드려요✅</b></p>
 			</div>
 		<br>
-		<br>
-		<br>
+		
 		<!-- row 시작 -->
 		<div class="row"> 
 			<c:forEach var="vo" items="${list}">

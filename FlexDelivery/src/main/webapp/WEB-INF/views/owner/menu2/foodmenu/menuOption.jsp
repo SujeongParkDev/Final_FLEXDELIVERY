@@ -465,19 +465,20 @@
 			
 		</script>
 		<!-- 메뉴 버튼 -->
-		<br>
+		<br><br><br><br><br>
 			 <div class="row mt-3">
-			  		<div class="col-md-2 col-sm-12"></div>
-			  		<div class="col-md-8 col-sm-12">
+			  		<div class="col-md-1 col-12"></div>
+			  		<div class="col-md-10 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-1 col-12"></div>
 			  </div>
+	
 	
 		
 			 
@@ -491,8 +492,8 @@
 		
 		<!-- 셀렉 옵션 선택 내용 -->
 		<div class="row" id="basic-table">
-					  <div class="col-md-2 col-sm-12"></div>
-					  <div class="col-12 col-md-8">
+					  <div class="col-md-1 col-12"></div>
+					  <div class="col-12 col-md-10">
 					    <div class="card" >
 					      <br>
 					      <!-- <div class="card-header">
@@ -500,13 +501,13 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center" style="font-size:20px;">메뉴옵션</p>
+					          <p class="card-text text-center mb-3 mt-3" style="font-size:30px; color:#ffb703;"><b>📋메뉴 옵션📋</b></p>
 					          <p class="card-text text-center">메뉴 옵션 수정 및 삭제 및 등록 해주세요</p>
 					          <br>
 					          <br>
 					          <div class="row">
-						          <div class="col-md-3 col-12"></div>
-								  <div class="col-md-4 col-sm-12">
+						          <div class="col-md-4 col-12"></div>
+								  <div class="col-md-4 col-12">
 								  		
 										<select class="form-select groupChoice p-2 " name="menuGroup" id="menuGroupSelect" style="overflow : auto; ">
 												<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 그룹 선택</option>
@@ -529,8 +530,8 @@
 					          <div class="table-responsive">
 					            <table class="table">
 					              <thead>
-					                <tr class="text-center" style="font-size:13px;">
-					                  <th style="width:22%;">
+					                <tr class="text-center" style="font-size:13px;  background-color:rgb(2, 48, 71); color:white;">
+					                  <th style="width:25%;">
 											<select class="form-select menuSelect p-2" name="oRankNo" id="oRankSelect" style="overflow : auto; ">
 												<c:if test="${!empty oList }">
 													<c:forEach var="vo" items="${oList }">
@@ -540,11 +541,11 @@
 											</select>
 								      </th>
 					                  <th style="width:20%;">메뉴 옵션</th>
-					                  <th style="width:21%;">가격</th>
+					                  <th style="width:20%;">가격</th>
 					                  <th style="width:20%;">수정/삭제</th>
-					                  <th style="width:19%;" class="pl-3">
-					                  		<button class="btn btn-outline-primary p-2" data-toggle="modal" data-target="#inlineForm" 
-					                  			id="btOptionWrite" style="display:none;">등록</button>
+					                  <th style="width:15%;" class="pl-3">
+					                  		<button class="btn btn-warning p-2" data-toggle="modal" data-target="#inlineForm" 
+					                  			id="btOptionWrite" style="display:none; color:black;">등록</button>
 					                  </th>
 					                </tr>
 					              </thead>
@@ -557,7 +558,7 @@
 					      </div>
 					    </div>
 					  </div>
-				   <div class="col-md-2 col-sm-12"></div>
+				   <div class="col-md-1 col-12"></div>
 			 </div> 
 			 
 			 

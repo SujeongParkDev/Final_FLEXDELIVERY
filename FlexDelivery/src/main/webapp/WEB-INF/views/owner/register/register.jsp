@@ -15,6 +15,9 @@
     <!-- Title Page-->
     <title>Au Register Forms by Colorlib</title>
 
+
+
+
     <!-- Icons font CSS-->
     <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -42,6 +45,10 @@
 					alert('이름을 입력하세요');
 					$('#ownerName').focus();
 					event.preventDefault();
+				}else if($('#ownerId').val().length<1){
+					alert('아이디를 입력하세요');
+					$('#ownerId').focus();
+					event.preventDefault();				
 				}else if(!validate_userid($('#ownerId').val())){
 					alert('아이디는 영문,숫자,_만 가능합니다.');
 					$('#ownerId').focus();
@@ -63,6 +70,10 @@
 					alert('아이디 중복확인하세요');
 					$('#btnChkId').focus();
 					event.preventDefault();
+				}else if($('#agreeCheck').is(":checked")==false){
+					alert('약관에 동의하여주세요');
+					$('#agreeCheck').focus();
+					event.preventDefault();
 				}
 			});
 		});
@@ -80,7 +91,7 @@
 		
 		}
 		
-		$(function(){
+	 	$(function(){
 				$('#btnChkId').click(function(){
 					var type=$(this).attr('name');  //admin, user
 					
@@ -96,12 +107,33 @@
 					window.open(
 						"${pageContext.request.contextPath}/owner/register/checkId.do?ownerId="+$('#ownerId').val()+"&type="+type, 
 						"아이디 중복 확인", 
-						'toolbar=no, menubar=no, scrollbars=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY);
+						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+', scroll-x=no');
 				});
 					
 				
-		});
+		}); 
 		
+	 	
+	 	function agree(){
+	 			if($('input[id=agreeCheck]').is(":checked")==true){
+	 			
+		 			window.screen.width //현재 윈도우창의 가로크기를 가져옴
+					window.screen.height //세로크기 가져옴
+					
+					var popupWidth = 500; //띄울 창 가로크기
+					var popupHeight = 700;
+					
+					var popupX = (window.screen.width / 2) - (popupWidth /2);
+					var popupY = (window.screen.height / 2) - (popupHeight /2);
+					
+					window.open(
+						"${pageContext.request.contextPath}/owner/register/agreement.do", 
+						"아이디 중복 확인", 
+						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+', scroll-x=no');
+	 			}
+	 		
+	 	};
+	
 		
 	</script>
 </head>
@@ -131,7 +163,7 @@
                         </div>
                         <div>
                         	<button class="btn btn--radius" name="owner" type="button" style="margin-left:400px;width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
-                        </div>
+                        </div> 
                          <div style="text-align: right;">
                         	<span></span>
                         </div>
@@ -156,23 +188,27 @@
                                     <div class="rs-select2 js-select-simple select--no-search" style="width:120px; text-align-last:center;" >
                                         <select name="ownerHp1" class="input-group" >
                                             <option selected="selected">010</option>
-                                            <option>011</option>
-                                            <option>016</option>
+                                            <option >011</option>
+                                            <option >016</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             <span style="font-size: 30px;">-</span>
                             	<div class="input-group">
-                            		<input class="input--style-1" type="text"  name="ownerHp2"  maxlength="4" id="ownerHp2" style="text-align:center; width:120px;" >
+                            		<input class="input--style-1" type="text"  name="ownerHp2"   maxlength="4" id="ownerHp2" style="text-align:center; width:120px;" >
                             	</div>
                             <span style="font-size: 30px;">-</span>
                             	<div class="input-group">
-                            		<input class="input--style-1" type="text" name="ownerHp3" maxlength="4" id="ownerHp3"  style="text-align:center; width:120px;">
+                            		<input class="input--style-1" type="text" name="ownerHp3"  maxlength="4" id="ownerHp3"  style="text-align:center; width:120px;">
                             	</div>
                             	<input type ="hidden" name="chkId" id="chkId">
                         </div>
-                        
+                        <br>
+                        <div style="margin-left:180px;" class="mt-2">
+                        	<input type="checkbox" id="agreeCheck" style="display:inline; width:15px; height:15px;" onclick="agree()">
+                       		<label for="agreeCheck">약관에 동의합니다.</label>
+                        </div>
                         <br>
                         <div align="center">
                             <button class="btn btn--radius btn--green " type="submit" style="background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btOwnerWrite">가입</button>
@@ -185,14 +221,35 @@
         </div>
     </div>
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+	 
     <!-- Jquery JS-->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/select2/select2.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/datepicker/moment.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/vendor/datepicker/daterangepicker.js"></script>
-
+	
     <!-- Main JS-->
     <script src="${pageContext.request.contextPath}/resources/ownerResources/registerOwner/js/global.js"></script>
     

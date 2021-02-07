@@ -25,13 +25,13 @@
 				url="${pageContext.request.contextPath}/owner/menu2/foodmenu/signatureMenuEdit.do?storeNo="+storeNo;
 				title="메뉴 수정";
 				popupWidth=800;
-				popupHeight=400;
+				popupHeight=300;
 			}else if($(this).attr('name')=='btSignatureMenuWrite'){
 			
 				url="${pageContext.request.contextPath}/owner/menu2/foodmenu//signatureMenuWrite.do?storeNo="+storeNo;
 				title="메뉴 등록";
 				popupWidth=800;
-				popupHeight=400;
+				popupHeight=300;
 			}
 			
 			window.screen.width //현재 윈도우창의 가로크기를 가져옴
@@ -76,34 +76,35 @@
 		
 		
 		<!-- 메뉴 버튼 -->
-		<br>
+		<br><br><br><br><br>
 			 <div class="row mt-3">
-			  		<div class="col-md-2 col-sm-12"></div>
-			  		<div class="col-md-8 col-sm-12">
+			  		<div class="col-md-1 col-12"></div>
+			  		<div class="col-md-10 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-1 col-12"></div>
 			  </div>
+	
 	
 		<br>
 		<br>
 		<!-- row 시작 -->
 		<div class="row"> 
 			<!-- flex deivery ad 설명 -->
-			<div class="col-md-2 col-sm-12"></div>
-			<div class="col-md-8 col-sm-12">
+			<div class="col-md-1 col-sm-12"></div>
+			<div class="col-md-10 col-sm-12">
 				
 				<div class="card">
 					<br>
 					<Br>
 					<Br>
 					<div class="card-title text-center">
-						<h4>대 표 메 뉴</h4>
+						<p style="font-size:30px; color:#ffb703;"><b>📋대표 메뉴📋</b></p>
 					</div>
 					<br>
 					<div class="card-content text-center">
@@ -164,7 +165,7 @@
 						   </div>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-12"></div>
+					<div class="col-md-1 col-sm-12"></div>
 				</div>
 		 		 <br>
 		 		 <br>

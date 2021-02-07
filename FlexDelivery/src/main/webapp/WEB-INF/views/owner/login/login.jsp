@@ -44,7 +44,7 @@
 			var popupY = (window.screen.height/2)-(popupHeight/2);
 			
 			window.open(
-				"${pageContext.request.contextPath}/member/login/forgotId.do", 
+				"${pageContext.request.contextPath}/owner/login/forgotId.do", 
 				"Find ID", 
 				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+',scrollbars=0');
 		});
@@ -60,8 +60,8 @@
 			var popupY = (window.screen.height/2)-(popupHeight/2);
 			
 			window.open(
-				"${pageContext.request.contextPath}/member/login/forgotPwd.do", 
-				"Find ID", 
+				"${pageContext.request.contextPath}/owner/login/forgotPwd.do", 
+				"Find Pwd", 
 				'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+',scrollbars=0');
 		});
 	
@@ -81,12 +81,12 @@
 						L O G I N
 					</span>
 						<input type="hidden" name="idx" value="${idx}"> 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+					<div class="wrap-input100 validate-input" data-validate = "Enter your Id">
 						<input type="text" class="input100 text-right" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid" autocomplete="off" value="${cookie.ck_ownerid}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<div class="wrap-input100 validate-input" data-validate="Enter your password">
 						 <input type="password" class="input100 text-right" id="exampleInputPassword1" name="pwd">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>

@@ -55,6 +55,11 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 	public int selectTotalRecordTWO(Map<String, Object> map) {
 		return ownerOrderDao.selectTotalRecordTWO(map);
 	}
+	
+	public Map<String, Object> selectOrderAllByOrdersNo(int ordersNo) {
+		return ownerOrderDao.selectOrderAllByOrdersNo(ordersNo);
+	}
+	
 	@Override
 	@Transactional
 	public String getTitle(int ordersNo) {

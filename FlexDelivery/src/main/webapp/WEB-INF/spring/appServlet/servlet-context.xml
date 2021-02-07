@@ -59,7 +59,6 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/owner/menu2/myStoreIndex.do"/>
-			<mapping path="/owner/menu1/launch/launchNext.do"/>
 			<beans:ref bean="ownerMyStoreInterceptor"/>
 		</interceptor>
 	</interceptors>
@@ -75,6 +74,7 @@
 	
 	<interceptors>
 		<interceptor>
+			<!-- <mapping path="/owner/mypage/mypageEdit.do"/> -->
 			<mapping path="/owner/register/registerEdit.do"/>
 			<beans:ref bean="ownerEditInterceptor"/>
 		</interceptor>

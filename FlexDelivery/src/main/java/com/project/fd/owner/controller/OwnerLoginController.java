@@ -54,4 +54,18 @@ public class OwnerLoginController {
 		
 		return "redirect:/owner/index.do";
 	}
+	
+	
+	//아이디찾기
+	@RequestMapping("/login/forgotId.do")
+	public String forgotId() {
+		return "owner/login/forgotId";
+	}
+	
+	//비밀번호찾기
+	
+	@RequestMapping("/login/forgotPwd.do")
+	public String forgotPwd() {
+		return "owner/login/forgotPwd";
+	}
 }

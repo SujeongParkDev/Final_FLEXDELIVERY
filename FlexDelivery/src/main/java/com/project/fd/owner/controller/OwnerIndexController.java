@@ -149,4 +149,25 @@ public class OwnerIndexController {
 		}
 
 		
+		
+		@RequestMapping("/menu2/myStoreMainNotice.do")
+		public String noticeSix_myStoreIndex(Model model) {
+			//1
+			logger.info("스토어 메인에 표시될 공지사항 글 목록");
+			
+			
+			String boardHead =OwnerBoardService.BOARD_NOTICE;
+			
+			//공지사항이면 공지사항 이벤트면 이벤트 
+			
+			List<OwnerBoardVO> list=ownerBoardService.selectMainBoard(boardHead );
+			logger.info("스토어 메인 공지사항 또는 이벤트  조회 결과, list.size={}", list.size());
+		
+
+			//3. 모델에 결과 저장
+			model.addAttribute("list", list);
+			
+
+			return "owner//menu2/myStoreMainNotice";
+		}
 }

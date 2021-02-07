@@ -52,7 +52,7 @@
 	                       		 <!-- 사장님 사업자등록도 점포도 다있어서 내가게가 잇을때-->
 	                       		  <c:if test="${(!empty sessionScope.ownerId) && sessionScope.result==haveAll}">
 		                       		<small style="color:gray;">반갑습니다. FLEX DELIVERY 입니다</small>
-		                       		 <h6 class="title mb-3"><b><span style="color:rgb(223,108,220); font-size:25px; ">${sessionScope.ownerId}</span> 사장님 <br> 어서오세요</b> </h6>
+		                       		 <h6 class="title mb-3"><b><span style="color:rgb(223,108,220); font-size:25px; ">${sessionScope.ownerName}</span> 사장님 <br> 어서오세요</b> </h6>
 		                       		  	<div>
 		                       		  	<div class="row">
 		                       		  		<div class="col-12 col-md-2"></div>
@@ -84,7 +84,7 @@
 											</div>
 											<div class="col-12 col-md-2">
 												<!-- 현재 주문 현황 -->
-												<a href="<c:url value='/wner/menu2/order/orderMain.do'/>">
+												<a href="<c:url value='/owner/menu2/order/orderMain.do'/>">
 													<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
 	  													<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
 												   </svg>

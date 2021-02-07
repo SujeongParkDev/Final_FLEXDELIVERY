@@ -38,10 +38,12 @@ public class OwnerEditInterceptor extends HandlerInterceptorAdapter {
 		out.print("<script>");
 			if(result.equals(OwnerService.NO_LICENSE+"") || result.equals(OwnerService.WITHDRAW_SUCCESS)) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
+				/*out.print("location.href='"+request.getContextPath()+"/owner/register/registerEdit.do';");*/
 				return true;
 			}else if(result.equals(OwnerService.NO_STORE+"")) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
-				out.print("alert('사업자에서 수정 부탁드려요');");
+				out.print("alert('점포 등록 전 수정이 불가합니다. 사업자 등록증 취소 먼저 부탁드립니다.');");
+				//사업자 등록 취소 페이지로 전송하기
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.LICENSE_STAY+"")) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
@@ -57,7 +59,9 @@ public class OwnerEditInterceptor extends HandlerInterceptorAdapter {
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}else if(result.equals(OwnerService.HAVE_ALL+"")) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
-				out.print("alert('점포에서 수정 부탁드려요');");
+				out.print("location.href='"+request.getContextPath()+"/owner/mypage/mypageEdit.do';");
+			}else {
+				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}
 				

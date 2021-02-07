@@ -101,27 +101,26 @@
 		</script>
 	
 		<!-- 메뉴 버튼 -->
-		<br>
+		<br><br><br><br><br>
 			 <div class="row mt-3">
-			  		<div class="col-md-2 col-sm-12"></div>
-			  		<div class="col-md-8 col-sm-12">
+			  		<div class="col-md-1 col-12"></div>
+			  		<div class="col-md-10 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-1 col-12"></div>
 			  </div>
 	
-		
 			 
 			 <br>
 			<br>
 			<br>
 			<div class="text-center">
-				<h2>메뉴 편집</h2>
+				<p style="font-size:30px; color:#023047;">📋메뉴 편집📋</p>
 			</div>		
 			<br>
 			<br>

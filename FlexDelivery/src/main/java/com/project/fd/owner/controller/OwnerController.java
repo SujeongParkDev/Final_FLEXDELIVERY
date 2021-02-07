@@ -229,6 +229,10 @@ public class OwnerController {
 	}
 
 	
+	@RequestMapping("/register/agreement.do")
+	public String agreement() {
 		
+		return "owner/register/agreement";
+	}
 		
 }

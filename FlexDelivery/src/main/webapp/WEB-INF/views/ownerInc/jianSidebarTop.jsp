@@ -188,7 +188,7 @@
 				</div>
         	</div>
         	<!-- QQQ.배경색 여기서 바꿀수있음 -->
-	        <div id="main" style="overflow-y: auto; overflow-x:hidden; height:500px; background-color:  rgba(211,208,251,0.4);  ">
+	        <div id="main" style="overflow-y: auto; overflow-x:hidden; height:500px; background-color:  rgb(142, 202, 230);  ">
 	           <nav class="navbar navbar-header navbar-expand navbar-light">
 	                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
 	                <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
