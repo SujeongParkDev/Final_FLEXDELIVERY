@@ -38,11 +38,11 @@
                     	<br>
                         <div class="form-group">
                             <label for="exampleInputName1" class="text-dark">이름</label>
-                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="memberName" name="memberName" aria-describedby="nameHelp">
+                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="memberName" name="memberName" aria-describedby="nameHelp" value="${vo.memberName }">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNumber1" class="text-dark">아이디</label>
-                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberId" id="memberId" aria-describedby="numberHelp">
+                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberId" id="memberId" aria-describedby="numberHelp" value="${vo.memberId }">
                             <span class="error" style="color: red"> </span>
                         </div>
                         <div class="form-group">
@@ -55,13 +55,13 @@
 						<label for="exampleInputNumber1" class="text-dark">전화번호</label>
 						<div class="row">
 							<div class="col-md-4" >
-								<input type="text"  placeholder="번호 입력" class="form-control" id="memberHp1" name="memberHp1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="번호 입력" class="form-control" id="memberHp1" name="memberHp1" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberHp1 }">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="memberHp2" name="memberHp2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="memberHp2" name="memberHp2" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberHp2 }">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="번호 입력" class="form-control" id="memberHp3" name="memberHp3" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="번호 입력" class="form-control" id="memberHp3" name="memberHp3" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberHp3 }">
 							</div>
 						</div>
 						<br> 
@@ -80,7 +80,7 @@
 						<div class="row">
 							<label for="exampleInputaddress" class="text-dark" style="line-height: 33px">주소 검색</label>
 							<div class="col-md-4" >
-								<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="memberZipcode" id="memberZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="우편번호" ReadOnly title="주소" class="form-control" name="memberZipcode" id="memberZipcode" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberZipcode }">
 							</div>
 							<input type="Button" value="우편번호 찾기" id="btZipcode" title="새창열림">
 							<!-- <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#extras">검색</a></span> -->
@@ -89,11 +89,11 @@
 						
 						<div class="form-group">
 							<label for="exampleInputaddress" class="text-dark">주소</label>
-							<input type="text" ReadOnly class="form-control" id="memberAddress" name="memberAddress" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							<input type="text" ReadOnly class="form-control" id="memberAddress" name="memberAddress" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberAddress}">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputaddress" class="text-dark">상세주소</label>
-							<input type="text" placeholder="상세주소를 입력하세요." class="form-control" id="memberAddressDetail" name="memberAddressDetail" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+							<input type="text" placeholder="상세주소를 입력하세요." class="form-control" id="memberAddressDetail" name="memberAddressDetail" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberAddressDetail }">
 						</div>
 						
 						<input type="submit" class="btn btn-primary btn-lg btn-block" id="wr_submit" value="회원 가입">

@@ -31,9 +31,9 @@
 				alert('전화번호는 숫자만 가능합니다.');
 				$('#memberHp1').focus();
 				event.preventDefault();
-			}else if ($('#memberHp1').val().length<3)||
-					 ($('#memberHp2').val().length<3)||
-					 ($('#memberHp3').val().length<4)||
+			}else if ($('#memberHp1').val().length<3 ||
+					 $('#memberHp2').val().length<3 ||
+					 $('#memberHp3').val().length<4){
 					 alert('3자리 숫자 이상 입력하세요.');
 					$('#memberHp1').focus();
 					event.preventDefault();
