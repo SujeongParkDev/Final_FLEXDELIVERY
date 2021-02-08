@@ -77,7 +77,7 @@
 					    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
 			   	}else{
 			   		if (map.vo.sStatusNo==2){
-						str+="<a class='btn btn-primary btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+						str+="<a class='btn btn-primary btn-block btn-lg' href='<c:url value='/member/order/orderSheet.do'/>'>ORDER "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
 			   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
 				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
 			   		}
@@ -258,7 +258,7 @@
 			    	</c:if>
 			    	<c:if test="${!empty list}">
 					   	<c:if test="${vo.sStatusNo==2}">
-					        <a class="btn btn-primary btn-block btn-lg" href="successful.html" >PAY ${totalPrice}원<i class="feather-arrow-right"></i></a>
+					        <a class="btn btn-primary btn-block btn-lg" href="<c:url value='/member/order/orderSheet.do'/>" >ORDER ${totalPrice}원<i class="feather-arrow-right"></i></a>
 					   	</c:if>
 					   	<c:if test="${vo.sStatusNo==1 || vo.sStatusNo==3}">
 					        <a class="btn btn-dark btn-block btn-lg disabled" href="#" >지금은 준비중이에요</a>

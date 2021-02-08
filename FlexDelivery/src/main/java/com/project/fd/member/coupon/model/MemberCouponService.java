@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface MemberCouponService {
 	List<MemberStoresCouponVO> storeCouponList(Map<String, Object> map);
-	List<MemberRegularCouponBoxVO> memberCouponList(int memberNo);
+	List<MemberRegularCouponBoxVO> memberCouponList(Map<String, Object> map);
 	int addCoupon(MemberRegularCouponBoxVO vo);
+	boolean chkCoupon(int storeNo);
 }

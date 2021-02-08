@@ -17,13 +17,22 @@ public class MemberCouponServiceImpl implements MemberCouponService{
 	}
 	
 	@Override
-	public List<MemberRegularCouponBoxVO> memberCouponList(int memberNo) {
-		return coupDao.memberCouponList(memberNo);
+	public List<MemberRegularCouponBoxVO> memberCouponList(Map<String, Object> map) {
+		return coupDao.memberCouponList(map);
 	}
 
 	@Override
 	public int addCoupon(MemberRegularCouponBoxVO vo) {
 		return coupDao.addCoupon(vo);
+	}
+
+	@Override
+	public boolean chkCoupon(int storeNo) {
+		int cnt=coupDao.storeCouponCount(storeNo);
+		if(cnt>0) {
+			return true;
+		}
+		return false;
 	}
 	
 }

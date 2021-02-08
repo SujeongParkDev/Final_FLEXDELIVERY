@@ -1,5 +1,7 @@
 package com.project.fd.member.gift.model;
 
-public interface MemberGiftService {
+import java.util.List;
 
-}
+public interface MemberGiftService {
+	List<MemberGiftVO> selectTakeGiftList(int memberNo);
+}	
