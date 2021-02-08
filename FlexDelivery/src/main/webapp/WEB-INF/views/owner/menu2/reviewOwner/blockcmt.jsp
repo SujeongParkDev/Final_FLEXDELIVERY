@@ -37,7 +37,7 @@
 				<div class="card-body text-center">
 					<div class="all-div" id="AllDiv">
 					<div class="row">
-						<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
+						<div class="col-md-4 col-12"></div>
 						<div class="col-md-6 col-12 ">
 							<form name="frmPage" method="post" name="frm1"
 								action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
@@ -264,60 +264,6 @@ event.preventDefault();
 	});
 });
 	
-/*
-	function Edit_do($num){
-		var num1 = $num;
-    	var co = $('input[id="' + num1 + '"]').val();
-    	
-    	
-       $.ajax({
-          url : '/owner/menu2/reviewOwner/reviewOwner/edit.do',
-          type : 'POST',
-          data:$(this).serializeArray(),
-          contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-          dataType : "json",
-          success : function(retVal) {
-            	 alert("댓글이 수정되었습니다.");
-    
-          },
-          error:function() {
-             alert("ajax 통신 실패!(update)");
-          }
-       });
-    }
-	}
-
-
-	
-	// 미답변 차단 라디오 버튼으로 구분 
-
-	$('#radio').click(function(){
-		if($('#ck1').val()==1){
-			
-		}else if($('#ck2').val()==2){
-			$('#llistDiv').hide()
-			$('#llistDiv2').show()
-		}else if($('#ck3').val()==3){
-			
-		}
-		
-	});
-	
-
-	$('form[name=frmDate]').submit(function(){
-		if($('#startDay').val().length<1){
-			alert('시작일을 입력하세요');
-			$('#startDay').focus();
-			event.preventDefault();
-		}else if($('#endDay').val().length<1){
-			alert('종료일을 입력하세요');
-			$('#endDay').focus();
-			event.preventDefault();
-		}
-	});
-	
-});
-*/
 function pageFunc(curPage){
 	$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
 	$('form[name=frmDate]').submit();

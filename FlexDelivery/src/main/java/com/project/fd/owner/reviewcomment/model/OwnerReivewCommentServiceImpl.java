@@ -42,6 +42,27 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 		return ownerReviewCommentDao.selectByNo(reviewNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectNocomment(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.selectNocomment(searchVo);
+	}
+
+	@Override
+	public int NocmtTotalRecord(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.NocmtTotalRecord(searchVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectblockcmt(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.selectblockcmt(searchVo);
+	}
+
+	@Override
+	public int blockTotalRecord(OwnerReviewSearchVO searchVo) {
+		return ownerReviewCommentDao.blockTotalRecord(searchVo);
+	}
+
+	
 
 	
 }

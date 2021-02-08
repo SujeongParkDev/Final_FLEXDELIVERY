@@ -19,6 +19,10 @@
                     on r.R_COUPON_NO=c.R_COUPON_NO
                 )B
 				 where STORE_NO=#{storeNo}
+				 <![CDATA[
+				and S_C_START_DATE >= #{startDay} and
+				S_C_START_DATE < to_date(#{endDay})+1
+				]]>
                  order by S_C_START_DATE desc, R_COUPON_NO asc
 			
 		    )A
@@ -31,8 +35,8 @@
 
 	<select id="getTotalRecord" parameterType="ownerCouponSearchVo" resultType="int">
 		select count(*) from STORECOUPONBOX
-		where S_C_START_DATE >= #{startDay} and
 		<![CDATA[
+		where S_C_START_DATE >= #{startDay} and
 		S_C_START_DATE < to_date(#{endDay})+1
 		]]>
 		and store_no=#{storeNo}

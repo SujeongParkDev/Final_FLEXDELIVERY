@@ -10,4 +10,10 @@ public interface OwnerReivewCommentDAO {
 	 int deleteComm(int reviewNo);
 	 int updateComm(OwnerReviewCommentVO vo);
 	 OwnerReviewCommentVO selectByNo(int reviewNo);
+	 
+	 public List<Map<String, Object>> selectNocomment(OwnerReviewSearchVO searchVo);
+	 int NocmtTotalRecord(OwnerReviewSearchVO searchVo);
+	 
+	 public List<Map<String, Object>> selectblockcmt(OwnerReviewSearchVO searchVo);
+	 int blockTotalRecord(OwnerReviewSearchVO searchVo);
 }

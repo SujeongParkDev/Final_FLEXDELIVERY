@@ -66,17 +66,20 @@ public class OwnerReviewController {
 		}
 		logger.info("searchVo={}",searchVo);
 		
-		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
-		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
-		
 		int totalRecord=ownerReCommService.getTotalRecord(searchVo);
 		logger.info("리뷰 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
 		
 		pagingInfo.setTotalRecord(totalRecord);
 		
+		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
+		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
+		
+		//미답변 조회 
+		//List<Map<String, Object>> noList=ownerReCommService.selectNocomment();
+		
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingInfo", pagingInfo);
-		model.addAttribute("searchVo", searchVo);
+		//model.addAttribute("searchVo", searchVo);
 		
 		return "owner/menu2/reviewOwner/reviewOwner";
 	}
@@ -150,6 +153,8 @@ public class OwnerReviewController {
 		
 		return "common/message";
 	}
+	
+	
 	
 	/*
 	@ResponseBody
