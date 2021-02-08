@@ -13,6 +13,6 @@
 		resultType="memberfaqVo">
 		select * from faq
 		where f_category_no = #{fCategoryNo}
-	<select id="faqa"></select>
+	</select>
 	
 </mapper>

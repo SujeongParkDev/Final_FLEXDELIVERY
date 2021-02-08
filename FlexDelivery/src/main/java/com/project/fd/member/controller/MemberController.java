@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -149,5 +151,19 @@ public class MemberController {
 		response.setContentType("text/xml");
 		response.getWriter().write(sb.toString());			// 응답결과 반환
     }
+	
+	@RequestMapping(value="/register/memberEdit.do", method = RequestMethod.GET)
+	public String memberEdit_get(HttpSession session, Model model) {
+		String memberId=(String) session.getAttribute("memberId");
+		logger.info("회원수정 페이지, 파라미터 memberId={}", memberId);
+		
+		MemberVO vo=memberService.selectMember(memberId);
+		logger.info("회원 수정페이지, 조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo",vo);
+		
+		return "member/register/memberEdit";
+		
+	}
 	
 }
