@@ -333,7 +333,7 @@
 								첨부가능)</li>
 						</ul>
 					</div>
-					<!-- <div class="form-group ">
+						<div class="form-group ">
 						<h5 class="form-label">요청 내용</h5>
 						<div class="form-control-wrap">
 							<div class="form-control ">
@@ -344,7 +344,7 @@
 								</div>
 							</div>
 						</div>
-					</div> -->
+					</div> 
 				</div>
 			</div>
 			<div class="footer">
