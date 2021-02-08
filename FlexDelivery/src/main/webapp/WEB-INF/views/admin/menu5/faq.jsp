@@ -3,16 +3,13 @@
 <%@include file="../../adminInc/top.jsp" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/adminResources/style3.css">
-<%-- <script src="${pageContext.request.contextPath}/resources/adminResources/script2.js"></script>
- --%>
+
 <script>
 	
 	$(function(){
 		
 		listForAll();
 		
-		
-
 		$.ajax({
 			type:"GET",
 			url :"<c:url value='/admin/menu5/faq/category/list.do' />",
@@ -132,12 +129,12 @@
 					str+="</div>";
 				
 				} else {
-					str+="<section id='wrapper'><div class='container'> <ul class='accordion'>";
+					str+="<section id='Awrapper'><div class='Acontainer'> <ul class='Aaccordion Aul'>";
 					$.each(res, function(idx, fvo) {
 						
 					//console.log("번호:"+fvo.faqNo);
-					str+="<li class='item'>"; 	
-				    str+="<h2 class='accordionTitle'>"+fvo.faqQ+"<span class='accIcon'></span></h2>";
+					str+="<li class='Aitem'>"; 	
+				    str+="<h2 class='AaccordionTitle'> 🤔"+fvo.faqQ+"<span class='AaccIcon'></span></h2>";
 				   
 				    str+="<div class='text'>"+fvo.faqA+"</div>";
 				    str+="<div class='content' style='text-align: right;'>";
@@ -159,15 +156,14 @@
 					
 					$('#forPrint').html(str);
 					 // variables
-					 accordionBtn = document.querySelectorAll('.accordionTitle');
+					 accordionBtn = document.querySelectorAll('.AaccordionTitle');
 					 allTexts = document.querySelectorAll('.text');
-					 accIcon = document.querySelectorAll('.accIcon');
-
+					 accIcon = document.querySelectorAll('.AaccIcon');
 	
-				// event listener
-				accordionBtn.forEach(function (el) {
-				    el.addEventListener('click', toggleAccordion);
-				});
+					// event listener
+					accordionBtn.forEach(function (el) {
+					    el.addEventListener('click', toggleAccordion);
+					});
 					
 				 function toggleAccordion(el) {
 				  	   targetText = el.currentTarget.nextElementSibling.classList;
@@ -177,11 +173,11 @@
 				  	   if (targetText.contains('show')) {
 				  	       targetText.remove('show');
 				  	       targetAccIcon.classList.remove('anime');
-				  	       target.classList.remove('accordionTitleActive');
+				  	       target.classList.remove('AaccordionTitleActive');
 				  	   } 
 				  	   else {
 				  	      accordionBtn.forEach(function (el) {
-				  	         el.classList.remove('accordionTitleActive');
+				  	         el.classList.remove('AaccordionTitleActive');
 				  	         
 				  	         allTexts.forEach(function (el) {
 				  	            el.classList.remove('show');
@@ -194,7 +190,7 @@
 				  	      });
 				  	      
 				  	         targetText.add('show');
-				  	         target.classList.add('accordionTitleActive');
+				  	         target.classList.add('AaccordionTitleActive');
 				  	         targetAccIcon.classList.add('anime');
 				  	   }  
 					    console.log(targetText);
@@ -216,7 +212,14 @@
 	
 	function listForCategory(no){
 		var categoryNo=no;
-		//var str="";
+		
+		var accordionBtn;
+		var allTexts;
+		var accIcon;
+		
+		var targetText;
+  	    var targetAccIcon;
+  	    var target;
 	   
 		$.ajax({
 			type:"GET",
@@ -234,19 +237,16 @@
 					//console.log("str="+str);
 					
 				} else {
-					str+="<div class='accordion'>";
+											 	
+					str+="<section id='Awrapper'><div class='Acontainer'> <ul class='Aaccordion Aul'>";
 					$.each(res, function(idx, fvo) {
 						
-					console.log("번호:"+fvo.faqNo);
-					 	
-					str+="<div class='accordion-item'>"; 
-					str+="<input id='accordion-"+fvo.faqNo+"' name='accordion' type='radio' class='accordion-input'/>";
-					str+="<label for='accordion-"+fvo.faqNo+"' class='heading' style='cursor: pointer;'>";
-				    str+="<div class='icon'></div>";
-				    str+="<div class='title'>"+fvo.faqQ+"</div></label>";
+					//console.log("번호:"+fvo.faqNo);
+					str+="<li class='Aitem'>"; 	
+				    str+="<h2 class='AaccordionTitle'> 🤔"+fvo.faqQ+"<span class='AaccIcon'></span></h2>";
 				   
-				    str+="<div class='content'>";
-				    str+="<div class='text' style='text-align: right;'>";
+				    str+="<div class='text'>"+fvo.faqA+"</div>";
+				    str+="<div class='content' style='text-align: right;'>";
 				    
 				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'";
 				    str+="id='btFaqEdit"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqEdit"+fvo.faqNo+"'>수정</button>";
@@ -254,10 +254,9 @@
 				            
 				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'"; 
 				    str+="id='btFaqDelete"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete"+fvo.faqNo+"' >삭제</button>";
-				    str+="</div>"; //text
+				    str+="</div>"; 
 				    
-				    str+="<p>"+fvo.faqA;
-				    str+="</p></div></div>"; //content, item
+				    str+="</li>"; 
 				    				    
 					}); //each
 					
@@ -267,6 +266,51 @@
 				//alert(categoryNo+":"+res.length);
 				$('#forPrint').html(str);
 				
+				// variables
+				 accordionBtn = document.querySelectorAll('.AaccordionTitle');
+				 allTexts = document.querySelectorAll('.text');
+				 accIcon = document.querySelectorAll('.AaccIcon');
+
+				// event listener
+				accordionBtn.forEach(function (el) {
+				    el.addEventListener('click', toggleAccordion);
+				});
+				
+			 function toggleAccordion(el) {
+			  	   targetText = el.currentTarget.nextElementSibling.classList;
+			  	   targetAccIcon = el.currentTarget.children[0];
+			  	   target = el.currentTarget;
+			  	   
+			  	   if (targetText.contains('show')) {
+			  	       targetText.remove('show');
+			  	       targetAccIcon.classList.remove('anime');
+			  	       target.classList.remove('AaccordionTitleActive');
+			  	   } 
+			  	   else {
+			  	      accordionBtn.forEach(function (el) {
+			  	         el.classList.remove('AaccordionTitleActive');
+			  	         
+			  	         allTexts.forEach(function (el) {
+			  	            el.classList.remove('show');
+			  	         });
+			  	         
+			  	         accIcon.forEach(function (el) {
+			  	          el.classList.remove('anime');
+			  	         }) ;
+			  	         
+			  	      });
+			  	      
+			  	         targetText.add('show');
+			  	         target.classList.add('AaccordionTitleActive');
+			  	         targetAccIcon.classList.add('anime');
+			  	   }  
+				    console.log(targetText);
+				    console.log(target);
+					console.log(accordionBtn);
+
+				    
+			  	}//toggleAccordion
+				
 			},
 			error: function(xhr, status, error){
 				console.log(error);
@@ -274,9 +318,6 @@
 		});
 	}
 	
-	/* function chkRadio(){
-		$('.accordion-item').find('input[type=radio]:nth-child(1)').prop('checked', true);
-	} */
 	 
 
 </script>
@@ -527,35 +568,7 @@
 						
 						<!-- 카테고리 클릭 시 list 개수 따라 다른 출력 -->
 						  
-			  
-						  <%-- <div class="card">
-						  	<c:forEach var="vo" items="${list }" varStatus="status">
-						    <div class="card-header" id="heading${vo.faqNo }">
-						      <h2 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${vo.faqNo }" 
-						        	aria-expanded="false" aria-controls="collapse${vo.faqNo }">
-						          Q. ${vo.faqQ }
-						        </button>
-						        
-						        <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
-					              id="btFaqEdit${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqEdit${vo.faqNo }">수정</button> 
-					            <span style="font-size: 12px;"> | </span> 
-					            <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
-					              id="btFaqDelete${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqDelete${vo.faqNo }" >삭제</button>
-						      </h2>
-						    </div>
-						    <div id="collapse${vo.faqNo }" class="collapse" aria-labelledby="heading${vo.faqNo }" data-parent="#accordionList">
-						      <div class="card-body">
-						      	<div>
-						      		
-						      	</div>
-						      	${vo.faqA }
-				 		      </div>
-						    </div>
-						    </c:forEach>
-						  	</div> --%>
-						  	
-						    
+			   
 					</div>
 						    <c:forEach var="vo" items="${list }" varStatus="status">
                            <!-- FAQ 수정 start -->
