@@ -23,4 +23,6 @@ public interface MemberService {
 		String selectAuth(int no);
 		int checkDup(String memberid);
 		public int memloNo(String locationName);
+		public int updateMember(MemberVO vo);
+		
 }

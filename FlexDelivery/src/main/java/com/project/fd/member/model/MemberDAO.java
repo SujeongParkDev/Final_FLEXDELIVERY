@@ -14,4 +14,5 @@ public interface MemberDAO {
 	String selectAuth(int no);
 	public int checkDup(String memberid);
 	public int memloNo(String locationName);
+	public int updateMember(MemberVO vo);
 }

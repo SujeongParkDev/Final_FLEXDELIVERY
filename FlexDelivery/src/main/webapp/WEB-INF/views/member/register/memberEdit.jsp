@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-
+<html lang="ko">
+<script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
     <link rel="icon" type="image/png" href="<c:url value='/resources/memberResources/img/fav.png' />">
-    <title>FlexDelivery 회원가입</title>
+    <title>FlexDelivery 회원정보 수정</title>
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick.min.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/memberResources/vendor/slick/slick-theme.min.css' />" />
@@ -68,11 +71,11 @@
 						<label for="" class="text-dark">이메일</label>
 						<div class="row" style="line-height: 33px">
 							<div class="col-md-5" >
-								<input type="text"  placeholder="이메일 입력" class="form-control" id="memberEmail1" name="memberEmail1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text"  placeholder="이메일 입력" class="form-control" id="memberEmail1" name="memberEmail1" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberEmail1 }">
 							</div>
 							<p>@</p>
 							<div class="col-md-5">
-								<input type="text" placeholder="이메일 입력" class="form-control" id="memberEmail2" name="memberEmail2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
+								<input type="text" placeholder="이메일 입력" class="form-control" id="memberEmail2" name="memberEmail2" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberEmail2 }">
 							</div>
 							<input type="Button" value="이메일 확인" id="btnEmail" title="새창열림">
 						</div>
@@ -96,17 +99,19 @@
 							<input type="text" placeholder="상세주소를 입력하세요." class="form-control" id="memberAddressDetail" name="memberAddressDetail" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberAddressDetail }">
 						</div>
 						
-						<input type="submit" class="btn btn-primary btn-lg btn-block" id="wr_submit" value="회원 가입">
+						<input type="submit" class="btn btn-primary btn-lg btn-block" id="wr_submit" value="수정 완료">
 						
 <!--					<div class="py-2">
 							<button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
 						</div> -->
-                    	<input type ="text" name="locationName" id="locationName">
 					</form>
+                    	<input type ="text" name="locationName" id="locationName">
+                    	<input type ="text" name="locationNo" id="locationNo" value="${vo.locationNo}">
+                    	
 				</div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
-                    <a href="<c:url value='/member/login/memberLogin.do' />">
-                        <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
+                    <a href="<c:url value='/member/index.do' />">
+                        <p class="text-center m-0">메인 화면으로</p>
                     </a>
                     <input type ="text" name="chkId" id="chkId">
                 </div>

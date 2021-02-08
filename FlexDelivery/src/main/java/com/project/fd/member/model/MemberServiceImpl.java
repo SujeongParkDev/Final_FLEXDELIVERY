@@ -80,6 +80,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memloNo(locationName);
 	}
 
-
+	@Override
+	public int updateMember(MemberVO vo) {
+		return memberDao.updateMember(vo);
+	}
+	
 	
 }
