@@ -7,24 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/menu2")
-public class AdminStoreAdController {
+@RequestMapping("/admin")
+public class AdminStoreMgController {
 	public static final Logger logger
 	= LoggerFactory.getLogger(AdminStoreAdController.class);
 	
-	@RequestMapping("/storeAdList.do")
-	public void adminStoreAdList(Model model) {
-		
-		logger.info("광고 승인/변경 리스트 화면");
-		//1
-		//2
- 
-		//3
-	
-	}
-	
-	@RequestMapping("/storeAdDetail.do")
-	public void adminStroreAdDetail(Model model) {
+	@RequestMapping("/menu2/storeMg.do")
+	public void adminStroreMg(Model model) {
 		
 		logger.info("광고 승인/변경 세부 화면");
 		//1
@@ -33,6 +22,4 @@ public class AdminStoreAdController {
 		//3
 
 	}
-	
-
 }
