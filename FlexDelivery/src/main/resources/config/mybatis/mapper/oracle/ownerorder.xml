@@ -38,7 +38,7 @@ create or replace view jaOrderAllView
 		<!-- select *
 		from
 		( -->
-		    select A.*,rownum as RNUM,  (A.orders_date + (A.orders_duration/(24*60))) as deliverySuccess, (sysdate-ORDERS_PAY_END_DATE)*24 as hurryImgTerm
+		    select A.*,rownum as RNUM,  (A.orders_date + (A.orders_duration/(24*60))) as deliverySuccess, trunc((sysdate-ORDERS_PAY_END_DATE)*24,2) as hurryImgTerm
 		    from
 		    (
 		    
@@ -184,7 +184,9 @@ create or replace view jaOrderDetailAllView
 	</select>
 	
 	
-	
+	<select id="selectOrderAllByOrdersNo" parameterType="int" resultType="map">
+ 		select * from jaOrderAllView where orders_no=#{ordersNo}
+ 	</select>
 	
 	     
 </mapper>

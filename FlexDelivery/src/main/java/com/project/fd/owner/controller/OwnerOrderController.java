@@ -22,6 +22,7 @@ import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
+import com.project.fd.owner.order.model.OwnerOrderVO;
 
 
 @Controller
@@ -235,19 +236,20 @@ public class OwnerOrderController {
 	  
 	  @RequestMapping("/orderTd.do") 
 	  public String findOrderMenu(@RequestParam(defaultValue = "0") int ordersNo,  
-			  @RequestParam(defaultValue = "0") int ordersDiscount, 
-			  @RequestParam(defaultValue = "0") int type, 
-			  @RequestParam(defaultValue = "0") long hurryImgTerm,
+			  @RequestParam(defaultValue = "0") int ordersDiscount,  
+			  @RequestParam(defaultValue = "0") String hurryImgTerm,
+			  @RequestParam(defaultValue = "0") int type,
 			  Model model) {
-		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, hurryImgTerm={}", ordersNo,hurryImgTerm);
+		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, ordersDiscount={}", ordersNo,ordersDiscount);
 		  
+		  double hurryImg = Double.parseDouble(hurryImgTerm);
 		  
 		  String title = ownerOrderService.getTitle(ordersNo);
 		  model.addAttribute("title",title);
 		  model.addAttribute("ordersNo",ordersNo);
 		  model.addAttribute("ordersDiscount",ordersDiscount);
 		  model.addAttribute("type",type);
-		  model.addAttribute("hurryImgTerm",hurryImgTerm);
+		  model.addAttribute("hurryImg",hurryImg);
 		
 		  
 		  return "owner/menu2/order/orderTd"; 
@@ -256,14 +258,20 @@ public class OwnerOrderController {
 	  
 	  @ResponseBody
 	  @RequestMapping("/orderRequestResult.do")
-	  public List<Map<String, Object>> orderRequestResult(@RequestParam(defaultValue = "0") int ordersNo){
+	  public Map<String, Object> orderRequestResult(@RequestParam(defaultValue = "0") int ordersNo){
 		  logger.info("주문 번호에 따른 주문 내역 찾기, ordersNo={}", ordersNo);
 		  
+		  Map<String, Object> map = new HashMap<String, Object>();
 		  
 		  List<Map<String, Object>> dList;
 		  dList = ownerOrderService.selectMenuDetailByOrdersNo(ordersNo);
-
-		  return dList;
+		  
+		  Map<String,Object> oMap = ownerOrderService.selectOrderAllByOrdersNo(ordersNo);
+		  
+		  map.put("dList", dList);
+		  map.put("oMap", oMap);
+		  
+		  return map;
 	  }
 	  
 	  

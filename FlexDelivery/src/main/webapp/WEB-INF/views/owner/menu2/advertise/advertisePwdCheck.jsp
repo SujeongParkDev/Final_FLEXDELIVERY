@@ -70,38 +70,30 @@
 			 		<br>	<br>	
 		<section id="basic-vertical-layouts">
 		    <div class="row match-height">
-		    	<div class="col-md-3 col-sm-12"></div>
-		        <div class="col-md-6 col-sm-12">
-		        <div class="card">
-		            <div class="card-header" style="background-color:white;">
-		            <h4 class="card-title"> 본인 인증 </h4>
-		            </div>
-		            <div class="card-content">
-		            <div class="card-body">
-		                <form class="form form-vertical" method="post" action="<c:url value='/owner/menu2/advertise/advertisePwdCheck.do'/>" name="frm1">
-		                   <div class="form-body">
+		    	<div class="col-md-4 col-sm-12"></div>
+		        <div class="col-md-4 col-sm-12 text-center">
+	           		 <h4> 본인 인증 </h4>
+	                <form class="form form-vertical" method="post" action="<c:url value='/owner/menu2/advertise/advertisePwdCheck.do'/>" name="frm1">
+	                   <div class="form-body">
 		                    <div class="row">
-		                    <div class="col-12">
-		                        <div class="form-group">
-			                         <div class="input-group mb-4">
-		                                 <input type="password" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1" name="ownerPwd">
-		                                 
-		                               
-		                                 <div class="col-12 d-flex mt-3 justify-content-center">
-		                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
-		                         		  </div>
-		                         	 </div>
-		                    	</div> 
-		                    </div>
-		                </div>
-		                </div>
-		                </form>
-		            </div>
-		            </div>
-		        </div>
-		        </div>
-		        <div class="col-md-3 col-sm-12"></div>
-		    </div>
+			                    <div class="col-12">
+			                        <div class="form-group">
+				                         <div class="input-group mb-4 ">
+			                                 <input type="password" class="form-control m-5 mb-2" aria-label="Example text with button addon" aria-describedby="button-addon1" name="ownerPwd">
+			                                 
+			                               
+			                                 <div class="col-12 d-flex mt-3 justify-content-center">
+			                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
+			                         		  </div>
+			                         	 </div>
+			                    	</div> 
+			                    </div>
+		               		 </div>
+	                	</div>
+	                </form>
+	            </div>
+		        <div class="col-md-4 col-sm-12"></div>
+		  	</div>
 		</section>
 			
 			

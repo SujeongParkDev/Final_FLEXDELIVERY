@@ -60,6 +60,28 @@
 					$('#warningContent').html('<small>내용을 입력해 주세요</small><br>');
 					$('#menuContent').focus();
 					event.preventDefault();				
+				}else{
+					$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
+						data:"menuName=" + $('#menuName').val(),
+						dataType:"json",
+						type:"GET",
+						success:function(res){
+							//alert(res);
+							if(res==true){
+								$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('input[name=menuName]').focus();
+								event.preventDefault();
+								return false;
+							}else{
+								$('form[name=frm]').submit();
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
+					event.preventDefault();	
 				}
 			});
 			
@@ -141,8 +163,46 @@
 		
 		
 		
-		
-		
+		  /* $(function(){
+				$('form[name=frm]').submit(function(){
+					
+					if($('#menuName').val().length<1){
+						$('#warningName').html('<small>이름을 입력해 주세요</small><br>');
+						$('#menuName').focus();
+						event.preventDefault();
+					}else if($('#menuPrice').val().length<1){
+						$('#warningPrice').html('<small>가격을 입력해 주세요</small><br>');
+						$('#menuPrice').focus();
+						event.preventDefault();				
+					}else if($('#menuContent').val().length<1){
+						$('#warningContent').html('<small>내용을 입력해 주세요</small><br>');
+						$('#menuContent').focus();
+						event.preventDefault();				
+					}else{
+						$.ajax({
+							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
+							data:"menuName=" + $('#menuName').val(),
+							dataType:"json",
+							type:"GET",
+							success:function(res){
+								//alert(res);
+								if(res==true){
+									$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+									$('input[name=menuName]').focus();
+									event.preventDefault();
+									return false;
+								}
+							},
+							error:function(xhr, status, error){
+								alert("error!! : " + error);
+							}
+						});
+						event.preventDefault();	
+					}
+				});
+				
+			});
+		 */
 		
 		
 		
@@ -206,34 +266,6 @@
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	</script>
 	
 		
@@ -250,7 +282,7 @@
 		            </div>
 		            <div class="card-content">
 		            <div class="card-body">
-		                <form class="form form-vertical" action="<c:url value='/owner/menu2/foodmenu/menuChoiceWrite.do'/>" method="post" enctype="multipart/form-data" >
+		                <form class="form form-vertical" action="<c:url value='/owner/menu2/foodmenu/menuChoiceWrite.do'/>" name="frm" method="post" enctype="multipart/form-data" >
 		                   <div class="form-body">
 		                    <div class="row">
 		                    <div class="col-12">
@@ -297,7 +329,7 @@
 		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-end">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuChoice" name="btMenuChoice" value="등록">
+		                        <input type="button" class="btn btn-primary mr-1 mb-1" id="btMenuChoice" name="btMenuChoice" value="등록">
 		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
 		                    </div>
 		                    </div>

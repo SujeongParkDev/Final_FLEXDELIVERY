@@ -96,7 +96,7 @@
 
 			<!-- 사장님 꿀팁 부분 -->		
 			  <!-- 메인 공지 부분 -->
-               <article id="mainNotice">
+               <article id="mainHoneyTip">
 	          	 <c:import url="/owner/ownerInc/ownerMainHoneyTip.do"></c:import>
 	           </article>
 	          		
@@ -145,7 +145,7 @@
                        	<div class="row">
                        		<div class="col-12 col-md-4"></div>
                        		<div class="col-12 col-md-4 pl-0">
-                            	<h5 class="title" style="margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >FLEX TIME</h5>
+                            	<h5 class="title" style="margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >FLEX LIST</h5>
                           	</div>
                            	<div class="col-12 col-md-4"></div>
                      	</div>
@@ -156,7 +156,7 @@
                        		</div>
                        		
                        		<div  class="col-12 col-md-10" style="margin-top:10px;">
-                       			<p>저희 플렉스 광고는 믿음직한 광고입니다 <br>다들 광고하나 사주세요</p>
+                       			<p>저희 플렉스 리스트는 믿음직한 광고입니다 <br>다들 광고하나 사주세요</p>
 							</div>
                         </div>
                        </div>
@@ -166,7 +166,7 @@
                        	<div class="row" >
                        		<div class="col-12 col-sm-4"></div>
                        		<div class="col-12 col-sm-4 pl-0">
-                            	<h5 class="title" style=" margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >OPEN TIME</h5>
+                            	<h5 class="title" style=" margin-bottom:20px; background-color:rgb(228,193,240); color:white; " >OPEN LIST</h5>
                           	</div>
                           	<br>
                            	<div class="col-12 col-sm-4"></div>

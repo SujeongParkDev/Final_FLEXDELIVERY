@@ -52,8 +52,7 @@
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
 				<!-- 메뉴에 관한 내용 -->
-				<div class="card" >
-				      <div class="card-body">
+			
 				      		<div class="text-center">
 				       			<h4> 메 뉴 상 세 보 기 </h4>
 				       	   	 </div>
@@ -100,8 +99,7 @@
 				       	   <!-- 끝  -->
 				       </div>
 				   </div>
-				</div>
-				</div>
+			
 				<div class="col-md-3 col-sm-12"></div>
 
 
@@ -111,11 +109,11 @@
 				<div class="row" id="basic-table">
 					  <div class="col-md-3 col-sm-12"></div>
 					  <div class="col-12 col-md-6">
-					    <div class="card">
+					   
 					      <div class="card-header">
 					        <h4 class="card-title text-center">메뉴 옵션</h4>
 					      </div>
-					      <div class="card-content">
+					
 					        <div class="card-body">
 					          <p class="card-text  text-center">${menuAllVo.menuName}에 대한 옵션메뉴입니다.</p>
 					          <!-- Table with outer spacing -->
@@ -150,8 +148,7 @@
 					          </div>
 					        </div>
 					      </div>
-					    </div>
-					  </div>
+					   
 					  <div class="col-md-3 col-sm-12"></div>
 				  </div>
 				

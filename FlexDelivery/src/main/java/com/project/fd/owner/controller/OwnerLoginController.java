@@ -1,16 +1,20 @@
 package com.project.fd.owner.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.Utility;
-import com.project.fd.owner.model.OwnerService;
 
 
 
@@ -20,6 +24,7 @@ public class OwnerLoginController {
 	
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerLoginController.class);
+	
 
 	@RequestMapping("/login/login.do")
 	public void ownerLogin(Model model) {
@@ -54,4 +59,39 @@ public class OwnerLoginController {
 		
 		return "redirect:/owner/index.do";
 	}
+	
+	
+	//아이디찾기
+	@RequestMapping("/login/forgotId.do")
+	public String forgotId() {
+		return "owner/login/forgotId";
+	}
+	
+	//비밀번호찾기
+	
+	@RequestMapping("/login/forgotPwd.do")
+	public String forgotPwd() {
+		return "owner/login/forgotPwd";
+	}
+	
+	  @ResponseBody
+	   @RequestMapping(value = "/VerifyRecaptcha.do", method = RequestMethod.POST)
+	   public int VerifyRecaptcha(HttpServletRequest request) {
+	        com.project.fd.owner.model.VerifyRecaptcha.setSecretKey("6LfgUU4aAAAAAPS6H-mXoek03GiEyFG2YzICABhR");
+	        String gRecaptchaResponse = request.getParameter("recaptcha");
+	        System.out.println(gRecaptchaResponse);
+	        //0 = 성공, 1 = 실패, -1 = 오류
+	        try {
+	            if(com.project.fd.owner.model.VerifyRecaptcha.verify(gRecaptchaResponse))
+	                return 0;
+	            else return 1;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return -1;
+	        }
+	    }
+
+
+	   
+    
 }

@@ -40,7 +40,7 @@
 			  
 		
 		</script>
-	
+		<bR><br><br>
 		<section id="content-types">
 		
 			 <!-- 광고등록 탭 + 버튼-->
@@ -49,13 +49,13 @@
 			  		<div class="col-md-8 col-sm-12">
 				  		<ul class="nav nav-pills" style="float: left;">
 							  <li class="nav-item">
-							    <a class="nav-link active" aria-current="page" href="<c:url value="/owner/menu2/advertise/advertiseMain.do"/>">진행</a>
+							    <a class="nav-link active" aria-current="page" href="<c:url value="/owner/menu2/advertise/advertiseMain.do"/>" >진행</a>
 							  </li>
 							  <li class="nav-item">
 							    <a class="nav-link" href="<c:url value="/owner/menu2/advertise/advertiseExpire.do"/>">만료</a>
 							  </li>
 						</ul>
-	                	 <button id="btAdRegister" class="btn btn-outline-warning" style="float: right;">광고등록</button>
+	                	 <button id="btAdRegister" class="btn btn-warning" style="float: right;">광고등록</button>
 		            </div>
                     <div class="col-md-2 col-sm-12"></div>
 			  </div>

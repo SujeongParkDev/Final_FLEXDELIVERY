@@ -23,5 +23,5 @@ public interface OwnerOrderService {
 	public int updateOrdersCancel(int ordersNo);
 	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map);
 	public int selectTotalRecordTWO(Map<String, Object> map);
-	
+	public Map<String, Object> selectOrderAllByOrdersNo(int ordersNo);
 }

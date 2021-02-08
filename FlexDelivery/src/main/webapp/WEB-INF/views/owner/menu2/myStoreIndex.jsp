@@ -10,71 +10,7 @@
 	<!-- 카드로 공지사항 만들기 -->
 	<!-- QQQ. 선택해주세요 공지사항 시안 1 ,  2 1은 일반 카드 2는 아코디언 형식 -->
 	<!-- 1번 카드형식 -->
-	<%--  <div class="row">
-		 <div class="col-12 col-md-1" ></div>
-		 <div class="col-12 col-md-10" >
-		 <div class="card">
-	          <div class="card-content">
-	              <div class="card-body">
-	              	   <div class="row" >
-	              			<div class="col-12 col-md-2" ></div>
-	              			<div class="col-12 col-md-8" >
-	                  			<h3 class="card-title " style="margin-top:20px;">공 지 사 항</h3>
-	                  		</div>
-	                  		<div class="col-12 col-md-2" style="margin-top:20px;">
-				                  <a href="<c:url value='/owner/menu3/notice.do'/>" style="font-size: 15px; color: gray; ">more</a>
-				             </div>
-				            
-			                  <div class="card-text" style="padding-top:-30px;">
-			                  		<br><Br>
-			                  	   <div class="row">
-			                  	    <div class="col-12 col-md-1" ></div>
-			              				<div class="col-12 col-md-10" >
-						                      <ul style="list-style: none">
-						                        	<li style=" font-size:100%; height:30px; ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지]</b>&nbsp;오늘부로 수수료 10% 인하합니..
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지]</b>&nbsp;쿠폰도 할인중 
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지]</b>&nbsp;광고도 할인할인할인 언제까지...
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지]</b>&nbsp;마지막 구매찬스~선착순입니다. 사장님덜 
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지] </b> &nbsp;재밋다 하하
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                      </ul>
-						                  </div>
-						                  <div class="col-12 col-md-1" ></div>
-						              </div>
-			                 	 </div>
-			              </div>
-			          </div>
-			      </div>
-			  </div>
-			</div>
-			<div class="col-12 col-md-1" ></div>
-		</div>
 
- --%>
 
 
 			
@@ -101,49 +37,11 @@
                            <div id="collapseOne" class="collapse pt-1" aria-labelledby="headingOne"
                                data-parent="#cardAccordion">
                                <div class="card-body">
-                                    <div class="row">
-			                  	    <div class="col-12 col-md-1" ></div>
-			              				<div class="col-12 col-md-10" >
-						                      <ul style="list-style: none">
-						                        	<li style=" font-size:100%; height:30px; ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[이벤트]</b>&nbsp;오늘부로 수수료 10% 인하합니..
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[이벤트]</b>&nbsp;쿠폰도 할인중 
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[이벤트]</b>&nbsp;광고도 할인할인할인 언제까지...
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[이벤트]</b>&nbsp;마지막 구매찬스~선착순입니다. 사장님덜 
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                        	<li style=" font-size:100%; height:30px;  ">
-						                        		<a style="text-decoration:none; color:black;"href="">
-						                        			<b>[공지] </b> &nbsp;재밋다 하하
-						                        		</a>
-						                        		<span style="float:right;">2020-01-20</span>
-						                        	</li>
-						                      </ul>
-						                  </div>
-						                   <div class="col-12 col-md-10" ></div>
-						                    <div class="col-12 col-md-2" >
-						                      	<a href="<c:url value='/owner/menu3/notice.do'/>" style="font-size: 15px; color: gray; ">more..</a>
-						                    </div>
-                              		  </div>
-                         		  </div>
-		           			</div>
+                                  <article id="mainNotice">
+	          						 <c:import url="/owner/menu2/myStoreMainNotice.do"></c:import>
+	        					   </article>
+                         	  </div>
+		           		</div>
 		     		</div>
 		     	</div>
 			<div class="col-12 col-md-1" ></div>

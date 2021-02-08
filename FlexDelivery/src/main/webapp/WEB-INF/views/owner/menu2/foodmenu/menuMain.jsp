@@ -49,18 +49,18 @@
 
 
 <!-- 메뉴 버튼 -->
-		<br>
+		<br><br><br><br><br>
 			 <div class="row mt-3">
-			  		<div class="col-md-2 col-sm-12"></div>
-			  		<div class="col-md-8 col-sm-12">
+			  		<div class="col-md-1 col-12"></div>
+			  		<div class="col-md-10 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" >현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " >옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-2 col-sm-12"></div>
+                    <div class="col-md-1 col-12"></div>
 			  </div>
 	
 		
@@ -70,8 +70,8 @@
 			 
 		<!-- 테이블 시작 -->
 			<div class="row" id="table-hover-row">
-				 <div class="col-md-2 col-sm-12"></div>
-					  <div class="col-12 col-md-8">
+				 <div class="col-md-1 col-sm-12"></div>
+					  <div class="col-12 col-md-10">
 					    <div class="card">
 					      <br>
 					      <!-- <div class="card-header">
@@ -79,12 +79,12 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center" style="font-size:20px;">현재 메뉴</p>
-					          <p class="card-text text-center"> 현재 보여지는 메뉴들 입니다.</p>
+					          <p class="card-text text-center mb-5 mt-3" style="font-size:30px; color:#ffb703;"><b>📋현재 메뉴📋</b></p>
+					          <p class="card-text text-center mb-3"> 현재 보여지는 메뉴들 입니다.</p>
 					          <div class="table-responsive">
-						          <table class="table table-hover mb-5">
+						          <table class="table table mb-5">
 						            <thead>
-						              <tr class="text-center">
+						              <tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;" >
 						              	<th>번호</th>
 						                <th>메뉴이름</th>
 						                <th>메뉴그룹</th>
@@ -102,7 +102,7 @@
 						            	  		<c:forEach var="vo" items="${list}">
 										              <tr  class="text-center">
 										              		<td>${vo.rnum }</td>
-											              	<td><a onclick="goDetail(${vo.menuNo})" href="#">${vo.menuName }</a></td>
+											              	<td><a style="color:navy;" onclick="goDetail(${vo.menuNo})" href="#"><b>${vo.menuName }</b></a></td>
 											                <td>${vo.sMGroupName }</td>
 														    <td>${vo.menuPrice }원</td>
 										              </tr>
@@ -114,7 +114,7 @@
 				     	    </div>
 					    </div>
 				 	</div>
-			<div class="col-md-2 col-sm-12"></div>
+			<div class="col-md-1 col-12"></div>
 			</div>
 			<!-- 테이블 끝 -->
 		</div>

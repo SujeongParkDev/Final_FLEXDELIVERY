@@ -58,6 +58,9 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 	}
 	
 	
+	public Map<String, Object> selectOrderAllByOrdersNo(int ordersNo){
+		return sqlSession.selectOne(namespace+"selectOrderAllByOrdersNo",ordersNo);
+	}
 	
 	
 }

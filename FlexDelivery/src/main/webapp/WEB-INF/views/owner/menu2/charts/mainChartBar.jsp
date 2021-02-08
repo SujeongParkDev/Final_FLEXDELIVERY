@@ -10,31 +10,31 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['주간', '지난주', '이번주'],
-          ['월', 5, 40],
-          ['화', 30, 40],
-          ['수', 40, 11],
-          ['목', 20, 10],
-          ['금', 10, 30],
-          ['토', 5, 20],
-          ['일', 7, 10]
+          ['주간',  '이번주',{ role: 'style' }],
+          ['월',  40, '#b87333'],
+          ['화',  40, 'yellow'],
+          ['수',  11, 'blue'],
+          ['목',  10, 'red'],
+          ['금',  30, 'yellow'],
+          ['토',  20, 'blue'],
+          ['일',  10, 'red']
         ]);
-
+/* 
         var options = {
                 legend: 'none',
                 bar: {
                     groupWidth: 20
-                 },
+                 } ,
                 series: {
                     0: {color: '#4682B4'},
                     1: {color: '#FF8C00'}
-                }
+                } 
             };
-        	
+        	 */
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-        chart.draw(data , google.charts.Bar.convertOptions(options));
+        chart.draw(data /* , google.charts.Bar.convertOptions(options) */);
       }
     </script>
   </head>

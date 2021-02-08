@@ -78,12 +78,11 @@
 		    <div class="row match-height">
 		    	<div class="col-md-2 col-sm-12"></div>
 		        <div class="col-md-8 col-sm-12">
-		        <div class="card" >
+		   
 		            <div class="card-header" style="background-color:white;">
 		            <h4 class="card-title text-center mt-5">대표 메뉴 등록</h4>
 		            </div>
-		            <div class="card-content">
-		            <div class="card-body">
+		        
 		                <form class="form form-vertical" action="<c:url value='/owner/menu2/foodmenu/signatureMenuWrite.do'/>" name="frm" method="post" >
 		                   <div class="form-body">
 		                    <div class="row">
@@ -138,10 +137,9 @@
 		                    <Br>
 		                    </div>
 		                </form>
-		            </div>
-		            </div>
+		           
 		        </div>
-		        </div>
+		        
 		        <div class="col-md-2 col-sm-12"></div>
 		    </div>
 		</section>
