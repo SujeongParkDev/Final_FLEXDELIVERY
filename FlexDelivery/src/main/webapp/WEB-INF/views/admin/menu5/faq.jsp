@@ -2,9 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@include file="../../adminInc/top.jsp" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/adminResources/style3.css">
+<%-- <script src="${pageContext.request.contextPath}/resources/adminResources/script2.js"></script>
+ --%>
 <script>
+	
 	$(function(){
+		
+		listForAll();
+		
+		
+
 		$.ajax({
 			type:"GET",
 			url :"<c:url value='/admin/menu5/faq/category/list.do' />",
@@ -13,7 +21,7 @@
 				if (res.length > 0) {
 					$('#returnCList').empty();
 					$.each(res, function(idx, item) {
-						var info = "<li>"+"<a onclick='listForCategory("+item.fCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver()'>"
+						var info = "<li>"+"<a onclick='listForCategory("+item.fCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>"
 							+ item.fCategoryName + "</a>"+"</li>";
 						$('#returnCList').append( info );
 					});
@@ -91,39 +99,124 @@
 		location.href = "<c:url value='/admin/menu5/faq/category/delete.do?no="+ delNo +"' />";
 	}
 	
-	function onMouseOver(){
-		$(this).css("color: white");
+	function onMouseOver(e){
+		$(e.target).css("color", "white");
 	}
+	
+	function onMouseOut(e){
+		$(e.target).css("color", "#727E8C");
+	}
+	
+	function listForAll(){
+		var str="";
+		
+		var accordionBtn;
+		var allTexts;
+		var accIcon;
+		
+		var targetText;
+  	    var targetAccIcon;
+  	    var target;
+		
+		$.ajax({
+			type:"GET",
+			url :"<c:url value='/admin/menu5/faq/listAll.do' />",
+			dataType:'json',
+			success: function(res){
+				
+				
+				if (res.length == 0){
+					
+					str+="<div class='mb-70' style='text-align: center;'>";
+					str+="<p>등록된 자주 묻는 질문이 없습니다.</p>";
+					str+="</div>";
+				
+				} else {
+					str+="<section id='wrapper'><div class='container'> <ul class='accordion'>";
+					$.each(res, function(idx, fvo) {
+						
+					//console.log("번호:"+fvo.faqNo);
+					str+="<li class='item'>"; 	
+				    str+="<h2 class='accordionTitle'>"+fvo.faqQ+"<span class='accIcon'></span></h2>";
+				   
+				    str+="<div class='text'>"+fvo.faqA+"</div>";
+				    str+="<div class='content' style='text-align: right;'>";
+				    
+				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'";
+				    str+="id='btFaqEdit"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqEdit"+fvo.faqNo+"'>수정</button>";
+				    str+="<span style='font-size: 12px;'> | </span>"; 
+				            
+				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'"; 
+				    str+="id='btFaqDelete"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete"+fvo.faqNo+"' >삭제</button>";
+				    str+="</div>"; 
+				    
+				    str+="</li>"; 
+				    
+				
+					});
+				
+				}
+					
+					$('#forPrint').html(str);
+					 // variables
+					 accordionBtn = document.querySelectorAll('.accordionTitle');
+					 allTexts = document.querySelectorAll('.text');
+					 accIcon = document.querySelectorAll('.accIcon');
+
+	
+				// event listener
+				accordionBtn.forEach(function (el) {
+				    el.addEventListener('click', toggleAccordion);
+				});
+					
+				 function toggleAccordion(el) {
+				  	   targetText = el.currentTarget.nextElementSibling.classList;
+				  	   targetAccIcon = el.currentTarget.children[0];
+				  	   target = el.currentTarget;
+				  	   
+				  	   if (targetText.contains('show')) {
+				  	       targetText.remove('show');
+				  	       targetAccIcon.classList.remove('anime');
+				  	       target.classList.remove('accordionTitleActive');
+				  	   } 
+				  	   else {
+				  	      accordionBtn.forEach(function (el) {
+				  	         el.classList.remove('accordionTitleActive');
+				  	         
+				  	         allTexts.forEach(function (el) {
+				  	            el.classList.remove('show');
+				  	         });
+				  	         
+				  	         accIcon.forEach(function (el) {
+				  	          el.classList.remove('anime');
+				  	         }) ;
+				  	         
+				  	      });
+				  	      
+				  	         targetText.add('show');
+				  	         target.classList.add('accordionTitleActive');
+				  	         targetAccIcon.classList.add('anime');
+				  	   }  
+					    console.log(targetText);
+					    console.log(target);
+						console.log(accordionBtn);
+
+					    
+				  	}//toggleAccordion
+			    
+			},
+			error: function(xhr, status, error){
+				console.log(error);
+			}
+		
+		}); //ajax
+		
+
+	}//listForAll
 	
 	function listForCategory(no){
 		var categoryNo=no;
-		var str="";
-		
-		//var data=${fn:length(forList) };
-		
-		
-		/*
-	        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${vo.faqNo }" 
-	        	aria-expanded="false" aria-controls="collapse${vo.faqNo }">
-	          Q. ${vo.faqQ }
-	        </button>
-	        
-	        <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
-              id="btFaqEdit${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqEdit${vo.faqNo }">수정</button> 
-            <span style="font-size: 12px;"> | </span> 
-            
-            <button type="button" style="border: none; outline: none; background: none; font-size: 12px;" class="comment-reply" 
-              id="btFaqDelete${vo.faqNo }" data-toggle="modal" data-backdrop="false" data-target="#modalFaqDelete${vo.faqNo }" >삭제</button>
-	      
-              </h2>
-	    </div>
-	    
-	    
-	    <div id="collapse${vo.faqNo }" class="collapse" aria-labelledby="heading${vo.faqNo }" data-parent="#accordionList">
-	      <div class="card-body">
-	      	${vo.faqA }
-		      </div>
-	    */
+		//var str="";
 	   
 		$.ajax({
 			type:"GET",
@@ -131,44 +224,47 @@
 			dataType:'json',
 			//data: data,
 			success: function(res){
+				var str="";
+				
 				if (res.length == 0){
 					
-					str+="<div class='mb-70' style='text-align: center;'>";
+					str+="<div class='mt-50 mb-70' style='text-align: center;'>";
 					str+="<p>등록된 자주 묻는 질문이 없습니다.</p>";
-					str+="</div>";
-				} else {
-					str+="<c:forEach var='vo' items='${list }' varStatus='status'>";
-					str+="<div class='card'>";
-					str+="<div class='card-header' id='heading${vo.faqNo }'>";
-					str+="<h2 class='mb-0'>";
 					
-					str+="<div class='accordion mb-70' id='accordionList${vo.faqNo}'>";
-					str+="<ul class='accordion'>";
-				    str+="<li class='item'>";
-				    str+="<h2 class='accordionTitle'>${vo.faqQ} <span class='accIcon'></span></h2>";
+					//console.log("str="+str);
+					
+				} else {
+					str+="<div class='accordion'>";
+					$.each(res, function(idx, fvo) {
+						
+					console.log("번호:"+fvo.faqNo);
+					 	
+					str+="<div class='accordion-item'>"; 
+					str+="<input id='accordion-"+fvo.faqNo+"' name='accordion' type='radio' class='accordion-input'/>";
+					str+="<label for='accordion-"+fvo.faqNo+"' class='heading' style='cursor: pointer;'>";
+				    str+="<div class='icon'></div>";
+				    str+="<div class='title'>"+fvo.faqQ+"</div></label>";
+				   
+				    str+="<div class='content'>";
+				    str+="<div class='text' style='text-align: right;'>";
+				    
 				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'";
-				    str+="id='btFaqEdit${vo.faqNo }' data-toggle='modal' data-backdrop='false' data-target='#modalFaqEdit${vo.faqNo }'>수정</button>";
+				    str+="id='btFaqEdit"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqEdit"+fvo.faqNo+"'>수정</button>";
 				    str+="<span style='font-size: 12px;'> | </span>"; 
 				            
 				    str+="<button type='button' style='border: none; outline: none; background: none; font-size: 12px;' class='comment-reply'"; 
-				    str+="id='btFaqDelete${vo.faqNo }' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete${vo.faqNo }' >삭제</button>";
-				    str+="</h2>"
+				    str+="id='btFaqDelete"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete"+fvo.faqNo+"' >삭제</button>";
+				    str+="</div>"; //text
 				    
-				    /*var newFaqA=${vo.faqA}.replace(/\r/gi, '\\r').replace(/\n/gi, '\\n');*/
-				    /*var newFaqA=str_replace("\r\n", "<br>", ${vo.faqA});
-				    str+=" <div class='text'>"+newFaqA+"</div>";*/
-				    str+="</li>";
-				    str+="</ul>";
-				    str+="</div>"; //accordionList
-				    
-				    str+="</h2>";
-				    str+="</div>"; //card-header
-				    
-				    str+="</div>";
-				    str+="</c:forEach>";
-				}
-				
-				alert(categoryNo+":"+res.length);
+				    str+="<p>"+fvo.faqA;
+				    str+="</p></div></div>"; //content, item
+				    				    
+					}); //each
+					
+				}//else
+					
+				str+="</div>";
+				//alert(categoryNo+":"+res.length);
 				$('#forPrint').html(str);
 				
 			},
@@ -177,6 +273,11 @@
 			}
 		});
 	}
+	
+	/* function chkRadio(){
+		$('.accordion-item').find('input[type=radio]:nth-child(1)').prop('checked', true);
+	} */
+	 
 
 </script>
 
@@ -187,8 +288,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css">
- --%><!-- css end -->
+<!-- css end -->
 
 <div class="container">
 	<div class="row">    
@@ -410,18 +510,24 @@
                      </div>
 					<!-- #faqWrite2 모달 end -->
 					
-			        <div class="sidebar-widget-area">
+			        <div class="sidebar-widget-area" style="margin-bottom: 2px;">
 			            <div class="widget-content">
-			            	<ul class="tags"><li><a href='#'>전체보기</a></li></ul>
+			            	<ul class="tags">
+			            		<li>
+				            		<a onclick="listForAll()" style="cursor: pointer;">전체보기</a>
+			            		</li>
+		            		</ul>
 			                <ul class="tags" id="returnCList">
 			                </ul>
-			                <span class="badge bg-transparent">4</span>
 			            </div>
 			        </div>
 			        
-			        <div class="card-body" id="forPrint">
+			        <div class="accordion" id="forPrint">
+						<!-- 처음에는 전체보기 출력 -->
+						
 						<!-- 카테고리 클릭 시 list 개수 따라 다른 출력 -->
 						  
+			  
 						  <%-- <div class="card">
 						  	<c:forEach var="vo" items="${list }" varStatus="status">
 						    <div class="card-header" id="heading${vo.faqNo }">
@@ -449,19 +555,6 @@
 						    </c:forEach>
 						  	</div> --%>
 						  	
-						    <%-- <div class="card-header" id="headingTwo">
-						      <h2 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Q. 주문 상태가 조리중일 때 고객이 주문취소 요청을 할 수 있나요?
-						        </button>
-						      </h2>
-						    </div>
-						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionList">
-						      <div class="card-body">
-						      	플렉스 딜리버리 측에서는 '배달중' 상태가 되기 전까지 주문취소가 가능합니다. '주문접수' 상태일 때는 고객과 점포 측에, '조리중' 일 때에는 점포 측에 주문취소 권한이 있습니다.
-						      	
-				 		      </div>
-						    </div> --%>
 						    
 					</div>
 						    <c:forEach var="vo" items="${list }" varStatus="status">

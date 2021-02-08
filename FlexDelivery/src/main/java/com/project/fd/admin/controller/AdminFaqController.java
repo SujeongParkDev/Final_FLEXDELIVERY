@@ -51,6 +51,19 @@ public class AdminFaqController {
 		return "admin/menu5/faq";
 	}
 	
+	@RequestMapping(value="/faq/listAll.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<AdminFaqAllViewVO> list_for_all_get(Model model) {
+		logger.info("ajax: 전체보기용 리스트 출력");
+		
+		List<AdminFaqAllViewVO> list=faqService.selectAll2();
+		logger.info("list 출력, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
+	
 	@RequestMapping(value="/faq/category/list.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<AdminFaqCategoryVO> category_list_get(Model model) {
