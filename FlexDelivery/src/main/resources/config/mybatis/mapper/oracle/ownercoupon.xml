@@ -43,16 +43,23 @@
 	</select>
 	
 	<select id="Allselect" resultType="adminRegularCouponVo">
-		select * from REGULARCOUPON
+		select * from REGULARCOUPON  
 	</select>
 	
 	<insert id="registerCoupon" parameterType="ownerCouponVo">
-		<selectKey keyProperty="storeadNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="scBoxNo" resultType="int" order="BEFORE">
 			select STORECOUPONBOX_seq.nextval from dual
 		</selectKey>
-		insert into STORECOUPONBOX(S_C_BOX_NO, R_COUPON_NO, STORE_NO,S_C_SERVICE, S_C_END_DATE)
+			insert into STORECOUPONBOX(S_C_BOX_NO, R_COUPON_NO, STORE_NO,S_C_SERVICE, S_C_END_DATE)
 		 <![CDATA[
-			values(#{scBoxNo},#{rCouponNo},#{storeNo},'사용중',sysdate+14)
-		]]>
+			values(#{scBoxNo},#{rCouponNo},#{storeNo},'Y',sysdate+14)
+			]]>
 	</insert>
+	
+	<update id="deleteCoupon" parameterType="ownerCouponVo">
+		update storeCouponBox
+		 set s_c_service='Y'
+		where  s_c_box_no=#{storeNo} and store_no=#{scBoxNo} or S_C_END_DATE != sysdate
+	</update>
+	
 </mapper>

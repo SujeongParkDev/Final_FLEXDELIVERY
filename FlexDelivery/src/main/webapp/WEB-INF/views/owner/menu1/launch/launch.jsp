@@ -32,16 +32,19 @@ h1 {
 
 <div class="container">
 	<div class="jumbotron">
-		<h1>FLEXDELIVERY 입점하고<br />
-			 <strong>가게매출<img src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/src/images/ols/icon_calc.png?ver=42f9afb5d8c17e79d0659cea66351d9f" />
+		<h1> FLEXDELIVERY 입점하고<br />
+		 <strong>가게매출<img
+				src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/src/images/ols/icon_calc.png?ver=42f9afb5d8c17e79d0659cea66351d9f" />
 				을 올리세요!
 			</strong>
 		</h1>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청 </button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청
+		</button>
 		<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
 	</div>
-	<div class="row marketing">
+	<div class="row h-80 align-items-center marketing">
 		<div class="col-lg-6">
+	 <div class="slide-content text-center">
 			<h4>
 				<i class="fas fa-paperclip"></i> 미리 준비해주세요!
 			</h4>
@@ -54,7 +57,9 @@ h1 {
 				</ul>
 			</div>
 		</div>
+		</div>
 		<div class="col-lg-6">
+		 <div class="slide-content text-center">
 			<h4>
 				<i class="fas fa-paperclip"></i> 입점 과정 미리보기
 			</h4>
@@ -71,9 +76,9 @@ h1 {
 			</ul>
 		</div>
 	</div>
+	</div>
 </div>
-<br>
-<br>
+</div>
 <br>
 <br>
 <!-- 사업자 등록 폼 시작  -->
@@ -86,23 +91,19 @@ h1 {
 				<div class="text-left">
 					<h4 class="modal-title" id="exampleModalLabel">사업자 등록증 신청</h4>
 				</div>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<br>
 			</div>
 			<div class="progress">
-				<div class="progress-bar" role="progressbar" aria-valuenow="30"
-					aria-valuemin="0" aria-valuemax="100" style="width: 3px;">
+				<div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 3px;">
 					<span class="sr-only"></span>
 				</div>
 			</div>
 			<br> <br>
 			<div class="modal-body">
-				<form class="form form-horizontal" method="POST"
-					enctype="multipart/form-data" name="frm1" id="frm1"
-					action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
+				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">사업자등록 번호</label>
 						<input type="text" id="oRegisterNo" name="oRegisterNo"
@@ -122,9 +123,9 @@ h1 {
 						<input type="file" id="upfile" name="upfile"
 							class="ustom-file-input" accept=".jpg, .jpeg, .png, .pdf">
 						<div class="invalid-feedback">
-							<br> 
-							<span style="margin-left: 60px;"> 
-								<small>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보 확인이 어려울 경우 승인이 지연될 수
+							<br>
+							 <span style="margin-left: 60px;">
+							  <small>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보 확인이 어려울 경우 승인이 지연될 수
 									있습니다. <br> 종사업장번호가 있는 경우 사업자등록증 뒷면은 필수입니다.<br> 
 									10MB 이하, JPG, PNG, PDF 형식의 파일만 등록할 수 있습니다.
 							</small>
@@ -135,36 +136,31 @@ h1 {
 			<br>
 			<div id="preview" class="text-center"></div>
 			<div class="modal-footer">
-				<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 "> 
-				<input type="submit" class="button medium primary" id="wr_submit" ame="wr_submit" data-toggle="modal" data-target="#exampleModal2"
-					data-whatever="@getbootstrap" data-dismiss="#exampleModal1">입점 신청 
+				<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 ">
+				 <input type="submit" class="button medium primary" id="wr_submit" ame="wr_submit" data-toggle="modal" 
+				 data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1">입점 신청
 			</div>
-			</form>
-		</div>
+		</form>
 	</div>
-
-
+</div>
 </div>
 <!-- 사업자 등록 폼 끝  -->
 <!--  -->
 <!-- 입점 신청 폼  -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="text-left">
 					<h4 class="modal-title" id="exampleModalLabel">입점 신청</h4>
 				</div>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<br>
 			</div>
 			<div class="modal-body">
-				<form class="dialog on lg " name="frm1" id="frm1" method="post" enctype="multipart/form-data"
-					action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
+				<form class="dialog on lg " name="frm1" id="frm1" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
 					<h5 class="form-label">
 						<div class="text-left">
 							<h3 class="mt-2 mb-1">
@@ -173,30 +169,27 @@ h1 {
 							</h3>
 							<br>
 							<p>
-								😊 아래 내용을 자세하게 적어주세요.<br> 입점에 필요한 정보를 상세하게 적어주시면 <br>
+								😊 아래 내용을 자세하게 적어주세요.<br> 
+								입점에 필요한 정보를 상세하게 적어주시면 <br>
 								상담하는데 많은 도움이 됩니다.
 							</p>
 						</div>
 					</h5>
 					<br>
-
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포명</h5>
-						</label> 
-						<input type="text" class="form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." 
-						name="storeName" id="storeName" minlength="1" title="점포명">
+						</label> <input type="text" class="form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 로고 이미지</h5>
-						</label> 
-						<input type="file"class="btn btn-default" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
+						</label> <input type="file" class="btn btn-default" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
-						<h5>✔ 점포명</h5></label> <input type="text" class="form-control" id="recipient-name"
-							placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
+							<h5>✔ 점포명</h5>
+						</label> <input type="text" class="form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
 					<div id="preview" class="text-center"></div>
 					<div class="form-group">
@@ -204,21 +197,17 @@ h1 {
 							<h5>✔ 점포 주소</h5>
 						</label>
 						<div>
-						
-					        <input type="Button" value="우편번호 찾기"   id="btnZipcode" title="새창열림" class="btn btn-default">
-					        <input type="text" name="zipcode" id="zipcode" ReadOnly  title="우편번호" style="border:none;" >
-					
-					        <input type="text" placeholder="주소 " ReadOnly title="주소" class="form-control"
-							aria-describedby="numberHelp" style="background-color: #fafaf9;"name="storeAddress" >
-					       <input type="text" placeholder="점포 상세 주소를 적어주세요. " class="form-control"
-							name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
-					    </div>
+							<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" class="btn btn-default"> 
+							<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" style="border: none;"> 
+							<input type="text" placeholder="주소 " ReadOnly title="주소" class="form-control" aria-describedby="numberHelp" style="background-color: #fafaf9;" name="storeAddress"> 
+								<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="form-control" name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 지역 코드 번호</h5>
 						</label> 
-						<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="locationNo" name="locationNo">
+						<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="locationNo" 	name="locationNo">
 							<option value="" disabled="">대분류</option>
 							<c:forEach var="voLo" items="${location }">
 								<option value="${voLo.locationNo}" id="locationNo" name="locationNo">${voLo.locationName }</option>
@@ -238,17 +227,17 @@ h1 {
 					</div>
 					<div class="form-group">
 						<label for="message-text" class="control-label">
-						<h5>✔ 상담 시 요청사항</h5></label>
+							<h5>✔ 상담 시 요청사항</h5>
+						</label>
 						<textarea class="form-control" id="message-text" placeholder="300자 이내로 등록해주세요." name="storeContent" id="storeContent"></textarea>
 					</div>
 					<div class="form-group">
-						<label class="checkbox-inline"> 
-						<input type="checkbox" id="inlineCheckbox1" value="option1"> 개인 정보 수집 이용에 동의합니다.
+						<label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox1" value="option1"> 개인 정보 수집 이용에 동의합니다.
 						</label>
 						<ul class="bullet-ul small muted">
 							<li>개인정보 수집 이용에 동의하지 않을 수 있으며 동의하지 않는 경우 상담 신청이 제한됩니다.</li>
-							<li>입점 상담을 위해 연락처를 수집 이용하며, 수집한 개인정보는 <strong class="h6">상담
-									종료 후 파기</strong>됩니다.
+							<li>입점 상담을 위해 연락처를 수집 이용하며, 수집한 개인정보는 
+							<strong class="h6">상담 종료 후 파기</strong>됩니다.
 							</li>
 						</ul>
 					</div>
@@ -262,9 +251,6 @@ h1 {
 	</div>
 </div>
 <!-- 입점 신청 끝  -->
-
-
-
 <script type="text/javascript">
 	// 사업자 등록증 
 	$(function() {
@@ -409,18 +395,11 @@ h1 {
 </script>
 
 <!-- script start -->
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
 <%@ include file="../../../ownerInc/bottom.jsp"%>

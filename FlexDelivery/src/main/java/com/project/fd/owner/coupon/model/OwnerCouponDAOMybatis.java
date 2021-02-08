@@ -32,7 +32,12 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 
 	@Override
 	public int registerCoupon(OwnerCouponVO vo) {
-		return sqlSession.selectOne(namespace+"registerCoupon",vo);
+		return sqlSession.insert(namespace+"registerCoupon",vo);
+	}
+
+	@Override
+	public int deleteCoupon(OwnerCouponVO vo) {
+		return sqlSession.delete(namespace+"deleteCoupon",vo);
 	}
 	
 	

@@ -2,13 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
-	<script type="text/javascript">
-	$(function(){
-		$('#btRegi').click(function(){
-			location.href='<c:url value="/owner/menu2/couponused/couponRegi.do"/>';
-		});
-	});
-		</script>
 <!-- 메뉴 버튼 -->
 		<br>
 			 <div class="row mt-3">
@@ -35,50 +28,83 @@
 					          <p class="card-text text-center"> 전체 발급된 구폰 내역입니다. </p><br><br>
 					       
 							<br><br>
+							<!-- datepicker !  -->
+							<div class="row">
+							<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
+							<div class="col-md-6 col-12 ">
+								<form name="frmPage" method="post" name="frm1"
+									action="<c:url value='/owner/menu2/couponused/couponUsed.do'/>">
+									<%@include file="../../../owner/datePicker/datePicker.jsp"%>
+									<input type="hidden" name="currentPage" value="1">
+							</div>
+							<div class="col-md-2 col-12">
+								<input type="submit" style="background-color: #0d6efd; color: white;" value="조회" id="searchDate">
+							</div>
+							</form>
+						</div><br><br>
+						<div class="col-md-4 col-12"></div>
+						<div class="text-right">
+						<input type="button" value="선택한 상품 삭제" id="btDel"><br><br>
+						</div>
 					          <!--  -->
 					          <div class="table-responsive">
 						          <table class="table table-hover mb-5">
+						          <colgroup>
+									<col style="width:1%" />
+									<col style="width:10%" />
+									<col style="width:20%" />
+									<col style="width:10%" />
+									<col style="width:20%" />	
+									<col style="width:20%" />
+									<col style="width:20%" />			
+								</colgroup>
 						            <thead>
 						              <tr class="text-center">
-						              	<th>쿠폰 번호</th>
-						              	<th>주문 최소 금액 </th>
-						              	<th>할인 가격 </th>
-						                 <th>발급 시작일</th>
-						                <th>발급 종료일</th>
-						                <th>사용 상태</th>
+						              <th><input type="checkbox" name="chkAll" ></th>
+						              	<th scope="col">번호</th>
+						              	<th scope="col">주문 최소 금액 </th>
+						              	<th scope="col">할인 가격 </th>
+						                 <th scope="col">발급 시작일</th>
+						                <th scope="col">발급 종료일</th>
+						                <th scope="col">사용 상태</th>
 						              </tr>
 						            </thead>
 						            <tbody>
 						            <!-- table 시작 -->
 						            	  <c:if test="${empty list }">
 						            	  		<tr>
-													<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
+													<td colspan="7" class="text-center">데이터가 존재하지 않습니다.</td>
 												</tr>
 						            	  </c:if>
+						            	  	<c:set var="k" value="0"/>
 						            	  <c:if test="${!empty list }">
 						            	  		<c:forEach var="map" items="${list}">
 										              <tr  class="text-center">
+										              <td><input type="checkbox" name="couponItems[${k}].scBoxNo 
+																value="${map['S_C_BOX_NO']}">
+															</td>
 										              		<td>${map['R_COUPON_NO'] }</td>
 										              		<td>${map['R_COUPON_MIN'] }</td>
 										              		<td>${map['R_COUPON_DC'] }</td>
 											              	<td>${map['S_C_START_DATE'] }</td>
 											                <td>${map['S_C_END_DATE'] }</td>
-														    <td>${map['S_C_SERVICE'] }</td>
+											                <c:if test="${map['S_C_SERVICE'] == 'Y' }">
+														    <td>
+														    	<span class="badge bg-success">사용중 </span>
+														    </td>											                
+											                </c:if>
+											                 <c:if test="${map['S_C_SERVICE'] == 'N' ||  map['S_C_END_DATE'] == sysdate }">
+														    <td>
+														    	<span class="badge bg-danger">만료 </span>
+														    </td>											                
+											                </c:if>
 										              </tr>
+										              <c:set var="k" value="${k+1 }"/>
 							              		</c:forEach>
 							               </c:if>
 						            </tbody>
 						          </table>
-				        	   </div>
-				     	    </div>
-					    </div>
-				 	</div>
-			<div class="col-md-2 col-sm-12"></div>
-			</div>
-			<!-- 테이블 끝 -->
-			
-				<!-- 페이징 시작 -->
-		<div class="card-body">
+						          	<div class="card-body">
            <nav aria-label="Page navigation example">			
                <ul class="pagination pagination-primary justify-content-center">
 		 			<c:if test="${pagingInfo.firstPage>1 }">	
@@ -106,15 +132,35 @@
 				 </c:if>
                </ul>
            </nav>
-        </div> 
+        </div> <!-- 페이징 끝  -->
+				        	   </div>
+				     	    </div>
+					    </div>
+				 	</div>
+			<div class="col-md-2 col-sm-12"></div>
+			<!-- 테이블 끝 -->
+			
 			
 		</div>
+	</div>
 		<br>
 		<br>
 		<br>
 <!-- coupon register -->
 		
 <!--  -->
+<script type="text/javascript">
+	$(function(){
+		$('#btRegi').click(function(){
+			location.href='<c:url value="/owner/menu2/couponused/couponRegi.do"/>';
+		});
+	});
+	function pageFunc(curPage){
+		$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
+		$('form[name=frmDate]').submit();
+	}
+	
+</script>
 
  <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

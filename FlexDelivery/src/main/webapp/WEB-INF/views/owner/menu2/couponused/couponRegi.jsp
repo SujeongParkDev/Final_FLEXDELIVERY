@@ -39,7 +39,7 @@
 								<tr class="text-center">
 									<th>쿠폰 번호</th>
 									<th>주문 최소 금액</th>
-									<th>할인 가격</th>
+									<th>할인 금액 </th>
 									<th>신청하기</th>
 								</tr>
 							</thead>
@@ -57,8 +57,8 @@
 											<td>${vo.rCouponMin }</td>
 											<td>${vo.rCouponDc}</td>
 											<td><button type="button"
-													class="btn btn-primary round  mr-1 mb-1" data-toggle="modal" id="modalregister${vo.rCouponNo}"
-													data-target="#exampleModal" >신청</button></td><!-- 왜 넘버가 모달로 안 넘어갈까...  -->
+													class="btn btn-primary round  mr-1 mb-1 register" data-toggle="modal" id="modalregister"
+													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button></td><!-- 왜 넘버가 모달로 안 넘어갈까...  -->
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -120,6 +120,12 @@
 		});
 	});	
     
+    $(function(){
+    	$('.register').click(function(){
+    		var str=$(this).val();
+    		$('input[name=no]').val(str);
+    	});
+    });
 	</script>
 
 	<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

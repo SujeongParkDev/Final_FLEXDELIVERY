@@ -22,7 +22,7 @@
           title: 'Chess opening moves',
          
           legend: { position: 'none' },
-          chart: { title: '2021년 평균 별점입니다. ',
+          chart: { title: '우리 가게 고객들의 평균 별점입니다. ',
                    subtitle: 'popularity by percentage' },
           bars: 'horizontal', // Required for Material Bar Charts.
           axes: {
@@ -32,7 +32,7 @@
           },
           bar: { groupWidth: "40%" },
           series: {
-              0: {color: '#ca74ec'},
+              0: {color: '#0d6efd'},
           }
         };
 

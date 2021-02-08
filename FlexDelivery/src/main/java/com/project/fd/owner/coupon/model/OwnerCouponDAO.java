@@ -12,4 +12,6 @@ public interface OwnerCouponDAO {
 	// all regular coupon
 	public List<AdminRegularCouponVO> Allselect();
 	public int registerCoupon(OwnerCouponVO vo);
+	
+	public int deleteCoupon(OwnerCouponVO vo);
 }

@@ -31,6 +31,11 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 	public int registerCoupon(OwnerCouponVO vo) {
 		return couponDao.registerCoupon(vo);
 	}
+
+	@Override
+	public int deleteCoupon(OwnerCouponVO vo) {
+		return couponDao.deleteCoupon(vo);
+	}
 	
 	
 }
