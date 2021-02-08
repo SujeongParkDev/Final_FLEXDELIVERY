@@ -32,6 +32,7 @@
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px; font:bold;">리뷰 관리 </p>
 					<p class="card-text text-left" >평균 별점 입니다. </p>
+					<%@include file="reviewChart.jsp"%>
 					<br> <br>
 			<div class="card-content">
 				<div class="card-body text-center">

@@ -191,7 +191,7 @@ h1 {
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 로고 이미지</h5>
 						</label> 
-						<input type="file" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
+						<input type="file"class="btn btn-default" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
@@ -203,11 +203,16 @@ h1 {
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 주소</h5>
 						</label>
-						 <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br /> 
-						 <input type="text" placeholder="우편번호" ReadOnly title="주소" class="form-control" name="OwnerZipcode" id="OwnerZipcode"
-							aria-describedby="numberHelp" style="background-color: #fafaf9;">
-						<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="infobox"
+						<div>
+						
+					        <input type="Button" value="우편번호 찾기"   id="btnZipcode" title="새창열림" class="btn btn-default">
+					        <input type="text" name="zipcode" id="zipcode" ReadOnly  title="우편번호" style="border:none;" >
+					
+					        <input type="text" placeholder="주소 " ReadOnly title="주소" class="form-control"
+							aria-describedby="numberHelp" style="background-color: #fafaf9;"name="storeAddress" >
+					       <input type="text" placeholder="점포 상세 주소를 적어주세요. " class="form-control"
 							name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
+					    </div>
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
