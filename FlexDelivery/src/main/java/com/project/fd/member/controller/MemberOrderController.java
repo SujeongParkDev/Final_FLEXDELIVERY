@@ -68,8 +68,8 @@ public class MemberOrderController {
 	}
 	
 	@RequestMapping("/orderSuccess.do")
-	public String orderSuccess(@ModelAttribute MemberOrderVO vo,@RequestParam(defaultValue = "0") int giftSelect
-			,@RequestParam(defaultValue = "0") int couponSelect,Model model) {
+	public String orderSuccess(@ModelAttribute MemberOrderVO vo,@RequestParam(defaultValue = "0",required = false) int giftSelect
+			,@RequestParam(defaultValue = "0",required = false) int couponSelect,Model model) {
 		logger.info("주문처리, MemberOrderVO={}",vo);
 		List<MemberCartViewVO> cartList=cartServ.selectCartList(vo.getMemberNo());
 		int cnt=0;
@@ -84,16 +84,16 @@ public class MemberOrderController {
 				dcNo=couponSelect;
 			}
 		}
-		orderServ.insertOrder(vo, cartList,type,dcNo);
-		if(cnt==0) {
-			String msg="주문 실패하였습니다.";
-			String url="/member/orderSheet.do";
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
+		cnt=orderServ.insertOrder(vo, cartList,type,dcNo);
+		String msg="주문 실패하였습니다.";
+		String url="/member/order/orderSheet.do";
+		if(cnt>0) {
+			msg="주문성공!";
+			url="/member/index.do";
 		}
-		
-		return "";
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "common/message";
 	}
 	
 }
