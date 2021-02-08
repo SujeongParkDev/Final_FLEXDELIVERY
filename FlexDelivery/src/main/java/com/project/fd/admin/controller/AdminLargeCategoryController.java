@@ -37,7 +37,7 @@ public class AdminLargeCategoryController {
 	
 	@RequestMapping("/ajaxCheck.do")
 	@ResponseBody
-	public boolean ajax_check(@RequestParam(required=false) String lCategoryName) {
+	public boolean ajax_check(@RequestParam String lCategoryName) {
 		logger.info("이름 중복확인, lCategoryName={}", lCategoryName);
 		
 		boolean isExist=false;

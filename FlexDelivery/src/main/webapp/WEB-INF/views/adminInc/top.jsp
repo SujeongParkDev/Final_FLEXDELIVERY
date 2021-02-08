@@ -42,7 +42,7 @@
 
     <!-- Subscribe Modal -->
     <div class="subscribe-newsletter-area">
-        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
+        <div class="modal fade" id="howToUse" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -116,7 +116,7 @@
 
                         <!-- Subscribe btn -->
                         <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribe</a>
+                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#howToUse">이용가이드</a>
                         </div>
 
                         <!-- Navbar Toggler -->

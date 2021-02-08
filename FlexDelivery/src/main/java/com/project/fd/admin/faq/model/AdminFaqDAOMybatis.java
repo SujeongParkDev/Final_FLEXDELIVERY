@@ -39,8 +39,20 @@ public class AdminFaqDAOMybatis implements AdminFaqDAO{
 	}
 
 	@Override
-	public int deleteFaq(AdminFaqVO faqVo) {
-		int cnt=sqlSession.delete(namespace+"deleteFaq", faqVo);
+	public int deleteFaq(int no) {
+		int cnt=sqlSession.delete(namespace+"deleteFaq", no);
 		return cnt;
+	}
+
+	@Override
+	public List<AdminFaqVO> selectFor(int categoryNo) {
+		List<AdminFaqVO> list=sqlSession.selectList(namespace+"selectFor", categoryNo);
+		return list;
+	}
+
+	@Override
+	public List<AdminFaqAllViewVO> selectFor2(int categoryNo) {
+		List<AdminFaqAllViewVO> list=sqlSession.selectList(namespace+"selectFor2", categoryNo);
+		return list;
 	}
 }

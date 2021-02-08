@@ -12,7 +12,11 @@ public interface AdminFaqDAO {
 
 	int updateFaq(AdminFaqVO faqVo);
 
-	int deleteFaq(AdminFaqVO faqVo);
+	int deleteFaq(int no);
+
+	List<AdminFaqVO> selectFor(int categoryNo);
+
+	List<AdminFaqAllViewVO> selectFor2(int categoryNo);
 
 
 }

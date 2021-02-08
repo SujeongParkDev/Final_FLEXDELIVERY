@@ -15,6 +15,20 @@
 		on f.F_CATEGORY_NO=c.F_CATEGORY_NO
 		order by f.FAQ_NO
 	</select>
+
+	<select id="selectFor" parameterType="int" resultType="adminFaqVo">
+		select FAQ_NO, F_CATEGORY_NO, FAQ_Q, FAQ_A from FAQ
+		where F_CATEGORY_NO=#{fCategoryNo}
+		order by FAQ_NO desc
+	</select>
+	
+	<select id="selectFor2" parameterType="int" resultType="adminFaqAllViewVo">
+		select f.*, c.F_CATEGORY_NAME
+		from FAQ f left join FAQCATEGORY c
+		on f.F_CATEGORY_NO=c.F_CATEGORY_NO
+		where f.f_category_no=#{fCategoryNo}
+		order by f.FAQ_NO
+	</select>
 	
 	<select id="selectCategoryAll" parameterType="adminFaqCategoryVo" resultType="adminFaqCategoryVo">
 		select F_CATEGORY_NO, F_CATEGORY_NAME, AUTHORITY_NO from FAQCATEGORY
@@ -35,7 +49,7 @@
 		where FAQ_NO=#{faqNo}
 	</update>
 	
-	<delete id="deleteFaq" parameterType="adminFaqVo">
+	<delete id="deleteFaq" parameterType="int">
 		delete from FAQ
 		where FAQ_NO=#{faqNo}
 	</delete>
@@ -50,11 +64,11 @@
 	
 	<update id="updateFaqCategory" parameterType="adminFaqCategoryVo">
 		update FAQCATEGORY
-		set F_CATEGORY_NAME=#{fCategoryName}
-		where FAQ_NO=#{faqNo} <!--and AUTHORITY_NO=6 -->
+		set F_CATEGORY_NAME=#{fCategoryName}, AUTHORITY_NO=#{authorityNo}
+		where F_CATEGORY_NO=#{fCategoryNo}
 	</update>
 	
-	<delete id="deleteFaqCategory" parameterType="adminFaqCategoryVo">
+	<delete id="deleteFaqCategory" parameterType="int">
 		delete from FAQCATEGORY
 		where F_CATEGORY_NO=#{fCategoryNo}
 	</delete>

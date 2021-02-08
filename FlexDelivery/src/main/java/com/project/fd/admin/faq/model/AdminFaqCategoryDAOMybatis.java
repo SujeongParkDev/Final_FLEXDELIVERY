@@ -39,8 +39,8 @@ public class AdminFaqCategoryDAOMybatis implements AdminFaqCategoryDAO{
 	}
 
 	@Override
-	public int deleteFaqCategory(AdminFaqCategoryVO faqCategoryVo) {
-		int cnt=sqlSession.delete(namespace+"deleteFaqCategory", faqCategoryVo);
+	public int deleteFaqCategory(int no) {
+		int cnt=sqlSession.delete(namespace+"deleteFaqCategory", no);
 		return cnt;
 	}
 }

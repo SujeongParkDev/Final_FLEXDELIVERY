@@ -12,4 +12,8 @@ public class Utility {
 	public static final int OWNER_LOGIN=2; 	//점포 로그인화면
 	public static final int ADMIN_LOGIN=3;	//관리자 로그인화면
 	
+	public static final int MEMBER_LOGOUT=1; //회원 로그아웃
+	public static final int OWNER_LOGOUT=2; //점포 로그아웃
+	public static final int ADMIN_LOGOUT=3;	//관리자 로그아웃
+	
 }
