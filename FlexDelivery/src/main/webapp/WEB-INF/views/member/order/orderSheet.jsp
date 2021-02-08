@@ -42,7 +42,7 @@
 		$('#ordersDiscount').val(dc);
 	};
 	
-	/* function pay(){
+	function pay(){
 		var pay=$('input[name=ordersPrice]').val();
 		var tel=$('input[name=ordersHp]').val();
 		var address=$('input[name=ordersAddress]').val();
@@ -69,11 +69,11 @@
 		        alert(msg);
 				$('form[name=orderForm]').submit();
 	          } else {
-	            alert('결제 실패 , 에러내용 : ' + rsp.error_msg);
+	            alert('결제 실패  : ' + rsp.error_msg);
 	            
 	          }
 		});
-	}; */
+	};
 </script>
 
 <div class="osahan-checkout">
@@ -195,7 +195,7 @@
 			                            	<select class="custom-select form-control" name="couponSelect" id="couponSelect" onchange="change(event,${totalPrice})">
 				                             	 <option value="0" title="0" selected>선택 없음
 			                            	 <c:forEach items="${coupList}" var="cVo">
-			                            	 	<c:if test="${cVo.rCouponMin<buyPrice}">
+			                            	 	<c:if test="${cVo.rCouponMin<=buyPrice}">
 					                             <option value="${cVo.sCBoxNo}" title="${cVo.rCouponDc}"><fmt:formatNumber value="${cVo.rCouponDc}" type="currency" /> 할인 - <fmt:formatNumber value="${cVo.rCouponMin}" type="currency" />부터 사용가능</option>
 			                            	 	</c:if>
 			                            	 </c:forEach>
@@ -203,8 +203,8 @@
 				                        </c:if>
 			                           	<c:if test="${empty coupList}">
 		                               		<select class="custom-select form-control" name="couponSelect" id="couponSelect" disabled>
-		                               			<option value="0" selected>선택가능한 쿠폰이 없습니다</option>
-		                               		</select>
+		                               			<option value="0" title="0" selected>선택가능한 쿠폰이 없습니다</option>
+		                               		</select> 
 		                               	</c:if>
                                    </div>
                                </div>
@@ -221,7 +221,7 @@
 		                               	</c:if>
 		                               	<c:if test="${empty giftList}">
 		                               		<select class="custom-select form-control" name="giftSelect" id="giftSelect" disabled>
-		                               			<option value="0" selected>선택가능한 상품권이 없습니다</option>
+		                               			<option value="0" title="0" selected>선택가능한 상품권이 없습니다</option>
 		                               		</select>
 		                               	</c:if>
                                    </div>
@@ -298,16 +298,16 @@
 		        <div class="bg-white p-3 border-bottom">
 			       <p class="mb-1">TOTAL <span class="float-right text-dark" id="cartTotalPrice">${buyPrice} 원</span></p>
 			       <p class="mb-1">할인 <span class="float-right text-dark" id="discountPrice">0 원</span></p>
-			       <input type="text" name="ordersDiscount" id="ordersDiscount">
+			       <input type="text" name="ordersDiscount" id="ordersDiscount" value="0">
 			       <p class="mb-1">배달팁<span class="text-info ml-1"><i class="feather-info"></i></span><span class="float-right text-dark">${delivery} 원</span></p>
 			       <hr>
 			       <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right" id="orderPrice">${totalPrice}원</span></h6>
 			       <input type="hidden" id="ordersPrice" name="ordersPrice" value="${totalPrice}">
 		   		</div>
-			    <div class="p-3">
-			        <button class="btn btn-primary btn-block btn-lg" type="submit" id="orderButton" onclick="return pay()"> <!-- onclick="pay()" -->PAY ${totalPrice}원<i class="feather-arrow-right"></i></button>
-			   	</div>
 			    </form>
+			    <div class="p-3">
+			        <button class="btn btn-primary btn-block btn-lg" type="submit" id="orderButton" onclick="pay()">PAY ${totalPrice}원<i class="feather-arrow-right"></i></button>
+			   	</div>
             </div>
         </div>
     </div>
