@@ -44,7 +44,6 @@ public class OwnerAskDAOMybatis implements OwnerAskDAO{
 	@Override
 	public int updateASK(OwnerAskVO ownerAskVo) {
 		return sqlSession.update(namespace+"updateASK",ownerAskVo);
-	}
-	
+	}	
 	
 }
