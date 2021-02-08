@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../memInc/top.jsp" %>
@@ -63,7 +65,7 @@
 					    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
 			   	}else{
 			   		if (map.vo.sStatusNo==2){
-						str+="<a class='btn btn-success btn-block btn-lg' href='successful.html'>PAY "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+						str+="<a class='btn btn-success btn-block btn-lg' href='<c:url value='/member/order/orderSheet.do'/>'>ORDER "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
 			   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
 				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
 			   		}
@@ -79,12 +81,90 @@
 	};
 	
 	function couponBox(){
-		
-	}
+		var memberNo=${sessionScope.memberNo};
+		var storeNo=${storeNo};
+		var data="storeNo="+storeNo+"&memberNo="+memberNo;
+		$.ajax({
+			url:"<c:url value='/member/coupon/storeCouponBox.do'/>",
+			type:"get",
+			data:data,
+			success:function(list){
+				var str="<div class='osahan-filter'>";
+				str+="<div class='filter'>";
+				str+="<div class='p-3 bg-light border-bottom'>";
+				str+="<h6 class='m-0'>쿠폰선택</h6></div>";
+				var i=0;
+				str+="<input type='hidden' name='memberNo' value='"+${sessionScope.memberNo}+"'>";
+					$.each(list,function(idx,coupVo){
+						str+="<div class='custom-control custom-radio border-bottom py-2'>";
+	                    if(coupVo.dupChk==0){
+	                    	str+="<input type='radio' class='custom-control-input' id='couponRadio"+coupVo.sCBoxNo+"' name='sCBoxNo' value='"+coupVo.sCBoxNo+"' checked='checked'>";
+	                        str+="<label class='custom-control-label py-3 w-100 px-3' for='couponRadio"+coupVo.sCBoxNo+"'>"+coupVo.rCouponDc.toLocaleString("ko-KR")+"원";
+	                        str+="<p class='text-muted mb-0'>최소주문금액 - "+coupVo.rCouponMin.toLocaleString("ko-KR")+"원</p></label>";
+	                        i++;
+	                    }
+	                    if(coupVo.dupChk>0){
+	                    	if(coupVo.rCBoxUse=='Y'){
+	                           	str+="<p class='text-muted mb-0'><strong>이미 사용한 쿠폰입니다</strong></p>";
+	                            str+="<input type='radio' class='custom-control-input' id='existCouponRadio"+coupVo.sCBoxNo+"' disabled='disabled' >";
+	                            str+="<label class='custom-control-label py-3 w-100 px-3' for='existCouponRadio"+coupVo.sCBoxNo+"'>"+coupVo.rCouponDc.toLocaleString("ko-KR")+"원";
+	                           	str+="<p class='text-muted mb-0'>최소주문금액 - "+coupVo.rCouponMin.toLocaleString("ko-KR")+"</p></label>";
+	                    	}else{
+	                    		str+="<p class='text-muted mb-0'><strong>이미 등록한 쿠폰입니다</strong></p>";
+	                            str+="<input type='radio' class='custom-control-input' id='existCouponRadio"+coupVo.sCBoxNo+"' disabled='disabled' >";
+	                            str+="<label class='custom-control-label py-3 w-100 px-3' for='existCouponRadio"+coupVo.sCBoxNo+"'>"+coupVo.rCouponDc.toLocaleString("ko-KR")+"원";
+	                           	str+="<p class='text-muted mb-0'>최소주문금액 - "+coupVo.rCouponMin.toLocaleString("ko-KR")+"</p></label>";
+	                    	}
+	                    }
+	                    str+="</div>";
+					})//each
+				
+			    str+="</div></div></div>";
+			    str+="<div class='modal-footer p-0 border-0'>";
+	            str+="<div class='col-6 m-0 p-0'>";
+	            if(i>0){
+	            	str+="<button type='submit' class='btn btn-primary btn-lg btn-block'>해당쿠폰 발급받기</button>";
+	            }else{
+	            	str+="<button type='button' class='btn btn-primary btn-lg btn-block disabled'>발급가능한 쿠폰이 없습니다</button>";
+	            }
+	            str+="</div>";
+	            str+="<div class='col-6 m-0 p-0'><button type='button' class='btn border-top btn-lg btn-block' id='modalCloseBt' data-dismiss='modal'>닫기</button></div>";
+	            
+	            $('form[name=couponForm]').html(str);
+			},error:function(error){
+				alert("error : "+error);
+			}
+		});        
+	};
 	
 	$(function(){
 		cartList();
+		couponBox();
 		var bool = ${cartChk};
+		
+   		$('form[name=couponForm]').submit(function(){
+   			var dataForm=$(this).serializeArray();
+   			$.ajax({
+   				url:"<c:url value='/member/coupon/addCoupon.do'/>",
+   				type:"post",
+   				data:dataForm,
+   				dataType:"json",
+   				success:function(bool){
+   					if(bool){
+   						alert('쿠폰발급 되었습니다');
+   						couponBox();
+   					}else{
+   						alert('쿠폰발급실패');
+   						couponBox();
+   					}
+   				},error:function(error){
+   					alert("error : "+error);
+					couponBox();
+   				}
+   			});
+   			event.preventDefault();
+   		});
+		
 		$('form[name=cartForm]').submit(function(){
 			if($(this).find('input[type=radio]:checked').length==0){
 				alert('먼저 상품을 선택해야합니다!');
@@ -200,27 +280,6 @@
 			$('.totalPrice').html(price+'원');
 		});
 		
-		$('#couponForm').submit(function(){
-			$.ajax({
-				url:"<c:url value='/member/coupon/addCoupon.do' />",
-				type:"post",
-				data:$(this).serializeArray(),
-				dataType:"json",
-				success:function(bool){
-					if(bool){
-						alert('쿠폰발급 되었습니다');
-						$('.closeBt').click();
-					}else{
-						alert('쿠폰발급실패');
-						$('.closeBt').click();
-					}
-				},error:function(error){
-					alert("error : "+error);
-				}
-			});
-			event.preventDefault();
-		});
-		
 	});//$(function)
 	
 	function minus(no,qty){
@@ -243,7 +302,6 @@
 			error:function(){
 				alert('도전 실패!');
 			}
-			
 		});
 	};
 	
@@ -267,7 +325,6 @@
 			error:function(){
 				alert('도전 실패!');
 			}
-			
 		});
 	};
 	
@@ -293,7 +350,6 @@
 			event.preventDefault();
 		}
 	};
-	
 </script>
     <div class="d-none">
         <div class="bg-primary p-3 d-flex align-items-center">
@@ -362,85 +418,31 @@
 						</a>
 	                </div>
                 </c:if>
-                <!-- 쿠폰 버튼 -->
-                <c:if test="${!empty coupList}">
+                <!-- 쿠폰 발급버튼 -->
+                <c:if test="${couponChk}">
 	                <div class="d-grid gap-2 col-6 mx-auto">
-	                	<button class="col-12 btn btn-outline-light" type="button" data-toggle="modal" data-target="#couponBox">쿠폰 발급받기</button>
+	                	<button class="col-12 btn btn-outline-light" type="button" data-toggle="modal" data-target=".couponModal">쿠폰 발급받기</button>
 	                </div>
-                	<!-- 쿠폰 모달 -->
-	                <div class="modal fade" id="couponBox" tabindex="-1" role="dialog" aria-labelledby="option" aria-hidden="true">
-				        <div class="modal-dialog modal-dialog-centered">
-				            <div class="modal-content">
-				                <div class="modal-header">
-					                <h5 class="modal-title text-align-center">쿠폰함</h5>
-					                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					                	<span aria-hidden="true">&times;</span>
-					                </button>
-				                </div>
-				                <form action="" method="post" id="couponForm" >
-					                <div class="modal-body p-0">
-					                    <div class="osahan-filter">
-					                        <div class="filter">
-					                            <div class="p-3 bg-light border-bottom">
-					                                <h6 class="m-0">쿠폰선택</h6>
-					                            </div>
-												<c:set var="i" value="0" />
-												<input type="hidden" name="memberNo" value="${sessionScope.memberNo}">
-					                            <c:forEach var="coupVo" items="${coupList}">
-						                            <div class="custom-control custom-radio border-bottom py-2">
-						                            <c:if test="${coupVo.dupChk==0 }">
-						                                <input type="radio" class="custom-control-input" id="couponRadio${coupVo.sCBoxNo}" name="sCBoxNo" value="${coupVo.sCBoxNo}" checked="checked">
-						                                <label class="custom-control-label py-3 w-100 px-3" for="couponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
-						                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
-						                                </label>
-						                                <c:set var="i" value="1" />
-						                            </c:if>
-						                            <c:if test="${coupVo.dupChk>0}">
-						                            	<c:if test="${coupVo.rCBoxUse=='Y'}">
-							                                <p class="text-muted mb-0 strong"><strong>이미 사용한 쿠폰입니다</strong></p>
-							                                <input type="radio" class="custom-control-input" id="existCouponRadio${coupVo.sCBoxNo}" disabled="disabled" >
-							                                <label class="custom-control-label py-3 w-100 px-3" for="existCouponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
-							                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
-							                                </label>
-						                            	</c:if>
-						                            	<c:if test="${coupVo.rCBoxUse!='Y'}">
-							                                <p class="text-muted mb-0"><strong>이미 발급된 쿠폰입니다 </strong></p>
-							                                <input type="radio" class="custom-control-input" id="useCouponRadio${coupVo.sCBoxNo}" disabled="disabled" >
-							                                <label class="custom-control-label py-3 w-100 px-3" for="useCouponRadio${coupVo.sCBoxNo}"><fmt:formatNumber value="${coupVo.rCouponDc}" pattern="#,###원" />
-							                                	<p class="text-muted mb-0">최소주문금액 <fmt:formatNumber value="${coupVo.rCouponMin}" type="currency" /></p>
-							                                </label>
-						                            	</c:if>
-						                            </c:if>
-						                            </div>
-					                            </c:forEach>
-					                        </div>
-					                    </div>
-					                </div>
-					                <div class="modal-footer p-0 border-0">
-					                    <div class="col-6 m-0 p-0">
-					                    	<c:if test="${i>0}">
-						                        <button type="submit" class="btn btn-primary btn-lg btn-block">해당쿠폰 발급받기</button>
-					                    	</c:if>
-					                    	<c:if test="${i==0}">
-						                        <button type="button" class="btn btn-primary btn-lg btn-block disabled">발급가능한 쿠폰이 없습니다</button>
-					                    	</c:if>
-					                    </div>
-					                    <div class="col-6 m-0 p-0">
-					                        <button type="button" class="btn border-top btn-lg btn-block closeBt" data-dismiss="modal">닫기</button>
-					                    </div>
-					                </div>
-				                </form>
-				            </div>
-				        </div>
-				    </div>
-			    </c:if>
-			    <!-- /쿠폰 모달 -->
+	               	<!-- 쿠폰 모달 -->
+	                <div class='modal fade couponModal' tabindex='-1' role='dialog' aria-labelledby='option' aria-hidden='true'>
+						<div class='modal-dialog modal-dialog-centered'>
+							<div class='modal-content'>
+								<div class='modal-header'>
+									<h5 class='modal-title text-align-center'>쿠폰함</h5>
+									<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span></button>
+								</div>
+								<div class='modal-body p-0'><form name="couponForm"><!-- 쿠폰 모달 html() --></form></div> 
+			               	</div> 
+		               	</div> 
+	               	</div> 
+                </c:if>
             </div>
         </div>
     </div>
     <div class="container position-relative">
         <div class="row">
-            <div class="col-md-8 pt-3">
+            <div class="col-lg-8 pt-3">
             	<!-- Menu -->
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
 	            	
@@ -717,7 +719,7 @@
                 <!-- /Review -->
             </div>
             <!-- 장바구니 -->
-            <div class="col-md-4 pt-3" id="cartDiv"></div>
+            <div class="col-lg-4 pt-3" id="cartDiv"></div>
             <!-- /장바구니 -->
         </div>
     </div>

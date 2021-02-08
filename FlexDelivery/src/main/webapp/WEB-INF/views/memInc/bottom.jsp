@@ -24,13 +24,13 @@
                 </div>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html" class="text-dark small font-weight-bold text-decoration-none">
+                <a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
                     	찜한가게
                 </a>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/profile.html" class="text-dark small font-weight-bold text-decoration-none">
+                <a href="${pageContext.request.contextPath}/member/mypage/main.do" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-user"></i></p>
                     MyFlex
                 </a>
@@ -105,15 +105,15 @@
     </footer>
     <nav id="main-nav">
         <ul class="second-nav">
-            <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홍</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홈</a></li>
             <li><a href="${pageContext.request.contextPath}/member/mypage/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
             <li>
                 <c:if test="${empty sessionScope.memberId}">
-                	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인하세요</a>
+                	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인</a>
 	                <ul>
 	                    <li><a href="${pageContext.request.contextPath}/member/register/register.do">회원가입</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotId">아이디찾기</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotPwd">비밀번호찾기</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotId.do">아이디찾기</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotPwd.do">비밀번호찾기</a></li>
 	                </ul>
                 </c:if>
                 <c:if test="${!empty sessionScope.memberId}">
@@ -122,7 +122,6 @@
 	                    <li><a href="${pageContext.request.contextPath}/member/coupon/couponBox.do">쿠폰함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/order/orderList.do">주문내역</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myReview.do">내 리뷰관리</a></li>
 	                </ul>
                 </c:if>

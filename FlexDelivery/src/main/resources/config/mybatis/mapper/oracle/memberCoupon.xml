@@ -27,14 +27,33 @@
 		order by hy.r_coupon_min
 	</select>
 	
-	<select id="memberCouponList" parameterType="int" resultType="memberRegularCouponBoxVo">
-		select * from regularcouponbox
-		where member_No=#{memberNo}
+	<select id="memberCouponList" parameterType="map" resultType="memberRegularCouponBoxVo">
+		select hy.*,r.MEMBER_NO,r.R_C_BOX_END,r.R_C_BOX_USE from 
+		hyStoreCouponBoxView hy,regularCouponbox r
+		where hy.S_C_BOX_NO = r.S_C_BOX_NO
+		and member_No=#{memberNo}
+		and hy.STORE_NO=#{storeNo}
 		and r_c_box_end>sysdate
+		and r_c_box_use='N'
 	</select>
 	
 	<insert id="addCoupon" parameterType="memberRegularCouponBoxVo">
 		insert into regularCouponBox(member_no,s_c_box_no)
 		values(#{memberNo},#{sCBoxNo})
 	</insert>
+	
+	<select id="storeCouponCount" parameterType="int" resultType="int">
+		select count(*) from storeCouponBox
+		where store_No=#{storeNo}
+		and s_c_end_date>sysdate
+		and sysdate>s_c_start_date
+		and s_c_service='Y'
+	</select>
+	
+	<update id="useCoupon" parameterType="map">
+		update regularCouponBox
+		set r_c_box_use='Y'
+		where member_no=#{memberNo}
+		and s_C_Box_No=#{sCBoxNo}
+	</update>
 </mapper>

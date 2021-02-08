@@ -5,6 +5,8 @@ import java.util.Map;
 
 public interface MemberCouponDAO {
 	List<MemberStoresCouponVO> storeCouponList(Map<String, Object> map);
-	List<MemberRegularCouponBoxVO> memberCouponList(int memberNo);
+	List<MemberRegularCouponBoxVO> memberCouponList(Map<String, Object> map);
 	int addCoupon(MemberRegularCouponBoxVO vo);
+	int storeCouponCount(int storeNo);
+	int useCoupon(Map<String, Object> map);
 }

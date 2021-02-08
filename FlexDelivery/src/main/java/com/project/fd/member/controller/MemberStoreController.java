@@ -39,7 +39,6 @@ public class MemberStoreController {
 	@Autowired private MemberCartService cartServ;
 	@Autowired private MemberCouponService coupServ;
 	
-	
 	@RequestMapping("/storeList.do")
 	public void storeList(@RequestParam int lCategoryNo) {
 		logger.info("점포 리스트 보여주기, 대분류카테고리번호={}",lCategoryNo);
@@ -160,15 +159,13 @@ public class MemberStoreController {
 		logger.info("cartChk={}",cartChk);
 		likeVo.setMemberNo(memberNo);
 		boolean likeChk=memStoresServ.chkLike(likeVo); //관심등록 체크, true면 관심등록한 점포임
-		List<MemberStoresCouponVO> coupList=coupServ.storeCouponList(map); //점포 쿠폰함 리스트
-		logger.info("coupList.size={}",coupList.size());
-		
+		boolean couponChk=coupServ.chkCoupon(storeNo); //쿠폰함 체크, true면 쿠폰발급가능 점포
 		model.addAttribute("vo",vo);
 		model.addAttribute("cartChk",cartChk); 
 		model.addAttribute("likeChk",likeChk);
+		model.addAttribute("couponChk",couponChk);
 		model.addAttribute("storeNo",storeNo);
 		model.addAttribute("menuAllvo",menuAllvo);
-		model.addAttribute("coupList",coupList);
 		return "member/store/storeDetail";
 	}
 	

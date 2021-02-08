@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.memberGift">
+	<select id="selectTakeGiftList" parameterType="int" resultType="memberGiftVo">
+		select g.*,gp.g_p_type_Price from
+		gift g, giftpricetype gp
+		where g.G_P_TYPE_NO = gp.G_P_TYPE_NO
+		and gift_take_member_no=#{memberNo}
+		and gift_use='N'
+	</select>
+	
+	<update id="useGift" parameterType="int">
+		update gift
+		set gift_use='Y'
+		where gift_no=#{giftNo}
+	</update>
+</mapper>
