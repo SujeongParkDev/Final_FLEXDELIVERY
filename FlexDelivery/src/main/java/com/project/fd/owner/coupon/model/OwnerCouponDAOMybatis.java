@@ -36,9 +36,17 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 	}
 
 	@Override
-	public int deleteCoupon(OwnerCouponVO vo) {
-		return sqlSession.delete(namespace+"deleteCoupon",vo);
+	public int deleteCoupon(int scBoxNo) {
+		return sqlSession.delete(namespace+"deleteCoupon",scBoxNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> useCoupons(int storeNo) {
+		return sqlSession.selectList(namespace+"YesCoupon",storeNo);
 	}
 	
+	public OwnerCouponVO dupCouponNo(int storeNo) {
+		return sqlSession.selectOne(namespace+"dupCouponNo",storeNo);
+	}
 	
 }

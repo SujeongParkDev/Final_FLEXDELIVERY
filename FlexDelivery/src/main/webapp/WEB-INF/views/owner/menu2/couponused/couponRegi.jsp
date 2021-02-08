@@ -56,9 +56,17 @@
 											<td>${vo.rCouponNo}</td>
 											<td>${vo.rCouponMin }</td>
 											<td>${vo.rCouponDc}</td>
-											<td><button type="button"
+											<td>
+											<c:if test="${!empty useList}">
+											<c:forEach var="useVo" items="${useList}">
+											<c:if test="${empty useVo.rCouponNo}">
+											<button type="button"
 													class="btn btn-primary round  mr-1 mb-1 register" data-toggle="modal" id="modalregister"
-													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button></td><!-- 왜 넘버가 모달로 안 넘어갈까...  -->
+													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button>
+											</c:if>
+											</c:forEach>
+											</c:if>
+											</td>
 										</tr>
 									</c:forEach>
 								</c:if>

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.fd.admin.coupons.model.AdminRegularCouponDAO;
 import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
+import com.project.fd.owner.coupon.model.OwnerCouponListVO;
 import com.project.fd.owner.coupon.model.OwnerCouponSearchVO;
 import com.project.fd.owner.coupon.model.OwnerCouponService;
 import com.project.fd.owner.coupon.model.OwnerCouponVO;
@@ -31,19 +32,34 @@ import com.project.fd.owner.request.model.OwnerRequestService;
 public class OwnerCouponController {
 	@Autowired
 	private static final Logger logger = LoggerFactory.getLogger(OwnerCouponController.class);
+
+	private static final AdminRegularCouponVO AdminRegularCouponVO = null;
 	
 	@Autowired OwnerCouponService couponService;
 	@Autowired OwnerRequestService requestService;
 	
 	@RequestMapping("/couponUsed.do")
+	public String ownercouponused(HttpSession session,Model model) {
+		int storeNo= (Integer)session.getAttribute("storeNo");
+		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
+		
+		List<Map<String, Object>> list = couponService.useCoupons(storeNo);
+		logger.info("list={}, list.size={}",list,list.size());
+		
+		model.addAttribute("list", list);
+		
+		return "owner/menu2/couponused/couponUsed";
+	}
+	
+	@RequestMapping("/couponExpire.do")
 	public String ownercouponused(@ModelAttribute OwnerCouponSearchVO searchVo ,
 			HttpSession session,Model model) {
-		int storeNo=5;
-		//int storeNo= (Integer)session.getAttribute("storeNo");
+		
+		int storeNo= (Integer)session.getAttribute("storeNo");
 		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
 		
 		searchVo.setStoreNo(storeNo);
-		logger.info("coupon 전체 보여주기 , 파라미터 searchVo={}", searchVo);
+		logger.info("coupon 만료되거나 사용정지 쿠폰 조회 , 파라미터 searchVo={}", searchVo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
@@ -68,20 +84,32 @@ public class OwnerCouponController {
 		pagingInfo.setTotalRecord(totalRecord);
 		
 		List<Map<String, Object>> list = couponService.Allcoupons(searchVo);
-		logger.info("list={}, list.size={}",list,list.size());
+		logger.info(" list.size={}",list.size());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("searchVo", searchVo);
 		
-		return "owner/menu2/couponused/couponUsed";
+		return "owner/menu2/couponused/couponExpire";
 	}
 	
 	@RequestMapping(value="/couponRegi.do",method=RequestMethod.GET)
-	public String couponList_get( Model model) {
+	public String couponList_get( Model model, HttpSession session) {
 		logger.info("coupon Register page !!");
 		List<AdminRegularCouponVO> list=couponService.Allselect();
+		
+		//일치 여부를 위해 
+		int storeNo= (Integer)session.getAttribute("storeNo");
+		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
+		List<Map<String, Object>> useList = couponService.useCoupons(storeNo);
+		logger.info("useList.size={}",useList.size());
+		
+		// 비밀번호 일치처럼 스토어넘버로 쿠폰번호만 찾아서 일치하는지 확인 
+		boolean bool= couponService.dupck(list,  storeNo);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("useList", useList);
+		
 		return "owner/menu2/couponused/couponRegi";
 	}
 	
@@ -90,14 +118,14 @@ public class OwnerCouponController {
 	public String couponList_post(@RequestParam(defaultValue = "0") int no, 
 			@RequestParam String pwd, HttpSession session , Model model) {
 		logger.info("coupon Register page !! parameter rCouponNo={}",no);
-		int storeNo=5;
-		//int storeNo=(Integer)session.getAttribute("storeNo");
+
+		int storeNo=(Integer)session.getAttribute("storeNo");
 		OwnerCouponVO vo = new OwnerCouponVO();
 		vo.setStoreNo(storeNo);
 		vo.setrCouponNo(no);
 		
 		int ownerNo=(Integer)session.getAttribute("ownerNo");
-		logger.info("pwdCK  처리  파라미터 ownerNo={}",ownerNo);
+		logger.info("pwdCK  처리  파라미터 ownerNo={},storeNo={}",ownerNo,storeNo);
 		
 		String msg="쿠폰 등록에 실패하였습다. ", url="/owner/menu2/couponused/couponRegi.do";
 		if(requestService.pwdCk(pwd,ownerNo)) {
@@ -110,12 +138,41 @@ public class OwnerCouponController {
 		}else {
 			msg="비밀번호가 일치하지 않습니다.";
 		}
-	
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
-		return "owner/menu2/couponused/couponRegi";
+		return "common/message";
 	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String delMulti(@ModelAttribute OwnerCouponListVO Listvo,
+			HttpServletRequest request, Model model) {
+		logger.info("mutidelete page !! Listvo={}",Listvo);
+		
+		List<OwnerCouponVO> cpList=Listvo.getCouponItems();
+		logger.info("선택한 쿠폰  삭제cpList, cpList={}",cpList);
+		
+		int cnt=couponService.deleteCoupon(cpList);
+		logger.info("선택한 쿠폰  삭제 결과, cnt={}", cnt);
+		
+		String msg="선택한 쿠폰  삭제 실패!", url="/owner/menu2/couponused/couponUsed.do";
+		if(cnt>0) {
+			msg="선택한 쿠폰들을 삭제하였습니다.";
+			
+			for(int i=0;i<cpList.size();i++) {
+				OwnerCouponVO cVo=cpList.get(i);
+				
+				logger.info("[{}] : scBoxNo={}", i, cVo.getScBoxNo());
+				
+				}
+			}//for
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	/*
 	 * 
 	@RequestMapping(value="/couponRegi.do",method = RequestMethod.POST)

@@ -18,7 +18,7 @@
                     from REGULARCOUPON r full outer join STORECOUPONBOX c
                     on r.R_COUPON_NO=c.R_COUPON_NO
                 )B
-				 where STORE_NO=#{storeNo}
+				 where STORE_NO=#{storeNo} and s_c_service='N'
 				 <![CDATA[
 				and S_C_START_DATE >= #{startDay} and
 				S_C_START_DATE < to_date(#{endDay})+1
@@ -42,6 +42,14 @@
 		and store_no=#{storeNo}
 	</select>
 	
+	<select id="YesCoupon" parameterType="int" resultType="map">
+		select r.R_COUPON_DC,r.R_COUPON_MIN, c.*
+        from REGULARCOUPON r  join STORECOUPONBOX c
+         on r.R_COUPON_NO=c.R_COUPON_NO
+         where s_c_service='Y' and store_no=#{storeNo}
+         order by S_C_BOX_NO desc
+	</select>
+	
 	<select id="Allselect" resultType="adminRegularCouponVo">
 		select * from REGULARCOUPON  
 	</select>
@@ -56,10 +64,15 @@
 			]]>
 	</insert>
 	
-	<update id="deleteCoupon" parameterType="ownerCouponVo">
+	<update id="deleteCoupon" parameterType="int">
 		update storeCouponBox
 		 set s_c_service='Y'
-		where  s_c_box_no=#{storeNo} and store_no=#{scBoxNo} or S_C_END_DATE != sysdate
+		where  s_c_box_no=#{scBoxNo} or S_C_END_DATE != sysdate
 	</update>
+	
+	<select id="dupCouponNo" parameterType="int" resultType="ownerCouponVo">
+		select R_COUPON_NO from STORECOUPONBOX
+          where store_no=#{storeNo}
+	</select>
 	
 </mapper>
