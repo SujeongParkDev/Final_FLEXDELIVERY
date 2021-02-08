@@ -29,7 +29,8 @@ public interface OwnerService {
 	public int checkDup(String ownerId);
 	public int checkAuthority(String userid);
 	public OwnerAuthorityVO selectOwnerAuthorityAll(String userid);
-	public int withdrawOwner(String ownerId);
+	public int withdrawOwner(int ownerNo);
+	public int withdrawStore(int storeNo) ;
 	public int updateOwner(OwnerVO vo);
 	
 	

@@ -88,8 +88,13 @@ public class OwnerServiceImpl implements OwnerService {
 		return ownerDao.selectOwnerAuthorityAll(userid);
 	}
 	
-	public int withdrawOwner(String ownerId) {
-		return ownerDao.withdrawOwner(ownerId);
+	public int withdrawOwner(int ownerNo) {
+		return ownerDao.withdrawOwner(ownerNo);
+	}
+
+	
+	public int withdrawStore(int storeNo) {
+		return ownerDao.withdrawStore(storeNo);
 	}
 	
 	public int updateOwner(OwnerVO vo) {

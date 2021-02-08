@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.menu.model.OwnerMenuService;
+import com.project.fd.owner.model.OwnerService;
+import com.project.fd.owner.model.OwnerVO;
 import com.project.fd.owner.store.model.OwnerTemporaryVO;
 import com.project.fd.owner.temporary.model.OwnerTemporaryService;
 
@@ -41,15 +44,31 @@ public class OwnerMyPageController {
 	private OwnerTemporaryService ownerTemporaryService;
 	
 	@Autowired
+	private OwnerService ownerService;
+	
+	@Autowired
 	private FileUploadUtil fileUtil;
 	
 	@RequestMapping("/mypageMain.do")
 	public String mypageMain(HttpSession session, Model model) {
 		String ownerName=(String) session.getAttribute("ownerName");
+		String ownerId=(String) session.getAttribute("ownerId");
+		logger.info("mypage 보여주기 , ownerName ={} , ownerId={}",ownerName, ownerId);
 		
-		logger.info("mypage 보여주기 , ownerName ={}",ownerName);
+		int result = ownerService.checkAuthority(ownerId);
+		logger.info("아이디에 따른 권한 결과 result={}", result);
+		
+		int WITHDRAW_STAY = OwnerService.WITHDRAW_STAY;
+		int NO_LICENSE = OwnerService.NO_LICENSE;
+		int HAVE_ALL = OwnerService.HAVE_ALL;
 		
 		model.addAttribute("ownerName", ownerName);
+		model.addAttribute("result",result);
+		model.addAttribute("wStay", WITHDRAW_STAY);
+		model.addAttribute("noLi",NO_LICENSE);
+		model.addAttribute("haveAll", HAVE_ALL);
+		
+		
 		return "owner/mypage/mypageMain";
 	}
 	
@@ -167,6 +186,44 @@ public class OwnerMyPageController {
 		logger.info("지역명에 따른 지역번호 결과 res={}",res);
 		
 		return res;
+	}
+	
+	
+	
+	@RequestMapping("/mypageDelete.do")
+	public String mypageDelete(HttpSession session, Model model) {
+		String ownerId=(String) session.getAttribute("ownerId");
+		logger.info("mypageDelete 삭제하기 점포 , ownerId ={}",ownerId);
+		//1
+		Map<String,Object> map = ownerTemporaryService.selectOwnerInfoAll(ownerId);
+		
+		
+		model.addAttribute("map", map);
+		
+	
+		
+		logger.info("map = {}",map);
+	
+		//4
+		return "owner/mypage/mypageDelete";
+	}
+	
+	
+	
+	@RequestMapping("/mypageDeleteOwner.do")
+	public String mypageDeleteOwner(HttpSession session, Model model) {
+		String ownerId=(String) session.getAttribute("ownerId");
+		logger.info("mypageDelete 삭제하기 점포 , ownerId ={}",ownerId);
+		//1
+
+		OwnerVO vo = ownerService.selectOwner(ownerId);
+		
+	
+		model.addAttribute("vo",vo);
+		
+	
+		//4
+		return "owner/mypage/mypageDeleteOwner";
 	}
 	
 }

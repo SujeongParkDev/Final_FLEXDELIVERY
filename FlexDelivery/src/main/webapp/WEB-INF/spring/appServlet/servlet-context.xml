@@ -70,11 +70,11 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/owner/withdraw.do"/>
+			<mapping path="/owner/mypage/mypageDelete.do"/>
 			<beans:ref bean="ownerWidthrowInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
+	 
 	
 	<interceptors>
 		<interceptor>

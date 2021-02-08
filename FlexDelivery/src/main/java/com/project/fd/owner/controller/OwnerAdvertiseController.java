@@ -1,5 +1,9 @@
 package com.project.fd.owner.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 
 
@@ -16,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,22 +47,47 @@ public class OwnerAdvertiseController {
 	@Autowired
 	private OwnerAdvertiseService ownerAdvertiseService;
 	
-	@Autowired
-	private OwnerStoresService ownerStoresService;
 
 	@Autowired
 	private OwnerService ownerService;
 
 	
 	
-	
+	/*
 	// 테스트용
-	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
-	public String test_get() {
-		logger.info("test 창 보여주기");
+	@RequestMapping("/test.do")
+	public String test_get( HttpServletRequest req, ModelMap model, 
+		HttpServletResponse response) throws Exception {
+		
+		
 
+		logger.info("test 창 보여주기");
+	// 요청변수 설정
+		     //요청 변수 설정 (검색결과형식 설정, json)
+		String confmKey = "3V2B0s92MTpkysa%2BrH5vzQCKxJbU3OoMByuOtKAm%2BU3XqhC3%2B7nLRpgsPCDgubj2ju1CAiBa5cIdtBa4H2EqBA%3D%3D";         //요청 변수 설정 (승인키)
+		//요청 변수 설정 (키워드)
+		// OPEN API 호출 URL 정보 설정
+		
+		String apiUrl = "http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey="+confmKey+"&numOfRows=10&pageNo=2";
+		URL url = new URL(apiUrl);
+		BufferedReader br 
+		= new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
+		StringBuffer sb = new StringBuffer();
+		String tempStr = null;
+
+		while(true){
+			tempStr = br.readLine();
+			if(tempStr == null) break;
+			sb.append(tempStr);								// 응답결과 JSON 저장
+		}
+		br.close();
+		logger.info("result={}",sb.toString());
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/json");
+		response.getWriter().write(sb.toString());			// 응답결과 반환
 		return "owner/menu2/advertise/test";
 	}
+	*/
 
 	// advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET)

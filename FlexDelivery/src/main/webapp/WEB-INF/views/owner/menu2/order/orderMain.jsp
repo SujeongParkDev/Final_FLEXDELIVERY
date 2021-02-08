@@ -168,10 +168,10 @@
   		<div class="col-md-1 col-sm-12"></div>
   		<div class="col-md-10 col-sm-12">
 	  		 <div class="text-right">
-               	 <button id="btRequestTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >주문신청</button>
-               	 <button id="btOrderTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">조리중</button>
-               	 <button id="btOrderIngTop" class="btn btn-primary btOrderChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">배달중</button>
-               	 <button id="btOrderSuccessTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >배달완료</button>
+               	 <button id="btRequestTop" class="btn btn-primary btOrderChange" style="background-color:#1a7cff; border-color: #1a7cff; " >주문신청</button>
+               	 <button id="btOrderTop" class="btn btn-primary btOrderChange" style="background-color:#1a7cff; border-color: #1a7cff; ">조리중</button>
+               	 <button id="btOrderIngTop" class="btn btn-primary btOrderChange " style="background-color: #1a7cff; border-color: #1a7cff; ">배달중</button>
+               	 <button id="btOrderSuccessTop" class="btn btn-primary btOrderChange" style="background-color: #1a7cff; border-color: #1a7cff; " >배달완료</button>
               	 </div>
            </div>
            <div class="col-md-1 col-sm-12"></div>
@@ -186,7 +186,7 @@
 	            	<br>
 	            	<br>
 	            	<br>
-	                <p class="card-title mb-5 mt-3" style="font-size:30px; color:#ffb703;"><b>📜주문 신청📜</b></p>
+	                <p class="card-title mb-5 mt-3" style="font-size:30px; color:#333;"><b>📜주문 신청📜</b></p>
 	            </div>
 	            <div class="card-body">
 	                <div class="row">
@@ -201,7 +201,7 @@
 							        <div class="table-responsive">
 							          <table class="table table mb-5">
 							            <thead>
-							              <tr class="text-center"  style="background-color:rgb(2, 48, 71); color:white;">
+							              <tr class="text-center"  style="background-color:#e7f5ff; color:#333;">
 							              	<th style="width:10%;">번호</th>
 							              	<th style="width:10%;">회원</th>
 							                <!-- 다급한거 이미지 -->
@@ -234,12 +234,12 @@
 										                <td class="text-bold-500">${map['ORDERS_PAY_END_DATE']}</td>
 										                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
 										                <td>
-										                	<button class="btn btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;"
+										                	<button class="btn btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:#1a7cff; color:white; border: none;"
 										                				data-toggle="modal" data-target="#requestOk">접수</button>
 										                </td>
 										                <td>
 										                	<button class="btn btRequestCancel" value="${map['ORDERS_NO'] }" 
-										                		style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,200); color:white; border: none;">취소</button>
+										                		style="width:40px; height:25px; font-size:3px; padding:0px; background-color:#f1f3f5; color:#333; border: none;">취소</button>
 										                </td>
 									             </tr>
 									             </c:forEach>

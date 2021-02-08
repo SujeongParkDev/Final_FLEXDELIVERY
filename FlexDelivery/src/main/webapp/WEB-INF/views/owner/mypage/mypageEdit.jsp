@@ -218,7 +218,7 @@
 	              </div>
                   <div class="col-sm-12 mt-3 d-flex justify-content-center">
                       <button type="submit" class="btn btn-primary mr-1 mb-1" style="background-color:rgb(223,108,220); border-color: rgb(223,108,220);">수정</button>
-                      <button type="reset" class="btn btn-light-secondary mr-1 mb-1">취소</button>
+                      <button type="button" class="btn btn-light-secondary mr-1 mb-1" onclick="history.back()">취소</button>
                   </div>
                </div>
           </form>
