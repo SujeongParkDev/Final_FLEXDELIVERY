@@ -71,70 +71,31 @@
 		set R_COMMENT_CONTENT=#{rCommentContent}
 		where review_no=#{reviewNo}
 	</update>
+	
 	<!-- 미답변  -->
-	<select id="Nocomment" parameterType="ownerReviewSearchVo" resultType="map">
-		select *
-		from
-		(
-		    select A.*, rownum as RNUM
-		    from
-		    (
-		        select * from LSJCommentDDetailView
-                where store_no=#{storeNo} and  R_COMMENT_CONTENT is null
-                <![CDATA[
-				and REVIEW_REGDATE >= #{startDay} and
-				REVIEW_REGDATE< to_date(#{endDay})+1
-				]]>
-                order by ORDERS_NO desc
-		    )A
-		)
-		<![CDATA[
-		where RNUM > #{firstRecordIndex} 
-		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
-		]]>
+	<select id="Nocomment" parameterType="int" resultType="map">
+		select * from LSJCommentDDetailView
+      	 where store_no=#{storeNo} and R_COMMENT_CONTENT is null
+     	 order by ORDERS_NO desc
 	</select>
 
-	<select id="NocmtTotalRecord" parameterType="ownerReviewSearchVo" resultType="int">
+	<select id="NocmtTotalRecord" parameterType="int" resultType="int">
 		select count(*) from LSJCommentDDetailView
-		where REVIEW_REGDATE >=
-		#{startDay} and
-		<![CDATA[
-		REVIEW_REGDATE< to_date(#{endDay})+1
-		]]>
-		and store_no=#{storeNo} and R_COMMENT_CONTENT is null
+         where store_no=#{storeNo} and R_COMMENT_CONTENT is null
+         order by ORDERS_NO desc
 	</select>
 	
 	<!-- 차단  -->
-	<select id="blockcmt" parameterType="ownerReviewSearchVo" resultType="map">
-
-		select *
-		from
-		(
-		    select A.*, rownum as RNUM
-		    from
-		    (
-		        select * from LSJCommentDDetailView
-                where store_no=#{storeNo} and  REVIEW_REPORT='Y'
-                <![CDATA[
-				and REVIEW_REGDATE >= #{startDay} and
-				REVIEW_REGDATE< to_date(#{endDay})+1
-				]]>
-                order by ORDERS_NO desc
-		    )A
-		)
-		<![CDATA[
-		where RNUM > #{firstRecordIndex} 
-		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
-		]]>
+	<select id="blockcmt" parameterType="int" resultType="map">
+		select * from LSJCommentDDetailView
+         where store_no=#{storeNo} and  REVIEW_REPORT='Y'
+         order by ORDERS_NO desc
 	</select>
 
-	<select id="blockTotalRecord" parameterType="ownerReviewSearchVo" resultType="int">
+	<select id="blockTotalRecord" parameterType="int" resultType="int">
 		select count(*) from LSJCommentDDetailView
-		where REVIEW_REGDATE >= #{startDay} and
-		<![CDATA[
-		REVIEW_REGDATE< to_date(#{endDay})+1
-		and store_no=#{storeNo} and REVIEW_REPORT='Y'
-		]]>
+         where store_no=#{storeNo} and  REVIEW_REPORT='Y'
+         order by ORDERS_NO desc
 	</select>
 	
 	<select id="selectAll" parameterType="int" resultType="map">

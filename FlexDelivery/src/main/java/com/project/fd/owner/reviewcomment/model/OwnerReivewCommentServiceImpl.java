@@ -43,23 +43,23 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectNocomment(OwnerReviewSearchVO searchVo) {
-		return ownerReviewCommentDao.selectNocomment(searchVo);
+	public List<Map<String, Object>> selectNocomment(int storeNo) {
+		return ownerReviewCommentDao.selectNocomment(storeNo);
 	}
 
 	@Override
-	public int NocmtTotalRecord(OwnerReviewSearchVO searchVo) {
-		return ownerReviewCommentDao.NocmtTotalRecord(searchVo);
+	public int NocmtTotalRecord(int storeNo) {
+		return ownerReviewCommentDao.NocmtTotalRecord(storeNo);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectblockcmt(OwnerReviewSearchVO searchVo) {
-		return ownerReviewCommentDao.selectblockcmt(searchVo);
+	public List<Map<String, Object>> selectblockcmt(int storeNo) {
+		return ownerReviewCommentDao.selectblockcmt(storeNo);
 	}
 
 	@Override
-	public int blockTotalRecord(OwnerReviewSearchVO searchVo) {
-		return ownerReviewCommentDao.blockTotalRecord(searchVo);
+	public int blockTotalRecord(int storeNo) {
+		return ownerReviewCommentDao.blockTotalRecord(storeNo);
 	}
 
 	@Override

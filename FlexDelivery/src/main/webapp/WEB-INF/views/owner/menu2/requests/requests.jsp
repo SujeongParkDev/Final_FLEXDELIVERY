@@ -88,7 +88,7 @@ input {
 								</c:if>
 								</div>
 								<!--  -->
-							<div class="advertise">
+							<div class="advertise" id="advertise">
 								<c:if test="${!empty selectAd }">
 									<c:forEach var="adVo" items="${selectAd }">
 										<tr class="text-center">
@@ -236,14 +236,17 @@ $(function(){
 	
 });
 }//detail
+//result 에 따라서 hide show하고 싶은데 안돼여 ㅡㅡ help ! 
 	$(function(){
 		$('#choice').on('change',function(){
 			var result=$('select[name=choice]').val();
 			alert(result);
-			if(result = 1){
-				$('.store').hide();
-				$('.advertise').hide();
-				$('.tempDiv').hide();
+			if(result == 1){
+				$('.store').attr("style","display:none;");
+				$('.tempDiv').attr('style',"display:none;");
+				$('#advertise').attr('style',"display:none;");
+				$('#advertise').prev().css("display", "none");
+		     	console.log(this);
 			}
 		});
 	});

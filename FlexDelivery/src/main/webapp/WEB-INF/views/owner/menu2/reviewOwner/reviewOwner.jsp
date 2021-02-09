@@ -40,7 +40,7 @@
 					<div class="row">
 						<div class="col-md-4 col-12"></div>
 						<div class="col-md-6 col-12 ">
-							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 								<input type="hidden" name="currentPage" value="1">
 						</div>
@@ -139,7 +139,7 @@
 								<c:if test="${empty map['R_COMMENT_CONTENT']}">
 									<div class="card-body">
 										<form id="frm1" method="post"
-											action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>">
+											action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
 											<!-- hidden  -->
 											<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }">
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
@@ -250,7 +250,7 @@
 												 <label for="content"></label>
 												 <div style="border: radius 2px solid lightgray;" class="text-left">
 											<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
-												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
+												<input class="button medium write" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
 									</div>
@@ -350,33 +350,7 @@ $(function(){
 event.preventDefault();
 }
 	
-	
-/*
-	function Edit_do($num){
-		var num1 = $num;
-    	var co = $('input[id="' + num1 + '"]').val();
-    	
-    	
-       $.ajax({
-          url : '/owner/menu2/reviewOwner/reviewOwner/edit.do',
-          type : 'POST',
-          data:$(this).serializeArray(),
-          contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-          dataType : "json",
-          success : function(retVal) {
-            	 alert("댓글이 수정되었습니다.");
-    
-          },
-          error:function() {
-             alert("ajax 통신 실패!(update)");
-          }
-       });
-    }
-	}
 
-
-	
-*/
 $(function(){
 	//$('.DateDiv').hide();
 	//$('.DateDiv').parent().prev().css("display", "none");
@@ -392,8 +366,16 @@ $(function(){
 			$('#endDay').focus();
 			event.preventDefault();
 		}
-	});
+	});//frmDate
 $('.DateDiv').show();
+
+$('form[name=frm1]').submit(function(){
+	if($('.comment').val().length<1){
+		alert('내용을 입력하세요');
+		$('.comment').focus();
+		event.preventDefault();
+	}
+});//frm1
 
 });//
 
