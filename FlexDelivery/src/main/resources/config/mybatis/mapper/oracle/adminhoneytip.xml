@@ -44,11 +44,20 @@
 	
 	<!-- 점포에서 메인에 4개만 노출 가능하게 추가하였습니다 ! -->
 	<select id="ownerHoneyTip" resultType="adminHoneytipVo">
-	select * from honeytip 
+	select *
+		from
+		(
+		    select A.*, rownum as RNUM
+		    from
+		    (
+		        select * from honeytip
+                order by honeytip_no desc
+		    )A
+		)
+	
 	<![CDATA[
-	 where honeytip_no <4
+		where RNUM <= 4
 	 ]]>
-     order by honeytip_no
 	</select>
 	
 </mapper>

@@ -57,8 +57,16 @@ public class OwnerReviewController {
 	@RequestMapping(value="/reviewOwner.do", method=RequestMethod.POST)
 	public String orderList_post(@ModelAttribute OwnerReviewSearchVO searchVo,
 			HttpSession session, Model model) {
-		//int storeNo=(Integer)session.getAttribute("storeNo");
-		int storeNo=1;
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo=(Integer)session.getAttribute("storeNo");
+		}
 		searchVo.setStoreNo(storeNo);
 		logger.info("점포 - 리뷰관리 보여주기 storeNo={},searchVo.getStoreNo()={}",storeNo,searchVo.getStoreNo());
 		

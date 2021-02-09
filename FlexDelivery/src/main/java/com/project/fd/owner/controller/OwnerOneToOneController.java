@@ -59,18 +59,16 @@ public class OwnerOneToOneController {
 		int authorityNo=(Integer)session.getAttribute("authorityNo");
 		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
 		searchVo.setAskId(askId);
+		
 		//String askId=(String)session.getAttribute("ownerId");
 		logger.info("점포 - 일대일 문의 보여주기");
 		logger.info("글 목록 페이지, 파라미터 searchVo={},askId={}", searchVo,askId);
-		//2
-		//페이징 처리 관련 셋팅
-		//[1] PaginationInfo 생성
+
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
 		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		//[2] SearchVo 셋팅
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
@@ -81,11 +79,9 @@ public class OwnerOneToOneController {
 		logger.info("글 개수, totalRecord={}", totalRecord);		
 		pagingInfo.setTotalRecord(totalRecord);
 
-		//3. 모델에 결과 저장
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		//4. 뷰페이지 리턴
 		return "owner/menu5/oneToOne";
 	}
 	
@@ -157,7 +153,6 @@ public class OwnerOneToOneController {
 
 	@RequestMapping(value="/menu5/OneToOneEdit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute OwnerAskVO ownerAskVo,
-			//@RequestParam(defaultValue = "0")int authorityNo,
 			Model model) {
 		String askId=(String)session.getAttribute("ownerId");
 		logger.info("글수정 처리, 파라미터 ownerAskVo={}", ownerAskVo);

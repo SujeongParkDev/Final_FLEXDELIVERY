@@ -7,25 +7,7 @@ input {
 	border-radius: 5px;
 	height: 35px;
 }
-select{
-display: block;
-    width: 100%;
-    height: calc(1.5em + 0.934rem + 2px);
-    padding: 0.467rem 1.6rem 0.467rem 0.6rem;
-    font-size: 0.855rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #555252;
-    vertical-align: middle;
-    background-color: white;
-    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1…d' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e);
-    background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 16px 12px;
-    border: 1px solid #DFE3E7;
-    border-radius: 0.25rem;
-    -webkit-appearance: none;
-}
+
 </style>
 <br>
 <!-- 셀렉 옵션 선택 내용 -->
@@ -258,9 +240,13 @@ $(function(){
 		$('#choice').on('change',function(){
 			var result=$('select[name=choice]').val();
 			alert(result);
+			if(result == 1){
+				$('.store').hide();
+				$('.advertise').hide();
+				$('.tempDiv').hide();
+			}
 		});
 	});
-
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 
