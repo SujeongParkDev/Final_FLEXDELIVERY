@@ -51,9 +51,12 @@ public class OwnerMyPageController {
 	
 	@RequestMapping("/mypageMain.do")
 	public String mypageMain(HttpSession session, Model model) {
-		String ownerName=(String) session.getAttribute("ownerName");
 		String ownerId=(String) session.getAttribute("ownerId");
-		logger.info("mypage 보여주기 , ownerName ={} , ownerId={}",ownerName, ownerId);
+		logger.info("mypage 보여주기 , ownerId={}", ownerId);
+		
+		OwnerVO vo = ownerService.selectOwner(ownerId);
+		String ownerName=vo.getOwnerName();
+		logger.info("ownerName = {}", ownerName);
 		
 		int result = ownerService.checkAuthority(ownerId);
 		logger.info("아이디에 따른 권한 결과 result={}", result);

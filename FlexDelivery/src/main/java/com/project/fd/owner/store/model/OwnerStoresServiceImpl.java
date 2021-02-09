@@ -62,4 +62,23 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 		return ownerStoresDao.selectOwnerAuthorityAll(userid);
 	}
 	
+	public OwnerStoresVO selectStoreByOwnerNo(int ownerNo) {
+		return ownerStoresDao.selectStoreByOwnerNo(ownerNo);
+	}
+	
+	public Map<String, Object> selectOperationViewAll(int ownerNo){
+		return ownerStoresDao.selectOperationViewAll(ownerNo);
+	}
+	
+	public int holidayUpdate(Map<String, Object> map) {
+		return ownerStoresDao.holidayUpdate(map);
+	}
+	
+	public int updateStatusStop(int storeNo) {
+		return ownerStoresDao.updateStatusStop(storeNo);
+	}
+	
+	public int updateTime(Map<String,Object> map) {
+		return ownerStoresDao.updateTime(map);
+	}
 }

@@ -36,6 +36,7 @@ import com.project.fd.owner.advertise.model.OwnerAdvertiseVO;
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.model.OwnerService;
+import com.project.fd.owner.model.OwnerVO;
 import com.project.fd.owner.store.model.OwnerStoresService;
 
 @Controller
@@ -53,7 +54,7 @@ public class OwnerAdvertiseController {
 
 	
 	
-	/*
+	
 	// 테스트용
 	@RequestMapping("/test.do")
 	public String test_get( HttpServletRequest req, ModelMap model, 
@@ -62,32 +63,11 @@ public class OwnerAdvertiseController {
 		
 
 		logger.info("test 창 보여주기");
-	// 요청변수 설정
-		     //요청 변수 설정 (검색결과형식 설정, json)
-		String confmKey = "3V2B0s92MTpkysa%2BrH5vzQCKxJbU3OoMByuOtKAm%2BU3XqhC3%2B7nLRpgsPCDgubj2ju1CAiBa5cIdtBa4H2EqBA%3D%3D";         //요청 변수 설정 (승인키)
-		//요청 변수 설정 (키워드)
-		// OPEN API 호출 URL 정보 설정
-		
-		String apiUrl = "http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey="+confmKey+"&numOfRows=10&pageNo=2";
-		URL url = new URL(apiUrl);
-		BufferedReader br 
-		= new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-		StringBuffer sb = new StringBuffer();
-		String tempStr = null;
-
-		while(true){
-			tempStr = br.readLine();
-			if(tempStr == null) break;
-			sb.append(tempStr);								// 응답결과 JSON 저장
-		}
-		br.close();
-		logger.info("result={}",sb.toString());
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/json");
-		response.getWriter().write(sb.toString());			// 응답결과 반환
+	
+	
 		return "owner/menu2/advertise/test";
 	}
-	*/
+	
 
 	// advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET)
@@ -194,7 +174,16 @@ public class OwnerAdvertiseController {
 		}
 		logger.info("advertiseWrite 창 보여주기, 파라미터 advertiseNo={} , storeNo={}", advertiseNo,storeNo);
 		
+		String ownerId = (String) session.getAttribute("ownerId");
+		OwnerVO oVo = ownerService.selectOwner(ownerId);
+		logger.info("오너 조회 결과 oVo={}", oVo);
 		
+		String hp="";
+		if(oVo.getOwnerHp2()!=null && oVo.getOwnerHp3()!=null ) {
+			hp+=oVo.getOwnerHp1()+"-";
+			hp+=oVo.getOwnerHp2()+"-";
+			hp+=oVo.getOwnerHp3();
+		}
 		
 		
 		// 오늘날짜
@@ -208,8 +197,10 @@ public class OwnerAdvertiseController {
 		
 		//번호로 광고 가져오기
 		OwnerAdvertiseVO vo = ownerAdvertiseService.selectAdvertiseByNo(advertiseNo);
-
+		
+		model.addAttribute("hp", hp);
 		model.addAttribute("today", today);
+		model.addAttribute("oVo", oVo);
 		model.addAttribute("vo", vo );
 		model.addAttribute("storeNo", storeNo);
 		return "owner/menu2/advertise/advertiseWrite";

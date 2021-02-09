@@ -116,43 +116,59 @@ function goDetail(ordersNo,ordersDiscount){
 		success:function(map){
 			var str="";
 			console.log(map);
-			
-   				str+="<div class='text-center' style='height:15px;'><bR><h6>회원 정보</h6><br></div>";
-   				str+="<table><thead><tr><td style='width:40%;'></td><br><td style='width:60%;'></td></tr></thead>";
-   				str+="<tbody><tr class='text-center'><br><th>회원 아이디</th><td>"+map.oMap['MEMBER_ID']+"</td></tr>";
-   				str+="<tbody><tr class='text-center'><th>회원 이름</th><br><td>"+map.oMap['MEMBER_NAME']+"</td></tr>";
-   				str+="<tbody><tr class='text-center'><th>회원 주소</th><td>"+map.oMap['ORDERS_ADDRESS']+"</td></tr>";
-   				str+="<tbody><tr class='text-center'><br><th>회원 요청사항</th><td>"+map.oMap['ORDERS_MESSAGE']+"</td></tr></tbody></table><div class='mt-3 mb-2'><hr></div>";
-   				str+="<br><div class='text-center' style='height:15px;'><h6>메뉴 / 옵션</h6></div><br>";
-   				str+="<table><thead><tr><td style='width:40%;'></td><td style='width:60%;'></td></tr></thead>";
+			str+="<div class='text-center' style='height:15px;'><bR><h6>회원 정보</h6></div><br>";
+				str+="<table class='mt-5'>";
 				str+="<tbody>";
-   				if(map.dList.length==0){
-				   str+="<tr class='text-center'><td colspan='2'>주문 데이터가 존재하지 않습니다.</td></tr>";         		
-        		}else{
-        			 var price = 0;
-            		$.each(map.dList, function(idx, item){
-            			if(item['M_OPTION_NO']==0){
-            				str+="<tr class='text-center'><th><b>"+item['MENU_NAME']+"</b></th>";
-            				str+="<td>"+item['O_DETAIL_QTY']+"개 / "+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+"원</td></tr>";
-            				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
-            			}else{
-            				str+="<tr class='text-center' style='font-size:10px;'><td class='pl-4'>ㄴ["+item['M_OPTION_NAME']+"]</td><td>"+item['O_DETAIL_QTY']+"개 / "+(item['O_DETAIL_QTY']*item['M_OPTION_PRICE'])+"원</td></tr>";
-            				price+=(item['O_DETAIL_QTY']*item['M_OPTION_PRICE']);
-            			}
-        		});
-        		str+="</tbody><br></table><br><div class='mt-3'><hr></div>";
-        		
-        		str+="<div class='text-center' style='height:15px;'><h6>가격</h6></div><table><br><tbody>";
-        		str+="<tr class='text-center'><td>가격 : "+price+"원</td></tr>";
-        		if(ordersDiscount>0){
-        			str+="<tr class='text-center'><td> - 할인 : "+ordersDiscount+"원</td></tr>";
-        			price-=ordersDiscount;
-        		}
-        		str+="<tr class='text-center'><td> + 배달팁 : 3000원<br></tr>";
-        		price+=3000;
-        		str+="<tr class='text-center'><td> 총 : "+price+"</td></tr></tbody></table>";
-        		
-        	}
+				str+="<tr><td class='ml-3'><b>회원 아이디</b></td><tr><tr><td class='ml-3'>"+map.oMap['MEMBER_ID']+"<br><hr></td></tr>";
+				str+="<tr><td class='ml-3'><b>회원 이름</b></td><tr><tr><td class='ml-3'>"+map.oMap['MEMBER_NAME']+"<br><hr></td></tr>";
+				str+="<tr><td class='ml-3'><b>회원 주소</b></td><tr><tr><td class='ml-3'>"+map.oMap['ORDERS_ADDRESS']+"<br><hr></td></tr>";
+				str+="<tr><td class='ml-3'><b>회원 요청사항</b></td><tr><tr><td class='ml-3'>"+map.oMap['ORDERS_MESSAGE']+"<br><hr></td></tr>";
+				str+="</tbody>";
+				str+="</table>";
+				
+				str+="<br><div class='text-center' style='height:15px;'><h6>메뉴 / 옵션</h6></div><br>";
+				
+				str+="<table>";
+			str+="<tbody>";
+				if(map.dList.length==0){
+			   str+="<tr class='text-center'><td colspan='1'>주문 데이터가 존재하지 않습니다.</td></tr>";         		
+    		}else{
+    			 var price = 0;
+        		$.each(map.dList, function(idx, item){
+        			if(item['M_OPTION_NO']==0){
+        				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
+        				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+" 원</b></span></td>"
+        				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br><hr></td>";
+        				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
+        			}else{
+        				
+        				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
+        				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+((item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'])+" 원</b></span></td>"
+        				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br>";
+        				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" "+item['M_OPTION_PRICE']+"원</span><br><hr></td></tr>";
+        				
+        				price+=(item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'];
+        			}
+    			});
+    		str+="</tbody><br></table><br>";
+    		
+    		str+="<div class='text-center' style='height:15px;'><h6>가격</h6></div>";
+    		str+="<table><br><tbody>";
+    		
+    		str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>총 주문 금액</b></span>";
+			str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>"
+    		if(ordersDiscount>0){
+    			str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>할인 금액</b></span>"
+    			str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+ordersDiscount+" 원</b></span></td></tr>";
+    		
+    			price-=ordersDiscount;
+    		}
+			str+="<tr><td><hr><br></td></tr>";
+    		str+="<tr><td><span style='float:left; font-size:20px;' class='ml-3'><b> 총 결제금액</b></span>";
+    		str+="<span style='float:right; font-size:20px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>";
+    		str+="</tbody></table><br><br><br>";
+    		
+    	}
         	$('#detailStart').html(str);
 			
 			

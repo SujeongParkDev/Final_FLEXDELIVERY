@@ -77,9 +77,10 @@ $(function(){
 				          	<hr>
 				          </div>
 			    
-			         		 <div class="col-12 mt-3">
+			         		 <div class="col-12 mt-3" style="margin-bottom:100px;">
 									<div class="g-recaptcha " data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-left:20%;"></div>
-									<button class="btn-primary mt-4" id="robotCheck" style="width:200px; height:50px; margin-bottom:80px;font-size:15px; margin-left:130px;">정말 탈퇴 하시겠습니까?</button>
+									<button class="btn-primary mt-4" id="robotCheck" style="width:200px; height:50px; font-size:15px; margin-left:50px;">탈퇴</button>
+									<button class="btn-outline-primary mt-4" onclick="history.back()" style="width:200px; height:50px;font-size:15px;">취소</button>
 			          		</div>
  							 <br><Br><br>
 		      			</div>

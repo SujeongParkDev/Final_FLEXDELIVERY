@@ -23,6 +23,7 @@ import com.project.fd.common.Utility;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
 import com.project.fd.owner.order.model.OwnerOrderVO;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 
 @Controller
@@ -33,6 +34,10 @@ public class OwnerOrderController {
 	
 	@Autowired
 	private OwnerOrderService ownerOrderService;
+	
+	
+	@Autowired
+	private OwnerStoresService ownerStoreService;
 	
 	
 	
@@ -48,12 +53,8 @@ public class OwnerOrderController {
 		public String orderMain(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 			HttpSession session, Model model) {
 		//storeNo 구하기
-			int storeNo=0;
-			
-			
-			if(session.getAttribute("storeNo")!=null) {
-				storeNo= (Integer)session.getAttribute("storeNo");
-			}
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
 			
 		//1
 		logger.info("주문 접수중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -93,12 +94,9 @@ public class OwnerOrderController {
 		public String orderIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 			HttpSession session, Model model) {
 		//storeNo 구하기
-			int storeNo=0;
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
 			
-			
-			if(session.getAttribute("storeNo")!=null) {
-				storeNo= (Integer)session.getAttribute("storeNo");
-			}
 			
 		//1
 		logger.info("조리중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -144,12 +142,9 @@ public class OwnerOrderController {
 		public String orderDeliveryIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 			HttpSession session, Model model) {
 		//storeNo 구하기
-			int storeNo=0;
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
 			
-			
-			if(session.getAttribute("storeNo")!=null) {
-				storeNo= (Integer)session.getAttribute("storeNo");
-			}
 			
 		//1
 		logger.info("배달중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -190,12 +185,9 @@ public class OwnerOrderController {
 		public String orderDeliverySuccess(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 			HttpSession session, Model model) {
 		//storeNo 구하기
-			int storeNo=0;
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
 			
-			
-			if(session.getAttribute("storeNo")!=null) {
-				storeNo= (Integer)session.getAttribute("storeNo");
-			}
 			
 		//1
 		logger.info("주문완료 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -360,13 +352,9 @@ public class OwnerOrderController {
 		public String orderList(@ModelAttribute OwnerAdvertiseSearchVO searchVo, @RequestParam(defaultValue = "0") int oStatusNo,
 					HttpSession session, Model model) {
 				//storeNo 구하기
-					int storeNo=0;
-					
-					
-					if(session.getAttribute("storeNo")!=null) {
-						storeNo= (Integer)session.getAttribute("storeNo");
-					}
-					
+		  		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		  		int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
 				//1
 				logger.info("주문완료 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
 				

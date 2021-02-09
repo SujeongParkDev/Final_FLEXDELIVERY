@@ -51,10 +51,5 @@ public class OwnerShopsController {
 
 	ownerStoresVo.setStoreLogo(originName);*/
 	
-	@RequestMapping("/menu2/operation/operation.do")
-	public void owneroperation() {
-		logger.info("내 점포 - 운영정보 보여주기");
-	}
-
 
 }
