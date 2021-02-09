@@ -50,9 +50,21 @@ public class OwnerReviewController {
 		List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
 		logger.info("리뷰메인 리스트 allList.size={}",allList.size());
 		
+		
+		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		
+		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
 		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
 		
 		model.addAttribute("totalBlock", totalBlock);
+		model.addAttribute("blockList", blockList);
+		
+		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("nocmtList", nocmtList);
+		
 		model.addAttribute("allList", allList);
 		return "owner/menu2/reviewOwner/reviewOwner";
 	}
@@ -184,6 +196,7 @@ public class OwnerReviewController {
 		
 		return "common/message";
 	}
+	/*
 	// 차단 
 	@RequestMapping(value="/blockcmt.do", method=RequestMethod.GET)
 	public String blockList_get(HttpSession session, Model model) {
@@ -234,7 +247,7 @@ public class OwnerReviewController {
 		return "owner/menu2/reviewOwner/blockcmt";
 	}
 	
-	/*
+
 	@ResponseBody
 	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
 	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
