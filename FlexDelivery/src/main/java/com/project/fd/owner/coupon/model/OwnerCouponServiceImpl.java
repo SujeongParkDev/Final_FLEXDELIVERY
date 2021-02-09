@@ -30,29 +30,24 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 	}
 
 	@Override
-	public int registerCoupon(OwnerCouponVO vo) {
-		return couponDao.registerCoupon(vo);
-	}
-
-	@Override
 	@Transactional
 	public int deleteCoupon(List<OwnerCouponVO> cpList) {
-		
-			int cnt=0;
-			try {
-				for(OwnerCouponVO vo : cpList) {
-					int scBoxNo=vo.getScBoxNo();
-					if(scBoxNo!=0) {  //체크된 것만 삭제
-						cnt=couponDao.deleteCoupon(scBoxNo);
-					}
+
+		int cnt=0;
+		try {
+			for(OwnerCouponVO vo : cpList) {
+				int scBoxNo=vo.getScBoxNo();
+				if(scBoxNo!=0) {  //체크된 것만 삭제
+					cnt=couponDao.deleteCoupon(scBoxNo);
 				}
-			}catch(RuntimeException e) {
-				e.printStackTrace();
-				cnt=-1;
-				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			}
-			
-			return cnt;
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			cnt=-1;
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+
+		return cnt;
 	}
 
 	@Override
@@ -65,7 +60,26 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 		return couponDao.expireAll(storeNo);
 	}
 
-	
+	@Override
+	@Transactional
+	public int registerCoupon(OwnerCouponVO vo){
+		int cnt=0;
+		try {			
+			int count=couponDao.dupCouponNo(vo);
+			if(count>0) {
+				cnt=OwnerCouponService.EXIST_CP;  //이미 등록되어 있으면 skip  2
+			}else {
+				cnt=couponDao.registerCoupon(vo); //1
+			}
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			cnt=-1;
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
 
-	
+		return cnt;
+	}
+
+
+
 }

@@ -7,8 +7,26 @@ input {
 	border-radius: 5px;
 	height: 35px;
 }
+select{
+display: block;
+    width: 100%;
+    height: calc(1.5em + 0.934rem + 2px);
+    padding: 0.467rem 1.6rem 0.467rem 0.6rem;
+    font-size: 0.855rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #555252;
+    vertical-align: middle;
+    background-color: white;
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1…d' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e);
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 16px 12px;
+    border: 1px solid #DFE3E7;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+}
 </style>
-<!-- 버튼 4개 쓸까 말까 ? ? 깔끔하게 지우는게 낫겟지 ?-->
 <br>
 <!-- 셀렉 옵션 선택 내용 -->
 <div class="row" id="basic-table">
@@ -25,8 +43,8 @@ input {
 						<!-- 데이터 피커  -->
 						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
-							<select class="form-select groupChoice p-2 " valaue="신청 리스트 선택 " name="menuGroup" id="menuGroupSelect" style="overflow: auto;">
-								<option class="m-3 text-center" style="font-size: 17px;" selected value="0">승인 목록 선택</option>
+							<select class="form-select groupChoice p-2 choice" valaue="신청 리스트 선택 " name="choice" id="choice" style="overflow: auto;">
+								<option class="m-3 text-center choice" style="font-size: 17px;" selected value="0">승인 목록 선택</option>
 								<option value="1">사업자 등록 신청</option>
 								<option value="2">입점 등록 신청</option>
 								<option value="3">광고 신청 내역 </option>
@@ -48,7 +66,7 @@ input {
 							</thead>
 							<tbody id="optionTable">
 								<!--  -->
-								<div class="opsiton1" id="tempDiv">
+								<div class="tempDiv" id="tempDiv">
 								<c:if test="${!empty selectTemp }">
 									<c:forEach var="tempVo" items="${selectTemp }">
 										<tr class="text-center">
@@ -88,7 +106,7 @@ input {
 								</c:if>
 								</div>
 								<!--  -->
-								<!-- 광고 디폴트 N이 안들어와서 어떻게 해줘야할까  PropertyNotFoundException: -->
+							<div class="advertise">
 								<c:if test="${!empty selectAd }">
 									<c:forEach var="adVo" items="${selectAd }">
 										<tr class="text-center">
@@ -107,7 +125,9 @@ input {
 										</tr>
 									</c:forEach>
 								</c:if>
+								</div>
 								<!--  -->
+								<div class="store">
 								<c:if test="${!empty selectStore }">
 									<c:forEach var="stVo" items="${selectStore }">
 										<tr class="text-center">
@@ -132,7 +152,9 @@ input {
 										</tr>
 									</c:forEach>
 								</c:if>
+								</div>
 								<!--  -->
+								<div class="register">
 								<c:if test="${!empty RegiList }">
 									<c:forEach var="regiVo" items="${RegiList }">
 										<tr class="text-center">
@@ -157,6 +179,7 @@ input {
 										</tr>
 									</c:forEach>
 								</c:if>
+								</div>
 								<!--  -->
 							</tbody>
 						</table>
@@ -171,9 +194,10 @@ input {
 
 
 <script type="text/javascript">
+
 function goDetail(no){
 	var windowW = 500;  // 창의 가로 길이
-    var windowH = 500;  // 창의 세로 길이
+    var windowH = 400;  // 창의 세로 길이
     var left = Math.ceil((window.screen.width - windowW)/2);
     var top = Math.ceil((window.screen.height - windowH)/2);
     
@@ -188,7 +212,7 @@ $(function(){
 }//detail
 function goStores(no){
 	var windowW = 500;  // 창의 가로 길이
-    var windowH = 700;  // 창의 세로 길이
+    var windowH = 600;  // 창의 세로 길이
     var left = Math.ceil((window.screen.width - windowW)/2);
     var top = Math.ceil((window.screen.height - windowH)/2);
     
@@ -203,7 +227,7 @@ $(function(){
 
 function goTemp(no){
 	var windowW = 500;  // 창의 가로 길이
-    var windowH = 700;  // 창의 세로 길이
+    var windowH = 600;  // 창의 세로 길이
     var left = Math.ceil((window.screen.width - windowW)/2);
     var top = Math.ceil((window.screen.height - windowH)/2);
     
@@ -218,7 +242,7 @@ $(function(){
 
 function goAD(no){
 	var windowW = 500;  // 창의 가로 길이
-    var windowH = 500;  // 창의 세로 길이
+    var windowH = 400;  // 창의 세로 길이
     var left = Math.ceil((window.screen.width - windowW)/2);
     var top = Math.ceil((window.screen.height - windowH)/2);
     
@@ -230,74 +254,13 @@ $(function(){
 	
 });
 }//detail
-
-/*
- * 
-
-	//그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
-	$(function() {
-		$('.groupChoice').change(function() {
-			$('#btOptionWrite').css('display', 'block');
-				$.ajax({
-					url : "<c:url value='/owner/menu2/requests/selectRegi.do'/>",
-						data : "no" + $(this).val(),
-						dataType : "json",
-						type : "GET",
-						success : function(res) {
-						//alert(res);
-						//alert(res.length);
-						if (res.length > 0) {
-							var str = "";
-							str += "<option value='0'>메뉴 선택</option><br>";
-							$.each(res,function(idx,item) {
-												str += "<option value='"+item.menuNo+"' class='menuClick'>"
-														+ item.menuName
-														+ "</option><br>";
-											});
-							$('#menuSelect').html(str);
-						}
-					},
-					error : function(xhr, status, error) {
-						alert("error!! : " + error);
-					}
-				});
-
-	});
-
-	});
-
-	//메뉴 등록을 누르면 모달창이 뜬다.
-	$(function() {
-		$('#detailRegi').click(function() {
-			$.ajax({
-					url : "<c:url value='/owner/menu2/requests/detailRegi.do'/>",
-					data : "oRegisterNo="+ $('#regiNo').val(),
-					dataType : "json",
-					type : "GET",
-					success : function(res) {
-						//alert(res);
-						//alert(res.length);
-
-						var str = "";
-						str += "<label>그룹이름</label>&nbsp;";
-						str += "<input type='text' readonly='readonly' class='form-control text-right' 'name='oRegisterNo' value='"+res.oRegisterNo+"'>";
-						//str += "<img src='"+${pageContext.request.contextPath}+"/resources/imgs/OwnerRegisterImages/"+res.oRegisterFileName+"'/>' alt='"+res.oRegisterFileName+"' style='height:250px; width:80%;'  class='thumbnail'>"
-						str += "<input type='text' readonly='readonly' class='form-control text-right' name='oRegisterFileName' value='"+res.oRegisterFileName+"'>&nbsp;&nbsp;";
-						str += "<label>메뉴 이름</label>&nbsp;";
-						str += "<input type='text' readonly='readonly' class='form-control text-right' name='menuName' value='"+res.ownerregisterRegdate+"'>";
-
-						$('.groupMenuInput').html(str);
-						},
-						error : function(xhr, status, error) {
-							alert("error!! : " + error);
-							}
-						});
-					event.preventDefault();
-
+	$(function(){
+		$('#choice').on('change',function(){
+			var result=$('select[name=choice]').val();
+			alert(result);
 		});
-
 	});
-	 */
+
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

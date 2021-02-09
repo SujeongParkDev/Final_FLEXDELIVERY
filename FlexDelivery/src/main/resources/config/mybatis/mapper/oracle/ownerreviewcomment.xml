@@ -137,4 +137,10 @@
 		]]>
 	</select>
 	
+	<select id="selectAll" parameterType="int" resultType="map">
+		select * from LSJCommentDDetailView
+		where store_no=#{storeNo}
+		order by orders_no desc
+	</select>
+	
 </mapper>

@@ -8,8 +8,9 @@
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
 		<div class="text-right">
-			<button id="btAll" class="btn btn-primary">전체 조회</button>
-			<button id="btRegi" class="btn btn-outline-warning">쿠폰 신청</button>
+			 <button id="btAll" class="btn btn-primary">사용중인 쿠폰 </button>
+		                	 <button id="btExpire" class="btn btn-primary">쿠폰 발급 내역 </button>
+		                	 <button id="btRegi" class="btn btn-outline-warning">쿠폰 신청 </button>
 		</div>
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
@@ -57,11 +58,9 @@
 											<td>${vo.rCouponMin }</td>
 											<td>${vo.rCouponDc}</td>
 											<td>
-											<c:if test="${!empty useList}">
 											<button type="button"
 													class="btn btn-primary round  mr-1 mb-1 register" data-toggle="modal" id="modalregister"
 													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button>
-											</c:if>
 											</td>
 										</tr>
 									</c:forEach>
@@ -119,9 +118,16 @@
 				event.preventDefault();
 			}
 		});
-		$('#btAll').click(function(){
-			location.href='<c:url value="/owner/menu2/couponused/couponUsed.do"/>';
-		});
+
+			$('#btRegi').click(function(){
+				location.href='<c:url value="/owner/menu2/couponused/couponRegi.do"/>';
+			});
+			$('#btExpire').click(function(){
+				location.href='<c:url value="/owner/menu2/couponused/couponExpire.do"/>';
+			});
+			$('#btAll').click(function(){
+				location.href='<c:url value="/owner/menu2/couponused/couponUsed.do"/>';
+			});
 	});	
     
     $(function(){

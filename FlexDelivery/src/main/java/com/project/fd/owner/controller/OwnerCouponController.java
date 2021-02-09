@@ -165,10 +165,12 @@ public class OwnerCouponController {
 		String msg="쿠폰 등록에 실패하였습다. ", url="/owner/menu2/couponused/couponRegi.do";
 		if(requestService.pwdCk(pwd,ownerNo)) {
 			int cnt =couponService.registerCoupon(vo);
-			logger.info("쿠폰 등록  결과, cnt={}", cnt);
+			logger.info("쿠폰 등록  결과, cnt={}", cnt); //2
 			
-			if(cnt>0) {
+			if(cnt==OwnerCouponService.NON_EXIST_CP) {
 				msg="정상적으로 등록되었습니다.";
+			}else if(cnt==OwnerCouponService.EXIST_CP){
+				msg="이미 만료되지 않은 쿠폰이 있습니다 ! ";
 			}
 		}else {
 			msg="비밀번호가 일치하지 않습니다.";

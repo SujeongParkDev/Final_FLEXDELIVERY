@@ -62,7 +62,10 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 		return ownerReviewCommentDao.blockTotalRecord(searchVo);
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> selectAll(int storeNo) {
+		return ownerReviewCommentDao.selectAll(storeNo);
+	}
 
 	
 }

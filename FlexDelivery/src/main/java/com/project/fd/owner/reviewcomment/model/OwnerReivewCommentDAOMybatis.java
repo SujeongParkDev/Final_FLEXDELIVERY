@@ -64,6 +64,8 @@ public class OwnerReivewCommentDAOMybatis implements OwnerReivewCommentDAO{
 		return sqlSession.selectOne(namespace+"blockTotalRecord",searchVo);
 	}
 	
-	
+	public List<Map<String, Object>> selectAll(int storeNo){
+		return sqlSession.selectList(namespace+"selectAll",storeNo);
+	}
 	
 }

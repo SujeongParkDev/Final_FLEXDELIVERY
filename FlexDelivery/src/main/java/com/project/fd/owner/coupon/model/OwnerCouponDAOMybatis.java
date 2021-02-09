@@ -50,5 +50,9 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 		return sqlSession.selectList(namespace+"expireAll",storeNo);
 	}
 	
+	public int dupCouponNo(OwnerCouponVO vo) {
+		return sqlSession.selectOne(namespace+"dupCouponNo",vo);
+	}
+	
 	
 }

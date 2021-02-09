@@ -17,4 +17,5 @@ public interface OwnerReivewCommentService {
 	 public List<Map<String, Object>> selectblockcmt(OwnerReviewSearchVO searchVo);
 	 int blockTotalRecord(OwnerReviewSearchVO searchVo);
 
+	 public List<Map<String, Object>> selectAll(int storeNo);
 }

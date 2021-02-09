@@ -51,8 +51,110 @@
 							</form>
 					</div>
 					<br>
+					<!--  -->
 					<div class="AllDiv">
-					
+					<c:if test="${empty allList }">
+						<div class="row">
+							<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
+						</div>
+					</c:if>
+					<c:if test="${!empty allList }">
+						<c:forEach var="map" items="${allList }">
+							<hr>
+							<br>
+							<div class="review-list">
+								<div class="row ">
+									<div class="col-md-3">
+										<h4 class="card-title">${map['MEMBER_ID']}</h4>
+									</div>
+									<div class="row">
+										<div class="col-md-3">${map['REVIEW_RATING'] }점</div>
+										<div class="col-md-1">.col-md-1</div>
+										<div class="col-md-5 text-left">${map['MENU_NAME']}+
+											${map['M_OPTION_NAME']}</div>
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col-md-3">
+										<fmt:formatDate value="${map['REVIEW_REGDATE']}"
+											pattern="yyyy-MM-dd" />
+									</div>
+									<div class="col-md-7 text-left">${map['REVIEW_CONTENT']}</div>
+									<div class="col-md-1"></div>
+								</div>
+							</div>
+							<br>
+							<br>
+							<!-- table hover -->
+							<div class="table-responsive">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-8"> </div>
+									<div class="col-xs-6 col-md-4"></div>
+								</div>
+								<!-- CEO comment start !! -->
+								<c:if test="${!empty map['R_COMMENT_CONTENT']}">
+								<div class="CEO-comment" style="background-color:rgba(208, 201, 208, 0.12); color: #333;">
+									<form id="frm2" method="post"
+										action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
+										<input type="hidden" id="reviewNo" name="reviewNo"
+											value="${map['REVIEW_NO'] }"> <input type="hidden"
+											id="storeNo" name="storeNo" value="1">
+										<div class="reply" style="padding:7%;">
+										<div class="row" >
+											<div class="col-md-3">
+												<h4>사장님&nbsp;</h4>
+											</div>
+											<div class="col-md-6 text-left">${map['MEMBER_ID'] }님,</div>
+											<div class="col-md-1"></div>
+										</div>
+										<div class="row" >
+											<div class="col-md-3">
+												<fmt:formatDate value="${map['R_COMMENT_REGDATE'] }"
+													pattern="yyyy-MM-dd" />
+											</div>
+											<div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
+											<div class="result" id="resultDiv"></div>
+											</div>
+										<div class="row">
+											<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
+											<div class="text-right" style="margin-bottom:10px;">
+											<div class="button-group button-group-row align-right "><br><br>
+												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
+													style="background-color: #0d6efd; color: white; " value="삭제 ">
+												<input type="submit" class="button small secondary inGroup "
+													id="btEdit" onclick="Edit_form(${map['REVIEW_NO']})"
+													style="background-color: r#0d6efd; color: white; " value="수정 ">
+												</div>
+											</div>
+										</div>
+									</div>
+										<!-- ${sessionScope.storeNo} 변경하기  -->
+									</form>
+									</div>
+									<div class="col-md-2 col-sm-12"></div>
+									<br>
+									<br>
+								
+								</c:if>
+								<!-- 댓글이 없는 경우 활성화  -->
+								<c:if test="${empty map['R_COMMENT_CONTENT']}">
+									<div class="card-body">
+										<form id="frm1" method="post"
+											action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>">
+											<!-- hidden  -->
+											<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }">
+												 <input type="hidden" id="storeNo" name="storeNo" value="1">
+												 <label for="content"></label>
+												 <div style="border: radius 2px solid lightgray;" class="text-left">
+											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
+												 </div>
+										</form>
+									</div>
+								</c:if>
+								<br> <br>
+						</c:forEach>
+					</c:if>
 					</div>
 						<div class="all-div" id="DateDiv">
 					<c:if test="${empty reviewList }">
@@ -209,6 +311,9 @@
 <!-- two  -->
 
 <script type="text/javascript">
+$(function(){
+	$('#DateDiv').hide();
+});
 	function btDel(reviewNo){
 		if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
 			location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerDelete.do?reviewNo='/>" + reviewNo;
@@ -254,25 +359,7 @@ $(function(){
 event.preventDefault();
 }
 	
-	$(function(){
-		$('#searchDate').click(function(){
-			$('#DateDiv').hide();
-			$('#AllDiv').show();
-		});
-	});
-	
-	// 탭 
-	$(function(){
-	$('input[type=radio]').click(function(){
-		if($(this).attr('id')=='ck2'){
-			$('#AllDiv').hide();
-		}else if($(this).attr('id')=='ck1'){
-			$('#AllDiv').show();
-		}else if($(this).attr('id')=='ck3'){
-			$('#AllDiv').hide();
-		}
-	});
-});
+
 	
 /*
 	function Edit_do($num){
@@ -313,7 +400,9 @@ event.preventDefault();
 		
 	});
 	
-
+*/
+$(function(){
+	$('#DateDiv').hide();
 	$('form[name=frmDate]').submit(function(){
 		if($('#startDay').val().length<1){
 			alert('시작일을 입력하세요');
@@ -324,15 +413,27 @@ event.preventDefault();
 			$('#endDay').focus();
 			event.preventDefault();
 		}
+		$('#AllDiv').hide();
+		$('#DateDiv').show();
 	});
-	
+	$('#AllDiv').hide();
+	$('#DateDiv').show();
 });
-*/
+});
 function pageFunc(curPage){
 	$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
 	$('form[name=frmDate]').submit();
+	
 }
 
 
 </script>
+<!-- script start -->
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<!-- script end -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

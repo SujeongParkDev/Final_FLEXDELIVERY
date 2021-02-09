@@ -33,10 +33,29 @@ public class OwnerReviewController {
 	@Autowired OwnerReivewCommentService ownerReCommService;
 	//@Autowired MemberReviewService. memberReviewService;
 
+	@RequestMapping(value="/reviewOwner.do", method=RequestMethod.GET)
+	public String orderList_get(HttpSession session, Model model) {
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo=(Integer)session.getAttribute("storeNo");
+		}
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
+		
+		List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
+		logger.info("리뷰메인 리스트 allList.size={}",allList.size());
+		model.addAttribute("allList", allList);
+		return "owner/menu2/reviewOwner/reviewOwner";
+	}
 	
 	// review List 
-	@RequestMapping("/reviewOwner.do")
-	public String orderList(@ModelAttribute OwnerReviewSearchVO searchVo,
+	@RequestMapping(value="/reviewOwner.do", method=RequestMethod.POST)
+	public String orderList_post(@ModelAttribute OwnerReviewSearchVO searchVo,
 			HttpSession session, Model model) {
 		//int storeNo=(Integer)session.getAttribute("storeNo");
 		int storeNo=1;
