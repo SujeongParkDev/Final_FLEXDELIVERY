@@ -11,11 +11,19 @@
 	});
 	
 	
- 	function goWithdraw(){
+ 	/* function goWithdraw(){
 		if(confirm('탈퇴하시겠습니까?')){
 			location.href="<c:url value='/owner/withdraw.do'/>";
 		}
-	};
+	}; */
+	
+	
+	$(function(){
+		$('#withdrawAtag').click(function(){
+		  
+		   location.href="<c:url value='/owner/mypage/mypageDelete.do'/>";
+		});
+	});
 	
 	
 	$(function(){
@@ -68,7 +76,7 @@
 	<div class="col-12 col-md-6 text-center" >
 	
 	 <br>
-		<div class="row mb-5 mt-3" id="mypageDiv" style="border: 1px solid black; background-color: white;" data-aos="zoom-in">
+		<div class="row mb-5 mt-3" id="mypageDiv" style="border: 2px solid black; background-color: white;" data-aos="zoom-in">
 			<br><br>
 			<!-- 헤드 시작 -->
 			<div class="col-12 col-md-2 pt-5"></div>
@@ -91,7 +99,7 @@
 			</div>
 				<br><br><br><br><br><br>
 			<div class="col-12 col-md-11 mt-4 text-right" >
-				<a class="mypageAtag mr-5" onclick="goWithdraw()" href="#">[회원탈퇴]</a>
+				<a class="mypageAtag mr-5" id="withdrawAtag" href="#">[회원탈퇴]</a>
 			</div>
 			<div class="col-12 col-md-1"></div>
 				<br><br><br>

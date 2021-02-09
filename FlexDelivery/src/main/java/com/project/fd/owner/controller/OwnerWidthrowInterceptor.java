@@ -40,12 +40,12 @@ public class OwnerWidthrowInterceptor extends HandlerInterceptorAdapter {
 		
 			if(result.equals(OwnerService.NO_STORE+"") || result.equals(OwnerService.LICENSE_STAY+"")) {
 				logger.info("탈퇴관련 인터셉터 - preHandle() result={}", result);
-				out.print("alert('사업자등록 취소 우선적으로 진행해 주세요.');");
+				out.print("alert('사업자등록 승인 취소를 우선적으로 진행해 주세요.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			
-			}else if(result.equals(OwnerService.STORE_STAY+"") || result.equals(OwnerService.HAVE_ALL+"")) {
+			}else if(result.equals(OwnerService.STORE_STAY+"") ) {
 				logger.info("탈퇴관련 인터셉터- preHandle() result={}", result);
-				out.print("alert('점포 탈퇴 및 취소 우선적으로 진행해 주세요');");
+				out.print("alert('점포 승인 취소를 우선적으로 진행해 주세요');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			
 			}else if(result.equals(OwnerService.WITHDRAW_STAY+"")) {
@@ -53,8 +53,13 @@ public class OwnerWidthrowInterceptor extends HandlerInterceptorAdapter {
 				out.print("alert('점포 탈퇴 승인 대기 중입니다.');");
 				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			
-			}else if((result.equals(OwnerService.NO_LICENSE+"") || result.equals(OwnerService.WITHDRAW_SUCCESS+"")) && (ownerId!=null && !ownerId.isEmpty())) {
+			}else if(result.equals(OwnerService.NO_LICENSE+"") || result.equals(OwnerService.WITHDRAW_SUCCESS+"")){
+				out.print("location.href='"+request.getContextPath()+"/owner/mypage/mypageDeleteOwner.do';");
+				
+			}else if(result.equals(OwnerService.HAVE_ALL+"")) {
 				return true;
+			}else {
+				out.print("location.href='"+request.getContextPath()+"/owner/index.do';");
 			}
 		
 		out.print("</script>");

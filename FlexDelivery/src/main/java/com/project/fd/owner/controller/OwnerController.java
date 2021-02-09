@@ -128,37 +128,59 @@ public class OwnerController {
 	
 	//회원탈퇴 (점포)
 	@RequestMapping("/withdraw.do")
-	public String withdraw(HttpSession session,Model model,HttpServletResponse response) {
+	public String withdraw(HttpSession session,Model model,HttpServletResponse response,
+			@RequestParam(defaultValue = "0")int ownerNo) {
 		String ownerId=(String) session.getAttribute("ownerId");
 		
-		int cnt = ownerService.withdrawOwner(ownerId);
-		logger.info("회원 탈퇴 결과 cnt = {}", cnt);
+		String msg="탈퇴 실패",url="/owner/index.do";
 		
-		String msg="회원탈퇴 실패",url="/owner/index.do";
-		if(cnt>0){
-			msg="회원탈퇴처리 되었습니다.";
-		
+			int cnt = ownerService.withdrawOwner(ownerNo);
+			logger.info("회원 탈퇴 결과 cnt = {}", cnt);
 			
-			if(session.getAttribute("storeNo")!=null) {
-				session.removeAttribute("storeNo");
+			if(cnt>0){
+				msg="회원탈퇴처리 되었습니다.";
+				
+				if(session.getAttribute("storeNo")!=null) {
+					session.removeAttribute("storeNo");
+				}
+				logger.info("로그아웃 처리, 파라미터 userid={}, storeNO={}", ownerId);
+				
+				session.removeAttribute("ownerId");
+				session.removeAttribute("ownerName");
+				session.removeAttribute("ownerNo");
+				session.removeAttribute("authorityNo");
+				session.removeAttribute("result");
+				
+				Cookie ck = new Cookie("ck_userid", ownerId);
+				ck.setPath("/");
+				ck.setMaxAge(0); //쿠키제거
+				response.addCookie(ck);
 			}
 		
-			logger.info("로그아웃 처리, 파라미터 userid={}, storeNO={}", ownerId);
-			
-			
-			
-			session.removeAttribute("ownerId");
-			session.removeAttribute("ownerName");
-			session.removeAttribute("ownerNo");
-			session.removeAttribute("authorityNo");
-			session.removeAttribute("result");
+		//3. 
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
+		return "common/message";
+	}
+	
+	
+	
+	
+	
+
+	//점포탈퇴 (점포)
+	@RequestMapping("/withdrawStore.do")
+	public String withdrawStore(Model model,HttpServletResponse response,
+			@RequestParam(defaultValue = "0")int storeNo) {
+		
+		String msg="탈퇴 실패",url="/owner/index.do";
+		
+		int cnt = ownerService.withdrawStore(storeNo);
+				logger.info("점포 탈퇴신청 결과 cnt = {}", cnt);
 			
-			
-			Cookie ck = new Cookie("ck_userid", ownerId);
-			ck.setPath("/");
-			ck.setMaxAge(0); //쿠키제거
-			response.addCookie(ck);
+		if(cnt>0){
+			msg="점포 탈퇴  승인 요청 되었습니다.";
 		}
 		
 		//3. 
@@ -167,6 +189,17 @@ public class OwnerController {
 		
 		return "common/message";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
