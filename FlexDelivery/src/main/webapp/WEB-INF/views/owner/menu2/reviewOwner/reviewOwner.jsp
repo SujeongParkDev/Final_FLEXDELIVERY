@@ -38,10 +38,9 @@
 				<div class="card-body text-center">
 				
 					<div class="row">
-						<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
+						<div class="col-md-4 col-12"></div>
 						<div class="col-md-6 col-12 ">
-							<form name="frmPage" method="post" name="frm1"
-								action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 								<input type="hidden" name="currentPage" value="1">
 						</div>
@@ -119,11 +118,11 @@
 											<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
 											<div class="text-right" style="margin-bottom:10px;">
 											<div class="button-group button-group-row align-right "><br><br>
-												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
-													style="background-color: #0d6efd; color: white; " value="삭제 ">
-												<input type="submit" class="button small secondary inGroup btEdit"
+												<button type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
+													style="background-color: #0d6efd; color: white; " >삭제 </button>
+												<button type="submit" class="button small danger inGroup"
 													onclick="Edit_form(${map['REVIEW_NO']})"
-													style="background-color: r#0d6efd; color: white; " value="수정 ">
+													style="background-color: r#0d6efd; color: white; ">수정 </button>
 												</div>
 											</div>
 										</div>
@@ -146,7 +145,7 @@
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
 												 <div style="border: radius 2px solid lightgray;" class="text-left">
-											<textarea class="form-control form-control-lg content" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+											<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
 												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
@@ -250,7 +249,7 @@
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
 												 <div style="border: radius 2px solid lightgray;" class="text-left">
-											<textarea class="form-control form-control-lg content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+											<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
 												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
@@ -303,17 +302,11 @@
 			</c:if>
 		</ul>
 	</nav>
-
 </div>
 <br>
 <br>
-
 <!-- two  -->
-
 <script type="text/javascript">
-$(function(){
-	$('#DateDiv').hide();
-});
 	function btDel(reviewNo){
 		if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
 			location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerDelete.do?reviewNo='/>" + reviewNo;
@@ -341,7 +334,7 @@ $(function(){
 			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 			success:function(res){
 				//alert(res);
-				var output="<textarea class='form-control form-control-lg' id='content' name='rCommentContent'>";
+				var output="<textarea class='form-control form-control-lg content' name='rCommentContent'>";
 					output+=res.rCommentContent+" </textarea><br>";
 					output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
 				
@@ -357,7 +350,6 @@ $(function(){
 event.preventDefault();
 }
 	
-
 	
 /*
 	function Edit_do($num){
@@ -386,7 +378,9 @@ event.preventDefault();
 	
 */
 $(function(){
-	$('.DateDiv').hide();
+	//$('.DateDiv').hide();
+	//$('.DateDiv').parent().prev().css("display", "none");
+	//$(this).parent().prev().css("display", "none");
 	//$('.AllDiv').show();
 	$('form[name=frmDate]').submit(function(){
 		if($('#startDay').val().length<1){
