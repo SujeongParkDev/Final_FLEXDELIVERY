@@ -17,6 +17,5 @@ public interface OwnerCouponDAO {
 	
 	public int deleteCoupon(int scBoxNo);
 	
-	public OwnerCouponVO dupCouponNo(int storeNo);
 	
 }

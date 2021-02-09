@@ -57,15 +57,9 @@
 											<td>${vo.rCouponMin }</td>
 											<td>${vo.rCouponDc}</td>
 											<td>
-											<c:if test="${!empty useList}">
-											<c:forEach var="useVo" items="${useList}">
-											<c:if test="${empty useVo.rCouponNo}">
 											<button type="button"
 													class="btn btn-primary round  mr-1 mb-1 register" data-toggle="modal" id="modalregister"
 													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button>
-											</c:if>
-											</c:forEach>
-											</c:if>
 											</td>
 										</tr>
 									</c:forEach>

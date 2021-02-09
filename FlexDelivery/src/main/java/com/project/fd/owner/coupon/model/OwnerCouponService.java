@@ -17,5 +17,4 @@ public interface OwnerCouponService {
 	
 	public int deleteCoupon(List<OwnerCouponVO> cpList);
 	
-	public boolean dupck(List<AdminRegularCouponVO> list, int storeNo);
 }

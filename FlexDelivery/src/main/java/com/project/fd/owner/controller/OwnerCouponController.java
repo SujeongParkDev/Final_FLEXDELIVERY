@@ -41,6 +41,15 @@ public class OwnerCouponController {
 	@RequestMapping("/couponUsed.do")
 	public String ownercouponused(HttpSession session,Model model) {
 		int storeNo= (Integer)session.getAttribute("storeNo");
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> list = couponService.useCoupons(storeNo);
@@ -105,7 +114,7 @@ public class OwnerCouponController {
 		logger.info("useList.size={}",useList.size());
 		
 		// 비밀번호 일치처럼 스토어넘버로 쿠폰번호만 찾아서 일치하는지 확인 
-		boolean bool= couponService.dupck(list,  storeNo);
+		//boolean bool= couponService.dupck(list,  storeNo);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("useList", useList);

@@ -60,11 +60,7 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 		return couponDao.useCoupons(storeNo);
 	}
 
-	@Override
-	public boolean dupck(List<AdminRegularCouponVO> list, int storeNo) {
-		//삭제예정 
-		return true;
-	}
+	
 
 	
 }
