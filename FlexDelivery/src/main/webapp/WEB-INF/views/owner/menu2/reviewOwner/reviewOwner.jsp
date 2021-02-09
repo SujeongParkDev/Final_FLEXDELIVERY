@@ -31,11 +31,12 @@
 			<div class="card-content">
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px; font:bold;">리뷰 관리 </p>
-					<p class="card-text text-left" >평균 별점 입니다. </p>
+					<p class="card-text text-left" >구글에서 뽀렸어욥 </p>
+					<%@include file="reviewChart.jsp"%>
 					<br> <br>
 			<div class="card-content">
 				<div class="card-body text-center">
-					<div class="all-div" id="AllDiv">
+				
 					<div class="row">
 						<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
 						<div class="col-md-6 col-12 ">
@@ -45,11 +46,15 @@
 								<input type="hidden" name="currentPage" value="1">
 						</div>
 						<div class="col-md-2 col-12">
-							<input type="submit" style="background-color: rgb(223, 108, 220); color: white;" value="조회">
+							<input type="submit" style="background-color: #0d6efd; color: white;" value="조회" id="searchDate">
 						</div>
 							</form>
 					</div>
 					<br>
+					<div class="AllDiv">
+					
+					</div>
+						<div class="all-div" id="DateDiv">
 					<c:if test="${empty reviewList }">
 						<div class="row">
 							<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
@@ -117,10 +122,10 @@
 											<div class="text-right" style="margin-bottom:10px;">
 											<div class="button-group button-group-row align-right "><br><br>
 												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
-													style="background-color: rgb(223, 108, 220); color: white;" value="삭제 ">
-												<input type="submit" class="button small secondary inGroup"
+													style="background-color: #0d6efd; color: white; " value="삭제 ">
+												<input type="submit" class="button small secondary inGroup "
 													id="btEdit" onclick="Edit_form(${map['REVIEW_NO']})"
-													style="background-color: rgb(223, 108, 220); color: white;" value="수정 ">
+													style="background-color: r#0d6efd; color: white; " value="수정 ">
 												</div>
 											</div>
 										</div>
@@ -142,10 +147,9 @@
 											<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }">
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
-												 <div style="border: radius 2px solid lightgray;">
-											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" placeholder="사장님 ! 댓글을 등록해주세요.">
-											</textarea>
-												<input class="button medium" type="submit" onclick="" style="background-color: rgb(223, 108, 220); color: white;" value="댓글작성">
+												 <div style="border: radius 2px solid lightgray;" class="text-left">
+											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
 									</div>
@@ -218,6 +222,12 @@
      	$(this).parent().prev().css("display", "none");
      	console.log(this);
 $(function(){
+	if($('#content').val()<1){
+		 alert("댓글 내용을 입력해 주세요 ! ");
+		event.preventDefault();
+	}else{
+		
+
      	var params = $("#frm2").serialize();
      	
      	$.ajax({
@@ -232,22 +242,22 @@ $(function(){
 					output+=res.rCommentContent+" </textarea><br>";
 					output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
 				
-				$('#resultDiv').append(output);
-					$('#listDiv').hide();
-			},
-			error:function(xhr, status, error){
-				alert("error! : " + error);
-			}				
-		});//ajax
- 
+					$('#resultDiv').append(output);
+						$('#listDiv').hide();
+				},
+				error:function(xhr, status, error){
+					alert("error! : " + error);
+				}				
+			});//ajax
+		}
 	});
 event.preventDefault();
 }
 	
 	$(function(){
-		$('#btNocomment').click(function(){
-			$('#AllDiv').hide();
-			$('#Nocomment').show();
+		$('#searchDate').click(function(){
+			$('#DateDiv').hide();
+			$('#AllDiv').show();
 		});
 	});
 	

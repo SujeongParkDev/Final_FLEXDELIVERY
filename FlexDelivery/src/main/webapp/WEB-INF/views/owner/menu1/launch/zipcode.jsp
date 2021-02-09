@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/mainstyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/mainstyle.css'/>" />
 <style type="text/css">
 body {
 	margin: 5px;
@@ -26,9 +25,41 @@ caption {
 #divPage{
 	text-align: center;
 }
+a {
+    text-decoration: none;
+    color:#006AD5;
+}
+div#divPage a {
+    color: black;
+}
 </style>
-<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/paging.js'/>"></script>
+
+</head>
+<body>
+	<h2>도로명 주소 검색</h2>
+	<p>도로명주소, 건물명 또는 지번을 입력하세요</p>
+	<p class="blue">검색어 예 : 도로명(반포대로 58), 건물명(독립 기념관), 지번(삼성동 25)</p>
+	
+	<form name="frmZipcode" id="frmZip" method="post">
+		<input type="hidden" name="currentPage" id="currentPage" value="1"/> <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
+		<input type="hidden" name="countPerPage" id="countPerPage" value="6"/><!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) --> 
+		<input type="hidden" name="confmKey" id="confmKey" 
+		 value="U01TX0FVVEgyMDE3MTIxODE3Mzc0MTEwNzU1Njg="/><!-- 요청 변수 설정 (승인키) -->
+		
+		<label for="dong">지역명 : </label> 
+		<input type="text" name="dong"
+			id="dong" style="ime-mode: active" > 
+		<input type="submit" id="submit" value="찾기">
+	</form>
+	
+	<div id="divCount"></div>
+	<div id="divZip"></div>
+	<div id="divPage"></div>
+	
+</body>
+</html>
+<script type="text/javascript" src="<c:url value='/resources/ownerResources/herbJs/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/ownerResources/herbJs/paging.js'/>"></script>
 <script type="text/javascript">
 	var totalCount=0;
 	
@@ -52,13 +83,13 @@ caption {
 		$('#currentPage').val(curPage);
 		
 		$.ajax({
-			url:"<c:url value='/owner/menu1/launch/zipcode2.do'/>",
+			url:"<c:url value='/owner/menu1/launch/ajaxZipcode.do'/>",
 			type:"post",
 			data: $('#frmZip').serializeArray(),
-			dataType:"json",
+			dataType:"xml",
 			success:function(xmlStr){
-				alert(xmlStr);
-				//totalCount=$(xmlStr).find('totalCount').html();
+				//alert(xmlStr);
+				totalCount=$(xmlStr).find('totalCount').html();
 				var errorCode=$(xmlStr).find('errorCode').text();
 				var errorMessage=$(xmlStr).find('errorMessage').text();
 				
@@ -142,33 +173,9 @@ caption {
 	}
 	
 	function setZipcode(address, zipcode){
-		$(opener.document).find('#OwnerZipcode').val(zipcode);
+		$(opener.document).find('#zipcode').val(zipcode);
 		$(opener.document).find('input[name=storeAddress]').val(address);
-		$(opener.document).find('input[name=storeAddressDetail]').val(address);
+		
 		self.close();
 	}
 </script>
-</head>
-<body>
-	<h2>도로명 주소 검색</h2>
-	<p>도로명주소, 건물명 또는 지번을 입력하세요</p>
-	<p class="blue">검색어 예 : 도로명(반포대로 58), 건물명(독립 기념관), 지번(삼성동 25)</p>
-	
-	<form name="frmZipcode" id="frmZip" method="post">
-		<input type="hidden" name="currentPage" id="currentPage" value="1"/> <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
-		<input type="hidden" name="countPerPage" id="countPerPage" value="6"/><!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) --> 
-		<input type="hidden" name="confmKey" id="confmKey" 
-		 value="U01TX0FVVEgyMDE3MTIxODE3Mzc0MTEwNzU1Njg="/><!-- 요청 변수 설정 (승인키) -->
-		
-		<label for="dong">지역명 : </label> 
-		<input type="text" name="dong"
-			id="dong" style="ime-mode: active" > 
-		<input type="submit" id="submit" value="찾기">
-	</form>
-	
-	<div id="divCount"></div>
-	<div id="divZip"></div>
-	<div id="divPage"></div>
-	
-</body>
-</html>

@@ -17,7 +17,7 @@
 			  </div>
 			 <br>
 		<!-- 테이블 시작 -->
-		<form name="frmList" method="post"  action="<c:url value='/owner/menu2/couponused/couponUsed.do'/>">
+		<form name="frmList" method="post"  action="<c:url value='/owner/menu2/couponused/couponExpire.do'/>">
 			<div class="row" id="table-hover-row">
 				 <div class="col-md-1  col-sm-12"></div>
 					  <div class="col-12 col-md-10">
@@ -27,9 +27,23 @@
 					       ${list }
 					        <div class="card-body">
 					          <p class="card-text text-center" style="font-size:20px;">쿠폰 내역 </p>
-					          <p class="card-text text-center"> 전체 사용중인 쿠폰 내역입니다. </p><br><br>
+					          <p class="card-text text-center"> 전체 발급된 구폰 내역입니다. </p><br><br>
 					    
 							<br><br>
+							<!-- datepicker !  -->
+							<div class="row">
+								<form name="frmPage" method="post" name="frm1"
+									action="<c:url value='/owner/menu2/couponused/couponUsed.do'/>">
+							<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
+							<div class="col-md-6 col-12 ">
+									<%@include file="../../../owner/datePicker/datePicker.jsp"%>
+									<input type="hidden" name="currentPage" value="1">
+							</div>
+							<div class="col-md-2 col-12">
+								<input type="submit" style="background-color: #0d6efd; color: white;" value="조회" id="searchDate">
+						</div><br><br><!-- datepicker row -->
+							</form>
+							</div>
 						
 						<div class="col-md-4 col-12"></div>
 						<div class="text-right">
@@ -97,6 +111,35 @@
 						          </table>
 						          </div>
 						      <!-- 테이블 끝 -->
+						          	<div class="card-body">
+           <nav aria-label="Page navigation example">			
+               <ul class="pagination pagination-primary justify-content-center">
+		 			<c:if test="${pagingInfo.firstPage>1 }">	
+						<li class="page-item">
+			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+        							<span aria-hidden="true">&laquo;</span>
+			                   </a>
+		                   </li>
+					</c:if>
+	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
+						<c:if test="${i==pagingInfo.currentPage }">
+							 <li class="page-item active"><a class="page-link" href="#" >${i}</a></li>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+						    <li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
+						</c:if>
+					</c:forEach>
+				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
+					<li class="page-item">
+		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
+								 <span aria-hidden="true">&raquo;</span>
+		                   </a>
+	                   </li>
+				 </c:if>
+               </ul>
+           </nav>
+        </div> <!-- 페이징 끝  -->
         </div><!-- card content -->
         </div>
         </div>
