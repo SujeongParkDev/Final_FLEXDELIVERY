@@ -38,19 +38,14 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	public int editDeny(long no) {
 		return sqlSession.update(namespace+"editDeny", no);
 	}
-
-	@Override
-	public int editOwner(OwnerVO ownerVo) {
-		return 0;
-	}
-
-	@Override
-	public int editOwnerRegister(OwnerRegisterVO registerVo) {
-		return 0;
-	}
-
-	@Override
-	public int editStores(OwnerStoresVO storesVo) {
-		return 0;
-	}		
+	/*
+	 * @Override public int editOwner(OwnerVO ownerVo) { return
+	 * sqlSession.update(namespace+"editOwner", no); }
+	 * 
+	 * @Override public int editOwnerRegister(OwnerRegisterVO registerVo) { return
+	 * sqlSession.update(namespace+"editOwnerRegister", no); }
+	 * 
+	 * @Override public int editStores(OwnerStoresVO storesVo) { return
+	 * sqlSession.update(namespace+"editStores"); }
+	 */		
 }
