@@ -17,9 +17,6 @@
 								<c:forEach var="vo" items="${list}" >
 	                          	<div class="col-12 col-md-3" >
 	                              <div class="single-blog-thumbnail">
-	                              <!-- 
-	                                 <img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}" style="margin-bottom: 40px;" alt="pcRoom">
-	                               -->
 	                               	<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)=='http' }">
 									      		<img src="${vo.honeytipThumbnail}" class="card-img-top"style="margin-bottom: 40px;"
 												 alt="${vo.honeytipTitle }">

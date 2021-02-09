@@ -94,7 +94,7 @@
 								<!-- CEO comment start !! -->
 								<c:if test="${!empty map['R_COMMENT_CONTENT']}">
 								<div class="CEO-comment" style="background-color:rgba(208, 201, 208, 0.12); color: #333;">
-									<form id="frm2" method="post"
+									<form class="frm2" method="post"
 										action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
 										<input type="hidden" id="reviewNo" name="reviewNo"
 											value="${map['REVIEW_NO'] }"> <input type="hidden"
@@ -121,8 +121,8 @@
 											<div class="button-group button-group-row align-right "><br><br>
 												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
 													style="background-color: #0d6efd; color: white; " value="삭제 ">
-												<input type="submit" class="button small secondary inGroup "
-													id="btEdit" onclick="Edit_form(${map['REVIEW_NO']})"
+												<input type="submit" class="button small secondary inGroup btEdit"
+													onclick="Edit_form(${map['REVIEW_NO']})"
 													style="background-color: r#0d6efd; color: white; " value="수정 ">
 												</div>
 											</div>
@@ -146,7 +146,7 @@
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
 												 <div style="border: radius 2px solid lightgray;" class="text-left">
-											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+											<textarea class="form-control form-control-lg content" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
 												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
@@ -156,7 +156,7 @@
 						</c:forEach>
 					</c:if>
 					</div>
-						<div class="all-div" id="DateDiv">
+						<div class="DateDiv" id="DateDiv">
 					<c:if test="${empty reviewList }">
 						<div class="row">
 							<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
@@ -198,7 +198,7 @@
 								<!-- CEO comment start !! -->
 								<c:if test="${!empty map['R_COMMENT_CONTENT']}">
 								<div class="CEO-comment" style="background-color:rgba(208, 201, 208, 0.12); color: #333;">
-									<form id="frm2" method="post"
+									<form class="frm2" method="post"
 										action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
 										<input type="hidden" id="reviewNo" name="reviewNo"
 											value="${map['REVIEW_NO'] }"> <input type="hidden"
@@ -225,8 +225,8 @@
 											<div class="button-group button-group-row align-right "><br><br>
 												<input type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})"
 													style="background-color: #0d6efd; color: white; " value="삭제 ">
-												<input type="submit" class="button small secondary inGroup "
-													id="btEdit" onclick="Edit_form(${map['REVIEW_NO']})"
+												<input type="button" class="button small secondary inGroup btEdit"
+													 onclick="Edit_form(${map['REVIEW_NO']})"
 													style="background-color: r#0d6efd; color: white; " value="수정 ">
 												</div>
 											</div>
@@ -250,7 +250,7 @@
 												 <input type="hidden" id="storeNo" name="storeNo" value="1">
 												 <label for="content"></label>
 												 <div style="border: radius 2px solid lightgray;" class="text-left">
-											<textarea class="form-control form-control-lg" id="content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+											<textarea class="form-control form-control-lg content" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
 												<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
 												 </div>
 										</form>
@@ -327,13 +327,11 @@ $(function(){
      	$(this).parent().prev().css("display", "none");
      	console.log(this);
 $(function(){
-	if($('#content').val()<1){
+	if($('.content').val()<1){
 		 alert("댓글 내용을 입력해 주세요 ! ");
 		event.preventDefault();
 	}else{
-		
-
-     	var params = $("#frm2").serialize();
+     	var params = $(".frm2").serialize();
      	
      	$.ajax({
 			url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
@@ -386,23 +384,10 @@ event.preventDefault();
 
 
 	
-	// 미답변 차단 라디오 버튼으로 구분 
-
-	$('#radio').click(function(){
-		if($('#ck1').val()==1){
-			
-		}else if($('#ck2').val()==2){
-			$('#llistDiv').hide()
-			$('#llistDiv2').show()
-		}else if($('#ck3').val()==3){
-			
-		}
-		
-	});
-	
 */
 $(function(){
-	$('#DateDiv').hide();
+	$('.DateDiv').hide();
+	//$('.AllDiv').show();
 	$('form[name=frmDate]').submit(function(){
 		if($('#startDay').val().length<1){
 			alert('시작일을 입력하세요');
@@ -413,13 +398,11 @@ $(function(){
 			$('#endDay').focus();
 			event.preventDefault();
 		}
-		$('#AllDiv').hide();
-		$('#DateDiv').show();
 	});
-	$('#AllDiv').hide();
-	$('#DateDiv').show();
-});
-});
+$('.DateDiv').show();
+
+});//
+
 function pageFunc(curPage){
 	$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
 	$('form[name=frmDate]').submit();

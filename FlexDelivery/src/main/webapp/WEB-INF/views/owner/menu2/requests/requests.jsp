@@ -240,7 +240,7 @@ $(function(){
 		$('#choice').on('change',function(){
 			var result=$('select[name=choice]').val();
 			alert(result);
-			if(result == 1){
+			if(result = 1){
 				$('.store').hide();
 				$('.advertise').hide();
 				$('.tempDiv').hide();
