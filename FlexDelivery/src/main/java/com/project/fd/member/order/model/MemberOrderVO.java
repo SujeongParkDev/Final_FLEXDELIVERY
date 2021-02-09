@@ -17,6 +17,37 @@ public class MemberOrderVO {
 	  private int ordersDuration;
 	  private int storeNo;
 	  private int oStatusNo;
+	  private String storeName;//주문내역에서 필요하여 추가
+	  private String storeAddress; //주문내역에서 필요하여 추가
+	  private String storeAddressDetail; //주문내역에서 필요하여 추가
+	  private String storeLogo;//주문내역에서 필요하여 추가
+	  
+	
+	
+	public String getStoreLogo() {
+		return storeLogo;
+	}
+	public void setStoreLogo(String storeLogo) {
+		this.storeLogo = storeLogo;
+	}
+	public String getStoreAddressDetail() {
+		return storeAddressDetail;
+	}
+	public void setStoreAddressDetail(String storeAddressDetail) {
+		this.storeAddressDetail = storeAddressDetail;
+	}
+	public String getStoreAddress() {
+		return storeAddress;
+	}
+	public void setStoreAddress(String storeAddress) {
+		this.storeAddress = storeAddress;
+	}
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
 	public int getOrdersNo() {
 		return ordersNo;
 	}
@@ -107,7 +138,8 @@ public class MemberOrderVO {
 				+ ", memberName=" + memberName + ", ordersPayment=" + ordersPayment + ", ordersPayEndDate="
 				+ ordersPayEndDate + ", ordersAddress=" + ordersAddress + ", ordersDiscount=" + ordersDiscount
 				+ ", ordersMessage=" + ordersMessage + ", ordersHp=" + ordersHp + ", ordersDate=" + ordersDate
-				+ ", ordersDuration=" + ordersDuration + ", storeNo=" + storeNo + ", oStatusNo=" + oStatusNo + "]";
+				+ ", ordersDuration=" + ordersDuration + ", storeNo=" + storeNo + ", oStatusNo=" + oStatusNo
+				+ ", storeName=" + storeName + "]";
 	}
 	  
 	  

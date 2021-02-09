@@ -18,7 +18,7 @@
             </div>
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
                 <div class="bg-danger rounded-circle mt-n0 shadow">
-                    <a href="${pageContext.request.contextPath}/resources/memberResources/checkout.html" class="text-white small font-weight-bold text-decoration-none">
+                    <a href="${pageContext.request.contextPath}/member/cart/cartView.do" class="text-white small font-weight-bold text-decoration-none">
                         <i class="feather-shopping-cart"></i>
                     </a>
                 </div>
@@ -106,7 +106,7 @@
     <nav id="main-nav">
         <ul class="second-nav">
             <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홈</a></li>
-            <li><a href="${pageContext.request.contextPath}/member/mypage/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/order/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
             <li>
                 <c:if test="${empty sessionScope.memberId}">
                 	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인하세요</a>

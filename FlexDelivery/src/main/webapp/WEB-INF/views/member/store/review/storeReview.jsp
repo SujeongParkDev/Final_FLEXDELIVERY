@@ -3,53 +3,6 @@
 <div class="bg-white rounded p-3 mb-3 clearfix graph-star-rating rounded shadow-sm">
     <h6 class="mb-0 mb-1">리뷰와 평점</h6>
     <p class="text-muted mb-4 mt-1 small">실제 주문고객들의 리뷰와 평점입니다</p>
-    <div class="graph-star-rating-body">
-        <div class="rating-list">
-            <div class="rating-list-left font-weight-bold small">5 Star</div>
-            <div class="rating-list-center">
-                <div class="progress">
-                    <div role="progressbar" class="progress-bar bg-info" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%;"></div>
-                </div>
-            </div>
-            <div class="rating-list-right font-weight-bold small">56 %</div>
-        </div>
-        <div class="rating-list">
-            <div class="rating-list-left font-weight-bold small">4 Star</div>
-            <div class="rating-list-center">
-                <div class="progress">
-                    <div role="progressbar" class="progress-bar bg-info" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;"></div>
-                </div>
-            </div>
-            <div class="rating-list-right font-weight-bold small">23 %</div>
-        </div>
-        <div class="rating-list">
-            <div class="rating-list-left font-weight-bold small">3 Star</div>
-            <div class="rating-list-center">
-                <div class="progress">
-                    <div role="progressbar" class="progress-bar bg-info" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width: 11%;"></div>
-                </div>
-            </div>
-            <div class="rating-list-right font-weight-bold small">11 %</div>
-        </div>
-        <div class="rating-list">
-            <div class="rating-list-left font-weight-bold small">2 Star</div>
-            <div class="rating-list-center">
-                <div class="progress">
-                    <div role="progressbar" class="progress-bar bg-info" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100" style="width: 6%;"></div>
-                </div>
-            </div>
-            <div class="rating-list-right font-weight-bold small">6 %</div>
-        </div>
-        <div class="rating-list">
-            <div class="rating-list-left font-weight-bold small">1 Star</div>
-            <div class="rating-list-center">
-                <div class="progress">
-                    <div role="progressbar" class="progress-bar bg-info" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: 4%;"></div>
-                </div>
-            </div>
-            <div class="rating-list-right font-weight-bold small">4 %</div>
-        </div>
-    </div>
 </div>
 <div class="bg-white p-3 mb-3 restaurant-detailed-ratings-and-reviews shadow-sm rounded">
     <h6 class="mb-1">이 가게의 리뷰</h6>

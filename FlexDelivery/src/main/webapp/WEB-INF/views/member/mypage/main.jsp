@@ -46,7 +46,7 @@
                             
                             <a href='<c:url value="/member/order/orderList.do" />' class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
-                                    <h6 class="font-weight-bold m-0 text-dark"><i class="feather-list bg-warning text-white p-2 rounded-circle mr-2"></i>주문현황</h6>
+                                    <h6 class="font-weight-bold m-0 text-dark"><i class="feather-list bg-warning text-white p-2 rounded-circle mr-2"></i>주문내역</h6>
                                 </div>
                                 <div class="right ml-auto">
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>

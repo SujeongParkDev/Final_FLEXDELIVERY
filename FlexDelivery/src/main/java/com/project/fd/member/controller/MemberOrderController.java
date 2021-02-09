@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.cart.model.MemberCartViewVO;
@@ -25,6 +27,7 @@ import com.project.fd.member.gift.model.MemberGiftService;
 import com.project.fd.member.gift.model.MemberGiftVO;
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
+import com.project.fd.member.order.model.MemberOrderAllVO;
 import com.project.fd.member.order.model.MemberOrderService;
 import com.project.fd.member.order.model.MemberOrderVO;
 import com.project.fd.member.stores.model.MemberStoresService;
@@ -67,7 +70,7 @@ public class MemberOrderController {
 		model.addAttribute("storeMinPrice",vo.getStoreMinPrice());
 	}
 	
-	@RequestMapping("/orderSuccess.do")
+	@RequestMapping(value="/orderSuccess.do",method = RequestMethod.POST)
 	public String orderSuccess(@ModelAttribute MemberOrderVO vo,@RequestParam(defaultValue = "0",required = false) int giftSelect
 			,@RequestParam(defaultValue = "0",required = false) int couponSelect,Model model) {
 		logger.info("주문처리, MemberOrderVO={}",vo);
@@ -89,11 +92,37 @@ public class MemberOrderController {
 		String url="/member/order/orderSheet.do";
 		if(cnt>0) {
 			msg="주문성공!";
-			url="/member/index.do";
+			url="/member/order/orderSuccess.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		return "common/message";
+	}
+	
+	@RequestMapping(value="/orderSuccess.do",method = RequestMethod.GET)
+	public void successView() {
+		logger.info("주문완료화면");
+	}
+	
+	@RequestMapping("/orderList.do")
+	public void orderListView(HttpSession session,Model model) {
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberOrderAllVO> okList=orderServ.selectOrderOkList(memberNo);
+		List<MemberOrderAllVO> ingList=orderServ.selectOrderIngList(memberNo);
+		List<MemberOrderAllVO> ccList=orderServ.selectOrderCancelList(memberNo);
+		
+		logger.info("주문내역확인 페이지");
+		model.addAttribute("oklist",okList);
+		model.addAttribute("ingList",ingList);
+		model.addAttribute("ccList",ccList);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/orderDetailAjax.do")
+	public MemberOrderAllVO detailAjax(@RequestParam int ordersNo){
+		logger.info("주문상세보기 모달 ajax, ordersNo={}",ordersNo);
+		MemberOrderAllVO vo=orderServ.selectOrderAllByOrdersNo(ordersNo);
+		return vo;
 	}
 	
 }

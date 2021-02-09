@@ -298,7 +298,7 @@
 		        <div class="bg-white p-3 border-bottom">
 			       <p class="mb-1">TOTAL <span class="float-right text-dark" id="cartTotalPrice">${buyPrice} 원</span></p>
 			       <p class="mb-1">할인 <span class="float-right text-dark" id="discountPrice">0 원</span></p>
-			       <input type="text" name="ordersDiscount" id="ordersDiscount" value="0">
+			       <input type="hidden" name="ordersDiscount" id="ordersDiscount" value="0">
 			       <p class="mb-1">배달팁<span class="text-info ml-1"><i class="feather-info"></i></span><span class="float-right text-dark">${delivery} 원</span></p>
 			       <hr>
 			       <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right" id="orderPrice">${totalPrice}원</span></h6>
