@@ -53,7 +53,7 @@ input {
 									<c:forEach var="tempVo" items="${selectTemp }">
 										<tr class="text-center">
 											<td>점포 정보 변경 신청</td>
-											<td>${fn:substring(tempVo['STOREAD_REGDATE'], 0,10) }</td>
+											<td>${fn:substring(tempVo['T_REGDATE'], 0,10) }</td>
 											<td class="text-bold-500">
 											<c:if test="${tempVo['A_AGREE_NO'] == 1 }">
 													<span class="badge bg-light">승인대기</span>
@@ -66,7 +66,20 @@ input {
 												</c:if> 
 												<c:if test="${tempVo['A_AGREE_NO']  == 4 }">
 													<span class="badge bg-danger">승인반려</span>
-												</c:if></td>
+												</c:if>
+												<c:if test="${tempVo['A_AGREE_NO']  == 5 }">
+													<span class="badge bg-danger">변경대기</span>
+												</c:if>
+												<c:if test="${tempVo['A_AGREE_NO']  == 6 }">
+													<span class="badge bg-success">변경완료</span>
+												</c:if>
+												<c:if test="${tempVo['A_AGREE_NO']  == 7 }">
+													<span class="badge bg-danger">변경반려</span>
+												</c:if>
+												<c:if test="${tempVo['A_AGREE_NO']  == 8 }">
+													<span class="badge bg-danger">변경반려</span>
+												</c:if>
+												</td>
 											<td class="p-0">
 												<button class="buttons badge bg-dark" onclick="gotempVo(${tempVo['T_NO']})">상세 보기</button></td>
 											<td></td>

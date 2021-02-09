@@ -10,4 +10,8 @@ public interface MemberOrderService {
 	public static final int GIFT_USE=2;
 	
 	int insertOrder(MemberOrderVO vo,List<MemberCartViewVO> list,int type,int dcNo);
+	List<MemberOrderAllVO> selectOrderOkList(int memberNo);
+	List<MemberOrderAllVO> selectOrderIngList(int memberNo);
+	List<MemberOrderAllVO> selectOrderCancelList(int memberNo);
+	MemberOrderAllVO selectOrderAllByOrdersNo(int ordersNo);
 }

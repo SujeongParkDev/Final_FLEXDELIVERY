@@ -47,6 +47,26 @@ public class MemberOrderServiceImpl implements MemberOrderService{
 		
 		cnt=cartDao.deleteByMemberNo(vo.getMemberNo());
 		return cnt;
+	}
+
+	@Override
+	public List<MemberOrderAllVO> selectOrderOkList(int memberNo) {
+		return orderDao.selectOrderOkList(memberNo);
+	}
+
+	@Override
+	public List<MemberOrderAllVO> selectOrderIngList(int memberNo) {
+		return orderDao.selectOrderIngList(memberNo);
+	}
+
+	@Override
+	public List<MemberOrderAllVO> selectOrderCancelList(int memberNo) {
+		return orderDao.selectOrderCancelList(memberNo);
+	}
+
+	@Override
+	public MemberOrderAllVO selectOrderAllByOrdersNo(int ordersNo) {
+		return orderDao.selectOrderAllByOrdersNo(ordersNo);
 	} 
 	
 	

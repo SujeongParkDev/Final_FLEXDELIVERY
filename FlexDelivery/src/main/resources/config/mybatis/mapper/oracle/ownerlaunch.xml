@@ -31,6 +31,19 @@ from ownerRegister o full outer join stores s
 on  o.OWNER_NO=s.OWNER_NO
  full join STOREAD a
 on a.store_no=s.STORE_NO;
+
+create or replace view LSJAgreeListView2
+as
+select s.STORE_NO,s.A_AGREE_NO as SAGREENO,s.STORE_REGDATE,
+o.O_REGISTER_NO,o.A_AGREE_NO as RAGREENO, o.owner_no, o.OWNERREGISTER_REGDATE,
+a.STOREAD_NO, a.ad_pay_flag, a.STOREAD_REGDATE, t.T_REGDATE, t.A_AGREE_NO as TAGREENO,t.T_NO
+from ownerRegister o full outer join stores s
+on  o.OWNER_NO=s.OWNER_NO
+ full join STOREAD a
+on a.store_no=s.STORE_NO
+full join temporary t
+on s.STORE_NO=t.STORE_NO;
+
 	 -->
 		<select id="selectLSJAgreeListView" parameterType="int"
 		resultType="map">

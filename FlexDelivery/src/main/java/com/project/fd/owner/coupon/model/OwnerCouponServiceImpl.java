@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
 
@@ -31,6 +33,34 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 	public int registerCoupon(OwnerCouponVO vo) {
 		return couponDao.registerCoupon(vo);
 	}
+
+	@Override
+	@Transactional
+	public int deleteCoupon(List<OwnerCouponVO> cpList) {
+		
+			int cnt=0;
+			try {
+				for(OwnerCouponVO vo : cpList) {
+					int scBoxNo=vo.getScBoxNo();
+					if(scBoxNo!=0) {  //체크된 것만 삭제
+						cnt=couponDao.deleteCoupon(scBoxNo);
+					}
+				}
+			}catch(RuntimeException e) {
+				e.printStackTrace();
+				cnt=-1;
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			}
+			
+			return cnt;
+	}
+
+	@Override
+	public List<Map<String, Object>> useCoupons(int storeNo) {
+		return couponDao.useCoupons(storeNo);
+	}
+
 	
+
 	
 }

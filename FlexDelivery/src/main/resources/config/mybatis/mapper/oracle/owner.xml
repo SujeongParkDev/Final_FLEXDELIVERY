@@ -27,10 +27,17 @@
 	</select>
 	
 	
-	<update id="withdrawOwner" parameterType="string">
+	<update id="withdrawOwner" parameterType="int">
 		update owner
 		set owner_outdate=sysdate 
-		where owner_id=#{ownerId}
+		where owner_no=#{ownerNo}
+	</update>
+	
+	
+	<update id="withdrawStore" parameterType="int">
+		update stores
+		set a_agree_no=8
+		where store_no=#{storeNo}
 	</update>
 	
 <!-- 	

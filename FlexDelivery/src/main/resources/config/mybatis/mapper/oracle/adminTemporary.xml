@@ -41,6 +41,7 @@
 	</update>
 	
 	<update id="editStores" parameterType="ownerStoresVo">
+		update 
 	</update> -->
 	
 	

@@ -163,6 +163,36 @@ public class MemberController {
 		model.addAttribute("vo",vo);
 		
 		return "member/register/memberEdit";
+	}
+	
+	@RequestMapping(value = "/register/memberEdit.do", method = RequestMethod.POST)
+	public String memberEdit_post(@ModelAttribute MemberVO vo, HttpSession session,
+			ModelMap model, @RequestParam String locationName) {
+		String memberId= (String) session.getAttribute("memberId");
+		
+		String msg="회원수정 실패!", url="/member/register/memberEdit.do";
+		if (locationName==null) {
+			int cnt = memberService.updateMember(vo);
+			logger.info("회원수정 결과, cnt={}", cnt);
+			
+			if(cnt>0) {
+				msg="회원정보 수정되었습니다.";
+			}
+		}else {
+			int lono=memberService.memloNo(locationName);
+			vo.setLocationNo(lono);
+			int cnt =memberService.updateMember(vo);
+			logger.info("회원수정 결과, cnt={}", cnt);
+			if(cnt>0) {
+				msg="회원정보 수정되었습니다.";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//4
+		return "common/message";
 		
 	}
 	

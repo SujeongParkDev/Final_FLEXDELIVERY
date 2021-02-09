@@ -3,7 +3,7 @@ package com.project.fd.owner.coupon.model;
 public class OwnerCouponVO {
 	private int scBoxNo; /* 점포쿠폰번호 */
 	private int storeNo;/* 점포번호 */
-	private String scCervice; /* 제공여부 => 사용중, 만료  4글자 안됨 ??  */
+	private String scCervice; /* 제공여부 => Y,N  */
 	private String scStartDate; /* 발급시작일 */
 	private String scEndDate;/* 발급만료일 */
 	

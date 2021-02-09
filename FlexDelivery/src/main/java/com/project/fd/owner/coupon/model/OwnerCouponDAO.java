@@ -9,7 +9,13 @@ public interface OwnerCouponDAO {
 	public List<Map<String, Object>> Allcoupons(OwnerCouponSearchVO searchVo);
 	public int getTotalRecord(OwnerCouponSearchVO searchVo);
 	
+	List<Map<String, Object>> useCoupons(int storeNo);
+	
 	// all regular coupon
 	public List<AdminRegularCouponVO> Allselect();
 	public int registerCoupon(OwnerCouponVO vo);
+	
+	public int deleteCoupon(int scBoxNo);
+	
+	
 }

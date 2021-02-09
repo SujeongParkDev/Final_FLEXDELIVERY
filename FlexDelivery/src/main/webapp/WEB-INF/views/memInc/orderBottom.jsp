@@ -252,7 +252,7 @@
     <nav id="main-nav">
         <ul class="second-nav">
             <li><a href="${pageContext.request.contextPath}/member/index.do"><i class="feather-home mr-2"></i>홈</a></li>
-            <li><a href="${pageContext.request.contextPath}/member/mypage/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/order/orderList.do"><i class="feather-list mr-2"></i>주문내역</a></li>
             <li>
                 <c:if test="${empty sessionScope.memberId}">
                 	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인하세요</a>

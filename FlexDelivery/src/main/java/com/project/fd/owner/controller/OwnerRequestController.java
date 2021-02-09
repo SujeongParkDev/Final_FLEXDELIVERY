@@ -38,7 +38,7 @@ public class OwnerRequestController {
 	@RequestMapping("/requests.do")
 	public String ownerrequests(
 			HttpSession session,Model model) {
-		int ownerNo=5;
+		int ownerNo=10;
 		//int ownerNo=(Integer)session.getAttribute("ownerNo");
 		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
 		
