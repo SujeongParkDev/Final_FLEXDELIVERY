@@ -240,19 +240,7 @@
 ♡(건강한 담백함과 숙성도우의 쫄깃함)
 ♡자연산 최고급 치즈를 사용합니다.
 
-하나 ☆ 박리다매♡
-피자는 절대 허접하지 않습니다.
-드셔보시고 판단 해주세요.
-이 불경기에 비싼 피자 부담스럽습니다.
-어려움을 고객님과 함께 하겠습니다.
-
-둘 ☆ 재료선정과 맛♡
-피자알파만의 색깔로 아낌없는 재료와 푸짐한 가성비 그리고 어디서도 맛볼 수 없는 맛
-저렴한 가격에도 최상의 맛과 퀄리티로 고객님들에게 만족시켜드릴 수 있도록 노력하겠습니다.
-아무리 금액이 저렴해도 맛이 없다면 고객님들의 선택을 받을 수 없습니다.
-
-셋 ☆ 초심♡
-처음 가게 오픈해서 처음 주문 받았던 그 감사한 마음을 "절대"잊지 않고 항상 고객님들의 말씀을 새겨듣는 매장으로 거듭나겠습니다.</textarea>
+</textarea>
 											<span class="text-count">118</span>
 										</div>
 									</div>
@@ -267,29 +255,7 @@
 					</div>
 				</form>
 
-				<form class="form-card">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
-								<h3>
-									찾아가는 길 안내 <small class="hint cursor-pointer "><i
-										class="icon icon-help"></i></small>
-								</h3>
-								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
-										<i class="fas fa-pencil-alt"></i> 변경
-									</button>
-								</div>
-							</div>
-							<div class="form-group no-divider" style="min-height: auto;">
-								<div class="inline-values flex-1 ">
-									<span class="text-disabled">주문 고객이 우리 가게를 쉽게 찾을 수 있습니다.
-										지금 사용해보세요.</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
