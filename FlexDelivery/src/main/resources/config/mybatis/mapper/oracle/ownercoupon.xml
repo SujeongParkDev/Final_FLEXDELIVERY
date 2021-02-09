@@ -46,7 +46,9 @@
 		select r.R_COUPON_DC,r.R_COUPON_MIN, c.*
         from REGULARCOUPON r  join STORECOUPONBOX c
          on r.R_COUPON_NO=c.R_COUPON_NO
-         where s_c_service='Y' and store_no=#{storeNo}
+         <![CDATA[
+         where s_c_service='Y' and store_no=#{storeNo} and s_c_end_date >= sysdate
+         	]]>
          order by S_C_BOX_NO desc
 	</select>
 	
@@ -73,6 +75,16 @@
 	<select id="dupCouponNo" parameterType="int" resultType="ownerCouponVo">
 		select R_COUPON_NO from STORECOUPONBOX
           where store_no=#{storeNo}
+	</select>
+	
+	<select id="expireAll" parameterType="int" resultType="map">
+		select r.R_COUPON_DC,r.R_COUPON_MIN, c.*
+        from REGULARCOUPON r  join STORECOUPONBOX c
+         on r.R_COUPON_NO=c.R_COUPON_NO
+          <![CDATA[
+		where s_c_end_date < sysdate and store_no=#{storeNo}
+			]]>
+		order by S_C_BOX_NO desc
 	</select>
 	
 </mapper>

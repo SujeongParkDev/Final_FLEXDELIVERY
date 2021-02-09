@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
 import com.project.fd.common.PaginationInfo;
@@ -26,6 +27,7 @@ import com.project.fd.owner.coupon.model.OwnerCouponSearchVO;
 import com.project.fd.owner.coupon.model.OwnerCouponService;
 import com.project.fd.owner.coupon.model.OwnerCouponVO;
 import com.project.fd.owner.request.model.OwnerRequestService;
+import com.project.fd.owner.reviewcomment.model.OwnerReviewCommentVO;
 
 @Controller
 @RequestMapping("/owner/menu2/couponused")
@@ -53,13 +55,32 @@ public class OwnerCouponController {
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> list = couponService.useCoupons(storeNo);
-		logger.info("list={}, list.size={}",list,list.size());
+		logger.info(" list.size={}",list.size());
 		
 		model.addAttribute("list", list);
 		
 		return "owner/menu2/couponused/couponUsed";
 	}
 	
+	//ajax로 처음 리스트 뿌려주기 도전 ! 
+	/*
+	 * 
+		@ResponseBody
+		@RequestMapping(value="/couponExpire.do", method=RequestMethod.GET)
+		public List<Map<String, Object>> couponExpire_get(HttpSession session,
+				Model model) {
+			int storeNo= (Integer)session.getAttribute("storeNo");
+			logger.info("만료된 쿠폰 전체 보여주기 storeNo={}",storeNo);
+			
+			List<Map<String, Object>> exList=couponService.expireAll(storeNo);
+			logger.info(" 조회 결과 exList.size={}", exList.size());
+			
+			model.addAttribute("exList", exList);
+			
+			return exList;
+		}
+	
+	 */
 	@RequestMapping("/couponExpire.do")
 	public String ownercouponused(@ModelAttribute OwnerCouponSearchVO searchVo ,
 			HttpSession session,Model model) {
@@ -95,6 +116,11 @@ public class OwnerCouponController {
 		List<Map<String, Object>> list = couponService.Allcoupons(searchVo);
 		logger.info(" list.size={}",list.size());
 		
+		//만료된 쿠폰 전체 조회 날x 
+		List<Map<String, Object>> exList=couponService.expireAll(storeNo);
+		logger.info(" 조회 결과 exList.size={}", exList.size());
+		
+		model.addAttribute("exList", exList);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("searchVo", searchVo);
@@ -181,6 +207,8 @@ public class OwnerCouponController {
 		
 		return "common/message";
 	}
+	
+	
 	
 	/*
 	 * 

@@ -44,6 +44,11 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 	public List<Map<String, Object>> useCoupons(int storeNo) {
 		return sqlSession.selectList(namespace+"YesCoupon",storeNo);
 	}
+
+	@Override
+	public List<Map<String, Object>> expireAll(int storeNo) {
+		return sqlSession.selectList(namespace+"expireAll",storeNo);
+	}
 	
 	
 }

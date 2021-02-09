@@ -8,6 +8,7 @@ import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
 public interface OwnerCouponDAO {
 	public List<Map<String, Object>> Allcoupons(OwnerCouponSearchVO searchVo);
 	public int getTotalRecord(OwnerCouponSearchVO searchVo);
+	public  List<Map<String, Object>> expireAll(int storeNo);
 	
 	List<Map<String, Object>> useCoupons(int storeNo);
 	

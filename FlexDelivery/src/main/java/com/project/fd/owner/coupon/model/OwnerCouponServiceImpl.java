@@ -60,6 +60,11 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 		return couponDao.useCoupons(storeNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> expireAll(int storeNo) {
+		return couponDao.expireAll(storeNo);
+	}
+
 	
 
 	
