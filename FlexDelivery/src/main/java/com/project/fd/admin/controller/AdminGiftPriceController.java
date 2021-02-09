@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.gift.model.AdminGiftPriceTypeService;
 import com.project.fd.admin.gift.model.AdminGiftPriceTypeVO;
@@ -35,6 +37,20 @@ public class AdminGiftPriceController {
 		
 		model.addAttribute("list", list);
 		return "admin/menu6/giftPrice";
+	}
+	
+	@RequestMapping("/gPrice/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam int price) {
+		logger.info("이름 중복확인, price={}", price);
+		
+		boolean isExist=false;
+		if(price>=0) {
+			isExist=giftPriceTypeService.checkDu(price);
+			logger.debug("금액 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
 	}
 	
 	@RequestMapping(value="/giftPrice.do", method = RequestMethod.POST)

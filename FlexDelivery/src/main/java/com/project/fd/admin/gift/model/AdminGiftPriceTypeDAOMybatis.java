@@ -37,4 +37,16 @@ public class AdminGiftPriceTypeDAOMybatis implements AdminGiftPriceTypeDAO{
 		int cnt=sqlSession.update(namespace+"updateGiftPriceType", giftPriceTypeVo);
 		return cnt;
 	}
+
+	@Override
+	public boolean checkDu(int price) {
+		boolean bool;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", price);
+		if (cnt==0) {
+			bool=true;
+		} else {
+			bool=false;
+		}
+		return bool;
+	}
 }

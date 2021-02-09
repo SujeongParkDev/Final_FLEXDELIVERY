@@ -189,9 +189,9 @@
 				  	         
 				  	      });
 				  	      
-				  	         targetText.add('show');
-				  	         target.classList.add('AaccordionTitleActive');
-				  	         targetAccIcon.classList.add('anime');
+			  	         targetText.add('show');
+			  	         target.classList.add('AaccordionTitleActive');
+			  	         targetAccIcon.classList.add('anime');
 				  	   }  
 					    console.log(targetText);
 					    console.log(target);

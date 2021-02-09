@@ -5,38 +5,21 @@
 <!-- script start -->
 <script>
 $(function(){
-
-   /* $('#lcategoryWrite').click(function(){
-      window.open("<c:url value='/admin/menu6/largecategory/write.do' />", "음식 대분류 등록", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
-      opener.location.reload();
-      self.close();
-   }); */
+	$('#message2').hide();
+	$('#messageOk').hide();
+	$('#emessage').hide();
    
-   
-   /* $('#lcategoryEdit').click(function(){
-      window.open("<c:url value='/admin/menu6/largecategory/edit.do' />", "음식 대분류 수정", "width=460, height=500, scrollbars=0, toolbar=0, menubar=no");
-      
-   }); */
+	$('#largeWrite').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#preview').html("<img src='${pageContext.request.contextPath}/resources/imgs/CommonImages/noImageDefault.png'>");
+	  $('#message2').hide();
+	  $('#message').html("대분류 카테고리 이름을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
 
-   
-   /* 등록이든 닫기든 모달 닫힐 때 무조건 닫힘 */
-   /* $('#backdrop').on('hidden.bs.modal', function () {
-       alert("제발");
-       window.parent.location.reload();
-   }); */
-   
-   /* $('#modalWrite').click(function () {
-       //location.href='<c:url value="/admin/menu6/largecategory/write.do"/>'; 
-       $('form[name=frmLCategoryWrite]').submit();
-       alert("등록 성공");
-       window.parent.location.reload();
-   }); */
+	});
 
-
-   /* $('#modalDel').click(function () {
-       alert("삭제하였습니다.");
-       window.parent.location.reload();
-   }); */
    
    $('#upfile').on('change', function(){
        readInputFile(this);
@@ -59,39 +42,17 @@ $(function(){
       
    }); */
    
-   $('#lCategoryName').keyup(function(){
-	  var name=$('#lCategoryName').val();
-	  
-	  if(chkDu(name) && name.length>0){
-		  $.ajax({
-			  type:"get",
-			  url:"<c:url value='/admin/menu6/ajaxCheck.do' />",
-			  data:"lCategoryName="+name,
-			  dataType:"json",
-			  success: function (bool) {
-				  if(bool){
-					  result = "사용 가능한 카테고리 이름입니다.";
-				  }else{
-					  result = "이미 등록된 카테고리 이름입니다.";
-					  
-				  }
-				  $('#message').text(result);
-			}
+   $('#lCategoryName').on('keyup', function(){
 
-		  });
-	  }else if (name.length<1){
-		  $('#message').text("대분류 카테고리 이름을 입력해주세요.");
-	  	
-   	  }else if(!chkDu(name)){
-		  $('#message').text("한글만 사용 가능합니다.");
-		  //return false;
-		
-	  }
+	   writeFunc();
+		  
 	  
-	  event.preventDefault();
-	  
-	  
-   });
+   });//write keyup function
+   
+   $('#EditlCategoryName').on('keyup', function(){
+	   $('#messageOk2').show();
+		 editFunc();  
+   });//keyup function 
    
    
 });
@@ -135,6 +96,123 @@ function chkDu(content){
 	return pattern.test(content);
 }
 
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').val();
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmLCategoryWrite]').submit();
+	}else {
+		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	}
+}
+
+function readyEditSubmit(){
+	editFunc();
+	var ok=$('#messageOk2').val();
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmLCategoryEdit]').submit();
+	}else {
+		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	}
+}
+
+function writeFunc(){
+	
+	  var name=$('#lCategoryName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/lCategory/ajaxCheck.do' />",
+			  data:"lCategoryName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 카테고리 이름입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+				  }else{
+					  result = "이미 등록된 카테고리 이름입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("대분류 카테고리 이름을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+   	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("한글만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+ 
+ function editFunc(){
+	  var name=$('#EditlCategoryName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/lCategory/ajaxCheck.do' />",
+			  data:"name="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 카테고리 이름입니다.";
+					  $('#emessage').hide();
+					  $('#emessage2').html(result);
+					  $('#emessage2').show();
+					  $('#messageOk2').html("Y");
+
+				  }else{
+					  result = "이미 등록된 카테고리 이름입니다.";
+					  $('#emessage2').hide();
+					  $('#emessage').html(result);
+					  $('#emessage').show();
+					  $('#messageOk2').html("N");
+
+				  }
+					
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#emessage2').hide();
+		  $('#emessage').html("대분류 카테고리 이름을 입력해주세요.");
+		  $('#emessage').show();
+		  $('#messageOk2').html("N");
+
+	  	
+   	  }else if(!chkDu(name)){
+		  $('#emessage2').hide();
+		  $('#emessage').html("한글만 사용 가능합니다.");
+		  $('#emessage').show();
+		  $('#messageOk2').html("N");
+		
+	  }
+}//editFunc
 
 </script>
 <!-- script end -->
@@ -171,8 +249,8 @@ function chkDu(content){
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
                <!-- 등록폼+등록모달 --><form name="frmLCategoryWrite" method="post" action="<c:url value='/admin/menu6/largeCategory.do' />" enctype="multipart/form-data">
-                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="largeWrite">음식메뉴 - 대분류 카테고리 등록</h4>
+                                 <div class="modal-header" style="background-color: black;">
+                                    <h4 class="modal-title" style="color: white;" id="largeWrite">음식메뉴 - 대분류 카테고리 등록</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                        <i data-feather="x"></i>
                                     </button>
@@ -187,22 +265,25 @@ function chkDu(content){
                                                 <tbody>
                                                    <tr>
                                                       <td colspan="3"  style="text-align: center;">
-                                                         <div id="preview"><img src="#" id="previewImg"/></div>
+                                                         <div id="preview"><img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/noImageDefault.png" id="previewImg"/></div>
                                                       </td>
                                                    </tr>
                                                    <tr>
                                                       <td colspan="3"  style="text-align: center;">
                                                          <div>
-                                                            <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
+                                                            <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" 
+                                                            	style=" width: 100%;" accept=".gif, .jpg, .png" />             
                                                          </div>
                                                       </td>
                                                    </tr>
                                                    <tr>
                                                       <td colspan="1"><span>대분류 이름</span></td>
                                                       <td colspan="2">
-                                                         <input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요">
-                                                         <br><span id="message"></span>
-                                                        <!--  <form:errors path="lCategoryName" /> -->
+                                                         <input type="text" name="lCategoryName" id="lCategoryName" placeholder="이름을 입력하세요"
+                                                          	style="margin-bottom: 12px;">
+                                                         <br><span id="message" style="color: #dc3545;font-weight: bold;">대분류 카테고리 이름을 입력해주세요.</span>
+                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+                                                         <span id="messageOk"></span>
                                                       </td>
                                                    </tr>
                                                 </tbody>
@@ -212,11 +293,11 @@ function chkDu(content){
                                     </div>        
                                  </div>
                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal" id="modalCancelEvent">
                                        <i class="bx bx-x d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">닫기</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
                                        <i class="bx bx-check d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">등록</span>
                                     </button>
@@ -252,7 +333,7 @@ function chkDu(content){
                                        <p class="card-text white">${vo.lCategoryNo }</p>
                                        <h4 class="card-title white">${vo.lCategoryName }</h4>
                                        <p class="card-text white">하위 메뉴 : ${vo.lCCount } 개</p>
-                                       <button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.lCategoryNo}"
+                                       <button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.lCategoryNo}"
                                        	  data-toggle="modal" data-backdrop="false" data-target="#largeEdit${vo.lCategoryNo}">수정</button>
                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
                                           data-target="#largeDelete${vo.lCategoryNo}" id="modalDeleteBt${vo.lCategoryNo}">삭제</button>
@@ -264,7 +345,7 @@ function chkDu(content){
                                              <div class="modal-content">
                                                 <form name="frmLCategoryDel" id="frmLCategoryDel" method="post" action="<c:url value='/admin/menu6/largeCategory/delete.do' />">
                                                    <div class="modal-header bg-danger">
-                                                      <h5 class="modal-title white" id="myModalLabel140">대분류 삭제</h5>
+                                                      <h5 class="modal-title white" id="myModalLabel140">음식메뉴 - 대분류 카테고리 삭제</h5>
                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                           <i data-feather="x"></i>
                                                       </button>
@@ -297,8 +378,8 @@ function chkDu(content){
                                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                              <div class="modal-content">
                                     <!-- 수정 모달  --><form name="frmLCategoryEdit" method="post" action="<c:url value='/admin/menu6/largeCategory/edit.do' />" enctype="multipart/form-data">
-                                                   <div class="modal-header">
-                                                      <h4 class="modal-title" id="myModalLargeEdit">음식메뉴 - 대분류 카테고리 수정</h4>
+                                                   <div class="modal-header" style="background-color: black;">
+                                                      <h4 class="modal-title" id="myModalLargeEdit" style="color: white;">음식메뉴 - 대분류 카테고리 수정</h4>
                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                          <i data-feather="x"></i>
                                                       </button>
@@ -319,7 +400,8 @@ function chkDu(content){
                                                                      <tr>
                                                                         <td colspan="3"  style="text-align: center;">
                                                                            <div>
-                                                                              <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" value="${vo.lCategoryFilename }" />
+                                                                              <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" 
+                                                                              	style=" width: 100%;" accept=".gif, .jpg, .png" value="${vo.lCategoryFilename }" />
                                                                               <br><span>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</span>             
                                                                            </div>
                                                                         </td>
@@ -327,7 +409,11 @@ function chkDu(content){
                                                                      <tr>
                                                                         <td colspan="1"><span>대분류 이름</span></td>
                                                                         <td colspan="2">
-                                                                           <input type="text" name="lCategoryName" id="EditlCategoryName" placeholder="이름을 입력하세요" value="${vo.lCategoryName }">
+                                                                           <input type="text" name="lCategoryName" id="EditlCategoryName" placeholder="이름을 입력하세요" 
+                                                                           		style="margin-bottom: 12px;" value="${vo.lCategoryName }">
+					                                                         <br><span id="emessage" style="color: #dc3545;font-weight: bold;"></span>
+					                                                         <span id="emessage2" style="color: #6610f2;font-weight: bold;">사용 가능한 이름입니다</span>
+					                                                         <span id="messageOk2">Y</span>
                                                                            <input type="hidden" name="lCategoryNo" id="EditlCategoryNo" value="${vo.lCategoryNo }">
                                                                            <input type="hidden" name="oldFileName" id="EditoldFileName" value="${vo.lCategoryFilename }">
                                                                         </td>

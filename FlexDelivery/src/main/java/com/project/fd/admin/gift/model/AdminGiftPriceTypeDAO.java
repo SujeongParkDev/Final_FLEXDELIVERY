@@ -12,4 +12,6 @@ public interface AdminGiftPriceTypeDAO {
 
 	int updateGiftPriceType(AdminGiftPriceTypeVO giftPriceTypeVo);
 
+	boolean checkDu(int price);
+
 }

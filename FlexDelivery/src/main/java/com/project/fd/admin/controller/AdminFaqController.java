@@ -159,7 +159,7 @@ public class AdminFaqController {
 	}
 	
 	
-	@RequestMapping(value="/faq/delete.do", method=RequestMethod.POST)
+	@RequestMapping(value="/faq/deleteFaq.do", method=RequestMethod.POST)
 	public String delete_post(@RequestParam int no, HttpServletRequest request, Model model) {
 		logger.info("delete_post FAQ 삭제처리, 파라미터 no={}", no);
 		

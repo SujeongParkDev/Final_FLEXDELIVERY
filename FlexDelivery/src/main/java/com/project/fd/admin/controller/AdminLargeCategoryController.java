@@ -35,7 +35,7 @@ public class AdminLargeCategoryController {
 	@Autowired
 	private FileUploadUtil fileUtil;
 	
-	@RequestMapping("/ajaxCheck.do")
+	@RequestMapping("/lCategory/ajaxCheck.do")
 	@ResponseBody
 	public boolean ajax_check(@RequestParam String lCategoryName) {
 		logger.info("이름 중복확인, lCategoryName={}", lCategoryName);
