@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.fd.member.faq.model.MemberFaqService;
 import com.project.fd.member.faq.model.MemberFaqVo;
 
-/*
+
 @Controller
 @RequestMapping("/member/faq")
 public class MemberFaqController {
@@ -52,5 +52,5 @@ public class MemberFaqController {
 	
 
 }
-*/
+
 
