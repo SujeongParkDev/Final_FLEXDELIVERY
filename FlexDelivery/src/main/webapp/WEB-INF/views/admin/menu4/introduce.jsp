@@ -5,10 +5,10 @@
 
 <script>
 $(function(){
-	
+	//window.scrollTo({top:1300, behavior:'smooth'});
+
 	$('img[usemap]').rwdImageMaps();
 	$("#imgFdMember").width("100%");
-
 
 	$('#crystal').hide();	
 	$('#jian').hide();	
@@ -20,6 +20,8 @@ $(function(){
 });
 
 function openMember(number){
+
+	
 	$('#crystal').hide();
 	$('#jian').hide();
 	$('#hy').hide();
@@ -28,6 +30,8 @@ function openMember(number){
 	$('#hj').hide();
 	$('#jm').hide();
 	
+
+	window.scrollTo({top:1300, behavior:'smooth'});
 	
 	if (number=='1'){
 		$('#crystal').show();
@@ -116,7 +120,7 @@ function openMember(number){
                   <!-- Blog Content -->
                   <div class="single-blog-content">
                       <div class="line"></div>
-                      <a class="post-tag">About us</a>
+                      <a class="post-tag" id="aboutus">About us</a>
                       <h4><a class="post-headline mb-0">플렉스 딜리버리</a></h4>
                      <!--  <div class="post-meta mb-50">
                           <p>By <a href="#">james smith</a></p>
@@ -203,7 +207,7 @@ function openMember(number){
         </div>
 
 		
-        <div class="container">
+        <div class="container" id="test">
            <div class="row">
 	          <!-- ##### Post Content Area ##### -->
 	          <div class="col-12">

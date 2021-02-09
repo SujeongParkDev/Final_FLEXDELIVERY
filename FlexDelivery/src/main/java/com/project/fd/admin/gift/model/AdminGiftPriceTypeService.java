@@ -10,6 +10,8 @@ public interface AdminGiftPriceTypeService {
 	int updateGiftPriceType(AdminGiftPriceTypeVO giftPriceTypeVo);
 	
 	int deleteGiftPriceType(AdminGiftPriceTypeVO giftPriceTypeVo);
+
+	boolean checkDu(int price);
 	
 	
 }

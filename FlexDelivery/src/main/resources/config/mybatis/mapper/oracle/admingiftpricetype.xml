@@ -9,6 +9,10 @@
 		order by G_P_TYPE_NO desc
 	</select>
 	
+	<select id="checkDu" parameterType="int" resultType="adminGiftPriceTypeVo">
+		select count(G_P_TYPE_PRICE) from GIFTPRICETYPE where G_P_TYPE_PRICE like #{gPTypePrice}
+	</select>
+	
 	<insert id="insertGiftPriceType" parameterType="adminGiftPriceTypeVo" >
 		<selectKey keyProperty="gPTypeNo" resultType="int" order="BEFORE">
 			select giftPriceType_seq.nextval from dual

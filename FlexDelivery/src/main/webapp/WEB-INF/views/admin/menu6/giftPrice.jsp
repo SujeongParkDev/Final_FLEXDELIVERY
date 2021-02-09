@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../adminInc/top.jsp" %>    
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- css start -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
@@ -9,6 +10,95 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- css end -->
+
+<script>
+$(function(){
+	
+	$('#message2').hide();
+	$('#messageOk').hide();
+	$('#emessage').hide();
+   
+	$('#giftPriceWrite').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#message2').hide();
+	  $('#message').html("금액을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+	
+	$('#gPTypePrice').on('keyup', function(){
+
+		   writeFunc();
+			  
+	   });//write keyup function
+});
+
+function chkDu(content){
+	var pattern=new RegExp(/^[0-9]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').val();
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmGiftPriceWrite]').submit();
+	}else {
+		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	}
+}
+
+function writeFunc(){
+	
+	  var price=$('#gPTypePrice').val();
+	  
+	  if(chkDu(price) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/gPrice/ajaxCheck.do' />",
+			  data:"price="+price,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 금액입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+				  }else{
+					  result = "이미 등록된 금액입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("금액을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("숫자만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+</script>
 
 <div class="container">
 	<div class="row">
@@ -31,8 +121,8 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
 								<form name="frmGiftPriceWrite" method="post" action="<c:url value='/admin/menu6/giftPrice/write.do' />">
-                                	<div class="modal-header">
-	                                    <h4 class="modal-title" id="gpWrite">선물하기 - 금액 등록</h4>
+                                	<div class="modal-header" style="background-color: black;">
+	                                    <h4 class="modal-title" id="gpWrite" style="color: white;">선물하기 - 금액 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -42,18 +132,16 @@
 	                                       <div class="col-12">   
 	                                          <div class="table-responsive" style="text-align: center;">
 	                                             <table class="table mb-0">
-													<!-- <thead>
-														<tr>
-															<th>번호</th>
-															<th colspan="3">금액</th>
-														</tr>
-													</thead> -->
+													
 	                                                <tbody>
                                                    	  <tr>
-                                                   	  	  <input type="hidden" name="gPTypeNo" value="123" readonly>
 	                                                   	  <td>선물 금액</td>
 	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	  <input type="text" name="gPTypePrice">
+	                                                   	  	  <input type="hidden" name="gPTypeNo" value="123" readonly>
+	                                                      	  <input type="text" name="gPTypePrice" id="gPTypePrice">
+	                                                      	  <br><span id="message" style="color: #dc3545;font-weight: bold;">금액을 입력해주세요.</span>
+	                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+	                                                         <span id="messageOk"></span>
 	                                                      </td>
 	                                                   </tr>
 	                                                </tbody>
@@ -100,7 +188,7 @@
 										<td class="text-bold-500">${vo.gPTypeNo }</td>
 										<td colspan="3">${vo.gPTypePrice } 원</td>
 										<td>
-											<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.gPTypeNo}"
+											<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.gPTypeNo}"
 		                                       data-toggle="modal" data-backdrop="false" data-target="#giftPriceEdit${vo.gPTypeNo}">
 		                                       	수정</button>					                                       
 	                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
@@ -113,7 +201,7 @@
 	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                                             <div class="modal-content">
 	                                                <form name="frmGiftPriceDel" id="frmGifrPriceDel" method="post" action="<c:url value='/admin/menu6/giftPrice/delete.do' />">
-	                                                   <div class="modal-header bg-danger">
+	                                                   <div class="modal-header bg-danger" style="background-color: black;">
 	                                                      <h5 class="modal-title white" id="myModalLabel140">금액 카테고리 삭제</h5>
 	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                                          <i data-feather="x"></i>
@@ -146,8 +234,8 @@
 	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                                             <div class="modal-content">
 	                                    			<form name="frmGiftPriceEdit" method="post" action="<c:url value='/admin/menu6/giftPrice/edit.do' />">
-	                                                   <div class="modal-header">
-	                                                      <h4 class="modal-title" id="myModalgiftPriceEdit">선물하기 - 금액권 수정</h4>
+	                                                   <div class="modal-header" style="background-color: black;">
+	                                                      <h4 class="modal-title" id="myModalgiftPriceEdit" style="color: white;">선물하기 - 금액권 수정</h4>
 	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                                         <i data-feather="x"></i>
 	                                                      </button>

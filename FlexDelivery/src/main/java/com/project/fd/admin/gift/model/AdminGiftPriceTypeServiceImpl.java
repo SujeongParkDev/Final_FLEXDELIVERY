@@ -32,4 +32,9 @@ public class AdminGiftPriceTypeServiceImpl implements AdminGiftPriceTypeService 
 		return giftPriceTypeDao.deleteGiftPriceType(giftPriceTypeVo);
 	}
 
+	@Override
+	public boolean checkDu(int price) {
+		return giftPriceTypeDao.checkDu(price);
+	}
+
 }
