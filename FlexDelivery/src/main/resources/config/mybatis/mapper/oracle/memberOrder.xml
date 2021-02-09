@@ -23,6 +23,7 @@
 		where o.store_no=s.store_no 
 		and member_No=#{memberNo}
 		and o.o_status_no=4
+		order by o.orders_pay_end_date desc
 	</select>
 	
 	<select id="selectOrderIngList" parameterType="int" resultMap="orderList">
@@ -31,6 +32,7 @@
 		where o.store_no=s.store_no 
 		and member_No=#{memberNo}
 		and o.o_status_no in (1,2,3)
+		order by o.orders_pay_end_date desc
 	</select>
 	
 	<select id="selectOrderCancelList" parameterType="int" resultMap="orderList">
@@ -39,6 +41,7 @@
 		where o.store_no=s.store_no 
 		and member_No=#{memberNo}
 		and o.o_status_no=5
+		order by o.orders_pay_end_date desc
 	</select>
 	
 	<select id="selectOrderAllByOrdersNo" parameterType="int" resultMap="orderList">

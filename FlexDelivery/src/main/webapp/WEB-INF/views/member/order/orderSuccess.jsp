@@ -10,7 +10,7 @@
 <div class="py-5 osahan-coming-soon d-flex justify-content-center align-items-center">
     <div class="col-md-6">
         <div class="text-center pb-3">
-            <h1 class="font-weight-bold">주문이 성공적으로 결제되었습니다.</h1>
+            <h1 class="font-weight-bold">주문이 성공적으로 완료되었습니다.</h1>
         </div>
         <!-- continue -->
         <div class="bg-white rounded text-center p-4 shadow-sm">
