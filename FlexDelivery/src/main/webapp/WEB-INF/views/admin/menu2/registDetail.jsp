@@ -9,15 +9,10 @@
 <!-- <script src="${pageContext.request.contextPath}/resources/memberResources/js/jquery/jquery-3.5.1.min.js"></script> -->
 <script type="text/javascript">
 	$(function () {
-		$('#approvalAgree').click(function () {
-			alert("등록하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.storeNo}" />';
-			event.preventDefault();
-		});
 		
 		$('#approvalDeny').click(function () {
 			alert("반려하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.storeNo}" />';
+			location.href = '<c:url value="/admin/menu2/registerDeny.do?rNo=${vo.oRegisterNo}" />';
 			event.preventDefault();
 		});
 			
@@ -37,8 +32,8 @@
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<c:url value='/admin/index.do'/> ">Main</a></li>
-                        <li class="breadcrumb-item"><a href="<c:url value='/admin/menu2/approvalList.do'/> ">점포 등록/변경 승인 관리</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">점포 등록 세부 조회</li>
+                        <li class="breadcrumb-item"><a href="<c:url value='/admin/menu2/approvalList.do'/> ">사업자등록증 등록 관리</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">사업자등록증 등록 세부 조회</li>
                     </ol>
                 </nav>
             </div>
@@ -53,39 +48,25 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >승인 요청 내역</h4>
-                        <h4 class="card-title" ><p>[접수번호 : ${vo.storeNo},&nbsp &nbsp &nbsp 최종처리일자: 
-                        	<fmt:formatDate value="${vo.storeRegdate}" pattern="yyyy년 MM월 dd일"/> ]</p></h4>
+                        <h4 class="card-title" ><p>[점주번호 : ${vo.ownerNo},&nbsp &nbsp &nbsp 최종처리일자: 
+                        	<fmt:formatDate value="${vo.ownerregisterRegdate}" pattern="yyyy년 MM월 dd일"/> ]</p></h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form">
+                            <form name="regApprovalFrm" action="<c:url value='/admin/menu2/registApproval.do'/>" method="post" class="form">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column" >사업자 번호</label>
+                                            <label for="lisence-no-column" >사업자 등록 번호</label>
                                             <input type="text" id="lisence-no-column" class="form-control" value="${vo.oRegisterNo }"
-                                                name="fname-column" disabled="disabled">
+                                                name="lisence-no-column" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="owner-name-column">대표자 성함</label>
+                                            <label for="owner-name-column">점포주 성함</label>
                                             <input type="text" id="owner-name-column" class="form-control" value="${vo.ownerName }"
                                                 name="Oname-column" disabled="disabled">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shop-name">점포명</label>
-                                            <input type="text" id="shop-name" class="form-control" value="${vo.storeName }" name="shop-name"
-                                            	disabled="disabled" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shop-address">점포 주소</label>
-                                            <input type="text" id="shop-address" class="form-control" name="shop-address"
-                                                value="${vo.storeAddress} ${vo.storeAddressDetail}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -97,36 +78,38 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="ownerRegdate">점포주 등록일</label>
+                                            <input type="text" id="ownerRegdate" class="form-control" 
+                                            	value="<fmt:formatDate value="${vo.ownerRegdate}" pattern="yyyy년 MM월 dd일"/>" 
+                                            	name="ownerRegdate" disabled="disabled" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="ownerAuth">점포주 현황</label>
+                                            <input type="text" id="ownerAuth" class="form-control" name="ownerAuth" 
+                                            	<c:if test="${vo.authorityNo == 4}">
+                                                	value="점포미소유" disabled="disabled"
+                                                </c:if>
+                                                <c:if test="${vo.authorityNo == 5}">
+                                                	value="점포소유" disabled="disabled"
+                                                </c:if>
+                                             >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="appendix-file">첨부파일</label>
                                             <div>
-												<span> FileName
-													
-												</span>
+												<p>
+													${vo.oRegisterOriginalFilename}
+												</p>
 											</div>                                       
                                         </div>
                                     </div>
-                                    <!-- 요청사항 -->
-                                    <br><br>                                    
-                                    <div class="row">
-           								<div class="col">
-                							<div class="card">
-                								<div class="card-header">
-                        							승인 요청 사항 :
-                   								</div>
-                    							<div class="card-body">
-                        							<div class="form-group with-title mb-3">
-                            							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" 
-                            							 >${vo.storeContent}</textarea>
-                            							<label>요청 내용</label>
-                        							</div>
-                    							</div>
-                							</div>
-            							</div>
-        							</div>
-                                    <!-- 요청사항 끝 -->
                                     <div class="col-12 d-flex justify-content-end">
                                     	<c:if test="${vo.aAgreeNo == 1}">
-                                        	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>
+                                        	<input type="submit" id="approvalAgree"  class="btn btn-primary mr-1 mb-1" value="승인">
                                         	<button id="approvalDeny"  class="btn btn-danger mr-1 mb-1">반려</button>
                                         </c:if>
                                     </div>

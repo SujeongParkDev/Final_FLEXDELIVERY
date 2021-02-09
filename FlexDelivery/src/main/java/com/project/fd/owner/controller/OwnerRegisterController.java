@@ -50,6 +50,7 @@ public class OwnerRegisterController {
 			 HttpServletRequest request, HttpSession session,
 			 Model model) {
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		 vo.setOwnerNo(ownerNo);
 		logger.info("사업자등록증 업로드 페이지 파라미터 ownerNo={},vo={}",ownerNo,vo);
 
 		 //파일 업로드 처리
