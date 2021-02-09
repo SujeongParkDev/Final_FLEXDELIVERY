@@ -196,9 +196,8 @@ public class OwnerReviewController {
 		
 		return "common/message";
 	}
-	/*
 	// 차단 
-	@RequestMapping(value="/blockcmt.do", method=RequestMethod.GET)
+	@RequestMapping("/blockcmt.do")
 	public String blockList_get(HttpSession session, Model model) {
 		String msg="로그인 해주세요.", url="/owner/index.do";
 		int storeNo=0;
@@ -224,18 +223,29 @@ public class OwnerReviewController {
 	}
 	
 	// 미답변 
-	@RequestMapping(value="/blockcmt.do", method=RequestMethod.GET)
-	public String nocmtList_get(HttpSession session, Model model) {
-		String msg="로그인 해주세요.", url="/owner/index.do";
-		int storeNo=0;
-		if(session.getAttribute("ownerNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
+		@RequestMapping("/nocomment.do")
+		public String nocmtList_get(HttpSession session, Model model) {
+			String msg="로그인 해주세요.", url="/owner/index.do";
+			int storeNo=(Integer)session.getAttribute("storeNo");
+		
+			logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
 			
-		}else {
-			storeNo=(Integer)session.getAttribute("storeNo");
+			List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+			int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+			logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+			
+			model.addAttribute("totalnocmt", totalnocmt);
+			model.addAttribute("nocmtList", nocmtList);
+			return "owner/menu2/reviewOwner/nocomment";
 		}
+	/*
+	// 미답변 
+	@ResponseBody
+	@RequestMapping("/nocomment.do")
+	public List<Map<String, Object>> nocmtList_get(HttpSession session, Model model) {
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=(Integer)session.getAttribute("storeNo");
+	
 		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
@@ -244,7 +254,7 @@ public class OwnerReviewController {
 		
 		model.addAttribute("totalnocmt", totalnocmt);
 		model.addAttribute("nocmtList", nocmtList);
-		return "owner/menu2/reviewOwner/blockcmt";
+		return nocmtList;
 	}
 	
 
