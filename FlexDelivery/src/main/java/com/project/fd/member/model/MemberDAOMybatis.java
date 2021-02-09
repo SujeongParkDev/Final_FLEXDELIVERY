@@ -68,6 +68,11 @@ public class MemberDAOMybatis implements MemberDAO{
 	public int updateMember(MemberVO vo) {
 		return sqlSession.update(namespace+"updateMember",vo);
 	}
+
+	@Override
+	public int rupdateMember(MemberVO vo) {
+		return sqlSession.update(namespace+"rupdateMember",vo);
+	}
 	
 	
 

@@ -24,5 +24,6 @@ public interface MemberService {
 		int checkDup(String memberid);
 		public int memloNo(String locationName);
 		public int updateMember(MemberVO vo);
+		public int rupdateMember(MemberVO vo);
 		
 }
