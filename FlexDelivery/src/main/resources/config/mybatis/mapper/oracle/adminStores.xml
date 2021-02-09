@@ -6,14 +6,15 @@
 	<select id="approvalList" resultType="adminStoresVo">
 		select store_no, store_regdate, o_register_no, owner_name, store_name, store_address,
        		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no
-			   from store_reg
+			   from hjStoreApprovalView
 			   order by store_no desc
 	</select>
 	
 	<select id="approvalDetail" parameterType="long" resultType="adminStoresVo">
 		select store_no, store_regdate, o_register_no, owner_name, store_name, store_address,
        		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no, STORE_CONTENT
-       		   from store_reg where store_no=#{no}
+       		   from hjStoreApprovalView
+       		   where store_no=#{no}
 	</select>
 	
 	<select id="approvalAgree" parameterType="long">
