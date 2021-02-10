@@ -158,7 +158,7 @@ h1 {
 				<br>
 			</div>
 			<div class="modal-body storebody">
-				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launch.do'/>">
+				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
 					<h5 class="form-label">
 						<div class="text-left">
 							<h3 class="mt-2 mb-1">
@@ -236,7 +236,7 @@ h1 {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="">등록 제출</button>
+						<input type="submit" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="등록 제출">
 					</div>
 				</form>
 			</div>
@@ -317,54 +317,12 @@ h1 {
 			$('#next').click(function() {
 				$(this).close();
 			});
+			
+		
 	});
 
 	//입점 신청 
 	$(function() {
-		var chk = 0;
-		$('#btRegi').click(function(event){
-		//$('form[name=frm2]').submit(function(){
-			$('.infobox').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).attr('title') + '를(을) 입력하세요');
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				} else {
-					chk = 1;
-				}
-			}); //each
-			if (chk == 1) {
-				if (!$('#chkAgree').is(":checked")) {
-					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-					$('#chkAgree').focus();
-					event.preventDefault();
-					return false;
-				}
-			}
-			$('#btRegi').click(function(){
-				var len
-					=$('.storecontent .storebody input').find('input[type=checkbox]:checked').length;
-				var str
-				=$('.storecontent .storebody input').find('input[type=text]').length;
-				if(len==0){
-					alert('먼저 이벤트로 등록할 상품을 선택해야 합니다.!');
-					return false;	
-				}
-				$('.infobox').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).attr('title') + '를(을) 입력하세요');
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					} else {
-						chk = 1;
-					}
-				}); //each
-			$('form[name=frm2]').prop('action', '<c:url value="/owner/menu1/launch/launch.do"/>');
-			$('form[name=frm2]').submit();
-		});
-			
 		$('.logo').on('change', function() {
 			readInputFile(this);
 		});
@@ -378,10 +336,14 @@ h1 {
 									"chk",
 									"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
 						});
-	});
-	$(function() {
+	
 		$('.logo').on('change', function() {
 			readInputFile(this);
+		});
+		
+		$('#btRegi').click(function(){
+			$('form[name=frm2').prop('action', '<c:url value="/owner/menu1/launch/launch.do"/>');
+		$('form[name=frm2]').submit();
 		});
 	});
 	function readInputFile(input) {
