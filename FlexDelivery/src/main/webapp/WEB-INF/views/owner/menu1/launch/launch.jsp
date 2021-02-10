@@ -147,7 +147,7 @@ h1 {
 <!-- 입점 신청 폼  -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content storecontent">
 			<div class="modal-header">
 				<div class="text-left">
 					<h4 class="modal-title" id="exampleModalLabel">입점 신청</h4>
@@ -157,7 +157,7 @@ h1 {
 				</button>
 				<br>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body storebody">
 				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launch.do'/>">
 					<h5 class="form-label">
 						<div class="text-left">
@@ -184,11 +184,6 @@ h1 {
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 로고 이미지</h5>
 						</label> <input type="file" class="btn btn-default logo" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
-					</div>
-					<div class="form-group">
-						<label for="recipient-name" class="control-label">
-							<h5>✔ 점포명</h5>
-						</label> <input type="text" class="infobox form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
@@ -230,7 +225,7 @@ h1 {
 						<textarea class="form-control" id="message-text" placeholder="300자 이내로 등록해주세요." name="storeContent" id="storeContent"></textarea>
 					</div>
 					<div class="form-group">
-						<label class="checkbox-inline"> <input type="checkbox" id="inlineCheckbox1" value="option1"> 개인 정보 수집 이용에 동의합니다.
+						<label class="checkbox-inline"> <input type="checkbox" id="chkAgree" value="option1"> 개인 정보 수집 이용에 동의합니다.
 						</label>
 						<ul class="bullet-ul small muted">
 							<li>개인정보 수집 이용에 동의하지 않을 수 있으며 동의하지 않는 경우 상담 신청이 제한됩니다.</li>
@@ -241,7 +236,7 @@ h1 {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="등록 제출">
+						<button type="button" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="">등록 제출</button>
 					</div>
 				</form>
 			</div>
@@ -313,8 +308,7 @@ h1 {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 				reader.onload = function(e) {
-					$('#preview').html(
-							"<img src=" + e.target.result
+					$('#preview').html("<img src=" + e.target.result
 									+ "  style='width:60%; margin-left:10px;' >");
 				}
 				reader.readAsDataURL(input.files[0]);
@@ -325,54 +319,82 @@ h1 {
 			});
 	});
 
-	//입점 신청
-$(function(){
-	$('form[name=frm2]').submit(function(){
-	var chk = 0;
-		$('.infobox').each(function(idx, item) {
-			if ($(this).val().length < 1) {
-				alert($(this).attr('title') + '를(을) 입력하세요');
-				$(this).focus();
-				event.preventDefault();
-				return false;
-			} else {
-				chk = 1;
-			}
-		}); //each
-		if (chk == 1) {
-			if (!$('#chkAgree').is(":checked")) {
-				alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-				$('#chkAgree').focus();
-				event.preventDefault();
-				return false;
-			}
-		}
-	});
-	
-	$('#upfile').on('change', function() {
-		readInputFile(this);
-	});
-	// stores 
-	var contextPath = "/fd";
-
-	$('#btnZipcode').click(function() {
-		open(contextPath+ "/owner/menu1/launch/zipcode.do", "chk", "width=500,height=500,left=0,top=0,location=yes,resizable=yes");
-		});
-	
-	$('.logo').on('change', function() {
-		readInputFile(this);
-	});
-});
-
-		function readInputFile(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$('.logo').html("<img src=" + e.target.result + "  style='width:90%; margin-left:20px;' >");
+	//입점 신청 
+	$(function() {
+		var chk = 0;
+		$('#btRegi').click(function(event){
+		//$('form[name=frm2]').submit(function(){
+			$('.infobox').each(function(idx, item) {
+				if ($(this).val().length < 1) {
+					alert($(this).attr('title') + '를(을) 입력하세요');
+					$(this).focus();
+					event.preventDefault();
+					return false; //each 탈출
+				} else {
+					chk = 1;
 				}
-				reader.readAsDataURL(input.files[0]);
+			}); //each
+			if (chk == 1) {
+				if (!$('#chkAgree').is(":checked")) {
+					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+					$('#chkAgree').focus();
+					event.preventDefault();
+					return false;
+				}
 			}
+			$('#btRegi').click(function(){
+				var len
+					=$('.storecontent .storebody input').find('input[type=checkbox]:checked').length;
+				var str
+				=$('.storecontent .storebody input').find('input[type=text]').length;
+				if(len==0){
+					alert('먼저 이벤트로 등록할 상품을 선택해야 합니다.!');
+					return false;	
+				}
+				$('.infobox').each(function(idx, item) {
+					if ($(this).val().length < 1) {
+						alert($(this).attr('title') + '를(을) 입력하세요');
+						$(this).focus();
+						event.preventDefault();
+						return false; //each 탈출
+					} else {
+						chk = 1;
+					}
+				}); //each
+			$('form[name=frm2]').prop('action', '<c:url value="/owner/menu1/launch/launch.do"/>');
+			$('form[name=frm2]').submit();
+		});
+			
+		$('.logo').on('change', function() {
+			readInputFile(this);
+		});
+		var contextPath = "/fd";
+		$('#btnZipcode')
+				.click(
+						function() {
+							open(
+									contextPath
+											+ "/owner/menu1/launch/zipcode.do",
+									"chk",
+									"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
+						});
+	});
+	$(function() {
+		$('.logo').on('change', function() {
+			readInputFile(this);
+		});
+	});
+	function readInputFile(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').html(
+						"<img src=" + e.target.result
+								+ "  style='width:90%; margin-left:20px;' >");
+			}
+			reader.readAsDataURL(input.files[0]);
 		}
+	}
 </script>
 
 <%@ include file="../../../ownerInc/bottom.jsp"%>
