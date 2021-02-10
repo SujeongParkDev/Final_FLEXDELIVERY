@@ -42,5 +42,47 @@
 		where owner_id = #{userid}
 	</select>
 	
-
+	<!-- 지안 진행중 -->
+	<select id="selectStoreByOwnerNo" parameterType="int" resultType="ownerStoresVo">
+		select * from stores
+		where owner_no=#{ownerNo}
+	</select>
+	
+	
+	
+	
+<!-- 	create or replace view jaStoresOperationView
+   as
+    select s.store_open_time, s.store_close_time, s.h_category_no ,
+        s.s_status_no, h.H_CATEGORY_NAME, t.s_status_name , s.owner_no,s.store_No, s.store_name
+    from stores s left join holidaycategory h
+    on s.h_category_no= h.h_category_no
+    left join storestatus t
+    on t.s_status_no = s.s_status_no; -->
+    
+    
+    <select id="selectOperationViewAll" parameterType="int" resultType="map">
+    	select * from jaStoresOperationView
+    	where owner_no=#{ownerNo}
+    </select>
+    
+    
+    <update id="holidayUpdate" parameterType="map">
+    	update stores
+    	set h_category_no=#{hCategoryNo}
+    	where store_no = #{storeNo}
+    </update>
+    
+    
+    <update id="updateStatusStop" parameterType="int">
+    	update stores
+    	set s_status_no=3
+    	where store_no = #{storeNo}
+    </update>
+    
+     <update id="updateTime" parameterType="map">
+    	update stores
+    	set store_open_time = #{startTime}, store_close_time=#{closeTime}
+    	where store_no = #{storeNo}
+    </update>
 </mapper>

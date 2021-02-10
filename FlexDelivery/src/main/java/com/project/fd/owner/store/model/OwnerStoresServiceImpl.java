@@ -61,6 +61,7 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 		return ownerStoresDao.selectOwnerAuthorityAll(userid);
 	}
 	
+
 	@Override
 	public OwnerStoresVO selectByNo(int storeNo) {
 		return ownerStoresDao.selectByNo(storeNo);
@@ -70,5 +71,25 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	public int updateStores(OwnerStoresVO ownerStoresVO) {
 		return ownerStoresDao.updateStores(ownerStoresVO);
 	}
+
+	public OwnerStoresVO selectStoreByOwnerNo(int ownerNo) {
+		return ownerStoresDao.selectStoreByOwnerNo(ownerNo);
+	}
 	
+	public Map<String, Object> selectOperationViewAll(int ownerNo){
+		return ownerStoresDao.selectOperationViewAll(ownerNo);
+	}
+	
+	public int holidayUpdate(Map<String, Object> map) {
+		return ownerStoresDao.holidayUpdate(map);
+	}
+	
+	public int updateStatusStop(int storeNo) {
+		return ownerStoresDao.updateStatusStop(storeNo);
+	}
+	
+	public int updateTime(Map<String,Object> map) {
+		return ownerStoresDao.updateTime(map);
+	}
+
 }

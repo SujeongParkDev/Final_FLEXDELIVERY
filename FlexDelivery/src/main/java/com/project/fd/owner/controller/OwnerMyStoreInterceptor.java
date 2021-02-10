@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -18,21 +19,20 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger
 	=LoggerFactory.getLogger(OwnerMyStoreInterceptor.class);
 
+	@Autowired
+	private OwnerService ownerService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		
-		if(request.getSession().getAttribute("result")==null) {
-			request.getSession().setAttribute("result",0);
-		}
-		
+		String result="0";
 		
 		String ownerId = (String)request.getSession().getAttribute("ownerId");
-		String result=Integer.toString((Integer)request.getSession().getAttribute("result"));
-		System.out.println("인터셉터에서 result"+result);
-		
+		if(ownerId!=null && !ownerId.isEmpty()) {
+			result= Integer.toString(ownerService.checkAuthority(ownerId));
+			System.out.println("인터셉터에서 result"+result);
+		}
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		out.print("<script>");

@@ -24,6 +24,8 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.selectOne(namespace+"selectStoreNoByNo", ownerNo);
 	}
 
+	
+	
 	@Override
 	public List<LocationVO> AllLocaion() {
 		return sqlSession.selectList(namespace+"AllLocation");
@@ -42,4 +44,25 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 	public int updateStores(OwnerStoresVO ownerStoresVO) {
 		return sqlSession.update(namespace+"updateStores",ownerStoresVO);
 	}	
+
+	public OwnerStoresVO selectStoreByOwnerNo(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectStoreByOwnerNo", ownerNo);
+	}
+	
+	public Map<String, Object> selectOperationViewAll(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectOperationViewAll", ownerNo);
+	}
+	
+	public int holidayUpdate(Map<String, Object> map) {
+		return sqlSession.update(namespace+"holidayUpdate", map);
+	}
+	
+	public int updateStatusStop(int storeNo) {
+		return sqlSession.update(namespace+"updateStatusStop", storeNo);
+	}
+	
+	public int updateTime(Map<String,Object> map) {
+		return sqlSession.update(namespace+"updateTime", map);
+	}
+
 }

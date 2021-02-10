@@ -7,7 +7,7 @@
 <td><a href="#" data-toggle="modal" data-target="#orderDetail"  onclick="goDetail(${ordersNo }, ${ordersDiscount })">${title}
 <c:if test="${type==1 }">
 	<c:if test="${hurryImg>0.3 }">
-			<span class="badge bg-danger ml-1" style="height:20px; font-size:11px;">주문임박</span>
+			<span class="badge bg-danger ml-1 p-1" style="height:18px; font-size:7px;">다급</span>
 	</c:if>
 </c:if>
 </a></td>
