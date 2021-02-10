@@ -33,13 +33,56 @@ public class OwnerReviewController {
 	@Autowired OwnerReivewCommentService ownerReCommService;
 	//@Autowired MemberReviewService. memberReviewService;
 
+	@RequestMapping(value="/reviewOwner.do", method=RequestMethod.GET)
+	public String orderList_get(HttpSession session, Model model) {
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo=(Integer)session.getAttribute("storeNo");
+		}
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
+		
+		List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
+		logger.info("리뷰메인 리스트 allList.size={}",allList.size());
+		
+		
+		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		
+		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
+		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
+		
+		model.addAttribute("totalBlock", totalBlock);
+		model.addAttribute("blockList", blockList);
+		
+		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("nocmtList", nocmtList);
+		
+		model.addAttribute("allList", allList);
+		return "owner/menu2/reviewOwner/reviewOwner";
+	}
 	
 	// review List 
-	@RequestMapping("/reviewOwner.do")
-	public String orderList(@ModelAttribute OwnerReviewSearchVO searchVo,
+	@RequestMapping(value="/reviewOwnerList.do", method=RequestMethod.POST)
+	public String orderList_post(@ModelAttribute OwnerReviewSearchVO searchVo,
 			HttpSession session, Model model) {
-		//int storeNo=(Integer)session.getAttribute("storeNo");
-		int storeNo=1;
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo=(Integer)session.getAttribute("storeNo");
+		}
 		searchVo.setStoreNo(storeNo);
 		logger.info("점포 - 리뷰관리 보여주기 storeNo={},searchVo.getStoreNo()={}",storeNo,searchVo.getStoreNo());
 		
@@ -74,9 +117,9 @@ public class OwnerReviewController {
 		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
 		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
 		
-		//미답변 조회 
-		//List<Map<String, Object>> noList=ownerReCommService.selectNocomment();
+		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
 		
+		model.addAttribute("totalBlock", totalBlock);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingInfo", pagingInfo);
 		//model.addAttribute("searchVo", searchVo);
@@ -153,10 +196,68 @@ public class OwnerReviewController {
 		
 		return "common/message";
 	}
+	// 차단 
+	@RequestMapping("/blockcmt.do")
+	public String blockList_get(HttpSession session, Model model) {
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo=(Integer)session.getAttribute("storeNo");
+		}
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
+		
+		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
+		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
+		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		
+		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("totalBlock", totalBlock);
+		model.addAttribute("blockList", blockList);
+		return "owner/menu2/reviewOwner/blockcmt";
+	}
 	
-	
-	
+	// 미답변 
+		@RequestMapping("/nocomment.do")
+		public String nocmtList_get(HttpSession session, Model model) {
+			String msg="로그인 해주세요.", url="/owner/index.do";
+			int storeNo=(Integer)session.getAttribute("storeNo");
+		
+			logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
+			
+			List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+			int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+			logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+			
+			model.addAttribute("totalnocmt", totalnocmt);
+			model.addAttribute("nocmtList", nocmtList);
+			return "owner/menu2/reviewOwner/nocomment";
+		}
 	/*
+	// 미답변 
+	@ResponseBody
+	@RequestMapping("/nocomment.do")
+	public List<Map<String, Object>> nocmtList_get(HttpSession session, Model model) {
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		int storeNo=(Integer)session.getAttribute("storeNo");
+	
+		logger.info("점포 - 리뷰관리 보여주기 storeNo={}",storeNo);
+		
+		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		
+		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("nocmtList", nocmtList);
+		return nocmtList;
+	}
+	
+
 	@ResponseBody
 	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
 	public OwnerReviewCommentVO reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,

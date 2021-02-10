@@ -38,20 +38,27 @@ public class OwnerRequestController {
 	@RequestMapping("/requests.do")
 	public String ownerrequests(
 			HttpSession session,Model model) {
-		int ownerNo=10;
-		//int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int ownerNo=0;
+		String msg="로그인 해주세요.", url="/owner/index.do";
+		if(session.getAttribute("ownerNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			 ownerNo=(Integer)session.getAttribute("ownerNo");
+		}
 		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
 		
 		//List<OwnerAllRegisterVO> list =selectStore(ownerNo);
-		
 		List<Map<String, Object>> RegiList =requestService.selectRegi(ownerNo);
-		logger.info("요청처리현황 사업자 등록  RegiList={}",RegiList);
+		logger.info("요청처리현황 사업자 등록  RegiList.size={}",RegiList.size());
 		List<Map<String, Object>> selectStore =requestService.selectStore(ownerNo);
-		logger.info("요청처리현황 점포 등록  selectStore={}",selectStore);
+		logger.info("요청처리현황 점포 등록  selectStore.size={}",selectStore.size());
 		List<Map<String, Object>>  selectAd =requestService.selectAd(ownerNo);
-		logger.info("요청처리현황 광고 등록  selectAd={}",selectAd);
+		logger.info("요청처리현황 광고 등록  selectAd.size={}",selectAd.size());
 		List<Map<String, Object>> selectTemp =requestService.selectTemp(ownerNo);
-		logger.info("요청처리현황 점포 수정  selectTemp={}",selectTemp);
+		logger.info("요청처리현황 점포 수정  selectTemp.size={}",selectTemp.size());
 		
 		model.addAttribute("RegiList", RegiList);
 		model.addAttribute("selectStore", selectStore);
@@ -65,9 +72,6 @@ public class OwnerRequestController {
 	@ResponseBody
 	@RequestMapping("/selectRegi.do")
 	public List<Map<String, Object>> selectMenuAll(@RequestParam(defaultValue = "0") int ownerNo){
-		ownerNo=5;
-		//int ownerNo=(Integer)session.getAttribute("ownerNo");
-		
 		logger.info("ajax이용-요청처리현황,   ownerNo={}", ownerNo);
 		
 		List<Map<String, Object>> RegiList =requestService.selectRegi(ownerNo);
@@ -82,7 +86,7 @@ public class OwnerRequestController {
 		logger.info("ajax이용-detailRegi, no={}", oRegisterNo);
 		
 		OwnerRegisterVO vo  = requestService.selectRegiVo(oRegisterNo);
-		logger.info("그룹 넘버로  메뉴 리스트 조회,   vo={}", vo);
+		logger.info("사업자 등록증 상세 조회,   vo={}", vo);
 		
 		
 		return vo;

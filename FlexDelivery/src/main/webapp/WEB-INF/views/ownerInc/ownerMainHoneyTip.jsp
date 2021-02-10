@@ -14,21 +14,18 @@
                          <div class="col-12 col-md-1"> </div>
                            <br><br><br><br>
                            	<c:if test="${!empty list }">
-								<c:forEach var="vo" items="${list}" varStatus="status">
+								<c:forEach var="vo" items="${list}" >
 	                          	<div class="col-12 col-md-3" >
 	                              <div class="single-blog-thumbnail">
-	                              <!-- 
-	                                 <img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}" style="margin-bottom: 40px;" alt="pcRoom">
-	                               -->
 	                               	<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)=='http' }">
-										      		<img src="${vo.honeytipThumbnail}" class="card-img-top"style="margin-bottom: 40px;"
-													 alt="${vo.honeytipTitle }">
-												</c:if>
-												<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)!='http' and (!empty vo.honeytipThumbnail) }">
-													<img src
-													="<c:url value='/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}'/>" 
-													alt="${vo.honeytipTitle }" class="card-img-top" style="margin-bottom: 40px;">
-												</c:if>
+									      		<img src="${vo.honeytipThumbnail}" class="card-img-top"style="margin-bottom: 40px;"
+												 alt="${vo.honeytipTitle }">
+											</c:if>
+											<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)!='http' and (!empty vo.honeytipThumbnail) }">
+												<img src
+												="<c:url value='/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}'/>" 
+												alt="${vo.honeytipTitle }" class="card-img-top" style="margin-bottom: 40px;">
+											</c:if>
 									</div>
 	                          	</div>
 	                         <div class="col-12 col-md-2" style="height:200px; padding-right:0px; ">

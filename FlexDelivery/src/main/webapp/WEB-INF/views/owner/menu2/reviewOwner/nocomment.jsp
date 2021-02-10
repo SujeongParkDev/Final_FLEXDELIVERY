@@ -32,20 +32,20 @@
 			<div class="card-content">
 				<div class="card-body" id="allreview">
 					<p class="card-text text-center" style="font-size: 20px; font: bold;">리뷰 관리</p>
-					<p class="card-text text-center">신고 접수된 리뷰입니다.</p>
+					<p class="card-text text-center">고객과의 소통을 위해 어서 답변을 달아주세요 ! </p>
 					<br> <br>
 					<div class="card-content">
 						<div class="card-body text-center">
 							<br>
 							<!-- 전체 보여주기 데이트 피커 없이  -->
 							<div class="AllDiv">
-								<c:if test="${empty blockList }">
+								<c:if test="${empty nocmtList }">
 									<div class="row">
 										<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
 									</div>
 								</c:if>
-								<c:if test="${!empty blockList }">
-									<c:forEach var="map" items="${blockList }">
+								<c:if test="${!empty nocmtList }">
+									<c:forEach var="map" items="${nocmtList }">
 										<hr>
 										<br>
 										<div class="review-list">

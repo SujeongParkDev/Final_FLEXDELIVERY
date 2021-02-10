@@ -53,18 +53,45 @@ public class OwnerCouponController {
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> list = couponService.useCoupons(storeNo);
-		logger.info("list={}, list.size={}",list,list.size());
+		logger.info(" list.size={}",list.size());
 		
 		model.addAttribute("list", list);
 		
 		return "owner/menu2/couponused/couponUsed";
 	}
 	
+	//ajax로 처음 리스트 뿌려주기 도전 ! 
+	/*
+	 * 
+		@ResponseBody
+		@RequestMapping(value="/couponExpire.do", method=RequestMethod.GET)
+		public List<Map<String, Object>> couponExpire_get(HttpSession session,
+				Model model) {
+			int storeNo= (Integer)session.getAttribute("storeNo");
+			logger.info("만료된 쿠폰 전체 보여주기 storeNo={}",storeNo);
+			
+			List<Map<String, Object>> exList=couponService.expireAll(storeNo);
+			logger.info(" 조회 결과 exList.size={}", exList.size());
+			
+			model.addAttribute("exList", exList);
+			
+			return exList;
+		}
+	
+	 */
 	@RequestMapping("/couponExpire.do")
 	public String ownercouponused(@ModelAttribute OwnerCouponSearchVO searchVo ,
 			HttpSession session,Model model) {
-		
-		int storeNo= (Integer)session.getAttribute("storeNo");
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
 		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
 		
 		searchVo.setStoreNo(storeNo);
@@ -87,6 +114,7 @@ public class OwnerCouponController {
 			searchVo.setStartDay(today);
 			searchVo.setEndDay(today);			
 		}
+		
 		logger.info("searchVo={}",searchVo);
 		int totalRecord=couponService.getTotalRecord(searchVo);
 		logger.info("coupon 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
@@ -95,6 +123,11 @@ public class OwnerCouponController {
 		List<Map<String, Object>> list = couponService.Allcoupons(searchVo);
 		logger.info(" list.size={}",list.size());
 		
+		//만료된 쿠폰 전체 조회 날x 
+		List<Map<String, Object>> exList=couponService.expireAll(storeNo);
+		logger.info(" 조회 결과 exList.size={}", exList.size());
+		
+		model.addAttribute("exList", exList);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("searchVo", searchVo);
@@ -108,7 +141,16 @@ public class OwnerCouponController {
 		List<AdminRegularCouponVO> list=couponService.Allselect();
 		
 		//일치 여부를 위해 
-		int storeNo= (Integer)session.getAttribute("storeNo");
+		int storeNo=0;
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		List<Map<String, Object>> useList = couponService.useCoupons(storeNo);
 		logger.info("useList.size={}",useList.size());
@@ -128,7 +170,16 @@ public class OwnerCouponController {
 			@RequestParam String pwd, HttpSession session , Model model) {
 		logger.info("coupon Register page !! parameter rCouponNo={}",no);
 
-		int storeNo=(Integer)session.getAttribute("storeNo");
+		int storeNo=0;
+		String msg2="점포가 없습니다.", url2="/owner/index.do";
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg2);
+			model.addAttribute("url",url2);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
 		OwnerCouponVO vo = new OwnerCouponVO();
 		vo.setStoreNo(storeNo);
 		vo.setrCouponNo(no);
@@ -139,10 +190,12 @@ public class OwnerCouponController {
 		String msg="쿠폰 등록에 실패하였습다. ", url="/owner/menu2/couponused/couponRegi.do";
 		if(requestService.pwdCk(pwd,ownerNo)) {
 			int cnt =couponService.registerCoupon(vo);
-			logger.info("쿠폰 등록  결과, cnt={}", cnt);
+			logger.info("쿠폰 등록  결과, cnt={}", cnt); //2
 			
-			if(cnt>0) {
+			if(cnt==OwnerCouponService.NON_EXIST_CP) {
 				msg="정상적으로 등록되었습니다.";
+			}else if(cnt==OwnerCouponService.EXIST_CP){
+				msg="이미 만료되지 않은 쿠폰이 있습니다 ! ";
 			}
 		}else {
 			msg="비밀번호가 일치하지 않습니다.";
@@ -181,6 +234,8 @@ public class OwnerCouponController {
 		
 		return "common/message";
 	}
+	
+	
 	
 	/*
 	 * 

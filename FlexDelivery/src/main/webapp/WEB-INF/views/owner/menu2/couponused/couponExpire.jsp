@@ -8,7 +8,7 @@
 			  		<div class="col-md-2 col-sm-12"></div>
 			  		<div class="col-md-8 col-sm-12">
 				  		 <div class="text-right">
-		                	 <button id="btAll" class="btn btn-primary">전체 조회 </button>
+		                	 <button id="btAll" class="btn btn-primary">사용중인 쿠폰 </button>
 		                	 <button id="btExpire" class="btn btn-primary">쿠폰 발급 내역 </button>
 		                	 <button id="btRegi" class="btn btn-outline-warning">쿠폰 신청 </button>
 	                	 </div>
@@ -53,7 +53,6 @@
 					          <div class="table-responsive delck">
 						          <table class="table table-hover mb-5 deltable">
 						          <colgroup>
-									<col style="width:1%" />
 									<col style="width:10%" />
 									<col style="width:20%" />
 									<col style="width:10%" />
@@ -63,7 +62,6 @@
 								</colgroup>
 						            <thead>
 						              <tr class="text-center">
-						              <th><input type="checkbox" name="chkAll" ></th>
 						              	<th scope="col">번호</th>
 						              	<th scope="col">주문 최소 금액 </th>
 						              	<th scope="col">할인 가격 </th>
@@ -73,40 +71,51 @@
 						              </tr>
 						            </thead>
 						            <tbody>
-						            <!-- table 시작 -->
-						            	  <c:if test="${empty list }">
+						            <!-- show hide가 안 먹어요 !  -->
+						            <div class="AllList" id="AllList">
+						            	  <c:if test="${empty exList }">
 						            	  		<tr>
-													<td colspan="7" class="text-center">데이터가 존재하지 않습니다.</td>
+													<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
 												</tr>
 						            	  </c:if>
-						            	  	<c:set var="k" value="0"/>
-						            	  <c:if test="${!empty list }">
-						            	  		<c:forEach var="map" items="${list}">
+						            	  <c:if test="${!empty exList }">
+						            	  		<c:forEach var="map" items="${exList}">
 										              <tr  class="text-center">
-										              <td><input type="checkbox" name="couponItems[${k}].scBoxNo"
-																value="${map['S_C_BOX_NO']}" class="ckbox">
-																<input type="text" name="couponItems[${k}].scBoxNo" 
-																	value="${map['S_C_BOX_NO']}">
-															</td>
-										              		<td>${map['R_COUPON_NO'] }</td>
+										              		<td>${map['S_C_BOX_NO'] }</td>
 										              		<td>${map['R_COUPON_MIN'] }</td>
 										              		<td>${map['R_COUPON_DC'] }</td>
 											              	<td>${map['S_C_START_DATE'] }</td>
 											                <td>${map['S_C_END_DATE'] }</td>
-											                <c:if test="${map['S_C_SERVICE'] == 'Y' }">
 														    <td>
-														    	<span class="badge bg-success">사용중 </span>
+														    	<span class="badge bg-light">만료 </span>
 														    </td>											                
-											                </c:if>
-											                 <c:if test="${map['S_C_SERVICE'] == 'N' ||  map['S_C_END_DATE'] == sysdate }">
-														    <td>
-														    	<span class="badge bg-danger">만료 </span>
-														    </td>											                
-											                </c:if>
 										              </tr>
-										              <c:set var="k" value="${k+1 }"/>
 							              		</c:forEach>
 							               </c:if>
+							             </div><!-- AllList -->
+						            
+						            <!-- table 시작 -->
+						            <div class="DateList" id="DateList">
+						            	  <c:if test="${empty list }">
+						            	  		<tr>
+													<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
+												</tr>
+						            	  </c:if>
+						            	  <c:if test="${!empty list }">
+						            	  		<c:forEach var="map" items="${list}">
+										              <tr  class="text-center">
+										              		<td>${map['S_C_BOX_NO'] }</td>
+										              		<td>${map['R_COUPON_MIN'] }</td>
+										              		<td>${map['R_COUPON_DC'] }</td>
+											              	<td>${map['S_C_START_DATE'] }</td>
+											                <td>${map['S_C_END_DATE'] }</td>
+														    <td>
+														    	<span class="badge bg-light">만료 </span>
+														    </td>											                
+										              </tr>
+							              		</c:forEach>
+							               </c:if>
+							             </div><!-- DateList -->
 						            </tbody>
 						          </table>
 						          </div>
@@ -158,12 +167,22 @@
 		
 <!--  -->
 <script type="text/javascript">
+$(function(){
+	$('#DateList').hide();
+	$('#searchDate').click(function(){
+		$('#AllList').hide();
+		$('#DateList').show();
+	});
+});
 	$(function(){
 		$('#btRegi').click(function(){
 			location.href='<c:url value="/owner/menu2/couponused/couponRegi.do"/>';
 		});
 		$('#btExpire').click(function(){
 			location.href='<c:url value="/owner/menu2/couponused/couponExpire.do"/>';
+		});
+		$('#btAll').click(function(){
+			location.href='<c:url value="/owner/menu2/couponused/couponUsed.do"/>';
 		});
 	});
 	function pageFunc(curPage){
@@ -190,9 +209,30 @@
 			$('.divList .box2 tbody').find('input[type=checkbox]')
 				.prop('checked', this.checked);	
 		});
-		
 	});
 	
+
+	/* 처음에 전체 목록 불러오기
+	$(function(){
+     	$.ajax({
+			url:"<c:url value='/owner/menu2/couponused/couponExpire.do'/>",
+			type:"GET",
+		//	data: , 
+			dataType:"json",
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			success:function(res){
+				alert(res);
+				$('#DateList').hide();
+				$('#AllList').show();
+					
+				},
+				error:function(xhr, status, error){
+					alert("error! : " + error);
+				}				
+			});//ajax
+	});
+	
+	*/
 </script>
 
  <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

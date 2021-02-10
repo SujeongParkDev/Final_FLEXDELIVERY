@@ -46,7 +46,9 @@
 		select r.R_COUPON_DC,r.R_COUPON_MIN, c.*
         from REGULARCOUPON r  join STORECOUPONBOX c
          on r.R_COUPON_NO=c.R_COUPON_NO
-         where s_c_service='Y' and store_no=#{storeNo}
+         <![CDATA[
+         where s_c_service='Y' and store_no=#{storeNo} and s_c_end_date >= sysdate
+         	]]>
          order by S_C_BOX_NO desc
 	</select>
 	
@@ -66,13 +68,23 @@
 	
 	<update id="deleteCoupon" parameterType="int">
 		update storeCouponBox
-		 set s_c_service='Y'
+		 set s_c_service='N'
 		where  s_c_box_no=#{scBoxNo} or S_C_END_DATE != sysdate
 	</update>
 	
-	<select id="dupCouponNo" parameterType="int" resultType="ownerCouponVo">
-		select R_COUPON_NO from STORECOUPONBOX
-          where store_no=#{storeNo}
+	<select id="dupCouponNo" parameterType="ownerCouponVo" resultType="int">
+		select count(*) from STORECOUPONBOX
+		where store_no=#{storeNo} and R_COUPON_NO=#{rCouponNo} and S_C_END_DATE > sysdate
+	</select>
+	
+	<select id="expireAll" parameterType="int" resultType="map">
+		select r.R_COUPON_DC,r.R_COUPON_MIN, c.*
+        from REGULARCOUPON r  join STORECOUPONBOX c
+         on r.R_COUPON_NO=c.R_COUPON_NO
+          <![CDATA[
+		where s_c_end_date < sysdate and store_no=#{storeNo}
+			]]>
+		order by S_C_BOX_NO desc
 	</select>
 	
 </mapper>
