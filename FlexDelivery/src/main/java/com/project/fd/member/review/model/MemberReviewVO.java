@@ -14,6 +14,15 @@ public class MemberReviewVO {
 	private int memberNo;
 	private int ordersNo;
 	private int storeNo;
+	private String memberName;
+	
+	
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}

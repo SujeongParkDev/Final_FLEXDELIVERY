@@ -51,4 +51,6 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	 @Override public int editStores(OwnerStoresVO storesVo) { 
 		 return	 sqlSession.update(namespace+"editStores"); 
 	}	 
+
 }
+

@@ -189,11 +189,4 @@ public class MemberStoreController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/storeReview.do")
-	public String storeReview_View(@RequestParam int storeNo,HttpSession session) {
-		logger.info("점포상세에서 리뷰노출 , 파라미터 storeNo={}",storeNo);
-		return "member/store/review/storeReview";
-	}
-	
-	
 }

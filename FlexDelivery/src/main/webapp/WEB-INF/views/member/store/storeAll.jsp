@@ -137,9 +137,9 @@
 		               		<p class="text-gray mb-2">
 		                </div>
 			        </div>
-	                   <c:if test="${vo.couponExist>0}">
-			               	<span class="badge badge-danger float-right" style="position: absolute; top: 8px;right: 8px" >coupon</span>
-	                   </c:if>
+                   <c:if test="${vo.couponExist>0}">
+		               	<span class="badge badge-danger float-right" style="position: absolute; top: 8px;right: 8px" >coupon</span>
+                   </c:if>
 			    </div>
 			</div>
 		</c:forEach>

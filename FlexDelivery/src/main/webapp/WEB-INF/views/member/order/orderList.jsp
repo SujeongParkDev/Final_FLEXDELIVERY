@@ -119,7 +119,7 @@ function formatDate(date) {
             <div class="tab-content col-md-9" id="myTabContent">
                 <div class="tab-pane fade show active" id="completed" role="tabpanel" aria-labelledby="completed-tab">
                     <div class="order-body">
-                    	<c:if test="${empty okList}">
+                    	<c:if test="${empty oklist}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
                     				<img alt="" class="img-fluid mb-5" style="max-width:50%" src="<c:url value='/resources/imgs/serving-dish.png'/>" >
@@ -127,8 +127,8 @@ function formatDate(date) {
                     			</div>
                     		</div>
                     	</c:if>
-                    	<c:if test="${!empty okList}">
-	                    	<c:forEach var="vo" items="${okList}">
+                    	<c:if test="${!empty oklist}">
+	                    	<c:forEach var="vo" items="${oklist}">
 		                        <div class="pb-3">
 		                            <div class="p-3 rounded shadow-sm bg-white">
 		                                <div class="d-flex border-bottom pb-3">

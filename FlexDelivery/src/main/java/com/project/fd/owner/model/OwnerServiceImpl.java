@@ -1,5 +1,6 @@
 package com.project.fd.owner.model;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class OwnerServiceImpl implements OwnerService {
 		if(dbPwd==null || dbPwd.isEmpty()) {
 			result=ID_NONE;
 		}else{
+			//if (BCrypt.checkpw(pwd, dbPwd)) 비밀번호 암호화 체크
 			if (dbPwd.equals(pwd)) {
 				result=LOGIN_OK;				
 			}else {

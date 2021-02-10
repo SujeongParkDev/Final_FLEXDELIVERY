@@ -110,7 +110,7 @@ public class MemberOrderController {
 		List<MemberOrderAllVO> okList=orderServ.selectOrderOkList(memberNo);
 		List<MemberOrderAllVO> ingList=orderServ.selectOrderIngList(memberNo);
 		List<MemberOrderAllVO> ccList=orderServ.selectOrderCancelList(memberNo);
-		
+		logger.info("oklISTSIZE={}",okList.size());
 		logger.info("주문내역확인 페이지");
 		model.addAttribute("oklist",okList);
 		model.addAttribute("ingList",ingList);
