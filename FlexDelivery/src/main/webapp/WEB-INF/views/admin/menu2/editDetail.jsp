@@ -49,8 +49,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >변경 요청 내역</h4>
-                        <h4 class="card-title" >[접수번호 : ${temporaryVo.tNo }, 접수일자 : 
-                        	<fmt:formatDate value="${temporaryVo.tRegdate}" pattern="yyyy년 MM월 dd일"/> ]</h4>
+                        <h4 class="card-title" ><p>[접수번호 : ${temporaryVo.tNo }, &nbsp &nbsp &nbsp 최종처리일자: 
+                        	<fmt:formatDate value="${temporaryVo.tRegdate}" pattern="yyyy년 MM월 dd일"/> ]</p></h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">

@@ -13,39 +13,42 @@ import com.project.fd.owner.store.model.OwnerStoresVO;
 @Repository
 public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 
-	@Autowired private SqlSessionTemplate sqlSession;
-	
-	private String namespace="config.mybatis.mapper.oracle.adminTemporary.";
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	private String namespace = "config.mybatis.mapper.oracle.adminTemporary.";
 
 	@Override
 	public List<AdminTemporaryVO> editList() {
-		List<AdminTemporaryVO> list = sqlSession.selectList(namespace+"editList");
+		List<AdminTemporaryVO> list = sqlSession.selectList(namespace + "editList");
 		return list;
 	}
 
 	@Override
 	public AdminTemporaryVO editDetail(long no) {
-		AdminTemporaryVO vo = sqlSession.selectOne(namespace+"editDetail", no);
+		AdminTemporaryVO vo = sqlSession.selectOne(namespace + "editDetail", no);
 		return vo;
 	}
 
 	@Override
 	public int editAgree(long no) {
-		return sqlSession.update(namespace+"editAgree", no);
+		return sqlSession.update(namespace + "editAgree", no);
 	}
 
 	@Override
 	public int editDeny(long no) {
-		return sqlSession.update(namespace+"editDeny", no);
+		return sqlSession.update(namespace + "editDeny", no);
 	}
-	/*
-	 * @Override public int editOwner(OwnerVO ownerVo) { return
-	 * sqlSession.update(namespace+"editOwner", no); }
-	 * 
-	 * @Override public int editOwnerRegister(OwnerRegisterVO registerVo) { return
-	 * sqlSession.update(namespace+"editOwnerRegister", no); }
-	 * 
-	 * @Override public int editStores(OwnerStoresVO storesVo) { return
-	 * sqlSession.update(namespace+"editStores"); }
-	 */		
+
+	 @Override public int editOwner(OwnerVO ownerVo) { 
+		 return	 sqlSession.update(namespace+"editOwner", ownerVo); 
+	}
+	 
+	 @Override public int editOwnerRegister(OwnerRegisterVO registerVo) { 
+		 return	 sqlSession.update(namespace+"editOwnerRegister", registerVo); 
+	}
+	 
+	 @Override public int editStores(OwnerStoresVO storesVo) { 
+		 return	 sqlSession.update(namespace+"editStores"); 
+	}	 
 }
