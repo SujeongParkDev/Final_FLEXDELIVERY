@@ -1,7 +1,6 @@
 package com.project.fd.owner.store.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +33,13 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.selectOne(namespace+"selectOwnerAuthorityAll", userid);
 	}
 	
+	@Override
+	public OwnerStoresVO selectByNo(int storeNo) {
+		return sqlSession.selectOne(namespace+"selectByNo",storeNo);
+	}
+
+	@Override
+	public int updateStores(OwnerStoresVO ownerStoresVO) {
+		return sqlSession.update(namespace+"updateStores",ownerStoresVO);
+	}	
 }

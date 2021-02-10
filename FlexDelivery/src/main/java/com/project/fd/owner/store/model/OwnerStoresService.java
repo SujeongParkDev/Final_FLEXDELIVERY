@@ -17,8 +17,13 @@ public interface OwnerStoresService {
 
 	//Stores
 	int insertOwnerStores(OwnerStoresVO ownerStoresVo);
-	 public int selectStoreNoByNo(int ownerNo);
-	 List<LocationVO> AllLocaion(); 
-	 public int checkAuthority2(String userid);
-	  OwnerAuthorityVO selectOwnerAuthorityAll2(String userid);
+	public int selectStoreNoByNo(int ownerNo);
+	List<LocationVO> AllLocaion(); 
+	public int checkAuthority2(String userid);
+	OwnerAuthorityVO selectOwnerAuthorityAll2(String userid);
+	  
+	OwnerStoresVO selectByNo(int storeNo);
+	int updateStores(OwnerStoresVO ownerStoresVO);
 }
+
+
