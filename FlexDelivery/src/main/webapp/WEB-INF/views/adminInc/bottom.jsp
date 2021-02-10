@@ -33,7 +33,6 @@
 
     </footer>
     <!-- ##### Footer Area End ##### -->
-    
-    
+  
 </body>
 </html>

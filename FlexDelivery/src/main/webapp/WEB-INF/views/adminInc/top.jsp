@@ -23,6 +23,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/css/owl.carousel.css"/>
 <!-- css end -->
 
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.css"/> --%>
+
 <!-- Title start -->
 <title>플렉스 딜리버리 : 관리자 페이지</title>
 <!-- Title end -->
@@ -93,22 +95,25 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Logo Area -->
         <div class="logo-area text-center">
+           	<canvas id='canv' style="cursor: move; background: hsla(0, 0%, 0%, 1);"></canvas>
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                     	<!-- img src: flex delivery 로고로 변경 필요함 -->
-                        <a href="<c:url value='/admin/index.do' />" class="original-logo">
+                        <%-- <a href="<c:url value='/admin/index.do' />" class="original-logo">
                         <img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
+                 --%>
+                		
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Nav Area -->
-        <div class="original-nav-area" id="stickyNav">
+        <div class="original-nav-area mt-70" id="stickyNav">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <!-- Classy Menu -->
@@ -215,8 +220,10 @@
     <!-- ##### Header Area End ##### -->
     
     
+<%--     <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script> --%>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
+ 
     <!-- Popper js -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -225,4 +232,10 @@
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
-    
+    <!-- top logo -->
+    <%-- <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script>
+      
+     <script>
+    	var jq = jQuery.noConflict();
+    </script>
+     --%>

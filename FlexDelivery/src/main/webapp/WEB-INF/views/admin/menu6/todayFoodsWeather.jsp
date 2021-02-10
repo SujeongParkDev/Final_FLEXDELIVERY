@@ -34,8 +34,8 @@
 			                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                           <div class="modal-content">
 											<form name="frmWeatherWrite" method="post" action="<c:url value='/admin/menu6/todayFoodsWeather.do' />">
-			                                	<div class="modal-header">
-				                                    <h4 class="modal-title" id="largeWrite">오늘 뭐 먹지 - 날씨 등록</h4>
+			                                	<div class="modal-header" style="background-color: black;">
+				                                    <h4 class="modal-title" style="color: white;" id="largeWrite">오늘 뭐 먹지 - 날씨 등록</h4>
 				                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                       <i data-feather="x"></i>
 				                                    </button>
@@ -141,7 +141,7 @@
 														
 														<td><span class="badge bg-warning">${vo.wCount }</span></td>
 														<td>
-															<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.weatherNo}"
+															<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.weatherNo}"
 						                                       data-toggle="modal" data-backdrop="false" data-target="#weatherEdit${vo.weatherNo}">
 						                                       	수정</button>					                                       
 					                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
@@ -187,8 +187,8 @@
 					                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 					                                             <div class="modal-content">
 					                                    			<form name="frmWeatherEdit" method="post" action="<c:url value='/admin/menu6/todayFoodsWeather/edit.do' />">
-					                                                   <div class="modal-header">
-					                                                      <h4 class="modal-title" id="myModalWeatherEdit">오늘 뭐 먹지 - 날씨 카테고리 수정</h4>
+					                                                   <div class="modal-header" style="background-color: black;">
+					                                                      <h4 class="modal-title" style="color: white;" id="myModalWeatherEdit">오늘 뭐 먹지 - 날씨 카테고리 수정</h4>
 					                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					                                                         <i data-feather="x"></i>
 					                                                      </button>
@@ -202,9 +202,9 @@
 					                                                                  <tbody>
 					                                                                     <tr>
 						                                                                    
-				                                                                           <input type="hidden" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
 						                                                                     <td>날씨 이름</td>
 																							 <td colspan="2">
+					                                                                           <input type="hidden" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
 					                                                                           <input type="text" name="weatherName" id="EditWeatherName" value="${vo.weatherName }">
 																							 </td>					                                                                    
 					                                                                     </tr>					                                                                    

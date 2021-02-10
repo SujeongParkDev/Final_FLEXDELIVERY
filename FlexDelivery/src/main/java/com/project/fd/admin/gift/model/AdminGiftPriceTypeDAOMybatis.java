@@ -40,13 +40,15 @@ public class AdminGiftPriceTypeDAOMybatis implements AdminGiftPriceTypeDAO{
 
 	@Override
 	public boolean checkDu(int price) {
-		boolean bool;
+		boolean bool=false;
+		
 		int cnt=sqlSession.selectOne(namespace+"checkDu", price);
 		if (cnt==0) {
 			bool=true;
 		} else {
 			bool=false;
 		}
+		
 		return bool;
 	}
 }

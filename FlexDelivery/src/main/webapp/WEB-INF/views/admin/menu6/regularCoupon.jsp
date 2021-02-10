@@ -32,8 +32,8 @@
 	                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                           <div class="modal-content">
 									<form name="frmRegularCouponWrite" method="post" action="<c:url value='/admin/menu6/regularCoupon/write.do' />">
-	                                	<div class="modal-header">
-		                                    <h4 class="modal-title" id="gpWrite">정기쿠폰 - 등록</h4>
+	                                	<div class="modal-header" style="background-color: black;">
+		                                    <h4 class="modal-title" style="color: white;" id="gpWrite">정기쿠폰 - 등록</h4>
 		                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		                                       <i data-feather="x"></i>
 		                                    </button>
@@ -114,7 +114,7 @@
 								               <td colspan="3">${vo.rCouponDc }</td>
 								               <td colspan="3">${vo.rCouponMin }</td>
 								               <td>
-								               		<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.rCouponNo}"
+								               		<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.rCouponNo}"
 				                                       data-toggle="modal" data-backdrop="false" data-target="#regularCouponEdit${vo.rCouponNo}">
 				                                       	수정</button>					                                       
 			                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
@@ -162,8 +162,8 @@
 			                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                                             <div class="modal-content">
 			                                    			<form name="frmRegularCouponEdit" method="post" action="<c:url value='/admin/menu6/regularCoupon/edit.do' />">
-			                                                   <div class="modal-header">
-			                                                      <h4 class="modal-title" id="myModalRegularCouponEdit">정기쿠폰 - 수정</h4>
+			                                                   <div class="modal-header" style="background-color: black;">
+			                                                      <h4 class="modal-title" style="color: white;" id="myModalRegularCouponEdit">정기쿠폰 - 수정</h4>
 			                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                                                         <i data-feather="x"></i>
 			                                                      </button>

@@ -6,10 +6,12 @@
 <script>
 $(function(){
 	$('#message2').hide();
-	$('#messageOk').hide();
+	//$('#messageOk').hide();
 	$('#emessage').hide();
-   
-	$('#largeWrite').on('hidden.bs.modal', function (e) {
+    var ok=$('#messageOk').val();
+	console.log(ok);
+    
+    $('#largeWrite').on('hidden.bs.modal', function (e) {
 	    console.log('modal close');
 	  $(this).find('form')[0].reset()
 	  $('#preview').html("<img src='${pageContext.request.contextPath}/resources/imgs/CommonImages/noImageDefault.png'>");
@@ -43,19 +45,17 @@ $(function(){
    }); */
    
    $('#lCategoryName').on('keyup', function(){
-
 	   writeFunc();
-		  
-	  
+  
    });//write keyup function
    
-   $('#EditlCategoryName').on('keyup', function(){
+/*    $('#EditlCategoryName').on('keyup', function(){
 	   $('#messageOk2').show();
 		 editFunc();  
-   });//keyup function 
+   });//keyup function  */
    
    
-});
+});//readyFunction
 
 /*    var sel_file;
        
@@ -92,25 +92,29 @@ function readInputFile(input) {
 } 
  
 function chkDu(content){
-	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣/]+$/g);
 	return pattern.test(content);
 }
 
 function readyWriteSubmit(){
 	writeFunc();
-	var ok=$('#messageOk').val();
+	var ok=$('#messageOk').html();
+	alert("html:"+ok);
 	
 	if(ok=="Y"){
 		console.log("폼 전송 성공!");
 		$('form[name=frmLCategoryWrite]').submit();
-	}else {
+	}else if(ok=="N"){
 		alert("등록 실패!");
 		event.preventDefault;
 		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
 	}
 }
 
-function readyEditSubmit(){
+/* function readyEditSubmit(){
 	editFunc();
 	var ok=$('#messageOk2').val();
 	
@@ -122,10 +126,9 @@ function readyEditSubmit(){
 		event.preventDefault;
 		//return false;
 	}
-}
+} */
 
 function writeFunc(){
-	
 	  var name=$('#lCategoryName').val();
 	  
 	  if(chkDu(name) && name.length>0){
@@ -169,7 +172,7 @@ function writeFunc(){
 	  }
 }
  
- function editFunc(){
+/*  function editFunc(){
 	  var name=$('#EditlCategoryName').val();
 	  
 	  if(chkDu(name) && name.length>0){
@@ -212,7 +215,7 @@ function writeFunc(){
 		  $('#messageOk2').html("N");
 		
 	  }
-}//editFunc
+}//editFunc */
 
 </script>
 <!-- script end -->
@@ -272,7 +275,7 @@ function writeFunc(){
                                                       <td colspan="3"  style="text-align: center;">
                                                          <div>
                                                             <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" 
-                                                            	style=" width: 100%;" accept=".gif, .jpg, .png" />             
+                                                            	style=" width: 100%;" accept=".gif, .jpg, .png" required />             
                                                          </div>
                                                       </td>
                                                    </tr>
@@ -283,7 +286,7 @@ function writeFunc(){
                                                           	style="margin-bottom: 12px;">
                                                          <br><span id="message" style="color: #dc3545;font-weight: bold;">대분류 카테고리 이름을 입력해주세요.</span>
                                                          <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
-                                                         <span id="messageOk"></span>
+                                                         <span id="messageOk">N</span>
                                                       </td>
                                                    </tr>
                                                 </tbody>
