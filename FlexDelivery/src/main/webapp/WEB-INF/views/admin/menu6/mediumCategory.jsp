@@ -33,8 +33,8 @@
 			                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                           <div class="modal-content">
 											<form name="frmMediumCategoryWrite" method="post" action="<c:url value='/admin/menu6/mediumCategory/write.do' />">
-			                                	<div class="modal-header">
-				                                    <h4 class="modal-title" id="mediumWrite">음식메뉴 - 중분류 카테고리 등록</h4>
+			                                	<div class="modal-header" style="background-color: black;">
+				                                    <h4 class="modal-title" style="color: white;" id="mediumWrite">음식메뉴 - 중분류 카테고리 등록</h4>
 				                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                       <i data-feather="x"></i>
 				                                    </button>
@@ -158,7 +158,7 @@
 														<td>${vo.weatherName }</td>
 														<%-- <td>${vo.lCCount }</td> --%>
 														<td>
-															<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.mCategoryNo}"
+															<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.mCategoryNo}"
 						                                       data-toggle="modal" data-backdrop="false" data-target="#mediumCategoryEdit${vo.mCategoryNo}">
 						                                       	수정</button>					                                       
 					                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
@@ -206,8 +206,8 @@
 					                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 					                                             <div class="modal-content">
 					                                    			<form name="frmMediumCategoryEdit" method="post" action="<c:url value='/admin/menu6/mediumCategory/edit.do' />">
-					                                                   <div class="modal-header">
-					                                                      <h4 class="modal-title" id="myModalMediumCategoryEdit">음식메뉴 - 중분류 카테고리 수정</h4>
+					                                                   <div class="modal-header" style="background-color: black;">
+					                                                      <h4 class="modal-title" style="color: white;" id="myModalMediumCategoryEdit">음식메뉴 - 중분류 카테고리 수정</h4>
 					                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					                                                         <i data-feather="x"></i>
 					                                                      </button>

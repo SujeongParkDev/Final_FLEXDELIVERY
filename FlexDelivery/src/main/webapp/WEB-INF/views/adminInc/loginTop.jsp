@@ -87,11 +87,11 @@
 
         <!-- Logo Area -->
         <div class="logo-area text-center">
+         	<canvas id='canv' style="cursor: move; background: hsla(0, 0%, 0%, 1);"></canvas>
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="<c:url value='/admin/index.do' />" class="original-logo">
-                        <img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
+               		    <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script>  
                     </div>
                 </div>
             </div>

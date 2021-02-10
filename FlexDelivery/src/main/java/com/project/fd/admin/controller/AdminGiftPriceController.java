@@ -41,12 +41,12 @@ public class AdminGiftPriceController {
 	
 	@RequestMapping("/gPrice/ajaxCheck.do")
 	@ResponseBody
-	public boolean ajax_check(@RequestParam int price) {
-		logger.info("이름 중복확인, price={}", price);
+	public boolean ajax_check(@RequestParam int gPTypePrice) {
+		logger.info("금액 중복확인, price={}", gPTypePrice);
 		
 		boolean isExist=false;
-		if(price>=0) {
-			isExist=giftPriceTypeService.checkDu(price);
+		if(gPTypePrice>=0) {
+			isExist=giftPriceTypeService.checkDu(gPTypePrice);
 			logger.debug("금액 중복확인 결과, isExist={}", isExist);
 		}
 		return isExist;

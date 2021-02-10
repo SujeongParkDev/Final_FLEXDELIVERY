@@ -16,7 +16,6 @@ $(function(){
 	
 	$('#message2').hide();
 	$('#messageOk').hide();
-	$('#emessage').hide();
    
 	$('#giftPriceWrite').on('hidden.bs.modal', function (e) {
 	    console.log('modal close');
@@ -29,7 +28,6 @@ $(function(){
 	});
 	
 	$('#gPTypePrice').on('keyup', function(){
-
 		   writeFunc();
 			  
 	   });//write keyup function
@@ -58,11 +56,11 @@ function writeFunc(){
 	
 	  var price=$('#gPTypePrice').val();
 	  
-	  if(chkDu(price) && name.length>0){
+	  if(chkDu(price) && price.length>0){
 		  $.ajax({
 			  type:"get",
 			  url:"<c:url value='/admin/menu6/gPrice/ajaxCheck.do' />",
-			  data:"price="+price,
+			  data:"gPTypePrice="+price,
 			  dataType:"json",
 			  success: function (bool) {
 				  if(bool){
@@ -71,6 +69,7 @@ function writeFunc(){
 					  $('#message2').show();
 					  $('#message2').html(result);
 					  $('#messageOk').html("Y");
+					  
 				  }else{
 					  result = "이미 등록된 금액입니다.";
 					  $('#message2').hide();
@@ -83,14 +82,14 @@ function writeFunc(){
 			}//success
 
 		  }); //ajax
-	  }else if (name.length<1){
+	  }else if (price.length<1){
 		  $('#message2').hide();
 		  $('#message').show();
 		  $('#message').html("금액을 입력해주세요.");
 		  $('#messageOk').html("N");
 
 	  	
- 	  }else if(!chkDu(name)){
+ 	  }else if(!chkDu(price)){
 		  $('#message2').hide();
 		  $('#message').show();
 		  $('#message').html("숫자만 사용 가능합니다.");
@@ -155,7 +154,7 @@ function writeFunc(){
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>

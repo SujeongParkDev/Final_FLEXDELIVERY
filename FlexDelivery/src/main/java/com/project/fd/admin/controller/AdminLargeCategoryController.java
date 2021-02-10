@@ -82,6 +82,10 @@ public class AdminLargeCategoryController {
 			e.printStackTrace();
 		}
 		
+		if (fileName.isEmpty()) {
+			fileName="noImageDefault.png";
+		}
+		
 		//2
 		largecategoryVo.setlCategoryFilename(fileName);
 		logger.info("파일 이름 확인, fileName={}", fileName);

@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../adminInc/loginTop.jsp" %>
 
-    
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/colorTest.css"/>
+
 <!-- Admin Login Form start -->
 <div class="container">
+ 	
 	<form name="frmAdminLogin" id="frmAdminLogin" action="<c:url value='/login.do' />" 
 		method="post">
 		<div class="row justify-content-center">
@@ -26,8 +28,7 @@
 					    <label>pwd</label>
 					</div>
 				</div>
-				
-				    
+
 				<div class="col-12">
 					<input type="hidden" name="idx" value="3">
 				     <button type="submit" class="btn original-btn">로그인</button>
@@ -36,6 +37,7 @@
 		</div>       	
 	</form>
 </div>
+
 <!-- Admin Login Form end -->
    
                         

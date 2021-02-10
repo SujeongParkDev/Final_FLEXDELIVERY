@@ -9,8 +9,8 @@
 		order by G_P_TYPE_NO desc
 	</select>
 	
-	<select id="checkDu" parameterType="int" resultType="adminGiftPriceTypeVo">
-		select count(G_P_TYPE_PRICE) from GIFTPRICETYPE where G_P_TYPE_PRICE like #{gPTypePrice}
+	<select id="checkDu" parameterType="int" resultType="int">
+		select count(G_P_TYPE_PRICE) from GIFTPRICETYPE where G_P_TYPE_PRICE = #{gPTypePrice}
 	</select>
 	
 	<insert id="insertGiftPriceType" parameterType="adminGiftPriceTypeVo" >

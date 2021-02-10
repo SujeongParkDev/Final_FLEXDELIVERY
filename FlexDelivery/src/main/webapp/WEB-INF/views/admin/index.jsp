@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../adminInc/top.jsp" %>
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/crystal.css"/>
- --%>
-    <!-- ##### Hero Area Start ##### -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/adminResources/fluidTest.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <div class="hero-area">
-<!-- <div style="text-align: center; font-family: 'Poppins', sans-serif;">
     
+<!-- <div style="text-align: center; font-family: 'Poppins', sans-serif;">    
  <ul id="testUl">
   <li id="testLi">
     <input type="checkbox" checked />
@@ -112,6 +111,9 @@
     <!-- ##### Blog Wrapper Start ##### -->
     <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container">
+        	<canvas id="adminChart1" width="200px" height="200px"></canvas>
+        </div>
+        <div class="container">
             <div class="row align-items-end">
                 <!-- Single Blog Area -->
                 <div class="col-12 col-lg-4">
@@ -122,7 +124,6 @@
                             <a href="#" class="post-tag">Lifestyle</a>
                             <h4><a href="#" class="post-headline">Welcome to this Lifestyle blog</a></h4>
                             <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Morbi sodales, dolor id ultricies dictum</p>
-                            <a href="#" class="btn original-btn">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -290,38 +291,12 @@
 
                     <!-- Load More -->
                     <div class="load-more-btn mt-100 wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1000ms">
-                        <a href="#" class="btn original-btn">Read More</a>
                     </div>
                 </div>
 
                 <!-- ##### Sidebar Area ##### -->
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="post-sidebar-area">
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <form action="#" class="search-form">
-                                <input type="search" name="search" id="searchForm" placeholder="Search">
-                                <input type="submit" value="submit">
-                            </form>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title subscribe-title">Subscribe to my newsletter</h5>
-                            <div class="widget-content">
-                                <form action="#" class="newsletterForm">
-                                    <input type="email" name="email" id="subscribesForm" placeholder="Your e-mail here">
-                                    <button type="submit" class="btn original-btn">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Advertisement</h5>
-                            <a href="#"><img src="${pageContext.request.contextPath}/resources/adminResources/img/bg-img/add.gif" alt=""></a>
-                        </div>
 
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area">
@@ -395,22 +370,7 @@
                             </div>
                         </div>
 
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Tags</h5>
-                            <div class="widget-content">
-                                <ul class="tags">
-                                    <li><a href="#">design</a></li>
-                                    <li><a href="#">fashion</a></li>
-                                    <li><a href="#">travel</a></li>
-                                    <li><a href="#">music</a></li>
-                                    <li><a href="#">party</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">photography</a></li>
-                                    <li><a href="#">adventure</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

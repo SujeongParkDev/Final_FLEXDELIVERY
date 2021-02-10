@@ -51,8 +51,8 @@ function readInputFile(input) {
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
 								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />" enctype="multipart/form-data">
-                                	<div class="modal-header">
-	                                    <h4 class="modal-title">선물 - 상품 등록</h4>
+                                	<div class="modal-header" style="background-color: black;">
+	                                    <h4 class="modal-title" style="color: white;">선물 - 상품 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -151,7 +151,7 @@ function readInputFile(input) {
 											<span class="badge bg-info">${vo.gCategoryName }</span>
 											<p class="card-text white">${vo.gProductNo }</p>
 											<h4 class="card-title">${vo.gProductName }</h4>
-											<button type="button" class="round btn btn-primary" id="modalEditBt${vo.gProductNo}"
+											<button type="button" class="round btn btn-dark" id="modalEditBt${vo.gProductNo}"
 		                                       data-toggle="modal" data-backdrop="false" data-target="#giftProductEdit${vo.gProductNo}">
 		                                       	수정</button>					                                       
 											<%-- <small class="button badge bg-primary" id="modalEditBt${vo.gProductNo}"
@@ -202,8 +202,8 @@ function readInputFile(input) {
 	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                                             <div class="modal-content">
 	                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
-	                                                   <div class="modal-header">
-	                                                      <h4 class="modal-title" id="myModalGiftProductEdit">선물 상품 수정</h4>
+	                                                   <div class="modal-header" style="background-color: black;">
+	                                                      <h4 class="modal-title" style="color: white;" id="myModalGiftProductEdit">선물 상품 수정</h4>
 	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                                         <i data-feather="x"></i>
 	                                                      </button>

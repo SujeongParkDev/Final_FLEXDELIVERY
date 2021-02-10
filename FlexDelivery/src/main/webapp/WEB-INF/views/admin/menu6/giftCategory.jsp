@@ -31,8 +31,8 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
 								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />">
-                                	<div class="modal-header">
-	                                    <h4 class="modal-title">선물하기 - 카테고리 등록</h4>
+                                	<div class="modal-header" style="background-color: black;">
+	                                    <h4 class="modal-title" style="color: white;">선물하기 - 카테고리 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -44,9 +44,9 @@
 	                                             <table class="table mb-0">
 	                                                <tbody>
 	                                                   <tr>
-	                                                   	  <input type="hidden" name="gCategoryNo" value="123" readonly>
 	                                                   	  <td>카테고리 이름</td>
 	                                                      <td colspan="2"  style="text-align: center;">
+		                                                   	  <input type="hidden" name="gCategoryNo" value="123" readonly>
 	                                                      	  <input type="text" name="gCategoryName">
 	                                                      </td>
 	                                                   </tr>
@@ -96,7 +96,7 @@
 										<td colspan="3">${vo.gCategoryName }</td>
 										<td><span class="badge bg-dark">${vo.cCount }</span></td>
 										<td>
-											<button type="button" class="btn btn-primary round btEdit" id="modalEditBt${vo.gCategoryNo}"
+											<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.gCategoryNo}"
 		                                       data-toggle="modal" data-backdrop="false" data-target="#giftCategoryEdit${vo.gCategoryNo}">
 		                                       	수정</button>					                                       
 	                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
@@ -142,8 +142,8 @@
 	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	                                             <div class="modal-content">
 	                                    			<form name="frmGiftCategoryEdit" method="post" action="<c:url value='/admin/menu6/giftCategory/edit.do' />">
-	                                                   <div class="modal-header">
-	                                                      <h4 class="modal-title" id="myModalgiftCategoryEdit">선물하기 - 카테고리 수정</h4>
+	                                                   <div class="modal-header" style="background-color: black;">
+	                                                      <h4 class="modal-title" style="color: white;" id="myModalgiftCategoryEdit">선물하기 - 카테고리 수정</h4>
 	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                                         <i data-feather="x"></i>
 	                                                      </button>
@@ -156,9 +156,9 @@
 	                                                               <table class="table mb-0">
 	                                                                  <tbody>
 	                                                                     <tr>
-	                                                                         <input type="hidden" name="gCategoryNo" id="giftCategoryNo" value="${vo.gCategoryNo }" readonly>						                                                                     
 		                                                                     <td>카테고리 이름</td>
 																			 <td colspan="2">
+		                                                                         <input type="hidden" name="gCategoryNo" id="giftCategoryNo" value="${vo.gCategoryNo }" readonly>						                                                                     
 	                                                                           <input type="text" name="gCategoryName" id="giftCategoryName" value="${vo.gCategoryName }">
 																			 </td>					                                                                    
 	                                                                     </tr>					                                                                    
