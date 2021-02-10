@@ -37,7 +37,7 @@ public class OwnerStoresController {
 	
 	@Autowired private AdminLargeCategoryService adminlarge;
 
-	 @RequestMapping("/launch/launch.do")
+	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.GET)
 	 public String ownerlaunch(Model model) {
 
 		 logger.info("점포 - 입점 메인 화면 보여주기");
@@ -55,6 +55,62 @@ public class OwnerStoresController {
 		 
 	}
 	 
+	 //입점신청 
+	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.POST)
+	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
+			 HttpServletRequest request, HttpSession session,
+			 Model model) { 
+		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		logger.info("입점신청 세션의 ownerNo={}"+ownerNo);
+		ownerStoresVo.setOwnerNo(ownerNo);
+		logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
+		 
+			//파일 업로드 처리
+			String originName="", fileName="";
+			long fileSize=0;
+			try {
+				List<Map<String, Object>> fileList
+				=fileUtil.fileUplaod(request, FileUploadUtil.STORES_TYPE);
+				for(Map<String, Object> fileMap : fileList) {
+					originName=(String) fileMap.get("originalFileName");
+					fileName=(String) fileMap.get("fileName");//
+					fileSize=(Long)fileMap.get("fileSize");				
+				}//for
+			} catch (IllegalStateException e) {
+				logger.info("파일 업로드 실패!");
+				e.printStackTrace();
+			} catch (IOException e) {
+				logger.info("파일 업로드 실패!");
+				e.printStackTrace();
+			}
+
+			ownerStoresVo.setStoreLogo(originName);
+			ownerStoresVo.setStoreLogo(fileName);
+			logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
+			
+			int cnt=ownerStoresService.insertOwnerStores(ownerStoresVo);
+			logger.info("점포 입점 신청  처리 결과, cnt={},originName={}", cnt,originName);
+			
+			String msg="점포 입점 신청 실패 !", url="/owner/menu1/launch/launch.do";
+			if(cnt>0) {
+				msg="점포 입점 신청이 완료되었습니다. \n승인 처리 진행은 최대 3일 경과 됩니다.";
+				url="/owner/menu1/launch/launch.do";
+				model.addAttribute("msg", msg);
+				model.addAttribute("url", url);
+				
+				return "common/message";
+			}
+
+			return "owner/menu1/launch/launch";
+		}
+	 
+/**
+ *  
+ *   @RequestMapping("/launch/launchRegister.do")
+	 public void register_get(Model model) { //requestparam=>사업자등록했는지
+		 logger.info("점포 - 입점 시작하기 보여주기");
+		
+	 }
 	@RequestMapping("/launch/launchNext.do")
 	 public String ownerlaunchNext(Model model) {
 		
@@ -78,64 +134,6 @@ public class OwnerStoresController {
 			
 			return "owner/menu1/launch/launchNext";
 	 }
-	 
-	 @RequestMapping("/launch/launchRegister.do")
-	 public void register_get(Model model) { //requestparam=>사업자등록했는지
-		 logger.info("점포 - 입점 시작하기 보여주기");
-		
-	 }
-	 
-	 //입점신청 
-	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
-	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
-			 HttpServletRequest request, HttpSession session,
-			 Model model) { 
-		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		logger.info("입점신청 세션의 ownerNo={}"+ownerNo);
-		ownerStoresVo.setOwnerNo(ownerNo);
-		// int oRegisterNo=(Integer)session.getAttribute("oRegisterNo");
-		// logger.info("입점신청 세션의 oRegisterNo={}"+oRegisterNo);
-		 
-		 logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
-		 
-			//파일 업로드 처리
-			String originName="", fileName="";
-			long fileSize=0;
-			try {
-				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.STORES_TYPE);
-				for(Map<String, Object> fileMap : fileList) {
-					originName=(String) fileMap.get("originalFileName");
-					fileName=(String) fileMap.get("fileName");//
-					fileSize=(Long)fileMap.get("fileSize");				
-				}//for
-			} catch (IllegalStateException e) {
-				logger.info("파일 업로드 실패!");
-				e.printStackTrace();
-			} catch (IOException e) {
-				logger.info("파일 업로드 실패!");
-				e.printStackTrace();
-			}
-
-			ownerStoresVo.setStoreLogo(originName);
-
-			int cnt=ownerStoresService.insertOwnerStores(ownerStoresVo);
-			logger.info("점포 입점 신청  처리 결과, cnt={},originName={}", cnt,originName);
-			
-			String msg="점포 입점 신청 실패 !", url="/owner/menu1/launch/launchNext.do";
-			if(cnt>0) {
-				msg="점포 입점 신청이 완료되었습니다. \n승인 처리 진행은 최대 3일 경과 됩니다.";
-				url="/owner/menu1/launch/launchNext.do";
-			}
-
-			//3		
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-
-			//4
-			return "common/message";
-		}
-	 
-
+ */
 
 }

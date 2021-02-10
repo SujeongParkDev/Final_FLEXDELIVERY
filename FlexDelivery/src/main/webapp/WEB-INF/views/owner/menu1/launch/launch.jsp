@@ -103,7 +103,7 @@ h1 {
 			</div>
 			<br> <br>
 			<div class="modal-body">
-				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
+				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/aunchWrite.do'/>">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">사업자등록 번호</label>
 						<input type="text" id="oRegisterNo" name="oRegisterNo"
@@ -137,8 +137,6 @@ h1 {
 			<div id="preview" class="text-center"></div>
 			<div class="modal-footer">
 				<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 ">
-				 <input type="submit" class="button medium primary" id="wr_submit" ame="wr_submit" data-toggle="modal" 
-				 data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1">입점 신청
 			</div>
 		</form>
 	</div>
@@ -160,7 +158,7 @@ h1 {
 				<br>
 			</div>
 			<div class="modal-body">
-				<form class="dialog on lg " name="frm1" id="frm1" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
+				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launch.do'/>">
 					<h5 class="form-label">
 						<div class="text-left">
 							<h3 class="mt-2 mb-1">
@@ -179,19 +177,19 @@ h1 {
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포명</h5>
-						</label> <input type="text" class="form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
+						</label> <input type="text" class="infobox form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
 					<div class="form-group">
+					<div id="preview" class="text-center logo"></div>
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 로고 이미지</h5>
-						</label> <input type="file" class="btn btn-default" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
+						</label> <input type="file" class="btn btn-default logo" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포명</h5>
-						</label> <input type="text" class="form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
+						</label> <input type="text" class="infobox form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
-					<div id="preview" class="text-center"></div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 주소</h5>
@@ -199,15 +197,15 @@ h1 {
 						<div>
 							<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" class="btn btn-default"> 
 							<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" style="border: none;"> 
-							<input type="text" placeholder="주소 " ReadOnly title="주소" class="form-control" aria-describedby="numberHelp" style="background-color: #fafaf9;" name="storeAddress"> 
-								<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="form-control" name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
+							<input type="text" placeholder="주소 " ReadOnly title="주소" class="infobox form-control" aria-describedby="numberHelp" style="background-color: #fafaf9;" name="storeAddress"> 
+								<input type="text" placeholder="점포 상세 주소를 적어주세요. " class="infobox form-control" name="storeAddressDetail" id="storeAddressDetail" minlength="1" title="점포 상세주소">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 지역 코드 번호</h5>
 						</label> 
-						<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="locationNo" 	name="locationNo">
+						<select required="required" style="min-width: 140px;" class="infobox form-control form-control-lg" id="locationNo" 	name="locationNo">
 							<option value="" disabled="">대분류</option>
 							<c:forEach var="voLo" items="${location }">
 								<option value="${voLo.locationNo}" id="locationNo" name="locationNo">${voLo.locationName }</option>
@@ -218,7 +216,7 @@ h1 {
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 대분류 카테고리</h5>
 						</label> 
-						<select required="required" style="min-width: 140px;" class="form-control form-control-lg" id="lCategoryNo" name="lCategoryNo">
+						<select required="required" style="min-width: 140px;" class="infobox form-control form-control-lg" id="lCategoryNo" name="lCategoryNo">
 							<option value="" disabled="">대분류</option>
 							<c:forEach var="vo" items="${large }">
 								<option value="${vo.lCategoryNo}" id="lCategoryNo" name="lCategoryNo">${vo.lCategoryName }</option>
@@ -243,7 +241,7 @@ h1 {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="btRegi" data-dismiss="modal" name="modalWrite" onclick="form.submit()">등록 제출</button>
+						<input type="submit" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="등록 제출">
 					</div>
 				</form>
 			</div>
@@ -306,100 +304,75 @@ h1 {
 			}
 
 		});//keyup
-
-	});
-
-	$(function() {
+		// thumbnail
 		$('#upfile').on('change', function() {
 			readInputFile(this);
 		});
-	});
-
-	function readInputFile(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').html(
-						"<img src=" + e.target.result
-								+ "  style='width:60%; margin-left:10px;' >");
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	$(function() {
-		$('#next').click(function() {
-			$(this).close();
-		});
-	});
-
-	//입점 신청 
-	$(function() {
-		var chk = 0;
-		$('#btRegi').click(function() {
-			$('.infobox').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).attr('title') + '를(을) 입력하세요');
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				} else {
-					chk = 1;
-					event.preventDefault();
+		
+		function readInputFile(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#preview').html(
+							"<img src=" + e.target.result
+									+ "  style='width:60%; margin-left:10px;' >");
 				}
-			}); //each
-			if (chk == 1) {
-				if (!$('#chkAgree').is(":checked")) {
-					alert('개인 정보 수집 이용에 동의하셔야 합니다.');
-					$('#chkAgree').focus();
-					event.preventDefault();
-					return false;
-				}
+				reader.readAsDataURL(input.files[0]);
 			}
-		});
-
-		$('#upfile').on('change', function() {
-			readInputFile(this);
-		});
-
-		var contextPath = "/fd";
-
-		$('#btnZipcode')
-				.click(
-						function() {
-							open(
-									contextPath
-											+ "/owner/menu1/launch/zipcode.do",
-									"chk",
-									"width=500,height=500,left=0,top=0,location=yes,resizable=yes");
-						});
-
-	});
-
-	$(function() {
-		$('#upfile').on('change', function() {
-			readInputFile(this);
-		});
-	});
-
-	function readInputFile(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').html(
-						"<img src=" + e.target.result
-								+ "  style='width:90%; margin-left:20px;' >");
-			}
-			reader.readAsDataURL(input.files[0]);
 		}
-	}
+			$('#next').click(function() {
+				$(this).close();
+			});
+	});
+
+	//입점 신청
+$(function(){
+	$('form[name=frm2]').submit(function(){
+	var chk = 0;
+		$('.infobox').each(function(idx, item) {
+			if ($(this).val().length < 1) {
+				alert($(this).attr('title') + '를(을) 입력하세요');
+				$(this).focus();
+				event.preventDefault();
+				return false;
+			} else {
+				chk = 1;
+			}
+		}); //each
+		if (chk == 1) {
+			if (!$('#chkAgree').is(":checked")) {
+				alert('개인 정보 수집 이용에 동의하셔야 합니다.');
+				$('#chkAgree').focus();
+				event.preventDefault();
+				return false;
+			}
+		}
+	});
+	
+	$('#upfile').on('change', function() {
+		readInputFile(this);
+	});
+	// stores 
+	var contextPath = "/fd";
+
+	$('#btnZipcode').click(function() {
+		open(contextPath+ "/owner/menu1/launch/zipcode.do", "chk", "width=500,height=500,left=0,top=0,location=yes,resizable=yes");
+		});
+	
+	$('.logo').on('change', function() {
+		readInputFile(this);
+	});
+});
+
+		function readInputFile(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('.logo').html("<img src=" + e.target.result + "  style='width:90%; margin-left:20px;' >");
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
 </script>
 
-<!-- script start -->
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
-<!-- script end -->
 <%@ include file="../../../ownerInc/bottom.jsp"%>

@@ -39,11 +39,6 @@ public class OwnerRegisterController {
 	
 	@Autowired private FileUploadUtil fileUtil;
 	
-	 @RequestMapping(value = "/businessLicense.do",method = RequestMethod.GET)
-	 public void ownerLicense() {
-		 logger.info("사업자 등록증 등록  화면 보여주기");
-	 }
-	 
 	 //사업자 등록증 처리 
 	 @RequestMapping(value="/launch/launchWrite.do",method=RequestMethod.POST)
 	 public String ownerLicenseOk(@ModelAttribute OwnerRegisterVO vo, 
@@ -153,5 +148,11 @@ public class OwnerRegisterController {
 			response.setContentType("text/xml");
 			response.getWriter().write(sb.toString());			// 응답결과 반환
 	    }
-	 
+/*
+ *  @RequestMapping(value = "/businessLicense.do",method = RequestMethod.GET)
+	 public void ownerLicense() {
+		 logger.info("사업자 등록증 등록  화면 보여주기");
+	 }
+ * 	 
+ */
 }
