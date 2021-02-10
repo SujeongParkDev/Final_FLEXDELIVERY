@@ -93,10 +93,16 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="appendix-file1">첨부파일</label>
-                                            <div>
-                                            	<span>File</span>
-                                            </div>
+                                        	<label for="appendix-file2">첨부파일</label>
+												<div>								
+													<span>
+														<c:if test="${!empty temporaryVo.tFilename }">
+															<a href
+		="<c:url value='/admin/menu2/downloadEdit.do?no=${vo.tNo}&fileName=${temporaryVo.tFilename }'/>">
+															 ${vo.tOriginalFilename }</a>
+														</c:if>
+													</span>
+												</div>                                   
                                         </div>
                                     </div>
                                     <div>
@@ -179,15 +185,7 @@
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
                                                 value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp2}" disabled="disabled">
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="appendix-file2">첨부파일</label>
-                                           	<div>
-                                            	<span>File</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </form>
                         </div>

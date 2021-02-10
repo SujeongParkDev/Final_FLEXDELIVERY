@@ -31,8 +31,13 @@ public class AdminOwnerRegisterDAOMybatis implements AdminOwnerRegisterDAO{
 	}
 
 	@Override
-	public int adminOwnerRegistDeny(int ownerNo) {
-		return sqlSession.update(namespace+"registerDeny", ownerNo);
+	public int adminOwnerApproval(int ownerNo) {
+		return sqlSession.update(namespace+"ownerApproval", ownerNo);
+	}
+
+	@Override
+	public int adminOwnerRegistDeny(long registNo) {
+		return sqlSession.update(namespace+"registerDeny", registNo);
 	}
 
 }

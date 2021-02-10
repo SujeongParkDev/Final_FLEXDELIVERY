@@ -45,96 +45,37 @@
                     </thead>
                     <tbody>
                     <!-- 반복구간 시작 -->
-                        <tr>
-                        	<td>syLover</td>
-                            <td>선영이</td>
-                            <td>강서구 내발산동 123-1</td>
-                            <td>010 4321-1234</td>
-                            <td>syLover@naver.com</td>
-                            <td>
-                                <span class="badge bg-success">이용중</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover1</td>
-                            <td>선영이딸</td>
-                            <td>강서구 내발산동 123-2</td>
-                            <td>010 4322-1234</td>
-                            <td>syLover1@naver.com</td>
-                            <td>
-                                <span class="badge bg-light">이용정지</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover2</td>
-                            <td>선영이아들</td>
-                            <td>강서구 신월로 123-2</td>
-                            <td>010 4323-1234</td>
-                            <td>syLover2@naver.com</td>
-                            <td>
-                                <span class="badge bg-danger">탈퇴</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover</td>
-                            <td>선영이</td>
-                            <td>강서구 내발산동 123-1</td>
-                            <td>010 4321-1234</td>
-                            <td>syLover@naver.com</td>
-                            <td>
-                                <span class="badge bg-success">이용중</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover1</td>
-                            <td>선영이딸</td>
-                            <td>강서구 내발산동 123-2</td>
-                            <td>010 4322-1234</td>
-                            <td>syLover1@naver.com</td>
-                            <td>
-                                <span class="badge bg-light">이용정지</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover2</td>
-                            <td>선영이아들</td>
-                            <td>강서구 신월로 123-2</td>
-                            <td>010 4323-1234</td>
-                            <td>syLover2@naver.com</td>
-                            <td>
-                                <span class="badge bg-danger">탈퇴</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover</td>
-                            <td>선영이</td>
-                            <td>강서구 내발산동 123-1</td>
-                            <td>010 4321-1234</td>
-                            <td>syLover@naver.com</td>
-                            <td>
-                                <span class="badge bg-success">이용중</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover1</td>
-                            <td>선영이딸</td>
-                            <td>강서구 내발산동 123-2</td>
-                            <td>010 4322-1234</td>
-                            <td>syLover1@naver.com</td>
-                            <td>
-                                <span class="badge bg-light">이용정지</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>syLover2</td>
-                            <td>선영이아들</td>
-                            <td>강서구 신월로 123-2</td>
-                            <td>010 4323-1234</td>
-                            <td>syLover2@naver.com</td>
-                            <td>
-                                <span class="badge bg-danger">탈퇴</span>
-                            </td>
-                        </tr>
+          			<c:if test="${empty list }">
+						<tr>
+							<td colspan="6" class="align_center">데이터가 존재하지 않습니다.</td>
+						</tr>
+					</c:if>
+						<c:forEach var="vo" items="${list}">
+							<tr>
+								<td>																
+									<p>${vo.memberId}</p>
+								</td>
+								<td>
+									<p>${vo.memberName}</p>								
+								</td>
+								<td>
+									<p>${vo.memberAddress} ${vo.memberAddressDetail}</p>
+								</td>
+								<td>
+									<p>${vo.memberHp1}-${vo.memberHp2}-${vo.memberHp3}</p>
+								</td>
+								<td>
+									<p>${vo.memberEmail1}@${vo.memberEmail2}</p>
+								</td>
+								<td><c:if test="${empty vo.memberOutdate}">
+										<span class="badge bg-success">이용중</span>
+									</c:if> 
+									<c:if test="${!empty vo.memberOutdate}">
+										<span class="badge bg-danger">이용정지</span>
+									</c:if> 
+								</td>
+							</tr>
+						</c:forEach>                        
                         
                     <!-- 반복구간 끝 -->
                     </tbody>

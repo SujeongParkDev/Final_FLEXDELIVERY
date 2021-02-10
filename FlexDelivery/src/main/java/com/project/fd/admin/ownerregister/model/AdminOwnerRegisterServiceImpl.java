@@ -26,8 +26,13 @@ public class AdminOwnerRegisterServiceImpl implements AdminOwnerRegisterService{
 	}
 
 	@Override
-	public int adminOwnerRegistDeny(int ownerNo) {
-		return registerDao.adminOwnerRegistDeny(ownerNo);
+	public int adminOwnerApproval(int ownerNo) {
+		return registerDao.adminOwnerApproval(ownerNo);
+	}
+
+	@Override
+	public int adminOwnerRegistDeny(long registNo) {
+		return registerDao.adminOwnerRegistDeny(registNo);
 	}
 
 }
