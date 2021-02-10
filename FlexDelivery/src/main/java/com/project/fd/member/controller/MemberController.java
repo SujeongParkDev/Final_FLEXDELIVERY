@@ -165,21 +165,22 @@ public class MemberController {
 		return "member/register/memberEdit";
 	}
 	
-	@RequestMapping(value = "/register/memberEdit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberEdit.do", method = RequestMethod.POST)
 	public String memberEdit_post(@ModelAttribute MemberVO vo, HttpSession session,
-			ModelMap model, @RequestParam String locationName) {
+			ModelMap model, @RequestParam(required=false) String locationName) {
 		String memberId= (String) session.getAttribute("memberId");
+		String loName= (String) session.getAttribute("locationName");
 		
 		String msg="회원수정 실패!", url="/member/register/memberEdit.do";
-		if (locationName==null) {
-			int cnt = memberService.updateMember(vo);
+		if (loName==null) {
+			int cnt = memberService.rupdateMember(vo);
 			logger.info("회원수정 결과, cnt={}", cnt);
 			
 			if(cnt>0) {
 				msg="회원정보 수정되었습니다.";
 			}
 		}else {
-			int lono=memberService.memloNo(locationName);
+			int lono=memberService.memloNo(loName);
 			vo.setLocationNo(lono);
 			int cnt =memberService.updateMember(vo);
 			logger.info("회원수정 결과, cnt={}", cnt);

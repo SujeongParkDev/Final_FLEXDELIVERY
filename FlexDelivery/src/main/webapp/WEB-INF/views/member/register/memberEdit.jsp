@@ -36,7 +36,7 @@
             <div class="px-6 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
                     <!-- <p class="text-50">Sign up to continue</p> -->
-                    <form class="mt-5 mb-4" method="post" action="<c:url value='/member/memberWrite.do'/>">
+                    <form class="mt-5 mb-4" method="post" action="<c:url value='/member/memberEdit.do'/>">
                     <h2 class="text-dark my-0">안녕하세요!</h2>
                     	<br>
                         <div class="form-group">
@@ -104,9 +104,9 @@
 <!--					<div class="py-2">
 							<button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
 						</div> -->
-					</form>
                     	<input type ="text" name="locationName" id="locationName">
                     	<input type ="text" name="locationNo" id="locationNo" value="${vo.locationNo}">
+					</form>
                     	
 				</div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
