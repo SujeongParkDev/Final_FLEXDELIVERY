@@ -4,4 +4,64 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.memberReview">
 	
+	<!-- 
+	create or replace view hyReviewCountView
+	as
+	select o.orders_no,o.MEMBER_NO,
+	(select count(*) from review r where r.orders_no=o.orders_no) as reviewCnt
+	from orders o 
+	리뷰 갯수 구하기 위한 view
+	컬럼 : 주문번호 / 회원번호 / 주문번호에 작성된 리뷰의 count, 1이상이면 이미 작성됨
+	-->
+	
+	<select id="selectStoreReview" parameterType="map" resultType="memberReviewVo">
+		select *
+		from 
+		(
+			select s.*,rownum as RNUM
+			from
+			(
+				select r.*,m.member_name from
+				review r,member m
+				where r.MEMBER_NO = m.MEMBER_NO
+				and store_No=#{storeNo}
+				order by review_No desc
+			)s
+		)A
+		<![CDATA[
+		where RNUM>=#{startIndex} and RNUM<=#{lastIndex}
+		]]>
+	</select>
+	
+	<select id="reviewChk" parameterType="int" resultType="int">
+		select count(*) 
+		from hyReviewCountView
+		where member_no=#{memberNo}
+		and reviewCnt=0
+	</select>
+	
+	<select id="orderListForReview" parameterType="int" resultType="map">
+		select orders_no,(select distinct menu_name from hyorderdetailview d where v.orders_no=d.orders_no) as menu_name,
+		(select count(orders_no) from hyorderdetailview d where v.orders_no=d.orders_no group by orders_no) as menu_count
+		from hyReviewCountView v
+		where member_no=#{memberNo}
+		and reviewCnt=0
+	</select>
+	
+	<insert id="reviewWrite" parameterType="memberReviewVo">
+		insert into review
+		values(review_seq.nextval,#{reviewRating},#{reviewContent},0,sysdate,'N',#{reviewFilename},'N',#{memberNo},#{ordersNo},#{storeNo})
+	</insert>
+	
+	<update id="deleteReview" parameterType="int">
+		update review
+		set review_del_flag='Y'
+		where review_no=#{reviewNo}
+	</update>
+	
+	<select id="selectStoreNoByReview" parameterType="int" resultType="int">
+		select store_no
+		from review
+		where review_no=#{reviewNo}	
+	</select>
 </mapper>

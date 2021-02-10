@@ -5,6 +5,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 
 
@@ -61,7 +62,9 @@ public class OwnerController {
 		vo.setOwnerHp1(hp1);
 		vo.setOwnerHp2(hp2);
 		vo.setOwnerHp3(hp3);
-
+		
+		String hashPwd=BCrypt.hashpw(vo.getOwnerPwd(), BCrypt.gensalt());
+		vo.setOwnerPwd(hashPwd);
 
 		int cnt=ownerService.insertowner(vo);
 		logger.info("회원가입 결과, cnt={}", cnt);
