@@ -25,10 +25,6 @@ public interface OwnerStoresService {
 	  
 	OwnerStoresVO selectByNo(int storeNo);
 	int updateStores(OwnerStoresVO ownerStoresVO);
-	 public int selectStoreNoByNo(int ownerNo);
-	 List<LocationVO> AllLocaion(); 
-	 public int checkAuthority2(String userid);
-	  OwnerAuthorityVO selectOwnerAuthorityAll2(String userid);
 	  public OwnerStoresVO selectStoreByOwnerNo(int ownerNo);
 	  public Map<String, Object> selectOperationViewAll(int ownerNo);
 	  public int holidayUpdate(Map<String, Object> map);
