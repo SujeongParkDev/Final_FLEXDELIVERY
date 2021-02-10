@@ -1,7 +1,6 @@
 package com.project.fd.owner.store.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +59,16 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	}
 	public OwnerAuthorityVO selectOwnerAuthorityAll2(String userid) {
 		return ownerStoresDao.selectOwnerAuthorityAll(userid);
+	}
+	
+	@Override
+	public OwnerStoresVO selectByNo(int storeNo) {
+		return ownerStoresDao.selectByNo(storeNo);
+	}
+
+	@Override
+	public int updateStores(OwnerStoresVO ownerStoresVO) {
+		return ownerStoresDao.updateStores(ownerStoresVO);
 	}
 	
 }
