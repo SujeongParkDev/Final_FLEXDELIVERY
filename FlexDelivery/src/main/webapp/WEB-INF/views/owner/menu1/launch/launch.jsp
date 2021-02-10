@@ -342,7 +342,7 @@ h1 {
 		});
 		
 		$('#btRegi').click(function(){
-			$('form[name=frm2').prop('action', '<c:url value="/owner/menu1/launch/launch.do"/>');
+			$('form[name=frm2').prop('action', '<c:url value="/owner/menu1/launch/launchRegister.do"/>');
 		$('form[name=frm2]').submit();
 		});
 	});

@@ -56,14 +56,14 @@ public class OwnerStoresController {
 	}
 	 
 	 //입점신청 
-	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.POST)
+	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
 	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
 			 HttpServletRequest request, HttpSession session,
 			 Model model) { 
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
 		logger.info("입점신청 세션의 ownerNo={}"+ownerNo);
 		ownerStoresVo.setOwnerNo(ownerNo);
-		logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
+		logger.info("점포 - 입점하기 업로드 전  OwnerStoresVO={}",ownerStoresVo);
 		 
 			//파일 업로드 처리
 			String originName="", fileName="";
@@ -86,7 +86,7 @@ public class OwnerStoresController {
 
 			ownerStoresVo.setStoreLogo(originName);
 			ownerStoresVo.setStoreLogo(fileName);
-			logger.info("점포 - 입점하기  보여주기 OwnerStoresVO={}",ownerStoresVo);
+			logger.info("점포 - 입점하기 업로드 후  OwnerStoresVO={}",ownerStoresVo);
 			
 			int cnt=ownerStoresService.insertOwnerStores(ownerStoresVo);
 			logger.info("점포 입점 신청  처리 결과, cnt={},originName={}", cnt,originName);
