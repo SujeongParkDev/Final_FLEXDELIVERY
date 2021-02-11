@@ -33,7 +33,28 @@
 	
 
 	<!-- owner한테 없어서 admin거 가져왔슴다 -->
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:"<c:url value='/owner/menu2/order/orderCount.do'/>",
+			success:function(res){
+				if(res<10 && res >=1){
+					res="00"+res;
+				}else if(res>=10 && res<100){
+					res="0"+res;
+				}else if(res==0){
+					res="";
+				}
+				$('#ordersCount').html(res);
+				
+			},
+			error:function(xhr,status,error){
+				alert('error!!:'+error);
+			}
+		});
+	});
 
+</script>
 	
 
 </head>
@@ -90,11 +111,11 @@
 			                <li class="sidebar-item  has-sub">
 			                    <a href="#" class='sidebar-link'>
 			                        <img data-feather="file-text" width="20"></img> 
-			                        <span>주문</span>
+			                        <span>주문<span class="badge bg-warning pt-1 pb-1 ml-2" style="font-size:1px;" id="ordersCount" ></span></span>
 			                    </a>
 			                    <ul class="submenu ">
 			                        <li>
-			                            <a href="<c:url value='/owner/menu2/order/orderMain.do'/>">주문현황</a>
+			                            <a href="<c:url value='/owner/menu2/order/orderMain.do'/>">주문현황 </a>
 			                        </li>
 			                         <li>
 			                            <a href="<c:url value='/owner/menu2/order/orderList.do'/>">주문내역</a>

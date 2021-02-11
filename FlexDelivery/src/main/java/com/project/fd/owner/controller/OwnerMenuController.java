@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -389,8 +390,14 @@ public class OwnerMenuController {
 		
 	 //menuchoice 에서 삭제버튼 누르면 메뉴 삭제
 		@RequestMapping(value = "/menuChoiceDelete.do", method = RequestMethod.GET) 
-		public String  menuChoice_delete(@RequestParam(defaultValue = "0") int menuNo,Model model){
+		public String  menuChoice_delete(@RequestParam(defaultValue = "0") int menuNo,Model model,HttpServletRequest request){
 			logger.info("menu 삭제하기 , 파라미터 menuNo={}", menuNo);
+			
+			
+			String oldFileName ="";
+			OwnerMenuVO vo = ownerMenuService.selectMenuByMenuNo(menuNo);
+			oldFileName =  vo.getMenuImg();
+			logger.info("oldFilename= {}", oldFileName);
 			
 			//받아온 menuNo으로 delete 하기 (점포 번호도 필요)
 			int cnt = ownerMenuService.deleteMenuByNo(menuNo);
@@ -401,6 +408,13 @@ public class OwnerMenuController {
 			
 			if(cnt>0) {
 				msg="삭제 성공!";
+				String upPath 
+				= fileUtil.getUploadPath(FileUploadUtil.MENU_TYPE, request);
+				File oldFile = new File(upPath, oldFileName);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("기존 파일 삭제 여부 :{}", bool);
+				}	
 			}
 			
 			model.addAttribute("msg", msg);
@@ -876,7 +890,6 @@ public class OwnerMenuController {
 		return cnt; 
 		}
 
-			
 		
 		
 

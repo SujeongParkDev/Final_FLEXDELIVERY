@@ -16,7 +16,7 @@
 
 	<script type="text/javascript">
 	
-	
+	  
 	function goDetail(ordersNo,ordersDiscount){
 		$.ajax({
 			url:"<c:url value='/owner/menu2/order/orderRequestResult.do'/>",
@@ -26,59 +26,72 @@
 			success:function(map){
 				var str="";
 				console.log(map);
-				str+="<div class='text-center' style='height:15px;'><bR><h6>회원 정보</h6></div><br>";
-   				str+="<table class='mt-5'>";
-   				str+="<tbody>";
-   				str+="<tr><td class='ml-3'><b>회원 아이디</b></td><tr><tr><td class='ml-3'>"+map.oMap['MEMBER_ID']+"<br><hr></td></tr>";
-   				str+="<tr><td class='ml-3'><b>회원 이름</b></td><tr><tr><td class='ml-3'>"+map.oMap['MEMBER_NAME']+"<br><hr></td></tr>";
-   				str+="<tr><td class='ml-3'><b>회원 주소</b></td><tr><tr><td class='ml-3'>"+map.oMap['ORDERS_ADDRESS']+"<br><hr></td></tr>";
-   				str+="<tr><td class='ml-3'><b>회원 요청사항</b></td><tr><tr><td class='ml-3'>"+map.oMap['ORDERS_MESSAGE']+"<br><hr></td></tr>";
-   				str+="</tbody>";
-   				str+="</table>";
-   				
-   				str+="<br><div class='text-center' style='height:15px;'><h6>메뉴 / 옵션</h6></div><br>";
-   				
-   				str+="<table>";
-				str+="<tbody>";
-   				if(map.dList.length==0){
-				   str+="<tr class='text-center'><td colspan='1'>주문 데이터가 존재하지 않습니다.</td></tr>";         		
-        		}else{
-        			 var price = 0;
-            		$.each(map.dList, function(idx, item){
-            			if(item['M_OPTION_NO']==0){
-            				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
-            				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br><hr></td>";
-            				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
-            			}else{
-            				
-            				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
-            				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+((item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br>";
-            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" "+item['M_OPTION_PRICE']+"원</span><br><hr></td></tr>";
-            				
-            				price+=(item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'];
-            			}
-        			});
-        		str+="</tbody><br></table><br>";
-        		
-        		str+="<div class='text-center' style='height:15px;'><h6>가격</h6></div>";
-        		str+="<table><br><tbody>";
-        		
-        		str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>총 주문 금액</b></span>";
-				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>"
-        		if(ordersDiscount>0){
-        			str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>할인 금액</b></span>"
-        			str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+ordersDiscount+" 원</b></span></td></tr>";
-        		
-        			price-=ordersDiscount;
-        		}
-				str+="<tr><td><hr><br></td></tr>";
-        		str+="<tr><td><span style='float:left; font-size:20px;' class='ml-3'><b> 총 결제금액</b></span>";
-        		str+="<span style='float:right; font-size:20px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>";
-        		str+="</tbody></table><br><br><br>";
-        		
-        	}
+					var message = "요청사항이 없습니다";
+					if(map.oMap['ORDERS_MESSAGE']!=null){
+						message = map.oMap['ORDERS_MESSAGE'];
+					}
+				
+       				str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>회원 정보</h5></div><br>";
+       				str+="<table style='margin-top: 60px;'>";
+       				str+="<tbody>";
+       				str+="<tr><td><b class='ml-3'>회원 아이디</b></td><tr><tr><td><span  class='ml-3'>"+map.oMap['MEMBER_ID']+"</span><br><hr></td></tr>";
+       				str+="<tr><td><b  class='ml-3'>회원 이름</b></td><tr><tr><td><span  class='ml-3'>"+map.oMap['MEMBER_NAME']+"</span><br><hr></td></tr>";
+       				str+="<tr><td><b  class='ml-3'>회원 주소</b></td><tr><tr><td ><span  class='ml-3'>"+map.oMap['ORDERS_ADDRESS']+"</span><br><hr></td></tr>";
+       				str+="<tr><td><b  class='ml-3'>회원 요청사항</b></td><tr><tr><td><span  class='ml-3'>"+message+"</span><br><hr></td></tr>";
+       				str+="</tbody>";
+       				str+="</table>";
+       				
+       				str+="<br><div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>메뉴 / 옵션</h5></div><br>";
+       				
+       				str+="<table style='margin-top:30px;'>";
+					str+="<tbody>";
+       				if(map.dList.length==0){
+					   str+="<tr class='text-center'><td colspan='1'>주문 데이터가 존재하지 않습니다.</td></tr>";         		
+            		}else{
+            			 var price = 0;
+	            		$.each(map.dList, function(idx, item){
+	            			if(item['M_OPTION_NO']==0){
+	            				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
+	            				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+" 원</b></span></td>"
+	            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br><hr></td>";
+	            				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
+	            			}else{
+	            				
+	            				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
+	            				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+((item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'])+" 원</b></span></td>"
+	            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br>";
+	            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" "+item['M_OPTION_PRICE']+"원</span><br><hr></td></tr>";
+	            				
+	            				price+=(item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'];
+	            			}
+            			});
+            		str+="</tbody><br></table><br>";
+            		
+            		str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>가격</h5></div>";
+            		str+="<table style='margin-top:50px;'><br><tbody>";
+            		
+            		str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>총 주문 금액</b></span>";
+    				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>"
+            		
+    				if(ordersDiscount>0){
+            			str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>할인 금액</b></span>"
+            			str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+ordersDiscount+" 원</b></span></td></tr>";
+            		
+            			price-=ordersDiscount;
+            		}
+    				
+    				if(price != map.oMap['ORDERS_PRICE']){
+    					str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>배달팁</b></span>"
+	            		str+="<span style='float:right; font-size:15px;' class='mr-4'><b>3000원</b></span></td></tr>";
+	            		price+=3000;
+	            		console.log(map.oMap['ORDERS_PAYMENT']);
+    				}
+    				str+="<tr><td><hr><br></td></tr>";
+            		str+="<tr><td><span style='float:left; font-size:20px;' class='ml-3'><b> 총 결제금액</b></span>";
+            		str+="<span style='float:right; font-size:20px;' class='mr-4'><b>"+price+" 원</b></span></td></tr>";
+            		str+="</tbody></table><br><br><br>";
+            		
+            	}
             	$('#detailStart').html(str);
 				
 				
@@ -88,11 +101,8 @@
 				alert("error!! : " + error);
 			}
 		}); 
-	
- 	 };	
+  };	
 
-	
-	
 	
 		function pageFunc(curPage){
 				$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
@@ -256,35 +266,33 @@
 						</div>
 					</div>
 			
-			     <!-- 주문 상세 내역 관련 모달 -->
-                    <div class="modal fade" id="orderDetail" tabindex="-1" aria-labelledby="orderDetailTitle" style="display: none;" aria-hidden="true" role="dialog">
-	                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+			  
+              		<div class="modal fade" id="orderDetail" tabindex="-1" role="dialog" aria-labelledby="orderDetailTitle" aria-hidden="true">
+	                    <div class="modal-dialog" role="document">
 	                        <div class="modal-content">
-		                        <div class="modal-header mt-5">
+		                        <div class="modal-header">
 		                            <h5 class="modal-title" id="orderDetailTitle">주문 상세 내역</h5>
 		                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+		                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 		                            </button>
 		                        </div>
 		                        <div class="modal-body">
-		                        	
-								  	<div class="row" id="detailStart">
-								  	 	
-								    </div>             
-		                          <!-- 내용 -->
+		                         	<div class="row" id="detailStart" >
+										  	 	
+									</div>  
 		                        </div>
-		                        <div class="modal-footer justify-content-center mt-3">
-		                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-		                           		 <i class="bx bx-check d-block d-sm-none"></i>
-		                           		 <span class="d-none d-sm-block">확인</span>
-		                            </button>
-		                        </div>
+		                       	<div class="modal-footer justify-content-center mt-3">
+			                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+			                           		 <i class="bx bx-check d-block d-sm-none"></i>
+			                           		 <span class="d-none d-sm-block">확인</span>
+			                            </button>
+			                    </div>
 	                        </div>
 	                    </div>
                     </div>
-			
-			
-			
+              
+              
+              
 			
 		
 		

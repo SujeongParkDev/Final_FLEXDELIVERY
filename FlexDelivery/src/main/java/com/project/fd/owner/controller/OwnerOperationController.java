@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -40,8 +41,11 @@ public class OwnerOperationController {
 		Map<String,Object> map = ownerStoreService.selectOperationViewAll(ownerNo);
 		logger.info("점주 번호로 조회한 가게 결과조회 map={}",map);
 		
+		List<Map<String, Object>> list = ownerStoreService.selectsStatusAll();
+		logger.info("영업상태 가져오기 조회결과  list={}",list);
 		
 		model.addAttribute("map", map);
+		model.addAttribute("list", list);
 	}
 	
 	
@@ -73,11 +77,18 @@ public class OwnerOperationController {
 	@ResponseBody
 	@RequestMapping(value = "/updateStatus.do" , produces = "application/text;charset=utf8")
 	public String updateStatus(@RequestParam(defaultValue = "0") int storeNo,
-			@RequestParam(defaultValue = "0") int ownerNo) {
-		logger.info("상태 변경 파라미터 storeNO={}", storeNo);
+			@RequestParam(defaultValue = "0") int ownerNo,
+			@RequestParam(defaultValue = "0") int sStatusNo) {
+		logger.info("상태 변경 파라미터 storeNO={}, sStatusNo={}", storeNo,sStatusNo);
 		
+		if(storeNo==0) {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		}
 		
-		int cnt = ownerStoreService.updateStatusStop(storeNo);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("storeNo", storeNo);
+		map.put("sStatusNo", sStatusNo);
+		int cnt = ownerStoreService.updateStatus(map);
 		String res = "";
 	
 		if(cnt>0) {

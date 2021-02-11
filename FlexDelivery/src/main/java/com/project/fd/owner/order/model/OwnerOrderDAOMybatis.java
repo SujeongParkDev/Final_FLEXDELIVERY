@@ -62,5 +62,8 @@ public class OwnerOrderDAOMybatis implements OwnerOrderDAO {
 		return sqlSession.selectOne(namespace+"selectOrderAllByOrdersNo",ordersNo);
 	}
 	
+	public int selectCountByStoreNo(int storeNo) {
+		return  sqlSession.selectOne(namespace+"selectCountByStoreNo", storeNo);
+	}
 	
 }

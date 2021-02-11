@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,6 @@ import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
 import com.project.fd.owner.advertise.model.OwnerAdvertiseSearchVO;
 import com.project.fd.owner.order.model.OwnerOrderService;
-import com.project.fd.owner.order.model.OwnerOrderVO;
 import com.project.fd.owner.store.model.OwnerStoresService;
 
 
@@ -416,5 +416,14 @@ public class OwnerOrderController {
 		  return "owner/menu2/order/orderList";
 	  }
 		
-	
+	  @ResponseBody
+	  @RequestMapping("/orderCount.do")
+	  public int orderCount(HttpSession session) {
+		  int ownerNo =  (Integer)session.getAttribute("ownerNo");
+		  
+		  int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		  int count = ownerOrderService.selectCountByStoreNo(storeNo);
+		  
+		  return count;
+	  }
 }

@@ -15,6 +15,9 @@
 <link rel="stylesheet"
 	href="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/css/ceo-selfservice.css?ts=20210119110213">
 
+
+
+
 <script type="text/javascript">
 	$(function(){
 		$('.change-button').click(function(){
@@ -30,7 +33,14 @@
 				}else if($('#changeHoliday').css("display")=="block"){
 					$('#changeHoliday').css('display','none');
 				}
+			}else if($(this).attr('name')=='btStatus'){
+				if($('#statusCard').css("display")=="none"){
+					$('#statusCard').css('display','block');
+				}else if($('#statusCard').css("display")=="block"){
+					$('#statusCard').css('display','none');
+				}
 			}
+			
 		});
 	});
 	
@@ -41,6 +51,8 @@
 				$('#changeHoliday').css('display','none');
 			}else if($(this).attr("name")=="timeCancle"){
 				$('#changeTime').css('display','none');
+			}else if($(this).attr("name")=="statusCancle"){
+				$('#statusCard').css('display','none');
 			}
 		});
 	});
@@ -75,7 +87,7 @@
 					
 					$('#holidayText').html('');
 					$('#holidayText').html(str);
-					/* $('#changeHoliday').css('display','none'); */
+					$('#changeHoliday').css('display','none'); 
 				},
 				error:function(xhr,status,error){
 					alert("error!!: "+error);
@@ -86,14 +98,14 @@
 	
 	
 	$(function(){
-		$('button[name=stopStore]').click(function(){
-			if(confirm('정말 영업 임시 중지 하시겠습니까?')){
-			
+		$('button[name=changeStatus]').click(function(){
 				var storeNo = $('input[name=storeNo]').val();
 				var ownerNo = $('input[name=ownerNo]').val();
+				var sStatusNo = $('select[name=sStatusNo]').val();
+				
 				$.ajax({
 					url:"<c:url value='/owner/menu2/operation/updateStatus.do'/>",
-					data:"storeNo="+storeNo+"&ownerNo="+ownerNo, 
+					data:"storeNo="+storeNo+"&ownerNo="+ownerNo+"&sStatusNo="+sStatusNo, 
 					success:function(res){
 						str="";
 						if(res=="fail"){
@@ -104,16 +116,13 @@
 						
 						$('#statusText').html('');
 						$('#statusText').html(str);
-						/* $('#changeHoliday').css('display','none'); */
+						$('#statusCard').css('display','none'); 
 					},
 					error:function(xhr,status,error){
 						alert("error!!: "+error);
 					}
 				});
-			}else{
-				event.preventDefault();
-				return false;
-			}
+			
 		});
 	});
 	
@@ -147,7 +156,7 @@
 						
 						$('#changeTimeText').html('');
 						$('#changeTimeText').html(str);
-						
+						$('#changeTime').css('display','none');
 					},
 					error:function(xhr,status,error){
 						alert("error:"+error);
@@ -235,16 +244,16 @@
 										<div class="form-control ">
 											<h5 class="form-label form-sub-label">시작</h5>
 											<select class="_31CECf9nJyK91ez9apcKQB" name="startHour">
-												<option value="0" selected="selected">밤 12시</option>
-												<option value="1">오전 1시</option>
-												<option value="2">오전 2시</option>
-												<option value="3">오전 3시</option>
-												<option value="4">오전 4시</option>
-												<option value="5">오전 5시</option>
-												<option value="6">오전 6시</option>
-												<option value="7">오전 7시</option>
-												<option value="8">오전 8시</option>
-												<option value="9">오전 9시</option>
+												<option value="00" selected="selected">밤 12시</option>
+												<option value="01">오전 1시</option>
+												<option value="02">오전 2시</option>
+												<option value="03">오전 3시</option>
+												<option value="04">오전 4시</option>
+												<option value="05">오전 5시</option>
+												<option value="06">오전 6시</option>
+												<option value="07">오전 7시</option>
+												<option value="08">오전 8시</option>
+												<option value="09">오전 9시</option>
 												<option value="10">오전 10시</option>
 												<option value="11">오전 11시</option>
 												<option value="12">낮 12시</option>
@@ -261,8 +270,8 @@
 												<option value="23">오후 11시</option>
 											</select>
 											<select	class="_1HdZOQKzdMFA822bBz8vnt" name="startMinute">
-												<option value="0" selected="selected">0분</option>
-												<option value="5">5분</option>
+												<option value="00" selected="selected">0분</option>
+												<option value="05">5분</option>
 												<option value="10">10분</option>
 												<option value="15">15분</option>
 												<option value="20">20분</option>
@@ -306,8 +315,8 @@
 												<option value="11">오전 11시 (다음 날)</option>
 											</select>
 											<select	class="_1HdZOQKzdMFA822bBz8vnt" name="closeMinute">
-												<option value="0" selected="selected">0분</option>
-												<option value="5">5분</option>
+												<option value="00" selected="selected">0분</option>
+												<option value="05">5분</option>
 												<option value="10">10분</option>
 												<option value="15">15분</option>
 												<option value="20">20분</option>
@@ -389,10 +398,15 @@
 					<div>
 						<div class="Card ">
 							<div class="card-header">
-								<h3>영업임시중지</h3>
-								<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button small primary" name="stopStore">임시 중지</button>
+								<h3>영업상태</h3>
+								<div class="card-menu " style="opacity: 0.99;">
+									<button type="button" class="button change-button medium text" name="btStatus">
+										<i class="fas fa-pencil-alt"></i> 변경
+									</button>
 								</div>
+						<!-- 		<div class="card-menu " style="opacity: 1;">
+									<button type="button" class="button small primary" name="stopStore">임시 중지</button>
+								</div> -->
 							</div>
 							<div class="form-group ">
 								<div class="form-control-wrap">
@@ -402,11 +416,40 @@
 										</div>
 									</div>
 								</div>
-								<div class="box-wrapper">
-									영업상태 변경을 원하시면 <a
-										href="<c:url value='/owner/menu2/basic/basic.do'/>"
-										style="font-weight: bold;">가게[기본정보]</a> 메뉴에서 가능합니다.
-								</div> 
+							</div>
+						</div>
+					</div>
+				</form>
+				<form class="form-card" id="statusCard"  style="display:none; ">
+					<div>
+						<div class="Card ">
+							<div class="card-header">
+								<h3>영업 상태 변경</h3>
+								<div class="card-menu " style="opacity: 1;">
+									<button type="button" class="button small primary" name="changeStatus">적용</button>
+									<button type="button" class="button mr-1 small secondary btCancleChange" name="statusCancle">닫기</button>
+								</div>
+							</div>
+							<div class="form-group no-divider" style="min-height: auto;">
+								<div class="form-control-wrap">
+									<div class="form-control ">
+										<select name="sStatusNo">
+											<c:if test="${empty list }">
+												<option value="1" selected="selected">상태가 없습니다</option>
+											</c:if>
+											<c:if test="${!empty list }">
+												<c:forEach var="map2" items="${list}">
+													<c:if test="${map['S_STATUS_NO']==map2['S_STATUS_NO'] }">
+														<option value="${map2['S_STATUS_NO']}" selected="selected">${map2['S_STATUS_NAME'] }</option>
+													</c:if>
+													<c:if test="${map['S_STATUS_NO']!=map2['S_STATUS_NO']  }">
+														<option value="${map2['S_STATUS_NO']}" >${map2['S_STATUS_NAME'] }</option>
+													</c:if>
+												</c:forEach>
+											</c:if>
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

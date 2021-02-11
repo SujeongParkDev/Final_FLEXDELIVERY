@@ -25,6 +25,7 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.selectOne(namespace+"selectStoreNoByNo", ownerNo);
 	}
 
+
 	
 	
 	@Override
@@ -58,14 +59,15 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.update(namespace+"holidayUpdate", map);
 	}
 	
-	public int updateStatusStop(int storeNo) {
-		return sqlSession.update(namespace+"updateStatusStop", storeNo);
+	public int updateStatus(Map<String,Object> map) { //지안 20210211수정
+		return sqlSession.update(namespace+"updateStatus", map);
 	}
 	
 	public int updateTime(Map<String,Object> map) {
 		return sqlSession.update(namespace+"updateTime", map);
 	}
 	
+
 	//백신 
 	public OwnerStoresVO selectBasic(int ownerNo) {
 		return sqlSession.selectOne(namespace+"selectBasic", ownerNo);
@@ -74,6 +76,13 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 	public int updateContent(Map<String, Object> map) {
 		return sqlSession.update(namespace+ "updateContent", map);
 	}
+
+	//지안 20210211 수정시작
+	public List<Map<String, Object>> selectsStatusAll(){
+		return sqlSession.selectList(namespace+"selectsStatusAll");
+	}
+	
+	//지안 20210211 수정끝
 
 
 }

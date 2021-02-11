@@ -104,7 +104,7 @@ public class OwnerMyPageController {
 		String fileName="";
 		try {
 			List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.TEMPORARY_TYPE);
+				=fileUtil.fileUplaod(request, FileUploadUtil.OWNER_REGISTER_TYPE);
 			for(Map<String, Object> fileMap : fileList) {
 				fileName=(String) fileMap.get("fileName");
 			}
@@ -116,8 +116,12 @@ public class OwnerMyPageController {
 			e.printStackTrace();
 		}
 		
-		
-		temporaryVo.settFileName(fileName);
+		if(fileName==null) {
+			String oldFileName = temporaryVo.gettOriginalFileName();
+			temporaryVo.settFileName(oldFileName);
+		}else {
+			temporaryVo.settFileName(fileName);
+		}
 		
 		int cnt = ownerTemporaryService.realInsertTemporary(temporaryVo);
 		logger.info("임시저장함 저장 결과 cnt={}",cnt);
@@ -227,6 +231,14 @@ public class OwnerMyPageController {
 	
 		//4
 		return "owner/mypage/mypageDeleteOwner";
+	}
+	
+	@RequestMapping("/mypageApproval.do")
+	public String mypageApproval() {
+		logger.info("보여주기");
+	
+		//4
+		return "owner/mypage/mypageApproval";
 	}
 	
 }

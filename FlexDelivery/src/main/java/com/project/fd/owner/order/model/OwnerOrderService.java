@@ -24,4 +24,5 @@ public interface OwnerOrderService {
 	public List<Map<String, Object>> selectOrderListView(Map<String, Object> map);
 	public int selectTotalRecordTWO(Map<String, Object> map);
 	public Map<String, Object> selectOrderAllByOrdersNo(int ordersNo);
+	public int selectCountByStoreNo(int storeNo);
 }

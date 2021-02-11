@@ -85,8 +85,8 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 		return ownerStoresDao.holidayUpdate(map);
 	}
 	
-	public int updateStatusStop(int storeNo) {
-		return ownerStoresDao.updateStatusStop(storeNo);
+	public int updateStatus(Map<String, Object> map) { //지안 수정 20210211
+		return ownerStoresDao.updateStatus(map);
 	}
 	
 	public int updateTime(Map<String,Object> map) {
@@ -101,4 +101,11 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	public int updateContent(Map<String, Object> map) {
 		return ownerStoresDao.updateContent(map);
 	}
+
+	//지안 20210211 수정시작
+	public List<Map<String, Object>> selectsStatusAll(){
+		return ownerStoresDao.selectsStatusAll();
+	}
+	//지안 20210211 수정끝
+
 }

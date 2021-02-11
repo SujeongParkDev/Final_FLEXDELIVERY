@@ -60,6 +60,10 @@
 					$('#warningContent').html('<small>내용을 입력해 주세요</small><br>');
 					$('#menuContent').focus();
 					event.preventDefault();				
+				}else if(!validate_price($('#menuPrice').val())){
+					$('#warningPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');				
+					$('#menuPrice').focus();
+					event.preventDefault();	
 				}else{
 					$.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
@@ -69,7 +73,7 @@
 						success:function(res){
 							//alert(res);
 							if(res==true){
-								$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('#warningName').html("<small>중복된 이름이 존재합니다.</small>");
 								$('input[name=menuName]').focus();
 								event.preventDefault();
 								return false;
@@ -104,7 +108,7 @@
 						success:function(res){
 							//alert(res);
 							if(res==true){
-								$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+								$('#warningName').html("<small>중복된 이름이 존재합니다.</small>");
 								$('input[name=menuName]').focus();
 								event.preventDefault();
 							}
@@ -124,13 +128,34 @@
 		});
 		
 		
+		 $(function(){
+				$('#menuPrice').keyup(function(event){
+					if(!validate_price($('#menuPrice').val())){
+						$('#menuPrice').html('');
+						$('#warningPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');	
+						$('#menuPrice').focus();
+						event.preventDefault();	
+					}else{
+						$('#warningPrice').html('');	
+					}
+				});
+		 });
+		 
+		 $(function(){
+				$('#menuPrice').change(function(event){
+					if(!validate_price($('#menuPrice').val())){
+						$('#warningPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');	
+						$('#menuPrice').focus();
+						event.preventDefault();	
+					}else{
+						$('#warningPrice').html('');	
+					}
+				});
+		 });
 		
-		
-		
-		 //엔터 누를때 
+		 //키입력시 
 		  $(function(){
-				$('input[name=menuName]').keypress(function(event){
-					if(event.key==="Enter"){
+				$('input[name=menuName]').keyup(function(event){
 					
 						$.ajax({
 							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
@@ -140,71 +165,21 @@
 							success:function(res){
 								//alert(res);
 								if(res==true){
-									$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+									$('#warningName').html("<small>중복된 이름이 존재합니다.</small>");
 									$('input[name=menuName]').focus();
 									event.preventDefault();
 									return false;
+								}else{
+									$('#warningName').html('');
 								}
 							},
 							error:function(xhr, status, error){
 								alert("error!! : " + error);
 							}
 						});
-					}
-				
 				});
 				
 			}); 
-		
-		
-		
-		
-		
-		
-		
-		
-		  /* $(function(){
-				$('form[name=frm]').submit(function(){
-					
-					if($('#menuName').val().length<1){
-						$('#warningName').html('<small>이름을 입력해 주세요</small><br>');
-						$('#menuName').focus();
-						event.preventDefault();
-					}else if($('#menuPrice').val().length<1){
-						$('#warningPrice').html('<small>가격을 입력해 주세요</small><br>');
-						$('#menuPrice').focus();
-						event.preventDefault();				
-					}else if($('#menuContent').val().length<1){
-						$('#warningContent').html('<small>내용을 입력해 주세요</small><br>');
-						$('#menuContent').focus();
-						event.preventDefault();				
-					}else{
-						$.ajax({
-							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-							data:"menuName=" + $('#menuName').val(),
-							dataType:"json",
-							type:"GET",
-							success:function(res){
-								//alert(res);
-								if(res==true){
-									$('#warningName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
-									$('input[name=menuName]').focus();
-									event.preventDefault();
-									return false;
-								}
-							},
-							error:function(xhr, status, error){
-								alert("error!! : " + error);
-							}
-						});
-						event.preventDefault();	
-					}
-				});
-				
-			});
-		 */
-		
-		
 		
 		
 		
@@ -265,6 +240,10 @@
 		} 
 		
 		
+		function validate_price(price){
+			var pattern = new RegExp(/^[0-9]*$/g);
+			return pattern.test(price);
+		}
 		
 	</script>
 	
@@ -276,7 +255,7 @@
 		    <div class="row match-height">
 		    	<div class="col-md-3 col-sm-12"></div>
 		        <div class="col-md-6 col-sm-12">
-		        <div class="card" >
+		       
 		            <div class="card-header" style="background-color:white;">
 		            <h4 class="card-title text-center">메뉴 등록</h4>
 		            </div>
@@ -337,7 +316,7 @@
 		            </div>
 		            </div>
 		        </div>
-		        </div>
+		      
 		        <div class="col-md-3 col-sm-12"></div>
 		    </div>
 		</section>
