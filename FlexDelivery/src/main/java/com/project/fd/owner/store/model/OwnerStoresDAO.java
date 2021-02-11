@@ -19,6 +19,9 @@ public interface OwnerStoresDAO {
 	public OwnerStoresVO selectStoreByOwnerNo(int ownerNo);
 	public Map<String, Object> selectOperationViewAll(int ownerNo);
 	public int holidayUpdate(Map<String, Object> map);
-	public int updateStatusStop(int storeNo);
+	public int updateStatus(Map<String,Object> map);//지안 20210211 수정
 	public int updateTime(Map<String,Object> map);
+	//지안 20210211 수정시작
+	public List<Map<String, Object>> selectsStatusAll();
+	//지안 20210211 수정끝
 }

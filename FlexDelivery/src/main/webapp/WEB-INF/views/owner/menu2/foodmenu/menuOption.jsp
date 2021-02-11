@@ -53,6 +53,8 @@
 				$('.groupChoice').change(function(){
 					
 					$('#btOptionWrite').css('display','block');
+					$('#optionTable').html('');
+					$('#oRankSelect').find('option:first').prop('selected', true);
 					
 					$.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
@@ -70,6 +72,83 @@
 								});
 								
 								$('#menuSelect').html(str);
+							}else{
+								$('#menuSelect').html('<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 선택</option>');
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error!! : " + error);
+						}
+					});
+					
+				});
+				
+			});
+			
+			
+			
+			 $(function(){
+					$('.groupChoice').click(function(){
+						
+						$('#btOptionWrite').css('display','block');
+						$('#optionTable').html('');
+						$('#oRankSelect').find('option:first').prop('selected', true);
+						
+						$.ajax({
+							url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
+							data:"sMGroupNo=" + $(this).val(),
+							dataType:"json",
+							type:"GET",
+							success:function(res){
+								//alert(res);
+								//alert(res.length);
+								if(res.length>0){
+									var str="";
+										str+="<option value='0'>메뉴 선택</option><br>";
+									$.each(res, function(idx, item){
+										str+="<option value='"+item.menuNo+"' class='menuClick'>"+ item.menuName+"</option><br>";
+									});
+									
+									$('#menuSelect').html(str);
+								}else{
+									$('#menuSelect').html('<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 선택</option>');
+								}
+							},
+							error:function(xhr, status, error){
+								alert("error!! : " + error);
+							}
+						});
+						
+					});
+					
+				});
+				
+			
+			//메뉴 그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
+			 $(function(){
+				$('.groupChoice').click(function(){
+					
+					$('#btOptionWrite').css('display','block');
+					
+					
+					$.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
+						data:"sMGroupNo=" + $(this).val(),
+						dataType:"json",
+						type:"GET",
+						success:function(res){
+							//alert(res);
+							//alert(res.length);
+							if(res.length>0){
+								var str="";
+									str+="<option value='0'>메뉴 선택</option><br>";
+								$.each(res, function(idx, item){
+									str+="<option value='"+item.menuNo+"' class='menuClick'>"+ item.menuName+"</option><br>";
+								});
+								
+								$('#menuSelect').html(str);
+							}else{
+								$('#menuSelect').html('<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 선택</option>');
 							}
 						},
 						error:function(xhr, status, error){
@@ -81,13 +160,22 @@
 				
 			});
 			 
-			
-			
-	
+		
+			$(function(){
+				$('#menuSelect').click(function(){
+					$.optionSelectFunction();
+						$('#oRankSelect').find('option:first').prop('selected', true);
+					
+					
+				});
+			});
+
 		 	//메뉴를 클릭하면 옵션 테이블이 보인다.
 		 	$(function(){
 				$('.menuSelect').click(function(){
 					$.optionSelectFunction();
+					
+					
 				});
 			});
 			
@@ -252,8 +340,30 @@
 			
 		});
 		
-		
-		
+	 	$(function(){
+			$('input[name=mOptionName]').keyup(function(){
+				$.ajax({
+					url:"<c:url value='/owner/menu2/foodmenu/checkOptionName.do'/>",
+					data:"menuNo=" + $('#menuNo').val()+"&oRankNo="+$('#oRankNo').val()+"&mOptionName="+$('#mOptionName').val(),
+					dataType:"json",
+					type:"GET",
+					success:function(res){
+						//alert(res);
+						if(res==true){
+							$('#warningOptionName').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+							$('input[name=mOptionName]').focus();
+							event.preventDefault();
+						}else{
+							$('#warningOptionName').html('');
+						}
+					},
+					error:function(xhr, status, error){
+						alert("error!! : " + error);
+					}
+				});
+			});
+			
+		});
 		
 		
 		//서브밋 클릭할때 유효성 검사
@@ -270,11 +380,13 @@
 						$('#mOptionPrice').focus();
 						event.preventDefault();
 						return false;
+					}else if(!validate_price($('#mOptionPrice').val())){
+						$('#warningOptionPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');				
+						$('#mOptionPrice').focus();
+						event.preventDefault();	
+						return false;
 					}
 			  
-				  
-				  
-				  
 				  
 				  $.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/checkOptionName.do'/>",
@@ -290,7 +402,23 @@
 								return false;
 							}else{
 								
-								$('form[name=frm123]').submit();
+								/* $('form[name=frm123]').submit(); */
+								$.ajax({
+									url:"<c:url value='/owner/menu2/foodmenu/insertOption.do'/>",
+									type:"post",
+									data:$('form[name=frm123]').serializeArray(), 
+									dataType:"json",
+									success:function(res){
+										//alert(res);
+										if(res>0){
+											$("#inlineForm").modal("hide");
+											$.optionSelectFunction();
+										}
+									},
+									error:function(xhr, status, error){
+										alert("error! : " + error);
+									}				
+								});
 							}
 						},
 						error:function(xhr, status, error){
@@ -306,36 +434,39 @@
 		 	
 		 
 		
-		
-		
-		
-		//에이젝스로 서브밋하기
 		 $(function(){
-				//{"message":"등록 성공!","data":{"no":10,"name":"hong","content":"hi"}}
-				$('form[name=frm123]').submit(function(){
-					
-					$.ajax({
-						url:"<c:url value='/owner/menu2/foodmenu/insertOption.do'/>",
-						type:"post",
-						data:$(this).serializeArray(), 
-						dataType:"json",
-						success:function(res){
-							//alert(res);
-							if(res>0){
-							
-								$('#warningOptionName').html('성공');
-							}
-						},
-						error:function(xhr, status, error){
-							alert("error! : " + error);
-						}				
-					});
-					event.preventDefault();
+				$('#mOptionPrice').keyup(function(){
+					if(!validate_price($('#mOptionPrice').val())){
+						$('#mOptionPrice').html('');
+						$('#warningOptionPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');	
+						$('#mOptionPrice').focus();
+						event.preventDefault();	
+					}else{
+						$('#warningOptionPrice').html('');	
+					}
 				});
-	
-			});
+		 });
+		 
+		 $(function(){
+				$('#mOptionPrice').change(function(){
+					if(!validate_price($('#mmOptionPrice').val())){
+						$('#warningOptionPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');	
+						$('#mOptionPrice').focus();
+						event.preventDefault();	
+					}else{
+						$('#warningOptionPrice').html('');	
+					}
+				});
+		 });
+		
+		 
+		 function validate_price(price){
+				var pattern = new RegExp(/^[0-9]*$/g);
+				return pattern.test(price);
+			}
 			
-		 	
+		
+	
 		 	
 			//등록끝
 			
@@ -402,39 +533,31 @@
 	
 		$(function(){
 			  $('.submitEditOption').click(function(){
-				  $('form[name=frm12345]').submit();
+				  $.ajax({
+						url:"<c:url value='/owner/menu2/foodmenu/optionUpdate.do'/>",
+						type:"post",
+						data:$('form[name=frm12345]').serializeArray(), 
+						dataType:"json",
+						success:function(res){
+							//alert(res);
+							if(res>0){
+							
+								$('#inlineForm2').modal("hide");
+								$.optionSelectFunction();
+							}else{
+								alert('실패');
+							}
+						},
+						error:function(xhr, status, error){
+							alert("error! : " + error);
+						}				
+					});
+				  event.preventDefault();
 			  });
 		 });
 				  
 	
 	
-	//에이젝스로 서브밋하기
-	 $(function(){
-			//{"message":"등록 성공!","data":{"no":10,"name":"hong","content":"hi"}}
-			$('form[name=frm12345]').submit(function(){
-				
-				$.ajax({
-					url:"<c:url value='/owner/menu2/foodmenu/optionUpdate.do'/>",
-					type:"post",
-					data:$(this).serializeArray(), 
-					dataType:"json",
-					success:function(res){
-						//alert(res);
-						if(res>0){
-						
-							alert('성공');
-						}else{
-							alert('실패');
-						}
-					},
-					error:function(xhr, status, error){
-						alert("error! : " + error);
-					}				
-				});
-				event.preventDefault();
-			});
-
-		});
 	
 
 	
@@ -449,6 +572,7 @@
 					type:"GET",
 					success:function(optionReVo){
 							alert('삭제완료!');
+							$.optionSelectFunction();
 					},
 					error:function(xhr, status, error){
 						alert("error!! : " + error);
@@ -458,6 +582,10 @@
 	 			event.preventDefault(); 
 			}
 	});
+		
+		
+	
+		
 };
   
 		
@@ -466,9 +594,9 @@
 		</script>
 		<!-- 메뉴 버튼 -->
 		<br><br><br><br><br>
-			 <div class="row mt-3">
-			  		<div class="col-md-1 col-12"></div>
-			  		<div class="col-md-10 col-12">
+			 <div class="row mt-3 mb-2">
+			  		<div class="col-md-2 col-12"></div>
+			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
 		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
 		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
@@ -476,7 +604,7 @@
 		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-1 col-12"></div>
+                    <div class="col-md-2 col-12"></div>
 			  </div>
 	
 	
@@ -492,8 +620,8 @@
 		
 		<!-- 셀렉 옵션 선택 내용 -->
 		<div class="row" id="basic-table">
-					  <div class="col-md-1 col-12"></div>
-					  <div class="col-12 col-md-10">
+					  <div class="col-md-2 col-12"></div>
+					  <div class="col-12 col-md-8">
 					    <div class="card" >
 					      <br>
 					      <!-- <div class="card-header">
@@ -558,7 +686,7 @@
 					      </div>
 					    </div>
 					  </div>
-				   <div class="col-md-1 col-12"></div>
+				   <div class="col-md-2 col-12"></div>
 			 </div> 
 			 
 			 
@@ -614,7 +742,7 @@
 				   	
 				   	
 				   	
-				   	<!-- 등록 모달! -->
+				   	<!-- 수정 모달! -->
 			 <div class="modal fade text-left" id="inlineForm2" tabindex="-1" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                         <div class="modal-content">

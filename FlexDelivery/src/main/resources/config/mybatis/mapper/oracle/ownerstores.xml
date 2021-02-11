@@ -74,9 +74,9 @@
     </update>
     
     
-    <update id="updateStatusStop" parameterType="int">
+    <update id="updateStatus" parameterType="map"> <!-- 지안20210211수정 -->
     	update stores
-    	set s_status_no=3
+    	set s_status_no=#{sStatusNo}
     	where store_no = #{storeNo}
     </update>
     
@@ -85,4 +85,10 @@
     	set store_open_time = #{startTime}, store_close_time=#{closeTime}
     	where store_no = #{storeNo}
     </update>
+    <!-- 지안 20210211 수정 시작-->
+    <select id="selectsStatusAll" resultType="map">
+    	select * from storestatus
+    	order by s_status_no
+    </select>
+    <!-- 지안 20210211 수정 끝 -->
 </mapper>

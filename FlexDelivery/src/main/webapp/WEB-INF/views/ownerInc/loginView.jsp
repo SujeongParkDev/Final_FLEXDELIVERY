@@ -3,11 +3,34 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-        <!-- Widget Area -->
+
+
+<script type="text/javascript">
+	function stopStatus(){
+		if(confirm('임시 중지 하시겠습니까?')){
+			var ownerNo = ${sessionScope.ownerNo};
+			$.ajax({
+				url:"<c:url value='/owner/menu2/operation/updateStatus.do'/>",
+				data:"ownerNo="+ownerNo+"&sStatusNo=3", 
+				success:function(res){
+					if(res=="fail"){
+						alert("업데이트 실패!");
+					}else{
+						alert('영업 임시 중지 되었습니다!');
+					}
+				},
+				error:function(xhr,status,error){
+					alert("error!!: "+error);
+				}
+			});
+		}
+	};
+
+</script>     <!-- Widget Area -->
                         <div class="sidebar-widget-area text-center" style="padding-top:40px; margin-bottom:30px;" >
-                        	<div >
+                        	 <div >
                        		 	<hr style="border: 1px 1solid; border-color: gray;" >
-                        	 </div>
+                        	 </div> 
                         	<br>
                         	<div >
 	                        	<c:set  var="noLicense" value="${NO_LICENSE}"/> <!-- 라이센스 없는경우  승인번호 2,4-->
@@ -75,7 +98,7 @@
 											</div>
 											<div class="col-12 col-md-2">
 												<!-- 임시중지 이미지 -->
-												<a href="<c:url value='/owner/index.do'/>">
+												<a href="#" onclick="stopStatus()">
 													<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
 	  													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 	  													<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>

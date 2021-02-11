@@ -188,5 +188,9 @@ create or replace view jaOrderDetailAllView
  		select * from jaOrderAllView where orders_no=#{ordersNo}
  	</select>
 	
+	<select id="selectCountByStoreNo" parameterType="int" resultType="int">
+		select count(*) from orders
+		where o_status_no = 1 and store_no=#{storeNo}
+	</select>
 	     
 </mapper>

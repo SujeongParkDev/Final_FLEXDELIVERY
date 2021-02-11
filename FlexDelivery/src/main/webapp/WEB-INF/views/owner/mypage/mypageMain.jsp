@@ -22,13 +22,14 @@
 			if($(this).attr('title')=='edit'){
 				url="<c:url value='/owner/register/registerEdit.do'/>";
 			}else if($(this).attr('title')=='agree'){
-				url="";
+				url="<c:url value='/owner/mypage/mypageApproval.do'/>";
 			}
 			location.href=url;
 			
 		});
 	});
 	 
+	
 	  
 	$(function(){
 		var boxes = document.querySelectorAll('#boxes > div');

@@ -47,7 +47,7 @@
 		    <div class="row match-height">
 		    	<div class="col-md-3 col-sm-12"></div>
 		        <div class="col-md-6 col-sm-12">
-		        <div class="card" >
+		     
 		            <div class="card-header" style="background-color:white;">
 		            <h4 class="card-title text-center">메뉴 그룹 수정</h4>
 		            </div>
@@ -74,7 +74,7 @@
 		            </div>
 		            </div>
 		        </div>
-		        </div>
+		      
 		        <div class="col-md-3 col-sm-12"></div>
 		    </div>
 		</section>

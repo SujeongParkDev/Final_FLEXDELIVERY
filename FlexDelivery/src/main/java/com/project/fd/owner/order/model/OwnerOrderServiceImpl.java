@@ -60,6 +60,9 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 		return ownerOrderDao.selectOrderAllByOrdersNo(ordersNo);
 	}
 	
+	public int selectCountByStoreNo(int storeNo) {
+		return ownerOrderDao.selectCountByStoreNo(storeNo);
+	}
 	@Override
 	@Transactional
 	public String getTitle(int ordersNo) {
@@ -68,7 +71,9 @@ public class OwnerOrderServiceImpl implements OwnerOrderService{
 			String menuName = ownerOrderDao.selectMenuNoByOrderNo(ordersNo);
 			
 			int count =ownerOrderDao.selectCountByOrderNo(ordersNo)-1;
-			if(count==0) {
+			if(count==-1) {
+				title="메뉴없음";
+			}else if(count==0) {
 				title=menuName;
 			}else {
 				title = menuName+"<br>"+"외 "+count+"건";

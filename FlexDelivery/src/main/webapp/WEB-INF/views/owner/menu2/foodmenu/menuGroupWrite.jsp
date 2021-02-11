@@ -82,18 +82,12 @@
          });
          
       }); 
-     /*
-       //엔터 누를때 
+   
+      
      $(function(){
-         $(document).keypress(function(event){
-            if(event.key==="Enter"){
-	               if($('input[id=sMGroupName]').val().length<1){
-	                  alert('그룹명을 입력해 주세요');
-	                  $('input[name=sMGroupName]').focus();
-	                  event.preventDefault();
-	                  return false;
-	               }else{
-            
+         $(document).keyup(function(){
+           /*  if(event.key==="Enter"){ */
+	               
 		               $.ajax({
 		                  url:"<c:url value='/owner/menu2/foodmenu/checkDupGroupName.do'/>",
 		                  data:"sMGroupName=" + $('#sMGroupName').val(),
@@ -102,25 +96,25 @@
 		                  success:function(res){
 		                     //alert(res);
 		                     if(res==true){
-		                        $('.checkDup').html("<small>중복된 이름이 존재합니다. 다른 이름을 입력해 주세요</small>");
+		                        $('.checkDup').html("<small>중복된 이름이 존재합니다.</small>");
 		                        $('input[name=sMGroupName]').focus();
 		                        event.preventDefault();
 		                        return false;
 		                     }else{
-		                        $('form[name=frm]').submit();
+		                    	 $('.checkDup').html('');
 		                     }
 		                  },
 		                  error:function(xhr, status, error){
 		                     alert("error!! : " + error);
 		                  }
 		               });
-	               }
-            }
+	              
+           /*  } */
             event.preventDefault();
          });
-         event.preventDefault();
+  
       });    
-     */
+     
      
      //input 에 값입력했을때
      $(function(){
@@ -163,7 +157,7 @@
                          <div class="form-body">
                           <div class="row">
                           <div class="col-12">
-                              <div class="form-group mt-3 text-center">
+                              <div class="form-group m-3 text-center">
 	                              <label for="first-name-vertical" class="mb-2">메뉴 그룹 이름</label>
 	                              <input type="text" id="sMGroupName" class="form-control" name="sMGroupName" style="width:80%; display:inline; text-align:right;">
 	                              <span class="checkDup" style="color:red; float:right; width:60%;"></span>

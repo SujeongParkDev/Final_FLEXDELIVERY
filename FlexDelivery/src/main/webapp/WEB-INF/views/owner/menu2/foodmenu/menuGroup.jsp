@@ -94,9 +94,9 @@
 		</script>
 		<!-- 메뉴 버튼 -->
 		<br><br><br><br><br>
-			 <div class="row mt-3">
-			  		<div class="col-md-1 col-12"></div>
-			  		<div class="col-md-10 col-12">
+			 <div class="row mt-3 mb-2">
+			  		<div class="col-md-2 col-12"></div>
+			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
 		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
 		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
@@ -104,7 +104,7 @@
 		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-1 col-12"></div>
+                    <div class="col-md-2 col-12"></div>
 			  </div>
 	
 		
@@ -115,8 +115,8 @@
 				   <!-- 내용 -->
 
 					<div class="row" id="basic-table">
-					  <div class="col-md-1 col-12"></div>
-					  <div class="col-12 col-md-10">
+					  <div class="col-md-2 col-12"></div>
+					  <div class="col-12 col-md-8">
 					    <div class="card">
 					      <br>
 					      <!-- <div class="card-header">
@@ -159,7 +159,7 @@
 					      </div>
 					    </div>
 					  </div>
-				   <div class="col-md-1 col-12"></div>
+				   <div class="col-md-2 col-12"></div>
 				   </div> 
 				<br>
 		<br>

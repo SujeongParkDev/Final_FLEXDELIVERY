@@ -61,13 +61,13 @@
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceEdit.do?menuNo="+menuNo;
 						title="메뉴 수정";
 						popupWidth=500;
-						popupHeight=600;
+						popupHeight=700;
 					}else if($(this).attr('name')=='menuWrite'){
 						var sMGroupNo=${sMGroupNo};
 						url="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoiceWrite.do?sMGroupNo="+sMGroupNo;
 						title="메뉴 등록";
 						popupWidth=500;
-						popupHeight=600;
+						popupHeight=450;
 					}else if($(this).attr('name')=='menuDelete'){
 						if(confirm(menuNo+"을 삭제하시겠습니까?")){
 							var sMGroupNo = ${sMGroupNo};
@@ -103,8 +103,8 @@
 		<!-- 메뉴 버튼 -->
 		<br><br><br><br><br>
 			 <div class="row mt-3">
-			  		<div class="col-md-1 col-12"></div>
-			  		<div class="col-md-10 col-12">
+			  		<div class="col-md-2 col-12"></div>
+			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
 		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
 		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
@@ -112,7 +112,7 @@
 		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
 	                	 </div>
 		            </div>
-                    <div class="col-md-1 col-12"></div>
+                    <div class="col-md-2 col-12"></div>
 			  </div>
 	
 			 
@@ -129,18 +129,18 @@
 				<div class="row">
 				
 				
-					  <div class="col-md-1 col-sm-12"></div>
-					  <div class="col-md-10 col-sm-12">
+					  <div class="col-md-2 col-sm-12"></div>
+					  <div class="col-md-8 col-sm-12">
 					  <div class="text-right">
 						  <button class="btn btn-warning p-2 btmenu"  name="menuWrite"
 						  		style="width:100px; margin-right:50px; margin-bottom:10px;" >등록</button>
 					  </div>
 					    </div>	
-					  <div class="col-md-1 col-sm-12"></div>
+					  <div class="col-md-2 col-sm-12"></div>
 					  
 					 
-					  <div class="col-md-1 col-sm-12"></div>
-					  <div class="col-12 col-md-10">
+					  <div class="col-md-2 col-sm-12"></div>
+					  <div class="col-12 col-md-8">
 							<div class="row">
 								<c:if test="${empty list }">
 											
@@ -193,7 +193,7 @@
 								  </c:if>
 							   </div>  
 						 	 </div>
-						   <div class="col-md-1 col-sm-12"></div>
+						   <div class="col-md-2 col-sm-12"></div>
 					   </div>   
 								   
 								   
