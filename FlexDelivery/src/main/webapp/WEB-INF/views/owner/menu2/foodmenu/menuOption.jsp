@@ -162,11 +162,9 @@
 			 
 		
 			$(function(){
-				$('#menuSelect').click(function(){
+				$('#menuSelect').change(function(){
 					$.optionSelectFunction();
-						$('#oRankSelect').find('option:first').prop('selected', true);
-					
-					
+					$('#oRankSelect').find('option:first').prop('selected', true);
 				});
 			});
 

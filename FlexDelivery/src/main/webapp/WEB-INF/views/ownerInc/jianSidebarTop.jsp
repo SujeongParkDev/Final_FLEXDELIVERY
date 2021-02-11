@@ -97,9 +97,6 @@
 			                            <a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a>
 			                        </li>
 			                         <li>
-			                            <a href="<c:url value='/owner/menu1/businessLicense.do'/>">사업자등록</a>
-			                        </li>
-			                         <li>
 			                            <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">승인 현황 조회 </a>
 			                        </li>
 			                    </ul>

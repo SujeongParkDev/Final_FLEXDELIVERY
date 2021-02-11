@@ -19,4 +19,6 @@ public interface OwnerRegisterDAO {
 	//취소 딜리트 다시 츄라이하는중 
 	public OwnerStoreAdVO selectAD(int storeadNo);
 	public OwnerStoresVO selecSt(int storeNo);
+	
+	public OwnerRegisterVO selectRegisterByOwnerNo(int ownerNo);//지안 추가 20210211
 }

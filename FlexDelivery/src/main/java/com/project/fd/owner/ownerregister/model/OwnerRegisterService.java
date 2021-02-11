@@ -21,4 +21,6 @@ public interface OwnerRegisterService {
 	
 	public OwnerStoreAdVO selectAD(int storeadNo);
 	public OwnerStoresVO selecSt(int storeNo);
+	
+	public OwnerRegisterVO selectRegisterByOwnerNo(int ownerNo);//지안 추가 20210211
 }

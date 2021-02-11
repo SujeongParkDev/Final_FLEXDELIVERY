@@ -32,8 +32,11 @@ public interface OwnerStoresService {
 	  public int updateTime(Map<String,Object> map);
 	  public OwnerStoresVO selectBasic(int ownerNo);
 	  public int updateContent(Map<String, Object> map);
-	//지안 20210211 수정시작
+
 	public List<Map<String, Object>> selectsStatusAll();
+
+	//지안 20210211 수정 재 시작
+	public String selectLCategoryName(int lCategoryNo);
 	//지안 20210211 수정끝
 
 }
