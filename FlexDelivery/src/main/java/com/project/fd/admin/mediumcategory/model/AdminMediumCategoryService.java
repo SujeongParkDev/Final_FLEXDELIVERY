@@ -12,4 +12,6 @@ public interface AdminMediumCategoryService {
 	
 	int deleteMediumcategory(AdminMediumCategoryVO mediumCategoryVo);
 
+	boolean checkDu(String mCategoryName);
+
 }

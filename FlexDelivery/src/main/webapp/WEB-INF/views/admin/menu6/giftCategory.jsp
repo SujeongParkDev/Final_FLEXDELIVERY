@@ -10,6 +10,98 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- css end -->
 
+<script>
+$(function(){
+	
+	$('#message2').hide();
+	$('#messageOk').hide();
+   
+	$('#giftCategoryWrite').on('hidden.bs.modal', function (e) {
+	    //console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#message2').hide();
+	  $('#message').html("카테고리 이름을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+	
+	$('#gCategoryName').on('keyup', function(){
+		   writeFunc();
+			  
+	   });//write keyup function
+});
+
+function chkDu(content){
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').html();
+	alert("ok:"+ok);
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmGiftCategoryWrite]').submit();
+	}else if (ok=="N"){
+		alert("등록 실패!");
+		event.preventDefault();
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function writeFunc(){
+	
+	  var name=$('#gCategoryName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/gCategoryName/ajaxCheck.do' />",
+			  data:"gCategoryName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 이름입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+					  
+				  }else{
+					  result = "이미 등록된 이름입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("이름을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("한글만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+</script>
+
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -21,16 +113,16 @@
 				<div class="card-body" style="text-align: right;">
 					<!-- 등록모달 호출하는 등록버튼 -->
 					<button type="button" class="btn btn-dark round block" id="modalWriteBt"
-					   data-toggle="modal" data-backdrop="false" data-target="#giftProductWrite" >
+					   data-toggle="modal" data-backdrop="false" data-target="#giftCategoryWrite" >
 					     등록
 					</button>
 					<p></p>						
 					<!-- #giftProductWrite 모달 start -->
-					<div class="modal fade text-left" id="giftProductWrite" tabindex="-1" 
-                        role="dialog" aria-labelledby="선물하기  상품등록" aria-hidden="true">
+					<div class="modal fade text-left" id="giftCategoryWrite" tabindex="-1" 
+                        role="dialog" aria-labelledby="선물하기  카테고리 등록" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
-								<form name="frmGiftProductWrite" method="post" action="<c:url value='/admin/menu6/giftProduct/write.do' />">
+								<form name="frmGiftCategoryWrite" method="post" action="<c:url value='/admin/menu6/giftCategory/write.do' />">
                                 	<div class="modal-header" style="background-color: black;">
 	                                    <h4 class="modal-title" style="color: white;">선물하기 - 카테고리 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +139,10 @@
 	                                                   	  <td>카테고리 이름</td>
 	                                                      <td colspan="2"  style="text-align: center;">
 		                                                   	  <input type="hidden" name="gCategoryNo" value="123" readonly>
-	                                                      	  <input type="text" name="gCategoryName">
+	                                                      	  <input type="text" name="gCategoryName" id="gCategoryName">
+	                                                      	  <br><span id="message" style="color: #dc3545;font-weight: bold;">카테고리 이름을 입력해주세요.</span>
+	                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+	                                                         <span id="messageOk"></span>
 	                                                      </td>
 	                                                   </tr>
 	                                                </tbody>
@@ -61,7 +156,8 @@
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" 
+	                                    	id="modalWrite" onclick="readyWriteSubmit()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>

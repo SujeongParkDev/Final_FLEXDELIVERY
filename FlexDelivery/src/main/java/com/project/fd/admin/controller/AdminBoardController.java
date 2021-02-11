@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.fd.admin.board.model.AdminBoardAllVO;
 import com.project.fd.admin.board.model.AdminBoardService;
 import com.project.fd.admin.board.model.AdminBoardVO;
 import com.project.fd.common.FileUploadUtil;
@@ -37,7 +39,7 @@ public class AdminBoardController {
 	public String notice_list_get(Model model) {
 		logger.info("공지사항 list_get, 리스트 화면 보여주기");
 		
-		List<AdminBoardVO> list=boardService.selectNotice();
+		List<AdminBoardAllVO> list=boardService.selectNotice();
 		logger.info("list 출력, list.size={}", list.size());
 		
 		model.addAttribute("list", list);
@@ -45,11 +47,39 @@ public class AdminBoardController {
 		return "admin/menu3/notice";
 	}
 	
+	//회원or점포가 공지사항 버튼 눌렀을 때 bh="공지사항", authroityNo 전송
+	@RequestMapping(value="/noticeMember.do", method = RequestMethod.GET)
+	public String noticeMember_list_get(@RequestParam String bh, 
+			@RequestParam(defaultValue = "1") int an, Model model) {
+		logger.info("멤버용 공지사항 목록창, bh={}, an={}", bh, an);
+	
+		
+		if (bh.isEmpty() || bh==null || an==0) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			model.addAttribute("url", "/admin/menu3/noticeMember.do");
+			return "common/message";			
+		}
+		
+		Map<String, Object> map=new HashedMap<String, Object>();
+		map.put("boardHead", bh);
+		map.put("authorityNo", an);
+		
+		//Map<String, Object> result=new HashedMap<String, Object>();
+		//result=boardService.selectAllForRn(map);
+		List<Map<String, Object>> list=boardService.selectAllForRn(map);
+		
+		logger.info("list 사이즈, list.size={}",	list.size());
+		//logger.info("list={}", list);
+		model.addAttribute("list", list);
+		
+		return "admin/menu3/noticeMember";
+	}
+	
 	@RequestMapping(value="/event.do", method = RequestMethod.GET)
 	public String event_list_get(Model model) {
 		logger.info("이벤트 list_get, 리스트 화면 보여주기");
 		
-		List<AdminBoardVO> list=boardService.selectEvent();
+		List<AdminBoardAllVO> list=boardService.selectEvent();
 		logger.info("list 출력, list.size={}", list.size());
 		
 		model.addAttribute("list", list);
@@ -57,10 +87,23 @@ public class AdminBoardController {
 		return "admin/menu3/event";
 	}
 	
+	/*public String prev_detail(@RequestParam int curNo, @RequestParam String head) {
+		logger.info("curNo={}, head={}", curNo, head);
+		
+		Map<String, Object> map=new HashedMap<String, Object>();
+		map.put("curNo", curNo);
+		map.put("head", head);
+		
+		//int cnt=boardService.select
+		String str="";
+		
+		return str;
+		///notice/detail.do
+	}*/
+	
 	@RequestMapping(value="/notice/write.do", method = RequestMethod.GET)
 	public String notice_write_get(Model model) {
 		logger.info("공지사항 write_get, 글쓰기 보여주기");
-		
 		
 		return "admin/menu3/notice/write";
 	}
@@ -68,7 +111,6 @@ public class AdminBoardController {
 	@RequestMapping(value="/event/write.do", method = RequestMethod.GET)
 	public String event_write_get(Model model) {
 		logger.info("이벤트 write_get, 글쓰기 보여주기");
-		
 		
 		return "admin/menu3/event/write";
 	}
@@ -82,10 +124,6 @@ public class AdminBoardController {
 		String originName="", fileName="";
 		long fileSize=0;
 
-		/*if (honeytipVo.getHoneytipThumbnail()==null) {
-			fileName="honeytipDefulat.jpg";
-		}*/
-		
 		try {
 			List<Map<String, Object>> fileList
 			=fileUtil.fileUplaod(request, FileUploadUtil.NOTICE_EVENT_TYPE);
@@ -104,12 +142,10 @@ public class AdminBoardController {
 		
 		//2
 		boardVo.setBoardThumbnail(fileName);
-		//boardVo.setAuthorityNo(6);
 		logger.info("파일 이름 확인, fileName={}", fileName);
 		
 		int cnt=boardService.insertBoard(boardVo);
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
-		
 		
 		return "redirect:/admin/menu3/event.do";
 	}
@@ -120,14 +156,12 @@ public class AdminBoardController {
 		logger.info("write_post 공지사항 등록 처리, 파라미터 vo={}", boardVo);
 		
 		
-		
 		//2
 		//boardVo.setBoardThumbnail(fileName);
 		//logger.info("파일 이름 확인, fileName={}", fileName);
 		
 		int cnt=boardService.insertBoard(boardVo);
 		logger.info("파일 업로드 처리 결과, cnt={}", cnt);
-		
 		
 		return "redirect:/admin/menu3/notice.do";
 	}
@@ -144,14 +178,45 @@ public class AdminBoardController {
 		}
 		
 		//2
-		AdminBoardVO boardVo=boardService.selectByNo(no);
-		logger.info("상세보기 결과,vo={}", boardVo);
+		AdminBoardAllVO boardAllVo=boardService.selectByNo2(no);
+		//=boardService.selectByNo2(no);
+		logger.info("상세보기 결과,vo={}", boardAllVo);
 		
 		//3
-		model.addAttribute("vo", boardVo);
+		model.addAttribute("vo", boardAllVo);
 		
 		//4
 		return "admin/menu3/event/detail";
+	}
+	
+	@RequestMapping("/notice/detailMember.do")
+	public String noticeMember_detail(@RequestParam(defaultValue = "0") int no, Model model) {
+		//1
+		logger.info("회원용 공지사항 상세보기 파라미터 no={}", no);
+		if(no==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/admin/menu3/noticeMember.do");
+			
+			return "common/message";
+		}
+		
+		//2
+		AdminBoardAllVO boardAllVo=boardService.selectByNo2(no);
+		logger.info("상세보기 결과,vo={}", boardAllVo);
+		
+		
+		Map<String, Object> map=new HashedMap<String, Object>();
+		map.put("boardHead", boardAllVo.getBoardHead());
+		map.put("authorityNo", boardAllVo.getAuthorityNo());
+		map.put("boardNo", boardAllVo.getBoardNo());
+		int rn=boardService.selectRn(map);
+		
+		//3
+		model.addAttribute("vo", boardAllVo);
+		model.addAttribute("rn", rn);
+		
+		//4
+		return "admin/menu3/notice/detailMember";
 	}
 	
 	@RequestMapping("/notice/detail.do")
@@ -166,25 +231,23 @@ public class AdminBoardController {
 		}
 		
 		//2
-		AdminBoardVO boardVo=boardService.selectByNo(no);
-		logger.info("상세보기 결과,vo={}", boardVo);
+		AdminBoardAllVO boardAllVo=boardService.selectByNo2(no);
+		logger.info("상세보기 결과,vo={}", boardAllVo);
 		
 		//3
-		model.addAttribute("vo", boardVo);
+		model.addAttribute("vo", boardAllVo);
 		
 		//4
 		return "admin/menu3/notice/detail";
 	}
 	
 	@RequestMapping(value="/event/delete.do", method=RequestMethod.POST)
-	public String event_delete_post(@ModelAttribute AdminBoardVO boardVo,
-			@RequestParam String oldFileName, HttpServletRequest request,
+	public String event_delete_post(@RequestParam String oldFileName, HttpServletRequest request,
 			@RequestParam(defaultValue = "0") int no, Model model) {
 		//1
-		logger.info("event delete_post 이벤트 삭제처리, 파라미터 vo={} oldFileName={}", boardVo, oldFileName);
-		logger.info("no={}", no);
+		logger.info("event delete_post 이벤트 삭제처리, 파라미터 no={} oldFileName={}", no, oldFileName);
 		
-		if(boardVo==null || no==0) {
+		if(no==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/admin/menu3/event.do");
 			return "common/message";
@@ -201,7 +264,7 @@ public class AdminBoardController {
 		//Map<String, String> map = new HashMap<String, String>();
 		//map.put("no", largeCategoryVo.getlCategoryNo()+"");
 				
-		boardService.deleteBoard(boardVo);
+		boardService.deleteBoard(no);
 		logger.info("이벤트 삭제!");	
 		
 		msg="이벤트 게시글이 삭제되었습니다.";
@@ -225,14 +288,12 @@ public class AdminBoardController {
 	
 	
 	@RequestMapping(value="/notice/delete.do", method=RequestMethod.POST)
-	public String notice_delete_post(@ModelAttribute AdminBoardVO boardVo,
-			HttpServletRequest request,
+	public String notice_delete_post(HttpServletRequest request,
 			@RequestParam(defaultValue = "0") int no, Model model) {
 		//1
-		logger.info("notice delete_post 공지사항 삭제처리, 파라미터 vo={}", boardVo);
-		logger.info("no={}", no);
+		logger.info("notice delete_post 공지사항 삭제처리, 파라미터 no={}", no);
 		
-		if(boardVo==null || no==0) {
+		if(no==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/admin/menu3/notice.do");
 			return "common/message";
@@ -244,7 +305,7 @@ public class AdminBoardController {
 		//Map<String, String> map = new HashMap<String, String>();
 		//map.put("no", largeCategoryVo.getlCategoryNo()+"");
 		
-		boardService.deleteBoard(boardVo);
+		boardService.deleteBoard(no);
 		logger.info("공지사항 삭제!");	
 		
 		msg="공지사항 게시글이 삭제되었습니다.";

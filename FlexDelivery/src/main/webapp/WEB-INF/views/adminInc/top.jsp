@@ -196,6 +196,7 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li><a href="<c:url value='/admin/menu7/chartDefault.do' />"><span>통계</span></a></li>
                                 </ul>
 
                                 <!-- Search Form start -->
@@ -220,8 +221,8 @@
     <!-- ##### Header Area End ##### -->
     
     
-<%--     <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script> --%>
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+<%-- 	<script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script>
+ --%>    <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
  
     <!-- Popper js -->
@@ -233,9 +234,5 @@
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
     <!-- top logo -->
-    <%-- <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script>
-      
-     <script>
-    	var jq = jQuery.noConflict();
-    </script>
-     --%>
+
+   	<%--<script>var jq = jQuery.noConflict();</script>--%>

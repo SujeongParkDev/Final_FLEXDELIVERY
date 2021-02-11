@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.gift.model.AdminGiftCategoryProductVO;
 import com.project.fd.admin.gift.model.AdminGiftCategoryService;
@@ -38,16 +40,19 @@ public class AdminGiftCategoryController {
 		return "/admin/menu6/giftCategory";
 	}
 	
-	/*
-	@RequestMapping(value="/giftCategory.do", method = RequestMethod.POST)
-	public String list_post(@ModelAttribute AdminGiftCategoryVO giftCategoryVo , HttpServletRequest request) {
-		logger.info("list_post 작업 후 선물 카테고리 목록 화면 출력, 파라미터 vo={}", giftCategoryVo);
+	@RequestMapping("/gCategoryName/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String gCategoryName) {
+		logger.info("이름 중복확인, gCategoryName={}", gCategoryName);
 		
-		int cnt=giftCategoryService.insertGiftCategory(giftCategoryVo);
-		logger.info("선물 카테고리 목록, cnt={}", cnt);
-		return "redirect:/admin/menu6/giftCategory.do";
+		boolean isExist=false;
+		if(gCategoryName!=null && !gCategoryName.isEmpty()) {
+			isExist=giftCategoryService.checkDu(gCategoryName);
+			logger.debug("이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
 	}
-	*/
 
 	@RequestMapping(value="/giftCategory/write.do", method = RequestMethod.POST)
 	public String write_post(@ModelAttribute AdminGiftCategoryVO giftCategoryVo,

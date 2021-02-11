@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.coupons.model.AdminEventCouponService;
 import com.project.fd.admin.coupons.model.AdminEventCouponVO;
@@ -52,14 +54,20 @@ public class AdminEventCouponController {
 		
 	}
 
-	/*
-	@RequestMapping(value="/eventCoupon/write.do", method = RequestMethod.GET)
-	public String write_get(@ModelAttribute AdminEventCouponVO eventCouponVo,
-			HttpServletRequest request) {
-		logger.info("write_get 등록 화면 띄우기");
+	@RequestMapping("/eCoupon/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String eCouponName) {
+		logger.info("이름 중복확인, eCouponName={}", eCouponName);
 		
-		return "admin/menu6/eventCoupon";
-	}*/
+		boolean isExist=false;
+		if(eCouponName!=null && !eCouponName.isEmpty()) {
+			isExist=eventCouponService.checkDu(eCouponName);
+					//faqCategoryService.checkDu(fCategoryName);
+			logger.debug("이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
+	}
 	
 	@RequestMapping(value="/eventCoupon/write.do", method = RequestMethod.POST)
 	public String write_post(@ModelAttribute AdminEventCouponVO eventCouponVo,

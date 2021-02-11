@@ -2,6 +2,112 @@
     pageEncoding="UTF-8"%>
 <%@include file="../../adminInc/top.jsp" %>    
 	
+<script>
+$(function(){
+	
+	$('#message2').hide();
+	$('#messageOk').hide();
+   
+	$('#regularCouponWrite').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#message2').hide();
+	  $('#message').html("할인금액과 최소 주문 금액을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+	
+	$('#rCouponDc').on('keyup', function(){
+		   writeFunc();  
+	 });
+	$('#rCouponMin').on('keyup', function(){
+		   writeFunc();  
+	 });
+});
+
+function chkDu(content){
+	var pattern=new RegExp(/^[0-9]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').html();
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmRegularCouponWrite]').submit();
+	}else if (ok=="N"){
+		alert("등록 실패!");
+		event.preventDefault();
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function writeFunc(){
+	
+	  var dc=$('#rCouponDc').val();
+	  var min=$('#rCouponMin').val();
+	  
+	  if(chkDu(dc) && dc.length>0 && chkDu(min) && min.length>0 && dc < min){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/rCoupon/ajaxCheck.do' />",
+			  data:"rCouponDc="+dc+"&rCouponMin="+min,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 금액입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+					  
+				  }else{
+					  result = "이미 등록된 금액입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (dc.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("할인 금액을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+		  
+	  }else if (min.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("최소 주문 금액을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(dc) || !(chkDu(min))){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("숫자만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  } else if (min < dc) {
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("할인 금액은 최소 주문 금액보다 클 수 없습니다.");
+		  $('#messageOk').html("N");
+	  }
+}
+</script>	
+	
 <!-- css start -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
@@ -56,14 +162,21 @@
 	                                                   	  <tr>
 	                                                   	  	 <td>할인금액</td>
 		                                                      <td colspan="2">
-		                                                      	  <input type="text" name="rCouponDc">
+		                                                      	  <input type="text" name="rCouponDc" id="rCouponDc">
 		                                                      </td>
 	                                                      </tr>
 	                                                      <tr>
 	                                                      	  <td>최소 주문 금액</td>
 		                                                      <td colspan="2">
-		                                    	               	<input type="text" name="rCouponMin">
+		                                    	               	<input type="text" name="rCouponMin" id="rCouponMin">
 		                                                      </td>
+		                                                   </tr>
+		                                                   <tr>
+		                                                   		<td colspan="3">
+		                                                   			 <span id="message" style="color: #dc3545;font-weight: bold;">할인금액과 최소 주문 금액을 입력해주세요.</span>
+			                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+			                                                         <span id="messageOk"></span>
+		                                                   		</td>
 		                                                   </tr>
 		                                                </tbody>
 		                                             </table>                      
@@ -76,7 +189,8 @@
 		                                       <i class="bx bx-x d-block d-sm-none"></i>
 		                                       <span class="d-none d-sm-block">닫기</span>
 		                                    </button>
-		                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+		                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" 
+		                                    	id="modalWrite" onclick="readyWriteSubmit()">
 		                                       <i class="bx bx-check d-block d-sm-none"></i>
 		                                       <span class="d-none d-sm-block">등록</span>
 		                                    </button>
@@ -191,7 +305,10 @@
 			                                                                         <td colspan="2">
 			                                                                           <input type="text" name="rCouponMin" id="regularCouponMin" value="${vo.rCouponMin }">
 																					 </td>					                                                                    
-			                                                                     </tr>					                                                                    
+			                                                                     </tr>		
+			                                                                     <tr>
+			                                                                     	<td></td>
+			                                                                     </tr>                                                                    
 			                                                                  </tbody>
 			                                                               </table>                      
 			                                                            </div>

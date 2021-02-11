@@ -16,12 +16,12 @@ $(function(){
 	//alert(curNo);
 	
 	$('#detailEdit').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/notice/edit.do?no="+${vo.boardNo};
+		location.href="${pageContext.request.contextPath}/admin/menu3/notice/editMember.do?no="+${vo.boardNo};
 	});
 	
 	
 	$('#detailList').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/notice.do";
+		location.href="${pageContext.request.contextPath}/admin/menu3/noticeMember.do";
 	});
 });
 
@@ -54,7 +54,7 @@ function nextArticle(){
 					                        <!-- Blog Content -->
 					                        <div class="single-blog-content">
 					                            <div class="line"></div>
-					                            <a class="post-tag">${vo.authorityName } :: ${vo.boardNo }번째  ${vo.boardHead }</a>
+					                            <a class="post-tag">${vo.authorityName } :: ${rn.rn }번째  ${vo.boardHead }</a>
 					                            <h4><a class="post-headline mb-0">${vo.boardTitle }</a></h4>
 					                            <div class="post-meta">
 					                                <p>${vo.boardRegdate },   By <a>플렉스 딜리버리</a></p>

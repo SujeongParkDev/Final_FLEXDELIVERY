@@ -12,6 +12,10 @@ public interface AdminGiftProductService {
 	int updateGiftProduct(AdminGiftProductVO giftProductVo);
 	
 	int deleteGiftProduct(AdminGiftProductVO giftProductVo);
+
+	boolean checkDu(String gProductName);
+
+	List<AdminGiftCategoryProductVO> selectForAll2(int categoryNo);
 	
 	
 }

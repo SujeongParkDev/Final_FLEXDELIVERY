@@ -7,10 +7,13 @@
 <script>
 	
 $(function(){
-	/* $('#btWrite').click(function(){ */
-	$('form[name=frmEventWrite]').submit(function(){
+	
+	radioCheck();
+	
+	$('form[name=frmNoticeEdit]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
 		var title=$('#noticeTitle').val();
+		var auth=$('input[name=authorityNo]').is(':checked');
 		var img=$('#upfile').val();
 		
 		
@@ -18,21 +21,18 @@ $(function(){
 			alert("제목을 입력하세요");
 			return false;
 		}
+		if (auth==''){
+			alert("공개 대상을 선택하세요");
+			return false;
+		}
 		if (contents==''){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
-			return false;
-		} */
 	
 		
 	});
-	
-	/* $('#btWrite').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/write.do";
-	}); */
+
 	
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
@@ -44,6 +44,24 @@ $(function(){
 	});
 	
 });
+
+function radioCheck(){
+	var radioChk=${vo.authorityNo };
+	var radio1=$('#radio1').val();
+	var radio2=$('#radio2').val();
+	//alert(radioChk);
+	if (radioChk==radio1){
+		$('#radio1').prop('checked', true);
+		$('#radio2').prop('checked', false);
+		
+	} else if (radioChk==radio2){
+		$('#radio1').prop('checked', fals);
+		$('#radio2').prop('checked', true);
+		
+	} else {
+		alert('없어진 공개 대상입니다. 새로운 공개 대상을 선택해주세요.');
+	}
+}
 </script>
 
 <!-- css start -->
@@ -86,7 +104,22 @@ $(function(){
 											                    <label class="input-group-text">제목</label>
 											                </div>            
 											                <input type="text" name="boardTitle" id="noticeTitle" placeholder="제목을 입력하세요" 
-											                	value="${vo.boardTitle }" class="form-control">              
+											                	value="${vo.boardTitle }" class="form-control">  
+											                <div class="input-group-prepend" style="margin-right: -1px;">
+											                    <label class="input-group-text">공개 대상</label>
+										                    </div>
+										                	<div class="form-control col-3">
+											                    <table style="width: 100%; text-align: center;">
+											                    	<tr>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="1" id="radio1">회원
+			                                                      		</td>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="4" id="radio2">사장님
+			                                                      		</td>              
+											                    	</tr>
+											                    </table>
+										                    </div>            
 										                </div>
 									     		 	</div>
 									      			<hr>

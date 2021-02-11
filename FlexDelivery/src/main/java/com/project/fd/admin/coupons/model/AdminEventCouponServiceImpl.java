@@ -31,4 +31,9 @@ public class AdminEventCouponServiceImpl implements AdminEventCouponService{
 		return eventCouponDao.deleteEventCoupon(eventCouponVo);
 	}
 
+	@Override
+	public boolean checkDu(String eCouponName) {
+		return eventCouponDao.checkDu(eCouponName);
+	}
+
 }

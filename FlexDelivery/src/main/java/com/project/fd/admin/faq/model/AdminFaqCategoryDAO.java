@@ -14,5 +14,7 @@ public interface AdminFaqCategoryDAO {
 
 	int deleteFaqCategory(int no);
 
+	boolean checkDu(String fCategoryName);
+
 
 }

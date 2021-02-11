@@ -43,4 +43,14 @@ public class AdminMediumCategoryDAOMybatis implements AdminMediumCategoryDAO{
 		int cnt=sqlSession.delete(namespace+"deleteMediumcategory", mediumCategoryVo);
 		return cnt;
 	}
+
+	@Override
+	public boolean checkDu(String mCategoryName) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", mCategoryName);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
 }

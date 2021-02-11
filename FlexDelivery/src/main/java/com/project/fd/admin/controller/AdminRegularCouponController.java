@@ -1,9 +1,11 @@
 package com.project.fd.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.coupons.model.AdminRegularCouponService;
 import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
@@ -48,6 +52,25 @@ public class AdminRegularCouponController {
 		//model.addAttribute("list", list);
 		
 		return "admin/menu6/regularCoupon";
+		
+	}
+	
+	@RequestMapping("/rCoupon/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam int rCouponDc, @RequestParam int rCouponMin) {
+		logger.info("쿠폰 중복확인, rCouponDc={}, rCouponMin={}", rCouponDc, rCouponMin);
+		
+		Map<String, Object> map=new HashedMap<String, Object>();
+		
+		map.put("rCouponDc", rCouponDc);
+		map.put("rCouponMin", rCouponMin);
+		
+		boolean isExist=false;
+		if(map!=null && !map.isEmpty()) {
+			isExist=regularCouponService.checkDu(map);
+			logger.debug("쿠폰 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
 		
 	}
 

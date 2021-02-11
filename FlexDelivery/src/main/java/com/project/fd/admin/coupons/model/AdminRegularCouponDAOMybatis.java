@@ -1,6 +1,7 @@
 package com.project.fd.admin.coupons.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,15 @@ public class AdminRegularCouponDAOMybatis implements AdminRegularCouponDAO{
 	public int deleteRegularCoupon(AdminRegularCouponVO regularCouponVo) {
 		int cnt=sqlSession.delete(namespace+"deleteRegularCoupon", regularCouponVo);
 		return cnt;
+	}
+
+	@Override
+	public boolean checkDu(Map<String, Object> map) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", map);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
 	}
 }

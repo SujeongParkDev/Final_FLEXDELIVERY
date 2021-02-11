@@ -11,6 +11,98 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- css end -->
 
+<script>
+$(function(){
+	$('#message2').hide();
+	$('#messageOk').hide();
+    var ok=$('#messageOk').html();
+	console.log(ok);
+    
+    $('#weatherWrite').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#message2').hide();
+	  $('#message').html("날씨를 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+    
+    $('#weatherName').on('keyup', function(){
+ 	   writeFunc();
+   
+    });
+});
+
+function chkDu(content){
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').html();
+	alert("html:"+ok);
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmWeatherWrite]').submit();
+	}else if(ok=="N"){
+		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function writeFunc(){
+	  var name=$('#weatherName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/weatherName/ajaxCheck.do' />",
+			  data:"weatherName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "등록 가능한 날씨입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+				  }else{
+					  result = "이미 등록된 날씨입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("날씨를 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("한글만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+
+</script>
+
 <div class="container">
 	<div class="row">
 		<!-- Hoverable rows start -->
@@ -58,7 +150,10 @@
 			                                                   	  
 			                                                   	  <td>날씨 이름</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	  <input type="text" name="weatherName">
+			                                                      	  <input type="text" name="weatherName" id="weatherName">
+			                                                      	  <br><span id="message" style="color: #dc3545;font-weight: bold;">날씨를 입력해주세요.</span>
+			                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+			                                                         <span id="messageOk">N</span>
 			                                                         <!-- <div>
 			                                                            <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
 			                                                         </div> -->
@@ -75,7 +170,8 @@
 			                                       <i class="bx bx-x d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
-			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" 
+			                                    	id="modalWrite" onclick="readyWriteSubmit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">등록</span>
 			                                    </button>

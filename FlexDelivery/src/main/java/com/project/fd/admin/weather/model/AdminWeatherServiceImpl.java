@@ -38,4 +38,9 @@ public class AdminWeatherServiceImpl implements AdminWeatherService{
 		return weatherDao.selectAll2();
 	}
 
+	@Override
+	public boolean checkDu(String weatherName) {
+		return weatherDao.checkDu(weatherName);
+	}
+
 }

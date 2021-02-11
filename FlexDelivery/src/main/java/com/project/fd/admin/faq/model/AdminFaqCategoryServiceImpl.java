@@ -36,4 +36,9 @@ public class AdminFaqCategoryServiceImpl implements AdminFaqCategoryService {
 		return faqCategoryDao.deleteFaqCategory(no);
 	}
 
+	@Override
+	public boolean checkDu(String fCategoryName) {
+		return faqCategoryDao.checkDu(fCategoryName);
+	}
+
 }

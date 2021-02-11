@@ -10,10 +10,23 @@
 	</select>
 	
 	<select id="selectAll2" parameterType="adminGiftCategoryProductVo" resultType="adminGiftCategoryProductVo">
-		select p.G_PRODUCT_NO, p.G_PRODUCT_NAME, p.G_PRODUCT_FILENAME, c.G_CATEGORY_NAME
+		select p.G_PRODUCT_NO, p.G_PRODUCT_NAME, p.G_PRODUCT_FILENAME, p.G_CATEGORY_NO, c.G_CATEGORY_NAME
 		from GIFTCATEGORY c right join GIFTPRODUCT p
 		on c.G_CATEGORY_NO=p.G_CATEGORY_NO
-		order by p.G_CATEGORY_NO
+		order by p.G_PRODUCT_NO desc
+	</select>
+	
+	<select id="checkDu" parameterType="string" resultType="int">
+		select count(G_PRODUCT_NAME) from GIFTPRODUCT
+		where G_PRODUCT_NAME like #{gProductName}
+	</select>
+	
+	<select id="selectForAll2" parameterType="int" resultType="adminGiftCategoryProductVo">
+		select p.*, c.G_CATEGORY_NAME
+		from GIFTCATEGORY c right join GIFTPRODUCT p
+		on c.G_CATEGORY_NO=p.G_CATEGORY_NO
+		where p.G_CATEGORY_NO=#{gCategoryNo}
+		order by p.G_PRODUCT_NO desc
 	</select>
 	
 	<insert id="insertGiftProduct" parameterType="adminGiftProductVo" >

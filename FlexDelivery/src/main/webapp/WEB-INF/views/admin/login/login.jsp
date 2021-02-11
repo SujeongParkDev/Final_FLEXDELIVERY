@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/colorTest.css"/>
 
+<body>
+
 <!-- Admin Login Form start -->
 <div class="container">
  	
@@ -37,7 +39,7 @@
 		</div>       	
 	</form>
 </div>
-
+</body>
 <!-- Admin Login Form end -->
    
                         

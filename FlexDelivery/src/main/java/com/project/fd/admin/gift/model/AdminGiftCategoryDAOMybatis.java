@@ -44,4 +44,14 @@ public class AdminGiftCategoryDAOMybatis implements AdminGiftCategoryDAO{
 		int cnt=sqlSession.update(namespace+"updateGiftCategory", giftCategoryVo);
 		return cnt;
 	}
+
+	@Override
+	public boolean checkDu(String gCategoryName) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", gCategoryName);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
 }

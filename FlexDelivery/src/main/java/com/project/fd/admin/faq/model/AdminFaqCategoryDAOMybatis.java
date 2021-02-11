@@ -43,4 +43,14 @@ public class AdminFaqCategoryDAOMybatis implements AdminFaqCategoryDAO{
 		int cnt=sqlSession.delete(namespace+"deleteFaqCategory", no);
 		return cnt;
 	}
+
+	@Override
+	public boolean checkDu(String fCategoryName) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", fCategoryName);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
 }

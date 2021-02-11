@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
 import com.project.fd.admin.weather.model.AdminWeatherService;
@@ -62,6 +64,20 @@ public class AdminWeatherController {
 		logger.info("날씨 카테고리 등록 처리 결과, cnt={}", cnt);
 
 		return "redirect:/admin/menu6/todayFoodsWeather.do";
+	}
+	
+	@RequestMapping("/weatherName/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String weatherName) {
+		logger.info("날씨 중복확인, weatherName={}", weatherName);
+		
+		boolean isExist=false;
+		if(weatherName!=null && !weatherName.isEmpty()) {
+			isExist=weatherService.checkDu(weatherName);
+			logger.debug("날씨 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
 	}
 	
 	@RequestMapping(value="/todayFoodsWeather/write.do", method=RequestMethod.GET)

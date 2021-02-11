@@ -11,6 +11,7 @@ $(function(){
 	$('form[name=frmEventWrite]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
 		var title=$('#boardTitle').val();
+		var auth=$('input[name=authorityNo]').is(':checked');
 		var img=$('#upfile').val();
 		
 		
@@ -18,10 +19,15 @@ $(function(){
 			alert("제목을 입력하세요");
 			return false;
 		}
+		if (auth==''){
+			alert("공개 대상을 선택하세요");
+			return false;
+		}
 		if (contents==''){
 			alert("내용을 입력하세요");
 			return false;
 		}
+		
 		/* if (img==''){
 			alert("이미지를 첨부해주세요");
 			return false;
@@ -30,9 +36,6 @@ $(function(){
 		
 	});
 	
-	/* $('#btWrite').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/write.do";
-	}); */
 	
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
@@ -77,33 +80,36 @@ $(function(){
 											<form name="frmEventWrite" id="frmEventWrite" action="<c:url value='/admin/menu3/notice/write.do' />" 
 												method="post" >
 										    	<div class="content">
-										    		<input type="hidden" name="boardNo" value="123">
+										    		<input type="hidden" name="boardNo" value="0">
 										    		<input type="hidden" name="boardHead" value="공지사항">
 										    		<input type="hidden" name="boardThumbnail" value="">
-										    		<input type="hidden" name="authorityNo" value="6">
 										        	<div class="row justify-content-md-center">
 											            <div class="input-group">
 											                <div class="input-group-prepend">
 											                    <label class="input-group-text">제목</label>
 											                </div>            
-											                <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control">              
+											                	<input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control col-9">              
+											                <div class="input-group-prepend" style="margin-right: -1px;">
+											                    <label class="input-group-text">공개 대상</label>
+										                    </div>
+										                    <div class="form-control col-3">
+											                    <table style="width: 100%; text-align: center;">
+											                    	<tr>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="1">회원
+			                                                      		</td>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="4">사장님
+			                                                      		</td>              
+											                    	</tr>
+											                    </table>
+										                    </div>
 										                </div>
 									     		 	</div>
 									      			<hr>
-											 		<!-- <div class="row justify-content-md-center">
-											            <div class="input-group">
-											              <div class="input-group-prepend">
-											                  <span class="input-group-text" id="inputGroupFileAddon01">썸네일 이미지</span>
-											              </div>
-											              <div class="custom-file">
-											                  <input type="file" name="upfile" class="form-control-file" id="upfile">
-											              </div>
-										                </div>
-										    		</div> 
-									      			<hr>-->
 										      		<div class="row justify-content-md-center">
-											          <div class="col_c" style="margin-bottom: 30px">
-											               <div class="input-group">        
+											          <div class="col_c" style="margin-bottom: 30px; text-align: center;">
+											               <div class="input-group" >        
 											                 <textarea name="boardContent" class="form-control" id="editor4" placeholder="내용을 입력하세요"></textarea>   
 													     	 <script>CKEDITOR.replace('editor4');</script>
 												             

@@ -37,4 +37,14 @@ public class AdminEventCouponDAOMybatis implements AdminEventCouponDAO{
 		int cnt=sqlSession.delete(namespace+"deleteEventCoupon", eventCouponVo);
 		return cnt;
 	}
+
+	@Override
+	public boolean checkDu(String eCouponName) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", eCouponName);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
 }

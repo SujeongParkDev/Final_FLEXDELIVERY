@@ -10,6 +10,11 @@
 		order by E_COUPON_NO desc
 	</select>
 	
+	<select id="checkDu" parameterType="string" resultType="int">
+		select count(E_COUPON_NAME) from EVENTCOUPON 
+		where E_COUPON_NAME like #{eCouponName}
+	</select>
+	
 	<insert id="insertEventCoupon" parameterType="adminEventCouponVo" >
 		<selectKey keyProperty="eCouponNo" resultType="int" order="BEFORE">
 			select EVENTCOUPON_seq.nextval from dual

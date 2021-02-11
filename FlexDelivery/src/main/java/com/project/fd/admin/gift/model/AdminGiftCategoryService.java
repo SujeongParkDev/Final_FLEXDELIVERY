@@ -12,6 +12,8 @@ public interface AdminGiftCategoryService {
 	int updateGiftCategory(AdminGiftCategoryVO giftCategoryVo);
 	
 	int deleteGiftCategory(AdminGiftCategoryVO giftCategoryVo);
+
+	boolean checkDu(String gCategoryName);
 	
 	
 }

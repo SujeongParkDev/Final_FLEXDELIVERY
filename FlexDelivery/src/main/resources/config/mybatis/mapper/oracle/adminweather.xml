@@ -17,6 +17,11 @@
 		order by w.WEATHER_NO desc
 	</select>
 	
+	<select id="checkDu" parameterType="string" resultType="int">
+		select count(WEATHER_NAME) from WEATHER
+		where WEATHER_NAME like #{weatherName}
+	</select>
+	
 	<insert id="insertWeather" parameterType="adminWeatherVo" >
 		<selectKey keyProperty="weatherNo" resultType="int" order="BEFORE">
 			select weather_seq.nextval from dual

@@ -1,3 +1,4 @@
+
 var c = document.getElementById("canv");
 var $ = c.getContext("2d");
 
@@ -16,6 +17,7 @@ var msd = {
   x: 0,
   y: 0
 };
+
 
 function Obj(x, y, z) {
   this.set(x, y, z);
@@ -164,3 +166,4 @@ function run() {
 
 go();
 run();
+

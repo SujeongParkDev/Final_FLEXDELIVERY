@@ -36,4 +36,14 @@ public class AdminGiftProductServiceImpl implements AdminGiftProductService{
 		return giftProductDao.deleteGiftProduct(giftProductVo);
 	}
 
+	@Override
+	public boolean checkDu(String gProductName) {
+		return giftProductDao.checkDu(gProductName);
+	}
+
+	@Override
+	public List<AdminGiftCategoryProductVO> selectForAll2(int categoryNo) {
+		return giftProductDao.selectForAll2(categoryNo);
+	}
+
 }

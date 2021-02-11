@@ -1,6 +1,7 @@
 package com.project.fd.admin.board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		return boardDao.selectAll();
 	}
 	@Override
-	public List<AdminBoardVO> selectNotice() {
+	public List<AdminBoardAllVO> selectNotice() {
 		return boardDao.selectNotice();
 	}
 	@Override
-	public List<AdminBoardVO> selectEvent() {
+	public List<AdminBoardAllVO> selectEvent() {
 		return boardDao.selectEvent();
 	}
 
@@ -40,8 +41,37 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public int deleteBoard(AdminBoardVO vo) {
-		return boardDao.deleteBoard(vo);
+	public int deleteBoard(int no) {
+		return boardDao.deleteBoard(no);
+	}
+	@Override
+	public List<AdminBoardAllVO> selectAll2() {
+		return boardDao.selectAll2();
+	}
+	@Override
+	public AdminBoardAllVO selectByNo2(int no) {
+		return boardDao.selectByNo2(no);
+	}
+	
+	@Override
+	public int selectRn(Map<String, Object> map) {
+		return boardDao.selectRn(map);
+	}
+	@Override
+	public Map<String, Object> selectByRn(Map<String, Object> map) {
+		return boardDao.selectByRn(map);
+	}
+	@Override
+	public int selectMinRn(Map<String, Object> map) {
+		return boardDao.selectMinRn(map);
+	}
+	@Override
+	public int selectMaxRn(Map<String, Object> map) {
+		return boardDao.selectMaxRn(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectAllForRn(Map<String, Object> map) {
+		return boardDao.selectAllForRn(map);
 	}
 	
 	

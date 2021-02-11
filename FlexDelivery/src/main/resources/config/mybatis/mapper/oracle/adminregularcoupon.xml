@@ -9,6 +9,11 @@
 		order by R_COUPON_NO desc
 	</select>
 	
+	<select id="checkDu" parameterType="map" resultType="int">
+		select count(R_COUPON_DC) from REGULARCOUPON
+		where R_COUPON_DC = #{rCouponDc} and R_COUPON_MIN = #{rCouponMin}
+	</select>
+	
 	<insert id="insertRegularCoupon" parameterType="adminRegularCouponVo" >
 		<selectKey keyProperty="rCouponNo" resultType="int" order="BEFORE">
 			select REGULARCOUPON_seq.nextval from dual

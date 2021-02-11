@@ -36,4 +36,9 @@ public class AdminGiftCategoryServiceImpl implements AdminGiftCategoryService{
 		return giftCategoryDao.deleteGiftCategory(giftCategoryVo);
 	}
 
+	@Override
+	public boolean checkDu(String gCategoryName) {
+		return giftCategoryDao.checkDu(gCategoryName);
+	}
+
 }
