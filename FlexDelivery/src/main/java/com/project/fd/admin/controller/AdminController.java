@@ -38,8 +38,10 @@ public class AdminController {
 	}
 	/*
 	@RequestMapping("/menu1/memberGrade.do")
-	public void admin() {
+	public String adminMemberGrade() {
 		logger.info("관리자 - 회원등급관리 화면 보여주기");
+		
+		return "menu1/memberGrade";
 	}
 	
 	@RequestMapping("/menu2/storeMg.do")

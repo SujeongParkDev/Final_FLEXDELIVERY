@@ -22,9 +22,15 @@
 		where o_register_no = #{no}
 	</update>
 	
-	<update id="registerDeny" parameterType="int">
+	<update id="ownerApproval" parameterType="int">
 		update owner
 		set authority_no=5
 		where owner_no = #{no}
+	</update>
+	
+		<update id="registerDeny" parameterType="long">
+		update ownerregister
+		set a_agree_no=4, ownerregister_regdate=sysdate
+		where o_register_no = #{no}
 	</update>	
 </mapper>

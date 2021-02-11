@@ -9,10 +9,15 @@
 <!-- <script src="${pageContext.request.contextPath}/resources/memberResources/js/jquery/jquery-3.5.1.min.js"></script> -->
 <script type="text/javascript">
 	$(function () {
+		$('#approvalAgree').click(function () {
+			alert("승인하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/registApproval.do?registerNo=${vo.oRegisterNo}&ownerNo=${vo.ownerNo}" />';
+			event.preventDefault();
+		});
 		
 		$('#approvalDeny').click(function () {
 			alert("반려하시겠습니까?");
-			location.href = '<c:url value="/admin/menu2/registerDeny.do?rNo=${vo.oRegisterNo}" />';
+			location.href = '<c:url value="/admin/menu2/registDeny.do?registerNo=${vo.oRegisterNo}" />';
 			event.preventDefault();
 		});
 			
@@ -53,7 +58,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form name="regApprovalFrm" action="<c:url value='/admin/menu2/registApproval.do'/>" method="post" class="form">
+                            <form class="form">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -99,17 +104,21 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="appendix-file">첨부파일</label>
-                                            <div>
-												<p>
-													${vo.oRegisterOriginalFilename}
-												</p>
-											</div>                                       
+                                        	<label for="appendix-file2">첨부파일</label>
+												<div>								
+													<span>
+														<c:if test="${!empty vo.oRegisterFilename }">
+															<a href
+		="<c:url value='/admin/menu2/downloadReg.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
+															 ${vo.oRegisterOriginalFilename }</a>
+														</c:if>
+													</span>
+												</div>                                   
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
                                     	<c:if test="${vo.aAgreeNo == 1}">
-                                        	<input type="submit" id="approvalAgree"  class="btn btn-primary mr-1 mb-1" value="승인">
+                                        	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>
                                         	<button id="approvalDeny"  class="btn btn-danger mr-1 mb-1">반려</button>
                                         </c:if>
                                     </div>
