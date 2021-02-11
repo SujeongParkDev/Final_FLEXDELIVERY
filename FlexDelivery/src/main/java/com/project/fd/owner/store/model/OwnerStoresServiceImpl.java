@@ -93,4 +93,12 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 		return ownerStoresDao.updateTime(map);
 	}
 
+	//100
+	public OwnerStoresVO selectBasic(int ownerNo) {
+		return ownerStoresDao.selectBasic(ownerNo);
+	}
+	
+	public int updateContent(Map<String, Object> map) {
+		return ownerStoresDao.updateContent(map);
+	}
 }

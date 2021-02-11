@@ -65,5 +65,15 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 	public int updateTime(Map<String,Object> map) {
 		return sqlSession.update(namespace+"updateTime", map);
 	}
+	
+	//백신 
+	public OwnerStoresVO selectBasic(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectBasic", ownerNo);
+	}
+	
+	public int updateContent(Map<String, Object> map) {
+		return sqlSession.update(namespace+ "updateContent", map);
+	}
+
 
 }

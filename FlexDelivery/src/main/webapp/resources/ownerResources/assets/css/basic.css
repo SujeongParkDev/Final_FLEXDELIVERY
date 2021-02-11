@@ -112,6 +112,15 @@ select:not([size]) {
     display: inline-block;
 }
 
+.icon-pencil:before {
+    content: "\f101"
+}
+
+.Card {
+    width: 860px;
+}
+
+
 div.Dialog.on {
     animation: dialogBackFadeIn .3s forwards;
 }

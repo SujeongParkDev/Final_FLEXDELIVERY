@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
-
+<script src="https://kit.fontawesome.com/e42a7f130f.js"
+	crossorigin="anonymous"></script>
+	
 <!-- <script type="text/javascript">
 	$(function() {
-		$('#btLogo').click(function() {
-			location.href = '<c:url value="/owner/menu2/basic/basicLogo.do"/>';
-		});
+		$('.change-button').click(function(){
+			if($(this).attr('name')=='btText'){
+				if($('#changeText').css("display")=="none"){
+					$('#changeText').css('display','block');
+				}else if($('#changeText').css("display")=="block"){
+					$('#changeText').css('display','none');
+				}
+		}
 	});
-</script> -->
+</script>  -->
 
 
 <link rel="stylesheet" type="text/css"
@@ -25,7 +34,8 @@
 <script src="https://kit.fontawesome.com/e42a7f130f.js"
 	crossorigin="anonymous"></script>
 
-
+<input type="hidden" name="storeNo" value="${map['STORE_NO'] }">
+<input type="hidden" name="ownerNo" value="${map['OWNER_NO'] }">
 <div class="frame-wrap">
 	<div class="frame-body">
 		<button class="top-button  hide">
@@ -33,10 +43,9 @@
 		</button>
 		<div>
 			<div class="ShopSelect mb-4 mb-sm-0">
-				<select><option value="13195815">피자알파 서면점</option></select>
 				<section class="title">
 					<h3>
-						피자알파 서면점 <i class="fas fa-angle-down"></i>
+						${vo.storeName} <i class="fas fa-angle-down"></i>
 					</h3>
 					<p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
 				</section>
@@ -76,124 +85,39 @@
 							</div>
 							<div class="form-group ">
 								<h5 class="form-label">가게 이름</h5>
-								<div class="inline-values flex-1 mb-1">피자알파 서면점</div>
+								<div class="inline-values flex-1 mb-1">${vo.storeName}</div>
 								<ul class="bullet-ul small muted">
-									<li>변경이 필요한 경우 고객센터로 문의해주세요.</li>
+									<li>변경이 필요한 경우 <a
+										href="<c:url value='/owner/mypage/mypageMain.do'/>"
+										style="font-weight: bold;">마이페이지</a>에서 가능합니다.</li>
 								</ul>
 							</div>
 							<div class="form-group ">
 								<h5 class="form-label">가게 번호</h5>
-								<div class="inline-values flex-1 ">13195815</div>
+								<div class="inline-values flex-1 ">FD${vo.storeNo}</div>
 							</div>
 							<div class="form-group ">
 								<h5 class="form-label">실제 위치</h5>
-								<div class="inline-values flex-1 mb-1">(47360) 부산광역시 부산진구
-									범천동 886-12 1층 피자알파(범천동)</div>
+								<div class="inline-values flex-1 mb-1">${vo.storeAddress}</div>
+								<div class="inline-values flex-1 mb-1">${vo.storeAddressDetail}</div>
+								
 								<ul class="bullet-ul mt-0 small muted">
-									<li>위 정보의 변경이 필요한 경우 고객센터로 문의해 주세요.</li>
+									
 								</ul>
-								<button type="button" class="button mt-2 p-0 text text">노출위치
+								<button type="button" class="button mt-2 p-0 text text" onclick="location.href = '/fd/owner/mypage/mypageEdit.do'"/>노출위치
 									변경</button>
 							</div>
 						</div>
 					</div>
 				</form>
-				<form class="form-card">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
-								<h3>가게 상태</h3>
-								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
-										<i class="fas fa-pencil-alt"></i> 변경
-									</button>
-								</div>
-							</div>
-							<div class="form-group no-divider" style="min-height: auto;">
-								<div class="form-control-wrap form-control-inline">
-									<div class="form-control ">
-										<div class="inline-values flex-1 ">
-											<span class="inline-value ">영업</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
 
-				<form class="form-card form-card-active">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
-								<h3>가게 상태</h3>
-								<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button mr-1 small secondary">취소</button>
-									<button type="submit" class="button small primary">적용</button>
-								</div>
-							</div>
-							<div class="form-group no-divider" style="min-height: auto;">
-								<div class="form-control-wrap">
-									<div class="form-control ">
-										<select><option value="OPEN">영업</option>
-											<option value="STOP">노출정지</option></select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-
-
-				<form class="form-card">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
-								<h3>가게 전화번호</h3>
-								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
-										<i class="fas fa-pencil-alt"></i> 변경
-									</button>
-								</div>
-							</div>
-							<div class="form-group telephone-list">
-								<h5 class="form-label">대표번호</h5>
-								<div class="form-control-wrap">
-									<div class="form-control ">
-										<div class="inline-values flex-1 telephone">
-											051-633-5433<span class="text-sub">&nbsp;&nbsp;050-6457-5605</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<form class="form-card">
-					<div>
-						<div class="Card ">
-							<div class="card-header">
-								<h3>가게 영상・사진</h3>
-								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
-										<i class="fas fa-pencil-alt"></i> 변경
-									</button>
-								</div>
-							</div>
-							<div class="form-group p-0">
-								<div class="text-disabled h5 px-sm-2 pt-sm-2 pb-sm-2 px-4 pt-4">등록된
-									내용이 없습니다.</div>
-							</div>
-						</div>
-					</div>
-				</form>
 				<form class="form-card">
 					<div>
 						<div class="Card ">
 							<div class="card-header">
 								<h3>가게 소개</h3>
 								<div class="card-menu " style="opacity: 0.99;">
-									<button type="button" class="button change-button medium text">
+									<button type="button" class="button change-button medium text" name="btText">
 										<i class="fas fa-pencil-alt"></i> 변경
 									</button>
 								</div>
@@ -223,7 +147,7 @@
 
 				<form class="form-card form-card-active">
 					<div>
-						<div class="Card ">
+						<div class="Card " > <!-- id="changeText" style="display:none;" --> 
 							<div class="card-header">
 								<h3>가게 소개</h3>
 								<div class="card-menu " style="opacity: 1;">
@@ -246,9 +170,9 @@
 									</div>
 								</div>
 								<ul class="bullet-ul small muted">
-									<li>가게소개는 변경 즉시 배달의민족 앱에 반영됩니다. 정보 수정 시 주의 하시기 바랍니다.</li>
-									<li>배달의민족은 플랫폼 서비스로서, 공정한 경쟁을 해치거나 고객의 선택에 혼선을 주는 키워드와 문구를
-										입력할 수 없도록 합니다. 게시 영역의 목적에 맞게 활용해 주시길 바랍니다.</li>
+									<li>가게소개는 변경 즉시 FLEX DELIVERY에 반영됩니다. 정보 수정 시 주의 하시기 바랍니다.</li>
+									<li>FLEX DELIVERY는 플랫폼 서비스로서, 공정한 경쟁을 해치거나 고객의 선택에 혼선을 주는 키워드와 문구를
+										입력할 수 없도록 합니다. 게시 목적에 맞게 활용해 주시길 바랍니다.</li>
 								</ul>
 							</div>
 						</div>

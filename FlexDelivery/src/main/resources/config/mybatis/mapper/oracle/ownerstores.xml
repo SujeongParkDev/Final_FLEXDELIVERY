@@ -60,20 +60,29 @@
     left join storestatus t
     on t.s_status_no = s.s_status_no; -->
     
+    <select id="selectBasic" parameterType="int" resultType="ownerStoresVo">
+    	select STORE_NO,STORE_NAME,STORE_LOGO,STORE_ADDRESS,
+	 	STORE_ADDRESS_DETAIL,OWNER_NO,STORE_CONTENT from STORES
+    	where owner_no=#{ownerNo}
+    </select>
     
+    <update id="updateContent" parameterType="map">
+    	update stores
+    	set STORE_CONTENT= #{storeContent}
+    	where store_no = #{storeNo}
+    </update>
+           
     <select id="selectOperationViewAll" parameterType="int" resultType="map">
     	select * from jaStoresOperationView
     	where owner_no=#{ownerNo}
     </select>
-    
-    
+      
     <update id="holidayUpdate" parameterType="map">
     	update stores
     	set h_category_no=#{hCategoryNo}
     	where store_no = #{storeNo}
     </update>
-    
-    
+       
     <update id="updateStatusStop" parameterType="int">
     	update stores
     	set s_status_no=3

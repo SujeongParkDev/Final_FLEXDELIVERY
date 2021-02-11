@@ -21,4 +21,6 @@ public interface OwnerStoresDAO {
 	public int holidayUpdate(Map<String, Object> map);
 	public int updateStatusStop(int storeNo);
 	public int updateTime(Map<String,Object> map);
+	public OwnerStoresVO selectBasic(int ownerNo);
+	public int updateContent(Map<String, Object> map);
 }
