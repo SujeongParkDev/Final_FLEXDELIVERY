@@ -6,6 +6,33 @@
 <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#wr_submit').click(function(){
+			if($('#memberPwd').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#memberPwd').focus();
+				event.preventDefault();
+			}else if($('#memberPwd').val()!=$('#memberPwd2').val()){
+				alert('비밀번호가 일치하지 않습니다.');
+				$('#memberPwd2').focus();
+				event.preventDefault();
+			}else if(!validate_phone($('#memberHp1').val()) ||
+					!validate_phone($('#memberHp2').val()) ||
+					!validate_phone($('#memberHp3').val())){
+				alert('전화번호는 숫자만 가능합니다.');
+				$('#memberHp1').focus();
+				event.preventDefault();
+			}else if ($('#memberHp1').val().length<3 ||
+					 $('#memberHp2').val().length<3 ||
+					 $('#memberHp3').val().length<4){
+					 alert('3자리 숫자 이상 입력하세요.');
+					$('#memberHp1').focus();
+					event.preventDefault();
+			}
+		});
+	});
+</script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,24 +55,20 @@
 
 <body>
     <div class="osahan-signup login-page">
-        <video loop autoplay muted id="vid">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
-         </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-110">
-            <div class="px-6 col-md-6 ml-auto">
-                <div class="px-5 col-10 mx-auto">
+            <div class="px-6 ">
+                <div class="px-5 col-10 mx-auto ml-auto">
                     <!-- <p class="text-50">Sign up to continue</p> -->
                     <form class="mt-5 mb-4" method="post" action="<c:url value='/member/memberEdit.do'/>">
-                    <h2 class="text-dark my-0">안녕하세요!</h2>
+                    <h2 class="text-dark my-0">회원정보 수정</h2>
                     	<br>
                         <div class="form-group">
                             <label for="exampleInputName1" class="text-dark">이름</label>
-                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="memberName" name="memberName" aria-describedby="nameHelp" value="${vo.memberName }">
+                            <input type="text" placeholder="이름을 입력하세요" class="form-control" id="memberName" name="memberName" aria-describedby="nameHelp" value="${vo.memberName }" disabled>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNumber1" class="text-dark">아이디</label>
-                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberId" id="memberId" aria-describedby="numberHelp" value="${vo.memberId }">
+                            <input type="text" placeholder="ID를 입력하세요" class="form-control" name="memberId" id="memberId" aria-describedby="numberHelp" value="${vo.memberId }" readonly>
                             <span class="error" style="color: red"> </span>
                         </div>
                         <div class="form-group">

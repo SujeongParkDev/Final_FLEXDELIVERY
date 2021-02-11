@@ -3,16 +3,13 @@
 <%@include file="../../memInc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="osahan-home-page">
-	<div class="bg-primary p-3 d-none">
-		<div class="text-white">
+	
+		<div class="text-black">
 			<div class="title d-flex align-items-center">
-				<a class="toggle"
-					href="<c:url value='/resources/memberResources/#' />"> <span></span>
-				</a>
 				<h4 class="font-weight-bold m-0 pl-5">고객센터</h4>
 			</div>
 		</div>
-	</div>
+	
 	<!-- profile -->
 	<div class="container position-relative">
 		<div class="py-5 osahan-profile row">
@@ -23,12 +20,12 @@
 							<i class="feather-lock display-4"></i>
 							<div class="ml-3">
 								<h6 class="text-dark mb-2 mt-0">1:1문의</h6>
-								<p class="mb-0 text-muted">한놈씩덤벼</p>
+								<p class="mb-0 text-muted">찾으시는 내용이 없다면 1:1 문의를 이용하세요.</p>
 							</div>
 						</div>
 						<div class="overflow-hidden border-top d-flex align-items-center p-3">
 							<a class="font-weight-bold d-block"
-								href="<c:url value='/member/askWrite.do'/>">이동</a> <i
+								href="<c:url value='/member/askWrite.do'/>">1:1 문의 메뉴로 이동합니다.</a> <i
 								class="feather-arrow-right-circle ml-auto text-primary"></i>
 						</div>
 					</div>
