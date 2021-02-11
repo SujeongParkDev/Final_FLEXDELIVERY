@@ -34,5 +34,11 @@ public class MemberCouponServiceImpl implements MemberCouponService{
 		}
 		return false;
 	}
+
+	@Override
+	public List<MemberEventCouponBoxVO> eventCouponBoxList(int memberNo) {
+		return coupDao.eventCouponBoxList(memberNo);
+				
+	}
 	
 }

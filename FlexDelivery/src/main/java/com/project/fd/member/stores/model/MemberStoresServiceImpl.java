@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
-import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
 @Service
 public class MemberStoresServiceImpl implements MemberStoresService{
@@ -69,6 +68,16 @@ public class MemberStoresServiceImpl implements MemberStoresService{
 			cnt=memStoresDao.addLike(vo);
 		}
 		return cnt;
+	}
+
+	@Override
+	public List<MemberStoresVO> likeStoreList(int memberNo) {
+		return memStoresDao.likeStoreList(memberNo);
+	}
+
+	@Override
+	public int today() {
+		return memStoresDao.today();
 	}
 	
 	

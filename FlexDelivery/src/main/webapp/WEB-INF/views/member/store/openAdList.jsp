@@ -19,7 +19,12 @@
 	                </c:if>
 		            </div>
 		            <c:if test="${vo.sStatusNo==2}">
-		                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
+		                <c:if test="${today==vo.hCategoryNo}">
+			                <div class="member-plan position-absolute"><span class="badge badge-success">휴무</span></div>
+		                </c:if>
+		                <c:if test="${today!=vo.hCategoryNo}">
+			                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
+		                </c:if>
 	                </c:if>
 	                <c:if test="${vo.sStatusNo==1 or vo.sStatusNo==3}">
 		                <div class="member-plan position-absolute"><span class="badge badge-dark">준비중</span></div>
@@ -34,9 +39,8 @@
 	                   <span>
 	                   	${vo.storeName}
 	                   </span>
-	                     	<span class="badge badge-danger sm float-right">coupon</span>
 	                    <c:if test="${vo.couponExist>0}">
-	                     	<span class="badge badge-danger">coupon</span>
+	                     	<span class="badge badge-danger sm float-right">coupon</span>
 	                     </c:if>
 	               		<%
 		                  	Date d = new Date();
@@ -58,9 +62,9 @@
 	</c:forEach>
 </c:if>
 <c:if test="${empty list}">
-	<div class="col-md-12 pb-12">
-	    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 250px">
-	        <h1 class="mb-1">텅</h1>
-	    </div>
+	<div class="col-md-12 pb-12" style="text-align: center">
+		<div class="bg-white p-3 h-100 rounded overflow-hidden position-relative shadow-sm">
+	        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="min-width:400px">
+		</div>
 	</div>
 </c:if>

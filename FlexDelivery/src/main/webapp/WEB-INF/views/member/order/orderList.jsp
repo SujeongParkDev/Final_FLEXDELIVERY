@@ -122,8 +122,7 @@ function formatDate(date) {
                     	<c:if test="${empty oklist}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid mb-5" style="max-width:50%" src="<c:url value='/resources/imgs/serving-dish.png'/>" >
-                    				<h4>해당하는 내역이 없어요</h4>
+                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -138,7 +137,7 @@ function formatDate(date) {
 		                                    <div>
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
 		                                        <p class="mb-0">${vo.orderVo.storeAddress} ${vo.orderVo.storeAddressDetail }</p>
-		                                        <p class="mb-0 small"><a href="status_complete.html">리뷰작성하기</a></p>
+		                                        <p class="mb-0 small"><a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>">리뷰작성하기</a></p>
 		                                    </div>
 		                                    <div class="ml-auto">
 		                                        <p class="bg-success text-white py-1 px-2 rounded small mb-1 text-center">배달완료</p>
@@ -176,8 +175,7 @@ function formatDate(date) {
                     	<c:if test="${empty ingList}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid mb-5" style="max-width:50%" src="<c:url value='/resources/imgs/serving-dish.png'/>" >
-                    				<h4>해당하는 내역이 없어요</h4>
+                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -237,8 +235,7 @@ function formatDate(date) {
                     	<c:if test="${empty ccList}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid mb-5" style="max-width:50%" src="<c:url value='/resources/imgs/serving-dish.png'/>" >
-                    				<h4>해당하는 내역이 없어요</h4>
+                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -248,7 +245,7 @@ function formatDate(date) {
 		                            <div class="p-3 rounded shadow-sm bg-white">
 		                                <div class="d-flex border-bottom pb-3">
 		                                    <div class="text-muted mr-3">
-		                                        <img alt="#" src="<c:url value='/resources/imgs/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
+		                                        <img alt="#" src="<c:url value='/resources/imgs/${vo.orderVo.storeLogo}'/>"  class="img-fluid order_img rounded">
 		                                    </div>
 		                                    <div>
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>

@@ -43,5 +43,22 @@ public class MemberReviewServiceImpl implements MemberReviewService{
 	public int selectStoreNoByReview(int reviewNo) {
 		return reviewDao.selectStoreNoByReview(reviewNo);
 	}
+
+	@Override
+	public int reviewLike(int reviewNo) {
+		return reviewDao.reviewLike(reviewNo);
+	}
+
+	@Override
+	public List<MemberReviewCommentVO> selectReviewComment(int StoreNo) {
+		return reviewDao.selectReviewComment(StoreNo);
+	}
+
+	@Override
+	public List<MemberReviewVO> myReviewList(int memberNo) {
+		return reviewDao.myReviewList(memberNo);
+	}
+	
+	
 	
 }

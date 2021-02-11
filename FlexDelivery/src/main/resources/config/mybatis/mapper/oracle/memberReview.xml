@@ -21,7 +21,9 @@
 			select s.*,rownum as RNUM
 			from
 			(
-				select r.*,m.member_name from
+				select r.*,m.member_Id,
+				(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO) as menu_name
+				from
 				review r,member m
 				where r.MEMBER_NO = m.MEMBER_NO
 				and store_No=#{storeNo}
@@ -63,5 +65,27 @@
 		select store_no
 		from review
 		where review_no=#{reviewNo}	
+	</select>
+	
+	<update id="reviewLike" parameterType="int">
+		update review
+		set review_like=review_like+1
+		where review_no=#{reviewNo}	
+	</update>
+	
+	<select id="selectReviewComment" resultType="memberReviewCommentVo" parameterType="int">
+		select * from
+		reviewComment
+		where store_no=#{storeNo}	
+	</select>
+	
+	<select id="myReviewList" resultType="memberReviewVo" parameterType="int">
+		select r.*,(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO) as menu_name,
+		(select store_name from stores s where r.store_no=s.store_no) as store_Name
+		from
+		review r
+		where member_no=#{memberNo}
+		and REVIEW_REPORT='N'
+		and REVIEW_DEL_FLAG='N'
 	</select>
 </mapper>

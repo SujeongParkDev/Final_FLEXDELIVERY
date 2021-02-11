@@ -50,7 +50,11 @@
 							})
 						}
 						if(map.list[i].sStatusNo==2){
-							str+="<div class='member-plan position-absolute'><span class='badge badge-primary'>영업중</span></div>";
+							if(map.list[i].hCategoryNo==today){
+								str+="<div class='member-plan position-absolute'><span class='badge badge-success'>휴무</span></div>";
+							}else{
+								str+="<div class='member-plan position-absolute'><span class='badge badge-primary'>영업중</span></div>";
+							}
 						}else if(map.list[i].sStatusNo==1 || map.list[i].sStatusNo==3){
 							str+="<div class='member-plan position-absolute'><span class='badge badge-dark'>준비중</span></div>";
 						}
@@ -95,13 +99,13 @@
    		<input type="hidden" name="totalRecords" id="totalRecords" value="${map.totalRecords}">
    </form>
 	<c:if test="${empty list}">
-		<div class="col-md-12 pb-12">
-		    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 250px">
-		        <h1>텅 </h1>
-		    </div>
+		<div class="col-md-12 pb-12" style="text-align: center">
+			<div class="bg-white p-3 h-100 rounded overflow-hidden position-relative shadow-sm">
+		        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="min-width:400px">
+			</div>
 		</div>
 	</c:if>
-	<c:if test="${!empty list}">	
+	<c:if test="${!empty list}">
 		<c:forEach var="vo" items="${list}">
 			<div class="col-md-6 mb-3" onclick="location.href='<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />'">
 			    <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
@@ -116,7 +120,12 @@
 	                	</c:if>
 			            </div>
 			            <c:if test="${vo.sStatusNo==2}">
-			                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
+			                <c:if test="${today==vo.hCategoryNo}">
+			                <div class="member-plan position-absolute"><span class="badge badge-success">휴무</span></div>
+			                </c:if>
+			                <c:if test="${today!=vo.hCategoryNo}">
+				                <div class="member-plan position-absolute"><span class="badge badge-primary">영업중</span></div>
+			                </c:if>
 		                </c:if>
 		                <c:if test="${vo.sStatusNo==1 or vo.sStatusNo==3}">
 			                <div class="member-plan position-absolute"><span class="badge badge-dark">준비중</span></div>

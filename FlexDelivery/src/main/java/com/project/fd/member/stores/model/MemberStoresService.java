@@ -15,4 +15,6 @@ public interface MemberStoresService {
 	List<MemberLikeStoreVO> selectLikeStore(int memberNo);
 	boolean chkLike(MemberLikeStoreVO vo);
 	int likeControll(MemberLikeStoreVO vo);
+	List<MemberStoresVO> likeStoreList(int memberNo);
+	int today();
 }

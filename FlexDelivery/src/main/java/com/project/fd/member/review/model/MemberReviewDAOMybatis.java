@@ -41,6 +41,21 @@ public class MemberReviewDAOMybatis implements MemberReviewDAO{
 	public int selectStoreNoByReview(int reviewNo) {
 		return sqlSession.selectOne(namespace+"selectStoreNoByReview",reviewNo);
 	}
+
+	@Override
+	public int reviewLike(int reviewNo) {
+		return sqlSession.update(namespace+"reviewLike",reviewNo);
+	}
+
+	@Override
+	public List<MemberReviewCommentVO> selectReviewComment(int storeNo) {
+		return sqlSession.selectList(namespace+"selectReviewComment",storeNo);
+	}
+
+	@Override
+	public List<MemberReviewVO> myReviewList(int memberNo) {
+		return sqlSession.selectList(namespace+"myReviewList",memberNo);
+	}
 	
 	
 	

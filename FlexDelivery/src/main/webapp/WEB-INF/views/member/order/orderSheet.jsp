@@ -9,14 +9,21 @@
 		IMP.init('imp06881014');
 		
 		$('div #giftBox').hide();
+		$('div #eCouponBox').hide();
 		
 		$('input[name=options]').click(function(){
 			if($(this).val()==1){
 				$('div #giftBox').hide();
+				$('div #eCouponBox').hide();
 				$('div #couponBox').show();
 			}else if($(this).val()==2){
 				$('div #couponBox').hide();
+				$('div #eCouponBox').hide();
 				$('div #giftBox').show();
+			}else if($(this).val()==3){
+				$('div #giftBox').hide();
+				$('div #couponBox').hide();
+				$('div #eCouponBox').show();
 			}
 		});
 		
@@ -31,7 +38,12 @@
 		
 		if(e.target.name=='giftSelect'){
 			$('div #couponBox').find('select option:eq(0)').prop('selected','selected');
+			$('div #eCouponBox').find('select option:eq(0)').prop('selected','selected');
 		}else if(e.target.name=='couponSelect'){
+			$('div #eCouponBox').find('select option:eq(0)').prop('selected','selected');
+			$('div #giftBox').find('select option:eq(0)').prop('selected','selected');
+		}else if(e.target.name=='eCouponSelect'){
+			$('div #couponBox').find('select option:eq(0)').prop('selected','selected');
 			$('div #giftBox').find('select option:eq(0)').prop('selected','selected');
 		}
 		
@@ -175,7 +187,10 @@
                             <div class="osahan-card-body border-top p-3">
 	                          	<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
 	                              <label class="btn btn-outline-secondary active">
-	                              	<input type="radio" name="options" id="option1" value="1" checked> 쿠폰함
+	                              	<input type="radio" name="options" id="option1" value="1" checked> 점포쿠폰
+	                              </label>
+	                              <label class="btn btn-outline-secondary">
+	                              	<input type="radio" name="options" id="option3" value="3"> 이벤트쿠폰
 	                              </label>
 	                              <label class="btn btn-outline-secondary">
 	                              	<input type="radio" name="options" id="option2" value="2"> 선물함
@@ -184,7 +199,7 @@
                                <hr>
                                <div class="form-row" id="couponBox">
                                    <div class="col-md-12 form-group mb-0 discountDiv">
-		                               	<label class="form-label small font-weight-bold">쿠폰 선택</label><br>
+		                               	<label class="form-label small font-weight-bold">점포쿠폰 선택</label><br>
 		                               	<c:if test="${!empty coupList}">
 			                            	<select class="custom-select form-control" name="couponSelect" id="couponSelect" onchange="change(event,${totalPrice})">
 				                             	 <option value="0" title="0" selected>선택 없음
@@ -217,6 +232,26 @@
 		                               		<select class="custom-select form-control" name="giftSelect" id="giftSelect" disabled>
 		                               			<option value="0" title="0" selected>선택가능한 상품권이 없습니다</option>
 		                               		</select>
+		                               	</c:if>
+                                   </div>
+                               </div>
+                               <div class="form-row" id="eCouponBox">
+                                   <div class="col-md-12 form-group mb-0 discountDiv">
+		                               	<label class="form-label small font-weight-bold">이벤트쿠폰 선택</label><br>
+		                               	<c:if test="${!empty eCoupList}">
+			                            	<select class="custom-select form-control" name="eCouponSelect" id="eCouponSelect" onchange="change(event,${totalPrice})">
+				                             	 <option value="0" title="0" selected>선택 없음
+			                            	 <c:forEach items="${eCoupList}" var="eVo">
+			                            	 	<c:if test="${eVo.eCouponMin<=buyPrice}">
+					                             <option value="${eVo.eCouponNo}" title="${eVo.eCouponDc}"><fmt:formatNumber value="${eVo.eCouponDc}" type="currency" /> 할인 - <fmt:formatNumber value="${eVo.eCouponMin}" type="currency" />부터 사용가능</option>
+			                            	 	</c:if>
+			                            	 </c:forEach>
+				                           	</select>
+				                        </c:if>
+			                           	<c:if test="${empty eCoupList}">
+		                               		<select class="custom-select form-control" name="eCouponSelect" id="eCouponSelect" disabled>
+		                               			<option value="0" title="0" selected>선택가능한 쿠폰이 없습니다</option>
+		                               		</select> 
 		                               	</c:if>
                                    </div>
                                </div>

@@ -34,15 +34,15 @@
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
                             </a>
-                            <a data-toggle="modal" data-target="#exampleModal" class="d-flex w-100 align-items-center border-bottom p-3">
-                                <div class="left mr-3">
+                            <!-- <a data-toggle="modal" data-target="#exampleModal" class="d-flex w-100 align-items-center border-bottom p-3">
+                               <div class="left mr-3">
                                     <h6 class="font-weight-bold mb-1 text-dark">내 등급</h6>
                                     <p class="small text-muted m-0"></p>
                                 </div>
                                 <div class="right ml-auto">
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
-                            </a>
+                            </a> -->
                             
                             <a href='<c:url value="/member/order/orderList.do" />' class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
@@ -76,7 +76,7 @@
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
                             </a>
-                            <a href="<c:url value="/member/myPage/myReview.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+                            <a href="<c:url value="/member/review/myReview.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold m-0 text-dark"><i class="feather-file-text bg-warning text-white p-2 rounded-circle mr-2"></i>내 리뷰</h6>
                                 </div>

@@ -21,7 +21,14 @@
 			 if(!confirm("리뷰 삭제 시 다시 작성이 불가능합니다. 삭제하시겠습니까?")){
 				event.preventDefault(); 
 			 }
+		 });
+		 
+		 $(document).on('click','.likeBt',function(){
+			 if(!confirm("해당 리뷰를 추천하시겠습니까?")){
+				event.preventDefault(); 
+			 }
 		 })
+		 
 	});
 	
 	function readInputFile(input) {
@@ -74,7 +81,7 @@
 							str+="<div class='media-body'>";
 							str+="<div class='reviews-members-header'>";
 							str+="<div class='star-rating float-right'>";
-							str+="<div class='d-inline-block' style='font-size: 14px;'>";
+							str+="<div class='d-inline-block' style='font-size: 14px;letter-spacing:3px'>";
 							for(var i=0;i<5;i++){
 								if(item.reviewRating>=i){
 									str+="<i class='feather-star text-warning'></i>";
@@ -83,13 +90,21 @@
 								}
 							}
 							str+="</div></div>";
-							str+="<h6 class='mb-0'><a class='text-dark' href='#'>"+item.memberName+"</a></h6>";
+							str+="<h6 class='mb-0'><a class='text-dark' href='#'>"+item.memberId+"</a></h6>";
 							str+="<p class='text-muted small'>"+formatDate(item.reviewRegdate)+"</p></div>";
 							str+="<div class='reviews-members-body'>";
 							if(item.reviewFilename!=null){
 								str+="<div class='row mb-3'><img src='<c:url value='/resources/imgs/ReviewImage/"+item.reviewFilename+"'/>' class='img-fluid mx-auto' width='50%'></div>";
-							}else{
-								str+="<p>"+item.reviewContent+"</p>";
+							}
+							str+="<p class='p-3 mb-3 bg-light rounded w-100'><span class='badge bg-dark text-light'>리뷰</span><span class='small text-muted' style='float:right'>&nbsp;&nbsp;"+item.menuName+"</span><br><br>"+item.reviewContent+"</p>";
+							if(map.coList.length>0){
+								$.each(map.coList,function(idx,coVo){
+									if(coVo.reviewNo==item.reviewNo){
+										str+="<p class='p-3 my-3 bg-primary rounded w-100 text-light'>";
+						                str+="<span class='badge bg-light text-dark'>사장님</span><span class='small text-light' style='float:right'>&nbsp;&nbsp;"+formatDate(coVo.rCommentRegdate)+"</span><br><br>";
+						                str+=coVo.rCommentContent+"</p>";
+									}
+								})
 							}
 							str+="</div>";
 							str+="<div class='reviews-members-footer'>";
@@ -97,7 +112,7 @@
 								str+="<a class='total-like btn btn-sm btn-outline-primary delBt' style='float:right' href='<c:url value='/member/review/delReview.do?reviewNo="+item.reviewNo+"' />'>삭제</a>";
 								str+="<span class='total-like-user-main ml-2' dir='rtl'></span>";
 							}else{
-								str+="<a class='total-like btn btn-sm btn-outline-primary' href='#'><i class='feather-thumbs-up'></i>"+item.reviewLike+"</a>";
+								str+="<a class='total-like btn btn-sm btn-outline-primary likeBt' href='<c:url value='/member/review/reviewLike.do?reviewNo="+item.reviewNo+"'/>'><i class='feather-thumbs-up'></i>"+item.reviewLike+"</a>";
 								str+="<span class='total-like-user-main ml-2' dir='rtl'></span>";
 							}
 							str+="</div></div></div></div><hr>";
@@ -145,7 +160,7 @@
 <c:if test="${empty list}">
 	<div class="bg-white p-3 mb-3 restaurant-detailed-ratings-and-reviews shadow-sm rounded">
 	    <h6 class="mb-1">이 가게의 리뷰</h6>
-	    <p class="text-muted mb-4 mt-1 small">등록된 리뷰가 없습니다.</p>
+	    <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noReviewDefault.png'/>" style="min-width:500px">
     </div>
 </c:if>
 <c:if test="${!empty list}">
@@ -204,7 +219,7 @@
 				                    	</c:forEach>
 				                        </div>
 				                    </div>
-				                    <h6 class="mb-0"><a class="text-dark" href="#">${vo.memberName}</a></h6>
+				                    <h6 class="mb-0"><a class="text-dark" href="#">${vo.memberId}</a></h6>
 				                    <p class="text-muted small"><fmt:formatDate value="${vo.reviewRegdate}" pattern="yyyy-MM-dd" /></p>
 				                </div>
 				                <div class="reviews-members-body">
@@ -213,7 +228,17 @@
 					                		<img alt="" src="<c:url value='/resources/imgs/ReviewImages/${vo.reviewFilename}'/>" class="img-fluid mx-auto" width="50%">
 					                	</div>
 				                	</c:if>
-				                    <p>${vo.reviewContent}</p>
+				                    <p class="p-3 mb-3 bg-light rounded w-100"><span class="badge bg-dark text-light">리뷰</span><span class="small text-muted" style="float:right">&nbsp;&nbsp;${vo.menuName}</span><br><br>${vo.reviewContent}</p>
+					                <c:if test="${!empty coList}">
+					                	<c:forEach var="coVo" items="${coList}">
+										<c:if test="${coVo.reviewNo==vo.reviewNo}">
+							                <p class="p-3 my-3 bg-primary rounded w-100 text-light">
+							                <span class="badge bg-light text-dark">사장님</span><span class="small text-light" style="float:right">&nbsp;&nbsp;${coVo.rCommentRegdate}</span><br><br>
+							                ${coVo.rCommentContent}
+							                </p>	                
+										</c:if>
+					                	</c:forEach>
+					                </c:if>
 				                </div>
 				                <div class="reviews-members-footer">
 				                <c:if test="${vo.memberNo==sessionScope.memberNo}">
@@ -221,9 +246,8 @@
 					                	삭제</a>
 					                    <span class="total-like-user-main ml-2" dir="rtl"></span>
 				                </c:if>
-					               
 				                <c:if test="${vo.memberNo!=sessionScope.memberNo}">
-					                <a class="total-like btn btn-sm btn-outline-primary" href="#">
+					                <a class="total-like btn btn-sm btn-outline-primary likeBt" href="<c:url value='/member/review/reviewLike.do?reviewNo=${vo.reviewNo}'/>">
 					                <i class="feather-thumbs-up"></i>${vo.reviewLike} </a>
 					                    <span class="total-like-user-main ml-2" dir="rtl"></span>
 				                </c:if>
@@ -266,13 +290,12 @@
 	       </c:if>
 	       <div class="d-flex align-items-center mb-3 justify-content-center" id="preview"> </div>
 	       <div class="form-group"><label class="form-label">내용</label>
-	       	<textarea class="form-control" name="reviewContent"></textarea>
+	       <textarea class="form-control" name="reviewContent"></textarea>
 	       </div>
 	       <div class="d-flex align-items-center my-3">
 	       		<label for="reviewFilename" ><img class="img-fluid" style="max-width: 15%;cursor: pointer;" src="<c:url value='/resources/imgs/photo.png'/>"> </label>
 	       		<input type="file" id="reviewFilename" name="tqFilename" accept=".gif, .jpg, .png" style="visibility: hidden;">
 	       </div>
-	       		
 	       <c:if test="${reviewChk}">
 		       <div class="form-group mb-0">
 		       	<button type="submit" class="btn btn-primary btn-block"> 리뷰 작성 </button>

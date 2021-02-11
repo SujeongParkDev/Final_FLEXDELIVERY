@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.cart.model.MemberCartViewVO;
 import com.project.fd.member.coupon.model.MemberCouponService;
+import com.project.fd.member.coupon.model.MemberEventCouponBoxVO;
 import com.project.fd.member.coupon.model.MemberRegularCouponBoxVO;
 import com.project.fd.member.gift.model.MemberGiftService;
 import com.project.fd.member.gift.model.MemberGiftVO;
@@ -55,6 +56,8 @@ public class MemberOrderController {
 		map.put("storeNo", cartList.get(0).getStoreNo());
 		List<MemberRegularCouponBoxVO> coupList=coupServ.memberCouponList(map);
 		List<MemberGiftVO> giftList=giftServ.selectTakeGiftList(memVo.getMemberNo());
+		List<MemberEventCouponBoxVO> eCoupList=coupServ.eventCouponBoxList(memVo.getMemberNo());
+				
 		
 		MemberStoresVO vo=storeServ.selectStoresDetail(cartList.get(0).getStoreNo());
 		
@@ -65,6 +68,7 @@ public class MemberOrderController {
 		model.addAttribute("today",today);
 		model.addAttribute("memVo",memVo);
 		model.addAttribute("coupList",coupList);
+		model.addAttribute("eCoupList",eCoupList);
 		model.addAttribute("giftList",giftList);
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("storeMinPrice",vo.getStoreMinPrice());
@@ -72,7 +76,7 @@ public class MemberOrderController {
 	
 	@RequestMapping(value="/orderSuccess.do",method = RequestMethod.POST)
 	public String orderSuccess(@ModelAttribute MemberOrderVO vo,@RequestParam(defaultValue = "0",required = false) int giftSelect
-			,@RequestParam(defaultValue = "0",required = false) int couponSelect,Model model) {
+			,@RequestParam(defaultValue = "0",required = false) int couponSelect,@RequestParam(defaultValue = "0",required = false) int eCouponSelect,Model model) {
 		logger.info("주문처리, MemberOrderVO={}",vo);
 		List<MemberCartViewVO> cartList=cartServ.selectCartList(vo.getMemberNo());
 		int cnt=0;
@@ -85,6 +89,9 @@ public class MemberOrderController {
 			}else if(couponSelect!=0) {
 				type=MemberOrderService.COUPON_USE; //쿠폰 사용한경우
 				dcNo=couponSelect;
+			}else if(eCouponSelect!=0) {
+				type=MemberOrderService.E_COUPON_USE;
+				dcNo=eCouponSelect;
 			}
 		}
 		cnt=orderServ.insertOrder(vo, cartList,type,dcNo);

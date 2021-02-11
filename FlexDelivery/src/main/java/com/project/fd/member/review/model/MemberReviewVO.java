@@ -14,14 +14,29 @@ public class MemberReviewVO {
 	private int memberNo;
 	private int ordersNo;
 	private int storeNo;
-	private String memberName;
+	private String storeName;
+	private String memberId; //회원ID
+	private String menuName; //메뉴이름
 	
 	
-	public String getMemberName() {
-		return memberName;
+	
+	public String getStoreName() {
+		return storeName;
 	}
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMenuName() {
+		return menuName;
+	}
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
 	}
 	public int getReviewNo() {
 		return reviewNo;
@@ -94,7 +109,8 @@ public class MemberReviewVO {
 		return "MemberReviewVO [reviewNo=" + reviewNo + ", reviewRating=" + reviewRating + ", reviewContent="
 				+ reviewContent + ", reviewLike=" + reviewLike + ", reviewRegdate=" + reviewRegdate + ", reviewReport="
 				+ reviewReport + ", reviewFilename=" + reviewFilename + ", reviewDelFlag=" + reviewDelFlag
-				+ ", memberNo=" + memberNo + ", ordersNo=" + ordersNo + ", storeNo=" + storeNo + "]";
+				+ ", memberNo=" + memberNo + ", ordersNo=" + ordersNo + ", storeNo=" + storeNo + ", storeName="
+				+ storeName + ", memberId=" + memberId + ", menuName=" + menuName + "]";
 	}
 	
 	
