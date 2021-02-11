@@ -8,6 +8,23 @@
 	
 	$(function(){
 		
+		$('#message2').hide();
+		$('#messageOk').hide();
+	   
+		$('#faqCategoryWrite').on('hidden.bs.modal', function (e) {
+		  $(this).find('form')[0].reset()
+		  $('#message2').hide();
+		  $('#message').html("카테고리 이름을 입력해주세요.");
+		  $('#message').show();
+		  $('#messageOk').html("N");
+
+		});
+		
+		$('#fCategoryName').on('keyup', function(){
+			   writeFunc();
+				  
+		   });//write keyup function
+		
 		listForAll();
 		
 		$.ajax({
@@ -17,11 +34,12 @@
 			success: function(res){
 				if (res.length > 0) {
 					$('#returnCList').empty();
+						var info = "<li><a onclick='listForAll()' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>전체보기</a></li>"; 
 					$.each(res, function(idx, item) {
-						var info = "<li>"+"<a onclick='listForCategory("+item.fCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>"
-							+ item.fCategoryName + "</a>"+"</li>";
-						$('#returnCList').append( info );
+						info+="<li><a onclick='listForCategory("+item.fCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>"
+							+ item.fCategoryName + "</a></li>";
 					});
+					$('#returnCList').append( info );
 				}
 			},
 			error: function(xhr, status, error){
@@ -318,6 +336,74 @@
 		});
 	}
 	
+	function chkDu(content){
+		var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
+		return pattern.test(content);
+	}
+
+	function readyWriteSubmit(){
+		writeFunc();
+		var ok=$('#messageOk').html();
+		alert("ok:"+ok);
+		
+		if(ok=="Y"){
+			console.log("폼 전송 성공!");
+			$('form[name=frmGiftCategoryWrite]').submit();
+		}else if (ok=="N"){
+			alert("등록 실패!");
+			event.preventDefault();
+			//return false;
+		} else {
+			alert("error!");
+			event.preventDefault();
+		}
+	}
+
+	function writeFunc(){
+		
+		  var name=$('#fCategoryName').val();
+		  
+		  if(chkDu(name) && name.length>0){
+			  $.ajax({
+				  type:"get",
+				  url:"<c:url value='/admin/menu5/faqCategory/ajaxCheck.do' />",
+				  data:"fCategoryName="+name,
+				  dataType:"json",
+				  success: function (bool) {
+					  if(bool){
+						  result = "사용 가능한 이름입니다.";
+						  $('#message').hide();
+						  $('#message2').show();
+						  $('#message2').html(result);
+						  $('#messageOk').html("Y");
+						  
+					  }else{
+						  result = "이미 등록된 이름입니다.";
+						  $('#message2').hide();
+						  $('#message').show();
+						  $('#message').html(result);
+						  $('#messageOk').html("N");
+						  
+					  }
+					
+				}//success
+
+			  }); //ajax
+		  }else if (name.length<1){
+			  $('#message2').hide();
+			  $('#message').show();
+			  $('#message').html("이름을 입력해주세요.");
+			  $('#messageOk').html("N");
+
+		  	
+	 	  }else if(!chkDu(name)){
+			  $('#message2').hide();
+			  $('#message').show();
+			  $('#message').html("한글만 사용 가능합니다.");
+			  $('#messageOk').html("N");
+
+		  }
+	}	
 	 
 
 </script>
@@ -380,8 +466,11 @@
                                                    	  <tr>
                                                    	  	<td>카테고리 이름</td>
 	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	<input type="text" name="fCategoryName">
+	                                                      	<input type="text" name="fCategoryName" id="fCategoryName">
 	                                                      	<input type="hidden" name="fCategoryNo" value="1">
+	                                                      	<br><span id="message" style="color: #dc3545;font-weight: bold;">카테고리 이름을 입력해주세요.</span>
+	                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+	                                                         <span id="messageOk"></span>
 	                                                      </td>			                                                   	  	
 													  </tr>
                                                    	  <tr>
@@ -404,7 +493,7 @@
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
 	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite"
- 	                                     id="modalWrite" onclick="form.submit()">
+ 	                                    	 id="modalWrite" onclick="readyWriteSubmit()">
 	                                     <!-- id="modalWrite" onclick="readySubmit()"> -->
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
@@ -553,12 +642,8 @@
 					
 			        <div class="sidebar-widget-area" style="margin-bottom: 2px;">
 			            <div class="widget-content">
-			            	<ul class="tags">
-			            		<li>
-				            		<a onclick="listForAll()" style="cursor: pointer;">전체보기</a>
-			            		</li>
-		            		</ul>
 			                <ul class="tags" id="returnCList">
+			                	<!-- ajax -->
 			                </ul>
 			            </div>
 			        </div>

@@ -57,18 +57,14 @@ $(function(){
 				                            <img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/${vo.boardThumbnail}" 
 				                            	alt="글 ${vo.boardTitle }의 이미지">
 				                            <div class="post-date">
-				                                <a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>">${vo.boardNo } <span>EVENT</span></a>
+				                                <a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>">${vo.boardNo } </a><br><span>${vo.authorityName }</span>
 				                            </div>
 				                        </div>
 				                        <div class="single-blog-content mt-50">
 				                            <div class="line"></div>
-				                            <a href="#" class="post-tag">${vo.boardRegdate }</a>
+				                            <a class="post-tag">${vo.boardRegdate }</a>
 				                            <h4><a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>" 
 				                            	class="post-headline">${vo.boardTitle }</a></h4>
-				                            <!-- <div class="post-meta">
-				                                <p>By <a href="#">james smith</a></p>
-				                                <p>3 comments</p>
-				                            </div> -->
 				                        </div>
 				                    </div>
 				                </div>

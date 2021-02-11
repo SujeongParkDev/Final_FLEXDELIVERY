@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.fd.admin.faq.model.AdminFaqAllViewVO;
+
 @Repository
 public class AdminGiftProductDAOMybatis implements AdminGiftProductDAO{
 
@@ -43,5 +45,23 @@ public class AdminGiftProductDAOMybatis implements AdminGiftProductDAO{
 	public int updateGiftProduct(AdminGiftProductVO giftProductVo) {
 		int cnt=sqlSession.update(namespace+"updateGiftProduct", giftProductVo);
 		return cnt;
+	}
+
+	@Override
+	public boolean checkDu(String gProductName) {
+		boolean bool;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", gProductName);
+		if (cnt==0) {
+			bool=true;
+		} else {
+			bool=false;
+		}
+		return bool;
+	}
+
+	@Override
+	public List<AdminGiftCategoryProductVO> selectForAll2(int categoryNo) {
+		List<AdminGiftCategoryProductVO> list=sqlSession.selectList(namespace+"selectForAll2", categoryNo);
+		return list;
 	}
 }

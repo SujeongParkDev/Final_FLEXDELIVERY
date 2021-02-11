@@ -40,10 +40,10 @@ $(function(){
 					                        <!-- Blog Content -->
 					                        <div class="single-blog-content">
 					                            <div class="line"></div>
-					                            <a href="#" class="post-tag">${vo.boardNo }번째 이벤트</a>
-					                            <h4><a href="#" class="post-headline mb-0">${vo.boardTitle }</a></h4>
+					                            <a class="post-tag">${vo.authorityName } :: ${vo.boardNo }번째  ${vo.boardHead }</a>
+					                            <h4><a class="post-headline mb-0">${vo.boardTitle }</a></h4>
 					                            <div class="post-meta mb-50">
-					                                <p>By <a href="#">플렉스 딜리버리</a></p>
+					                                <p>${vo.boardRegdate },   By <a>플렉스 딜리버리</a></p>
 					                                <hr>
 					                            </div>
 					                            <div class="text-center">

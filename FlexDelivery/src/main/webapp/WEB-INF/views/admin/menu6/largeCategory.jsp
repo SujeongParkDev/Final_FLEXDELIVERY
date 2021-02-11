@@ -6,7 +6,7 @@
 <script>
 $(function(){
 	$('#message2').hide();
-	//$('#messageOk').hide();
+	$('#messageOk').hide();
 	$('#emessage').hide();
     var ok=$('#messageOk').val();
 	console.log(ok);
@@ -106,7 +106,7 @@ function readyWriteSubmit(){
 		$('form[name=frmLCategoryWrite]').submit();
 	}else if(ok=="N"){
 		alert("등록 실패!");
-		event.preventDefault;
+		event.preventDefault();
 		//return false;
 	} else {
 		alert("error!");

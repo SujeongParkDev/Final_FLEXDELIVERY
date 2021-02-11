@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
@@ -56,6 +58,21 @@ public class AdminMediumCategoryController {
 		model.addAttribute("wList", wList);
 		
 		return "/admin/menu6/mediumCategory";
+	}
+	
+	@RequestMapping("/mCategory/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String mCategoryName) {
+		logger.info("이름 중복확인, mCategoryName={}", mCategoryName);
+		
+		boolean isExist=false;
+		if(mCategoryName!=null && !mCategoryName.isEmpty()) {
+			isExist=mediumCategoryService.checkDu(mCategoryName);
+					//largeCategoryService.checkDu(lCategoryName);
+			logger.debug("이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
 	}
 	
 	@RequestMapping(value="/mediumCategory.do", method=RequestMethod.POST)

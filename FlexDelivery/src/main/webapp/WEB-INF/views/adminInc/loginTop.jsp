@@ -87,7 +87,7 @@
 
         <!-- Logo Area -->
         <div class="logo-area text-center">
-         	<canvas id='canv' style="cursor: move; background: hsla(0, 0%, 0%, 1);"></canvas>
+         	<canvas id='canv'></canvas>
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">

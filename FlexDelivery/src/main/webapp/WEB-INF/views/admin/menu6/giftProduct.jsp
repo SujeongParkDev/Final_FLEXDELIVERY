@@ -13,9 +13,53 @@
 <!-- script start -->
 <script>
 $(function(){
+	$('#message2').hide();
+	$('#messageOk').hide();
+    
+    $('#giftProductWrite').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#preview').html("<img src='${pageContext.request.contextPath}/resources/imgs/CommonImages/noImageDefault.png'>");
+	  $('#message2').hide();
+	  $('#message').html("상품 이름을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+    
+    $('#gProductName').on('keyup', function(){
+ 	   writeFunc();
+   
+    });
+    
 	 $('#upfile').on('change', function(){
 	       readInputFile(this);
 	   });
+	 
+	 listForAll();
+	 
+	 $.ajax({
+		type:"GET",
+		url: "<c:url value='/admin/menu6/gProduct/category/list.do' />",
+		dataType: 'json',
+		success: function(res){
+			var info="";
+            	//<a href="#" class="btn btn-outline-dark">${cVo.gCategoryName }</a>
+			if (res.length > 0){
+				info+="<li><a onclick='listForAll()' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>전체보기</a></li>";
+				$.each(res, function(idx, item){
+					info+="<li>"+"<a onclick='listForCategory("+item.gCategoryNo+")' style='cursor: pointer;' onmouseover='onMouseOver(event)' onmouseout='onMouseOut(event)'>"
+					+ item.gCategoryName + "</a>"+"</li>";;
+					
+				});
+			} 
+			
+			$('#forPrintCategory').html(info);
+		},
+		error: function(xhr, status, error){
+			console.log(error);
+		}
+	 });//ajax
 });
 
 function readInputFile(input) {
@@ -28,6 +72,194 @@ function readInputFile(input) {
     }  
 } 
 
+function chkDu(content){
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣\s]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').html();
+	alert("html:"+ok);
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmGiftProductWrite]').submit();
+	}else if(ok=="N"){
+		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function writeFunc(){
+	  var name=$('#gProductName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/gProduct/ajaxCheck.do' />",
+			  data:"gProductName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 이름입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+				  }else{
+					  result = "이미 등록된 이름입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("상품 이름을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("한글만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+
+function onMouseOver(e){
+	$(e.target).css("color", "white");
+}
+
+function onMouseOut(e){
+	$(e.target).css("color", "#727E8C");
+}
+
+function listForAll() {
+	var str="";
+	
+	$.ajax({
+		type: "GET",
+		url: "<c:url value='/admin/menu6/gProduct/listAll.do' />",
+		dataType:'json',
+		success: function(res){
+			if (res.length == 0){
+				str+="<div class='col-12'>";
+				str+="<div class='text-center bg-lighten-2 mt-70 mb-70'>";
+				//str+="<div class='card-content d-flex'>";
+				//str+="<div class='card-body'>";
+				str+="<h2 class='card-title white'>등록된 선물 상품이 없습니다.</h2>";
+                str+="</div></div>";
+                //</div></div>";
+                
+			} else {
+				$.each(res, function(idx, gvo) {
+					str+="<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12'>";
+					str+="<div class='card text-center bg-lighten-2'>";
+					str+="<div class='card-content d-flex'>";
+					str+="<div class='card-body'>";
+					str+="<img class='card-img-top mb-1' src='${pageContext.request.contextPath}/resources/imgs/GiftProductImages/"+gvo.gProductFilename+"' alt='"+gvo.gProductFilename+"' style='height: 120px'>";
+					if (gvo.gCategoryNo==1){
+						str+="<span class='badge bg-danger'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==2) {
+						str+="<span class='badge' style='background-color: #D7F205; color: black;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==3) {
+						str+="<span class='badge bg-success'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==4) {
+						str+="<span class='badge bg-secondary'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==5) {
+						str+="<span class='badge bg-warning'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==6) {
+						str+="<span class='badge bg-info'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==7) {
+						str+="<span class='badge' style='background-color: #F25CA2;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==8) {
+						str+="<span class='badge' style='background-color: #008080;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==9) {
+						str+="<span class='badge' style='background-color: #AB05F2;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==10) {
+						str+="<span class='badge bg-primary'>"+gvo.gCategoryName+"</span>";						
+					} else {
+						str+="<span class='badge bg-light'>"+gvo.gCategoryName+"</span>";						
+					}
+					console.log(gvo.gCategoryNo+", "+gvo.gCategoryName);
+					str+="<p class='card-text white'>"+gvo.gProductNo+"</p>";
+					str+="<h4 class='card-title'>"+gvo.gProductName+"</h4>";
+					str+="<button type='button' class='round btn btn-dark' id='modalEditBt"+gvo.gProductNo+"'";
+					str+=" data-toggle='modal' data-backdrop='false' data-target='#giftProductEdit"+gvo.gProductNo+"'>수정</button>";
+					str+="<button type='button' class='round btn btn-danger' data-toggle='modal' data-backdrop='false' ";
+					str+="data-target='#giftProductDelete"+gvo.gProductNo+"' id='modalDeleteBt'"+gvo.gProductNo+"'>삭제</button>";
+					str+="</div></div></div></div>";
+				})
+				str+="";
+			}
+			
+			$('#forPrint').html(str);
+		},
+		error: function(xhr, status, error){
+			console.log(error);
+		}
+	}); //ajax
+	
+}//listForAll
+
+function listForCategory(no){
+	var categoryNo=no;
+	
+	$.ajax({
+		type:"GET",
+		url :"<c:url value='/admin/menu6/gProduct/list.do?categoryNo="+categoryNo+"' />",
+		dataType:'json',
+		success: function(res){
+			var str="";
+			
+			if (res.length==0){
+				str+="<div class='col-12'>";
+				str+="<div class='text-center bg-lighten-2 mt-70 mb-70'>";
+				//str+="<div class='card-content d-flex'>";
+				//str+="<div class='card-body'>";
+				str+="<h2 class='card-title white'>등록된 선물 상품이 없습니다.</h2>";
+                str+="</div></div>";
+                //</div></div>";
+				
+			} else {
+				$.each(res, function(idx, gvo){
+					str+="<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12'>";
+					str+="<div class='card text-center bg-lighten-2'>";
+					str+="<div class='card-content d-flex'>";
+					str+="<div class='card-body'>";
+					str+="<img class='card-img-top mb-1' src='${pageContext.request.contextPath}/resources/imgs/GiftProductImages/"+gvo.gProductFilename+"' alt='"+gvo.gProductFilename+"' style='height: 120px'>";
+					str+="<span class='badge bg-info'>"+gvo.gCategoryName+"</span>";
+					str+="<p class='card-text white'>"+gvo.gProductNo+"</p>";
+					str+="<h4 class='card-title'>"+gvo.gProductName+"</h4>";
+					str+="<button type='button' class='round btn btn-dark' id='modalEditBt"+gvo.gProductNo+"'";
+					str+=" data-toggle='modal' data-backdrop='false' data-target='#giftProductEdit"+gvo.gProductNo+"'>수정</button>";
+					str+="<button type='button' class='round btn btn-danger' data-toggle='modal' data-backdrop='false' ";
+					str+="data-target='#giftProductDelete"+gvo.gProductNo+"' id='modalDeleteBt'"+gvo.gProductNo+"'>삭제</button>";
+					str+="</div></div></div></div>";
+				});//each
+			}//else
+			
+			$('#forPrint').html(str);
+		},
+		error: function(xhr, status, error){
+			console.log(error);
+		}
+	});//ajax
+}
+
 </script>
 <!-- script end -->
 
@@ -37,7 +269,7 @@ function readInputFile(input) {
 		<div class="col-12 ">
             <div class="card">
                 <div class="card-header">
-	                <h4 class="section-title text-uppercase">선물하기 - 상품 목록</h4>
+	                <h4 class="section-title text-uppercase">선물하기 - 상품 목록</h4><hr>
                 </div>
                 <div class="card-body" style="text-align: right;">
                      <!-- 등록모달 호출하는 등록버튼 -->
@@ -89,7 +321,12 @@ function readInputFile(input) {
 														</tr>
 														<tr>
 															<td colspan="1">상품 이름</td>
-															<td colspan="2"><input type="text" name="gProductName"></td>
+															<td colspan="2">
+															<input type="text" name="gProductName" id="gProductName">
+															<br><span id="message" style="color: #dc3545;font-weight: bold;">상품 이름을 입력해주세요.</span>
+	                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+	                                                         <span id="messageOk">N</span>
+															</td>
 														</tr>                          
 	                                                </tbody>
 	                                             </table>                      
@@ -102,7 +339,7 @@ function readInputFile(input) {
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>
@@ -113,54 +350,22 @@ function readInputFile(input) {
                      </div>            
 					<!-- #giftProductWrite 모달 end -->
                 </div><!--card-body-->
-                <div class="card-body">
-					
-				        <div class="row match-height">
-				            <div class="col-12 mt-3 mb-1">
-				            	<p class="section-title text-uppercase">카테고리 목록</p>
-				            </div>
-				            <div class="buttons">   
-	                        	<a href="#" class="btn btn-outline-dark">전체보기</a>
-				            	<c:forEach var="cVo" items="${cList }">
-		                        	<a href="#" class="btn btn-outline-dark">${cVo.gCategoryName }</a>
-				            	</c:forEach>                   
-			               </div>
+                <div class="card-content">
+					<div class="sidebar-widget-area" style="margin-bottom: 2px; margin-left: 3%;">
+			            <div class="widget-content">
+					        <div class="row match-height">
+					        	<ul class="tags" id="forPrintCategory">   
+		                        	<!-- ajax -->                  
+					        	</ul>
+					       </div>
 				       </div>
+					</div>
 					
+                <div class="card-body">
+					<div class="row" id="forPrint">
 					
-					<div class="row">
-						<c:if test="${empty list }">
-							<div class="col-12">
-	                           <div class="card text-center bg-lighten-2">
-	                               <div class="card-content d-flex">
-		 							  <div class="card-body">
-	                                    	<h2 class="card-title white">등록된 대분류 카테고리가 없습니다.</h2>
-	                                  </div>
-	                              </div>
-	                           </div>
-	                        </div>
-		                </c:if>   
-		                  <c:if test="${!empty list }">                  
-                        	<c:forEach var="vo" items="${list}" varStatus="status">
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
-	                              <div class="card text-center bg-lighten-2">
-	                                 <div class="card-content d-flex">
-										<div class="card-body">
-											<img class="card-img-top mb-1" src="${pageContext.request.contextPath}/resources/imgs/GiftProductImages/${vo.gProductFilename}"
-											 alt="${vo.gProductFilename }" style="height: 120px"> <!-- class="mb-1" -->
-											<span class="badge bg-info">${vo.gCategoryName }</span>
-											<p class="card-text white">${vo.gProductNo }</p>
-											<h4 class="card-title">${vo.gProductName }</h4>
-											<button type="button" class="round btn btn-dark" id="modalEditBt${vo.gProductNo}"
-		                                       data-toggle="modal" data-backdrop="false" data-target="#giftProductEdit${vo.gProductNo}">
-		                                       	수정</button>					                                       
-											<%-- <small class="button badge bg-primary" id="modalEditBt${vo.gProductNo}"
-		                                       data-toggle="modal" data-backdrop="false" data-target="#giftProductEdit${vo.gProductNo}">
-		                                       	수정</small>	 --%>				                                       
-	                                        <button type="button" class="round btn btn-danger" data-toggle="modal" data-backdrop="false" 
-	                                          data-target="#giftProductDelete${vo.gProductNo}" id="modalDeleteBt${vo.gProductNo}">
-	                                          	삭제</button>
-	                                          		
+		                  <%-- <c:if test="${!empty list }">                  
+                        
 											<!-- #giftProductDelete 삭제 모달 -->
 	                                       <div class="modal fade text-left" id="giftProductDelete${vo.gProductNo}" tabindex="-1" role="dialog"
 	                                          aria-labelledby="선물 상품 삭제" aria-hidden="true">
@@ -264,12 +469,9 @@ function readInputFile(input) {
 	                                             </div>
 	                                          </div>
 	                                       </div> <!-- #giftProductEdit 수정 모달 -->
-	         							 </div><!-- card-body -->
-         							   </div><!-- card-content -->
-									</div><!--card-text-center-->
-								</div><!--col-->             
-							</c:forEach>
-						</c:if>
+	         							
+						</c:if> --%>
+						</div>
 					</div><!--row-match-height-->
 				</div><!-- card-body -->
 			</div><!-- card -->

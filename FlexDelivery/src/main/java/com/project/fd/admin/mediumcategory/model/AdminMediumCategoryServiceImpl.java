@@ -30,4 +30,9 @@ public class AdminMediumCategoryServiceImpl implements AdminMediumCategoryServic
 		return mediumCategoryDao.deleteMediumcategory(mediumCategoryVo);
 	}
 
+	@Override
+	public boolean checkDu(String mCategoryName) {
+		return mediumCategoryDao.checkDu(mCategoryName);
+	}
+
 }

@@ -13,6 +13,8 @@ public interface AdminFaqCategoryService {
 	int updateFaqCategory(AdminFaqCategoryVO faqCategoryVo);
 	
 	int deleteFaqCategory(int no);
+
+	boolean checkDu(String fCategoryName);
 	
 	
 }

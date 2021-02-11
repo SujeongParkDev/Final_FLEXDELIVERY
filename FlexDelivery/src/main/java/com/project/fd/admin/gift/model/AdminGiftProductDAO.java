@@ -14,4 +14,8 @@ public interface AdminGiftProductDAO {
 
 	int updateGiftProduct(AdminGiftProductVO giftProductVo);
 
+	boolean checkDu(String gProductName);
+
+	List<AdminGiftCategoryProductVO> selectForAll2(int categoryNo);
+
 }

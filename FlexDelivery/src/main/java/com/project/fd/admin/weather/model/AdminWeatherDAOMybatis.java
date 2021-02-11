@@ -45,6 +45,16 @@ public class AdminWeatherDAOMybatis implements AdminWeatherDAO{
 		List<AdminMediumCategoryViewVO> list=sqlSession.selectList(namespace+"selectAll2");
 		return list;
 	}
+
+	@Override
+	public boolean checkDu(String weatherName) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"checkDu", weatherName);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
 	
 	
 }

@@ -11,6 +11,8 @@ public interface AdminEventCouponService {
 	int updateEventCoupon(AdminEventCouponVO eventCouponVo);
 	
 	int deleteEventCoupon(AdminEventCouponVO eventCouponVo);
+
+	boolean checkDu(String eCouponName);
 	
 	
 }

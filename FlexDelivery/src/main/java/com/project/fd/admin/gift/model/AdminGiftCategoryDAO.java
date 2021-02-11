@@ -14,4 +14,6 @@ public interface AdminGiftCategoryDAO {
 
 	int updateGiftCategory(AdminGiftCategoryVO giftCategoryVo);
 
+	boolean checkDu(String gCategoryName);
+
 }

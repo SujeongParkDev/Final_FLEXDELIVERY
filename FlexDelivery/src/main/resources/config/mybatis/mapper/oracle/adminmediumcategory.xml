@@ -34,6 +34,11 @@
 		on m.WEATHER_NO=w.WEATHER_NO	
 		order by m.M_CATEGORY_NO desc
 	</select>
+	
+	<select id="checkDu" parameterType="string" resultType="int">
+		select count(M_CATEGORY_NAME) from MEDIUMCATEGORY 
+		where M_CATEGORY_NAME like #{mCategoryName}
+	</select>
 	 
 	<!-- 
 	

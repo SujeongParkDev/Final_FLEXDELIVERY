@@ -1,117 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../adminInc/top.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/adminResources/fluidTest.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <div class="hero-area">
-    
-<!-- <div style="text-align: center; font-family: 'Poppins', sans-serif;">    
- <ul id="testUl">
-  <li id="testLi">
-    <input type="checkbox" checked />
-    <div id="testDiv">F</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">L</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">E</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">X</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" checked />
-    <div id="testDiv">D</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">E</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">L</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">I</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">V</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">E</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">R</div>
-  </li>
-  <li id="testLi">
-    <input type="checkbox" />
-    <div id="testDiv">Y</div>
-  </li>
-</ul>
-</div>  -->
-        <!-- Hero Slides Area -->
-        <div class="hero-slides owl-carousel">
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp">lifestyle</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html">Take a look at last night’s party!</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp">lifestyle</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html">Take a look at last night’s party!</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b3.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="#" data-animation="fadeInUp">lifestyle</a>
-                                </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html">Take a look at last night’s party!</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Hero Area End ##### -->
 
-    <!-- ##### Blog Wrapper Start ##### -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.min.css">
+ -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/carouselTest.css"/>
+
+
+<div class="blog-wrapper clearfix">
+    <div class="container">	
+ 
+	<section class="cards">
+	  <div class="owl-wrapper">
+	    <div class="loop owl-carousel owl-theme">
+	      
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/covid.png'/>)">
+	        <div class="card__content">
+	          <h4 class="card__title"><span></span></h4>
+	        </div>
+	      </article>
+	      
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>)">
+	        <div class="card__content">
+	          <h4 class="card__title"><span></span></h4>
+	        </div>
+	      </article>
+	      
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/newmember.png'/>)">
+	        <div class="card__content">
+	          <h4 class="card__title"><span></span></h4>
+	        </div>
+	      </article>
+	      
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>)">
+	        <div class="card__content">
+	          <h4 class="card__title"><span>C</span></h4>
+	        </div>
+	      </article>
+	    </div>
+	  </div>
+	</section>
+	
+	<script>
+	var $owl = $('.loop');
+	
+	$owl.owlCarousel({
+	    autoplay: true,
+	    autoplayHoverPause: true,
+	    autoplayTimeout: 3000,
+	    autoplaySpeed: 800,
+	    center: true,
+	    items: 1.4,
+	    stagePadding: 15,
+	    loop: true,
+	    margin: 15,
+	  animateOut: 'slide-up',
+	animateIn: 'slide-down',
+	});
+	</script>
+	</div>
+</div>
+	
     <div class="blog-wrapper section-padding-100 clearfix">
-        <div class="container">
-        	<canvas id="adminChart1" width="200px" height="200px"></canvas>
+	  <div class="container">
+	 
+        	<!-- <canvas id="adminChart1" class="col-9"></canvas>
+        	<script> 
+        		var ctx = document.getElementById('adminChart1').getContext('2d'); 
+        		var chart = new Chart(ctx, { 
+        		// 챠트 종류를 선택 
+        		type: 'line', 
+        		// 챠트를 그릴 데이타
+        		data: { labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], 
+        			datasets: [{ label: 'My First dataset', 
+       				backgroundColor: 'transparent', 
+       				borderColor: 'red', 
+       				data: [0, 10, 5, 2, 20, 30, 45] }] 
+        			}, 
+       				options: {} 
+        		}); 
+        	</script> -->
         </div>
         <div class="container">
             <div class="row align-items-end">

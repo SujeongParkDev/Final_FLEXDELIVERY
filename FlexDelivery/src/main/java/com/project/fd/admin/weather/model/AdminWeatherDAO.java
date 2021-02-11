@@ -15,4 +15,6 @@ public interface AdminWeatherDAO {
 
 	List<AdminMediumCategoryViewVO> selectAll2();
 
+	boolean checkDu(String weatherName);
+
 }

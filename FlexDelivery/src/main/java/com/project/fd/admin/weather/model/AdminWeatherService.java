@@ -13,5 +13,7 @@ public interface AdminWeatherService {
 	int insertWeather(AdminWeatherVO weatherVo);
 	int updateWeather(AdminWeatherVO weatherVo);
 	int deleteWeather(AdminWeatherVO weatherVo);
+
+	boolean checkDu(String weatherName);
 	
 }

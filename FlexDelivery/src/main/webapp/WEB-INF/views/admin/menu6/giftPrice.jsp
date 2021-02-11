@@ -40,15 +40,18 @@ function chkDu(content){
 
 function readyWriteSubmit(){
 	writeFunc();
-	var ok=$('#messageOk').val();
+	var ok=$('#messageOk').html();
 	
 	if(ok=="Y"){
 		console.log("폼 전송 성공!");
 		$('form[name=frmGiftPriceWrite]').submit();
-	}else {
+	}else if (ok=="N"){
 		alert("등록 실패!");
-		event.preventDefault;
+		event.preventDefault();
 		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
 	}
 }
 
@@ -154,7 +157,8 @@ function writeFunc(){
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
+	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" 
+	                                    	onclick="readyWriteSubmit()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>

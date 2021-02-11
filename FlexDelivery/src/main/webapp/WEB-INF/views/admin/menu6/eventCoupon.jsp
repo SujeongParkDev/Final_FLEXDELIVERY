@@ -10,6 +10,97 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <!-- css end -->
 
+<script>
+$(function(){
+	
+	$('#message2').hide();
+	$('#messageOk').hide();
+   
+	$('#eventCouponWrite').on('hidden.bs.modal', function (e) {
+	  $(this).find('form')[0].reset()
+	  $('#message2').hide();
+	  $('#message').html("쿠폰 이름을 입력해주세요.");
+	  $('#message').show();
+	  $('#messageOk').html("N");
+
+	});
+	
+	$('#eCouponName').on('keyup', function(){
+		   writeFunc();
+			  
+	   });//write keyup function
+});
+
+function chkDu(content){
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣1-9!\s]+$/g);
+	return pattern.test(content);
+}
+
+function readyWriteSubmit(){
+	writeFunc();
+	var ok=$('#messageOk').html();
+	alert("ok:"+ok);
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		$('form[name=frmEventCouponWrite]').submit();
+	}else if (ok=="N"){
+		alert("등록 실패!");
+		event.preventDefault();
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function writeFunc(){
+	
+	  var name=$('#eCouponName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/eCoupon/ajaxCheck.do' />",
+			  data:"eCouponName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "사용 가능한 이름입니다.";
+					  $('#message').hide();
+					  $('#message2').show();
+					  $('#message2').html(result);
+					  $('#messageOk').html("Y");
+					  
+				  }else{
+					  result = "이미 등록된 이름입니다.";
+					  $('#message2').hide();
+					  $('#message').show();
+					  $('#message').html(result);
+					  $('#messageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("이름을 입력해주세요.");
+		  $('#messageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#message2').hide();
+		  $('#message').show();
+		  $('#message').html("한글만 사용 가능합니다.");
+		  $('#messageOk').html("N");
+
+	  }
+}
+</script>
+
 <div class="container">
 	<div class="row">
 		<div class="row" id="table-hover-row">
@@ -58,7 +149,12 @@
 			                                                <tbody style="text-align: center;">
 			                                                	<tr>
 			                                                		<td>쿠폰 이름</td>
-			                                                		<td colspan="2"><input type="text" name="eCouponName"></td>
+			                                                		<td colspan="2">
+			                                                			<input type="text" name="eCouponName" id="eCouponName">
+			                                                			<br><span id="message" style="color: #dc3545;font-weight: bold;">쿠폰 이름을 입력해주세요.</span>
+				                                                         <span id="message2" style="color: #6610f2;font-weight: bold;"></span>
+				                                                         <span id="messageOk"></span>
+			                                                		</td>
 			                                                	</tr>
 			                                                   <tr>
 			                                                   	  <td>

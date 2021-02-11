@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.fd.admin.faq.model.AdminFaqAllViewVO;
+import com.project.fd.admin.faq.model.AdminFaqCategoryVO;
 import com.project.fd.admin.gift.model.AdminGiftCategoryProductVO;
 import com.project.fd.admin.gift.model.AdminGiftCategoryService;
 import com.project.fd.admin.gift.model.AdminGiftCategoryVO;
@@ -55,16 +58,60 @@ public class AdminGiftProductController {
 		return "/admin/menu6/giftProduct";
 	}
 	
-	/*
-	@RequestMapping(value="/giftCategory.do", method = RequestMethod.POST)
-	public String list_post(@ModelAttribute AdminGiftCategoryVO giftCategoryVo , HttpServletRequest request) {
-		logger.info("list_post 작업 후 선물 카테고리 목록 화면 출력, 파라미터 vo={}", giftCategoryVo);
+	@RequestMapping(value="/gProduct/listAll.do", method=RequestMethod.GET)
+	@ResponseBody
+	public List<AdminGiftCategoryProductVO> listAll(Model model) {
+		logger.info("ajax: 전체보기용 리스트 출력");
 		
-		int cnt=giftCategoryService.insertGiftCategory(giftCategoryVo);
-		logger.info("선물 카테고리 목록, cnt={}", cnt);
-		return "redirect:/admin/menu6/giftCategory.do";
+		List<AdminGiftCategoryProductVO> list=giftProductService.selectAll2();
+		logger.info("list 출력, list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return list;
 	}
-	*/
+	
+	@RequestMapping(value="/gProduct/category/list.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<AdminGiftCategoryVO> category_list_get(Model model) {
+		logger.info("선물상품: 카테고리 list_get, 리스트 화면 보여주기");
+		
+		List<AdminGiftCategoryVO> cList=giftCategoryService.selectAll();
+
+		logger.info("카테고리 list 출력, cList.size={}", cList.size());
+		
+		model.addAttribute("cList", cList);
+		
+		return cList;
+	}
+	
+	@RequestMapping(value="/gProduct/list.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<AdminGiftCategoryProductVO> list_for_category_get(@RequestParam int categoryNo, Model model) {
+		
+		logger.info("선물 상품: 선택 카테고리, categoryNo={}", categoryNo);
+		
+		List<AdminGiftCategoryProductVO> forList=giftProductService.selectForAll2(categoryNo);
+		logger.info("카테고리  따른 list 출력, forList.size={}", forList.size());
+		
+		model.addAttribute("forList", forList);
+		
+		return forList;
+	}
+	
+	@RequestMapping("/gProduct/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String gProductName) {
+		logger.info("상품 이름 중복확인, gProductName={}", gProductName);
+		
+		boolean isExist=false;
+		if(gProductName!=null && !gProductName.isEmpty()) {
+			isExist=giftProductService.checkDu(gProductName);
+			logger.debug("상품 이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
+	}
 
 	@RequestMapping(value="/giftProduct/write.do", method = RequestMethod.POST)
 	public String write_post(@ModelAttribute AdminGiftProductVO giftProductVo,

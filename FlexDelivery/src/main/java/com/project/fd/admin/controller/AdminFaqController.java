@@ -91,6 +91,21 @@ public class AdminFaqController {
 		return forList;
 	}
 	
+	
+	@RequestMapping("/faqCategory/ajaxCheck.do")
+	@ResponseBody
+	public boolean ajax_check(@RequestParam String fCategoryName) {
+		logger.info("이름 중복확인, fCategoryName={}", fCategoryName);
+		
+		boolean isExist=false;
+		if(fCategoryName!=null && !fCategoryName.isEmpty()) {
+			isExist=faqCategoryService.checkDu(fCategoryName);
+			logger.debug("이름 중복확인 결과, isExist={}", isExist);
+		}
+		return isExist;
+		
+	}
+	
 	@RequestMapping(value="/faq/category/write.do", method=RequestMethod.POST)
 	public String category_write_post(@ModelAttribute AdminFaqCategoryVO faqCategoryVo,
 			HttpServletRequest request) {
