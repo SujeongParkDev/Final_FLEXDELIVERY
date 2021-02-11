@@ -187,7 +187,7 @@
 				<c:set var="delivery" value="0" />
 			   	<c:if test="${empty list}">
 			   		<div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
-			   			<img class="img-fluid mx-auto" alt="장바구니 상품 없음" src="<c:url value='/resources/imgs/TUNG.png'/>">
+			   			<img class="img-fluid mx-auto" alt="장바구니 상품 없음" style="min-width: 450px" src="<c:url value='/resources/imgs/tung2.png'/>">
 			   		</div>
 			   	</c:if>
 			   	<c:if test="${!empty list}">

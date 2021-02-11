@@ -9,4 +9,6 @@ public interface MemberCouponDAO {
 	int addCoupon(MemberRegularCouponBoxVO vo);
 	int storeCouponCount(int storeNo);
 	int useCoupon(Map<String, Object> map);
+	List<MemberEventCouponBoxVO> eventCouponBoxList(int memberNo);
+	int useECoupon(Map<String, Object> map);
 }

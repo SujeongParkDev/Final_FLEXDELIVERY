@@ -36,6 +36,17 @@ public class MemberCouponDAOMybatis implements MemberCouponDAO{
 	public int useCoupon(Map<String, Object> map) {
 		return sqlSesssion.update(namespace+"useCoupon",map);
 	}
+
+	@Override
+	public List<MemberEventCouponBoxVO> eventCouponBoxList(int memberNo) {
+		return sqlSesssion.selectList(namespace+"eventCouponBoxList",memberNo);
+	}
+
+	@Override
+	public int useECoupon(Map<String, Object> map) {
+		return sqlSesssion.update(namespace+"useECoupon",map);
+	}
+	
 	
 	
 }

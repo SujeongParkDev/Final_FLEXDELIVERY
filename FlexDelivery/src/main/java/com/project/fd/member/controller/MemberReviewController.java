@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.google.api.client.http.HttpRequest;
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.member.review.model.MemberReviewCommentVO;
 import com.project.fd.member.review.model.MemberReviewService;
 import com.project.fd.member.review.model.MemberReviewVO;
 
@@ -50,6 +48,9 @@ public class MemberReviewController {
 		
 		List<Map<String, Object>> orderList=reServ.orderListForReview(memberNo); //회원의 주문내역중 리뷰가 작성되지 않은 리스트
 		
+		List<MemberReviewCommentVO> coList=reServ.selectReviewComment(storeNo);//점포 사장님 댓글리스트
+				
+		model.addAttribute("coList",coList);
 		model.addAttribute("orderList",orderList);
 		model.addAttribute("map",map);
 		model.addAttribute("list",list);
@@ -75,8 +76,9 @@ public class MemberReviewController {
 		map.put("totalRecords", totalRecords);
 		
 		List<MemberReviewVO> list=reServ.selectStoreReview(map);
+		List<MemberReviewCommentVO> coList=reServ.selectReviewComment(storeNo);//점포 사장님 댓글리스트
 		map.put("list", list);
-		
+		map.put("coList", coList);
 		return map;
 	}
 	
@@ -128,6 +130,32 @@ public class MemberReviewController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/reviewLike.do")
+	public String reviewLike(@RequestParam int reviewNo,Model model) {
+		logger.info("리뷰 추천처리, reviewNo={}",reviewNo);
+		int cnt=reServ.reviewLike(reviewNo);
+		logger.info("추천 결과 cnt={}",cnt);
+		int storeNo=reServ.selectStoreNoByReview(reviewNo);
+		String msg="추천 실패",url="/member/store/storeDetail.do?storeNo="+storeNo;
+		if(cnt>0) {
+			msg="리뷰 추천등록되었습니다";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/myReview.do")
+	public String myReview(HttpSession session,Model model) {
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		logger.info("내 리뷰관리, memberNo={}",memberNo);
+		List<MemberReviewVO> list=reServ.myReviewList(memberNo);
+		model.addAttribute("list",list);
+		return "member/mypage/myReview";
 	}
 	
 }

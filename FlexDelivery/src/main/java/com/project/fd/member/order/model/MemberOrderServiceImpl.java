@@ -1,9 +1,9 @@
 package com.project.fd.member.order.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,12 +36,17 @@ public class MemberOrderServiceImpl implements MemberOrderService{
 		
 		if(type>0) {
 			if(type==COUPON_USE) {
-				Map<String, Object> map=new HashedMap<String, Object>();
+				Map<String, Object> map=new HashMap<String, Object>();
 				map.put("memberNo", vo.getMemberNo());
 				map.put("sCBoxNo", dcNo);
 				cnt=coupDao.useCoupon(map);
 			}else if(type==GIFT_USE) {
 				cnt=giftDao.useGift(dcNo);
+			}else if(type==E_COUPON_USE) {
+				Map<String,Object> map=new HashMap<String, Object>();
+				map.put("memberNo",vo.getMemberNo());
+				map.put("eCouponNo", dcNo);
+				cnt=coupDao.useECoupon(map);
 			}
 		}
 		

@@ -56,4 +56,19 @@
 		where member_no=#{memberNo}
 		and s_C_Box_No=#{sCBoxNo}
 	</update>
+	<select id="eventCouponBoxList" parameterType="int" resultType="memberEventCouponBoxVO">
+		select b.member_no,e.* from 
+		eventcouponbox b, eventcoupon e
+		where b.E_COUPON_NO = e.E_COUPON_NO
+		and member_no=#{memberNo}
+		and sysdate>e_coupon_start_date
+		and e_coupon_end_date>sysdate
+		and use_flag='N'
+	</select>
+	<update id="useECoupon" parameterType="map">
+		update eventCouponBox
+		set use_flag='Y'
+		where member_no=#{memberNo}
+		and e_C_Box_No=#{eCBoxNo}
+	</update>
 </mapper>

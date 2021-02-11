@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
-import com.project.fd.owner.menu.model.OwnerStoreMenuGroupVO;
 
 public interface MemberStoresDAO {
 	List<MemberStoresVO> selectFlexAdStores(Map<String, Object> map);
@@ -17,4 +16,6 @@ public interface MemberStoresDAO {
 	int chkLike(MemberLikeStoreVO vo);
 	int addLike(MemberLikeStoreVO vo);
 	int delLike(MemberLikeStoreVO vo);
+	List<MemberStoresVO> likeStoreList(int memberNo);
+	int today();
 }

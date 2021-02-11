@@ -65,9 +65,13 @@
 					    str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >장바구니에 상품이없어요</a>";
 			   	}else{
 			   		if (map.vo.sStatusNo==2){
-						str+="<a class='btn btn-success btn-block btn-lg' href='<c:url value='/member/order/orderSheet.do'/>'>ORDER "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+			   			if(map.vo.hCategoryNo==map.today){
+			   				str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >오늘은 휴업이에요ㅠㅠ</a>";
+			   			}else{
+							str+="<a class='btn btn-success btn-block btn-lg' href='<c:url value='/member/order/orderSheet.do'/>'>ORDER "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
+			   			}
 			   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
-				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
+				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요ㅠㅠ</a>";
 			   		}
 			   	}
 			    str+="</div></div>";
@@ -110,7 +114,7 @@
                             str+="<label class='custom-control-label py-3 w-100 px-3' for='existCouponRadio"+coupVo.sCBoxNo+"'>"+coupVo.rCouponDc.toLocaleString("ko-KR")+"원";
                            	str+="<p class='text-muted mb-0'>최소주문금액 - "+coupVo.rCouponMin.toLocaleString("ko-KR")+"</p></label>";
                     	}else{
-                    		str+="<p class='text-muted mb-0'><strong>이미 등록한 쿠폰입니다</strong></p>";
+                    		str+="<p class='text-muted mb-0'><strong>이미 발급한 쿠폰입니다</strong></p>";
                             str+="<input type='radio' class='custom-control-input' id='existCouponRadio"+coupVo.sCBoxNo+"' disabled='disabled' >";
                             str+="<label class='custom-control-label py-3 w-100 px-3' for='existCouponRadio"+coupVo.sCBoxNo+"'>"+coupVo.rCouponDc.toLocaleString("ko-KR")+"원";
                            	str+="<p class='text-muted mb-0'>최소주문금액 - "+coupVo.rCouponMin.toLocaleString("ko-KR")+"</p></label>";

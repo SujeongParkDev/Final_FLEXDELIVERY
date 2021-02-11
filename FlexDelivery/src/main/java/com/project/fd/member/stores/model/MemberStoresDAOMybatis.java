@@ -65,5 +65,17 @@ public class MemberStoresDAOMybatis implements MemberStoresDAO{
 		return sqlSession.delete(namespace+"delLike",vo);
 	}
 
+	@Override
+	public List<MemberStoresVO> likeStoreList(int memberNo) {
+		return sqlSession.selectList(namespace+"likeStoreList",memberNo);
+	}
+
+	@Override
+	public int today() {
+		return sqlSession.selectOne(namespace+"today");
+	}
+	
+	
+
 	
 }

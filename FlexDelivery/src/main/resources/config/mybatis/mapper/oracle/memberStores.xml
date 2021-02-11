@@ -100,6 +100,17 @@
 		where member_No=#{memberNo} and store_No=#{storeNo}
 	</delete>
 	
+	<select id="likeStoreList" parameterType="int" resultType="memberStoresVo">
+		select h.* 
+		from likestore l , hystoreList h
+		where l.STORE_NO = h.STORE_NO
+		and member_no=#{memberNo}
+	</select>
+	
+	<select id="today" resultType="int">
+		select to_char(sysdate,'d') from dual
+	</select>
+	
 	<!-- <resultMap type="orderAllVo" id="orderListResultMap">
 		<association property="orderVo" column="orderNo" javaType="OrderVO">
 			<id property="orderNo" jdbcType="BIGINT" column="orderNO"  />

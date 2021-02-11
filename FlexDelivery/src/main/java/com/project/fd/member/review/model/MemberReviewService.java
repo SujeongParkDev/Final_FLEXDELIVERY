@@ -10,4 +10,7 @@ public interface MemberReviewService {
 	int reviewWrite(MemberReviewVO vo);
 	int deleteReview(int reviewNo);
 	int selectStoreNoByReview(int reviewNo);
+	int reviewLike(int reviewNo);
+	List<MemberReviewCommentVO> selectReviewComment(int StoreNo);
+	List<MemberReviewVO> myReviewList(int memberNo);
 }
