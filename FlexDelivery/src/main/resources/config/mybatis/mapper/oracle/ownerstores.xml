@@ -94,10 +94,16 @@
     	set store_open_time = #{startTime}, store_close_time=#{closeTime}
     	where store_no = #{storeNo}
     </update>
-    <!-- 지안 20210211 수정 시작-->
+   
     <select id="selectsStatusAll" resultType="map">
     	select * from storestatus
     	order by s_status_no
     </select>
-    <!-- 지안 20210211 수정 끝 -->
+   
+    <!-- 지안 20210211 수장 다시시작 -->
+    <select id="selectLCategoryName" parameterType="int" resultType="string">
+    	select L_CATEGORY_NAME from largeCategory
+    	where l_category_no = #{lCategoryNo}
+    </select>
+    <!--  지안 20210211 수정 끝 -->
 </mapper>

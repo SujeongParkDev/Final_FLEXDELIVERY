@@ -77,4 +77,11 @@ on s.STORE_NO=t.STORE_NO;
         where s.store_no=#{storeNo}
 	</select>
 	
+	
+	<!-- 20210211 지안 추가 시작 -->
+	<select id="selectRegisterByOwnerNo" parameterType="int" resultType="ownerRegisterVo">
+		select * from ownerRegister
+		where owner_no=#{ownerNo}
+	</select>
+	<!-- 20210211 지안 추가 끝 -->
 </mapper>

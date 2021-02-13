@@ -61,4 +61,8 @@ public class OwnerRegisterDAOMybatis implements OwnerRegisterDAO{
 		return sqlSession.selectOne(namespace+"selecSt",storeNo);
 	}
 	
+	//지안 20210211 추가
+	public OwnerRegisterVO selectRegisterByOwnerNo(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectRegisterByOwnerNo",ownerNo);
+	}
 }

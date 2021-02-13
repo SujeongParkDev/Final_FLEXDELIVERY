@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,10 @@ import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
+import com.project.fd.owner.store.model.OwnerStoresService;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 import com.project.fd.owner.store.model.OwnerTemporaryVO;
 import com.project.fd.owner.temporary.model.OwnerTemporaryService;
 
@@ -47,32 +52,77 @@ public class OwnerMyPageController {
 	private OwnerService ownerService;
 	
 	@Autowired
+	private OwnerRegisterService ownerRegisterService;
+	
+	@Autowired
+	private OwnerStoresService ownerStoresService;
+	
+	@Autowired
 	private FileUploadUtil fileUtil;
 	
+
 	@RequestMapping("/mypageMain.do")
 	public String mypageMain(HttpSession session, Model model) {
-		String ownerId=(String) session.getAttribute("ownerId");
-		logger.info("mypage 보여주기 , ownerId={}", ownerId);
+		String ownerId= (String) session.getAttribute("ownerId");
+		logger.info("보여주기 ownerId={}", ownerId);
 		
 		OwnerVO vo = ownerService.selectOwner(ownerId);
 		String ownerName=vo.getOwnerName();
 		logger.info("ownerName = {}", ownerName);
-		
+	
 		int result = ownerService.checkAuthority(ownerId);
-		logger.info("아이디에 따른 권한 결과 result={}", result);
+		logger.info("ownerId로 권한 찾기 result={}", result);
 		
-		int WITHDRAW_STAY = OwnerService.WITHDRAW_STAY;
-		int NO_LICENSE = OwnerService.NO_LICENSE;
-		int HAVE_ALL = OwnerService.HAVE_ALL;
-		
-		model.addAttribute("ownerName", ownerName);
 		model.addAttribute("result",result);
-		model.addAttribute("wStay", WITHDRAW_STAY);
-		model.addAttribute("noLi",NO_LICENSE);
-		model.addAttribute("haveAll", HAVE_ALL);
-		
+		model.addAttribute("ownerName",ownerName);
 		
 		return "owner/mypage/mypageMain";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/myInfo.do")
+	public OwnerVO myInfo(HttpSession session) {
+		String ownerId= (String) session.getAttribute("ownerId");
+		logger.info("내정보 가져오기 ajax ownerId={}", ownerId);
+		
+		
+		OwnerVO vo  =ownerService.selectOwner(ownerId);
+		logger.info("ownerId로 사장님 정보찾기 result={}", vo);
+		
+		return vo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/myRegister.do")
+	public OwnerRegisterVO myRegister(HttpSession session) {
+		int ownerNo= (Integer)session.getAttribute("ownerNo");
+		logger.info("사업자등록증 가져오기 ajax ownerNo={}", ownerNo);
+		
+		OwnerRegisterVO vo = ownerRegisterService.selectRegisterByOwnerNo(ownerNo);
+		logger.info("오너넘버로 사업자등록을 조회하기 결과 vo ={}",vo);
+		
+		return vo;
+	}
+
+	@ResponseBody
+	@RequestMapping("/myStore.do")
+	public Map<String, Object> myStore(HttpSession session){
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
+		logger.info("점포 가져오기 ajax ownerNo={}",ownerNo);
+		
+		OwnerStoresVO vo  = ownerStoresService.selectStoreByOwnerNo(ownerNo);
+		logger.info("점포 구하기 결과 vo = {}" ,vo);
+		Map<String,Object> map = ownerStoresService.selectOperationViewAll(ownerNo);
+		logger.info("점포 운영정보 구하기 결과 map = {}" ,map);
+		String lCategoryName= ownerStoresService.selectLCategoryName(vo.getlCategoryNo());
+		logger.info("점포 대분류 이름 구하기 결과 lCategoryName = {}" , lCategoryName);
+		
+		Map<String,Object> map2 = new HashMap<String, Object>();
+		map2.put("vo", vo);
+		map2.put("map", map);
+		map2.put("lCategoryName", lCategoryName);
+		
+		return map2;
 	}
 	
 	
@@ -233,12 +283,5 @@ public class OwnerMyPageController {
 		return "owner/mypage/mypageDeleteOwner";
 	}
 	
-	@RequestMapping("/mypageApproval.do")
-	public String mypageApproval() {
-		logger.info("보여주기");
-	
-		//4
-		return "owner/mypage/mypageApproval";
-	}
-	
+
 }

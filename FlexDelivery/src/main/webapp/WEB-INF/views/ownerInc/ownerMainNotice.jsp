@@ -11,7 +11,7 @@
 
   <div class="row align-items-end">
 	  <!-- Single Blog Area -->
-	  <div class="col-12 col-md-11" style="margin-bottom:10px;">
+	  <div class="col-12 col-md-11" style="margin-bottom:10px; margin-top:20px;">
 	      <div class="single-blog-area clearfix ">
 	          <!-- Blog Content -->
 				<div style="text-align: right">

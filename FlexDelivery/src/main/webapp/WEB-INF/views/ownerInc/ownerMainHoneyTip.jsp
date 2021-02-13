@@ -6,10 +6,10 @@
           <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
               <div class="row align-items-center" >
                   <div class="col-12 col-md-10">
-                      <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
+                      <a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" class="event" style="text-decoration:none; color:black; "><h4>사장님 꿀팁 </h4></a>
                      </div>
                    	<div class="col-12 col-md-1">
-                     	<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>" style="font-size: 15px;  text-decoration:none; color: rgb(255,201,14); margin-right:20px;">more</a>
+                     	<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>"  class="event" style="font-size: 15px;  text-decoration:none; color: rgb(255,201,14); margin-right:20px;">more</a>
                      </div>
                          <div class="col-12 col-md-1"> </div>
                            <br><br><br><br>
@@ -32,8 +32,8 @@
 	                              <!-- Blog Content -->
 	                              <div class="single-blog-content" style="margin-bottom: 40px;">
 	                                  <div class="line mb-2"></div>
-	                                  <a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo}'/>" class="post-tag">HONEY TIP</a>
-	                                  <a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo}'/>" class="post-headline"><b>${vo.honeytipTitle }</b></a></h4>
+	                                  <a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo}'/>" class="post-tag event">HONEY TIP</a>
+	                                  <a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo}'/>" class="post-headline event"><b>${vo.honeytipTitle }</b></a></h4>
 	                                  	<div class="post-meta">
 	                                      <p>By FLEX DELIVERY</p>
 	                                      <p></p>

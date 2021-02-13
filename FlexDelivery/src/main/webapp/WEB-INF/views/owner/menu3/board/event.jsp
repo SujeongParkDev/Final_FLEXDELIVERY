@@ -125,13 +125,12 @@
 								   <!-- 나중에 파일 업로드 후에 아래 주석을 풀어주세요.. 지금은 이미지 확인차.. -->
 								   
 								   		<c:if test="${fn:substring(vo.boardThumbnail, 0,4)=='http' }">
-											<img src="${vo.boardThumbnail}" class="card-img-top"  alt ="${vo.boardTitle }"  style="height:150px;"
-												 alt="${vo.boardTitle }">
+											<img src="${vo.boardThumbnail}" class="card-img-top"  alt ="${vo.boardTitle }"  style="height:150px;">
 										</c:if>
 										<c:if test="${fn:substring(vo.boardThumbnail, 0,4)!='http' and (!empty vo.boardThumbnail) }">
 											<img src
 												="<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>" 
-												alt="${vo.boardTitle }" class="card-img-top" alt ="${vo.boardTitle }"style="height:150px;">
+												alt="${vo.boardTitle }" class="card-img-top"style="height:150px;">
 										</c:if>
 								        <!-- 내용띄우기 -->
 								     	<div class="card-body">

@@ -77,12 +77,16 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 		return sqlSession.update(namespace+ "updateContent", map);
 	}
 
-	//지안 20210211 수정시작
+	
 	public List<Map<String, Object>> selectsStatusAll(){
 		return sqlSession.selectList(namespace+"selectsStatusAll");
 	}
 	
+	
+	//지안 20210211 수정 다시 시작
+	public String selectLCategoryName(int lCategoryNo) {
+		return sqlSession.selectOne(namespace+"selectLCategoryName", lCategoryNo);
+	}
 	//지안 20210211 수정끝
-
 
 }

@@ -5,6 +5,23 @@
 						H O N E Y T I P  이라고 적혀있는건 전체 게시판을 연결해주시고
 						그밑에거는 또 번호에 해당하는 곳으로 이동시켜주세요 -->
 <!-- Single Blog Area  -->
+
+ 
+<style>	
+
+	a.event{
+		color:black;	
+	}
+	
+	a.event:hover{
+		color: rgb(182,73,197);
+		text-decoration: none;
+	}
+	
+	
+	
+
+</style>
 <div class="single-blog-area blog-style-2 wow fadeInUp"
 	data-wow-delay="0.2s" data-wow-duration="1000ms">
 	<div class="row align-items-center" style="padding: 10%;">
@@ -37,9 +54,9 @@
 					<!-- Blog Content -->
 					<div class="single-blog-content" style="margin-bottom: 40px;">
 						<div class="line mb-2"></div>
-						<a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo }'/>" class="post-tag">HONEY TIP</a>
+						<a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo }'/>" class="post-tag event">HONEY TIP</a>
 						<h4>
-							<a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo }'/>" class="post-headline"><b>${vo.honeytipTitle }</b></a>
+							<a href="<c:url value='/owner/menu3/honeyTip/detail.do?honeyTipNo=${vo.honeytipNo }'/>" class="post-headline event"><b>${vo.honeytipTitle }</b></a>
 						</h4>
 						<div class="post-meta">
 							<p>By FLEX DELIVERY</p>
@@ -63,10 +80,10 @@
 			<div class="single-blog-content" style="margin-bottom: 40px;">
 				<div class="line mb-2"></div>
 				<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>"
-					class="post-tag">HONEY TIP</a>
+					class="post-tag event">HONEY TIP</a>
 				<h4>
 					<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>"
-						class="post-headline"><b>삼겹살 <br>입니다.
+						class="post-headline event"><b>삼겹살 <br>입니다.
 					</b></a>
 				</h4>
 				<div class="post-meta">
@@ -88,9 +105,9 @@
 			<div class="single-blog-content" style="margin-bottom: 40px;">
 				<div class="line mb-2"></div>
 				<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>"
-					class="post-tag">HONEY TIP</a>
+					class="post-tag event">HONEY TIP</a>
 				<h4>
-					<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>칠레의 <br>식사예절
+					<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline event"><b>칠레의 <br>식사예절
 					</b></a>
 				</h4>
 				<div class="post-meta">
@@ -113,9 +130,9 @@
 			<div class="single-blog-content" style="margin-bottom: 40px;">
 				<div class="line mb-2"></div>
 				<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>"
-					class="post-tag">HONEY TIP</a>
+					class="post-tag event">HONEY TIP</a>
 				<h4>
-					<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline"><b>헝가리 <br>식사예절
+					<a href="<c:url value='/owner/menu3/honeyTip/honeyTip.do?honeyTipNo=?3'/>" class="post-headline event"><b>헝가리 <br>식사예절
 					</b></a>
 				</h4>
 				<div class="post-meta">
