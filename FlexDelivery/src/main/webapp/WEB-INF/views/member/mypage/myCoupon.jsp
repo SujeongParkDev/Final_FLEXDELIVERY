@@ -142,7 +142,7 @@
 		                        </c:forEach>
                             </c:if>
                         </div>
-                        <a href="<c:url value='/member/coupon/eventCouponList.do'/>" class="btn btn-primary btn-block my-2">쿠폰 발급받으러 가기<i class="feather-arrow-right"></i> </a>
+                        <a href="<c:url value='/member/addOn/addOn.do'/>" class="btn btn-primary btn-block my-2">쿠폰 발급받으러 가기<i class="feather-arrow-right"></i> </a>
                     </div>
                 </div>
             </div>

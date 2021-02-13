@@ -98,8 +98,8 @@ $(function(){
 				    </c:if>
 			    </c:forEach>
 		    </div>
-		    <a class="btn btn-primary btn-block my-2 text-light" href="<c:url value='/member/index.do'/>">홈으로</a>
-		    <a class="btn btn-light btn-block my-2 text-dark" href="<c:url value='/member/mypage/main.do'/>">마이페이지로</a>
+		    <a class="btn btn-primary btn-block my-2 text-light" style="font-weight: bold" href="<c:url value='/member/index.do'/>">홈으로</a>
+		    <a class="btn btn-light btn-block my-2 text-dark" style="font-weight: bold" href="<c:url value='/member/mypage/main.do'/>">마이페이지로</a>
 		</div>
 	</c:if>
 		</div>
