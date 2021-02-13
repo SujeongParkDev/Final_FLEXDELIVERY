@@ -155,7 +155,7 @@
                         <div class="osahan-card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="d-flex p-3 align-items-center btn btn-link w-100" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						 <i class="feather-globe mr-3"></i>요청사항
+						 <i class="feather-globe mr-3"></i>주문 시 요청사항
                          <i class="feather-chevron-down ml-auto"></i>
                          </button>
                             </h2>
@@ -243,7 +243,7 @@
 				                             	 <option value="0" title="0" selected>선택 없음
 			                            	 <c:forEach items="${eCoupList}" var="eVo">
 			                            	 	<c:if test="${eVo.eCouponMin<=buyPrice}">
-					                             <option value="${eVo.eCouponNo}" title="${eVo.eCouponDc}"><fmt:formatNumber value="${eVo.eCouponDc}" type="currency" /> 할인 - <fmt:formatNumber value="${eVo.eCouponMin}" type="currency" />부터 사용가능</option>
+					                             <option value="${eVo.eCouponNo}" title="${eVo.eCouponDc}">${eVo.eCouponName} - <fmt:formatNumber value="${eVo.eCouponDc}" type="currency" /> 할인 (<fmt:formatNumber value="${eVo.eCouponMin}" type="currency" />부터 사용가능)</option>
 			                            	 	</c:if>
 			                            	 </c:forEach>
 				                           	</select>

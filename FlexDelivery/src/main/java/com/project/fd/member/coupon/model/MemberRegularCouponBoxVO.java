@@ -14,7 +14,22 @@ public class MemberRegularCouponBoxVO {
 	private Timestamp sCEndDate;//쿠폰 만료일
 	private int rCouponDc; //쿠폰 할인금액
 	private int rCouponMin; //쿠폰 최소사용금액
+	private String storeLogo;//점포 로고이미지
+	private String storeName;//점포 상호명
 	
+	
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+	public String getStoreLogo() {
+		return storeLogo;
+	}
+	public void setStoreLogo(String storeLogo) {
+		this.storeLogo = storeLogo;
+	}
 	public int getrCouponNo() {
 		return rCouponNo;
 	}

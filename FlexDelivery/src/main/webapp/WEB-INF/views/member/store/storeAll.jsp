@@ -50,7 +50,7 @@
 							})
 						}
 						if(map.list[i].sStatusNo==2){
-							if(map.list[i].hCategoryNo==today){
+							if(map.list[i].hCategoryNo==map.today){
 								str+="<div class='member-plan position-absolute'><span class='badge badge-success'>휴무</span></div>";
 							}else{
 								str+="<div class='member-plan position-absolute'><span class='badge badge-primary'>영업중</span></div>";
@@ -59,7 +59,11 @@
 							str+="<div class='member-plan position-absolute'><span class='badge badge-dark'>준비중</span></div>";
 						}
 						str+="<a href='<c:url value='/member/store/storeDetail.do?storeNo="+map.list[i].storeNo+"' />'>";
-						str+="<img src='<c:url value='/resources/imgs/"+map.list[i].storeLogo+"'/>' class='img-fluid item-img w-100'></a></div>";
+						if(map.list[i].storeLogo!='temp.jpg'){
+							str+="<img src='<c:url value='/resources/imgs/StoresImages/"+map.list[i].storeLogo+"'/>' class='img-fluid item-img w-100' style='contain:size;'></a></div>";							
+						}else{
+							str+="<img src='<c:url value='/resources/imgs/"+map.list[i].storeLogo+"'/>' class='img-fluid item-img w-100'></a></div>";
+						}
 						str+="<div class='p-3 position-relative'>";
 						str+="<div class='list-card-body'>";
 						str+="<p class='mb-1 h6'>"+map.list[i].storeName+"</p>";
@@ -91,7 +95,7 @@
 	});
 </script>
 <div class="most_sale">
-   <div class="row mb-3" id="listDiv">
+   <div class="row mb-3 justify-content-center" id="listDiv">
    <form name="frmPlus" id="frmPlus" method="post">
    		<input type="hidden" name="startIndex" id="startIndex" value="${map.startIndex}">
    		<input type="hidden" name="lastIndex" id="lastIndex" value="${map.lastIndex}">
@@ -131,7 +135,12 @@
 			                <div class="member-plan position-absolute"><span class="badge badge-dark">준비중</span></div>
 		                </c:if>
 			            <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />">
-		                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+		                    <c:if test="${vo.storeLogo=='temp.jpg'}">
+			                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+		                    </c:if>
+		                    <c:if test="${vo.storeLogo!='temp.jpg'}">
+			                    <img alt="#" src='<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>' class="img-fluid item-img w-100" style='contain:size;'>
+		                    </c:if>
 		                </a>
 			        </div>
 			        <div class="p-3 position-relative">

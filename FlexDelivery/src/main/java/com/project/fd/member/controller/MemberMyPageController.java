@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.fd.member.coupon.model.MemberCouponService;
+import com.project.fd.member.coupon.model.MemberEventCouponBoxVO;
+import com.project.fd.member.coupon.model.MemberRegularCouponBoxVO;
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
 import com.project.fd.member.stores.model.MemberStoresService;
-import com.project.fd.member.stores.model.MemberStoresServiceImpl;
 import com.project.fd.member.stores.model.MemberStoresVO;
 
 @Controller
@@ -26,6 +28,7 @@ public class MemberMyPageController {
 	
 	@Autowired MemberService memServ;
 	@Autowired MemberStoresService storeServ;
+	@Autowired MemberCouponService coupServ;
 	
 	@RequestMapping("/main.do")
 	public void mypage(Model model,HttpSession session){
@@ -45,6 +48,17 @@ public class MemberMyPageController {
 		model.addAttribute("list",list);
 		
 		return "member/mypage/myLikeStore";
+	}
+	
+	@RequestMapping("myCoupon.do")
+	public void myCoupon(HttpSession session,Model model) {
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberRegularCouponBoxVO> list=coupServ.memberRegularCouponList(memberNo);
+		List<MemberEventCouponBoxVO> elist=coupServ.eventCouponBoxList(memberNo);
+		logger.info("마이페이지 점포 쿠폰함,list.size={}",list.size());
+		logger.info("마이페이지 이벤트 쿠폰함, list.size={}",elist.size());
+		model.addAttribute("clist",list);
+		model.addAttribute("elist",elist);
 	}
 	
 }

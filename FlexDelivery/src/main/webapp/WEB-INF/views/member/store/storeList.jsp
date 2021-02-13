@@ -33,7 +33,7 @@
                <h5 class="m-0">오픈리스트</h5>
            </div>
            <div class="most_popular">
-               <div class="row">
+               <div class="row justify-content-center">
                	<c:import url="/member/store/openAdList.do">
            			<c:param name="lCategoryNo" value="${param.lCategoryNo}"/>
            		</c:import>

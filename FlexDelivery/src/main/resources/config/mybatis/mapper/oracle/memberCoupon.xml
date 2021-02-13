@@ -9,6 +9,13 @@
 	from
 	regularcoupon r,storecouponbox s
 	where r.R_COUPON_NO = s.R_COUPON_NO; -->
+	
+	<!-- create or replace view hymemberCouponBoxview
+	as
+	select scb.*,rb.MEMBER_NO,rb.R_C_BOX_END,rb.R_C_BOX_USE,r.R_COUPON_DC,r.R_COUPON_MIN from
+	regularcouponbox rb,storecouponbox scb,regularcoupon r
+	where rb.S_C_BOX_NO = scb.S_C_BOX_NO
+	and scb.R_COUPON_NO = r.R_COUPON_NO -->
 
 	<select id="storeCouponList" parameterType="map" resultType="memberStoresCouponVo">
 		select hy.*,
@@ -71,4 +78,31 @@
 		where member_no=#{memberNo}
 		and e_C_Box_No=#{eCBoxNo}
 	</update>
+	
+	<select id="memberRegularCouponList" parameterType="int" resultType="memberRegularCouponBoxVo">
+		select hy.*,(select store_logo from stores s where s.STORE_NO=hy.store_no) as store_logo,
+		(select store_name from stores s where s.STORE_NO=hy.store_no) as store_name
+		from hymemberCouponBoxview hy
+		where member_no=#{memberNo}
+		order by r_c_box_use,r_c_box_end desc
+	</select>
+	
+	<select id="memberEventCouponList" parameterType="int" resultType="memberEventCouponBoxVO">
+		select * from eventcoupon e, eventcouponbox b
+		where e.E_COUPON_NO=b.E_COUPON_NO
+		where member_no=#{memberNo}
+	</select>
+	
+	<select id="eventCouponAll" resultType="memberEventCouponBoxVO" parameterType="int">
+		select * from(
+		select e.*,(select count(*) from eventcouponbox b where b.e_coupon_no=e.e_coupon_no and member_no=#{memberNo})as count 
+		from eventcoupon e
+		)
+		where count=0
+	</select>
+	
+	<insert id="getEventCoupon" parameterType="map">
+		insert into eventCouponBox(e_coupon_no,member_no)
+		values(#{eCouponNo},#{memberNo})
+	</insert>
 </mapper>

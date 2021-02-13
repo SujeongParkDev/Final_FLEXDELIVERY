@@ -59,9 +59,9 @@
 			<div class="row">
 				<c:forEach var="vo" items="${list}">
 					<div class="col-sm-3 col-3 pb-3">
-						<a class="bg-white rounded d-block p-2 text-center shadow-sm" href="<c:url value='/member/store/storeList.do?lCategoryNo=${vo.lCategoryNo}' />" style="color:gray;">
-							<img alt="이미지 추가예정" src="${vo.lCategoryFilename}" class="img-fluid mb-2">
-							<h6>${vo.lCategoryName}</h6>
+						<a class="bg-white rounded d-block p-2 text-center shadow-sm mb-2" href="<c:url value='/member/store/storeList.do?lCategoryNo=${vo.lCategoryNo}' />" style="color:gray;">
+							<img alt="이미지 추가예정" src="<c:url value='/resources/imgs/LargeCategoryImages/${vo.lCategoryFilename }'/>" class="img-fluid mb-2">
+							<h6 class="m-0">${vo.lCategoryName}</h6>
 						</a>
 					</div>
 				</c:forEach>

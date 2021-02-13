@@ -122,7 +122,7 @@ function formatDate(date) {
                     	<c:if test="${empty oklist}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
+                    				<img alt="" class="img-fluid" style="inline-size:45em;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -132,7 +132,7 @@ function formatDate(date) {
 		                            <div class="p-3 rounded shadow-sm bg-white">
 		                                <div class="d-flex border-bottom pb-3">
 		                                    <div class="text-muted mr-3">
-		                                        <img alt="#" src="<c:url value='/resources/imgs/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
+		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
 		                                    </div>
 		                                    <div>
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
@@ -175,7 +175,7 @@ function formatDate(date) {
                     	<c:if test="${empty ingList}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
+                    				<img alt="" class="img-fluid" style="inline-size:45em;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -185,7 +185,7 @@ function formatDate(date) {
 		                            <div class="p-3 rounded shadow-sm bg-white">
 		                                <div class="d-flex border-bottom pb-3">
 		                                    <div class="text-muted mr-3">
-		                                        <img alt="#" src="<c:url value='/resources/imgs/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
+		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
 		                                    </div>
 		                                    <div>
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
@@ -235,7 +235,7 @@ function formatDate(date) {
                     	<c:if test="${empty ccList}">
                     		<div class="pb-3 text-center">
                     			<div class="p-3 rounded shadow-sm bg-white">
-                    				<img alt="" class="img-fluid" style="MIN-WIDTH: 500px;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
+                    				<img alt="" class="img-fluid" style="inline-size:45em;" src="<c:url value='/resources/imgs/noOrderDefault.png'/>" >
                     			</div>
                     		</div>
                     	</c:if>
@@ -245,7 +245,7 @@ function formatDate(date) {
 		                            <div class="p-3 rounded shadow-sm bg-white">
 		                                <div class="d-flex border-bottom pb-3">
 		                                    <div class="text-muted mr-3">
-		                                        <img alt="#" src="<c:url value='/resources/imgs/${vo.orderVo.storeLogo}'/>"  class="img-fluid order_img rounded">
+		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>"  class="img-fluid order_img rounded">
 		                                    </div>
 		                                    <div>
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>

@@ -40,7 +40,13 @@
 	                </c:if>
 	                
 	                <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />">
-	                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo }"/>' class="img-fluid item-img w-100">
+	                    <c:if test="${vo.storeLogo=='temp.jpg'}">
+		                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+	                    </c:if>
+	                    <c:if test="${vo.storeLogo!='temp.jpg'}">
+		                    <img alt="#" src='<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+	                    </c:if>
+	                    
 	                </a>
 	            </div>
 	            <div class="p-3 position-relative">

@@ -18,7 +18,7 @@
 				var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
 				if(map.list.length>0){
 				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-				    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+				    str+="<img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
 				    str+="<div class='d-flex flex-column'>";
 				    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
 				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
@@ -362,7 +362,7 @@
     </div>	
     <div class="offer-section py-4">
         <div class="container position-relative">
-            <img alt="#" src="<c:url value="/resources/imgs/${vo.storeLogo}"/>" class="restaurant-pic">
+           	<img alt="#" src="<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>" class="restaurant-pic">
             <div class="pt-3 text-white">
                 <h2 class="font-weight-bold" id="tqtq">${vo.storeName}</h2>
                 <p class="text-white m-0">${vo.storeAddress} ${vo.storeAddressDetail}</p>
@@ -448,7 +448,20 @@
             <div class="col-lg-8 pt-3">
             	<!-- Menu -->
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
-	            	
+	            	<div class="d-flex item-aligns-center">
+				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">점포 소개</p>
+	            	</div>
+	            	<div class="row m-0">
+	            		<div class="col-md-12 col-12 border-top">
+					    	<div class="row m-0">
+						    	<div class="col-md-12 col-12 p-5">
+									<p class="mb-0 h6 font-monospace" style="line-height: 2;">${vo.storeContent}</p>
+								</div>
+							</div>
+						</div>
+	            	</div>
+	            </div>
+            	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
 	            	<div class="d-flex item-aligns-center">
 				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">대표메뉴      <span class="badge bg-primary text-white">MAIN</span></p>
 				    </div>

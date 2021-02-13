@@ -40,5 +40,25 @@ public class MemberCouponServiceImpl implements MemberCouponService{
 		return coupDao.eventCouponBoxList(memberNo);
 				
 	}
+
+	@Override
+	public List<MemberRegularCouponBoxVO> memberRegularCouponList(int memberNo) {
+		return coupDao.memberRegularCouponList(memberNo);
+	}
+
+	@Override
+	public List<MemberEventCouponBoxVO> memberEventCouponList(int memberNo) {
+		return coupDao.eventCouponBoxList(memberNo);
+	}
+
+	@Override
+	public List<MemberEventCouponBoxVO> eventCouponAll(int memberNo) {
+		return coupDao.eventCouponAll(memberNo);
+	}
+
+	@Override
+	public int getEventCoupon(Map<String, Object> map) {
+		return coupDao.getEventCoupon(map);
+	}
 	
 }

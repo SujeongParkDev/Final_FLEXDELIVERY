@@ -25,10 +25,10 @@
     <!-- Most popular -->
 	<c:if test="${!empty list}" >
 	    <div class="container most_popular py-5">
-	        <h2 class="font-weight-bold mb-3">찜한 가게</h2>
+	        <h2 class="font-weight-bold my-5">찜한 가게</h2>
 	        <div class="row  justify-content-center align-items-center">
 	        	<c:forEach var="vo" items="${list}">
-		            <div class="col-md-4 mb-3">
+		            <div class="col-md-4 col-6 mb-3">
 		                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm grid-card">
 		                    <div class="list-card-image">
 		                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${vo.reviewRating} (${vo.reviewCount})</span></div>
@@ -40,7 +40,12 @@
 					                <div class="member-plan position-absolute"><span class="badge badge-dark">준비중</span></div>
 				                </c:if>
 				                <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />">
-				                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo }"/>' class="img-fluid item-img w-100">
+				                    <c:if test="${vo.storeLogo=='temp.jpg'}">
+					                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+				                    </c:if>
+				                    <c:if test="${vo.storeLogo!='temp.jpg'}">
+					                    <img alt="#" src='<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+				                    </c:if>
 				                </a>
 		                    </div>
 		                    <div class="p-3 position-relative">
