@@ -1,38 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-  <html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', '이번주', 		'지난주'],
-          ['월',  10000,      30000],
-          ['화',  11700,      40000],
-          ['수',  6600,       2000],
-          ['목',  60000,      70000],
-          ['금',  65500,      2100],
-          ['토',  100000,      1480],
-          ['일',  1030,      4000]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
+    $(function(){
+    	var chart = c3.generate({
+    		size: {
+    			height:250
+    		},
+    	    bindto: '#chart2',
+    	    data: {
+    	      columns: [
+    	        ['data1', 30, 200, 100, 400, 150, 250,333],
+    	        ['data2', 50, 20, 10, 40, 15, 25,44]
+    	      ],
+          	  names:{
+            	data1:'지난주',
+            	data2:'이번주'
+           	 },
+           	 types: {
+                 data1: 'area',
+                 data2: 'area'
+             }
+    	    },
+    	    axis: {
+    	        x: {
+    	            type: 'category',
+    	            categories: ['월', '화', '수', '목', '금', '토', '일'],
+    	        }
+    	        
+    	    },
+            grid: {
+                y: {
+                    show: true
+                }
+            }
+    	});
+    });
     </script>
-  </head>
-  <body>
-    <div id="curve_chart" style="width: 100%; height: 90%;"></div>
-  </body>
-</html>
+
+    <div id="chart2"></div>
+ 

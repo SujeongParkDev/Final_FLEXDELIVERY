@@ -4,8 +4,11 @@
 
 
  
-<style>	a.event{
+<style>	
+
+	a.event{		
 		color:black;	
+
 	}
 	
 	a.event:hover{
@@ -14,7 +17,14 @@
 	}
 	
 	
+	a.login{
+		color: rgb(105,29,112);
+	}
 	
+	a.login:hover{
+		color:rgb(182,73,197);
+		text-decoration: none;
+	}
 
 </style>
 	<!--  QQQ. 을 검색해서 수정부탁드려요 -->
@@ -24,7 +34,7 @@
         <div class="hero-slides owl-carousel">
       
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style="background-image: url('https://i.imgur.com/tGBGXft.jpg'); background-size:cover; height:500px;">
+            <div class="single-hero-slide bg-img " style="background-image: url('<c:url value='/resources/imgs/CommonImages/covid.png'/>'); background-size:contain; height:400px;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -41,7 +51,7 @@
          
          
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image :url('https://cdn.clien.net/web/api/file/F01/6833392/58fd21123b167e.jpg'); background-size:cover;  height:500px;">
+            <div class="single-hero-slide bg-img" style="background-image :url('<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>'); background-size:contain;  height:400px;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -58,7 +68,7 @@
 
             
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style=" height:500px; background-image: url('https://i.imgur.com/zU9sTZJ.jpg'); background-size:cover;">
+            <div class="single-hero-slide bg-img " style=" height:500px; background-image: url('<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>'); background-size:contain; height:400px;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
