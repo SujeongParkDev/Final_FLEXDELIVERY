@@ -8,34 +8,38 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/carouselTest.css"/>
 
 
-<div class="blog-wrapper clearfix">
-    <div class="container">	
+<div class="blog-wrapper clearfix" style="padding-bottom: 5%; background-color: white;">
+    <div class="container" style="min-width: -webkit-fill-available;">	
  
 	<section class="cards">
 	  <div class="owl-wrapper">
 	    <div class="loop owl-carousel owl-theme">
 	      
-	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/covid.png'/>)">
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/covid.png'/>);
+	      	background-size: contain;background-repeat: no-repeat;background-color: #D5DCE2;background-position: center;">
 	        <div class="card__content">
 	          <h4 class="card__title"><span></span></h4>
 	        </div>
 	      </article>
 	      
-	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>)">
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>);
+	      	background-size: contain;background-repeat: no-repeat;background-color: #E9F1FE;background-position: center;">
 	        <div class="card__content">
 	          <h4 class="card__title"><span></span></h4>
 	        </div>
 	      </article>
 	      
-	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/newmember.png'/>)">
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/newmember.png'/>);
+	      	background-size: contain;background-repeat: no-repeat;background-color: white;background-position: center;">
 	        <div class="card__content">
 	          <h4 class="card__title"><span></span></h4>
 	        </div>
 	      </article>
 	      
-	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>)">
+	      <article class="card" style="background-image: url(<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>);
+	      	background-size: contain;background-repeat: no-repeat;background-color: #DFF3F2;background-position: center;">
 	        <div class="card__content">
-	          <h4 class="card__title"><span>C</span></h4>
+	          <h4 class="card__title"><span></span></h4>
 	        </div>
 	      </article>
 	    </div>
@@ -59,368 +63,258 @@
 	animateIn: 'slide-down',
 	});
 	</script>
-	</div>
-</div>
 	
-    <div class="blog-wrapper section-padding-100 clearfix">
-	  <div class="container">
-	 
-        	<!-- <canvas id="adminChart1" class="col-9"></canvas>
-        	<script> 
-        		var ctx = document.getElementById('adminChart1').getContext('2d'); 
-        		var chart = new Chart(ctx, { 
-        		// 챠트 종류를 선택 
-        		type: 'line', 
-        		// 챠트를 그릴 데이타
-        		data: { labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], 
-        			datasets: [{ label: 'My First dataset', 
-       				backgroundColor: 'transparent', 
-       				borderColor: 'red', 
-       				data: [0, 10, 5, 2, 20, 30, 45] }] 
-        			}, 
-       				options: {} 
-        		}); 
-        	</script> -->
-        </div>
-        <div class="container">
-            <div class="row align-items-end">
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
-                        <!-- Blog Content -->
-                        <div class="single-blog-content">
-                            <div class="line"></div>
-                            <a href="#" class="post-tag">Lifestyle</a>
-                            <h4><a href="#" class="post-headline">Welcome to this Lifestyle blog</a></h4>
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Morbi sodales, dolor id ultricies dictum</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-catagory-area clearfix mb-100">
-                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/1.jpg" alt="">
-                        <!-- Catagory Title -->
-                        <div class="catagory-title">
-                            <a href="#">Lifestyle posts</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-catagory-area clearfix mb-100">
-                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/2.jpg" alt="">
-                        <!-- Catagory Title -->
-                        <div class="catagory-title">
-                            <a href="#">latest posts</a>
-                        </div>
+	</div>
+</div><!-- 캐러셀 -->
+	
+<div class="blog-wrapper clearfix" style="background-color: white;">
+    <div class="container">
+        <div class="row align-items-end" style="text-align: center;">
+             
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">사업자 등록 승인</a><br>
+                        <a href="#" style="font-size: xx-large;text-decoration: none;">3건</a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-9">
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/3.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="top: 27%; display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">점포 승인</a><br>
+                        <a href="#" style="font-size: xx-large;text-decoration: none;">1건</a>
                     </div>
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/4.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">We love colors in 2018</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1000ms">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/7.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">10 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content mt-50">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">10 Tips to organize the perfect party</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/5.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1000ms">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-thumbnail">
-                                    <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/6.jpg" alt="">
-                                    <div class="post-date">
-                                        <a href="#">12 <span>march</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Lifestyle</a>
-                                    <h4><a href="#" class="post-headline">We love colors in 2018</a></h4>
-                                    <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
-                                    <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Load More -->
-                    <div class="load-more-btn mt-100 wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1000ms">
-                    </div>
-                </div>
-
-                <!-- ##### Sidebar Area ##### -->
-                <div class="col-12 col-md-4 col-lg-3">
-                    <div class="post-sidebar-area">
-
-                        <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Latest Posts</h5>
-
-                            <div class="widget-content">
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp1.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp2.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp3.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/adminResources/img/blog-img/lp4.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="top: 75%; display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">점포 변경</a><br>
+                        <a href="#" style="font-size: xx-large;text-decoration: none;">2건</a>
                     </div>
                 </div>
             </div>
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">광고 신청</a><br>
+                        <a href="#" style="font-size: xx-large;text-decoration: none;">4건</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">리뷰 신고</a><br>
+                        <a href="#" style="font-size: xx-large;text-decoration: none;">5건</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box;">
+                        <a style="color: white; font-size: medium;">1:1 문의</a><br>
+                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">6건</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Blog Area -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-catagory-area clearfix mb-100">
+                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg" alt="">
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box; top:27%;">
+                        <a style="color: white; font-size: medium;">오늘의 날씨</a><br>
+                        <a style="color: white; font-size: xx-large;">흐림</a>
+                    </div>
+                    <!-- Catagory Title -->
+                    <div class="catagory-title" style="display: -webkit-box; top:75%;">
+                        <a style="color: white; font-size: small;">추천 음식</a><br>
+                        <a style="color: white; font-size: medium; font-weight: bolder;">찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개</a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
-    <!-- ##### Blog Wrapper End ##### -->
 
-    <!-- ##### Instagram Feed Area Start ##### -->
-    <div class="instagram-feed-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="post-sidebar-area">
+
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+                    	<div style="display: flex; align-items: center;">
+                    		<div style="text-align: left; width: 60%;">
+		                    	<a style="font-size: larger;font-weight: 600;">💬공지사항</a>
+                    		</div>
+                    		<div style="text-align: right; width: 40%;">
+                    			<a href="<c:url value='/admin/menu3/notice.do' />"
+                    				style="font-size: small; color: gray; text-decoration: none;">더보기</a>
+                    		</div>
+                    	</div>
+
+                        <div class="widget-content">
+                        	<hr>
+                        	<c:if test="${empty nList }">	
+	                            <!-- Single Blog Post -->
+	                            <div class="single-blog-post d-flex align-items-center widget-post">
+	                                <!-- Post Content -->
+	                                <div class="post-content" style="margin-left: 5%;">
+	                                    <h4><a class="post-headline">등록된 공지사항이 없어요.</a></h4>
+	                                </div>
+	                            </div>
+                        	</c:if>
+
+                        	<c:if test="${!empty nList }">
+                        		<c:forEach var="vo" items="${nList }" varStatus="status" end="3">
+		                            <!-- Single Blog Post -->
+		                            <div class="single-blog-post d-flex align-items-center widget-post">
+		                                <!-- Post Thumbnail -->
+		                                <div class="post-thumbnail">
+		                                    <img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/noticeDefault.jpg">
+		                                </div>
+		                                <!-- Post Content -->
+		                                <div class="post-content">
+		                                    <a class="post-tag">${vo.boardRegdate }</a>
+		                                    <h4><a href="<c:url value='/admin/menu3/notice/detail.do?no=${vo.boardNo }'/>" 
+		                                    	class="post-headline">${vo.boardTitle }</a></h4>
+		                                </div>
+		                            </div>
+                        		</c:forEach>
+                        	</c:if>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Instagram Slides -->
-        <div class="instagram-slides owl-carousel">
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/1.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="post-sidebar-area">
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+						<div style="display: flex; align-items: center;">
+                    		<div style="text-align: left; width: 60%;">
+		                    	<a style="font-size: larger;font-weight: 600;">🎉이벤트</a>
+                    		</div>
+                    		<div style="text-align: right; width: 40%;">
+                    			<a href="<c:url value='/admin/menu3/event.do' />"
+                    				style="font-size: small; color: gray; text-decoration: none;">더보기</a>
+                    		</div>
+                   		</div>
+
+                        <div class="widget-content">
+							<hr>
+                            <c:if test="${empty eList }">	
+	                            <!-- Single Blog Post -->
+	                            <div class="single-blog-post d-flex align-items-center widget-post">
+	                                <!-- Post Content -->
+	                                <div class="post-content" style="margin-left: 5%;">
+	                                    <h4><a class="post-headline">등록된 이벤트가 없어요.</a></h4>
+	                                </div>
+	                            </div>
+                        	</c:if>
+							<c:if test="${!empty eList }">
+                        		<c:forEach var="vo" items="${eList }" varStatus="status" end="3">
+		                            <!-- Single Blog Post -->
+		                            <div class="single-blog-post d-flex align-items-center widget-post">
+		                                <!-- Post Thumbnail -->
+		                                <div class="post-thumbnail">
+		                                    <img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/${vo.boardThumbnail}" >
+		                                </div>
+		                                <!-- Post Content -->
+		                                <div class="post-content">
+		                                    <a class="post-tag">${vo.boardRegdate }</a>
+		                                    <h4><a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>" 
+		                                    	class="post-headline">${vo.boardTitle }</a></h4>
+		                                </div>
+		                            </div>
+                        		</c:forEach>
+                        	</c:if>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/2.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="post-sidebar-area">
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+                   		<div style="display: flex; align-items: center;">
+                    		<div style="text-align: left; width: 60%;">
+		                    	<a style="font-size: larger;font-weight: 600;">🍯사장님꿀팁</a>
+                    		</div>
+                    		<div style="text-align: right; width: 40%;">
+                    			<a href="<c:url value='/admin/menu3/honeyTip.do' />"
+                    				style="font-size: small; color: gray; text-decoration: none;">더보기</a>
+                    		</div>
+                   		</div>
+
+                        <div class="widget-content">
+							<hr>
+                            <c:if test="${empty hList }">	
+	                            <!-- Single Blog Post -->
+	                            <div class="single-blog-post d-flex align-items-center widget-post">
+	                                <!-- Post Content -->
+	                                <div class="post-content" style="margin-left: 5%;">
+	                                    <h4><a class="post-headline">등록된 사장님꿀팁이 없어요.</a></h4>
+	                                </div>
+	                            </div>
+                        	</c:if>
+
+                           <c:if test="${empty hList }">	
+	                            <!-- Single Blog Post -->
+	                            <div class="single-blog-post d-flex align-items-center widget-post">
+	                                <!-- Post Content -->
+	                                <div class="post-content" style="margin-left: 5%;">
+	                                    <h4><a class="post-headline">등록된 사장님꿀팁이 없어요.</a></h4>
+	                                </div>
+	                            </div>
+                        	</c:if>
+							<c:if test="${!empty hList }">
+                        		<c:forEach var="vo" items="${hList }" varStatus="status" end="2">
+		                            <!-- Single Blog Post -->
+		                            <div class="single-blog-post d-flex align-items-center widget-post">
+		                                <!-- Post Thumbnail -->
+		                                <div class="post-thumbnail">
+		                                    <img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}" >
+		                                </div>
+		                                <!-- Post Content -->
+		                                <div class="post-content">
+		                                    <a class="post-tag">${vo.honeytipRegdate }</a>
+		                                    <h4><a href="<c:url value='/admin/menu3/honeytip/detail.do?no=${vo.honeytipNo }'/>" 
+		                                    	class="post-headline">${vo.honeytipTitle }</a></h4>
+		                                </div>
+		                            </div>
+                        		</c:forEach>
+                        	</c:if>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/3.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/4.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/5.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/6.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-            <!-- Single Insta Feed -->
-            <div class="single-insta-feed">
-                <img src="${pageContext.request.contextPath}/resources/adminResources/img/instagram-img/7.png" alt="">
-                <!-- Hover Effects -->
-                <div class="hover-effects">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
+            
         </div>
     </div>
-    <!-- ##### Instagram Feed Area End ##### -->
+</div>
+<!-- ##### Blog Wrapper End ##### -->
 
-
-
-    
 
 <%@ include file="../adminInc/bottom.jsp" %>
 

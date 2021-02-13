@@ -652,7 +652,6 @@
 						<!-- 처음에는 전체보기 출력 -->
 						
 						<!-- 카테고리 클릭 시 list 개수 따라 다른 출력 -->
-						  
 			   
 					</div>
 						    <c:forEach var="vo" items="${list }" varStatus="status">

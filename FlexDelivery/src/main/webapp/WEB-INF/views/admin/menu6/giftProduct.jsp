@@ -363,115 +363,114 @@ function listForCategory(no){
 					
                 <div class="card-body">
 					<div class="row" id="forPrint">
-					
-		                  <%-- <c:if test="${!empty list }">                  
-                        
-											<!-- #giftProductDelete 삭제 모달 -->
-	                                       <div class="modal fade text-left" id="giftProductDelete${vo.gProductNo}" tabindex="-1" role="dialog"
-	                                          aria-labelledby="선물 상품 삭제" aria-hidden="true">
-	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-	                                             <div class="modal-content">
-	                                                <form name="frmGiftProductDel" id="frmgProductDel" method="post" action="<c:url value='/admin/menu6/giftProduct/delete.do' />">
-	                                                   <div class="modal-header bg-danger">
-	                                                      <h5 class="modal-title white" id="myModalLabel140">선물 상품 삭제</h5>
-	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	                                                          <i data-feather="x"></i>
-	                                                      </button>
-	                                                   </div>
-	                                                   <div class="modal-body">
-	                                                      <input type="hidden" name="gProductNo" value="${vo.gProductNo }">
-	                                                      <input type="hidden" name="gProductName" value="${vo.gProductName }">
-	                                                      <input type="hidden" name="gProductFilename" value="${vo.gProductFilename }">
-	                                                      <input type="hidden" name="gCategoryNo" value="${vo.gCategoryNo }">
-	                                                      	[<span style="font-weight: bolder;">${vo.gProductName }</span>] 상품을 삭제하시겠습니까?
-	                                                   </div>
-	                                                   <div class="modal-footer">
-	                                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalDelCancel">
-	                                                         <i class="bx bx-x d-block d-sm-none"></i>
-	                                                         <span class="d-none d-sm-block">취소</span>
-	                                                      </button>
-	                                                      
-	                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="form.submit()">
-	                                                         <i class="bx bx-check d-block d-sm-none"></i>
-	                                                         <span class="d-none d-sm-block">삭제</span>
-	                                                      </button>
-	                                                   </div>
-	                                                </form>
-	                                             </div>
-	                                          </div>
-	                                       </div> <!-- #giftProductDelete 삭제 모달 end-->
-	                                       
-	                                       <!-- #giftProductEdit 수정 모달 -->
-	                                       <div class="modal fade text-left" id="giftProductEdit${vo.gProductNo}" tabindex="-1" 
-	                                          role="dialog" aria-labelledby="선물 상품 수정" aria-hidden="true">
-	                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-	                                             <div class="modal-content">
-	                                    			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
-	                                                   <div class="modal-header" style="background-color: black;">
-	                                                      <h4 class="modal-title" style="color: white;" id="myModalGiftProductEdit">선물 상품 수정</h4>
-	                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	                                                         <i data-feather="x"></i>
-	                                                      </button>
-	                                                   </div>
-	                                                   <div class="modal-body">
-	                                                   <!-- Hoverable rows start -->
-	                                                      <div class="row" id="table-hover-row">
-	                                                         <div class="col-12">   
-	                                                            <div class="table-responsive" style="text-align: center;">
-	                                                               <table class="table mb-0">
-	                                                                  <tbody>
-	                                                                  	<tr>
-					                                                      <td colspan="3"  style="text-align: center;">
-                                                                             <input type="hidden" name="gProductNo" value="${vo.gProductNo }" readonly>	 
-					                                                         <div id="preview"><img src="#" id="previewImg"/></div>
-					                                                      </td>
-																		</tr>
-																		<tr>
-					                                                      <td colspan="3"  style="text-align: center;">
-					                                                         <div>
-					                                                         	<input type="hidden" name="oldFileName" value="${vo.gProductFilename }">
-					                                                            <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
-					                                                         </div>
-					                                                      </td>
-					                                                   </tr>
-	                                                                   <tr>
-																		 <td colspan="1">선물 카테고리</td>
-	                                                                	 <td colspan="2">
-                                                                            <select name="gCategoryNo" id="gCategoryNo">
-					                                                      		<option value="0">선택하세요</option>
-					                                                      		<c:forEach var="cVo" items="${cList }">
-																					<option value="${cVo.gCategoryNo}" <c:if test="${cVo.gCategoryNo}==${vo.gCategoryNo }"> selected</c:if>>${cVo.gCategoryName }</option>
-																				</c:forEach> 
-					                                                      	</select>
-																		 </td>  
-                                                                       </tr>
-																	   <tr>
-																			 <td colspan="1">상품 이름</td>
-																		 	 <td colspan="2"><input type="text" name="gProductName" value="${vo.gProductName }"></td>
-																 	   </tr>          			                                                                    
-	                                                                  </tbody>
-	                                                               </table>                      
-	                                                            </div>
-	                                                         </div>
-	                                                      </div>
-	                                                   </div><!--modal body end-->
-	                                                   <div class="modal-footer">
-	                                                      <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
-	                                                         <i class="bx bx-x d-block d-sm-none"></i>
-	                                                         <span class="d-none d-sm-block">닫기</span>
-	                                                      </button>
-	                                                      <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
-	                                                         <i class="bx bx-check d-block d-sm-none"></i>
-	                                                         <span class="d-none d-sm-block">수정</span>
-	                                                      </button>
-	                                                   </div>
-	                                                </form>
-	                                             </div>
-	                                          </div>
-	                                       </div> <!-- #giftProductEdit 수정 모달 -->
+					</div>
+		                  <c:forEach var="vo" items="${list }" varStatus="status">
+		                  
+								<!-- #giftProductDelete 삭제 모달 -->
+                              <div class="modal fade text-left" id="giftProductDelete${vo.gProductNo}" tabindex="-1" role="dialog"
+                                 aria-labelledby="선물 상품 삭제" aria-hidden="true">
+                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                       <form name="frmGiftProductDel" id="frmgProductDel" method="post" action="<c:url value='/admin/menu6/giftProduct/delete.do' />">
+                                          <div class="modal-header bg-danger">
+                                             <h5 class="modal-title white" id="myModalLabel140">선물 상품 삭제</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                 <i data-feather="x"></i>
+                                             </button>
+                                          </div>
+                                          <div class="modal-body">
+                                             <input type="hidden" name="gProductNo" value="${vo.gProductNo }">
+                                             <input type="hidden" name="gProductName" value="${vo.gProductName }">
+                                             <input type="hidden" name="gProductFilename" value="${vo.gProductFilename }">
+                                             <input type="hidden" name="gCategoryNo" value="${vo.gCategoryNo }">
+                                             	[<span style="font-weight: bolder;">${vo.gProductName }</span>] 상품을 삭제하시겠습니까?
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-light-secondary" data-dismiss="modal" id="modalDelCancel">
+                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">취소</span>
+                                             </button>
+                                             
+                                             <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="form.submit()">
+                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">삭제</span>
+                                             </button>
+                                          </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div> <!-- #giftProductDelete 삭제 모달 end-->
+                              
+                              <!-- #giftProductEdit 수정 모달 -->
+                              <div class="modal fade text-left" id="giftProductEdit${vo.gProductNo}" tabindex="-1" 
+                                 role="dialog" aria-labelledby="선물 상품 수정" aria-hidden="true">
+                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                           			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
+                                          <div class="modal-header" style="background-color: black;">
+                                             <h4 class="modal-title" style="color: white;" id="myModalGiftProductEdit">선물 상품 수정</h4>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i data-feather="x"></i>
+                                             </button>
+                                          </div>
+                                          <div class="modal-body">
+                                          <!-- Hoverable rows start -->
+                                             <div class="row" id="table-hover-row">
+                                                <div class="col-12">   
+                                                   <div class="table-responsive" style="text-align: center;">
+                                                      <table class="table mb-0">
+                                                         <tbody>
+                                                         	<tr>
+                                                 <td colspan="3"  style="text-align: center;">
+                                                                   <input type="hidden" name="gProductNo" value="${vo.gProductNo }" readonly>	 
+                                                    <div id="preview"><img src="#" id="previewImg"/></div>
+                                                 </td>
+											</tr>
+											<tr>
+                                                 <td colspan="3"  style="text-align: center;">
+                                                    <div>
+                                                    	<input type="hidden" name="oldFileName" value="${vo.gProductFilename }">
+                                                       <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
+                                                    </div>
+                                                 </td>
+                                              </tr>
+                                                          <tr>
+								 <td colspan="1">선물 카테고리</td>
+                                                       	 <td colspan="2">
+                                                                  <select name="gCategoryNo" id="gCategoryNo">
+                                                 		<option value="0">선택하세요</option>
+                                                 		<c:forEach var="cVo" items="${cList }">
+											<option value="${cVo.gCategoryNo}" <c:if test="${cVo.gCategoryNo}==${vo.gCategoryNo }"> selected</c:if>>${cVo.gCategoryName }</option>
+										</c:forEach> 
+                                                 	</select>
+								 </td>  
+                                                             </tr>
+							   <tr>
+									 <td colspan="1">상품 이름</td>
+								 	 <td colspan="2"><input type="text" name="gProductName" value="${vo.gProductName }"></td>
+						 	   </tr>          			                                                                    
+                                                         </tbody>
+                                                      </table>                      
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div><!--modal body end-->
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">닫기</span>
+                                             </button>
+                                             <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
+                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">수정</span>
+                                             </button>
+                                          </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div> <!-- #giftProductEdit 수정 모달 -->
 	         							
-						</c:if> --%>
-						</div>
+						</c:forEach> 
 					</div><!--row-match-height-->
 				</div><!-- card-body -->
 			</div><!-- card -->

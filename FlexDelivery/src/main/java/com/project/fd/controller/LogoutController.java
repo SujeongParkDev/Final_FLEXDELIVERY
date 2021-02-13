@@ -70,8 +70,9 @@ public class LogoutController {
 			session.removeAttribute("adminNo");
 			session.removeAttribute("authorityNo");
 			
-			msg="성공적으로 로그아웃 되었습니다! 관리자는 로그인 없이 페이지를 이용할 수 없습니다. 사장님 페이지로 이동합니다.";
-			url="/owner/index.do";
+			msg="성공적으로 로그아웃 되었습니다! 관리자는 로그인 없이 페이지를 이용할 수 없습니다. 로그인 페이지로 이동합니다.";
+			//msg="성공적으로 로그아웃 되었습니다! \"+\n\"관리자는 로그인 없이 페이지를 이용할 수 없습니다. 로그인 페이지로 이동합니다.";
+			url="/admin/index.do";
 		}
 		
 		model.addAttribute("msg",msg);

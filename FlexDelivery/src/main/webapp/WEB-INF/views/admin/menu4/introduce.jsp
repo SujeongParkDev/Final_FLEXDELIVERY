@@ -212,67 +212,66 @@ function openMember(number){
 	          <!-- ##### Post Content Area ##### -->
 	          <div class="col-12">
 	              <!-- Single Blog Area  -->
-	              <div class="single-blog-area blog-style-2 mb-50">
+	              <div class="single-blog-area blog-style-2 mb-50" style="padding-top: 7%; padding-bottom: 7%;">
                         <div class="single-blog-content" >
                             <div class="line"></div>
                             <a class="post-tag">About Service</a>
                             <h4><a class="post-headline mb-0">내 가게에 맞는 서비스를 선택해보세요</a></h4>
                             <p style="font-size: larger;">플렉스 딜리버리는 두 개의 유료광고 서비스를 제공하고 있어요.</p>
 						</div>
-						<div class="single-blog-content" >
-                            <div class="card-body mt-50" style="text-align: center;" data-aos="fade-right" data-aos-offset="300"
-     							data-aos-easing="ease-in-sine" class="use-box scroll-active">
-	                            <p style="font-size: xx-large; color: black;">☝플렉스 리스트</p>
-	                            <p></p>
-	                            <br>
-	                            <p style="font-size: x-large; color: black;">손님이 가게를 조회할 때, <br>첫 번째 영역에 가장 큰 크기로 보여줘요.</p>
-	                            <br>
-	                            <div style="line-height: 3;">
-		                            <span class="badge bg-Info" style="font-size: larger;">노출영역</span>
-		                            <span style="font-size: larger;">리스트 최상단</span><br>
+							<div class="single-blog-content" style="display: flex; align-items: center; background-color: #f5f5f5; padding-bottom: 10%" >
+	                            <div class="card-body mt-50" style="text-align: center; width: 50%;" data-aos="fade-right" data-aos-offset="300"
+	     							data-aos-easing="ease-in-sine" class="use-box scroll-active">
+		                            <p style="font-size: xx-large; color: black;">☝플렉스 리스트</p>
+		                            <p></p>
+		                            <br>
+		                            <p style="font-size: x-large; color: black;">손님이 가게를 조회할 때, <br>첫 번째 영역에 가장 큰 크기로 보여줘요.</p>
+		                            <br>
+		                            <div style="line-height: 3;">
+			                            <span class="badge bg-Info" style="font-size: larger;">노출영역</span>
+			                            <span style="font-size: larger;">리스트 최상단</span><br>
+		                            </div>
+		                            <div style="line-height: 2;">
+			                            <span class="badge bg-Info" style="font-size: larger;">상품금액</span>
+			                            <span style="font-size: larger;">월 50,000원</span><br>
+		                            </div>
+		                            <div style="line-height: 3;">
+		                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
+		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">플렉스 리스트 신청하기</button><br>
+		                            </div>
+		                            
 	                            </div>
-	                            <div style="line-height: 2;">
-		                            <span class="badge bg-Info" style="font-size: larger;">상품금액</span>
-		                            <span style="font-size: larger;">월 50,000원</span><br>
+	                            <div class="card-body mt-50" style="text-align: center; width: 40%;" data-aos="fade-in" data-aos-offset="300"
+	     							data-aos-easing="ease-in-sine" class="use-box scroll-active">
+										<img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/ad2.png">
 	                            </div>
-	                            <div style="line-height: 3;">
-	                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
-	                            	<button type="button" style="font-size: large; font-weight: 700; color: #6f42c1;">플렉스 리스트 신청하기</button><br>
-	                            </div>
-	                            
                             </div>
-                            <div class="card-body mt-50" style="text-align: center;" data-aos="fade-right" data-aos-offset="300"
-     							data-aos-easing="ease-in-sine" class="use-box scroll-active">
-	                            <p style="font-size: xx-large; color: black;"></p>
-	                            <p></p>
-	                            <br>
-	                            <p style="font-size: x-large; color: black;">그림영역</p>
-	                            <br>
+							<div class="single-blog-content mb-70" style="display: flex; align-items: center;" data-aos-easing="ease-in-sine">
+     							<div class="card-body mt-50" style="text-align: center; width: 40%;" data-aos="fade-in" data-aos-offset="300"
+	     							data-aos-easing="ease-in-sine" class="use-box scroll-active">
+										<img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/ad3.png">
+	                            </div>
 	                            
+								<div class="card-body mt-70" style="text-align: center;" data-aos="fade-left" data-aos-offset="300">
+		                            <p style="font-size: xx-large; color: black;">✌오픈 리스트</p>
+		                            <p></p>
+		                            <br>
+		                            <p style="font-size: x-large; color: black;">손님이 가게를 조회할 때, <br>두 번째 영역에 중간 크기로 보여줘요.</p>
+		                            <br>
+		                            <div style="line-height: 3;">
+			                            <span class="badge bg-Info" style="font-size: larger;">노출영역</span>
+			                            <span style="font-size: larger;">리스트 중간 영역</span>
+		                            </div>
+		                            <div style="line-height: 2;">
+			                            <span class="badge bg-Info" style="font-size: larger;">상품금액</span>
+			                            <span style="font-size: larger;">월 30,000원</span>
+		                            </div>
+		                            <div style="line-height: 3;">
+		                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
+		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">오픈리스트 신청하기</button>
+		                            </div>
 	                            
-                            </div>
-                       </div>
-                       <div class="single-blog-content" >
-                            <div class="card-body mt-70" style="text-align: center;" data-aos="fade-left" data-aos-offset="300"
-     							data-aos-easing="ease-in-sine">
-	                            <p style="font-size: xx-large; color: black;">✌오픈 리스트</p>
-	                            <p></p>
-	                            <br>
-	                            <p style="font-size: x-large; color: black;">손님이 가게를 조회할 때, <br>두 번째 영역에 중간 크기로 보여줘요.</p>
-	                            <br>
-	                            <div style="line-height: 3;">
-		                            <span class="badge bg-Info" style="font-size: larger;">노출영역</span>
-		                            <span style="font-size: larger;">리스트 중간 영역</span>
 	                            </div>
-	                            <div style="line-height: 2;">
-		                            <span class="badge bg-Info" style="font-size: larger;">상품금액</span>
-		                            <span style="font-size: larger;">월 30,000원</span>
-	                            </div>
-	                            <div style="line-height: 3;">
-	                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
-	                            	<button type="button" style="font-size: large; font-weight: 700; color: #6f42c1;">오픈리스트 신청하기</button>
-	                            </div>
-	                            <br>
 	                         
                             </div>
                         </div>
@@ -280,7 +279,7 @@ function openMember(number){
                     </div>
 
 
-					<div class="single-blog-area blog-style-2 mb-50">
+					<div class="single-blog-area blog-style-2" style="padding-top: 5%;padding-bottom: 5%;background-color: #f5f5f5;">
                         <div class="single-blog-content" >
                             <div class="card-body" style="text-align: center;" data-aos="fade-up" data-aos-offset="300"
      							data-aos-easing="ease-in-sine">
@@ -289,16 +288,18 @@ function openMember(number){
 	                            <br>
 	                            <p style="font-size: x-large; color: black;">전문 광고 담당자가👩‍🎓👨‍🎓 <br>사장님을 항상 지원합니다</p>
 	                            <br>
-	                            <button type="button" style="font-size: large; font-weight: 700; color: #6f42c1;">온라인 입점 신청하기</button>
-	                            <button type="button" style="font-size: large; font-weight: 700; color: #6f42c1;">상담하기</button>
-	                            <button type="button" style="font-size: large; font-weight: 700; color: #6f42c1;">사장님꿀팁 보러 가기</button>
+	                            <div style="text-align-last: justify; margin-top: 1%">
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-left: 25%;">온라인 입점 신청하기</button>
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">상담하기</button>
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-right: 25%;">사장님꿀팁 보러 가기</button>
+	                            </div>
 	                            <br>
 	                         
                             </div>
                         </div>
                     </div>
                     
-					<div class="single-blog-area blog-style-2 mb-50">
+					<div class="single-blog-area blog-style-2 " style="padding-top: 5%;">
                         <div class="single-blog-content" >
                         
                             <div class="card-body" style="text-align: center;" data-aos="fade-up" data-aos-offset="300"
@@ -310,21 +311,7 @@ function openMember(number){
                             </div>
                         </div>
                    </div>
-                    <!-- About Author start -->
-                   <%--  <div class="blog-post-author mt-100 d-flex">
-                        <div class="author-thumbnail">
-                            <img src="${pageContext.request.contextPath}/resources/adminResources/img/bg-img/b6.jpg" alt="">
-                        </div>
-                        <div class="author-info">
-                            <div class="line"></div>
-                            <span class="author-role">Adminstrator</span>
-                            <h4><a href="#" class="author-name">플렉스 딜리버리</a></h4>
-                            <p>
-                            	고객에게는 맛있는 음식을, 사장님에게는 편리한 가게 관리를 선물하고 싶은 플렉스 딜리버리입니다.
-                            </p>
-                        </div>
-                    </div> --%>
-                    <!-- About Author end -->
+                   
 
                 </div>
 

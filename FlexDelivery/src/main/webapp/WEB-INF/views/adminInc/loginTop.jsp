@@ -37,29 +37,11 @@
         </div>
     </div>
 
-    <!-- Subscribe Modal -->
-    <div class="subscribe-newsletter-area">
-        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="modal-body">
-                        <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
-                            <button type="submit" class="btn original-btn">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- Top Header Area -->
-        <div class="top-header">
+        <div class="top-header" style="background-color: white;">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <!-- Breaking News Area -->
@@ -86,12 +68,13 @@
         </div>
 
         <!-- Logo Area -->
-        <div class="logo-area text-center">
-         	<canvas id='canv'></canvas>
+        <div class="logo-area text-center" style="background-color: white;">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-               		    <script src="${pageContext.request.contextPath}/resources/adminResources/sparklingTest.js"></script>  
+                    	<a href="<c:url value='/admin/index.do' />" class="original-logo">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/FD.png" alt="FlexDeliveryLogo" style="width: 300px;"></a>
+                		
                     </div>
                 </div>
             </div>

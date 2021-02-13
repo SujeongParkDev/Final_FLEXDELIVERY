@@ -4,13 +4,12 @@
     <!-- adminInc/bottom.jsp -->
     
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area text-center">
+    <footer class="footer-area text-center" style="background-color: white;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                    
-                    
-
+                   
 		<!-- 플렉스 딜리버리 사업자 소개 Start-->
 		<p>
 			<a href="<c:url value='/admin/index.do' />" style="text-decoration: none;">플렉스 딜리버리 FLEX DELIVERY</a>

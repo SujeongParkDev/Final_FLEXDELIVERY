@@ -17,25 +17,12 @@ public class AdminController {
 		logger.info("관리자 - 로그인 화면");
 	}
 	
-	@RequestMapping("/index.do")
-	public void adminMain() {
-		logger.info("관리자 메인 화면 보여주기");
-		
-		
-	}
-
 	@RequestMapping("/menu4/introduce.do")
 	public void adminIntroduce() {
-		logger.info("관리자 - 플렉스 딜리버리 소개 보여주기");
-		
+		logger.info("관리자 플렉스 딜리버리 소개 화면 보여주기");
 	}
+
 	
-	@RequestMapping("/menu7/chartDefault.do")
-	public String adminChartDefault() {
-		logger.info("관리자 - 통계요약 페이지 보여주기");
-		return "admin/menu7/member";
-		
-	}
 	/*
 	@RequestMapping("/menu1/memberGrade.do")
 	public String adminMemberGrade() {
