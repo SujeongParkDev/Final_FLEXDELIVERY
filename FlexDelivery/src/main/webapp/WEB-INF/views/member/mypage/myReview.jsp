@@ -16,7 +16,7 @@ $(function(){
     <div class="d-none">
         <div class="bg-primary border-bottom p-3 d-flex align-items-center">
             <a class="toggle togglew toggle-2" href="#"><span></span></a>
-            <h4 class="font-weight-bold m-0 text-white">MyFlex</h4>
+            <h4 class="font-weight-bold m-0 text-white">My Review</h4>
         </div>
     </div>
 
@@ -98,8 +98,8 @@ $(function(){
 				    </c:if>
 			    </c:forEach>
 		    </div>
-		    <a class="btn btn-primary btn-block my-2 text-light" href="<c:url value='/member/index.do'/>">홈으로</a>
-		    <a class="btn btn-light btn-block my-2 text-dark" href="<c:url value='/member/mypage/main.do'/>">마이페이지로</a>
+		    <a class="btn btn-primary btn-block my-2 text-light" style="font-weight: bold" href="<c:url value='/member/index.do'/>">홈으로</a>
+		    <a class="btn btn-light btn-block my-2 text-dark" style="font-weight: bold" href="<c:url value='/member/mypage/main.do'/>">마이페이지로</a>
 		</div>
 	</c:if>
 		</div>

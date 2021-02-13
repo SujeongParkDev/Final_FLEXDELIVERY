@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.member.coupon.model.MemberCouponService;
+import com.project.fd.member.coupon.model.MemberEventCouponBoxVO;
 import com.project.fd.member.coupon.model.MemberRegularCouponBoxVO;
 import com.project.fd.member.coupon.model.MemberStoresCouponVO;
 
@@ -49,5 +52,33 @@ public class MemberCouponController {
 		map.put("memberNo", memberNo);
 		List<MemberStoresCouponVO> list=coupServ.storeCouponList(map);
 		return list;
+	}
+	
+	@RequestMapping("/eventCouponList.do")
+	public void eventCouponList(HttpSession session,Model model) {
+		logger.info("이벤트 쿠폰발급 리스트 출력");
+		int memberNo=(Integer)session.getAttribute("memberNo");
+		List<MemberEventCouponBoxVO> list=coupServ.eventCouponAll(memberNo);
+		
+		model.addAttribute("list",list);
+	}
+	
+	@RequestMapping("/getECoupon.do")
+	public String getECoupon(@RequestParam int eCouponNo,Model model,HttpSession session) {
+		logger.info("이벤트 쿠폰 발급 couponNo={}",eCouponNo);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("eCouponNo", eCouponNo);
+		map.put("memberNo", (Integer)session.getAttribute("memberNo"));
+		int cnt=coupServ.getEventCoupon(map);
+		String msg="발급 실패",url="/member/coupon/eventCouponList.do";
+		if(cnt>0) {
+			msg="발급성공!";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+		
 	}
 }

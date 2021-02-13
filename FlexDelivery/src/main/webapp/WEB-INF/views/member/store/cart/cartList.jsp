@@ -14,7 +14,7 @@
 				var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white'>";
 				if(map.list.length>0){
 				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-				    str+="<img alt='logo' src='<c:url value='/resources/imgs/${vo.storeLogo}'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+				    str+="<img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
 				    str+="<div class='d-flex flex-column'>";
 				    str+="<h6 class='mb-1 font-weight-bold'><a href='<c:url value='/member/store/storeDetail.do?storeNo="+map.vo.storeNo+"'/>'>"+map.vo.storeName+"</a></h6>";
 				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
@@ -175,7 +175,7 @@
 			<div class="osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white">
 				<c:if test="${!empty list}">
 				    <div class="d-flex border-bottom osahan-cart-item-profile bg-white p-3">
-				    	<img alt="osahan" src="<c:url value='/resources/imgs/${vo.storeLogo}'/>" class="mr-3 rounded-circle img-fluid" style="max-width: 41px">
+				    	<img alt="osahan" src="<c:url value='/resources/imgs/StoresImages/${vo.storeLogo}'/>" class="mr-3 rounded-circle img-fluid" style="max-width: 41px">
 				        <div class="d-flex flex-column">
 				            <h6 class="mb-1 font-weight-bold"><a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}'/>">${vo.storeName}</a></h6>
 				            <p class="mb-0 small text-muted"><i class="feather-map-pin"></i>${vo.storeAddress} ${vo.storeAddressDetail}</p>

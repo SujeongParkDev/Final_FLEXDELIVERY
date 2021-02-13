@@ -11,4 +11,8 @@ public interface MemberCouponDAO {
 	int useCoupon(Map<String, Object> map);
 	List<MemberEventCouponBoxVO> eventCouponBoxList(int memberNo);
 	int useECoupon(Map<String, Object> map);
+	List<MemberRegularCouponBoxVO> memberRegularCouponList(int memberNo);
+	List<MemberEventCouponBoxVO> memberEventCouponList(int memberNo);
+	List<MemberEventCouponBoxVO> eventCouponAll(int memberNo);
+	int getEventCoupon(Map<String, Object> map);
 }

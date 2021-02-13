@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
 import com.project.fd.member.cart.model.MemberCartService;
 import com.project.fd.member.coupon.model.MemberCouponService;
-import com.project.fd.member.coupon.model.MemberStoresCouponVO;
 import com.project.fd.member.menu.model.MemberMenuAllVO;
 import com.project.fd.member.menu.model.MemberMenuService;
 import com.project.fd.member.stores.model.MemberLikeStoreVO;

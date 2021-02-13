@@ -265,7 +265,7 @@
                 <c:if test="${!empty sessionScope.memberId}">
                 	<a href="${pageContext.request.contextPath}/member/mypage/main.do"><i class="feather-user mr-2"></i>MyFlex</a>
 	                <ul>
-	                    <li><a href="${pageContext.request.contextPath}/member/coupon/couponBox.do">쿠폰함</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myCoupon.do">쿠폰함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
@@ -276,6 +276,7 @@
                 <a><i class="feather-map-pin mr-2"></i>점포조회</a>
                 <c:import url="/member/sidebarList.do" />
             </li>
+            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>부가기능</a></li>
             <li>
             	<a><i class="feather-user mr-2"></i>알림광장</a>
 	                <ul>

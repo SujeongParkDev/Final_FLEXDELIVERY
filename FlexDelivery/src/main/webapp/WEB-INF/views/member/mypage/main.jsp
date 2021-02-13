@@ -15,7 +15,7 @@
             <!-- 사이드바 -->
                 <div class="col-md-12 mb-12">
                     <div class="bg-white rounded shadow-sm sticky_sidebar overflow-hidden">
-                        <a href="<c:url value='/member/mypage/memberEdit.do' />" class="">
+                        <a href="<c:url value='/member/register/memberEdit.do' />" class="">
                             <div class="d-flex align-items-center p-3">
                                 <div class="right">
                                     <h6 class="mb-1 font-weight-bold">${vo.memberName}<i class="feather-check-circle text-success"></i></h6>
@@ -44,6 +44,14 @@
                                 </div>
                             </a> -->
                             
+                            <a href='<c:url value="/member/register/memberEdit.do" />' class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+                                <div class="left mr-3">
+                                    <h6 class="font-weight-bold m-0 text-dark"><i class="feather-edit bg-primary text-white p-2 rounded-circle mr-2"></i>회원수정</h6>
+                                </div>
+                                <div class="right ml-auto">
+                                    <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
+                                </div>
+                            </a>
                             <a href='<c:url value="/member/order/orderList.do" />' class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold m-0 text-dark"><i class="feather-list bg-warning text-white p-2 rounded-circle mr-2"></i>주문내역</h6>
@@ -52,7 +60,7 @@
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
                             </a>
-                            <a href="<c:url value="/member/coupon/couponBox.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+                            <a href="<c:url value="/member/mypage/myCoupon.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold m-0 text-dark"><i class="feather-tag bg-success text-white p-2 rounded-circle mr-2"></i>쿠폰함</h6>
                                 </div>

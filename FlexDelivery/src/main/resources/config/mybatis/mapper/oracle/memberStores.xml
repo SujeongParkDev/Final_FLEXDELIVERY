@@ -68,11 +68,8 @@
 	
 	<select id="selectAllStoresCount" parameterType="map" resultType="int">
 		select count(*)
-        from hyStoreList s,storeAd a
-        where s.STORE_NO = a.STORE_NO 
-        and a.ad_validate>sysdate 
-        and a.AD_PAY_FLAG='Y'
-        and s.LOCATION_NO=#{locationNo}
+        from hyStoreList s
+        where s.LOCATION_NO=#{locationNo}
         and s.l_category_No=#{lCategoryNo}
         and s.a_agree_no=3
         and s.store_outdate is null

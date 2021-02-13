@@ -9,4 +9,8 @@ public interface MemberCouponService {
 	int addCoupon(MemberRegularCouponBoxVO vo);
 	boolean chkCoupon(int storeNo);
 	List<MemberEventCouponBoxVO> eventCouponBoxList(int memberNo);
+	List<MemberRegularCouponBoxVO> memberRegularCouponList(int memberNo);
+	List<MemberEventCouponBoxVO> memberEventCouponList(int memberNo);
+	List<MemberEventCouponBoxVO> eventCouponAll(int memberNo);
+	int getEventCoupon(Map<String, Object> map);
 }

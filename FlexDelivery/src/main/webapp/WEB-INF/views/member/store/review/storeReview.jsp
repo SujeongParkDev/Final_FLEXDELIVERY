@@ -159,15 +159,16 @@
 </form>
 <c:if test="${empty list}">
 	<div class="bg-white p-3 mb-3 restaurant-detailed-ratings-and-reviews shadow-sm rounded">
-	    <h6 class="mb-1">이 가게의 리뷰</h6>
-	    <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noReviewDefault.png'/>" style="min-width:500px">
+	    <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">이 가게의 리뷰</p>
+	    <img alt="" class="img-fluid p-3" src="<c:url value='/resources/imgs/noReviewDefault.png'/>" style="inline-size:-webkit-fill-available;">
     </div>
 </c:if>
 <c:if test="${!empty list}">
 	<div class="bg-white p-3 mb-3 restaurant-detailed-ratings-and-reviews shadow-sm rounded">
 	    <h6 class="mb-1">이 가게의 리뷰</h6>
-	    <p class="text-muted mb-4 mt-1 small">실제 주문고객들의 리뷰와 평점입니다</p>
+	    <p class="text-muted mb-5 mt-1 small">실제 주문고객들의 리뷰와 평점입니다</p>
 	    <div id="reviewDiv">
+	    	<hr>
 		    <c:forEach var="vo" items="${list}">
 		    	<c:if test="${vo.reviewReport=='Y'}">
 		    		<c:if test="${vo.reviewDelFlag=='Y'}">
