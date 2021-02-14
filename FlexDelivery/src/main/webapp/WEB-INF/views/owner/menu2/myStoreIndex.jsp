@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../../ownerInc/jianSidebarTop.jsp"%>
      
 <div class="main-content container-fluid">
@@ -66,12 +66,12 @@
                             <div class="card-body">
                             	<div class="row">
                             		<div class="col-12 col-md-6"  style="width:150px;  padding-left:10px;padding-right:0px;"> <!--  요청처리현황 제목 부분 크기조절 -->
-                            			<a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+                            			<a href="<c:url value='/owner/menu2/requests/requests.do'/>">
 	                                		<h4 class="card-title">요청 처리 현황</h4>
 	                                	</a>
 	                               	</div>
 	                                <div class="col-12 col-md-1" style="padding:0px;">
-		                                <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+		                                <a href="<c:url value='/owner/menu2/requests/requests.do'/>">
 			                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
  														<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
 											</svg>
@@ -90,25 +90,25 @@
 		                         			<button class="btn" value="대기" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;">대기</button>
 		                         			<br>
-		                         			<span style="font-size:25px">0</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree1}</span><small>건</small>
 		                         		</div>
 		                         		<div  style="text-align: center;">
 		                         			<button class="btn btn-success" value="취소" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;">취소</button>
 		                         			<br>
-		                         			<span style="font-size:25px">0</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree2}</span><small>건</small>
 		                         		</div>
 		                         		<div style="text-align: center;">
 		                         			<button class="btn btn-danger" value="반려" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;">반려</button>
 		                         			<br>
-		                         			<span style="font-size:25px">0</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree4}</span><small>건</small>
 		                         		</div>
 		                         		<div style="text-align: center;">
 		                         			<button class="btn btn-primary" value="승인" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;">승인</button>
 		                         			<br>
-		                         			<span style="font-size:25px">0</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree3}</span><small>건</small>
 		                         		</div>
 		                         	</div>
                           
@@ -145,19 +145,19 @@
 			                         			<button class="btn btn-warning" value="전체" 
 			                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;" >전체</button>
 			                         			<br>
-			                         			<span style="font-size:25px">0</span><small>건</small>
+			                         			<span style="font-size:25px">${fn:length(allList)}</span><small>건</small>
 			                         		</div>
 			                         		<div style="text-align: center;">
 			                         			<button class="btn btn-success" value="미답변" 
 			                         					style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;">미답변</button>
 			                         			<br>
-			                         			<span style="font-size:25px">0</span><small>건</small>
+			                         			<span style="font-size:25px">${totalnocmt}</span><small>건</small>
 			                         		</div>
 			                         		<div style="text-align: center;">
 			                         			<button class="btn btn-danger" value="차단" 
 			                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;">차단</button>
 			                         			<br>
-			                         			<span style="font-size:25px">0</span><small>건</small>
+			                         			<span style="font-size:25px">${totalblockcmt}</span><small>건</small>
 			                         		</div>
 		                         		</div>
                          			  </div>
@@ -171,43 +171,108 @@
 			
 			
 			
-								
-				 <div class="row">
-					 <div class="col-12 col-md-1" ></div>
-					 <div class="col-12 col-md-10" >
-						<div class="card">
-			            	<div class="card-header  text-center">
-			            		 <div class="card-body">
-			            		  <div class="row">
-			            		  		<div class="col-12 col-md-1"></div>
-		                           		<div class="col-12 col-md-2" style="padding-left:10px;padding-right:0px;"> <!--  요청처리현황 제목 부분 크기조절 -->
-		                           			<a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
-		                                		<h6 class="card-title">주간 매출</h6>
-		                                	</a>
-		                               	</div>
-		                                <div class="col-12 col-md-1" style="padding:0px;">
-			                                <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
-				                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-																<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
-												</svg>
-											</a>
-										</div>
-										<div class="col-12 col-md-8"></div>
-									</div>
-		                              
-				            		 <div class="ml-5 mr-5 mt-5">
-										   <%@include file="charts/mainChartLine.jsp"%>
-									</div>
-			            		 </div>
-			            	</div>
-			            </div>
-					</div>
-					<div class="col-12 col-md-1" ></div>
-				</div>
-					
+				         
+      <!-- 지안 -->   
+                        
+             <div class="row">
+                <div class="col-12 col-md-1" ></div>
+                <div class="col-12 col-md-10" >
+                  <div class="card">
+                        <div class="card-header  text-center">
+                            <div class="card-body">
+                             <div class="row">
+                                   <div class="col-12 col-md-1"></div>
+                                       <div class="col-12 col-md-2" style="padding-left:10px;padding-right:0px;"> <!--  요청처리현황 제목 부분 크기조절 -->
+                                          <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+                                            <h6 class="card-title">주간 매출</h6>
+                                         </a>
+                                        </div>
+                                      <div class="col-12 col-md-1" style="padding:0px;">
+                                         <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+                                    </svg>
+                                 </a>
+                              </div>
+                              <div class="col-12 col-md-8"></div>
+                           </div>
+                                    
+                               <div class="ml-5 mr-5 mt-5">
+                                 <%@include file="charts/mainChartLine.jsp"%>
+                           </div>
+                            </div>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-12 col-md-1" ></div>
+            </div>
+               
+         
+          
+             <div class="row">
+                <div class="col-12 col-md-1"></div>
+                <div class="col-12 col-md-5">
+                  <div class="card">
+                        <div class="card-header  text-center">
+                            <div class="card-body">
+                                  <div class="row">
+                                       <div class="col-12 col-md-5" style="padding-left:10px;padding-right:0px;"> <!--  요청처리현황 제목 부분 크기조절 -->
+                                          <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+                                            <h6 class="card-title">주간 주문수</h6>
+                                         </a>
+                                        </div>
+                                      <div class="col-12 col-md-1" style="padding:0px;">
+                                         <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+                                    </svg>
+                                 </a>
+                              </div>
+                              <div class="col-12 col-md-6"></div>
+                           </div>
+                                  <span><small>주간 주문수입니다.</small></span>
+                                   <div class="ml-5 mr-5 mt-5">
+                                      <%@include file="charts/mainChartBar.jsp"%>
+                                  
+                           </div>    
+                            </div>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-12 col-md-5">
+                  <div class="card">
+                        <div class="card-header  text-center">
+                            <div class="card-body">
+                               <div class="row">
+                                        <div class="col-12 col-md-4" style="padding-left:10px;padding-right:0px;"><!-- 제목 부분만 -->
+                                           <a href="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+                                               <h6 class="card-title">인기 메뉴 </h6>
+                                            </a>
+                                           </div>
+                                         <div class="col-12 col-md-1" style="padding:0px;">
+                                            <a href="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                 <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+                                       </svg>
+                                    </a>
+                                 </div>
+                                 <div class="col-12 col-md-7"></div>
+                              </div>
+                              <span><small>지난 한달간 주문량이 많았던 메뉴입니다</small></span>
+                               <div class="ml-5 mr-5 mt-5">
+                               <%@include file="charts/mainChartDonut.jsp"%>
+                           </div>
+                           
+                            </div>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-12 col-md-1"></div>
+            </div>
+      
+      
+   <!-- 지안 끝 -->
 			
-		
-		
 		 	
 			 	<div class="row">
 			 		<div class="col-12 col-md-1"></div>

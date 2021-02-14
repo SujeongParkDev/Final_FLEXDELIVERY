@@ -96,10 +96,7 @@
 			                        <li>
 			                            <a href="<c:url value='/owner/menu2/operation/operation.do'/>">운영정보</a>
 			                        </li>
-			                         <li>
-			                            <a href="<c:url value='/owner/menu2/temporary/tempList.do'/>">승인 현황 조회 </a>
-			                        </li>
-			                    </ul>
+			                    </ul><!-- 승인요청현황 삭제 20210214 소정  -->
 			                </li>
 							
 			            

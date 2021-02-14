@@ -25,4 +25,22 @@ public interface OwnerRequestDAO {
 	public int updateTempstore(int tNo);
 	
 	public String selectPwd(int ownerNo); 
+	
+	// index count
+	public int selectAgree1(int ownerNo);
+	public int ownerregistercnt1(int ownerNo);
+	public int tempcnt1(int ownerNo);
+	
+	public int selectAgree2(int ownerNo);
+	public int ownerregistercnt2(int ownerNo);
+	public int tempcnt2(int ownerNo);
+	
+	public int selectAgree3(int ownerNo);
+	public int ownerregistercnt3(int ownerNo);
+	public int tempcnt3(int ownerNo);
+	
+	public int selectAgree4(int ownerNo);
+	public int ownerregistercnt4(int ownerNo);
+	public int tempcnt4(int ownerNo);
+	
 }

@@ -8,7 +8,7 @@
 	<div class="col-md-8 col-sm-12">
 		<ul class="nav nav-pills" style="float: right;">
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(reviewList)})</button>
+				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(allList)})</button>
 			</li>
 			<li class="nav-item">
 				<button type="button" class="btn btn-primary" id="btnocmt">미답변(${fn:length(nocmtList)})

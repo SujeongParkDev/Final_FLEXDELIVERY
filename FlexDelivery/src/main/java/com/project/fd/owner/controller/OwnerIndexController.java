@@ -1,24 +1,24 @@
 package com.project.fd.owner.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.admin.hoenytip.AdminHoneytipService;
 import com.project.fd.admin.hoenytip.AdminHoneytipVO;
-import com.project.fd.common.PaginationInfo;
-import com.project.fd.common.Utility;
-import com.project.fd.owner.board.model.OwnerBoardSearchVO;
 import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.board.model.OwnerBoardVO;
 import com.project.fd.owner.model.OwnerService;
+import com.project.fd.owner.request.model.OwnerRequestService;
+import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
 
 
 @Controller
@@ -36,6 +36,10 @@ public class OwnerIndexController {
 	
 	@Autowired
 	private AdminHoneytipService honeytipService;
+	
+	@Autowired private OwnerReivewCommentService reviewcmtService; // 20210214소정 추가 
+	
+	@Autowired private OwnerRequestService requestService; // 20210214 소정 추가 
 	
 	//관리자, 점포 공통 뷰 보여주기(점포)
 		@RequestMapping("/index.do")
@@ -57,9 +61,36 @@ public class OwnerIndexController {
 		
 		//내점포 메인 뷰 보여주기(점포)
 		@RequestMapping("/menu2/myStoreIndex.do")
-		public void myStoreIndex(){
-			logger.info("내점포 메인 뷰 보여주기");
-		
+		public String myStoreIndex(Model model, HttpSession session){
+			int storeNo=(Integer)session.getAttribute("storeNo");
+			int ownerNo=(Integer)session.getAttribute("ownerNo");
+			logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
+			
+			int totalblockcmt=reviewcmtService.blockTotalRecord(storeNo);
+			int totalnocmt=reviewcmtService.NocmtTotalRecord(storeNo);
+			List<Map<String, Object>> allList=reviewcmtService.selectAll(storeNo);
+			logger.info("리뷰전체  리스트 allList.size={}",allList.size());
+			logger.info("미답변  차단 갯수  totalblockcmt={},totalnocmt={}",totalblockcmt,totalnocmt);
+			
+			int totalagree1=requestService.selectAgree1(ownerNo);
+			int totalagree2=requestService.selectAgree2(ownerNo);
+			int totalagree3=requestService.selectAgree3(ownerNo);
+			int totalagree4=requestService.selectAgree4(ownerNo);
+			
+			logger.info("request 갯수 totalagree1={},totalagree2={}",totalagree1,totalagree2);
+			logger.info("request 갯수 totalagree3={},totalagree4={}",totalagree3,totalagree4);
+			//ownerreview 
+			model.addAttribute("totalblockcmt", totalblockcmt);
+			model.addAttribute("totalnocmt", totalnocmt);
+			model.addAttribute("allList", allList);
+			
+			//agree
+			model.addAttribute("totalagree1", totalagree1);
+			model.addAttribute("totalagree2", totalagree2);
+			model.addAttribute("totalagree3", totalagree3);
+			model.addAttribute("totalagree4", totalagree4);
+			
+			return "owner/menu2/myStoreIndex";
 		}
 		
 		

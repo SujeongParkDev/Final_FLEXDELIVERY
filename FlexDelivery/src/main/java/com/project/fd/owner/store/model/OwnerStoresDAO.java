@@ -29,4 +29,5 @@ public interface OwnerStoresDAO {
 	//지안 20210211 수정 재 시작
 	public String selectLCategoryName(int lCategoryNo);
 	//지안 20210211 수정끝
+	public int dupckstores(int ownerNo);
 }

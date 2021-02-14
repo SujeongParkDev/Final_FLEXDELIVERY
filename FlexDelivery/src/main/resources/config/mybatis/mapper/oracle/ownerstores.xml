@@ -31,6 +31,10 @@
 			and ownerId=#{ownerId}
 		</if>
 	</select>
+	<select id="existOwnerNo" parameterType="int" resultType="long">
+		select * from ownerregister
+		where owner_no=#{ownerNo} 
+	</select>
 	
 	<select id="selectStoreNoByNo" parameterType="int" resultType="int">
 		select store_No from stores
@@ -106,4 +110,9 @@
     	where l_category_no = #{lCategoryNo}
     </select>
     <!--  지안 20210211 수정 끝 -->
+    
+    <select id="dupckstores" parameterType="int" resultType="int">
+   	 select count(*) from stores where owner_no=#{ownerNo}
+    </select>
+    
 </mapper>

@@ -89,4 +89,45 @@
 		select owner_pwd from owner where owner_no=#{ownerNo}
 	</select>
 	
+	<!-- 인덱스에서 갯수 세기  -->
+	<select id="selectAgree1" parameterType="int" resultType="int">
+	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=1
+	</select>
+	<select id="ownerregistercnt1" parameterType="int" resultType="int">
+	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=1
+	</select>
+	<select id="tempcnt1" parameterType="int" resultType="int">
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=1
+	</select>
+	
+	<select id="selectAgree2" parameterType="int" resultType="int">
+	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=2
+	</select>
+	<select id="ownerregistercnt2" parameterType="int" resultType="int">
+	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=2
+	</select>
+	<select id="tempcnt2" parameterType="int" resultType="int">
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=2
+	</select>
+	
+	<select id="selectAgree3" parameterType="int" resultType="int">
+	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=3
+	</select>
+	<select id="ownerregistercnt3" parameterType="int" resultType="int">
+	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=3
+	</select>
+	<select id="tempcnt3" parameterType="int" resultType="int">
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=3
+	</select>
+	
+	<select id="selectAgree4" parameterType="int" resultType="int">
+	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=4
+	</select>
+	<select id="ownerregistercnt4" parameterType="int" resultType="int">
+	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=4
+	</select>
+	<select id="tempcnt4" parameterType="int" resultType="int">
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=4
+	</select>
+	
 </mapper>

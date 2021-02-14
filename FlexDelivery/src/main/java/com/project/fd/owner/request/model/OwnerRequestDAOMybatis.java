@@ -78,7 +78,65 @@ public class OwnerRequestDAOMybatis implements OwnerRequestDAO{
 	public String selectPwd(int ownerNo) {
 		return sqlSession.selectOne(namespace+"selectPwd",ownerNo);
 	}
-	
-	
+
+	@Override
+	public int selectAgree1(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectAgree1",ownerNo);
+	}
+
+	@Override
+	public int selectAgree2(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectAgree2",ownerNo);
+	}
+
+	@Override
+	public int selectAgree3(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectAgree3",ownerNo);
+	}
+
+	@Override
+	public int selectAgree4(int ownerNo) {
+		return sqlSession.selectOne(namespace+"selectAgree4",ownerNo);
+	}
+
+	@Override
+	public int ownerregistercnt3(int ownerNo) {
+		return sqlSession.selectOne(namespace+"ownerregistercnt3",ownerNo);
+	}
+
+	@Override
+	public int tempcnt3(int ownerNo) {
+		return sqlSession.selectOne(namespace+"tempcnt3",ownerNo);
+	}
+
+	@Override
+	public int ownerregistercnt1(int ownerNo) {
+		return sqlSession.selectOne(namespace+"ownerregistercnt1",ownerNo);
+	}
+
+	@Override
+	public int tempcnt1(int ownerNo) {
+		return sqlSession.selectOne(namespace+"tempcnt1",ownerNo);
+	}
+
+	@Override
+	public int ownerregistercnt2(int ownerNo) {
+		return sqlSession.selectOne(namespace+"ownerregistercnt2",ownerNo);
+	}
+
+	@Override
+	public int tempcnt2(int ownerNo) {
+		return sqlSession.selectOne(namespace+"tempcnt2",ownerNo);
+	}
+
+	@Override
+	public int ownerregistercnt4(int ownerNo) {
+		return sqlSession.selectOne(namespace+"ownerregistercnt4",ownerNo);
+	}
+
+	@Override
+	public int tempcnt4(int ownerNo) {
+		return sqlSession.selectOne(namespace+"tempcnt4",ownerNo);
+	}
 	
 }

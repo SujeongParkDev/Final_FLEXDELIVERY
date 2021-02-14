@@ -47,6 +47,7 @@ input {
 								</tr>
 							</thead>
 							<tbody id="optionTable">
+							<input type="text" id="ownerNo" name="ownerNo" value="${sessionScope.ownerNo}">
 								<!--  -->
 								<div class="tempDiv" id="tempDiv">
 								<c:if test="${!empty selectTemp }">
@@ -109,7 +110,7 @@ input {
 								</c:if>
 								</div>
 								<!--  -->
-								<div class="store">
+								<div class="store" id="store">
 								<c:if test="${!empty selectStore }">
 									<c:forEach var="stVo" items="${selectStore }">
 										<tr class="text-center">
@@ -173,7 +174,13 @@ input {
 	<div class="col-md-2 col-sm-12"></div>
 </div>
 
-
+<button id="hider">Hide</button>
+<button id="shower">Show</button>
+<div>
+  <span>Once</span> <span>upon</span> <span>a</span>
+  <span>time</span> <span>there</span> <span>were</span>
+  <span>three</span> <span>programmers...</span>
+</div>
 
 <script type="text/javascript">
 
@@ -237,19 +244,30 @@ $(function(){
 });
 }//detail
 //result 에 따라서 hide show하고 싶은데 안돼여 ㅡㅡ help ! 
-	$(function(){
+$(function(){
+	
 		$('#choice').on('change',function(){
 			var result=$('select[name=choice]').val();
 			alert(result);
-			if(result == 1){
-				$('.store').attr("style","display:none;");
-				$('.tempDiv').attr('style',"display:none;");
-				$('#advertise').attr('style',"display:none;");
-				$('#advertise').prev().css("display", "none");
-		     	console.log(this);
-			}
+			$.ajax({
+				url:"<c:url value='/owner/menu2/requests/selectRegi.do'/>",
+				type:"GET",
+				data: "ownerNo="+$('#ownerNo').val(), 
+				dataType:"json",
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(res){
+					//alert(res);
+					$('#store').empty();
+					},
+					error:function(xhr, status, error){
+						alert("error! : " + error);
+					}				
+				});//ajax
 		});
-	});
+});
+	
+			
+			
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 
