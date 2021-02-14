@@ -1,200 +1,218 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
-
-
-<!DOCTYPE html>
-  <html>
-  <head>
-	
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
-
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
-
-
-<script type="text/javascript" src="<c:url value='/resources/ownerResources/herbJs/jquery-3.5.1.min.js'/>"></script>
-
-<script type="text/javascript">
-$(function(){
-$(document).on("click", ".naccs .menu div", function() {
-	  var numberIndex = $(this).index();
-
-	  if (!$(this).is("active")) {
-	    $(".naccs .menu div").removeClass("active");
-	    $(".naccs ul li").removeClass("active");
-
-	    $(this).addClass("active");
-	    $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
-
-	    var listItemHeight = $(".naccs ul")
-	      .find("li:eq(" + numberIndex + ")")
-	      .innerHeight();
-	    $(".naccs ul").height(listItemHeight + "px");
-	  }
-	});
-});  
-	
-</script>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 <style>
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-
-$base-color: #303F9F;
-$second-color: #3F51B5;
-$third-color: #FBC02D;
-$site: #303F9F;
-$light: #fff;
-
-body {
- position: relative;
- font-family: 'Oswald', sans-serif;
- background: $site;
- color: $light;
- font-size: 20px;
-}
-
-.grid {
- list-style: none;
- margin-left: -40px;
-}
-
-.gc {
- box-sizing: border-box;
- display: inline-block;
- margin-right: -.25em;
- min-height: 1px;
- padding-left: 40px;
- vertical-align: top;
-}
-
-.gc--1-of-3 {
- width: 33.33333%;
-}
-
-.gc--2-of-3 {
- width: 66.66666%;
-}
-
-.naccs {
- position: relative;
- max-width: 900px;
- margin: 100px auto 0;
-}
-
-.naccs .menu div {
- padding: 15px 20px 15px 40px;
- margin-bottom: 10px;
- color: $base-color;
- background: $second-color;
- box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
- cursor: pointer;
- position: relative;
- vertical-align: middle;
- font-weight: 700;
- transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.naccs .menu div:hover {
- box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.naccs .menu div span.light {
- height: 10px;
- width: 10px;
- position: absolute;
- top: 24px;
- left: 15px;
- background-color: $base-color;
- border-radius: 100%;
- transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.naccs .menu div.active span.light {
- background-color: $third-color;
- left: 0;
- height: 100%;
- width: 3px;
- top: 0;
- border-radius: 0;
-}
-
-.naccs .menu div.active {
- color: $third-color;
- padding: 15px 20px 15px 20px;
-}
-
-ul.nacc {
- position: relative;
- height: 0px;
- list-style: none;
- margin: 0;
- padding: 0;
- transition: .5s all cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-ul.nacc li {
- opacity: 0;
- transform: translateX(50px);
- position: absolute;
- list-style: none;
- transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-ul.nacc li.active {
- transition-delay: .3s;
- z-index: 2;
- opacity: 1;
- transform: translateX(0px);
-}
-
-ul.nacc li p {
- margin: 0;
-}
+ html{
+ 	background-color: rgba(30,30,30,0.9);
+ }	
 </style>
-</head>
-<body>
-<div class="naccs">
-  <div class="grid">
-   <div class="gc gc--1-of-3">
-    <div class="menu">
-     <div class="active"><span class="light"></span><span>내정보</span></div>
-     <div><span class="light"></span><span>사업자등록</span></div>
-     <div><span class="light"></span><span>점포</span></div>
-    </div>
-   </div>
-   <div class="gc gc--2-of-3">
-    <ul class="nacc">
-     <li class="active">
-      <div>
-       <p>Beer is the world's oldest[1][2][3] and most widely consumed[4] alcoholic drink; it is the third most popular drink overall, after water and tea.[5] The production of beer is called brewing, which involves the fermentation of sugars, mainly derived
-        from cereal grain starches—most commonly from malted barley, although wheat, maize (corn), and rice are widely used.[6] Most beer is flavoured with hops, which add bitterness and act as a natural preservative, though other flavourings such as
-        herbs or fruit may occasionally be included. The fermentation process causes a natural carbonation effect, although this is often removed during processing, and replaced with forced carbonation.[7] Some of humanity's earliest known writings refer
-        to the production and distribution of beer: the Code of Hammurabi included laws regulating beer and beer parlours,[8] and "The Hymn to Ninkasi", a prayer to the Mesopotamian goddess of beer, served as both a prayer and as a method of remembering
-        the recipe for beer in a culture with few literate people.[9][10]</p>
-      </div>
-     </li>
-     <li>
-      <div>
-       <p>A vine (Latin vīnea "grapevine", "vineyard", from vīnum "wine") in the narrowest sense is the grapevine (Vitis), but more generally it can refer to any plant with a growth habit of trailing or scandent (that is, climbing) stems, lianas or runners.
-        The word also can refer to such stems or runners themselves, for instance when used in wicker work.[1][2] In the United Kingdom, the term "vine" applies almost exclusively to the grapevine. The term "climber" is used for all climbing plants.[3]</p>
-      </div>
-     </li>
-     <li>
-      <div>
-       <p>Lemonade is any of various sweetened beverages found around the world, all characterized by lemon flavor. Most lemonade varieties can be separated into two distinct types: cloudy and clear; each is known simply as "lemonade" (or a cognate) in countries
-        where dominant.[1] Cloudy lemonade, generally found in North America and India, is a traditionally homemade drink made with lemon juice, water, and sweetener such as cane sugar or honey.[2] Found in the United Kingdom, Ireland, South Africa, Australia,
-        and New Zealand, clear lemonade is a lemon flavoured carbonated soft drink. Not to be confused with Sprite a lemon-lime flavored, soft drink.</p>
-      </div>
-     </li>
-    </ul>
-   </div>
-  </div>
- </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-</body>
-</html> 
+
+<div style="background-color: rgba(30,30,30,0.9);">
+	<br>
+	<br>
+	<div>
+		<p style="margin-left:10%; font-size:15px; color:white; text-align: center;">오늘 뭐먹지?</p>
+	</div>
+	
+	<div style=" margin-bottom:50px; margin-top:100px; " data-aos="fade-right" data-aos-duration="1500">
+		<p style="margin-left:10%; font-size:60px; color:white;"> 오늘은<br>간편한 도시락🍱<br>어때요 ?</p>
+	</div>
+	
+	<div class="row">
+		<div class="col-12 col-sm-1"></div>
+		<div class="col-12 col-sm-10">
+			<div class="row row-cols-1 row-cols-md-3 mb-4" >
+			  <div class="col p-0 pl-4 pr-2" data-aos="fade-right" data-aos-duration="1500">
+			    <div class="card h-100" style="width: 100%; background-image: url('<c:url value='/resources/imgs/todayBg3.png'/>'); background-repeat: no-repeat; background-size: cover; border:none;">
+			      <div class="card-body" style="color: white;">
+					     <div class="row" style="margin:auto;">
+					     <div class="col-12 col-md-2"></div>
+					     <div class="col-12 col-md-8">
+					     <div class="row" style="margin-top:10%;">
+					     	 <div class="col-12 col-md-4  mb-4 p-1">
+						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#어쩌구저쩌구</span>
+						     </div>
+						      <div class="col-12 col-md-4  mb-4 p-1">
+						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick" >#어쩌구저쩌구</span>
+						     </div>
+						      <div class="col-12 col-md-4  mb-4 p-1">
+						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#어쩌구저쩌구</span>
+						     </div>
+						      <div class="col-12 col-md-4  mb-4 p-1">
+						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#어쩌구저쩌구</span>
+						     </div>
+						     <div class="col-12 col-md-4  mb-4 p-1">
+						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#어쩌구저쩌구</span>
+						     </div>
+						     
+						    
+					      </div>
+					 	 </div>
+					 	<div class="col-12 col-md-2"></div>
+					 	</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col p-0 pr-4 pl-2" data-aos="fade-left"  data-aos-duration="1500" >
+			    <div class="card h-100" style="width: 100%;  background-color: rgba(0,0,0,0.2);">
+			      <div class="card-body" style="color: white;">
+			       	<div style="text-align: right; margin-right:70px;" class="mb-4 mt-3">
+				       	 <span>우리 동네</span><Br>
+					     <span style="font-size: 25px;">음식이름</span><span> 추천!</span><br>
+				    </div>
+				    <a href="#" class="btn btn-warning" style="width:80%;  border-radius: 20px; display:block; margin: auto; color:#333;"><b>주문하러 가기</b></a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<div class="col-12 col-sm-1"></div>
+		</div>
+	</div>
+
+		<div class="container p-0">
+			<div class="card-columns">
+			  <div class="card "  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/noddle.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/hot.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index1.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index2.jpg'/>" alt="Card image cap">
+			  </div>
+			  <div class="card"  data-aos="fade-up" > 
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index4.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index5.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
+			  </div>
+			
+			  <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index5.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
+			  </div>  
+			  <div class="card" data-aos="fade-up">
+			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="Card image cap">
+			  </div>
+			   <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/hot.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
+			  </div>
+			    <div class="card"  data-aos="fade-up" >
+			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
+			  </div>
+			</div>
+		</div>
+
+	<div class="row" id="footerDiv" style="height:80px; display: none;" >
+		<div class="col-12 col-md-4"></div>
+		<div class="col-12 col-md-4">
+			<div style="margin-bottom:10%; ">
+				<p style="color:white; font-size:30px; text-align: center;" class="mt-3">주문하러 가시겠습니까?  
+				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle ml-1" viewBox="0 0 16 16" style="color:white;">
+		  			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+				</svg>
+				
+				</p>
+			
+			</div>
+		</div>
+		<div class="col-12 col-md-4" style="text-align: right;">
+			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" id="cancelBottom" class="bi bi-x mt-4 mr-4" viewBox="0 0 16 16" style="color:white;">
+				<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+			</svg>
+
+		</div>
+ 	</div>
+</div>
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+			<script>
+				AOS.init();
+				
+				$(function(){
+					var sa = 200;
+					//스크롤 기본폼 window기억!
+					$(window).scroll(function(){
+						var num = $('html,body').scrollTop();
+						console.log(num);
+						if(num<sa){
+					   		$('#footerDiv').show();
+					   }else{
+					   		$('#footerDiv').hide();
+					   }
+					});
+					
+				});
+				
+			</script>
+
+ <style>
+ .card-columns{
+ 	    column-count: 3;
+ }
+  
+  
+ 
+ .card-columns .card {
+    border: none;
+}
+
+#footerDiv {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    background-color: rgba(30,30,30,0.6);
+    font-weight: bold;
+}
+
+#footerDiv > div:nth-child(2) > div > p:hover, #cancelBottom:hover, .spanClick:hover{
+	cursor:pointer;
+}
+
+ </style>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
