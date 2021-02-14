@@ -22,6 +22,8 @@ import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.common.LocationVO;
 import com.project.fd.owner.model.OwnerService;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterService;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -33,14 +35,24 @@ public class OwnerStoresController {
 	
 	@Autowired OwnerStoresService ownerStoresService;
 	
+	@Autowired OwnerRegisterService ownerRegisterService;
+	
 	@Autowired private FileUploadUtil fileUtil;
 	
 	@Autowired private AdminLargeCategoryService adminlarge;
 
 	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.GET)
-	 public String ownerlaunch(Model model) {
-
-		 logger.info("점포 - 입점 메인 화면 보여주기");
+	 public String ownerlaunch(Model model,HttpSession session) {
+		 String msg="	사업자 등록 신청 먼저 부탁드려요. ", url="/owner/menu1/launch/launch.do";
+		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		 //long oRegisterNo=0;
+		ownerNo=(Integer)session.getAttribute("ownerNo");
+		OwnerRegisterVO vo=ownerRegisterService.selectRegisterByOwnerNo(ownerNo);
+		 long oRegisterNo=vo.getoRegisterNo();
+		logger.info("입점신청 세션의 ownerNo={},oRegisterNo={}",ownerNo,oRegisterNo);
+				
+		
+		 logger.info("점포 - 입점 메인 화면 보여주기 ownerNo={}",ownerNo);
 		 
 		 // 지역코드번호
 		List<LocationVO> location=ownerStoresService.AllLocaion();
@@ -50,21 +62,26 @@ public class OwnerStoresController {
 		 logger.info("result large.size={}",large.size());
 		model.addAttribute("location", location);
 		model.addAttribute("large", large);
+		model.addAttribute("oRegisterNo", oRegisterNo);
 				
 		return "owner/menu1/launch/launch";
 		 
 	}
 	 
 	 //입점신청 
-	 @RequestMapping(value="/launch/launchRegister.do", method=RequestMethod.POST)
+	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.POST)
 	 public String register_post(@ModelAttribute OwnerStoresVO ownerStoresVo,
 			 HttpServletRequest request, HttpSession session,
 			 Model model) { 
-		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		logger.info("입점신청 세션의 ownerNo={}"+ownerNo);
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		OwnerRegisterVO vo=ownerRegisterService.selectRegisterByOwnerNo(ownerNo);
+		long oRegisterNo=vo.getoRegisterNo();
+		logger.info("입점신청 세션의 ownerNo={},oRegisterNo={}",ownerNo,oRegisterNo);
+		
+		ownerStoresVo.setoRegisterNo(oRegisterNo);
 		ownerStoresVo.setOwnerNo(ownerNo);
+		ownerStoresVo.setoRegisterNo(oRegisterNo);
 		logger.info("점포 - 입점하기 업로드 전  OwnerStoresVO={}",ownerStoresVo);
-		 
 			//파일 업로드 처리
 			String originName="", fileName="";
 			long fileSize=0;

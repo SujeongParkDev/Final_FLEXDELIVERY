@@ -31,6 +31,10 @@
 			and ownerId=#{ownerId}
 		</if>
 	</select>
+	<select id="existOwnerNo" parameterType="int" resultType="long">
+		select * from ownerregister
+		where owner_no=#{ownerNo}
+	</select>
 	
 	<select id="selectStoreNoByNo" parameterType="int" resultType="int">
 		select store_No from stores

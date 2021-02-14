@@ -38,9 +38,12 @@ h1 {
 				을 올리세요!
 			</strong>
 		</h1>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청
-		</button>
-		<input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
+		<c:if test="${empty oRegisterNo}">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청</button>
+		</c:if>
+		<c:if test="${!empty oRegisterNo}">
+		<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
+		</c:if>
 	</div>
 	<div class="row h-80 align-items-center marketing">
 		<div class="col-lg-6">
@@ -103,7 +106,7 @@ h1 {
 			</div>
 			<br> <br>
 			<div class="modal-body">
-				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/aunchWrite.do'/>">
+				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">사업자등록 번호</label>
 						<input type="text" id="oRegisterNo" name="oRegisterNo"
@@ -158,7 +161,7 @@ h1 {
 				<br>
 			</div>
 			<div class="modal-body storebody">
-				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launchRegister.do'/>">
+				<form class="dialog on lg frm2" name="frm2" id="frm2" method="post" enctype="multipart/form-data" action="<c:url value='/owner/menu1/launch/launch.do'/>">
 					<h5 class="form-label">
 						<div class="text-left">
 							<h3 class="mt-2 mb-1">
@@ -180,7 +183,7 @@ h1 {
 						</label> <input type="text" class="infobox form-control" id="recipient-name" placeholder="20자 이내로 등록해주세요." name="storeName" id="storeName" minlength="1" title="점포명">
 					</div>
 					<div class="form-group">
-					<div id="preview" class="text-center logo"></div>
+					<div id="preview2" class="text-center logo"></div>
 						<label for="recipient-name" class="control-label">
 							<h5>✔ 점포 로고 이미지</h5>
 						</label> <input type="file" class="btn btn-default logo" placeholder="최대 (2M)" required="" class="infobox form-control-lg" id="upfile" name="upfile" minlength="1" title="점포 로고 이미지">
@@ -236,7 +239,7 @@ h1 {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary btRegi" id="btRegi" data-dismiss="modal" name="modalWrite" value="등록 제출">
+						<input type="submit" class="btn btn-primary btRegi" id="btRegi" name="modalWrite" value="등록 제출">
 					</div>
 				</form>
 			</div>
@@ -340,17 +343,28 @@ h1 {
 		$('.logo').on('change', function() {
 			readInputFile(this);
 		});
-		
-		$('#btRegi').click(function(){
-			$('form[name=frm2').prop('action', '<c:url value="/owner/menu1/launch/launchRegister.do"/>');
-		$('form[name=frm2]').submit();
+		$('form[name=frm2]').submit(function(){
+			$('.infobox').each(function(idx, item){
+				if($(this).val().length<1){
+					alert($(this).attr('title')+ '를(을) 입력하세요');
+					$(this).focus();
+					event.preventDefault();
+					return false;
+				}
+			});
+			if(!$('#chkAgree').is(":checked")){
+				alert('약관에 동의하셔야 합니다.');
+				$('#chkAgree').focus();
+				event.preventDefault();
+			}
 		});
+		
 	});
 	function readInputFile(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				$('#preview').html(
+				$('#preview2').html(
 						"<img src=" + e.target.result
 								+ "  style='width:90%; margin-left:20px;' >");
 			}
