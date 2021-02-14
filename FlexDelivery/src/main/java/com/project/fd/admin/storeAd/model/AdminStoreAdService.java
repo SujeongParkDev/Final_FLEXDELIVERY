@@ -5,5 +5,7 @@ import java.util.List;
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 
 public interface AdminStoreAdService {
-	public List<OwnerStoreAdVO> approvalList();
+	public List<AdminStoreAdVO> approvalList();
+	public AdminStoreAdVO storeAdDetail(int no);
+	public int storeAdAgree(int no);
 }
