@@ -45,11 +45,9 @@ public class OwnerStoresController {
 	 public String ownerlaunch(Model model,HttpSession session) {
 		 String msg="	사업자 등록 신청 먼저 부탁드려요. ", url="/owner/menu1/launch/launch.do";
 		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		 //long oRegisterNo=0;
 		ownerNo=(Integer)session.getAttribute("ownerNo");
-		OwnerRegisterVO vo=ownerRegisterService.selectRegisterByOwnerNo(ownerNo);
-		 long oRegisterNo=vo.getoRegisterNo();
-		logger.info("입점신청 세션의 ownerNo={},oRegisterNo={}",ownerNo,oRegisterNo);
+			
+		logger.info("입점신청 세션의 ownerNo={}",ownerNo);
 				
 		
 		 logger.info("점포 - 입점 메인 화면 보여주기 ownerNo={}",ownerNo);
@@ -62,7 +60,6 @@ public class OwnerStoresController {
 		 logger.info("result large.size={}",large.size());
 		model.addAttribute("location", location);
 		model.addAttribute("large", large);
-		model.addAttribute("oRegisterNo", oRegisterNo);
 				
 		return "owner/menu1/launch/launch";
 		 

@@ -38,12 +38,8 @@ h1 {
 				을 올리세요!
 			</strong>
 		</h1>
-		<c:if test="${empty oRegisterNo}">
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청</button>
-		</c:if>
-		<c:if test="${!empty oRegisterNo}">
 		<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
-		</c:if>
 	</div>
 	<div class="row h-80 align-items-center marketing">
 		<div class="col-lg-6">
