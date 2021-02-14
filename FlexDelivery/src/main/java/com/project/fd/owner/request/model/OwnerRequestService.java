@@ -28,4 +28,10 @@ public interface OwnerRequestService {
 	public int updateTempstore(int tNo);
 	
 	public boolean pwdCk(String pwd, int ownerNo);
+	
+	// index count
+		public int selectAgree1(int ownerNo);
+		public int selectAgree2(int ownerNo);
+		public int selectAgree3(int ownerNo);
+		public int selectAgree4(int ownerNo);
 }

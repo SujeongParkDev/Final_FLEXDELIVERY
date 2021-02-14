@@ -53,7 +53,7 @@ public class OwnerReviewController {
 		
 		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
 		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
-		logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		logger.info("미답변   리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
 		
 		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
 		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);

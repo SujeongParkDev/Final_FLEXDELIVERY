@@ -15,7 +15,7 @@ h1 {
 }
 
 .error, .count {
-	color: #5A8DEE;
+	color: red;
 	font-weight: bold;
 }
 
