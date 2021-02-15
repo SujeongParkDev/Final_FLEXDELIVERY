@@ -22,7 +22,6 @@ input {
 					<p class="card-text text-center">승인 대기 상태일 경우 상세보기에서 확인 후 취소하실 수 있습니다.</p>
 					<br> <br>
 					<div class="row">
-						<!-- 데이터 피커  -->
 						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
 							<select class="form-select groupChoice p-2 choice" valaue="신청 리스트 선택 " name="choice" id="choice" style="overflow: auto;">
