@@ -14,4 +14,6 @@ public interface AdminMypageDAO {
 
 	AdminVO selectInfoByNO(int no);
 
+	boolean selectName(String name);
+
 }

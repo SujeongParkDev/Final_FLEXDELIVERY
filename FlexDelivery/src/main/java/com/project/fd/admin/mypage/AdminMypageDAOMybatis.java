@@ -38,4 +38,14 @@ public class AdminMypageDAOMybatis implements AdminMypageDAO {
 		return sqlSession.selectOne(namespace+"selectInfoByNo", no);
 	}
 
+	@Override
+	public boolean selectName(String name) {
+		boolean bool=false;
+		int cnt=sqlSession.selectOne(namespace+"selectName", name);
+		if (cnt==0) {
+			bool=true;
+		}
+		return bool;
+	}
+
 }

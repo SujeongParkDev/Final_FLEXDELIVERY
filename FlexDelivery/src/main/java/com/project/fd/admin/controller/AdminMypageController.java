@@ -145,9 +145,14 @@ public class AdminMypageController {
 	
 	@ResponseBody
 	@RequestMapping("/myPageEditChkName.do")
-	public boolean pwd2_chk(@RequestParam String name) {
+	public boolean name_chk(@RequestParam String name) {
 		logger.info("이름 ajax, name={}", name);
-		boolean bool=mypageService.selectName(name);
+		boolean bool=false;
+		if (name!=null && !name.isEmpty()){			
+			bool=mypageService.selectName(name);
+			logger.info("bool={}", bool);
+		}
+		
 		return bool;
 	}
 	

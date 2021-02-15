@@ -17,7 +17,7 @@ $(function(){
 	$('#pwd2Ok').hide();
 	$('#nameOk').hide();
 	
-	checkPWd1();
+	checkPwd1();
 	checkPwd2();
 	checkName();
 	
@@ -33,6 +33,7 @@ $(function(){
 		alert (ok1+"/"+ok2+"/"+ok3);
 		
 		if (!(ok1=="Y" && ok2=="Y" && ok3=="Y")){
+			alert("정보 수정 실패!");
 			event.preventDefault();	
 		}
 	})
@@ -45,11 +46,12 @@ function validate_pwd(pwd){
 }
 
 function validate_name(name){
-	 var pattern= new RegExp(/^[가_힣]+$/g);
+	 var pattern= new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
 	 return pattern.test(name);
 }
 
 function checkPwd1(){
+	var result="";
 	$('#adminPwd1').keyup(function(){
 		var pwd1=$('#adminPwd1').val();
 		
@@ -89,6 +91,7 @@ function checkPwd1(){
 }
 
 function checkPwd2(){
+	var result="";
 	$('#adminPwd2').keyup(function(){
 		var pwd1=$('#adminPwd1').val();
 		var pwd2=$('#adminPwd2').val();
@@ -127,10 +130,11 @@ function checkPwd2(){
 }
 
 function checkName(){
+	var result="";
 	$('#basicInput').keyup(function(){
 		var name=$('#basicInput').val();
 		
-		if (name.length>1){
+		if (validate_name(name) && name.length>1){
 			
 			$.ajax({
 				url:"<c:url value='/admin/myPage/myPageEditChkName.do'/>",
@@ -152,11 +156,17 @@ function checkName(){
 				}
 				
 			});
-		} else {
+		} else if(!validate_name(name)){
+			result="한글만 입력 가능합니다."
+			$('#chkName').text(result);
+			$('#nameOk').html('N');
+		} else if(name.length<=1){
 			result="두 글자 이상 입력하십시오!"
 			$('#chkName').text(result);
 			$('#nameOk').html('N');
 			$('#basicInput').focus();
+			
+			
 		}
 		event.preventDefault();
 		return false;
