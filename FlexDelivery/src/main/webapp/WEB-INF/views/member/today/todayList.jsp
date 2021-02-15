@@ -11,9 +11,27 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+<script>
+/* 
+	$(function{
+		var mCategoryNo=$('input[name=mCategoryNo]').val();
+		$.ajax({
+			url:"<c:url value='/member/today/todayListStores.do'/>",
+			data:"mCategoryNo="+mCategoryNo,
+			success:function(){
+				
+			},
+			error:function(xhr, status, error){
+				alert('error! '+error);
+			}
+			event.preventDefault();
+			
+		});
+	}); */
+</script>
 
 <div style="background-color: rgba(30,30,30,0.9);">
+	<input type="hidden" name="mCategoryNo" value="${map['M_CATEGORY_NO'] }">
 	<br>
 	<br>
 	<div>
@@ -21,7 +39,7 @@
 	</div>
 	
 	<div style=" margin-bottom:50px; margin-top:100px; " data-aos="fade-right" data-aos-duration="1500">
-		<p style="margin-left:10%; font-size:60px; color:white;"> 오늘은<br>간편한 도시락🍱<br>어때요 ?</p>
+		<p style="margin-left:10%; font-size:60px; color:white;"> 오늘은<br>맛있는 ${map['M_CATEGORY_NAME'] }${emoji }<br>어때요 ?</p>
 	</div>
 	
 	<div class="row">
@@ -64,7 +82,7 @@
 			      <div class="card-body" style="color: white;">
 			       	<div style="text-align: right; margin-right:70px;" class="mb-4 mt-3">
 				       	 <span>우리 동네</span><Br>
-					     <span style="font-size: 25px;">김밥</span><span> 추천!</span><br>
+					     <span style="font-size: 25px;">${map['M_CATEGORY_NAME'] }${emoji }</span><span> 추천!</span><br>
 				    </div>
 				    <a href="#" class="btn btn-warning" style="width:80%;  border-radius: 20px; display:block; margin: auto; color:#333;"><b>주문하러 가기</b></a>
 			      </div>

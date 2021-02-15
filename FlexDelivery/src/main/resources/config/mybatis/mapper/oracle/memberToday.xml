@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.memberToday">
+	
+	<select id="selectMCategory" resultType="map">
+		select   A.M_CATEGORY_NO, A.M_CATEGORY_NAME, A.L_CATEGORY_NO, A.WEATHER_NO , rownum
+		from 
+		(
+			select M_CATEGORY_NO, M_CATEGORY_NAME, L_CATEGORY_NO,WEATHER_NO from mediumCategory
+			ORDER BY DBMS_RANDOM.RANDOM()
+		) A
+		where rownum=1
+	</select>
+</mapper>
