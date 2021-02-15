@@ -249,6 +249,7 @@ $(function(){
 		$('#choice').on('change',function(){
 			var result=$('select[name=choice]').val();
 			alert(result);
+			if(result==1){
 			$.ajax({
 				url:"<c:url value='/owner/menu2/requests/selectRegi.do'/>",
 				type:"GET",
@@ -263,6 +264,22 @@ $(function(){
 						alert("error! : " + error);
 					}				
 				});//ajax
+			}else if(result==0){
+				$.ajax({
+					url:"<c:url value='/owner/menu2/requests/requests.do'/>",
+					type:"GET",
+					data: "ownerNo="+$('#ownerNo').val(), 
+					dataType:"json",
+					contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+					success:function(res){
+						//alert(res);
+						$('#store').empty();
+						},
+						error:function(xhr, status, error){
+							alert("error! : " + error);
+						}				
+					});//ajax
+			}
 		});
 });
 	

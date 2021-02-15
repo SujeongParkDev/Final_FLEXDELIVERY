@@ -104,4 +104,8 @@
 		order by orders_no desc
 	</select>
 	
+	<select id="avgReting" parameterType="int" resultType="int">
+		select avg(nvl(REVIEW_RATING,0)) from review where store_no=#{storeNo}
+	</select>
+	
 </mapper>
