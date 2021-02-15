@@ -87,7 +87,7 @@
 								  								<th colspan="3">제목</th>
 																<th>등록일시</th>
 																<th>상태</th>
-																<th>취소하기</th>
+																<th>삭제</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -95,21 +95,22 @@
 																<td class="text-bold-500">3</td>
 																<td colspan="3">음식에서 이물질이 나왔습니다</td>							               
 																<td>2021-01-19</td>
-																	<td><span class="badge bg-danger">미답변</span></td>
-																	<td><span class="badge bg-dark">취소</span></td>
+																	<td><span class="badge badge-danger">미답변</span></td>
+																	<td><span class="badge bg-secondary">삭제</span></td>
 															</tr>
 															<tr>
 																<td class="text-bold-500">2</td>
 																<td colspan="3">배달 지역 변경은 안되나요?</td>                                     
 																<td>2021-01-08</td>
-																<td><span class="badge bg-success">답변완료</span></td>
-																<td><span class="badge bg-dark">X</span></td>
+																<td><span class="badge badge-success">답변완료</span></td>
+																<td><span class="badge bg-secondary">삭제</span></td>
 															</tr>
 															<tr>
 																<td class="text-bold-500">1</td>
 																<td colspan="3">선물하기는 정해진 금액만 가능한가요?</td>							                
 																<td>2021-01-06</td>
-																<td><span class="badge bg-success">답변완료</span></td>
+																<td><span class="badge badge-success">답변완료</span></td>
+																<td><span class="badge bg-secondary">삭제</span></td>
 																<td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
 															</tr>
 														</tbody>
