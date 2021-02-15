@@ -14,8 +14,18 @@ public class AdminStoreAdServiceImpl implements AdminStoreAdService{
 	AdminStoreAdDAO adminStoreAdDao;
 
 	@Override
-	public List<OwnerStoreAdVO> approvalList() {
+	public List<AdminStoreAdVO> approvalList() {
 		return adminStoreAdDao.approvalList();
+	}
+
+	@Override
+	public AdminStoreAdVO storeAdDetail(int no) {
+		return adminStoreAdDao.storeAdDetail(no);
+	}
+
+	@Override
+	public int storeAdAgree(int no) {
+		return adminStoreAdDao.storeAdAgree(no);
 	}
 
 }
