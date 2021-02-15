@@ -42,30 +42,31 @@ public class OwnerShopsController {
 		model.addAttribute("vo", vo);
 	}
 	
-}
-	/*
-	@ResponseBody
-	@RequestMapping(value="/updateContent.do", produces = "application/text;charset=utf8")
-	public String updateContent(  @RequestParam(defaultValue = "0") int storeContent, 
-			@RequestParam(defaultValue = "0") int storeNo,
-			@RequestParam(defaultValue = "0") int ownerNo){
-			logger.info("소개 업데이트 하기위한 ajax storeContent={}, storeNO={}", storeContent,storeNo);
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("storeNo", storeNo);
-			map.put("storeContent", storeContent);
-			
-			String res = "";
-			
-			
-			logger.info("업데이트 결과 res={}", res);
+
+@RequestMapping("/updateContent.do")
+public String updateContent(  @RequestParam(defaultValue = "0") int storeNo, 
+		@RequestParam(defaultValue = "0") int storeContent){
+		logger.info("소개 업데이트 storeContent={}, storeNO={}", storeContent,storeNo);
 		
-			return res;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("storeNo", storeNo);
+		map.put("storeContent", storeContent);
+		
+		int cnt = ownerStoreService.updateContent(map);
+			
+		logger.info("업데이트 결과 cnt={}", cnt);
+				
+		String msg="글 수정 실패", url="/owner/menu2/basic/basic.do";
+		if(cnt>0) { msg="글수정되었습니다.";
+		url="/owner/menu2/basic/basic.do";
+		}
+				
+		return "common/message";
 	}
 }
 	
 	//파일 업로드 처리
-	/**
+	/*
 	String originName="", fileName="";
 	long fileSize=0;
 	try {
