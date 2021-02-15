@@ -1,6 +1,7 @@
 package com.project.fd.member.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.fd.owner.common.LocationVO;
 
@@ -25,5 +26,7 @@ public interface MemberService {
 		public int memloNo(String locationName);
 		public int updateMember(MemberVO vo);
 		public int rupdateMember(MemberVO vo);
+		boolean giftChk(MemberVO vo);
+		int selectMemNo(Map<String, Object> map);
 		
 }

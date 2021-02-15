@@ -3,7 +3,7 @@
 
 <%@include file="../../memInc/top.jsp" %>
 <div class="osahan-home-page">
-       <div class="bg-primary p-3 d-none">
+    <div class="bg-primary p-3 d-none">
 	    <div class="text-white">
 	        <div class="title d-flex align-items-center">
 	            <a class="toggle">

@@ -207,7 +207,7 @@
 						                </div>
 						            </div>
 						            <div class="d-flex align-items-center">
-							            <p class="text-gray mb-0 float-right mr-3 text-muted small">${(cVo.menuPrice+cVo.mOptionPrice)*cVo.cartQty}</p>
+							            <p class="text-gray mb-0 float-right mr-3 text-muted small">${(cVo.menuPrice+cVo.mOptionPrice)*cVo.cartQty}원</p>
 						                <span class="count-number float-right">
 						                <button type="button" class="btn-sm left dec btn btn-outline-secondary" onclick="minus(${cVo.cartNo},${cVo.cartQty})"> <i class="feather-minus"></i> </button>
 						                <input class="count-number-input" type="text" readonly value="${cVo.cartQty}">
@@ -229,7 +229,7 @@
 						            </div>
 						            <div class="d-flex align-items-center">
 				
-							            <p class="text-gray mb-0 float-right mr-3 text-muted small">${(cVo.menuPrice+cVo.mOptionPrice)*cVo.cartQty}</p>
+							            <p class="text-gray mb-0 float-right mr-3 text-muted small">${(cVo.menuPrice+cVo.mOptionPrice)*cVo.cartQty}원</p>
 						                <span class="count-number float-right">
 						                <button type="button" class="btn-sm left dec btn btn-outline-secondary" onclick="minus(${cVo.cartNo},${cVo.cartQty})"> <i class="feather-minus"></i> </button>
 						                <input class="count-number-input" type="text" readonly value="${cVo.cartQty}">

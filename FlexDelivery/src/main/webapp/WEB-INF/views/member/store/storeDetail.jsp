@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9cc0c63f366c2fc01061c22802cf0ee&libraries=services"></script>
 <script type="text/javascript">
 	function cartList(){
 		var data="memberNo="+${sessionScope.memberNo};
@@ -66,12 +67,12 @@
 			   	}else{
 			   		if (map.vo.sStatusNo==2){
 			   			if(map.vo.hCategoryNo==map.today){
-			   				str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >오늘은 휴업이에요ㅠㅠ</a>";
+			   				str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >오늘은 휴업이에요</a>";
 			   			}else{
 							str+="<a class='btn btn-success btn-block btn-lg' href='<c:url value='/member/order/orderSheet.do'/>'>ORDER "+totalPrice+"원<i class='feather-arrow-right'></i></a>";
 			   			}
 			   		}else if(map.vo.sStatusNo==1 || map.vo.sStatusNo==3){
-				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요ㅠㅠ</a>";
+				    	str+="<a class='btn btn-dark btn-block btn-lg disabled' href='#' >지금은 준비중이에요</a>";
 			   		}
 			   	}
 			    str+="</div></div>";
@@ -83,6 +84,9 @@
 			}
 		})
 	};
+	
+	
+	
 	
 	function couponBox(){
 		var memberNo=${sessionScope.memberNo};
@@ -140,10 +144,101 @@
 		});        
 	};
 	
+	function resizeMap1() {
+	    var mapContainer = document.getElementById('map');
+	    mapContainer.style.height = '600px'; 
+	}
+	
+	function resizeMap2() {
+	    var mapContainer = document.getElementById('map');
+	    mapContainer.style.height = '300px'; 
+	}
+	
+	
 	$(function(){
 		cartList();
 		couponBox();
 		var bool = ${cartChk};
+		var clickCount=1;
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		var mapcode="";
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${vo.storeAddress}', function(result,status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				mapcode=coords
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		        
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		    
+		     var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">클릭하여 큰 지도로 보기</div>'
+		       });
+		    
+		  	// 마커에 마우스오버 이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'mouseover', function() {
+		       // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		         infowindow.open(map, marker);
+		     });
+
+		     // 마커에 마우스아웃 이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'mouseout', function() {
+		         // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+		         infowindow.close();
+		     });
+		     
+		  	// 마커에 클릭이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'click', function() {
+		    	 if(clickCount==1){
+			    	 resizeMap1();
+			    	 map.relayout();
+			    	 map.panTo(mapcode);
+			    	 clickCount=2;
+		    	 }else if(clickCount==2){
+		    		 resizeMap2();
+		    		 map.relayout();
+		    		 map.panTo(mapcode);
+		    		 clickCount=1;
+		    	 }
+		     });
+		  	
+		  	// 지도 확대 레벨 변화 이벤트를 등록한다
+			kakao.maps.event.addListener(map, 'zoom_changed', function () {
+				map.panTo(mapcode);
+			});
+		}); 
 		
    		$('form[name=couponForm]').submit(function(){
    			var dataForm=$(this).serializeArray();
@@ -583,6 +678,13 @@
                 </div>
                 <!-- /Menu -->
                 
+                <!-- MAP -->
+                <div class="shadow-sm rounded bg-white mb-3 p-3 overflow-hidden" >
+                	<h6 class="mb-3">점포 위치</h6>
+                	<div id="map" style="min-height:300px"></div>
+                </div>
+                <!-- /MAP -->
+                
                 <!-- Review -->
                 <div class="mb-3">
                     <div id="ratings-and-reviews" class="bg-white shadow-sm d-flex align-items-center rounded p-3 mb-3 clearfix restaurant-detailed-star-rating">
@@ -610,10 +712,10 @@
                 </div>
                 <!-- /Review -->
             </div>
+            
             <!-- 장바구니 -->
             <div class="col-lg-4 pt-3" id="cartDiv"></div>
             <!-- /장바구니 -->
-            <div class="col-lg-4 pt-3" id="mapDiv"></div>
         </div>
     </div>
 </html>

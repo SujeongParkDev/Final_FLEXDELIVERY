@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:if test="${empty list}">
+	<div class='p-3 rounded shadow-sm bg-white col-md-12' style="text-align:center">
+		<img src="<c:url value='/resources/imgs/noListDefault.png'/>" class="img-fluid" style="inline-size:45em;">
+	</div>
+</c:if>
+
 <c:if test="${!empty list}">
 	<c:forEach var="vo" items="${list}">
      <div class="col-md-4 mb-3">
@@ -18,3 +25,4 @@
      </div>
 	</c:forEach>
 </c:if>
+	

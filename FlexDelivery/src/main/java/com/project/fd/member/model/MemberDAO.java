@@ -1,8 +1,6 @@
 package com.project.fd.member.model;
 
-import java.util.List;
-
-import com.project.fd.owner.common.LocationVO;
+import java.util.Map;
 
 public interface MemberDAO {
 	public int insertMember(MemberVO vo);
@@ -16,4 +14,6 @@ public interface MemberDAO {
 	public int memloNo(String locationName);
 	public int updateMember(MemberVO vo);
 	public int rupdateMember(MemberVO vo);
+	int giftChk(MemberVO vo);
+	int selectMemNo(Map<String, Object> map);
 }

@@ -70,7 +70,7 @@ public class MemberCouponController {
 		map.put("eCouponNo", eCouponNo);
 		map.put("memberNo", (Integer)session.getAttribute("memberNo"));
 		int cnt=coupServ.getEventCoupon(map);
-		String msg="발급 실패",url="/member/coupon/eventCouponList.do";
+		String msg="발급 실패",url="/member/addOn/addOn.do";
 		if(cnt>0) {
 			msg="발급성공!";
 		}

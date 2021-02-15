@@ -69,4 +69,13 @@
 		where member_Id=#{memberId}
 	</update>
 	
+	<select id="giftChk" parameterType="memberVo" resultType="int">
+		select count(*) from member
+		where member_Name=#{memberName}
+		and member_Hp3=#{memberHp3}	
+	</select>
+	
+	<select id="selectMemNo" parameterType="map" resultType="int">
+		select member_no from member where member_name=#{memberName} and member_hp3=#{memberHp3}
+	</select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.project.fd.member.model;
 
 
+import java.util.Map;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,6 +90,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int rupdateMember(MemberVO vo) {
 		return memberDao.rupdateMember(vo);
+	}
+
+	@Override
+	public boolean giftChk(MemberVO vo) {
+		int cnt=memberDao.giftChk(vo);
+		if(cnt>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	public int selectMemNo(Map<String, Object> map) {
+		return memberDao.selectMemNo(map);
 	}
 	
 	

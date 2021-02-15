@@ -197,4 +197,11 @@ public class MemberController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping("/memberGiftChk.do")
+	public boolean memberchk(@ModelAttribute MemberVO vo) {
+		logger.info("선물하기 회원이름={},회원 핸드폰={}",vo.getMemberName(),vo.getMemberHp3());
+		return memberService.giftChk(vo);
+	}
+	
 }

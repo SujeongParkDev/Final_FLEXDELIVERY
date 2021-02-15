@@ -8,7 +8,37 @@ public class MemberGiftVO {
 	private int giftGiveMemberNo; //보낸회원번호
 	private String giftUse; //사용여부
 	private int gPTypePrice; //상품권가격
+	private String giftTakeMemberName; //받은회원 이름
+	private String giftGiveMemberName; //보낸회원 이름
+	private String gProductName; //상품권이름
+	private String gProductFilename; //상품권파일네임
 	
+	
+	
+	public String getgProductName() {
+		return gProductName;
+	}
+	public void setgProductName(String gProductName) {
+		this.gProductName = gProductName;
+	}
+	public String getgProductFilename() {
+		return gProductFilename;
+	}
+	public void setgProductFilename(String gProductFilename) {
+		this.gProductFilename = gProductFilename;
+	}
+	public String getGiftTakeMemberName() {
+		return giftTakeMemberName;
+	}
+	public void setGiftTakeMemberName(String giftTakeMemberName) {
+		this.giftTakeMemberName = giftTakeMemberName;
+	}
+	public String getGiftGiveMemberName() {
+		return giftGiveMemberName;
+	}
+	public void setGiftGiveMemberName(String giftGiveMemberName) {
+		this.giftGiveMemberName = giftGiveMemberName;
+	}
 	public int getGiftNo() {
 		return giftNo;
 	}
