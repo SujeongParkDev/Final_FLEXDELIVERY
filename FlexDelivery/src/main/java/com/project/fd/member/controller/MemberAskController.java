@@ -1,5 +1,7 @@
 package com.project.fd.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -37,13 +39,23 @@ public class MemberAskController {
 			HttpServletRequest request) {
 		logger.info("1:1 글쓰기 처리, 파라미터 vo={}",memberAskVo);
 		
-		
-		
 		//2
 		int cnt = memberAskService.askWrite(memberAskVo);
 		logger.info("1:1 글쓰기 처리 결과, cnt={}", cnt);
 		
 		return "/member/ask/askList";
+	}
+	
+	@RequestMapping("/askICList.do")
+	public String askICList(@RequestParam String askId, Model model) {
+		logger.info("1:1 리스트 보여주기, 파라미터 askId={}", askId);
+		
+		List<MemberAskVO> list = memberAskService.selectICAsk(askId);
+		logger.info("1:1내용 조회, 결과 list.size={}",list.size());
+		
+		model.addAttribute("askICList",list);
+		
+		return "member/ask/askICList";
 	}
 	
 }

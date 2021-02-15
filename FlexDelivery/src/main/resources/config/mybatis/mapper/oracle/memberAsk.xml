@@ -13,5 +13,9 @@
 		values(#{askNo}, #{askTitle}, #{askId}, #{askContent}, default, #{askNo}, default, #{authorityNo})
 	</insert>
 
+	<select id="askSelect" parameterType="memberAskVo">
+		select * from ask
+		where user ask_id = #{askId}
+	</select>
 
 </mapper>
