@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.project.fd.common.Utility;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewCommentVO;
 import com.project.fd.owner.reviewcomment.model.OwnerReviewSearchVO;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 @Controller
 @RequestMapping("/owner/menu2/reviewOwner")
@@ -32,6 +34,7 @@ public class OwnerReviewController {
 	
 	@Autowired OwnerReivewCommentService ownerReCommService;
 	//@Autowired MemberReviewService. memberReviewService;
+	@Autowired private OwnerStoresService ownerStoresService;
 
 	@RequestMapping(value="/reviewOwner.do", method=RequestMethod.GET)
 	public String orderList_get(HttpSession session, Model model) {
@@ -238,6 +241,28 @@ public class OwnerReviewController {
 			model.addAttribute("nocmtList", nocmtList);
 			return "owner/menu2/reviewOwner/nocomment";
 		}
+		
+		//별점 차트
+		
+		@ResponseBody
+		@RequestMapping("/ratingstars.do")
+		public Map<String, Object> avg_stars(HttpSession session,
+				Model model) {
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			logger.info("stars rating chart ajax ownerNo={}",ownerNo);
+			
+			int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+			logger.info("차트 , storeNo={}", storeNo);
+			
+			
+			Map<String, Object> map = new HashedMap<String, Object>();
+			
+			
+			
+			logger.info("map={}" , map);
+			return map;
+		}
+		
 	/*
 	// 미답변 
 	@ResponseBody

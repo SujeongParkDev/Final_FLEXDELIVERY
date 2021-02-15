@@ -180,7 +180,7 @@
 	     	$.ajax({
 				url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
 				type:"GET",
-				data: params, //입력양식의 내용을 객체로 만든다
+				data: params,
 				dataType:"json",
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(res){

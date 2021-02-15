@@ -11,8 +11,11 @@
       function drawStuff() {
     	  $.ajax({
     		  type : "GET",
-    		  url : "",
+    		  url : "/owner/menu2/reviewOwner/ratingstars.do",
+   			  dataType:"json",
+			  contentType: 'application/x-www-form-urlencoded; charset=utf-8',
     		  success : function(response){
+    			alert(response);
     			  if(response["result"] == "success"){
     				  
         var data = new google.visualization.arrayToDataTable([
@@ -24,10 +27,10 @@
           ['1점 ', 3]
         ]);
     			  
-    			  }
+    			  }//if 
+   			   }
     	  });//ajax 
       }
-
         var options = {
           title: 'Chess opening moves',
          
@@ -48,7 +51,7 @@
 
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
         chart.draw(data, options);
-      };
+      }
     </script>
   </head>
   <body>
