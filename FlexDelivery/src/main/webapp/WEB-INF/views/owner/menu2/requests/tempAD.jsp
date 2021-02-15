@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사업자 등록증 등록 신청 상세 보기 </title>
+    <title>광고 신청 상세 보기 </title>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/chartjs/Chart.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -35,7 +35,7 @@
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
 				      		<div class="text-center">
-				       			<h4> 사업자 정보 상세보기  </h4>
+				       			<h4> 광고 신청 정보 상세보기  </h4>
 				       	   	 </div>
 				       	   		<div class="row" id="basic-table">
 						          <!-- Table with outer spacing -->

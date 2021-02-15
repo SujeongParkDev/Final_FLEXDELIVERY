@@ -34,8 +34,8 @@ button.btn.btn-link {
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
 	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage" >
-		 <input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
+		<input type="text" name="currentPage" >
+		 <input type="text" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
@@ -165,19 +165,16 @@ $(function(){
 	$('#collapseTwo').hide();
 	if($('#cgName').on('click',function(idx,item){
 		$('#collapseTwo').child().show();
-	}
+	});
 });
-/*
-  	$(document).ready(function(){
-		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-			localStorage.setItem('activeTab', $(e.target).attr('href'));
-		});
-		var activeTab = localStorage.getItem('activeTab');
-		if(activeTab){
-			$('#myTab a[href="' + activeTab + '"]').tab('show');
-		}
-	}); 
- */
-</script>
 
+</script>
+<!-- script start -->
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<!-- script end -->
 <%@ include file="../../ownerInc/bottom.jsp"%>
