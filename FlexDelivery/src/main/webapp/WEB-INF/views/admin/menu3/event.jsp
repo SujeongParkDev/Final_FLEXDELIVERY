@@ -57,14 +57,15 @@ $(function(){
 				                            <img src="${pageContext.request.contextPath}/resources/imgs/NoticeEventImages/${vo.boardThumbnail}" 
 				                            	alt="글 ${vo.boardTitle }의 이미지">
 				                            <div class="post-date">
-				                                <a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>">${vo.boardNo } </a><br><span>${vo.authorityName }</span>
+				                                <a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>"
+				                                 	style="text-decoration: none;">${vo.boardNo } </a><br><span>${vo.authorityName }</span>
 				                            </div>
 				                        </div>
 				                        <div class="single-blog-content mt-50">
 				                            <div class="line"></div>
 				                            <a class="post-tag">${vo.boardRegdate }</a>
 				                            <h4><a href="<c:url value='/admin/menu3/event/detail.do?no=${vo.boardNo }'/>" 
-				                            	class="post-headline">${vo.boardTitle }</a></h4>
+				                            	class="post-headline" style="text-decoration: none;">${vo.boardTitle }</a></h4>
 				                        </div>
 				                    </div>
 				                </div>

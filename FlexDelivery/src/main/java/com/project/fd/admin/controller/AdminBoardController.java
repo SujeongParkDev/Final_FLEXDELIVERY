@@ -372,30 +372,36 @@ public class AdminBoardController {
 		//업로드 처리
 		String fileName="", originName="";
 		long fileSize=0;
+		int len=0;
 		
-		/*
-		if (honeytipVo.getHoneytipThumbnail()==null) {
-			honeytipVo.setHoneytipThumbnail("honeytipDefault.jpg");
-		}else {*/			
-			try {
-				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.NOTICE_EVENT_TYPE);
+					
+		try {
+			List<Map<String, Object>> fileList
+			=fileUtil.fileUplaod(request, FileUploadUtil.NOTICE_EVENT_TYPE);
+			len=fileList.size();
+			logger.info("fileList.size="+fileList.size());
+			if (len==1) {
+				logger.info("새로운 첨부파일 있음!");
 				for(Map<String, Object> map : fileList) {
 					originName=(String) map.get("originalFileName");
 					fileName=(String) map.get("fileName");
 					fileSize=(Long) map.get("fileSize");				
 				}//for
-	
-				logger.info("파일 업로드 성공");
-			} catch (IllegalStateException e) {
-				logger.info("파일 업로드 실패");
-				e.printStackTrace();
-			} catch (IOException e) {
-				logger.info("파일 업로드 실패");
-				e.printStackTrace();
-			}	
-			//2
-			boardVo.setBoardThumbnail(fileName);
+			} else {
+				logger.info("기존 파일 계속 사용!"+oldFileName);
+				fileName=oldFileName;
+			}
+
+			logger.info("파일 업로드 성공");
+		} catch (IllegalStateException e) {
+			logger.info("파일 업로드 실패");
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.info("파일 업로드 실패");
+			e.printStackTrace();
+		}	
+		//2
+		boardVo.setBoardThumbnail(fileName);
 		
 		String msg="글 수정 실패", url="/admin/menu3/event.do";
 		int cnt=boardService.updateBoard(boardVo);
@@ -403,10 +409,9 @@ public class AdminBoardController {
 
 		if(cnt>0) {
 			msg="이벤트 게시글을 수정하였습니다.";
-			//url="/admin/menu6/largeCategory.do";
 
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
-			if(fileName!=null && !fileName.isEmpty()) {
+			if(fileName!=null && !fileName.isEmpty()&&len==1) {
 				String upPath 
 				= fileUtil.getUploadPath(FileUploadUtil.NOTICE_EVENT_TYPE, request);
 				File oldFile = new File(upPath, oldFileName);

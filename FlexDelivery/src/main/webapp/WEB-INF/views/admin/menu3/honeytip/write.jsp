@@ -22,17 +22,14 @@ $(function(){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
+		if (img==''){
+			alert("이미지를 첨부해주세요(필수사항)");
 			return false;
-		} */
+		}
 	
 		
 	});
-	
-	/* $('#btWrite').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/write.do";
-	}); */
+
 	
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');

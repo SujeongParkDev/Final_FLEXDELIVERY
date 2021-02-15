@@ -33,4 +33,9 @@ public class AdminMypageServiceImpl implements AdminMypageService{
 		return mypageDao.selectInfoByNO(no);
 	}
 
+	@Override
+	public boolean selectName(String name) {
+		return mypageDao.selectName(name);
+	}
+
 }

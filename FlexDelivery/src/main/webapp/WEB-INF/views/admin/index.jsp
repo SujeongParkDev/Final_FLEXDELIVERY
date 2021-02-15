@@ -67,6 +67,7 @@
 	</div>
 </div><!-- 캐러셀 -->
 	
+	
 <div class="blog-wrapper clearfix" style="background-color: white;">
     <div class="container">
         <div class="row align-items-end" style="text-align: center;">

@@ -190,31 +190,35 @@ public class AdminHoneytipController {
 		//업로드 처리
 		String fileName="", originName="";
 		long fileSize=0;
-		
-		/*
-		if (honeytipVo.getHoneytipThumbnail()==null) {
-			honeytipVo.setHoneytipThumbnail("honeytipDefault.jpg");
-		}else {*/			
-			try {
-				List<Map<String, Object>> fileList
-				=fileUtil.fileUplaod(request, FileUploadUtil.HONEYTIP_TYPE);
+		int len=0;
+					
+		try {
+			List<Map<String, Object>> fileList
+			=fileUtil.fileUplaod(request, FileUploadUtil.HONEYTIP_TYPE);
+			len=fileList.size();
+			if (len==1) {
+				logger.info("새로운 첨부파일 있음!");
 				for(Map<String, Object> map : fileList) {
 					originName=(String) map.get("originalFileName");
 					fileName=(String) map.get("fileName");
 					fileSize=(Long) map.get("fileSize");				
 				}//for
+			} else {
+				logger.info("기존 파일 계속 사용!"+oldFileName);
+				fileName=oldFileName;
+			}
+
+			logger.info("파일 업로드 성공");
+		} catch (IllegalStateException e) {
+			logger.info("파일 업로드 실패");
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.info("파일 업로드 실패");
+			e.printStackTrace();
+		}	
+		//2
+		honeytipVo.setHoneytipThumbnail(fileName);
 	
-				logger.info("파일 업로드 성공");
-			} catch (IllegalStateException e) {
-				logger.info("파일 업로드 실패");
-				e.printStackTrace();
-			} catch (IOException e) {
-				logger.info("파일 업로드 실패");
-				e.printStackTrace();
-			}	
-			//2
-			honeytipVo.setHoneytipThumbnail(fileName);
-		
 		
 		String msg="글 수정 실패", url="/admin/menu3/honeytip.do";
 		int cnt=honeytipService.updateHoneytip(honeytipVo);
@@ -222,10 +226,9 @@ public class AdminHoneytipController {
 
 		if(cnt>0) {
 			msg="사장님꿀팁 게시글을 수정하였습니다.";
-			//url="/admin/menu6/largeCategory.do";
 
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
-			if(fileName!=null && !fileName.isEmpty()) {
+			if(fileName!=null && !fileName.isEmpty()&&len==1) {
 				String upPath 
 				= fileUtil.getUploadPath(FileUploadUtil.HONEYTIP_TYPE, request);
 				File oldFile = new File(upPath, oldFileName);

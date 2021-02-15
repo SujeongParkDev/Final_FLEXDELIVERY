@@ -237,7 +237,8 @@ function openMember(number){
 		                            </div>
 		                            <div style="line-height: 3;">
 		                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
-		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">플렉스 리스트 신청하기</button><br>
+		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;"
+		                            		onclick="location.href='<c:url value='/owner/menu2/advertise/advertiseMain.do'/>'">플렉스 리스트 신청하기</button><br>
 		                            </div>
 		                            
 	                            </div>
@@ -268,7 +269,8 @@ function openMember(number){
 		                            </div>
 		                            <div style="line-height: 3;">
 		                            	<span style="font-size: large;">지금 바로 신청해보세요!</span>
-		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">오픈리스트 신청하기</button>
+		                            	<button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;"
+		                            		onclick="location.href='<c:url value='/owner/menu2/advertise/advertiseMain.do'/>'">오픈리스트 신청하기</button>
 		                            </div>
 	                            
 	                            </div>
@@ -289,9 +291,12 @@ function openMember(number){
 	                            <p style="font-size: x-large; color: black;">전문 광고 담당자가👩‍🎓👨‍🎓 <br>사장님을 항상 지원합니다</p>
 	                            <br>
 	                            <div style="text-align-last: justify; margin-top: 1%">
-		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-left: 25%;">온라인 입점 신청하기</button>
-		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;">상담하기</button>
-		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-right: 25%;">사장님꿀팁 보러 가기</button>
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-left: 25%;"
+		                            	onclick="location.href='<c:url value='/owner/menu1/launch/launch.do'/>'">온라인 입점 신청하기</button>
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1;"
+		                            	onclick="location.href='<c:url value='/owner/menu5/oneToOne.do'/>'">1:1 문의하기</button>
+		                            <button type="button" onFocus="this.blur()" style="font-size: large; font-weight: 700; color: #6f42c1; padding-right: 25%;"
+		                            	onclick="location.href='<c:url value='/owner/menu3/honeyTip/honeyTip.do'/>'">사장님꿀팁 보러 가기</button>
 	                            </div>
 	                            <br>
 	                         

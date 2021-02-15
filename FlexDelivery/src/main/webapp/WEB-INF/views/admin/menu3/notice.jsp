@@ -39,9 +39,9 @@ function goMember(){
 			                <button type="button" class="btn btn-dark round block" id="btWrite">
 						     	글쓰기
 							</button>    
-			                <button type="button" class="btn btn-dark round block" 
+			                <!-- <button type="button" class="btn btn-dark round block" 
 			                	id="btWrite2" onclick="goMember()"> 멤버공지사항목록
-							</button>    
+							</button>    --> 
 					  </div>
 	                    <div class="card-body">
 	                    	<c:if test="${empty list }">
@@ -65,7 +65,8 @@ function goMember(){
 										<tbody>
 										    <tr>
 			                                     <td style="text-align: center;">${vo.boardNo }</td>
-			                                     <td><a href="<c:url value='/admin/menu3/notice/detail.do?no=${vo.boardNo }'/>">${vo.boardTitle }</a></td>
+			                                     <td><a href="<c:url value='/admin/menu3/notice/detail.do?no=${vo.boardNo }'/>"
+			                                     	style="text-decoration: none; color: black; font-weight: bolder;">${vo.boardTitle }</a></td>
 			                                     <td style="text-align: center;">${vo.authorityName }</td>
 			                                     <td style="text-align: center;">${vo.boardRegdate }</td>
 			                                </tr>

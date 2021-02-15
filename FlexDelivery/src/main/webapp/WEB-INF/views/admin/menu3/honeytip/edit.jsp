@@ -8,7 +8,7 @@
 	
 $(function(){
 	/* $('#btWrite').click(function(){ */
-	$('form[name=frmHoneytipWrite]').submit(function(){
+	$('form[name=frmHoneytipEdit]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
 		var title=$('#honeytipTitle').val();
 		var img=$('#upfile').val();
@@ -22,10 +22,12 @@ $(function(){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
-			return false;
-		} */
+		if (img==''){
+			var bool=confirm("기존 이미지를 계속 사용하시겠습니까?");
+			if (!bool){
+				return false;				
+			}
+		}
 	
 		
 	});
@@ -94,7 +96,7 @@ $(function(){
 											                  <span class="input-group-text" id="inputGroupFileAddon01">썸네일 이미지</span>
 											              </div>
 											              <div class="custom-file">
-											                  <input type="file" name="upfile" class="form-control-file" id="upfile" value="${vo.honeytipThumbnail }">
+											                  <input type="file" name="upfile" class="form-control-file" id="upfile"">
 											                  <input type="hidden" name="oldFileName" value=${vo.honeytipThumbnail }>
 											              </div>
 										                </div>
