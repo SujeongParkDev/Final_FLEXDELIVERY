@@ -58,7 +58,6 @@
 		                    	<div class="text-center py-5">
 		                        	<p class="h4 mb-4"><i class="feather-search bg-primary text-white rounded p-2"></i></p>
 		                       		<p class="font-weight-bold text-dark h5">Nothing found</p>
-		                        	<p>we could not find anything that would match your search request, please try again.</p>
 		                    	</div>
 		                	</div>
 		            	</div>
