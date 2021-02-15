@@ -9,7 +9,7 @@
 <script src="https://kit.fontawesome.com/e42a7f130f.js"
 	crossorigin="anonymous"></script>
 	
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(function() {
 		$('.change-button').click(function(){
 			if($(this).attr('name')=='btText'){
@@ -18,9 +18,63 @@
 				}else if($('#changeText').css("display")=="block"){
 					$('#changeText').css('display','none');
 				}
-		}
+			}
+		});
 	});
-</script>  -->
+	
+
+	$(function(){
+		$('.btCancleChange').click(function(){
+			if($(this).attr("name")=="textCancle"){
+				$('#changeText').css('display','none');
+			}
+		});
+	});
+	
+	/*function deleteFunc(storeNo){
+		if(!confirm('?')){
+		event.preventDefault();
+		}else{
+		location.href = '<c:url value="/owner/menu2/basic/basic.do"/>'+storeNo;
+		}
+	}*/
+	
+	/*$(function(){
+		$('#updateContent').click(function(){
+			var storeContent = $('select[name=storeContent]').val();
+			var storeNo = $('input[name=storeNo]').val();
+					
+			console.log(storeContent);
+			console.log(storeNo);
+			
+			$.ajax({
+				url:"<c:url value='/owner/menu2/operation/updateHoliday.do'/>",
+				data:"hCategoryNo="+hCategoryNo+"&storeNo="+storeNo+"&ownerNo="+ownerNo, 
+				
+				success:function(res){
+					str="";
+					if(res=="fail"){
+						alert("업데이트 실패!");
+					}else{
+						if(res=="없음"){
+							str+="<span class='text'>"+res+"</span>";
+						}else{
+							str+="<span class='text'>"+res+"요일</span>";
+						}
+					}
+					
+					$('#holidayText').html('');
+					$('#holidayText').html(str);
+					$('#changeHoliday').css('display','none'); 
+				},
+				error:function(xhr,status,error){
+					alert("error!!: "+error);
+				}
+			});
+		});
+	});*/
+	
+</script>  
 
 
 <link rel="stylesheet" type="text/css"
@@ -126,15 +180,7 @@
 								<div class="form-control-wrap form-control-inline">
 									<div class="form-control ">
 										<div class="inline-values flex-1 ">
-											<span class="inline-value ">♡피자알파는 흑미도우를 사용합니다.<br>♡(건강한
-												담백함과 숙성도우의 쫄깃함)<br>♡자연산 최고급 치즈를 사용합니다.<br> <br>하나
-												☆ 박리다매♡<br>피자는 절대 허접하지 않습니다.<br>드셔보시고 판단 해주세요.<br>이
-												불경기에 비싼 피자 부담스럽습니다.<br>어려움을 고객님과 함께 하겠습니다.<br> <br>둘
-												☆ 재료선정과 맛♡<br>피자알파만의 색깔로 아낌없는 재료와 푸짐한 가성비 그리고 어디서도 맛볼 수
-												없는 맛<br>저렴한 가격에도 최상의 맛과 퀄리티로 고객님들에게 만족시켜드릴 수 있도록
-												노력하겠습니다.<br>아무리 금액이 저렴해도 맛이 없다면 고객님들의 선택을 받을 수 없습니다.<br>
-												<br>셋 ☆ 초심♡<br>처음 가게 오픈해서 처음 주문 받았던 그 감사한 마음을
-												"절대"잊지 않고 항상 고객님들의 말씀을 새겨듣는 매장으로 거듭나겠습니다.
+											<span class="inline-value ">${map[''] }
 											</span>
 										</div>
 									</div>
@@ -147,12 +193,12 @@
 
 				<form class="form-card form-card-active">
 					<div>
-						<div class="Card " > <!-- id="changeText" style="display:none;" --> 
+						<div class="Card" id="changeText" style="display:none;" >  
 							<div class="card-header">
 								<h3>가게 소개</h3>
 								<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button mr-1 small secondary">취소</button>
-									<button type="submit" class="button small primary">적용</button>
+									<button type="button" class="button small primary" name="textChange" >적용</button>
+									<button type="button" class="button mr-1 small secondary btCancleChange" name="textCancle" >닫기</button>
 								</div>
 							</div>
 							<div class="form-group no-divider" style="min-height: auto;">
@@ -160,10 +206,7 @@
 									<div class="form-control ">
 										<div class="textarea-container ">
 											<textarea data-component="[object Object]" class="" rows="13"
-												maxlength="500" placeholder="">♡피자알파는 흑미도우를 사용합니다.
-♡(건강한 담백함과 숙성도우의 쫄깃함)
-♡자연산 최고급 치즈를 사용합니다.
-
+												maxlength="500" placeholder="">
 </textarea>
 											<span class="text-count">118</span>
 										</div>
