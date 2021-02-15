@@ -1,6 +1,7 @@
 package com.project.fd.owner.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,8 @@ public class OwnerRequestController {
 	@Autowired OwnerRequestService requestService;
 	@Autowired private FileUploadUtil fileUtil;
 	
-	@RequestMapping("/requests.do")
-	public String ownerrequests(
-			HttpSession session,Model model) {
+	@RequestMapping(value="/requests.do",method=RequestMethod.GET)
+	public String ownerrequests_get( HttpSession session,Model model) {
 		int ownerNo=0;
 		String msg="로그인 해주세요.", url="/owner/index.do";
 		if(session.getAttribute("ownerNo")==null) {
@@ -67,6 +67,31 @@ public class OwnerRequestController {
 		
 		
 		return "owner/menu2/requests/requests";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/requests.do", method = RequestMethod.POST)
+	public Map<String, Object> ownerrequests_post( HttpSession session,Model model) {
+		 int ownerNo=(Integer)session.getAttribute("ownerNo");
+		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
+		
+		//List<OwnerAllRegisterVO> list =selectStore(ownerNo);
+		List<Map<String, Object>> RegiList =requestService.selectRegi(ownerNo);
+		logger.info("요청처리현황 사업자 등록  RegiList.size={}",RegiList.size());
+		List<Map<String, Object>> selectStore =requestService.selectStore(ownerNo);
+		logger.info("요청처리현황 점포 등록  selectStore.size={}",selectStore.size());
+		List<Map<String, Object>>  selectAd =requestService.selectAd(ownerNo);
+		logger.info("요청처리현황 광고 등록  selectAd.size={}",selectAd.size());
+		List<Map<String, Object>> selectTemp =requestService.selectTemp(ownerNo);
+		logger.info("요청처리현황 점포 수정  selectTemp.size={}",selectTemp.size());
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("RegiList", RegiList);
+		map.put("selectStore", selectStore);
+		map.put("selectAd", selectAd);
+		map.put("selectTemp", selectTemp);
+		
+		return  map;
 	}
 	
 	@ResponseBody

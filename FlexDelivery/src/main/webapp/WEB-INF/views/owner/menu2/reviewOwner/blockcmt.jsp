@@ -8,14 +8,14 @@
 	<div class="col-md-8 col-sm-12">
 		<ul class="nav nav-pills" style="float: right;">
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(reviewList)})</button>
+				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(allList)})</button>
 			</li>
 			<li class="nav-item">
 				<button type="button" class="btn btn-primary" id="btnocmt">미답변(${fn:length(nocmtList)})
 				</button>
 			</li>
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btBlock">차단(${fn:length(blockList)})
+				<button type="button" class="btn btn-outline-primary" id="btBlock">차단(${fn:length(blockList)})
 				</button>
 			</li>
 		</ul>
@@ -235,44 +235,13 @@ $(function(){
 		});
 });
 
-/*
- *  리스트 불러오기 실패 
-$(function(){
-	$('#btnocmt').click(function(){
-		
- 	$.ajax({
-		url:"<c:url value='/owner/menu2/reviewOwner/nocomment.do'/>",
-		type:"GET",
-	
-		dataType:"json",
-		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-		success:function(res){
-			alert(res);
-			},
-			error:function(xhr, status, error){
-				alert("error! : " + error);
-			}				
-		});//ajax
-	event.preventDefault();
-	});
-	
-});
- */
-
-
 </script>
 <!-- script start -->
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

@@ -10,7 +10,7 @@ input {
 
 </style>
 <br>
-<!-- 셀렉 옵션 선택 내용 -->
+<!-- 셀렉 옵션만 되면 끝 !  -->
 <div class="row" id="basic-table">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-12 col-md-8">
@@ -46,7 +46,7 @@ input {
 								</tr>
 							</thead>
 							<tbody id="optionTable">
-							<input type="text" id="ownerNo" name="ownerNo" value="${sessionScope.ownerNo}">
+							<input type="hidden" id="ownerNo" name="ownerNo" value="${sessionScope.ownerNo}">
 								<!--  -->
 								<div class="tempDiv" id="tempDiv">
 								<c:if test="${!empty selectTemp }">
@@ -172,15 +172,6 @@ input {
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
 </div>
-
-<button id="hider">Hide</button>
-<button id="shower">Show</button>
-<div>
-  <span>Once</span> <span>upon</span> <span>a</span>
-  <span>time</span> <span>there</span> <span>were</span>
-  <span>three</span> <span>programmers...</span>
-</div>
-
 <script type="text/javascript">
 
 function goDetail(no){
@@ -266,13 +257,13 @@ $(function(){
 			}else if(result==0){
 				$.ajax({
 					url:"<c:url value='/owner/menu2/requests/requests.do'/>",
-					type:"GET",
+					type:"POST",
 					data: "ownerNo="+$('#ownerNo').val(), 
 					dataType:"json",
 					contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 					success:function(res){
-						//alert(res);
-						$('#store').empty();
+						alert(res);
+						//$('#store').empty();
 						},
 						error:function(xhr, status, error){
 							alert("error! : " + error);

@@ -8,22 +8,19 @@
 	<div class="col-md-8 col-sm-12">
 		<ul class="nav nav-pills" style="float: right;">
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(reviewList)})</button>
+				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(allList)})</button>
 			</li>
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btnocmt">미답변(${fn:length(nocmtList)})
-				</button>
+				<button type="button" class="btn btn-outline-primary" id="btnocmt">미답변(${fn:length(nocmtList)}) </button>
 			</li>
 			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btBlock">차단(${fn:length(blockList)})
-				</button>
+				<button type="button" class="btn btn-primary" id="btBlock">차단(${fn:length(blockList)}) </button>
 			</li>
 		</ul>
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
 </div>
 <br>
-<!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
@@ -37,7 +34,6 @@
 					<div class="card-content">
 						<div class="card-body text-center">
 							<br>
-							<!-- 전체 보여주기 데이트 피커 없이  -->
 							<div class="AllDiv">
 								<c:if test="${empty nocmtList }">
 									<div class="row">
@@ -69,7 +65,6 @@
 										</div>
 										<br>
 										<br>
-										<!-- table hover -->
 										<div class="table-responsive">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-8"></div>
@@ -110,19 +105,16 @@
 																</div>
 															</div>
 														</div>
-														<!-- ${sessionScope.storeNo} 변경하기  -->
 													</form>
 												</div>
 												<div class="col-md-2 col-sm-12"></div>
 												<br>
 												<br>
-
 											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
 											<c:if test="${empty map['R_COMMENT_CONTENT']}">
 												<div class="card-body">
 													<form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
-														<!-- hidden  -->
 														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
 														<input type="hidden" id="storeNo" name="storeNo" value="1">
 														<label for="content"></label>
@@ -144,11 +136,8 @@
 		</div>
 	</div>
 </div>
-<!-- The end -->
 <div class="col-md-2 col-sm-12"></div>
 <br>
-
-<!-- two  -->
 <script type="text/javascript">
 	function btDel(reviewNo){
 		if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
@@ -206,16 +195,14 @@ $(function(){
 			event.preventDefault();
 		}
 	});//frmDate
-$('.DateDiv').show();
 
-$('form[name=frm1]').submit(function(){
-	if($('.comment').val().length<1){
-		alert('내용을 입력하세요');
-		$('.comment').focus();
-		event.preventDefault();
-	}
-});//frm1
-
+	$('form[name=frm1]').submit(function(){
+		if($('.comment').val().length<1){
+			alert('내용을 입력하세요');
+			$('.comment').focus();
+			event.preventDefault();
+		}
+	});//frm1
 });//
 
 function pageFunc(curPage){
@@ -235,44 +222,13 @@ $(function(){
 		});
 });
 
-/*
- *  리스트 불러오기 실패 
-$(function(){
-	$('#btnocmt').click(function(){
-		
- 	$.ajax({
-		url:"<c:url value='/owner/menu2/reviewOwner/nocomment.do'/>",
-		type:"GET",
-	
-		dataType:"json",
-		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-		success:function(res){
-			alert(res);
-			},
-			error:function(xhr, status, error){
-				alert("error! : " + error);
-			}				
-		});//ajax
-	event.preventDefault();
-	});
-	
-});
- */
-
-
 </script>
 <!-- script start -->
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

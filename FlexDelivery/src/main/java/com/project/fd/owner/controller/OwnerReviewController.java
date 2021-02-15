@@ -124,7 +124,7 @@ public class OwnerReviewController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		//model.addAttribute("searchVo", searchVo);
 		
-		return "owner/menu2/reviewOwner/reviewOwner";
+		return "owner/menu2/reviewOwner/reviewOwnerList";
 	}
 	
 	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)

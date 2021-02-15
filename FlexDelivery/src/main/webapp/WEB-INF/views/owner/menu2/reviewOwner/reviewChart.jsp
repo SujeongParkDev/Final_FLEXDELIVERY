@@ -9,6 +9,12 @@
       google.charts.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
+    	  $.ajax({
+    		  type : "GET",
+    		  url : "",
+    		  success : function(response){
+    			  if(response["result"] == "success"){
+    				  
         var data = new google.visualization.arrayToDataTable([
           ['', 'Percentage'],
           ["5점 ", 44],
@@ -17,6 +23,10 @@
           ["2점 ", 10],
           ['1점 ', 3]
         ]);
+    			  
+    			  }
+    	  });//ajax 
+      }
 
         var options = {
           title: 'Chess opening moves',
