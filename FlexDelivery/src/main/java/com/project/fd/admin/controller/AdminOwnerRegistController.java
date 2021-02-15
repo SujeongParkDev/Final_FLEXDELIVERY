@@ -22,7 +22,7 @@ import com.project.fd.admin.ownerregister.model.AdminOwnerRegisterVo;
 import com.project.fd.common.FileUploadUtil;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/menu2")
 public class AdminOwnerRegistController {
 	public static final Logger logger
 	=LoggerFactory.getLogger(AdminOwnerRegistController.class);
@@ -32,7 +32,7 @@ public class AdminOwnerRegistController {
 	@Autowired
 	private FileUploadUtil fileUtil;
 	
-	@RequestMapping(value="/menu2/registList.do", method = RequestMethod.GET)
+	@RequestMapping(value="/registList.do", method = RequestMethod.GET)
 	public String adminOwnerRegistList(Model model) {
 		logger.info("사업자등록증 승인 목록 화면");
 		
@@ -43,7 +43,7 @@ public class AdminOwnerRegistController {
 		return "admin/menu2/registList";
 	}
 	
-	@RequestMapping(value="/menu2/registDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value="/registDetail.do", method = RequestMethod.GET)
 	public String adminOwnerRegistDetail(@RequestParam (defaultValue = "0") long no, Model model) {
 		logger.info("사업자등록증 승인 세부 화면");
 		
@@ -55,7 +55,7 @@ public class AdminOwnerRegistController {
 		return "admin/menu2/registDetail";
 	}
 	
-	@RequestMapping(value="/menu2/registApproval.do", method = RequestMethod.GET)
+	@RequestMapping(value="/registApproval.do", method = RequestMethod.GET)
 	public String adminOwnerRegistApproval(@RequestParam(defaultValue = "0") long registerNo,
 			@RequestParam(defaultValue = "0") int ownerNo) {
 		logger.info("사업자등록증 승인 화면, 파라미터 registerNo={} owner={}",registerNo, ownerNo);
@@ -70,7 +70,7 @@ public class AdminOwnerRegistController {
 		return "redirect:/admin/menu2/registList.do";
 	}
 	
-	@RequestMapping(value="/menu2/registDeny.do", method = RequestMethod.GET)
+	@RequestMapping(value="/registDeny.do", method = RequestMethod.GET)
 	public String adminOwnerRegistDeny(@RequestParam(defaultValue = "0") long registerNo) {
 		logger.info("사업자등록증 반려 화면, 파라미터 registerNo={}",registerNo);
 		
@@ -80,7 +80,7 @@ public class AdminOwnerRegistController {
 		return "redirect:/admin/menu2/registList.do";
 	}
 	
-	@RequestMapping("/menu2/downloadReg.do")
+	@RequestMapping("/downloadReg.do")
 	public ModelAndView download(@RequestParam(defaultValue = "0") long no,
 			@RequestParam String fileName,
 			HttpServletRequest request) {
