@@ -370,7 +370,7 @@ $(function(){
 	<div class="col-12 col-md-6 text-center" >
 	
 	 <br>
-		<div class="row mb-5 mt-3" style="border: 2px solid black; ">
+		<div class="row mb-5 mt-3" style="border: 2px solid black; " data-aos="zoom-in-up">
 			<br><br>
 			<!-- 헤드 시작 -->
 			<div class="col-12 col-md-2 pt-5"></div>
