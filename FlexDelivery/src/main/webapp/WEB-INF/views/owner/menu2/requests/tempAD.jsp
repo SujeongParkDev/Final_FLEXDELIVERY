@@ -18,9 +18,6 @@
 	<style type="text/css">
 		html {overflow-x:hidden;}
 	</style>
-	
-	<!-- 클릭시 및 페이지 이동 -->
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
     $(function(){

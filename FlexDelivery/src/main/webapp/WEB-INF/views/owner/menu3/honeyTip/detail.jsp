@@ -26,7 +26,14 @@
 					                                <hr>
 					                            </div>
 					                            <div class="text-center">
-					                            	<img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}">
+					                            <div class="single-blog-thumbnail">
+												<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)=='http' }">
+													<img src="${vo.honeytipThumbnail}" class="card-img-top" style="margin-bottom: 40px;" alt="${vo.honeytipTitle }">
+												</c:if>
+												<c:if test="${fn:substring(vo.honeytipThumbnail, 0,4)!='http' and (!empty vo.honeytipThumbnail) }">
+													<img src="<c:url value='/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}'/>" alt="${vo.honeytipTitle }" class="card-img-top" style="margin-bottom: 40px;">
+												</c:if>
+											</div>
 					                            	<br><br><br>
 						                            <p>${vo.honeytipContent }</p>
 					                            </div>

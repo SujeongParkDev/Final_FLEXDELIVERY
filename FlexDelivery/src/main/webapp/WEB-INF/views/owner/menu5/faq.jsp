@@ -33,10 +33,9 @@ button.btn.btn-link {
 	</div>
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
-	<form name="frmPage" method="post" style="float: right;"
-		action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage" value="1"> <input
-			type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
+	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
+		<input type="hidden" name="currentPage" >
+		 <input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
@@ -45,10 +44,9 @@ button.btn.btn-link {
 			<div class="dropdown">
 				<a class="btn btn-primary " href="#none" role="button"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 카테고리 </a>
+					aria-expanded="false"> ${cgVo.fCategoryName }</a>
 				<!-- 반복문 시작 -->
-				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink"
-					style="text-decoration: none;">
+				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink" style="text-decoration: none;">
 					<c:forEach var="cgVo" items="${cgList }">
 						<a class="dropdown-item" id="cgName"
 							href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
@@ -120,37 +118,40 @@ button.btn.btn-link {
 </div>
 
 <!-- 페이지 시작-->
-<div class="card-body">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination pagination-primary justify-content-center">
-			<!-- 페이지 번호 추가 -->
+	<div class="card-body">
+           <nav aria-label="Page navigation example">				
+               <ul class="pagination pagination-primary justify-content-center">
+		   <!-- 페이지 번호 추가 -->		
 			<!-- 이전 블럭으로 이동 -->
-			<c:if test="${pagingInfo.firstPage>1 }">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
-						<span aria-hidden="true">&laquo;</span>
-				</a></li>
-			</c:if>
-			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage}"
-				end="${pagingInfo.lastPage}">
-				<c:if test="${i==pagingInfo.currentPage }">
-					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
-				</c:if>
-				<c:if test="${i!=pagingInfo.currentPage }">
-					<li class="page-item"><a class="page-link" href="#"
-						onclick="pageFunc(${i})">${i}</a></li>
-				</c:if>
-			</c:forEach>
-			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
-						<span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</c:if>
-		</ul>
-	</nav>
-</div>
+		 			<c:if test="${pagingInfo.firstPage>1 }">	
+						<li class="page-item">
+			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+        						<span aria-hidden="true">&laquo;</span>
+			                   </a>
+		                   </li>
+					</c:if>
+		                
+	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
+						<c:if test="${i==pagingInfo.currentPage }">
+							 <li class="page-item active"><a class="page-link" href="#" >${i}</a></li>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+						    <li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
+						</c:if>
+					</c:forEach>
+
+				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
+					<li class="page-item">
+		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
+								<span aria-hidden="true">&raquo;</span>
+		                   </a>
+	                   </li>
+				 </c:if>
+               </ul>
+           </nav>
+           
+        </div> 
 <br>
 <br>
 <br>

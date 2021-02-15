@@ -99,7 +99,13 @@
     </div>
   </div>
 </div>	
-	<script>
+ <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+		$('#btclose').click(function(){
+				self.close();
+		});
+	});
     $(function(){
 		$('form[name=frmDelete]').submit(function(){
 			if($('#pwd').val().length<1){
