@@ -7,17 +7,24 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
+      
+      $(function(){
+    	  $.ajax({
+				url:"<c:url value='/owner/menu2/reviewOwner/ratingstars.do'/>",
+				success:function(res){
+					alert(res);
+					// 방법 1 하나씩 꺼낸다 2 each돌린다 
+					// var five=res.rating ?? 
+					//$('#result').html(res);
+				},
+				error:function(xhr, status, error){
+					alert("error발생:"+ error);
+				}
+			});
+    	  drawStuff()
+      });
 
       function drawStuff() {
-    	  $.ajax({
-    		  type : "GET",
-    		  url : "/owner/menu2/reviewOwner/ratingstars.do",
-   			  dataType:"json",
-			  contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-    		  success : function(response){
-    			alert(response);
-    			  if(response["result"] == "success"){
-    				  
         var data = new google.visualization.arrayToDataTable([
           ['', 'Percentage'],
           ["5점 ", 44],
@@ -26,21 +33,17 @@
           ["2점 ", 10],
           ['1점 ', 3]
         ]);
-    			  
-    			  }//if 
-   			   }
-    	  });//ajax 
-      }
+
         var options = {
           title: 'Chess opening moves',
          
           legend: { position: 'none' },
-          chart: { title: '우리 가게 고객들의 평균 별점입니다. ',
-                   subtitle: 'popularity by percentage' },
+          chart: { title: '우리 가게 고객들의 리뷰 별점입니다. ',
+                   subtitle: 'Reviews by my store customers, star ratings' },
           bars: 'horizontal', // Required for Material Bar Charts.
           axes: {
             x: {
-              0: { side: 'top', label: 'Percentage'} // Top x-axis.
+              0: { side: 'top', label: 'Stars'} // Top x-axis.
             }
           },
           bar: { groupWidth: "40%" },
@@ -51,7 +54,7 @@
 
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
         chart.draw(data, options);
-      }
+      };
     </script>
   </head>
   <body>

@@ -104,9 +104,16 @@
 		order by orders_no desc
 	</select>
 	
-	<select id="avgReting5" parameterType="int" resultType="int">
-		select avg(nvl(REVIEW_RATING,0)) as "RATING5" from review 
-		where store_no=#{storeNo} and review_rating=5
+	<select id="reviewReting" parameterType="int" resultType="map">
+	select b.countNum, NVL(sum(a.reviewCount),0) 
+	from
+	(select review_rating, count(*) as reviewCount from review where store_no=#{storeNo} group by review_rating) a ,
+	   <![CDATA[
+	(select level as countNum from dual  connect By level<=5 and level >=1) b  
+	where b.countNum = a.review_rating(+)
+	]]>
+	group by b.countNum
+	order by b.countNum
 	</select>
 	
 </mapper>

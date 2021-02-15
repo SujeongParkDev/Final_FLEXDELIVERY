@@ -257,8 +257,6 @@ public class OwnerReviewController {
 			
 			Map<String, Object> map = new HashedMap<String, Object>();
 			
-			
-			
 			logger.info("map={}" , map);
 			return map;
 		}

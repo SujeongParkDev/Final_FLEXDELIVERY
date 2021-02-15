@@ -18,4 +18,5 @@ public interface OwnerReivewCommentDAO {
 	 int blockTotalRecord(int storeNo);
 	 
 	 List<Map<String, Object>> selectAll(int storeNo);
+	 List<Map<String, Object>> reviewReting(int storeNo);
 }
