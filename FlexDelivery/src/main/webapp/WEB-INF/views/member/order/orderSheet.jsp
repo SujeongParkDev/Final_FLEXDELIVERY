@@ -140,7 +140,7 @@
 					                </div>
 					            </div>
 					            <div class="d-flex align-items-center">
-						            <p class="text-gray mb-0 float-right text-muted small">${cVo.menuPrice}원 x ${cVo.cartQty}</p>
+						            <p class="text-gray mb-0 float-right text-muted small">${cVo.menuPrice+cVo.mOptionPrice}원 x ${cVo.cartQty}</p>
 					            </div>
 					        </div>
 				   		</c:forEach>

@@ -112,15 +112,13 @@
                 	<a href="${pageContext.request.contextPath}/member/login/memberLogin.do"><i class="feather-user mr-2"></i>로그인하세요</a>
 	                <ul>
 	                    <li><a href="${pageContext.request.contextPath}/member/register/register.do">회원가입</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotId.do">아이디찾기</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/login/forgotPwd.do">비밀번호찾기</a></li>
 	                </ul>
                 </c:if>
                 <c:if test="${!empty sessionScope.memberId}">
                 	<a href="${pageContext.request.contextPath}/member/mypage/main.do"><i class="feather-user mr-2"></i>MyFlex</a>
 	                <ul>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myCoupon.do">쿠폰함</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">선물함</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/gift/myGift.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
 	                </ul>
@@ -130,14 +128,8 @@
                 <a><i class="feather-map-pin mr-2"></i>점포조회</a>
                 <c:import url="/member/sidebarList.do" />
             </li>
-            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>부가기능</a></li>
-            <li>
-            	<a><i class="feather-user mr-2"></i>알림광장</a>
-	                <ul>
-	                    <li><a href="${pageContext.request.contextPath}/member/coupon/couponBox.do">공지사항</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/gift/giftBox.do">이벤트</a></li>
-	                </ul>
-            </li>
+            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>FLEX-ON</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/board/board.do"><i class="feather-user mr-2"></i>알림광장</a></li>
             <li>
                 <a><i class="feather-link mr-2"></i>Contact Us</a>
                 <ul>

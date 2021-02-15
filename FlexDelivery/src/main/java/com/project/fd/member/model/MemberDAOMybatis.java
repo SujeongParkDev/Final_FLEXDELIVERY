@@ -2,6 +2,7 @@ package com.project.fd.member.model;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -72,6 +73,16 @@ public class MemberDAOMybatis implements MemberDAO{
 	@Override
 	public int rupdateMember(MemberVO vo) {
 		return sqlSession.update(namespace+"rupdateMember",vo);
+	}
+
+	@Override
+	public int giftChk(MemberVO vo) {
+		return sqlSession.selectOne(namespace+"giftChk",vo);
+	}
+
+	@Override
+	public int selectMemNo(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"selectMemNo",map);
 	}
 	
 	

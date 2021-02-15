@@ -76,7 +76,7 @@
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
                             </a>
-                            <a href="<c:url value="/member/gift/giftBox.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+                            <a href="<c:url value="/member/gift/myGift.do" />" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold m-0 text-dark"><i class="feather-gift bg-success text-white p-2 rounded-circle mr-2"></i>선물함</h6>
                                 </div>
