@@ -11,5 +11,6 @@ public interface AdminMypageService {
 	
 	List<AdminVO> selectInfo (AdminVO vo);
 	AdminVO selectInfoByNo (int no);
+	boolean selectName(String name);
 
 }

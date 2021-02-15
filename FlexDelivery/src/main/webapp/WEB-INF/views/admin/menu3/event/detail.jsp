@@ -42,8 +42,23 @@ $(function(){
 					                            <div class="line"></div>
 					                            <a class="post-tag">${vo.authorityName } :: ${vo.boardNo }번째  ${vo.boardHead }</a>
 					                            <h4><a class="post-headline mb-0">${vo.boardTitle }</a></h4>
-					                            <div class="post-meta mb-50">
+					                            <div class="post-meta">
 					                                <p>${vo.boardRegdate },   By <a>플렉스 딜리버리</a></p>
+					                                <hr>
+					                                <div style="display: flex; ">
+					                                	<div class="col-6" style="text-align: left;">
+					                                		<button type="button" class="btn round block btn-dark" id="detailEdit">수정</button>
+															<button type="button" class="btn round block btn-danger" id="modalDeleteBt" data-toggle="modal" 
+																data-backdrop="false" data-target="#eventDetailDelete" >삭제</button>
+														</div>
+					                                	<div class="col-6" style="text-align: right;">
+					                                		<!-- <button type="button" class="btn round block" style="border: none; background-color: white; color: black; padding: inherit;" 
+					                                			id="nextArticleBt" onclick="nextArticle()" onfocus="this.blur()">👈다음글</button>
+					                                		<button type="button" class="btn round block" style="border: none; background-color: white; color: black; padding: inherit;" 
+					                                			id="prevArticleBt" onclick="prevArticle()" onfocus="this.blur()">이전글👉</button> -->
+															<button type="button" class="btn round block btn-dark" id="detailList">목록</button>
+														</div>
+					                                </div>
 					                                <hr>
 					                            </div>
 					                            <div class="text-center">
@@ -63,16 +78,12 @@ $(function(){
 					                        <div class="author-info">
 					                            <div class="line"></div>
 					                            <span class="author-role">Author</span>
-					                            <h4><a href="#" class="author-name">플렉스 딜리버리</a></h4>
+					                            <h4><a class="author-name">플렉스 딜리버리</a></h4>
 					                            <p><span>여러분께 행복을 선물해드리고 싶은 플렉스 딜리버리입니다.</span></p>
 					                       </div>	
 					                    </div>
 										<div class="text-center" style="text-center">
-											<br><br>
-											<button type="button" class="btn round block btn-primary" id="detailEdit">수정</button>
-											<button type="button" class="btn round block btn-danger" id="modalDeleteBt" data-toggle="modal" 
-												data-backdrop="false" data-target="#eventDetailDelete" >삭제</button>
-											<button type="button" class="btn round block btn-dark" id="detailList">목록</button>
+										
 											
 											<!-- #eventDetailDelete 삭제 모달 -->
 	                                       <div class="modal fade text-left" id="eventDetailDelete" tabindex="-1" role="dialog"

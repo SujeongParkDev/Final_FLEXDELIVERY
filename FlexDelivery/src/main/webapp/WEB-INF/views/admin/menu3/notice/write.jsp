@@ -12,7 +12,6 @@ $(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
 		var title=$('#boardTitle').val();
 		var auth=$('input[name=authorityNo]').is(':checked');
-		var img=$('#upfile').val();
 		
 		
 		if (title==''){
@@ -28,11 +27,7 @@ $(function(){
 			return false;
 		}
 		
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
-			return false;
-		} */
-	
+		
 		
 	});
 	

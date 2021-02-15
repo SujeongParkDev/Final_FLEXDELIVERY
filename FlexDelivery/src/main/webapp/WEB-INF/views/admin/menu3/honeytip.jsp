@@ -57,18 +57,15 @@ $(function(){
 				                            <img src="${pageContext.request.contextPath}/resources/imgs/HoneytipImages/${vo.honeytipThumbnail}" 
 				                            	alt="글 ${vo.honeytipTitle }의 이미지">
 				                            <div class="post-date">
-				                                <a href="<c:url value='/admin/menu3/honeytip/detail.do?=no=${vo.honeytipNo }'/>">${vo.honeytipNo } <span>HONEY</span></a>
+				                                <a href="<c:url value='/admin/menu3/honeytip/detail.do?=no=${vo.honeytipNo }'/>"
+				                                	style="text-decoration: none;">${vo.honeytipNo } <span>HONEY</span></a>
 				                            </div>
 				                        </div>
 				                        <div class="single-blog-content mt-50">
 				                            <div class="line"></div>
-				                            <a href="#" class="post-tag">${vo.honeytipRegdate }</a>
+				                            <a class="post-tag">${vo.honeytipRegdate }</a>
 				                            <h4><a href="<c:url value='/admin/menu3/honeytip/detail.do?no=${vo.honeytipNo }'/>" 
-				                            	class="post-headline">${vo.honeytipTitle }</a></h4>
-				                            <!-- <div class="post-meta">
-				                                <p>By <a href="#">james smith</a></p>
-				                                <p>3 comments</p>
-				                            </div> -->
+				                            	class="post-headline" style="text-decoration: none;">${vo.honeytipTitle }</a></h4>
 				                        </div>
 				                    </div>
 				                </div>

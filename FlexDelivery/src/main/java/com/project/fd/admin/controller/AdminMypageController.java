@@ -3,6 +3,7 @@ package com.project.fd.admin.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,26 +72,6 @@ public class AdminMypageController {
 		return "common/message"; 
 	}
 	
-	/*	
-	@RequestMapping(value="/oneToOne/writeReply.do", method=RequestMethod.POST)
-	public String write_post(@ModelAttribute AdminAskVO askVo,
-			HttpServletRequest request) {
-		logger.info("1:1 문의 답변 등록 처리, askVo={}", askVo);
-		
-		int cnt=askService.insertAskReply(askVo);
-				
-		if (cnt>0) {
-			logger.info("1:1 문의 답변 등록 완료, cnt={}", cnt);
-			
-			askVo.setAskReplyFlag("Y");
-			//원글 답글 플래그 y로 바꾸기
-			int cnt2=askService.updateAsk(askVo);
-			logger.info("1:1 문의 원글 플래그 변경, cnt2={}", cnt2);
-		}
-		
-		return "redirect:/admin/menu5/oneToOne/detail.do?no="+askVo.getAskGroupNo();
-	}
-	 */
 	
 	@RequestMapping(value="/myPageEdit.do", method = RequestMethod.GET)
 	public String edit_info_get(@RequestParam(defaultValue = "0") int no, Model model) {
@@ -116,6 +97,7 @@ public class AdminMypageController {
 	public String edit_info_post(@ModelAttribute AdminVO vo,
 			HttpServletRequest request, Model model) {
 		logger.info("관리자 개인정보 수정 처리, 파라미터 vo={}", vo);
+		HttpSession session=request.getSession();
 		
 		String msg="개인정보 수정 실패", url="/admin/myPage/myPage.do";
 		int cnt=mypageService.updateInfo(vo);
@@ -124,6 +106,7 @@ public class AdminMypageController {
 		if (cnt>0) {
 			msg="개인정보를 수정하였습니다.";
 			url="/admin/myPage/myPage.do";
+			session.setAttribute("adminName",vo.getAdminName());
 		}
 		
 		model.addAttribute("msg", msg);
@@ -145,6 +128,7 @@ public class AdminMypageController {
 		return bool;
 	}
 	
+	/*
 	@ResponseBody
 	@RequestMapping("/myPageEditChkPwd2.do")
 	public boolean pwd2_chk(@RequestParam String pwd1, @RequestParam String pwd2) {
@@ -154,6 +138,16 @@ public class AdminMypageController {
 		if (pwd2.equals(pwd1)) {
 			bool=true;
 		} 
+		return bool;
+	}
+	*/
+	
+	
+	@ResponseBody
+	@RequestMapping("/myPageEditChkName.do")
+	public boolean pwd2_chk(@RequestParam String name) {
+		logger.info("이름 ajax, name={}", name);
+		boolean bool=mypageService.selectName(name);
 		return bool;
 	}
 	

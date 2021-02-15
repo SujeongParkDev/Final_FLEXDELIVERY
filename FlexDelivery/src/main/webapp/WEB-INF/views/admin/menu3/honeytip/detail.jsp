@@ -16,9 +16,7 @@ $(function(){
 		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/edit.do?no="+${vo.honeytipNo};
 	});
 	
-	/* $('#detailDelete').click(function(){
-		loctaion.href="${pageContext.request.contextPath}/admin/menu3/honeytip/delete.do?no="+${vo.honeytipNo};
-	}); */
+
 	
 	$('#detailList').click(function(){
 		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip.do";
@@ -43,10 +41,21 @@ $(function(){
 					                        <!-- Blog Content -->
 					                        <div class="single-blog-content">
 					                            <div class="line"></div>
-					                            <a href="#" class="post-tag">${vo.honeytipNo }번째 꿀팁</a>
-					                            <h4><a href="#" class="post-headline mb-0">${vo.honeytipTitle }</a></h4>
+					                            <a class="post-tag">${vo.honeytipNo }번째 꿀팁</a>
+					                            <h4><a class="post-headline mb-0">${vo.honeytipTitle }</a></h4>
 					                            <div class="post-meta mb-50">
-					                                <p>By <a href="#">플렉스 딜리버리</a></p>
+					                                <p>${vo.honeytipRegdate },		By <a>플렉스 딜리버리</a></p>
+					                                <hr>
+					                                <div style="display: flex; ">
+					                                	<div class="col-6" style="text-align: left;">
+					                                		<button type="button" class="btn round block btn-dark" id="detailEdit">수정</button>
+															<button type="button" class="btn round block btn-danger" id="modalDeleteBt" data-toggle="modal" 
+																data-backdrop="false" data-target="#honeytipDetailDelete" >삭제</button>
+														</div>
+					                                	<div class="col-6" style="text-align: right;">
+					                                		<button type="button" class="btn round block btn-dark" id="detailList">목록</button>
+														</div>
+					                                </div>
 					                                <hr>
 					                            </div>
 					                            <div class="text-center">
@@ -66,17 +75,17 @@ $(function(){
 					                        <div class="author-info">
 					                            <div class="line"></div>
 					                            <span class="author-role">Author</span>
-					                            <h4><a href="#" class="author-name">플렉스 딜리버리</a></h4>
+					                            <h4><a class="author-name">플렉스 딜리버리</a></h4>
 					                            <p><span>여러분께 행복을 선물해드리고 싶은 플렉스 딜리버리입니다.</span></p>
 					                       </div>	
 					                    </div>
 										<div class="text-center" style="text-center">
-											<br><br>
+											<!-- <br><br>
 											<button type="button" class="btn round block btn-primary" id="detailEdit">수정</button>
 											<button type="button" class="btn round block btn-danger" id="modalDeleteBt" data-toggle="modal" 
 												data-backdrop="false" data-target="#honeytipDetailDelete" >삭제</button>
 											<button type="button" class="btn round block btn-dark" id="detailList">목록</button>
-											
+											 -->
 											<!-- #honeytipDetailDelete 삭제 모달 -->
 	                                       <div class="modal fade text-left" id="honeytipDetailDelete" tabindex="-1" role="dialog"
 	                                          aria-labelledby="사장님꿀팁 삭제" aria-hidden="true">

@@ -11,6 +11,8 @@ $(function(){
 	$('form[name=frmEventWrite]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
 		var title=$('#boardTitle').val();
+		var auth=$('input[name=authorityNo]').is(':checked');
+
 		var img=$('#upfile').val();
 		
 		
@@ -18,21 +20,23 @@ $(function(){
 			alert("제목을 입력하세요");
 			return false;
 		}
+		if (auth==''){
+			alert("공개 대상을 선택하세요");
+			return false;
+		}
 		if (contents==''){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
+		if (img==''){
+			alert("이미지를 첨부해주세요(필수사항)");
 			return false;
-		} */
+		}
 	
 		
 	});
 	
-	/* $('#btWrite').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/write.do";
-	}); */
+
 	
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
@@ -77,15 +81,29 @@ $(function(){
 											<form name="frmEventWrite" id="frmEventWrite" action="<c:url value='/admin/menu3/event/write.do' />" 
 												method="post" enctype="multipart/form-data">
 										    	<div class="content">
-										    		<input type="hidden" name="boardNo" value="123">
+										    		<input type="hidden" name="boardNo" value="0">
 										    		<input type="hidden" name="boardHead" value="이벤트">
-										    		<input type="hidden" name="authorityNo" value="6">
 										        	<div class="row justify-content-md-center">
 											            <div class="input-group">
 											                <div class="input-group-prepend">
 											                    <label class="input-group-text">제목</label>
 											                </div>            
-											                <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control">              
+											                	<input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" class="form-control col-9">              
+											                <div class="input-group-prepend" style="margin-right: -1px;">
+											                    <label class="input-group-text">공개 대상</label>
+										                    </div>
+										                    <div class="form-control col-3">
+											                    <table style="width: 100%; text-align: center;">
+											                    	<tr>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="1">회원
+			                                                      		</td>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="4">사장님
+			                                                      		</td>              
+											                    	</tr>
+											                    </table>
+										                    </div>
 										                </div>
 									     		 	</div>
 									      			<hr>

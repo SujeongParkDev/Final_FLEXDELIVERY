@@ -55,7 +55,7 @@ function radioCheck(){
 		$('#radio2').prop('checked', false);
 		
 	} else if (radioChk==radio2){
-		$('#radio1').prop('checked', fals);
+		$('#radio1').prop('checked', false);
 		$('#radio2').prop('checked', true);
 		
 	} else {

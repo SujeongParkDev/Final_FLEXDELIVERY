@@ -53,7 +53,7 @@ public class AdminChartController {
 		
 		model.addAttribute("MClist", MClist);
 		
-		return "admin/menu7/member";
+		return "admin/menu7/chartIndex";
 
 	}
 	

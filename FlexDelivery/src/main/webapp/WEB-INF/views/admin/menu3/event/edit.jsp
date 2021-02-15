@@ -7,10 +7,14 @@
 <script>
 	
 $(function(){
-	/* $('#btWrite').click(function(){ */
-	$('form[name=frmEventWrite]').submit(function(){
+	
+	radioCheck();
+
+	$('form[name=frmEventEdit]').submit(function(){
 		var contents = CKEDITOR.instances.editor4.getData(); 
-		var title=$('#eventTitle').val();
+		var title=$('#boardTitle').val();
+		var auth=$('input[name=authorityNo]').is(':checked');
+
 		var img=$('#upfile').val();
 		
 		
@@ -18,21 +22,23 @@ $(function(){
 			alert("제목을 입력하세요");
 			return false;
 		}
+		if (auth==''){
+			alert("공개 대상을 선택하세요");
+			return false;
+		}
 		if (contents==''){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		/* if (img==''){
-			alert("이미지를 첨부해주세요");
-			return false;
-		} */
+		if (img==''){
+			var bool=confirm("기존 이미지를 계속 사용하시겠습니까?");
+			if (!bool){
+				return false;				
+			}
+		}
 	
 		
 	});
-	
-	/* $('#btWrite').click(function(){
-		location.href="${pageContext.request.contextPath}/admin/menu3/honeytip/write.do";
-	}); */
 	
 	$('#btCancel').click(function(){
 		var result=confirm('목록으로 돌아가시겠습니까?');
@@ -44,6 +50,24 @@ $(function(){
 	});
 	
 });
+
+function radioCheck(){
+	var radioChk=${vo.authorityNo };
+	var radio1=$('#radio1').val();
+	var radio2=$('#radio2').val();
+	//alert(radioChk);
+	if (radioChk==radio1){
+		$('#radio1').prop('checked', true);
+		$('#radio2').prop('checked', false);
+		
+	} else if (radioChk==radio2){
+		$('#radio1').prop('checked', false);
+		$('#radio2').prop('checked', true);
+		
+	} else {
+		alert('없어진 공개 대상입니다. 새로운 공개 대상을 선택해주세요.');
+	}
+}
 </script>
 
 <!-- css start -->
@@ -80,13 +104,28 @@ $(function(){
 										    		<input type="hidden" name="boardNo" value="${vo.boardNo }">
 										    		<input type="hidden" name="boardHead" value="${vo.boardHead }">
 										        	<div class="row justify-content-md-center">
-											            <div class="input-group">
+										        		<div class="input-group">
 											                <div class="input-group-prepend">
 											                    <label class="input-group-text">제목</label>
 											                </div>            
 											                <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요" 
-											                	value="${vo.boardTitle }" class="form-control">              
-										                </div>
+											                	value="${vo.boardTitle }" class="form-control">  
+											                <div class="input-group-prepend" style="margin-right: -1px;">
+											                    <label class="input-group-text">공개 대상</label>
+										                    </div>
+										                	<div class="form-control col-3">
+											                    <table style="width: 100%; text-align: center;">
+											                    	<tr>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="1" id="radio1">회원
+			                                                      		</td>
+											                    		<td style="width: 50%; margin-right: 10%;">
+			                                                      			<input type="radio" name="authorityNo" value="4" id="radio2">사장님
+			                                                      		</td>              
+											                    	</tr>
+											                    </table>
+										                    </div>            
+										                </div> 
 									     		 	</div>
 									      			<hr>
 											 		<div class="row justify-content-md-center">
@@ -95,11 +134,10 @@ $(function(){
 											                  <span class="input-group-text" id="inputGroupFileAddon01">썸네일 이미지</span>
 											              </div>
 											              <div class="custom-file">
-											                  <input type="file" name="upfile" class="form-control-file" id="upfile" value="${vo.boardThumbnail }">
-											                  <input type="hidden" name="oldFileName" value=${vo.boardThumbnail }>
+											                  <input type="file" name="upfile" class="form-control-file" id="upfile">
 											              </div>
-										                </div>
-										    		</div>
+											              <input type="hidden" name="oldFileName" value=${vo.boardThumbnail } id="oldFileName">
+									                </div>
 									      			<hr>
 										      		<div class="row justify-content-md-center">
 											          <div class="col_c" style="margin-bottom: 30px">
@@ -117,6 +155,7 @@ $(function(){
 												        <button type="button" class="btn btn-outline-dark round" id="btCancel" style="width: 10%; font-weight: bold"
 												        	data-toggle="modal" data-backdrop="false" data-target="#boardDelete">취소</button>
 	                                                </div>
+                                        		 </div>
                                         		 </div>
 							     			 </form>          
 								     	 </div>
