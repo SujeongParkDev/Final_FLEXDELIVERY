@@ -27,4 +27,6 @@ public interface AdminChartDAO {
 
 	List<Map<String, Object>> selectGProduct();
 
+	List<Map<String, Object>> selectGProduct5();
+
 }

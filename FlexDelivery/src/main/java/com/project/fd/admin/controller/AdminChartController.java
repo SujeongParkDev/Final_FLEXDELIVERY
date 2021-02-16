@@ -1,6 +1,7 @@
 package com.project.fd.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
-import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
-import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryService;
-import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryViewVO;
-import com.project.fd.admin.weather.model.AdminWeatherService;
-import com.project.fd.admin.weather.model.AdminWeatherVO;
+import com.project.fd.admin.chart.model.AdminChartService;
 
 @Controller
 @RequestMapping("/admin/menu7")
@@ -22,36 +18,57 @@ public class AdminChartController {
 	private static final Logger logger=LoggerFactory.getLogger(AdminChartController.class);
 	
 	@Autowired
-	private AdminMediumCategoryService mediumCategoryService;
-	@Autowired
-	private AdminLargeCategoryService largeCategoryService;
-	@Autowired
-	private AdminWeatherService weatherService;
+	private AdminChartService chartService;
 	
-	@RequestMapping("/chartDefault.do")
+	@RequestMapping("/chartIndex.do")
 	public String list_get(Model model) {
-		logger.info("list_get 중분류 카테고리 페이지");
 		
-		//LargeCategory select
-		List<AdminLargeCategoryVO> lCList=  largeCategoryService.selectAll();
-		logger.info("select 대분류 출력 결과, lCList.size()={}", lCList.size());
+		List<Map<String, Object>> list1=chartService.selectCurJoin();
+		List<Map<String, Object>> list2=chartService.selectCurLeave();
+		List<Map<String, Object>> list3=chartService.selectCurOwner();
+		List<Map<String, Object>> list4=chartService.selectCurAd();
+		List<Map<String, Object>> list5=chartService.selectStoreCoupon();
+		List<Map<String, Object>> list6=chartService.selectRCoupon();
+		List<Map<String, Object>> list7=chartService.selectCurOrder();
+		//List<Map<String, Object>> list8=chartService;
+		List<Map<String, Object>> list9=chartService.selectCurLCategory();
+		List<Map<String, Object>> list10=chartService.selectGCategory();
+		List<Map<String, Object>> list11=chartService.selectGPrice();
+		List<Map<String, Object>> list12=chartService.selectGProduct5();
 		
-		//WeatherCategory select
-		List<AdminWeatherVO> wList=weatherService.selectAll();
-		logger.info("select 날씨 출력 결과, wList.size()={}", wList.size());
+		logger.info("list 사이즈, list1.size={}, list2.size={}",	list1.size(), list2.size());
+		logger.info("list 사이즈, list3.size={}, list4.size={}",	list3.size(), list4.size());
+		logger.info("list 사이즈, list5.size={}, list6.size={}",	list5.size(), list6.size());
+		logger.info("list 사이즈, list7.size={}",	list7.size());
+		logger.info("list 사이즈, list9.size={}, list10.size={}",	list9.size(), list10.size());
+		logger.info("list 사이즈, list11.size={}, list12.size={}",	list11.size(), list12.size());
 		
-		//AllView
-		List<AdminMediumCategoryViewVO> list=mediumCategoryService.selectAll2();
-		logger.info("글 목록 결과, list.size={}", list.size());
+		logger.info("list1={}", list1);
+		logger.info("list2={}", list2);
+		logger.info("list3={}", list3);
+		logger.info("list4={}", list4);
+		logger.info("list5={}", list5);
+		logger.info("list6={}", list6);
+
+		logger.info("list7={}", list7);
+		logger.info("list12={}", list12);
+		//logger.info("list8={}", list8);
+		logger.info("list9={}", list9);
+		logger.info("list10={}", list10);
+		logger.info("list11={}", list11);
 		
-		List<AdminMediumCategoryViewVO> MClist=largeCategoryService.selectAll2();
-		logger.info("글 목록 결과, MClist.size={}", MClist.size());
-		
-		model.addAttribute("list", list);
-		model.addAttribute("lCList", lCList);
-		model.addAttribute("wList", wList);
-		
-		model.addAttribute("MClist", MClist);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);
+		model.addAttribute("list4", list4);
+		model.addAttribute("list5", list5);
+		model.addAttribute("list6", list6);
+		model.addAttribute("list7", list7);
+		//model.addAttribute("list8", list8);
+		model.addAttribute("list9", list9);
+		model.addAttribute("list10", list10);
+		model.addAttribute("list11", list11);
+		model.addAttribute("list12", list12);
 		
 		return "admin/menu7/chartIndex";
 

@@ -80,5 +80,11 @@ public class AdminChartDAOMybatis implements AdminChartDAO {
 		List<Map<String, Object>> result=sqlSession.selectList(namespace+"selectGProduct");
 		return result;
 	}
+
+	@Override
+	public List<Map<String, Object>> selectGProduct5() {
+		List<Map<String, Object>> result=sqlSession.selectList(namespace+"selectGProduct5");
+		return result;
+	}
 	
 }

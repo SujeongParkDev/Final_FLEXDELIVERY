@@ -75,7 +75,7 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">사업자 등록 승인</a><br>
@@ -86,7 +86,7 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="top: 27%; display: -webkit-box;">
                         <a style="color: white; font-size: medium;">점포 승인</a><br>
@@ -102,7 +102,7 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">광고 신청</a><br>
@@ -113,7 +113,7 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">리뷰 신고</a><br>
@@ -124,21 +124,28 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">1:1 문의</a><br>
-                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">6건</a>
+	                    <c:if test="${empty askList}">
+	                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">
+	                        	미답변 0건</a>
+	                    </c:if>
+	                    <c:if test="${!empty askList}">
+	                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">
+	                        	미답변 ${cnt}건 </a>
+	                    </c:if>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box; top:27%;">
-                        <a style="color: white; font-size: medium;">오늘의 날씨</a><br>
+                        <a style="color: white; font-size: medium;">오늘의 추천음식</a><br>
                         <a style="color: white; font-size: xx-large;">흐림</a>
                     </div>
                     <!-- Catagory Title -->
