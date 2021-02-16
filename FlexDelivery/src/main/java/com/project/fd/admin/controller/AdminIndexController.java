@@ -16,6 +16,7 @@ import com.project.fd.admin.board.model.AdminBoardService;
 import com.project.fd.admin.hoenytip.AdminHoneytipService;
 import com.project.fd.admin.hoenytip.AdminHoneytipVO;
 import com.project.fd.admin.index.model.AdminIndexService;
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
 
 @Controller
 public class AdminIndexController {
@@ -72,6 +73,14 @@ public class AdminIndexController {
 		logger.info("cnt={}",cnt);
 		
 		model.addAttribute("cnt", cnt);
+		
+		//추천음식 랜덤 돌리기
+		int maxVal=indexService.selectMNo();
+		logger.info("중분류 카테고리 최대값, maxVal={}", maxVal);
+		
+		//(int)Math.random();
+		
+		//AdminMediumCategoryVO mVo=indexService.selectMCategory();
 		
 		//공지, 이벤트, 꿀팁
 		List<AdminBoardAllVO> nList=boardService.selectNotice();
