@@ -565,7 +565,7 @@
 					    	<div class="bg-light">
 						    	<div class="row m-0">
 						    		<div class="col-md-4 col-4 p-2">
-										<img src="<c:url value='/resources/imgs/${menuAllvo.memberMenuVo.menuImg}' />" class="img-fluid rounded float-start" alt="...">
+										<img src="<c:url value='/resources/imgs/MenuImages/${menuAllvo.memberMenuVo.menuImg}' />" class="img-fluid rounded float-start" alt="...">
 							    	</div>
 							    	<div class="col-md-8 col-8 p-5">
 										<p class="mb-0 h4 fw-bold font-monospace" style="line-height: 1;text-align: end">${menuAllvo.memberMenuVo.menuContent}</p>
@@ -596,7 +596,7 @@
 								                </button>
 							                </div>
 							                <div class="col-md-12" style="text-align: center;line-height: 25">
-							                	<img src="<c:url value='/resources/imgs/${menuAllvo.memberMenuVo.menuImg}' />" width="250px" height="250px">
+							                	<img src="<c:url value='/resources/imgs/MenuImages/${menuAllvo.memberMenuVo.menuImg}' />" width="250px" height="250px">
 							                	<br>
 												<p class="h5">${menuAllvo.memberMenuVo.menuContent}</p>                 	
 							                </div>

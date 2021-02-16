@@ -5,17 +5,12 @@
 <mapper namespace="config.mybatis.mapper.oracle.memberStores">
 	<!-- create or replace view hyStoreList
 		as
-		select s.*,A.REVIEW_COUNT,A.REVIEW_RATING,A.COUPON_EXIST
-		from stores s,
-		(
-		    select s.store_no as dummy,count(r.REVIEW_NO) as "REVIEW_COUNT",count(b.STORE_NO) as "COUPON_EXIST",avg(nvl(r.REVIEW_RATING,0)) as "REVIEW_RATING"
-		    from stores s left join review r 
-		    on s.STORE_NO = r.STORE_NO
-		    left join storecouponbox b
-		    on s.store_no=b.STORE_NO
-		    group by s.store_No
-		)A
-		where s.store_NO=A.dummy -->
+		select s.*,
+		(select count(*) from review r where r.STORE_NO=s.store_no) as review_count,
+		(select nvl(avg(r.REVIEW_RATING),0) from review r where r.STORE_NO=s.store_no) as review_rating,
+		(select count(*) from storeCouponBox b where b.STORE_NO=s.store_no) as coupon_exist
+		from
+		stores s -->
 
 
 	<select id="selectFlexAdStores" parameterType="map" resultType="memberStoresVo">

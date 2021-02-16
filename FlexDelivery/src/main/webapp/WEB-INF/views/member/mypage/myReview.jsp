@@ -67,7 +67,7 @@ $(function(){
 					                		<img alt="" src="<c:url value='/resources/imgs/ReviewImages/${vo.reviewFilename}'/>" class="img-fluid mx-auto" width="50%">
 					                	</div>
 				                	</c:if>
-				                    <p class="p-3 mb-3 bg-light rounded w-100"><span class="badge bg-dark text-light">리뷰</span><span class="small text-muted" style="float:right">&nbsp;&nbsp;${vo.menuName}</span><br><br>${vo.reviewContent}</p>
+				                    <p class="p-3 mb-3 bg-light rounded w-100"><span class="badge bg-dark text-light">리뷰</span><span class="small text-muted" style="float:right">&nbsp;&nbsp;${vo.menuName} 등 ${vo.menuCount}건</span><br><br>${vo.reviewContent}</p>
 					                <c:if test="${!empty coList}">
 					                	<c:forEach var="coVo" items="${coList}">
 										<c:if test="${coVo.reviewNo==vo.reviewNo}">

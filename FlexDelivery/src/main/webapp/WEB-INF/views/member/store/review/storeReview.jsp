@@ -35,7 +35,7 @@
 	    if(input.files && input.files[0]) {
 	        var reader = new FileReader();
 	       reader.onload = function (e) {
-	            $('#preview').html("<img class='img-fluid' src="+ e.target.result +">");
+	            $('#preview').html("<img class='img-fluid' style='max-width:50%' src="+ e.target.result +">");
 	        }
 	        reader.readAsDataURL(input.files[0]);
 	    }  
@@ -96,7 +96,7 @@
 							if(item.reviewFilename!=null){
 								str+="<div class='row mb-3'><img src='<c:url value='/resources/imgs/ReviewImage/"+item.reviewFilename+"'/>' class='img-fluid mx-auto' width='50%'></div>";
 							}
-							str+="<p class='p-3 mb-3 bg-light rounded w-100'><span class='badge bg-dark text-light'>리뷰</span><span class='small text-muted' style='float:right'>&nbsp;&nbsp;"+item.menuName+"</span><br><br>"+item.reviewContent+"</p>";
+							str+="<p class='p-3 mb-3 bg-light rounded w-100'><span class='badge bg-dark text-light'>리뷰</span><span class='small text-muted' style='float:right'>&nbsp;&nbsp;"+item.menuName+" 등"+item.menuCount+"건</span><br><br>"+item.reviewContent+"</p>";
 							if(map.coList.length>0){
 								$.each(map.coList,function(idx,coVo){
 									if(coVo.reviewNo==item.reviewNo){
@@ -160,7 +160,9 @@
 <c:if test="${empty list}">
 	<div class="bg-white p-3 mb-3 restaurant-detailed-ratings-and-reviews shadow-sm rounded">
 	    <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">이 가게의 리뷰</p>
-	    <img alt="" class="img-fluid p-3" src="<c:url value='/resources/imgs/noReviewDefault.png'/>" style="inline-size:-webkit-fill-available;">
+	    <div style="text-align: center">
+		    <img alt="" class="img-fluid p-3" src="<c:url value='/resources/imgs/noReviewDefault.png'/>" style="inline-size:40em;">
+	    </div>
     </div>
 </c:if>
 <c:if test="${!empty list}">
@@ -229,7 +231,7 @@
 					                		<img alt="" src="<c:url value='/resources/imgs/ReviewImages/${vo.reviewFilename}'/>" class="img-fluid mx-auto" width="50%">
 					                	</div>
 				                	</c:if>
-				                    <p class="p-3 mb-3 bg-light rounded w-100"><span class="badge bg-dark text-light">리뷰</span><span class="small text-muted" style="float:right">&nbsp;&nbsp;${vo.menuName}</span><br><br>${vo.reviewContent}</p>
+				                    <p class="p-3 mb-3 bg-light rounded w-100"><span class="badge bg-dark text-light">리뷰</span><span class="small text-muted" style="float:right">&nbsp;&nbsp;${vo.menuName} 등 ${vo.menuCount}건</span><br><br>${vo.reviewContent}</p>
 					                <c:if test="${!empty coList}">
 					                	<c:forEach var="coVo" items="${coList}">
 										<c:if test="${coVo.reviewNo==vo.reviewNo}">
@@ -285,7 +287,7 @@
 		       <select class="custom-select form-control mb-3" name="ordersNo">
 				  <option selected value="0">어떤 메뉴를 주문하셨나요?</option>
 				  <c:forEach var="map" items="${orderList}">
-					  <option value="${map['ORDERS_NO']}">${map['MENU_NAME']}</option>
+					  <option value="${map['ORDERS_NO']}">${map['MENU_NAME']} 등 ${map['MENU_COUNT']}건</option>
 				  </c:forEach>
 				</select>
 	       </c:if>

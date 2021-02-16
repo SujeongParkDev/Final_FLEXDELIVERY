@@ -17,9 +17,15 @@ public class MemberReviewVO {
 	private String storeName;
 	private String memberId; //회원ID
 	private String menuName; //메뉴이름
+	private int menuCount; //메뉴 갯수
 	
 	
-	
+	public int getMenuCount() {
+		return menuCount;
+	}
+	public void setMenuCount(int menuCount) {
+		this.menuCount = menuCount;
+	}
 	public String getStoreName() {
 		return storeName;
 	}

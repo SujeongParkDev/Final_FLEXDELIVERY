@@ -24,7 +24,7 @@
 		   		var delivery=0;
 				if(map.list.length<1){
 		    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
-	    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
+	    			str+="<img class='img-fluid mx-auto' style='inline-size:40em' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
 		    		str+="</div>";
 		    	}else{
 			    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";
