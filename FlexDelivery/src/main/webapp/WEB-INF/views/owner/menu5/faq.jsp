@@ -41,11 +41,25 @@ button.btn.btn-link {
 	<div class="col-12 col-md-8 text-right">
 		<form name="frmSearch" method="post"
 			action="<c:url value='/owner/menu5/faq.do'/>">
+				<div class="row">
+						<div class="col-md-8 col-12"></div>
+						<div class="col-md-4 col-sm-12">
+							<select class="form-select groupChoice p-2 choice"  name="choice" id="choice" style="overflow: auto;">
+								<c:forEach var="cgVo" items="${cgList }">
+						<option ><button id="cgName"
+							onclick="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
+					</option>
+					</c:forEach>
+							</select> <br>
+						</div>
+						<div class="col-md-4 col-sm-12"></div>
+					</div>
 			<div class="dropdown">
-				<a class="btn btn-primary " href="#none" role="button"
+				<a class="btn btn-primary " href="#none" role="button" valaue="카테고리 전체"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> ${cgVo.fCategoryName }</a>
 				<!-- 반복문 시작 -->
+				
 				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink" style="text-decoration: none;">
 					<c:forEach var="cgVo" items="${cgList }">
 						<a class="dropdown-item" id="cgName"

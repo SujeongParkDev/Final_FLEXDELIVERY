@@ -273,8 +273,6 @@ $(function(){
 		});
 });
 	
-			
-			
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 

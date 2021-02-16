@@ -43,8 +43,8 @@
 						<div class="card-body text-center">
 							<div class="row">
 								<div class="col-md-4 col-12"></div>
-								<div class="col-md-6 col-12 ">
 									<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
+								<div class="col-md-6 col-12 ">
 										<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 										<input type="hidden" name="currentPage" value="1">
 								</div>

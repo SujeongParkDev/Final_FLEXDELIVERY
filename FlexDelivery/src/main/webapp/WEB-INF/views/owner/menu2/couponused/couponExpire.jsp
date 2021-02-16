@@ -6,35 +6,31 @@
 <br>
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
-	<div class="col-md-8 col-sm-12">
+	<div class="col-md-9 col-sm-12">
 		<div class="text-right">
 			<button id="btAll" class="btn btn-primary">사용중인 쿠폰</button>
 			<button id="btExpire" class="btn btn-primary">쿠폰 발급 내역</button>
-			<button id="btRegi" class="btn btn-outline-warning">쿠폰 신청</button>
+			<button id="btRegi" class="btn btn-warning">쿠폰 신청</button>
 		</div>
 	</div>
-	<div class="col-md-2 col-sm-12"></div>
 </div>
 <br>
 <!-- 테이블 시작 -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-1  col-sm-12"></div>
-	<div class="col-12 col-md-10">
+	<div class="col-md-10 col-12">
 		<div class="card">
 			<br>
 			<div class="card-content">
-				${list }
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역
 					</p>
 					<p class="card-text text-center">전체 발급된 구폰 내역입니다.</p>
 					<br> <br> <br> <br>
-					<!-- datepicker !  -->
 					<div class="row">
+							<div class="col-md-4 col-12"></div>
 						<form name="frmPage" method="post" name="frm1"
 							action="<c:url value='/owner/menu2/couponused/couponExpireSearch.do'/>">
-							<div class="col-md-4 col-12"></div>
-							<!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
 							<div class="col-md-6 col-12 ">
 								<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 								<input type="hidden" name="currentPage" value="1">
@@ -45,10 +41,8 @@
 									id="searchDate">
 							</div>
 							<br> <br>
-							<!-- datepicker row -->
 						</form>
 					</div>
-
 					<div class="col-md-4 col-12"></div>
 					<!--  -->
 					<div class="table-responsive delck">
@@ -104,13 +98,6 @@
 
 	<br> <br> <br>
 	<script type="text/javascript">
-$(function(){
-	$('#DateList').hide();
-	$('#searchDate').click(function(){
-		$('#AllList').hide();
-		$('#DateList').show();
-	});
-});
 	$(function(){
 		$('#btRegi').click(function(){
 			location.href='<c:url value="/owner/menu2/couponused/couponRegi.do"/>';
@@ -127,49 +114,6 @@ $(function(){
 		$('form[name=frmDate]').submit();
 	}
 	
-	$(function(){
-		$('#btDel').click(function(){
-			var no=$('.ckbox').val();
-			var len
-				=$('.delck .deltable tbody').find('input[type=checkbox]:checked').length;
-			if(len==0){
-				alert('먼저 삭제할 쿠폰을 선택해야 합니다.!');
-				return false;	
-			}
-			
-			$('form[name=frmList]').prop('action',
-					'<c:url value="/owner/menu2/couponused/deleteMulti.do"/>');
-			$('form[name=frmList]').submit();
-		});	
-		
-		$('input[name=chkAll]').click(function(){
-			$('.divList .box2 tbody').find('input[type=checkbox]')
-				.prop('checked', this.checked);	
-		});
-	});
-	
-
-	/* 처음에 전체 목록 불러오기
-	$(function(){
-     	$.ajax({
-			url:"<c:url value='/owner/menu2/couponused/couponExpire.do'/>",
-			type:"GET",
-		//	data: , 
-			dataType:"json",
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			success:function(res){
-				alert(res);
-				$('#DateList').hide();
-				$('#AllList').show();
-					
-				},
-				error:function(xhr, status, error){
-					alert("error! : " + error);
-				}				
-			});//ajax
-	});
-	
-	*/
 </script>
 
 	<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

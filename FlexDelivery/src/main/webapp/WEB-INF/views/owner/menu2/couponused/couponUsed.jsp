@@ -28,15 +28,11 @@
 						<div class="row">
 							<div class="col-md-2 col-12">
 								<div class="col-md-10 col-sm-12"></div>
-								<div class="text-right">
-									<input type="button" value="선택한 쿠폰 삭제 " id="btDel" class="btn btn-primary btn-block"><br> <br><!-- 오른쪽으로 보내줘ㅠ  -->
-								</div>
 							</div>
 						</div>
 						<div class="table-responsive delck">
 							<table class="table table-hover mb-5 deltable">
 								<colgroup>
-									<col style="width: 1%" />
 									<col style="width: 15%" />
 									<col style="width: 15%" />
 									<col style="width: 15%" />
@@ -46,8 +42,7 @@
 								</colgroup>
 								<thead>
 									<tr class="text-center">
-										<th><input type="checkbox" name="chkAll"></th>
-										<th scope="col">번호</th>
+									<th scope="col">쿠폰 번호 </th>
 										<th scope="col">최소 금액</th>
 										<th scope="col">할인 금액</th>
 										<th scope="col">시작일</th>
@@ -59,32 +54,28 @@
 									<!-- table 시작 -->
 									<c:if test="${empty list }">
 										<tr>
-											<td colspan="7" class="text-center">데이터가 존재하지 않습니다.</td>
+											<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
 										</tr>
 									</c:if>
 									<c:set var="k" value="0" />
 									<c:if test="${!empty list }">
 										<c:forEach var="map" items="${list}">
 											<tr class="text-center">
-												<td>
-													<input type="checkbox" name="couponItems[${k}].scBoxNo" value="${map['S_C_BOX_NO']}" class="ckbox">
-													 <input type="hidden" name="couponItems[${k}].scBoxNo" value="${map['S_C_BOX_NO']}">
-												</td>
 												<td>${map['R_COUPON_NO'] }</td>
 												<td>${map['R_COUPON_MIN'] }</td>
 												<td>${map['R_COUPON_DC'] }</td>
-												<td>${map['S_C_START_DATE'] }</td>
+												<td>${fn:substring(map['S_C_START_DATE'], 0, 10)}</td>
 												<td>${fn:substring(map['S_C_END_DATE'] , 0,10)}</td>
 												<c:if test="${map['S_C_SERVICE'] == 'Y' }">
 													<td>
 														<span class="badge bg-success">사용중 </span>
-														<span class="badge bg-light"><a href="#none" OnClick="btDelete(${map['S_C_BOX_NO']})" style="color:white;" >쿠폰 발급중지 </a></span>
+														<span class="badge bg-light"><a href="#none" OnClick="btDelete(${map['S_C_BOX_NO']})" style="color:white;" >발급중지 </a></span>
 													</td>
 												</c:if>
 												<c:if test="${map['S_C_SERVICE'] == 'N'}">
 													<td>
 														<span class="badge bg-danger">사용중지 </span>
-														<span class="badge bg-light"><a href="#none" OnClick="btUpdate(${map['S_C_BOX_NO']})" style="color:white;" >쿠폰 재발급</a></span>
+														<span class="badge bg-light"><a href="#none" OnClick="btUpdate(${map['S_C_BOX_NO']})" style="color:white;" >재발급</a></span>
 													</td>
 												</c:if>
 											</tr>
@@ -117,30 +108,12 @@
 			location.href='<c:url value="/owner/menu2/couponused/couponUsed.do"/>';
 		});
 	});
+
 	function pageFunc(curPage){
 		$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmDate]').submit();
 	}
-	
-	$(function(){
-		$('#btDel').click(function(){
-			var no=$('.ckbox').val();
-			var len =$('.delck .deltable tbody').find('input[type=checkbox]:checked').length;
-			if(len==0){
-				alert('먼저 삭제할 쿠폰을 선택해야 합니다.!');
-				return false;	
-			}
-			
-			$('form[name=frmList]').prop('action', '<c:url value="/owner/menu2/couponused/deleteMulti.do"/>');
-			$('form[name=frmList]').submit();
-		});	//btDel
-		
-		$('input[name=chkAll]').click(function(){
-			$('.delck .deltable tbody').find('input[type=checkbox]').prop('checked', this.checked);	
-		});
-		
-	});
-	
+
 	function btDelete(scBoxNo){
 		if(!confirm('쿠폰을 사용불가하게 변경하시겠습니까? ')){
 			event.preventDefault();
