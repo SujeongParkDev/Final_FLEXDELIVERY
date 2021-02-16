@@ -233,12 +233,4 @@ $(function(){
 });
 
 </script>
-<!-- script start -->
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/app.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
-<!-- script end -->
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

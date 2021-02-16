@@ -34,34 +34,29 @@ button.btn.btn-link {
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
 	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage" >
-		 <input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
+		<input type="hidden" name="currentPage"> 
+		<input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
-		<form name="frmSearch" method="post"
-			action="<c:url value='/owner/menu5/faqDetail.do'/>">
+		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faqDetail.do'/>">
 			<input type="hidden" value="${cgVo.fCategoryNo}">
-				<div class="row">
-						<div class="col-md-8 col-12"></div>
-						<div class="col-md-4 col-sm-12">
-							<select class="form-select groupChoice p-2" name="fCategoryNo"  id="fCategoryNo" style="overflow: auto;">
-								<c:forEach var="cgVo" items="${cgList }" >
-									<option value="${cgVo.fCategoryNo}"
-									<c:if test="${cgVo.fCategoryNo == param.fCategoryNo}">
-									selected="selected"</c:if>
-									>${cgVo.fCategoryName }</option>
-								</c:forEach>
-							</select> <br>
-						</div>
-						<div class="col-md-4 col-sm-12"></div>
-					</div>
+			<div class="row">
+				<div class="col-md-8 col-12"></div>
+				<div class="col-md-4 col-sm-12">
+					<select class="form-select groupChoice p-2" name="fCategoryNo"
+						id="fCategoryNo" style="overflow: auto;">
+						<c:forEach var="cgVo" items="${cgList }">
+							<option value="${cgVo.fCategoryNo}" <c:if test="${cgVo.fCategoryNo == param.fCategoryNo}"> selected="selected"</c:if>>${cgVo.fCategoryName }</option>
+						</c:forEach>
+					</select> <br>
+				</div>
+				<div class="col-md-4 col-sm-12"></div>
+			</div>
 		</form>
 	</div>
 	<div class="col-12 col-md-2"></div>
 	<br> <br>
-	${searchVo }
-	<!-- 테이블 시작 -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8">
 		<table class="table table">
@@ -86,28 +81,31 @@ button.btn.btn-link {
 									<th scope="row">
 										<div style="display: block; padding: 10px;">${vo.faqNo }</div>
 									</th>
-							<!-- 옵션 선택을 안 할 경우 desc로 전체  -->
-								<td class="">
-									<div style="display: block; padding: 10px;">${vo.fCategoryName }</div>
-								</td>
+									<td class="">
+										<div style="display: block; padding: 10px;">${vo.fCategoryName }</div>
+									</td>
+									<td class="text-left">
+										<button style="border: none;"
+											class="shadow-none btn btn-block d-flex justify-content-between card-btn collapsed p-3"
+											data-toggle="collapse"
+											data-target="#accountCollapse${vo.faqNo}"
+											aria-expanded="false"
+											aria-controls="accountCollapse${vo.faqNo}">${vo.faqQ}
+											<span class="card-btn-arrow"> <span
+												class="feather-chevron-down"> </span>
+											</span>
+										</button>
+									</td>
+								</tr>
+							</div>
+							<tr class="text-center">
+								<th scope="row"></th>
+								<td></td>
 								<td class="text-left">
-									<button style="border:none;" class="shadow-none btn btn-block d-flex justify-content-between card-btn collapsed p-3"
-										data-toggle="collapse" data-target="#accountCollapse${vo.faqNo}" aria-expanded="false" 
-										aria-controls="accountCollapse${vo.faqNo}">${vo.faqQ}
-										<span class="card-btn-arrow"> 
-										<span class="feather-chevron-down">
-										</span>
-									</span>
-								</button>
-							</td>
-						</tr>
-					</div>
-					<tr class="text-center">
-						<th scope="row"></th>
-						<td></td>
-						<td class="text-left">
-							<div id="accountCollapse${vo.faqNo}" class="collapse" aria-labelledby="accountHeading${vo.faqNo}" data-parent="#Accordion">
-								<div class="card-body  text-muted">${vo.faqA }</div>
+									<div id="accountCollapse${vo.faqNo}" class="collapse"
+										aria-labelledby="accountHeading${vo.faqNo}"
+										data-parent="#Accordion">
+										<div class="card-body  text-muted">${vo.faqA }</div>
 									</div>
 								</td>
 							</tr>
@@ -117,39 +115,37 @@ button.btn.btn-link {
 			</tbody>
 		</table>
 	</div>
-<div class="col-12 col-md-2"></div>
+	<div class="col-12 col-md-2"></div>
 </div>
-	<div class="card-body">
-           <nav aria-label="Page navigation example">				
-               <ul class="pagination pagination-primary justify-content-center">
-		 			<c:if test="${pagingInfo.firstPage>1 }">	
-						<li class="page-item">
-			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
-        						<span aria-hidden="true">&laquo;</span>
-			                   </a>
-		                   </li>
-					</c:if>
-	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
-					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
-						<c:if test="${i==pagingInfo.currentPage }">
-							 <li class="page-item active"><a class="page-link" href="#" >${i}</a></li>
-						</c:if>
-						<c:if test="${i!=pagingInfo.currentPage }">
-						    <li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a></li>
-						</c:if>
-					</c:forEach>
-
-				  <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">	
-					<li class="page-item">
-		                   <a class="page-link" href="#" aria-label="Previous"  onclick="pageFunc(${pagingInfo.lastPage+1})">
-								<span aria-hidden="true">&raquo;</span>
-		                   </a>
-	                   </li>
-				 </c:if>
-               </ul>
-           </nav>
-           
-        </div> 
+<div class="card-body">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination pagination-primary justify-content-center">
+			<c:if test="${pagingInfo.firstPage>1 }">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+						<span aria-hidden="true">&laquo;</span>
+				</a></li>
+			</c:if>
+			<!-- [1][2][3][4][5][6][7][8][9][10] -->
+			<c:forEach var="i" begin="${pagingInfo.firstPage}"
+				end="${pagingInfo.lastPage}">
+				<c:if test="${i==pagingInfo.currentPage }">
+					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+				</c:if>
+				<c:if test="${i!=pagingInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href="#"
+						onclick="pageFunc(${i})">${i}</a></li>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
+						<span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</c:if>
+		</ul>
+	</nav>
+</div>
 <br>
 <br>
 <br>
@@ -157,8 +153,7 @@ button.btn.btn-link {
 	function pageFunc(curPage){
 		var num=$('input[name=fCategoryNo]').val();
 		if(num == null || num== 0 ){
-			
-		$('form[name=frmPage]').find('input[name=fCategoryNo]').val(0);	
+			$('form[name=frmPage]').find('input[name=fCategoryNo]').val(0);	
 		}
 		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmPage]').submit();
