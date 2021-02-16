@@ -18,7 +18,7 @@
 			select rownum as rn, A.* from
 				(
 					select * from BOARD
-					where BOARD_HEAD='event' 
+					where BOARD_HEAD='이벤트' 
 					and AUTHORITY_NO in (1,2,3)
 					order by BOARD_NO asc
 				)A
@@ -33,7 +33,7 @@
 			select rownum as rn, A.* from
 				(
 					select * from BOARD
-					where BOARD_HEAD='notice' 
+					where BOARD_HEAD='공지사항' 
 					and AUTHORITY_NO in (1,2,3)
 					order by BOARD_NO asc
 				)A
@@ -47,7 +47,7 @@
 		from
 		(
 			select * from board
-			where board_head='event'
+			where board_head='이벤트'
 			and authority_no in (1,2,3)
 		)
 		<include refid="searchKeyword"></include>
@@ -58,9 +58,14 @@
 		from
 		(
 			select * from board
-			where board_head='notice'
+			where board_head='공지사항'
 			and authority_no in (1,2,3)
 		)
 		<include refid="searchKeyword"></include>
+	</select>
+	
+	<select id="boardDetail" parameterType="int" resultType="memberBoardVo">
+		select * from board
+		where board_no=#{boardNo}
 	</select>
 </mapper>

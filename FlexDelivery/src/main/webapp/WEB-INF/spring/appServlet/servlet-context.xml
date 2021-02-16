@@ -51,8 +51,9 @@
 			<mapping path="/member/cart/**/*"/>
 			<mapping path="/member/review/**/*"/>
 			<mapping path="/member/menu/**/*"/>
+			<mapping path="/member/today/**/*"/>
 			<exclude-mapping path="/member/board/**/*"/>
-			<exclude-mapping path="/member/login/memberLogin.do"/>
+			<exclude-mapping path="/member/login/*"/>
 			<exclude-mapping path="/member/register/register.do"/>
 			<beans:ref bean="memberLoginInterceptor"/>
 		</interceptor>

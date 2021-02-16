@@ -37,7 +37,7 @@
                     	<c:if test="${!empty takeList}">
                     		<div class="row">
                     		<c:forEach var="vo" items="${takeList}">
-                          <div class="pb-3 col-md-6 col-6">
+                          <div class="pb-3 col-md-6 col-12">
                               <div class="p-3 rounded shadow-sm bg-white">
                                   <div class="d-flex border-bottom pb-3">
                                       <div class="text-muted mr-3">
@@ -87,7 +87,7 @@
                     	<c:if test="${!empty giveList}">
                     		<div class="row">
                     		<c:forEach var="vo" items="${giveList}">
-	                          <div class="pb-3 col-md-6 col-6">
+	                          <div class="pb-3 col-md-6 col-12">
 	                              <div class="p-3 rounded shadow-sm bg-white">
 	                                  <div class="d-flex border-bottom pb-3">
 	                                      <div class="text-muted mr-3">

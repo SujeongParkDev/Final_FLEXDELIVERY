@@ -105,7 +105,7 @@
 	<c:if test="${empty list}">
 		<div class="col-md-12 pb-12" style="text-align: center">
 			<div class="bg-white p-3 h-100 rounded overflow-hidden position-relative shadow-sm">
-		        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="min-width:400px">
+		        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="inline-size: 30em">
 			</div>
 		</div>
 	</c:if>

@@ -4,13 +4,13 @@
 <div class="d-none">
     <div class="bg-primary p-3 d-flex align-items-center">
         <a class="toggle togglew toggle-2" href="#"><span></span></a>
-        <h4 class="font-weight-bold m-0 text-white">My Order</h4>
+        <h4 class="font-weight-bold m-0 text-white">DETAIL</h4>
     </div>
 </div>
 <section class="py-4 osahan-main-body">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <ul class="nav nav-tabsa custom-tabsa border-0 flex-column bg-white rounded overflow-hidden shadow-sm p-2 c-t-order" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link border-0 text-dark py-3 active" href="my_order.html">
@@ -25,8 +25,8 @@
                             <i class="feather-x-circle mr-2 text-danger mb-0"></i> Canceled</a>
                     </li>
                 </ul>
-            </div>
-            <div class="col-md-9">
+            </div> -->
+            <div class="col-md-12">
                 <!-- body -->
                 <section class="bg-white osahan-main-body rounded shadow-sm overflow-hidden">
                     <div class="container p-0">
@@ -35,54 +35,28 @@
                                 <div class="osahan-status">
                                     <!-- status complete -->
                                     <div class="p-3 status-order border-bottom bg-white">
-                                        <p class="small m-0"><i class="feather-calendar text-primary"></i> 16 June, 11:30AM</p>
+                                        <p class="small m-0"><i class="feather-calendar text-primary"></i><fmt:formatDate value="${vo.boardRegdate}" pattern="yyyy-MM-dd HH:mm E요일"/></p>
                                     </div>
                                     <div class="p-3 border-bottom">
                                         <div class="d-flex">
-                                            <h6 class="font-weight-bold">Order Status</h6>
-                                            <span class="ml-auto"><a href="map.html" class="btn btn-primary">Track on map</a></span>
-                                        </div>
-                                        <div class="tracking-wrap">
-                                            <div class="my-1 step active">
-                                                <span class="icon text-success"><i class="feather-check-circle"></i></span>
-                                                <span class="text small">Preparing order</span>
-                                            </div>
-                                            <!-- step.// -->
-                                            <div class="my-1 step active">
-                                                <span class="icon text-danger"><i class="feather-x-circle"></i></span>
-                                                <span class="text small">Ready to collect</span>
-                                            </div>
-                                            <!-- step.// -->
-                                            <div class="my-1 step">
-                                                <span class="icon text-danger"><i class="feather-x-circle"></i></span>
-                                                <span class="text small">On the way </span>
-                                            </div>
-                                            <!-- step.// -->
-                                            <div class="my-1 step">
-                                                <span class="icon text-danger"><i class="feather-x-circle"></i></span>
-                                                <span class="text small">Delivered Order</span>
-                                            </div>
-                                            <!-- step.// -->
+                                            <h6 class="font-weight-bold">${vo.boardTitle}</h6>
                                         </div>
                                     </div>
                                     <!-- Destination -->
                                     <div class="p-3 border-bottom bg-white">
-                                        <h6 class="font-weight-bold">Destination</h6>
-                                        <p class="m-0 small">554 West 142nd Street, New York, NY 10031</p>
+                                        <p class="m-0 small">${vo.boardHead}</p>
                                     </div>
                                     <div class="p-3 border-bottom">
-                                        <p class="font-weight-bold small mb-1">Courier</p>
-                                        <img alt="#" src="img/logo_web.png" class="img-fluid sc-osahan-logo mr-2"> <span class="small text-primary font-weight-bold">Swiggiweb Courier
-                                </span>
+                                        <img alt="#" src="<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>" class="img-fluid mx-auto">
                                     </div>
                                     <!-- total price -->
                                     <!-- Destination -->
                                     <div class="p-3 border-bottom bg-white">
                                         <div class="d-flex align-items-center mb-2">
-                                            <h6 class="font-weight-bold mb-1">Total Cost</h6>
+                                            <h6 class="font-weight-bold mb-1">내용</h6>
                                             <h6 class="font-weight-bold ml-auto mb-1">$8.52</h6>
                                         </div>
-                                        <p class="m-0 small text-muted">You can check your order detail here,<br>Thank you for order.</p>
+                                        <p class="m-0 small text-muted">${vo.boardContent}</p>
                                     </div>
                                 </div>
                             </div>

@@ -7,4 +7,5 @@ public interface MemberBoardService {
 	List<MemberBoardVO> selectNotice(MemberBoardSearchVO vo);
 	int eventCount(MemberBoardSearchVO vo);
 	int noticeCount(MemberBoardSearchVO vo);
+	MemberBoardVO boardDetail(int boardNo);
 }

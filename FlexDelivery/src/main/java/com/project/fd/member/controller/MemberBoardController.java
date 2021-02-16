@@ -138,8 +138,11 @@ public class MemberBoardController {
 	}
 	
 	@RequestMapping("/detail.do")
-	public void detailBoard(@RequestParam int boardNo) {
-		
+	public String detailBoard(@RequestParam int boardNo,Model model) {
+		logger.info("게시판 상세보기");
+		MemberBoardVO vo=boardServ.boardDetail(boardNo);
+		model.addAttribute("vo",vo);
+		return "member/board/boardDetail";
 	}
 	
 }	

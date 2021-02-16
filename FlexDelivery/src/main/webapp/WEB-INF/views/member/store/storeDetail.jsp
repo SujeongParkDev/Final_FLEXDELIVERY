@@ -19,7 +19,7 @@
 				var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white sticky_sidebar'>";
 				if(map.list.length>0){
 				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-				    str+="<img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+				    str+="<a href='<c:url value='/member/store/storeDetail.do?storeNo="+map.vo.storeNo+"'/>'><img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px;max-height: 41px;'></a>";
 				    str+="<div class='d-flex flex-column'>";
 				    str+="<h6 class='mb-1 font-weight-bold'>"+map.vo.storeName+"</h6>";
 				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
@@ -29,7 +29,7 @@
 		   		var delivery=0;
 				if(map.list.length<1){
 		    		str+="<div class='gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom'>";
-	    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
+	    			str+="<img class='img-fluid mx-auto' alt='장바구니 상품 없음' style='inline-size:40em' src='<c:url value='/resources/imgs/TUNG.png'/>'>";
 		    		str+="</div>";
 		    	}else{
 			    	str+="<div class='bg-white border-bottom py-2 cartDiv'>";

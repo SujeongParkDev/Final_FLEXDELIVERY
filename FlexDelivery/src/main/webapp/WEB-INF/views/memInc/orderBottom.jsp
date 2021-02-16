@@ -157,9 +157,9 @@
                 </a>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-map-pin"></i></p>
-                    Trending
+                <a href="${pageContext.request.contextPath}/member/today/todayList.do" class="text-dark small font-weight-bold text-decoration-none">
+                    <p class="h4 m-0"><i class="feather-check-circle"></i></p>
+                    	오늘뭐먹지?
                 </a>
             </div>
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
@@ -267,6 +267,7 @@
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/myGift.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/loing/logout.do">FLEX-OUT</a></li>
 	                </ul>
                 </c:if>
             </li>
@@ -274,8 +275,9 @@
                 <a><i class="feather-map-pin mr-2"></i>점포조회</a>
                 <c:import url="/member/sidebarList.do" />
             </li>
-            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>FLEX-ON</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>FLEX-OFFERS</a></li>
             <li><a href="${pageContext.request.contextPath}/member/board/board.do"><i class="feather-user mr-2"></i>알림광장</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/today/todayList.do"><i class="feather-check-circle mr-2"></i>오늘뭐먹지</a></li>
             <li>
                 <a><i class="feather-link mr-2"></i>Contact Us</a>
                 <ul>
@@ -301,12 +303,22 @@
                     FAQ
                 </a>
             </li>
-            <li class="ko-fi">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/contact-us.html">
-                    <p class="h5 m-0"><i class="feather-phone"></i></p>
-                    Help
-                </a>
-            </li>
+            <c:if test="${!empty sessionScope.memberId}">
+	            <li class="ko-fi">
+	                <a href="${pageContext.request.contextPath}/member/login/logout.do">
+	                    <p class="h5 m-0"><i class="feather-log-out"></i></p>
+	                    Flex-Out
+	                </a>
+	            </li>
+            </c:if>
+            <c:if test="${empty sessionScope.memberId}">
+            	<li class="ko-fi">
+	                <a href="${pageContext.request.contextPath}/member/login/memberLogin.do">
+	                    <p class="h5 m-0"><i class="feather-log-in"></i></p>
+	                    Flex-On
+	                </a>
+	            </li>
+            </c:if>
         </ul>
     </nav>
     <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
