@@ -80,9 +80,9 @@
 														<span class="badge bg-success">사용중 </span>
 													</td>
 												</c:if>
-												<c:if test="${map['S_C_SERVICE'] == 'N' ||  map['S_C_END_DATE'] == sysdate }">
+												<c:if test="${map['S_C_SERVICE'] == 'N'}">
 													<td>
-														<span class="badge bg-danger">만료 </span>
+														<span class="badge bg-danger">사용중지 </span>
 													</td>
 												</c:if>
 											</tr>

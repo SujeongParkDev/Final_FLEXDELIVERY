@@ -47,7 +47,7 @@
         from REGULARCOUPON r  join STORECOUPONBOX c
          on r.R_COUPON_NO=c.R_COUPON_NO
          <![CDATA[
-         where s_c_service='Y' and store_no=#{storeNo} and s_c_end_date >= sysdate
+         where store_no=#{storeNo} and s_c_end_date >= sysdate
          	]]>
          order by S_C_BOX_NO desc
 	</select>

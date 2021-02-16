@@ -83,6 +83,7 @@
 		select count(*) from LSJCommentDDetailView
          where store_no=#{storeNo} 
          and R_COMMENT_CONTENT is null
+         and  REVIEW_REPORT='N'
          order by ORDERS_NO desc
 	</select>
 	

@@ -138,5 +138,17 @@ public class OwnerRequestDAOMybatis implements OwnerRequestDAO{
 	public int tempcnt4(int ownerNo) {
 		return sqlSession.selectOne(namespace+"tempcnt4",ownerNo);
 	}
+
+	@Override
+	public int adcnt1(int ownerNo) {
+		return sqlSession.selectOne(namespace+"adcnt1",ownerNo);
+	}
+
+	@Override
+	public int adcnt3(int ownerNo) {
+		return sqlSession.selectOne(namespace+"adcnt3",ownerNo);
+	}
+	
+	
 	
 }

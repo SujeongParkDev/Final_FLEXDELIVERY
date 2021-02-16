@@ -33,7 +33,7 @@
 							<!-- datepicker !  -->
 							<div class="row">
 								<form name="frmPage" method="post" name="frm1"
-									action="<c:url value='/owner/menu2/couponused/couponUsed.do'/>">
+									action="<c:url value='/owner/menu2/couponused/couponExpireSearch.do'/>">
 							<div class="col-md-4 col-12"></div><!-- 이상하게 처음 화면에서 전체 데이터 안나와서 다시 리스트 출 -->
 							<div class="col-md-6 col-12 ">
 									<%@include file="../../../owner/datePicker/datePicker.jsp"%>
@@ -110,7 +110,7 @@
 											              	<td>${map['S_C_START_DATE'] }</td>
 											                <td>${map['S_C_END_DATE'] }</td>
 														    <td>
-														    	<span class="badge bg-light">만료 </span>
+														    	<span class="badge bg-light">사용 만료 </span>
 														    </td>											                
 										              </tr>
 							              		</c:forEach>
