@@ -110,7 +110,7 @@
 	</select>
 	
 	<select id="reviewReting" parameterType="int" resultType="map">
-	select b.countNum, NVL(sum(a.reviewCount),0) 
+	select b.countNum as "countNum", NVL(sum(a.reviewCount),0) as "many"
 	from
 	(select review_rating, count(*) as reviewCount from review where store_no=#{storeNo} group by review_rating) a ,
 	   <![CDATA[

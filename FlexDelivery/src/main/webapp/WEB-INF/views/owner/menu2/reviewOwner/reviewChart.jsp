@@ -15,7 +15,9 @@
 					//alert(res);
 					// 방법 1 하나씩 꺼낸다 2 each돌린다 
 					// var five=res.rating ?? 
-					//$('#result').html(res);
+					//var stars=${map.countNum};
+					//var many=${map.many};
+					//alert(stars);
 				},
 				error:function(xhr, status, error){
 					alert("error발생:"+ error);

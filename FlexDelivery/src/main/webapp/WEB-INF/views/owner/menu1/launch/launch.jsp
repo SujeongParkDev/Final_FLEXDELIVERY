@@ -32,14 +32,14 @@ h1 {
 
 <div class="container">
 	<div class="jumbotron">
-		<h1> FLEXDELIVERY 입점하고<br />
+		<h1> FLEXDELIVERY 입점하고<br />${regiresult}${stresult}
 		 <strong>가게매출<img
 				src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/src/images/ols/icon_calc.png?ver=42f9afb5d8c17e79d0659cea66351d9f" />
 				을 올리세요!
 			</strong>
 		</h1>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">사업자 등록 신청</button>
-		<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
+		<button type="button" id="btRegi" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" >사업자 등록 신청</button>
+		<input type="button" id="btStore" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
 	</div>
 	<div class="row h-80 align-items-center marketing">
 		<div class="col-lg-6">
@@ -77,7 +77,6 @@ h1 {
 	</div>
 	</div>
 </div>
-
 <br>
 <br>
 <!-- 사업자 등록 폼 시작  -->
@@ -248,6 +247,28 @@ h1 {
 <script type="text/javascript">
 	// 사업자 등록증 
 	$(function() {
+		$('#btRegi').click(function(){
+			var regi=${regiresult};
+			if(regi == 4){
+			alert('이미 사업자 등록증이 있습니다.');
+			return false;
+			}
+			event.preventDefault();
+		});
+			$('#btStore').click(function(){
+				var store=${stresult};
+				var regi=${regiresult};
+				if(store == 5){
+				alert('이미 신청하신 점포가 있습니다.');
+				event.preventDefault();
+				return false;
+				}else if(regi == 1){
+					alert('사업자 등록 신청 먼저 부탁드려요 .');
+					event.preventDefault();
+					return false;
+				}
+			});
+		
 		$('#wr_submit').click(function() {
 			if ($('#oRegisterNo').val().length < 1) {
 				alert('사업자 번호 10자리를 입력해주세요.');
