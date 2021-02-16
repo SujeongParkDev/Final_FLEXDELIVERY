@@ -11,11 +11,11 @@
 		insert into ask(ask_No, ask_Title, ask_ID, ask_Content, ask_regdate,
 			ask_Group_No, ask_Reply_Flag, authority_No)
 		values(#{askNo}, #{askTitle}, #{askId}, #{askContent}, default, #{askNo}, default, #{authorityNo})
-	</insert>
+	</insert> 
 
-	<select id="askSelect" parameterType="memberAskVo">
+	<select id="selectICAsk" parameterType="memberAskVo" resultType="memberAskVo">
 		select * from ask
-		where user ask_id = #{askId}
+		where ask_id = #{askId}
 	</select>
 
 </mapper>

@@ -36,14 +36,23 @@ public class MemberAskController {
 	
 	@RequestMapping(value = "/askWrite.do", method=RequestMethod.POST)
 	public String askWrite(@ModelAttribute MemberAskVO memberAskVo, 
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		logger.info("1:1 글쓰기 처리, 파라미터 vo={}",memberAskVo);
 		
 		//2
 		int cnt = memberAskService.askWrite(memberAskVo);
 		logger.info("1:1 글쓰기 처리 결과, cnt={}", cnt);
 		
-		return "/member/ask/askList";
+		String msg="1:1문의 실패", url="/member/ask/askList.do";
+		if (cnt>0) {
+			logger.info("1:1 글쓰기 처리 성공, cnt={}", cnt);
+			msg="1:1문의 작성 완료";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
 	}
 	
 	@RequestMapping("/askICList.do")
