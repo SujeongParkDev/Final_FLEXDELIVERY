@@ -168,7 +168,6 @@
 								<div class="form-control-wrap">
 									<div class="form-control ">
 										<div class="textarea-container ">
-										<%-- <textarea id="content" name="content" rows="12" cols="40">${vo.storeContent}</textarea> --%>
 											<textarea data-component="[object Object]" class="" rows="13"
 												maxlength="500" placeholder="" name="storeContent" >${vo.storeContent}</textarea> 
 											<span class="text-count">118</span>
