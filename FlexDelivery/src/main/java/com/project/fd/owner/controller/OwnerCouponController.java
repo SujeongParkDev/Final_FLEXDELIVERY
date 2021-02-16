@@ -175,36 +175,7 @@ public class OwnerCouponController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/deleteMulti.do")
-	public String delMulti(@ModelAttribute OwnerCouponListVO Listvo,
-			HttpServletRequest request, Model model) {
-		logger.info("mutidelete page !! Listvo={}",Listvo);
-		
-		List<OwnerCouponVO> cpList=Listvo.getCouponItems();
-		logger.info("선택한 쿠폰  삭제cpList, cpList={}",cpList);
-		
-		int cnt=couponService.deleteCoupon(cpList);
-		logger.info("선택한 쿠폰  삭제 결과, cnt={}", cnt);
-		
-		String msg="선택한 쿠폰  삭제 실패!", url="/owner/menu2/couponused/couponUsed.do";
-		if(cnt>0) {
-			msg="선택한 쿠폰들을 삭제하였습니다.";
-			
-			for(int i=0; i<cpList.size(); i++) {
-				OwnerCouponVO cVo=cpList.get(i);
-				
-				logger.info("[{}] : scBoxNo={}", i, cVo.getScBoxNo());
-				
-				int couponNo=cVo.getScBoxNo();
-				logger.info("삭제 하는 couponNo={}",couponNo);
-			}//for
-		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-		
-		return "common/message";
 	
-	}
 	
 	@RequestMapping("/couponExpireSearch.do")
 	public String ocouponExpireSearch(@ModelAttribute OwnerCouponSearchVO searchVo ,
@@ -280,11 +251,60 @@ public class OwnerCouponController {
 		return "common/message";
 	}
 	
+	@RequestMapping("/deleteMulti.do")
+	public String deleteCoupon(@RequestParam(defaultValue = "0 ")int scBoxNo, Model model) {
+		logger.info("update N page scBoxNo={}",scBoxNo);
+		
+		String msg="쿠폰 사용 중지에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/couponused/couponUsed.do";
+		if(scBoxNo!=0) {
+			int cnt=couponService.deleteCoupon(scBoxNo);
+			if(cnt>0) {
+				msg="쿠폰 발급을 중지하였습니다. 만료일전까지 재발급 가능합니다.";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	/*
 	 * 
 	@RequestMapping(value="/couponRegi.do",method = RequestMethod.POST)
 	public String couponRegi(@RequestParam(defaultValue = "0")int no) {
 		logger.info(msg);
+	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String delMulti(@ModelAttribute OwnerCouponListVO Listvo,
+			HttpServletRequest request, Model model) {
+		logger.info("mutidelete page !! Listvo={}",Listvo);
+		
+		List<OwnerCouponVO> cpList=Listvo.getCouponItems();
+		logger.info("선택한 쿠폰  삭제cpList, cpList={}",cpList);
+		
+		int cnt=couponService.deleteCoupon(cpList);
+		logger.info("선택한 쿠폰  삭제 결과, cnt={}", cnt);
+		
+		String msg="선택한 쿠폰  삭제 실패!", url="/owner/menu2/couponused/couponUsed.do";
+		if(cnt>0) {
+			msg="선택한 쿠폰들을 삭제하였습니다.";
+			
+			for(int i=0; i<cpList.size(); i++) {
+				OwnerCouponVO cVo=cpList.get(i);
+				
+				logger.info("[{}] : scBoxNo={}", i, cVo.getScBoxNo());
+				
+				int couponNo=cVo.getScBoxNo();
+				logger.info("삭제 하는 couponNo={}",couponNo);
+			}//for
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	
 	}
 	 * */
 	

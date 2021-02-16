@@ -78,6 +78,7 @@
 												<c:if test="${map['S_C_SERVICE'] == 'Y' }">
 													<td>
 														<span class="badge bg-success">사용중 </span>
+														<span class="badge bg-light"><a href="#none" OnClick="btDelete(${map['S_C_BOX_NO']})" style="color:white;" >쿠폰 발급중지 </a></span>
 													</td>
 												</c:if>
 												<c:if test="${map['S_C_SERVICE'] == 'N'}">
@@ -140,8 +141,17 @@
 		
 	});
 	
+	function btDelete(scBoxNo){
+		if(!confirm('쿠폰을 사용불가하게 변경하시겠습니까? ')){
+			event.preventDefault();
+		}else{
+			location.href='<c:url value="/owner/menu2/couponused/deleteMulti.do?scBoxNo="/>'+scBoxNo;
+			event.preventDefault();
+		}
+	}
+
 	function btUpdate(scBoxNo){
-		if(!confirm('쿠폰을 사용간능하게 변경하시겠습니까? ')){
+		if(!confirm('쿠폰을 사용가능하게 변경하시겠습니까? ')){
 			event.preventDefault();
 		}else{
 			location.href='<c:url value="/owner/menu2/couponused/updateCoupon.do?scBoxNo="/>'+scBoxNo;
@@ -149,5 +159,6 @@
 		}
 		
 	}
+	
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

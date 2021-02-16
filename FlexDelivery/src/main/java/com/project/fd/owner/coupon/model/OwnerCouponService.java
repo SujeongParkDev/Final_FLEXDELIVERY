@@ -21,5 +21,6 @@ public interface OwnerCouponService {
 	
 	public int deleteCoupon(List<OwnerCouponVO> cpList);
 	public int updateCoupon(int scBoxNo);
+	public int deleteCoupon(int scBoxNo);
 	
 }

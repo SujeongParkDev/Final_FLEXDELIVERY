@@ -84,5 +84,9 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 	public int updateCoupon(int scBoxNo) {
 		return couponDao.updateCoupon(scBoxNo);
 	}
+	@Override
+	public int deleteCoupon(int scBoxNo) {
+		return couponDao.deleteCoupon(scBoxNo);
+	}
 
 }
