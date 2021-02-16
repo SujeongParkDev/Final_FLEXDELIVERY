@@ -98,11 +98,15 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="appendix-file">첨부파일</label>
-                                            <div>
-												<span> FileName
-													
-												</span>
-											</div>                                       
+												<div>								
+													<span>
+														<c:if test="${!empty vo.oRegisterFilename }">
+															<a href
+		="<c:url value='/admin/menu2/downloadReg.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
+															 ${vo.oRegisterOriginalFilename }</a>
+														</c:if>
+													</span>
+												</div>                                   
                                         </div>
                                     </div>
                                     <!-- 요청사항 -->

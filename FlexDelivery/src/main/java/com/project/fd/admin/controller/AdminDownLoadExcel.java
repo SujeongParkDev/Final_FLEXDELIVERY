@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.fd.admin.ownerregister.model.AdminOwnerRegisterService;
+import com.project.fd.admin.ownerregister.model.AdminOwnerRegisterVo;
 import com.project.fd.admin.stores.model.AdminStoresService;
 import com.project.fd.admin.stores.model.AdminStoresVO;
 import com.project.fd.admin.temporary.model.AdminTemporaryService;
@@ -29,12 +31,14 @@ public class AdminDownLoadExcel{
 	@Autowired
 	AdminTemporaryService temporaryService;
 	@Autowired
+	AdminOwnerRegisterService registerService;
+	@Autowired
 	ExcelService excelService;
 	
 	@RequestMapping(value = "/approvalDownloadExcel.do", method = RequestMethod.POST)
     public String approvalDownloadExcelFile(Model model) {
 		
-		logger.info("점포 승인 ExcelDownLoad 화면");
+		logger.info("가맹점 승인 ExcelDownLoad 화면");
 		//1
 		//2
 		List<AdminStoresVO> list= storesService.adminApprovalList();
@@ -44,7 +48,7 @@ public class AdminDownLoadExcel{
         
         model.addAttribute("locale", Locale.KOREA);
         model.addAttribute("workbook", workbook);
-        model.addAttribute("workbookName", "점포 승인 목록");
+        model.addAttribute("workbookName", "가맹점 승인 목록");
         
         return "excelDownloadView";
     }
@@ -52,19 +56,37 @@ public class AdminDownLoadExcel{
 	@RequestMapping(value = "/editDownloadExcel.do", method = RequestMethod.POST)
     public String editDownloadExcelFile(Model model) {
 		
-		logger.info("점포 변경 ExcelDownLoad 화면");
+		logger.info("가맹점 변경 ExcelDownLoad 화면");
 		//1
 		//2
 		List<AdminTemporaryVO> list= temporaryService.editList();
-		logger.info("승인 list, list.size={}",list.size());
+		logger.info("가맹점 변경 list, list.size={}",list.size());
         
         SXSSFWorkbook workbook = excelService.editExcelDownloadProcess(list);
         
         model.addAttribute("locale", Locale.KOREA);
         model.addAttribute("workbook", workbook);
-        model.addAttribute("workbookName", "점포 승인 목록");
+        model.addAttribute("workbookName", "가맹점 변경 목록");
         
         return "excelDownloadView";
-    }	
-
+    }
+	/*
+	@RequestMapping(value = "/registDownloadExcel.do", method = RequestMethod.POST)
+    public String registDownloadExcelFile(Model model) {
+		
+		logger.info("사업자등록증 승인 ExcelDownLoad 화면");
+		//1
+		//2
+		List<AdminOwnerRegisterVo> list= registerService.adminOwnerRegistList();
+		logger.info("사업자등록증 승인 list, list.size={}",list.size());
+        
+        SXSSFWorkbook workbook = excelService.registExcelDownloadProcess(list);
+        
+        model.addAttribute("locale", Locale.KOREA);
+        model.addAttribute("workbook", workbook);
+        model.addAttribute("workbookName", "사업자등록증 승인 목록");
+        
+        return "excelDownloadView";
+    }
+	*/
 }

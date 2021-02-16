@@ -98,8 +98,8 @@
 													<span>
 														<c:if test="${!empty temporaryVo.tFilename }">
 															<a href
-		="<c:url value='/admin/menu2/downloadEdit.do?no=${vo.tNo}&fileName=${temporaryVo.tFilename }'/>">
-															 ${vo.tOriginalFilename }</a>
+		="<c:url value='/admin/menu2/downloadEdit.do?no=${temporaryVo.tNo}&fileName=${temporaryVo.tFilename }'/>">
+															 ${temporaryVo.tFilename }</a>
 														</c:if>
 													</span>
 												</div>                                   
@@ -185,7 +185,7 @@
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
                                                 value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp2}" disabled="disabled">
                                         </div>
-                                    </div>                                    
+                                    </div>                                                                        
                                 </div>
                             </form>
                         </div>

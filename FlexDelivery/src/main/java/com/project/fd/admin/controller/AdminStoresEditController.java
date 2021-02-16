@@ -1,6 +1,11 @@
 package com.project.fd.admin.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.fd.admin.stores.model.AdminStoresService;
 import com.project.fd.admin.stores.model.AdminStoresVO;
 import com.project.fd.admin.temporary.model.AdminTemporaryService;
 import com.project.fd.admin.temporary.model.AdminTemporaryVO;
+import com.project.fd.common.FileUploadUtil;
 
 @Controller
 @RequestMapping("/admin/menu2")
@@ -26,6 +33,8 @@ public class AdminStoresEditController {
 	AdminTemporaryService temporaryService;
 	@Autowired
 	AdminStoresService storesService;
+	@Autowired
+	private FileUploadUtil fileUtil;
 	
 	@RequestMapping("/editList.do")
 	public String adminEditList(Model model) {
@@ -85,5 +94,26 @@ public class AdminStoresEditController {
 		
 		return "redirect:/admin/menu2/editList.do";
 	}
+	
+	@RequestMapping("/downloadEdit.do")
+	public ModelAndView download(@RequestParam(defaultValue = "0") long tNo,
+			@RequestParam String fileName,
+			HttpServletRequest request) {
+		//1
+		logger.info("다운로드 처리 페이지, 파라미터 no={}, fileName={}", tNo, fileName);
+		//2
+		//3
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String upPath=fileUtil.getUploadPath(FileUploadUtil.OWNER_REGISTER_TYPE, request);		
+		File file = new File(upPath, fileName);
+		map.put("file", file);
+
+		//ModelAndView(String viewName, Map<String, ?> model)
+		ModelAndView mav = new ModelAndView("adminDownloadView", map);
+
+		//4
+		return mav;		
+	}	
 
 }
