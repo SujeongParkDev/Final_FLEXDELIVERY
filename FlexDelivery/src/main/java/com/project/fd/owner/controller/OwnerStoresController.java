@@ -107,7 +107,7 @@ public class OwnerStoresController {
 			
 			String msg="점포 입점 신청 실패 !", url="/owner/menu1/launch/launch.do";
 			if(cnt>0) {
-				msg="점포 입점 신청이 완료되었습니다. \n승인 처리 진행은 최대 3일 경과 됩니다.";
+				msg="점포 입점 신청이 완료되었습니다. 승인 처리 진행은 최대 3일 경과 됩니다.";
 				url="/owner/menu1/launch/launch.do";
 				//return "owner/menu1/launch/launch";
 			}

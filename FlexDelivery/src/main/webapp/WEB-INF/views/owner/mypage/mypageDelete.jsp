@@ -89,9 +89,11 @@ $(function(){
 			         
 			          <Br>
 			          <div class="col-12 mb-5">
-							<div class="g-recaptcha mb-3" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-left:19%;"></div>
-							<button class="btn-primary" id="robotCheck" style="width:200px; height:50px; margin-bottom:30px;font-size:15px;">탈퇴</button>
-							<button class="btn-outline-primary" onclick="history.back()" style="width:200px; height:50px; margin-bottom:30px;font-size:15px;">취소</button>
+							<div class="g-recaptcha mb-3" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-left:14%;"></div>
+							<div style="display: flex; justify-content: space-around;">
+								<button class="btn-primary" id="robotCheck" style="width:200px; height:50px; margin-bottom:30px;font-size:15px;">탈퇴</button>
+								<button class="btn-outline-primary" onclick="history.back()" style="width:200px; height:50px; margin-bottom:30px;font-size:15px;">취소</button>
+			         		</div>
 			          </div>
 			          <br><Br><br>
 		      </div>

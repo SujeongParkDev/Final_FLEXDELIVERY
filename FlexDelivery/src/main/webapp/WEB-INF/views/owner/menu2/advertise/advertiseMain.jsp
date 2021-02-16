@@ -74,8 +74,8 @@
 					                            </p>
 					                            <small class="text-muted">광고 등록을 원하시면 오른쪽 위의 등록버튼을 눌러주세요</small>
 					                        </div>
-					                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
-					                            alt="Card image cap" style="height:200px;">
+					                        <img class="card-img-bottom img-fluid h-12" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>"
+					                            alt="Card image cap" style="height:500px;">
 					                     </div>
 					                 </div>
 							  </div>
@@ -96,14 +96,15 @@
 								                	<span style="color:purple;">광고번호 : ${vo.advertiseNo } </span><br>
 								                	<span>광고가격 : ${vo.advertisePrice} </span><br>
 								                	<span>만료일 : ${vo.adValidate } 	</span>
-								                		<!-- Q.어떻게해야 시간을 버릴 수 있을까요? -->
-								                		<%-- <fmt:formatDate value="${vo.adValidate }" pattern="yyyy-MM-dd"/> --%>
-								                		<!-- string <- date 형변환 -->
 					                            </p>
 					                            <small class="text-muted">언제나 감사합니다 플렉스한 하루 되세요</small>
 					                        </div>
-					                        <img class="card-img-bottom img-fluid h-12" src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/samples/inspirational-aerial-landscape-autumn-forest-and-FU2LKHA.jpg"
-					                            alt="Card image cap" style="height:200px;">
+					                         <c:if test="${vo.advertiseNo==1 }">
+						      					 <img class="card-img-top img-fluid" style="height:300px;" src="<c:url value='/resources/imgs/todayBg1.png'/>" alt="Card image cap">
+						     				 </c:if>
+						    				  <c:if test="${vo.advertiseNo==2 }">
+						      						<img class="card-img-top img-fluid"  style="height:300px;"  src="<c:url value='/resources/imgs/todayBg3.png'/>"  alt="Card image cap">
+						     				 </c:if>
 					                     </div>
 					                 </div>
 							  </div>

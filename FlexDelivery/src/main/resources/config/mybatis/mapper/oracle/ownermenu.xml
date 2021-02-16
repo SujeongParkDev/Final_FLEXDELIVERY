@@ -212,9 +212,9 @@
 	</select>
 	
 	
-	<select id="checkDupMenuName" parameterType="string" resultType="int">
+	<select id="checkDupMenuName" parameterType="map" resultType="int">
 		select count(*) from menu
-		where menu_name=#{menuName}
+		where menu_name=#{menuName} and s_M_Group_No =#{sMGroupNo}
 	</select>
 	
 	<select id="selectOptionAllByMenuNo" parameterType="map" resultType="ownerMenuOptionVo">

@@ -66,7 +66,7 @@ a {
 		<div class="col-md-4 col-12"></div>
 		<div class="col-md-4 col-12">
 		     <div class="card">
-		         <div class="card-header">
+		         <div class="card-header" style="background-color: white;">
 		           		 <h4 class="card-title">광고 신청</h4>
 			     </div>
 			     
@@ -96,7 +96,7 @@ a {
 				                        <label>결제 방식</label>
 				                    </div>
 				                    <div class="col-md-8 form-group">
-				                        <select name="pay_method" style="width: 240px; text-align-last: center; ">
+				                        <select name="pay_method" style="width: 100%; text-align-last: center; ">
 									           <option value="card" selected="selected">카드결제</option>
 									           <option value="trans">실시간 계좌이체</option>
 									           <option value="vbank">가상계좌</option>

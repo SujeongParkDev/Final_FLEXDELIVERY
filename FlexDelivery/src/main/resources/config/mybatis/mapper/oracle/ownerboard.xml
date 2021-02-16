@@ -35,6 +35,7 @@
 		where RNUM > #{firstRecordIndex} 
 		and RNUM <= #{firstRecordIndex} + #{recordCountPerPage}
 		]]>
+	
 	</select>
 	
 	<select id="selectTotalRecord" parameterType="ownerBoardSearchVo"

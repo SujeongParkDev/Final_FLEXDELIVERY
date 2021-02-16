@@ -77,7 +77,7 @@ h1 {
 	</div>
 	</div>
 </div>
-</div>
+
 <br>
 <br>
 <!-- 사업자 등록 폼 시작  -->
@@ -100,46 +100,48 @@ h1 {
 					<span class="sr-only"></span>
 				</div>
 			</div>
-			<br> <br>
-			<div class="modal-body">
-				<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
-					<div class="form-group">
-						<label for="recipient-name" class="control-label">사업자등록 번호</label>
-						<input type="text" id="oRegisterNo" name="oRegisterNo"
-							class="col-md-8 form-group"
-							placeholder="숫자만 입력, 예시 :  1048300469" pattern="[0-9]+">
-						<span class="count"></span>
-					</div>
-					<div class="form-group">
-						<div class="d-flex justify-content-center">
-							<span class="error"></span>
+				<br>
+				<br>
+			<form class="form form-horizontal" method="POST" enctype="multipart/form-data" name="frm1" id="frm1" action="<c:url value='/owner/menu1/launch/launchWrite.do'/>">
+				<div class="modal-body">
+					
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">사업자등록 번호</label>
+							<input type="text" id="oRegisterNo" name="oRegisterNo"
+								class="col-md-8 form-group"
+								placeholder="숫자만 입력, 예시 :  1048300469" pattern="[0-9]+">
+							<span class="count"></span>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label">사업자등록증 앞면</label>
-					</div>
-					<div class="form-file">
-						<input type="file" id="upfile" name="upfile"
-							class="ustom-file-input" accept=".jpg, .jpeg, .png, .pdf">
-						<div class="invalid-feedback">
-							<br>
-							 <span style="margin-left: 60px;">
-							  <small>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보 확인이 어려울 경우 승인이 지연될 수
-									있습니다. <br> 종사업장번호가 있는 경우 사업자등록증 뒷면은 필수입니다.<br> 
-									10MB 이하, JPG, PNG, PDF 형식의 파일만 등록할 수 있습니다.
-							</small>
-							</span>
+						<div class="form-group">
+							<div class="d-flex justify-content-center">
+								<span class="error"></span>
+							</div>
 						</div>
-					</div>
-			</div>
-			<br>
-			<div id="preview" class="text-center"></div>
-			<div class="modal-footer">
-				<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 ">
-			</div>
-		</form>
+						<div class="form-group">
+							<label class="control-label">사업자등록증 앞면</label>
+						</div>
+						<div class="form-file">
+							<input type="file" id="upfile" name="upfile"
+								class="ustom-file-input" accept=".jpg, .jpeg, .png, .pdf">
+							<div class="invalid-feedback">
+								<br>
+								 <span style="margin-left: 60px;">
+								  <small>내용을 충분히 확인할 수 있도록 깔끔하게 촬영된 이미지를 첨부해 주세요. 정보 확인이 어려울 경우 승인이 지연될 수
+										있습니다. <br> 종사업장번호가 있는 경우 사업자등록증 뒷면은 필수입니다.<br> 
+										10MB 이하, JPG, PNG, PDF 형식의 파일만 등록할 수 있습니다.
+								</small>
+								</span>
+							</div>
+						</div>
+				</div>
+				<br>
+				<div id="preview" class="text-center"></div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary mr-1 mb-1" id="wr_submit" name="wr_submit" value="등록하기 ">
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
 </div>
 <!-- 사업자 등록 폼 끝  -->
 <!--  -->

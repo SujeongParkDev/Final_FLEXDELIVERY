@@ -110,25 +110,17 @@
 					</form>
 					<br>
 					
-					<div class="text-center p-t-35">
-						<a class="txt1" href="#" id="forgotId">
-							아이디 찾기
-						</a> 
-						<span style="color:white; " class="m-l-5"> ㅣ </span>
-						<a class="txt1" href="#" id="forgotPwd">
-							비밀번호 찾기
+					<div class="text-center p-t-35 ml-2">
+						<a class="txt1" href="<c:url value='/owner/index.do' />">
+							Home
 						</a> 
 					    <span style="color:white; " class="m-l-5"> ㅣ </span>
 						<a class="txt1" href="<c:url value='/owner/register/register.do'/>">
 							회원가입
 						</a>
-						<span  class="m-l-15"></span>
+						
 					</div>
-					<div class="text-center p-t-5">
-						<a class="txt1" href="<c:url value='/owner/index.do' />">
-							Home
-						</a> 
-					</div>
+					
 					<br>
 			</div>
 		</div>
