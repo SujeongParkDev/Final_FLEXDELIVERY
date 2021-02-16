@@ -91,7 +91,10 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
+														<c:import url="/member/ask/askICList.do">
+															<c:param name="askId" value="${sessionScope.memberId}"></c:param>
+														</c:import>
+<!-- 															<tr>
 																<td class="text-bold-500">3</td>
 																<td colspan="3">음식에서 이물질이 나왔습니다</td>							               
 																<td>2021-01-19</td>
@@ -112,7 +115,7 @@
 																<td><span class="badge badge-success">답변완료</span></td>
 																<td><span class="badge bg-secondary">삭제</span></td>
 																<td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
-															</tr>
+															</tr> -->
 														</tbody>
 													</table>
 												</div>
