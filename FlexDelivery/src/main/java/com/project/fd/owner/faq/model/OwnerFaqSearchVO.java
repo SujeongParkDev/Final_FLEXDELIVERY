@@ -1,8 +1,5 @@
 package com.project.fd.owner.faq.model;
 
-
-import com.project.fd.common.SearchVO;
-
 public class OwnerFaqSearchVO{
 	private int fCategoryNo;
 	

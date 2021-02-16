@@ -31,10 +31,8 @@ public class OwnerFAQcontroller {
 	
 	//faq 뷰 보여주기 (점포)
 	@RequestMapping("/menu5/faq.do")
-	public String faq(@ModelAttribute OwnerFaqSearchVO searchVo,
-			
-			Model model){
-		logger.info("자주묻는 질문  글 목록, 파라미터 BoardSearchVO={}", searchVo);
+	public String faq(@ModelAttribute OwnerFaqSearchVO searchVo, Model model){
+		logger.info("자주묻는 질문  글 목록, 파라미터 SearchVO={}", searchVo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
@@ -67,7 +65,8 @@ public class OwnerFAQcontroller {
 	public String faq_detail(@ModelAttribute OwnerFaqSearchVO searchVo,
 			//@RequestParam int fCategoryNo,
 			Model model){
-		logger.info("공지사항 글 목록, 파라미터 BoardSearchVO={}", searchVo);
+		int cateNo=searchVo.getfCategoryNo();
+		logger.info("공지사항 글 목록, 파라미터 SearchVO={},cateNo={}", searchVo,cateNo);
 
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
