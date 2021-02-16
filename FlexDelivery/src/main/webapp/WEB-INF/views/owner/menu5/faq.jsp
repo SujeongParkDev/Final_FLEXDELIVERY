@@ -35,19 +35,18 @@ button.btn.btn-link {
 	<!-- 페이지 이동시 필요한 form -->
 	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
 		<input type="hidden" name="currentPage" >
-		 <input type="text" name="fCategoryNo" value="${param.fCategoryNo }">
+		 <input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
 		<form name="frmSearch" method="post"
 			action="<c:url value='/owner/menu5/faqDetail.do'/>">
-			<input type="text" value="${cgVo.fCategoryNo}">
+			<input type="hidden" value="${cgVo.fCategoryNo}">
 				<div class="row">
 						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
-							<select class="form-select groupChoice p-2"  name="fCategoryNo" id="fCategoryNo" style="overflow: auto;">
+							<select class="form-select groupChoice p-2" name="fCategoryNo"  id="fCategoryNo" style="overflow: auto;">
 								<c:forEach var="cgVo" items="${cgList }" >
-								
 									<option value="${cgVo.fCategoryNo}"
 									<c:if test="${cgVo.fCategoryNo == param.fCategoryNo}">
 									selected="selected"</c:if>
@@ -156,6 +155,11 @@ button.btn.btn-link {
 <br>
 <script type="text/javascript">
 	function pageFunc(curPage){
+		var num=$('input[name=fCategoryNo]').val();
+		if(num == null || num== 0 ){
+			
+		$('form[name=frmPage]').find('input[name=fCategoryNo]').val(0);	
+		}
 		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmPage]').submit();
 	}

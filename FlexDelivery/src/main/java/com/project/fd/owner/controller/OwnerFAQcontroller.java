@@ -42,7 +42,6 @@ public class OwnerFAQcontroller {
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT); 
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("자주묻는 질문  searchVo, searchVo={}",searchVo);
-		//List<> list=ownerBoardService.selectAll(searchVo);
 		List<OwnerFaqVO> list=faqService.selectAll(searchVo);
 		logger.info("자주 묻는 질문  조회 결과, list.size={}", list.size());
 
@@ -51,9 +50,7 @@ public class OwnerFAQcontroller {
 		pagingInfo.setTotalRecord(totalRecord);
 		
 		List<AdminFaqCategoryVO> cgList = categoryService.selectCategoryAll();
-		//List<AdminFaqAllViewVO> list = categoryService.selectAll2();
 		
-		//List<AdminFaqCategoryVO> cgList = faqService.selectCategoryAll();
 		model.addAttribute("cgList",cgList);
 		model.addAttribute("list",list);
 		model.addAttribute("pagingInfo",pagingInfo);
@@ -63,7 +60,6 @@ public class OwnerFAQcontroller {
 	
 	@RequestMapping("/menu5/faqDetail.do")
 	public String faq_detail(@ModelAttribute OwnerFaqSearchVO searchVo,
-			//@RequestParam int fCategoryNo,
 			Model model){
 		int cateNo=searchVo.getfCategoryNo();
 		logger.info("공지사항 글 목록, 파라미터 SearchVO={},cateNo={}", searchVo,cateNo);
