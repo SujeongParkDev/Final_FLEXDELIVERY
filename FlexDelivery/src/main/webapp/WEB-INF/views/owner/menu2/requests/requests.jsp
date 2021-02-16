@@ -24,6 +24,7 @@ input {
 					<div class="row">
 						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
+						<form name="frmSearch" method="post"  action='<c:url value="/owner/menu2/requestst/requests.do"/>'>
 							<select class="form-select groupChoice p-2 choice" valaue="신청 리스트 선택 " name="choice" id="choice" style="overflow: auto;">
 								<option class="m-3 text-center choice" style="font-size: 17px;" selected value="0">승인 목록 선택</option>
 								<option value="1">사업자 등록 신청</option>
@@ -31,6 +32,7 @@ input {
 								<option value="3">광고 신청 내역 </option>
 								<option value="4">점포 정보 변경 신청</option>
 							</select> <br>
+						</form>
 						</div>
 						<div class="col-md-4 col-sm-12"></div>
 					</div>
