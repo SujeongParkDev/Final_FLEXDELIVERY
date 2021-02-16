@@ -48,34 +48,34 @@
 						                	<c:set var="type" value="${type }"></c:set> 
 						                		<c:if test="${type=='file'}">
 						                			<img src
-														="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${stVo.storeLogo}" 
-														alt="${stVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
+														="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${tempVo.storeLogo}" 
+														alt="${tempVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
 												</c:if>
 												<c:if test="${type=='url'}">
-				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${stVo.storeLogo}"  style="height:250px; width:80%;"
-		       											 alt="${stVo.storeLogo }" class="thumbnail">
+				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${tempVo.storeLogo}"  style="height:250px; width:80%;"
+		       											 alt="${tempVo.storeLogo }" class="thumbnail">
 		       									</c:if>
 				                			</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500" >점포명  </th>
-							                  <td>${stVo.storeName}</td>
+							                  <td>${tempVo.storeName}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500"  >점포 주소 </th>
-							                  <td>${stVo.storeAddress}</td>
+							                  <td>${tempVo.storeAddress}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">상세 주소 </th>
-							                  <td>${stVo.storeAddressDetail}</td>
+							                  <td>${tempVo.storeAddressDetail}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">점포 지역명 </th>
-							                  <td>${stVo.locationName}</td>
+							                  <td>${tempVo.locationName}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500"> 메뉴 대분류 </th>
-							                  <td>${stVo.lCategoryName}</td>
+							                  <td>${tempVo.lCategoryName}</td>
 						                </tr>
 						              </tbody>
 						            </table>
@@ -84,7 +84,7 @@
 				       	   <!-- 끝  -->
 				       	     <div class="text-center">
 				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
-				       	     	 <c:if test="${rgVo.aAgreeNo == 1}">
+				       	     	 <c:if test="${tempVo.aAgreeNo == 1}">
 				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" 
 				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
 				       	   	 </c:if>
