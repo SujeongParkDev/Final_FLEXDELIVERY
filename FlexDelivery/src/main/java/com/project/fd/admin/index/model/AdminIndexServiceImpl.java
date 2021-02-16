@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.fd.admin.mediumcategory.model.AdminMediumCategoryVO;
+
 @Service
 public class AdminIndexServiceImpl implements AdminIndexService{
 
@@ -35,6 +37,21 @@ public class AdminIndexServiceImpl implements AdminIndexService{
 	@Override
 	public int selectChangeStore() {
 		return indexDao.selectChangeStore();
+	}
+
+	@Override
+	public int selectMNo() {
+		return indexDao.selectMNo();
+	}
+
+	@Override
+	public AdminMediumCategoryVO selectMCategory(int mCategoryNo) {
+		return indexDao.selectMCategory(mCategoryNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectFood(int mCategoryNo) {
+		return indexDao.selectFood(mCategoryNo);
 	}
 	
 	

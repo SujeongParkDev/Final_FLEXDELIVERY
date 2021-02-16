@@ -10,6 +10,7 @@
 		
 		$('#message2').hide();
 		$('#messageOk').hide();
+		$('#radioOk').hide();
 	   
 		$('#faqCategoryWrite').on('hidden.bs.modal', function (e) {
 		  $(this).find('form')[0].reset()
@@ -17,6 +18,7 @@
 		  $('#message').html("카테고리 이름을 입력해주세요.");
 		  $('#message').show();
 		  $('#messageOk').html("N");
+		  $('#radioOk').html("N");
 
 		});
 		
@@ -47,14 +49,11 @@
 			}
 		});
 		
-		/* $('form[name=frmFAQWrite]').submit(function(){
-			if($('#selectFCategory').val()==0){
-				alert("자주 하는 질문 카테고리를 선택해주세요!");
-				$('#selectFCategory').focus();
-				event.preventDefault;
-			}
-			
+		/* $('input[type=radio][name=authorityNo]').change(function(){
+			writeRadio();
 		}); */
+		
+
 		
 		
 		$('#frmTr').hide();
@@ -343,16 +342,22 @@
 
 	function readyWriteSubmit(){
 		writeFunc();
-		var ok=$('#messageOk').html();
-		alert("ok:"+ok);
+		writeRadio();
 		
-		if(ok=="Y"){
-			console.log("폼 전송 성공!");
-			$('form[name=frmGiftCategoryWrite]').submit();
+		var ok=$('#messageOk').html();
+		var ok2=$('#radioOk').html();
+		//alert("ok:"+ok+", ok2:"+ok2);
+		
+		if(ok=="Y" && ok2=="Y"){
+			//console.log("카테고리 등록 폼 전송 성공!");
+			$('form[name=frmFAQCategoryWrite]').submit();
 		}else if (ok=="N"){
-			alert("등록 실패!");
+			alert("올바른 이름을 입력해주세요!");
 			event.preventDefault();
 			//return false;
+		} else if (ok2=="N"){
+			alert("대상을 선택해주세요!");
+			event.preventDefault();
 		} else {
 			alert("error!");
 			event.preventDefault();
@@ -405,6 +410,23 @@
 		  }
 	}	
 	 
+	function writeRadio(){
+		var radio=$('#writeRadio').find('input[name=authorityNo]').is(':checked');
+		
+		//alert("자손radio="+radio);
+		
+		if(radio==''){
+			//alert("대상을 선택해주세요!");
+			$('#radioOk').html("N");
+			//event.preventDefault;
+		} else if (radio==1 || radio==4){
+			$('#radioOk').html("Y");
+		} else {
+			$('#radioOk').html("N");
+			//event.preventDefault();
+		}
+		
+	}
 
 </script>
 
@@ -474,11 +496,12 @@
 	                                                      </td>			                                                   	  	
 													  </tr>
                                                    	  <tr>
-                                                   	  	 <td>종류</td>
-	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	<input type="radio" name="authorityNo" value="0" checked>선택해주세요
+                                                   	  	 <td>대상</td>
+	                                                      <td colspan="2"  style="text-align: center;" id="writeRadio">
+	                                                      	<!-- <input type="radio" name="authorityNo" value="0" checked>선택해주세요 -->
 	                                                      	<input type="radio" name="authorityNo" value="1">회원
 	                                                      	<input type="radio" name="authorityNo" value="4">사장님
+	                                                      	<span id="radioOk"></span>
 	                                                      </td>			                                                   	  	
 													  </tr>
 	                                                </tbody>

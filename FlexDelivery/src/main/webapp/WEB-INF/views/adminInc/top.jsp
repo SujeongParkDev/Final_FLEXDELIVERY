@@ -133,7 +133,7 @@
                                             <li><a href="<c:url value='/admin/menu2/storeMgList.do' />">가맹점 현황</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">사장님광장</a>
+                                    <li><a href="#">알림광장</a>
                                         <ul class="dropdown">
                                             <li><a href="<c:url value='/admin/menu3/notice.do' />">공지사항</a></li>
                                             <li><a href="<c:url value='/admin/menu3/event.do' />">이벤트</a></li>
@@ -149,18 +149,18 @@
                                     </li>
                                     <li><a href="#">부가기능</a>
                                          <ul class="dropdown">
-                                            <li><a href="#">음식 메뉴 카테고리</a>
+                                            <li><a href="#">메뉴 관리</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/largeCategory.do" />">대분류 카테고리</a></li>
 		                                            <li><a href="<c:url value="/admin/menu6/mediumCategory.do" />">중분류 카테고리</a></li>                                           
+		                                            <li><a href="<c:url value="/admin/menu6/todayFoodsWeather.do" />">날씨 카테고리</a></li>                                           
 	                                            </ul>
                                             </li>
-                                            <li><a href="#">오늘 뭐 먹지</a>
+                                            <%-- <li><a href="#">오늘 뭐 먹지</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/todayFoodsRandom.do" />">랜덤 추천</a></li>
-		                                            <li><a href="<c:url value="/admin/menu6/todayFoodsWeather.do" />">날씨별 추천</a></li>                                           
 	                                            </ul>
-                                            </li>
+                                            </li> --%>
                                             <li><a href="#">쿠폰 관리</a>
 	                                            <ul class="dropdown">
 		                                            <li><a href="<c:url value="/admin/menu6/regularCoupon.do" />">정기쿠폰 관리</a></li>
@@ -176,7 +176,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="<c:url value='/admin/menu7/chartDefault.do' />"><span>통계</span></a></li>
+                                    <li><a href="<c:url value='/admin/menu7/chartIndex.do' />"><span>통계</span></a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->

@@ -15,6 +15,7 @@ import com.project.fd.admin.board.model.AdminBoardAllVO;
 import com.project.fd.admin.board.model.AdminBoardService;
 import com.project.fd.admin.hoenytip.AdminHoneytipService;
 import com.project.fd.admin.hoenytip.AdminHoneytipVO;
+import com.project.fd.admin.index.model.AdminIndexService;
 
 @Controller
 public class AdminIndexController {
@@ -28,12 +29,40 @@ public class AdminIndexController {
 	
 	@Autowired
 	private AdminAskService askService;
+	@Autowired
+	private AdminIndexService indexService;
 	
 
 	@RequestMapping("/admin/index.do")
 	public String adminIndex(Model model) {
 		logger.info("관리자 - 메인 페이지 보여주기");
 		
+		//리뷰신고
+		int newReview=indexService.selectNewReview();
+		logger.info("신고 리뷰, newReview={}", newReview);
+		model.addAttribute("newReview", newReview);
+		
+		//광고
+		int newAd=indexService.selectNewAd();
+		logger.info("유료광고 신규신청, newAd={}", newAd);
+		model.addAttribute("newAd", newAd);
+		
+		//사업자등록
+		int newRegister=indexService.selectNewRegister();
+		logger.info("신규 사업자 등록 건, newRegister={}", newRegister);
+		model.addAttribute("newRegister", newRegister);
+		
+		//점포 등록 승인
+		int newStore=indexService.selectNewStore();
+		logger.info("신규 점포 등록 건, newStore={}", newStore);
+		model.addAttribute("newStore", newStore);
+		
+		//점포 변경 승인
+		int changeStore=indexService.selectChangeStore();
+		logger.info("점포 변경 건, changeStore={}", changeStore);
+		model.addAttribute("changeStore", changeStore);
+		
+		//1:1 미답변 글
 		List<Map<String, Object>> askList=askService.selectNewAsk();
 		logger.info("답변 대기중인 1:1 문의글, askList={}", askList);
 		
@@ -44,6 +73,7 @@ public class AdminIndexController {
 		
 		model.addAttribute("cnt", cnt);
 		
+		//공지, 이벤트, 꿀팁
 		List<AdminBoardAllVO> nList=boardService.selectNotice();
 		logger.info("공지사항 list 출력, nList.size={}", nList.size());
 		
