@@ -43,7 +43,7 @@ public class OwnerMyStoreInterceptor extends HandlerInterceptorAdapter {
 			if(result.equals(OwnerService.NO_LICENSE+"") || result.equals(OwnerService.WITHDRAW_SUCCESS)) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('사업자 등록 부터 부탁드려요');");
-				out.print("location.href='"+request.getContextPath()+"/owner/menu1/businessLicense.do';");
+				out.print("location.href='"+request.getContextPath()+"/owner/menu1/launch/launch.do';");
 			}else if(result.equals(OwnerService.NO_STORE+"")) {
 				logger.info("점포 로그인 - preHandle() result={}", result);
 				out.print("alert('점포 등록 부터 부탁드려요');");

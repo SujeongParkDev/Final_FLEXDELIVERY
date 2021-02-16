@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.slf4j.Logger;
 
 
@@ -710,11 +711,16 @@ public class OwnerMenuController {
 		
 		@ResponseBody  
 		@RequestMapping("/checkDupMenuName.do")
-		public boolean checkDupMenuName(@RequestParam(defaultValue = "0") String menuName) {
-		logger.info("ajax이용-checkDupMenuName,   menuName={}", menuName);
+		public boolean checkDupMenuName(@RequestParam(defaultValue = "0") String menuName,
+				@RequestParam(defaultValue = "0") int sMGroupNo) {
+		logger.info("ajax이용-checkDupMenuName,   menuName={}, sMGroupNo={}", menuName, sMGroupNo);
 		
-		
-			int result = ownerMenuService.checkDupMenuName(menuName);
+			
+			Map<String, Object> map = new HashedMap<String, Object>();
+			map.put("menuName", menuName);
+			map.put("sMGroupNo", sMGroupNo);
+			
+			int result = ownerMenuService.checkDupMenuName(map);
 			logger.info("메뉴 이름 중복 확인 결과 result={}", result);
 			boolean bool = false;
 			

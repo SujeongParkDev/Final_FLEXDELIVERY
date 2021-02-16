@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
@@ -63,8 +65,8 @@ public class OwnerController {
 		vo.setOwnerHp2(hp2);
 		vo.setOwnerHp3(hp3);
 		
-		String hashPwd=BCrypt.hashpw(vo.getOwnerPwd(), BCrypt.gensalt());
-		vo.setOwnerPwd(hashPwd);
+		//String hashPwd=BCrypt.hashpw(vo.getOwnerPwd(), BCrypt.gensalt());
+		//vo.setOwnerPwd(hashPwd);
 
 		int cnt=ownerService.insertowner(vo);
 		logger.info("회원가입 결과, cnt={}", cnt);
@@ -249,6 +251,7 @@ public class OwnerController {
 
 			if(cnt>0) {
 				msg="회원정보 수정되었습니다.";
+				url="/owner/mypage//mypageMain.do";
 			}
 		}else if(result==OwnerService.PWD_DISAGREE) {
 			msg="비밀번호가 일치하지 않습니다.";
@@ -269,6 +272,19 @@ public class OwnerController {
 	public String agreement() {
 		
 		return "owner/register/agreement";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/checkResult.do")
+	public int checkResult(HttpSession session) {
+		logger.info("권한 찾기 ajax ");
+		String ownerId = (String) session.getAttribute("ownerId");
+		
+		int result = ownerService.checkAuthority(ownerId);
+		logger.info("result 조회 결과 result ={}",result);
+		
+		return result;
 	}
 		
 }

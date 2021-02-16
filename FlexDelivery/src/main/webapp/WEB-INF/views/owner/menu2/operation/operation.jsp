@@ -183,9 +183,9 @@
 			<div class="ShopSelect mb-4 mb-sm-0">
 				<section class="title">
 					<h3>
-						${map['STORE_NAME'] } <i class="fas fa-angle-down"></i>
+						${map['STORE_NAME'] } 
 					</h3>
-					<p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
+					<p class="text-sub mt-1">FLEX DELIVERY</p>
 				</section>
 			</div>
 			<div>

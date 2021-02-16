@@ -8,7 +8,7 @@
     	$.ajax({
     		url:"<c:url value='/owner/menu2/charts/ordersCount.do'/>",
     		success:function(res){
-    			
+    		
     			var label = [];
     			$.each(res.tList, function(idx, item){
     			
@@ -46,8 +46,8 @@
     			        },
     		            type: 'bar',
     		            colors: {
-    		                 data1: '#ff0990', 
-    		                data2: '#772200'
+    		                 data1: '#FFDF00', 
+    		                data2: '#12E680'
     		            },
     		            labels: true
     		            

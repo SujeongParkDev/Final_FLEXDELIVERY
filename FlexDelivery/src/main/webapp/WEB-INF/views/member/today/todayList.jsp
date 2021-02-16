@@ -9,36 +9,134 @@
  	background-color: rgba(30,30,30,0.9);
  }	
 </style>
+<script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <script>
-/* 
-	$(function{
+	
+
+	function goStore(no){
+		location.href="<c:url value='/member/store/storeDetail.do?storeNo="+no+"'/>";
+	}
+	 
+	
+	$(function(){
+		$('#goStore').click(function(){
+			var lCategoryNo = $('input[name=lCategoryNo]').val();
+			location.href="<c:url value='/member/store/storeList.do?lCategoryNo="+lCategoryNo+"'/>";
+		});
+	});
+	
+	
+	
+	$(function(){
+		$('#cancelBottom').click(function(){
+			location.href="<c:url value='/member/index.do'/>";
+		});
+	});
+	
+	
+	$(function(){
+		$('#imgHover').click(function(){
+			location.href="<c:url value='/member/index.do'/>";
+		});
+	});
+	
+	$(function(){
+		
+		
 		var mCategoryNo=$('input[name=mCategoryNo]').val();
+		
 		$.ajax({
 			url:"<c:url value='/member/today/todayListStores.do'/>",
 			data:"mCategoryNo="+mCategoryNo,
-			success:function(){
+			success:function(mcList){
+				var str="";
+		
+				
+				
+				if(mcList.length==0){ //나중에 데이터 넣고나면 지울거임!
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/noddle.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index1.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index2.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+		  			str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/pancake.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+		  			str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/sawooPotato.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+		  			str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/hot.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/inex3.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+					str+="<div class='card' data-aos='fade-up' >";
+					str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg' alt='Card image cap'>";
+		  			str+="</div>";
+				}else{
+					$.each(mcList, function(idx,items){
+						if(items['MENU_IMG'].substring(0,4)=='http'){
+							str+="<div class='card' data-aos='fade-up' >";
+					    	str+="<img class='card-img' src='"+items['MENU_IMG']+"' alt='Card image cap'>";
+					  		str+="</div>";
+						}else if(items['MENU_IMG'].substring(0,4)!='http' && items['MENU_IMG']!=null){
+							str+="<div class='card' data-aos='fade-up' >";
+							str+="<img class='card-img' src='${pageContext.request.contextPath}/resources/imgs/MenuImages/"+items['MENU_IMG']+"' alt='Card image cap'>";
+				  			str+="</div>";
+						}
+					});
+				}	
+		
+				$('#menuImgList').html(str);
 				
 			},
 			error:function(xhr, status, error){
 				alert('error! '+error);
 			}
-			event.preventDefault();
-			
 		});
-	}); */
+		event.preventDefault();
+			
+		
+	}); 
+	
+	$(function(){
+		$('')
+	});
 </script>
 
 <div style="background-color: rgba(30,30,30,0.9);">
 	<input type="hidden" name="mCategoryNo" value="${map['M_CATEGORY_NO'] }">
+	<input type="hidden" name="lCategoryNo" value="${map['L_CATEGORY_NO'] }">
 	<br>
 	<br>
 	<div>
-		<p style="margin-left:10%; font-size:15px; color:white; text-align: center;">오늘 뭐먹지?</p>
+		<p><img src='${pageContext.request.contextPath}/resources/imgs/CommonImages/fdLogo_EN.png' id="imgHover" style="display:block; margin: auto; height:60px;"></p>
+		
 	</div>
 	
-	<div style=" margin-bottom:50px; margin-top:100px; " data-aos="fade-right" data-aos-duration="1500">
+	<div style=" margin-bottom:50px; margin-top:120px; " data-aos="fade-right" data-aos-duration="1500">
 		<p style="margin-left:10%; font-size:60px; color:white;"> 오늘은<br>맛있는 ${map['M_CATEGORY_NAME'] }${emoji }<br>어때요 ?</p>
 	</div>
 	
@@ -52,25 +150,20 @@
 					     <div class="row" style="margin:auto;">
 					     <div class="col-12 col-md-2"></div>
 					     <div class="col-12 col-md-8">
-					     <div class="row" style="margin-top:10%;">
-					     	 <div class="col-12 col-md-4  mb-4 p-1">
-						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#로봇김밥</span>
-						     </div>
-						      <div class="col-12 col-md-4  mb-4 p-1">
-						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick" >#마녀김밥</span>
-						     </div>
-						      <div class="col-12 col-md-4  mb-4 p-1">
-						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#소담김밥</span>
-						     </div>
-						      <div class="col-12 col-md-4  mb-4 p-1">
-						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#김가네김밥</span>
-						     </div>
-						     <div class="col-12 col-md-4  mb-4 p-1">
-						   	 	 <span style="border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;" class="p-2 spanClick">#고봉민김밥</span>
-						     </div>
-						     
-						    
-					      </div>
+						     <div class="row" style="margin-top:10%;" id="tagList">
+									<c:if test="${empty mList }">
+										<div class='col-12 mb-4 p-1 mt-1'>
+			   	 							<p style='border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px; width:100%; text-align:center;' class='p-2'>메뉴 준비 중입니다</p>
+				   						</div>
+									</c:if>
+									<c:if test="${!empty mList }">
+										<c:forEach var="map" items="${mList }">
+											<div class='col-12 col-md-4  mb-4 p-1'>
+				   	 							<span style='border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;' class='p-2 spanClick' onclick="goStore(${map['STORE_NO']})">#${map['MENU_NAME'] }</span>
+					    					</div>
+										</c:forEach>
+									</c:if>   
+						      </div>
 					 	 </div>
 					 	<div class="col-12 col-md-2"></div>
 					 	</div>
@@ -81,10 +174,11 @@
 			    <div class="card h-100" style="width: 100%;  background-color: rgba(0,0,0,0.2);">
 			      <div class="card-body" style="color: white;">
 			       	<div style="text-align: right; margin-right:70px;" class="mb-4 mt-3">
-				       	 <span>우리 동네</span><Br>
+				       	 <span >우리 동네</span><Br>
 					     <span style="font-size: 25px;">${map['M_CATEGORY_NAME'] }${emoji }</span><span> 추천!</span><br>
 				    </div>
-				    <a href="#" class="btn btn-warning" style="width:80%;  border-radius: 20px; display:block; margin: auto; color:#333;"><b>주문하러 가기</b></a>
+				    <c:set var="lCategoryNoCset" value="${map['L_CATEGORY_NO'] }"></c:set>
+				    <a href="<c:url value='/member/store/storeList.do?lCategoryNo=${lCategoryNoCset}'/>" class="btn btn-warning" style="width:80%;  border-radius: 20px; display:block; margin: auto; color:#333;"><b>주문하러 가기</b></a>
 			      </div>
 			    </div>
 			  </div>
@@ -94,82 +188,17 @@
 	</div>
 
 		<div class="container p-0">
-			<div class="card-columns">
-			  <div class="card "  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/noddle.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/hot.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index1.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index2.jpg'/>" alt="Card image cap">
-			  </div>
-			  <div class="card"  data-aos="fade-up" > 
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index4.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index5.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
-			  </div>
-			
-			  <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index5.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
-			  </div>  
-			  <div class="card" data-aos="fade-up">
-			    <img class="card-img" src="<c:url value='/resources/imgs/sawooPotato.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="Card image cap">
-			  </div>
-			   <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/hot.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index6.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index7.jpg'/>" alt="Card image cap">
-			  </div>
-			    <div class="card"  data-aos="fade-up" >
-			    <img class="card-img" src="<c:url value='/resources/imgs/CommonImages/index9.jpg'/>" alt="Card image cap">
-			  </div>
+			<div class="card-columns" id="menuImgList">
+			  
+			  
 			</div>
 		</div>
 
-	<div class="row" id="footerDiv" style="height:80px; display: none;" >
+	<div class="row " id="footerDiv" style="height:80px; display: none;" >
 		<div class="col-12 col-md-4"></div>
 		<div class="col-12 col-md-4">
 			<div style="margin-bottom:10%; ">
-				<p style="color:white; font-size:30px; text-align: center;" class="mt-3">주문하러 가시겠습니까?  
+				<p style="color:white; font-size:30px; text-align: center;" id="goStore" class="mt-3">주문하러 가시겠습니까?  
 				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle ml-1" viewBox="0 0 16 16" style="color:white;">
 		  			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
 				</svg>
@@ -208,6 +237,7 @@
 			</script>
 
  <style>
+ /*아래의 column수를 조절하면 화면에 보여지는 컬럼 수가  바껴요 2로바꾸면 2개만보입니다.  */
  .card-columns{
  	    column-count: 3;
  }
@@ -226,11 +256,11 @@
     font-weight: bold;
 }
 
-#footerDiv > div:nth-child(2) > div > p:hover, #cancelBottom:hover, .spanClick:hover{
+#footerDiv > div:nth-child(2) > div > p:hover, #cancelBottom:hover, .spanClick:hover, #imgHover:hover{
 	cursor:pointer;
 }
 
  </style>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

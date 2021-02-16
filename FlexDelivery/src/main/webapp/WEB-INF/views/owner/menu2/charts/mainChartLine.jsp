@@ -37,18 +37,22 @@
     	    		},
     	    	    bindto: '#chart2',
     	    	    data: {
-    	    	      json : {
-    	    	    	  'data1': label7,
-    	    	    	  'data2': label6
-    	    	      },
-    	          	  names:{
-    	            	data1:'지난주',
-    	            	data2:'이번주'
-    	           	 },
-    	           	 types: {
-    	                 data1: 'area',
-    	                 data2: 'area'
-    	             }
+	    	    	      json : {
+	    	    	    	  'data1': label7,
+	    	    	    	  'data2': label6
+	    	    	      },
+	    	          	  names:{
+	    	            	data1:'지난주',
+	    	            	data2:'이번주'
+	    	           	 },
+	    	           	 types: {
+	    	                 data1: 'area',
+	    	                 data2: 'area'
+	    	             },
+	    	             colors: {
+			                 data1: '#D0F20C', 
+	 		                data2: '#0C2CF2'
+	    	    	    },
     	    	    },
     	    	    axis: {
     	    	        x: {

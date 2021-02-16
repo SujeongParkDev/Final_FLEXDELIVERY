@@ -124,41 +124,7 @@
 				});
 				
 			
-			//메뉴 그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
-			 $(function(){
-				$('.groupChoice').click(function(){
-					
-					$('#btOptionWrite').css('display','block');
-					
-					
-					$.ajax({
-						url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
-						data:"sMGroupNo=" + $(this).val(),
-						dataType:"json",
-						type:"GET",
-						success:function(res){
-							//alert(res);
-							//alert(res.length);
-							if(res.length>0){
-								var str="";
-									str+="<option value='0'>메뉴 선택</option><br>";
-								$.each(res, function(idx, item){
-									str+="<option value='"+item.menuNo+"' class='menuClick'>"+ item.menuName+"</option><br>";
-								});
-								
-								$('#menuSelect').html(str);
-							}else{
-								$('#menuSelect').html('<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 선택</option>');
-							}
-						},
-						error:function(xhr, status, error){
-							alert("error!! : " + error);
-						}
-					});
-					
-				});
-				
-			});
+
 			 
 		
 			$(function(){
@@ -236,6 +202,8 @@
 			//메뉴 등록을 누르면 모달창이 뜬다.
 		 	$(function(){
 				$('#btOptionWrite').click(function(){
+					
+					
 					if($('#menuGroupSelect').val()==0 || $('#menuSelect').val()==0){
 						alert('유효하지 않은 선택입니다');
 
@@ -251,6 +219,13 @@
 									//alert(res);
 									//alert(res.length);
 									
+									$('#warningOptionName').html('');
+									$('#warningOptionPrice').html('');
+									
+									$('#mOptionName').val('');
+									$('#mOptionPrice').val('');
+									
+							
 									var str = "";
 									str+="<label>그룹이름</label>&nbsp;";
 									str+="<input type='hidden'name='sMGroupNo' value='"+res.sMGroupNo+"'>";
@@ -264,11 +239,15 @@
 									
 									if(res.list.length>0){
 										var str2="";
+								
 										$.each(res.list, function(idx, item){
 											str2+="<option value='"+item.oRankNo+"'>"+item.oRankName+"</option><br>";
 										});
 										$('.menuOptionSelect').html(str2);
 									}
+									
+									
+									
 									
 								},
 								error:function(xhr, status, error){
@@ -688,7 +667,7 @@
 			 </div> 
 			 
 			 
-			 <!-- 등록 모달! -->
+			
 			 <div class="modal fade text-left" id="inlineForm" tabindex="-1" aria-labelledby="myModalLabel33" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                         <div class="modal-content">
@@ -737,7 +716,7 @@
                         </div>
                     </div>
 				   	<br>
-				   	
+				   	 
 				   	
 				   	
 				   	<!-- 수정 모달! -->
