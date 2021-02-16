@@ -4,25 +4,22 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="row mt-3">
-	<div class="col-md-2 col-sm-12"></div>
-	<div class="col-md-8 col-sm-12">
-		<ul class="nav nav-pills" style="float: right;">
-			<li class="nav-item">
+	<div class="col-md-6 col-sm-12"></div>
+	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(allList)})</button>
-			</li>
-			<li class="nav-item">
-				<button type="button" class="btn btn-primary" id="btnocmt">미답변(${fn:length(nocmtList)})
-				</button>
-			</li>
-			<li class="nav-item">
-				<button type="button" class="btn btn-outline-primary" id="btBlock">차단(${fn:length(blockList)})
-				</button>
-			</li>
-		</ul>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-primary" id="btnocmt">미답변(${fn:length(nocmtList)}) </button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-outline-primary" id="btBlock">차단(${fn:length(blockList)}) </button>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-12"></div>
 	</div>
-	<div class="col-md-2 col-sm-12"></div>
 </div>
-<br>
 <!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>

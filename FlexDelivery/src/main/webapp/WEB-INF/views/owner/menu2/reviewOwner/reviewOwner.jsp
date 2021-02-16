@@ -8,9 +8,7 @@
 		border: 1px solid rgb(212,212,212);
 		border-radius: 5px;
 	}
-	textarea{
-	padding : none;
-	}
+
 </style>
 <div class="row mt-3">
 	<div class="col-md-6 col-sm-12"></div>
