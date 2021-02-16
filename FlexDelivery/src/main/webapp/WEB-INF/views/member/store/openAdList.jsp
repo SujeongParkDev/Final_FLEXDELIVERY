@@ -30,12 +30,12 @@
 		                <div class="member-plan position-absolute"><span class="badge badge-dark">준비중</span></div>
 	                </c:if>
 		            <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}' />">
-							<c:if test="${vo.storeLogo=='temp.jpg'}">
-			                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
-		                    </c:if>
-		                    <c:if test="${vo.storeLogo!='temp.jpg'}">
-			                    <img alt="#" src='<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
-		                    </c:if>		            	
+						<c:if test="${vo.storeLogo=='temp.jpg'}">
+		                    <img alt="#" src='<c:url value="/resources/imgs/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+	                    </c:if>
+	                    <c:if test="${vo.storeLogo!='temp.jpg'}">
+		                    <img alt="#" src='<c:url value="/resources/imgs/StoresImages/${vo.storeLogo}"/>' class="img-fluid item-img w-100">
+	                    </c:if>		            	
 		            </a>
 		        </div>
 		        <div class="p-3 position-relative">
@@ -69,7 +69,7 @@
 <c:if test="${empty list}">
 	<div class="col-md-12 pb-12" style="text-align: center">
 		<div class="bg-white p-3 h-100 rounded overflow-hidden position-relative shadow-sm">
-	        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="min-width:400px">
+	        <img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="inline-size: 30em">
 		</div>
 	</div>
 </c:if>

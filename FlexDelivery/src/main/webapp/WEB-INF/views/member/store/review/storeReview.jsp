@@ -296,7 +296,7 @@
 	       <textarea class="form-control" name="reviewContent"></textarea>
 	       </div>
 	       <div class="d-flex align-items-center my-3">
-	       		<label for="reviewFilename" ><img class="img-fluid" style="max-width: 15%;cursor: pointer;" src="<c:url value='/resources/imgs/photo.png'/>"> </label>
+	       		<label for="reviewFilename" ><img class="img-fluid" style="inline-size:7em;cursor: pointer;" src="<c:url value='/resources/imgs/photo.png'/>"> </label>
 	       		<input type="file" id="reviewFilename" name="tqFilename" accept=".gif, .jpg, .png" style="visibility: hidden;">
 	       </div>
 	       <c:if test="${reviewChk}">

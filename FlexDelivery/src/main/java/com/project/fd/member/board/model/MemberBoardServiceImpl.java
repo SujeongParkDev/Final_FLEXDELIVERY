@@ -28,4 +28,9 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	public int noticeCount(MemberBoardSearchVO vo) {
 		return boardDao.noticeCount(vo);
 	}
+
+	@Override
+	public MemberBoardVO boardDetail(int boardNo) {
+		return boardDao.boardDetail(boardNo);
+	}
 }

@@ -11,9 +11,9 @@
                 </a>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-map-pin"></i></p>
-                    Trending
+                <a href="${pageContext.request.contextPath}/member/today/todayList.do" class="text-dark small font-weight-bold text-decoration-none">
+                    <p class="h4 m-0"><i class="feather-check-circle"></i></p>
+                    	오늘뭐먹지?
                 </a>
             </div>
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
@@ -121,6 +121,7 @@
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/myGift.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/loing/logout.do">FLEX-OUT</a></li>
 	                </ul>
                 </c:if>
             </li>
@@ -128,8 +129,9 @@
                 <a><i class="feather-map-pin mr-2"></i>점포조회</a>
                 <c:import url="/member/sidebarList.do" />
             </li>
-            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>FLEX-ON</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/addOn/addOn.do"><i class="feather-award mr-2"></i>FLEX-OFFERS</a></li>
             <li><a href="${pageContext.request.contextPath}/member/board/board.do"><i class="feather-user mr-2"></i>알림광장</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/today/todayList.do"><i class="feather-check-circle mr-2"></i>오늘뭐먹지</a></li>
             <li>
                 <a><i class="feather-link mr-2"></i>Contact Us</a>
                 <ul>
@@ -155,97 +157,24 @@
                     FAQ
                 </a>
             </li>
-            <li class="ko-fi">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/contact-us.html">
-                    <p class="h5 m-0"><i class="feather-phone"></i></p>
-                    Help
-                </a>
-            </li>
+            <c:if test="${!empty sessionScope.memberId}">
+	            <li class="ko-fi">
+	                <a href="${pageContext.request.contextPath}/member/login/logout.do">
+	                    <p class="h5 m-0"><i class="feather-log-out"></i></p>
+	                    Flex-Out
+	                </a>
+	            </li>
+            </c:if>
+            <c:if test="${empty sessionScope.memberId}">
+            	<li class="ko-fi">
+	                <a href="${pageContext.request.contextPath}/member/login/memberLogin.do">
+	                    <p class="h5 m-0"><i class="feather-log-in"></i></p>
+	                    Flex-On
+	                </a>
+	            </li>
+            </c:if>
         </ul>
     </nav>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="osahan-filter">
-                        <div class="filter">
-                            <!-- SORT BY -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">SORT BY</h6>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-radio">
-                                <input type="radio" id="customRadio1f" name="location" class="custom-control-input" checked>
-                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio1f">Top Rated</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-radio">
-                                <input type="radio" id="customRadio2f" name="location" class="custom-control-input">
-                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio2f">Nearest Me</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-radio">
-                                <input type="radio" id="customRadio3f" name="location" class="custom-control-input">
-                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio3f">Cost High to Low</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-radio">
-                                <input type="radio" id="customRadio4f" name="location" class="custom-control-input">
-                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio4f">Cost Low to High</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-radio">
-                                <input type="radio" id="customRadio5f" name="location" class="custom-control-input">
-                                <label class="custom-control-label py-3 w-100 px-3" for="customRadio5f">Most Popular</label>
-                            </div>
-                            <!-- Filter -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">FILTER</h6>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck1" checked>
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck1">Open Now</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck2">
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck2">Credit Cards</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck3">
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck3">Alcohol Served</label>
-                            </div>
-                            <!-- Filter -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">ADDITIONAL FILTERS</h6>
-                            </div>
-                            <div class="px-3 pt-3">
-                                <input type="range" class="custom-range" min="0" max="100" name="minmax">
-                                <div class="form-row">
-                                    <div class="form-group col-6">
-                                        <label>Min</label>
-                                        <input class="form-control" placeholder="$0" type="number">
-                                    </div>
-                                    <div class="form-group text-right col-6">
-                                        <label>Max</label>
-                                        <input class="form-control" placeholder="$1,0000" type="number">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer p-0 border-0">
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Apply</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

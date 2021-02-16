@@ -14,7 +14,7 @@
 				var str="<div class='osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white'>";
 				if(map.list.length>0){
 				    str+="<div class='d-flex border-bottom osahan-cart-item-profile bg-white p-3'>";
-				    str+="<img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px'>";
+				    str+="<a href='<c:url value='/member/store/storeDetail.do?storeNo="+map.vo.storeNo+"'/>'><img alt='logo' src='<c:url value='/resources/imgs/StoresImages/"+map.vo.storeLogo+"'/>' class='mr-3 rounded-circle img-fluid' style='max-width: 41px;max-height: 41px;'></a>";
 				    str+="<div class='d-flex flex-column'>";
 				    str+="<h6 class='mb-1 font-weight-bold'><a href='<c:url value='/member/store/storeDetail.do?storeNo="+map.vo.storeNo+"'/>'>"+map.vo.storeName+"</a></h6>";
 				    str+="<p class='mb-0 small text-muted'><i class='feather-map-pin'></i>"+map.vo.storeAddress+" "+map.vo.storeAddressDetail+"</p></div></div>";
@@ -175,7 +175,7 @@
 			<div class="osahan-cart-item rounded rounded shadow-sm overflow-hidden bg-white">
 				<c:if test="${!empty list}">
 				    <div class="d-flex border-bottom osahan-cart-item-profile bg-white p-3">
-				    	<img alt="osahan" src="<c:url value='/resources/imgs/StoresImages/${vo.storeLogo}'/>" class="mr-3 rounded-circle img-fluid" style="max-width: 41px">
+				    	<a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}'/>"><img alt="osahan" src="<c:url value='/resources/imgs/StoresImages/${vo.storeLogo}'/>" class="mr-3 rounded-circle img-fluid" style="max-width: 41px;max-height: 41px;"></a>
 				        <div class="d-flex flex-column">
 				            <h6 class="mb-1 font-weight-bold"><a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.storeNo}'/>">${vo.storeName}</a></h6>
 				            <p class="mb-0 small text-muted"><i class="feather-map-pin"></i>${vo.storeAddress} ${vo.storeAddressDetail}</p>
@@ -187,7 +187,7 @@
 				<c:set var="delivery" value="0" />
 			   	<c:if test="${empty list}">
 			   		<div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
-			   			<img class="img-fluid mx-auto" alt="장바구니 상품 없음" style="min-width: 450px" src="<c:url value='/resources/imgs/tung2.png'/>">
+			   			<img class="img-fluid mx-auto" alt="장바구니 상품 없음" style="inline-size:40em" src="<c:url value='/resources/imgs/tung2.png'/>">
 			   		</div>
 			   	</c:if>
 			   	<c:if test="${!empty list}">
@@ -228,7 +228,6 @@
 						                </div>
 						            </div>
 						            <div class="d-flex align-items-center">
-				
 							            <p class="text-gray mb-0 float-right mr-3 text-muted small">${(cVo.menuPrice+cVo.mOptionPrice)*cVo.cartQty}원</p>
 						                <span class="count-number float-right">
 						                <button type="button" class="btn-sm left dec btn btn-outline-secondary" onclick="minus(${cVo.cartNo},${cVo.cartQty})"> <i class="feather-minus"></i> </button>
