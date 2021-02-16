@@ -18,4 +18,14 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	public List<MemberBoardVO> selectNotice(MemberBoardSearchVO vo) {
 		return boardDao.selectNotice(vo);
 	}
+
+	@Override
+	public int eventCount(MemberBoardSearchVO vo) {
+		return boardDao.eventCount(vo);
+	}
+
+	@Override
+	public int noticeCount(MemberBoardSearchVO vo) {
+		return boardDao.noticeCount(vo);
+	}
 }

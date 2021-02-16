@@ -1,6 +1,7 @@
 package com.project.fd.admin.ask.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminAskService {
 	List<AdminAskVO> selectAll();
@@ -14,5 +15,8 @@ public interface AdminAskService {
 	AdminAskVO selectReplyByNo(int no);
 	
 	int updateAsk(AdminAskVO askVo);
+	
+	List<Map<String, Object>> selectNewAsk();
+	int selectNewAsk2();
 	
 }

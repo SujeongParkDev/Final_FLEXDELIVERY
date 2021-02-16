@@ -27,53 +27,14 @@
 		$('.btCancleChange').click(function(){
 			if($(this).attr("name")=="textCancle"){
 				$('#changeText').css('display','none');
+			}else if($(this).attr("name")=="textChange"){
+				$('#changeText').css('display','none');
 			}
 		});
 	});
 	
-	/*function deleteFunc(storeNo){
-		if(!confirm('?')){
-		event.preventDefault();
-		}else{
-		location.href = '<c:url value="/owner/menu2/basic/basic.do"/>'+storeNo;
-		}
-	}*/
 	
-	/*$(function(){
-		$('#updateContent').click(function(){
-			var storeContent = $('select[name=storeContent]').val();
-			var storeNo = $('input[name=storeNo]').val();
-					
-			console.log(storeContent);
-			console.log(storeNo);
-			
-			$.ajax({
-				url:"<c:url value='/owner/menu2/operation/updateHoliday.do'/>",
-				data:"hCategoryNo="+hCategoryNo+"&storeNo="+storeNo+"&ownerNo="+ownerNo, 
-				
-				success:function(res){
-					str="";
-					if(res=="fail"){
-						alert("업데이트 실패!");
-					}else{
-						if(res=="없음"){
-							str+="<span class='text'>"+res+"</span>";
-						}else{
-							str+="<span class='text'>"+res+"요일</span>";
-						}
-					}
-					
-					$('#holidayText').html('');
-					$('#holidayText').html(str);
-					$('#changeHoliday').css('display','none'); 
-				},
-				error:function(xhr,status,error){
-					alert("error!!: "+error);
-				}
-			});
-		});
-	});*/
-	
+
 </script>  
 
 
@@ -180,7 +141,7 @@
 								<div class="form-control-wrap form-control-inline">
 									<div class="form-control ">
 										<div class="inline-values flex-1 ">
-											<span class="inline-value ">${map[''] }
+											<span class="inline-value " >${vo.storeContent}
 											</span>
 										</div>
 									</div>
@@ -191,13 +152,15 @@
 				</form>
 
 
-				<form class="form-card form-card-active">
+				<form class="form-card form-card-active" name="frmEdit" method="post" 
+						action="<c:url value='/owner/updateContent.do'/>"> 
+						<input type="hidden" name="storeNo" value="${vo.storeNo}">
 					<div>
 						<div class="Card" id="changeText" style="display:none;" >  
 							<div class="card-header">
 								<h3>가게 소개</h3>
 								<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button small primary" name="textChange" >적용</button>
+									<button type="submit" class="button small primary" name="textChange" >적용</button>
 									<button type="button" class="button mr-1 small secondary btCancleChange" name="textCancle" >닫기</button>
 								</div>
 							</div>
@@ -205,9 +168,9 @@
 								<div class="form-control-wrap">
 									<div class="form-control ">
 										<div class="textarea-container ">
+										<%-- <textarea id="content" name="content" rows="12" cols="40">${vo.storeContent}</textarea> --%>
 											<textarea data-component="[object Object]" class="" rows="13"
-												maxlength="500" placeholder="">
-</textarea>
+												maxlength="500" placeholder="" name="storeContent" >${vo.storeContent}</textarea> 
 											<span class="text-count">118</span>
 										</div>
 									</div>
@@ -266,18 +229,7 @@
 								첨부가능)</li>
 						</ul>
 					</div>
-						<div class="form-group ">
-						<h5 class="form-label">요청 내용</h5>
-						<div class="form-control-wrap">
-							<div class="form-control ">
-								<div class="textarea-container ">
-									<textarea data-component="[object Object]" class="" rows="3"
-										required="" maxlength="500" placeholder=""></textarea>
-									<span class="text-count">500</span>
-								</div>
-							</div>
-						</div>
-					</div> 
+						
 				</div>
 			</div>
 			<div class="footer">

@@ -56,6 +56,8 @@ function mypageInClick(){
 			$('#cardArea').css("display","none");
 		}else if($(this).val()=="withdraw"){
 			location.href="<c:url value='/owner/mypage/mypageDelete.do'/>";
+		}else if($(this).val()=="reCancle" || $(this).val()=="stCancle"){
+			location.href="<c:url value='/owner/menu2/requests/requests.do'/>";
 		}
 		
 		
@@ -146,6 +148,7 @@ $(function(){
 							$('#content').html(str);
 							$('#btArea').html(str2);
 							mypageInClick();
+							
 					},
 					error:function(xhr,status,error){
 						alert('error !! = '+ error);
@@ -213,7 +216,13 @@ $(function(){
 				        		}
 				        	}
 				        	if(map2.vo.storeContent!=null){
-				        		str+="<td>가게 소개<br><br><textarea cols='50' rows='5' disabled='disabled'>"+map2.vo.storeContent+"</textarea><br><hr></td></tr>";
+				        		if(map2.vo.aAgreeNo==1){
+				        			str+="<td>요청 사항";
+				        		}else{
+				        			str+="<td>가게 소개";
+				        		}
+				        		str+="<br><br><textarea cols='50' rows='5' disabled='disabled'>"+map2.vo.storeContent+"</textarea><br><hr></td></tr>";
+				        		
 				        	}
 				        	str+="</tbody>";
 				        	str+="</table>";

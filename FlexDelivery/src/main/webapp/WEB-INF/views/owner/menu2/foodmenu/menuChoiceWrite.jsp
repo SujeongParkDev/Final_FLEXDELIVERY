@@ -67,7 +67,7 @@
 				}else{
 					$.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-						data:"menuName=" + $('#menuName').val(),
+						data:"menuName=" + $('#menuName').val()+"&sMGroupNo=" + $('#sMGroupNo').val(),
 						dataType:"json",
 						type:"GET",
 						success:function(res){
@@ -102,7 +102,7 @@
 					
 					$.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-						data:"menuName=" + $('#menuName').val(),
+						data:"menuName=" + $('#menuName').val()+"&sMGroupNo=" + $('#sMGroupNo').val(),
 						dataType:"json",
 						type:"GET",
 						success:function(res){
@@ -159,7 +159,7 @@
 					
 						$.ajax({
 							url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
-							data:"menuName=" + $('#menuName').val(),
+							data:"menuName=" + $('#menuName').val()+"&sMGroupNo=" + $('#sMGroupNo').val(),
 							dataType:"json",
 							type:"GET",
 							success:function(res){

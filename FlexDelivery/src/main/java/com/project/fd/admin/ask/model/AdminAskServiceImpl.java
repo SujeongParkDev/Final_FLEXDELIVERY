@@ -1,6 +1,7 @@
 package com.project.fd.admin.ask.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,16 @@ public class AdminAskServiceImpl implements AdminAskService{
 	@Override
 	public int updateAsk(AdminAskVO askVo) {
 		return askDao.updateAsk(askVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectNewAsk() {
+		return askDao.selectNewAsk();
+	}
+
+	@Override
+	public int selectNewAsk2() {
+		return askDao.selectNewAsk2();
 	}
 
 }

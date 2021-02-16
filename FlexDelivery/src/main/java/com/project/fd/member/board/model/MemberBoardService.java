@@ -5,4 +5,6 @@ import java.util.List;
 public interface MemberBoardService {
 	List<MemberBoardVO> selectEvent(MemberBoardSearchVO vo);
 	List<MemberBoardVO> selectNotice(MemberBoardSearchVO vo);
+	int eventCount(MemberBoardSearchVO vo);
+	int noticeCount(MemberBoardSearchVO vo);
 }

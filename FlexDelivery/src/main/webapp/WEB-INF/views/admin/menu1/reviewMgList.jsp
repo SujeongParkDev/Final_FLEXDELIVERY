@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../adminInc/top.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -69,12 +70,13 @@
 								</td>
 								<td>
 									<a href="<c:url value='/admin/menu1/reviewMgDetail.do?no=${vo.reviewNo}'/>" >
-									<p>${vo.reviewRegdate}</p></a>
+									<p><fmt:formatDate value="${vo.reviewRegdate}" pattern="yyyy년 MM월 dd일"/></p></a>
 								</td>
-								<td><c:if test="${reviewDelFlag == 'N'}">
-										<span class="badge bg-light">처리 대기중</span>
+								<td>
+									<c:if test="${vo.reviewDelFlag == 'N'}">
+										<span class="badge bg-success">처리 대기중</span>
 									</c:if> 
-									<c:if test="${reviewDelFlag == 'Y'}">
+									<c:if test="${vo.reviewDelFlag == 'Y'}">
 										<span class="badge bg-danger">삭제처리</span>
 									</c:if> 
 								</td>

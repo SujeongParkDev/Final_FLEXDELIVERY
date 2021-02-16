@@ -75,76 +75,83 @@
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index11.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
-                        <a style="color: white; font-size: medium;">사업자 등록 승인</a><br>
-                        <a href="#" style="font-size: xx-large;text-decoration: none;">3건</a>
+                        <a style="color: white; font-size: medium;">사업자 등록 미승인</a><br>
+                        <a href="<c:url value='/admin/menu2/registList.do' />" style="font-size: xx-large;text-decoration: none;">${newRegister } 건</a>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index9.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="top: 27%; display: -webkit-box;">
-                        <a style="color: white; font-size: medium;">점포 승인</a><br>
-                        <a href="#" style="font-size: xx-large;text-decoration: none;">1건</a>
+                        <a style="color: white; font-size: medium;">점포 신규 미승인</a><br>
+                        <a href="<c:url value='/admin/menu2/approvalList.do' />" style="font-size: xx-large;text-decoration: none;">${newStore } 건</a>
                     </div>
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="top: 75%; display: -webkit-box;">
-                        <a style="color: white; font-size: medium;">점포 변경</a><br>
-                        <a href="#" style="font-size: xx-large;text-decoration: none;">2건</a>
+                        <a style="color: white; font-size: medium;">점포 변경 미승인</a><br>
+                        <a href="<c:url value='/admin/menu2/editList.do' />" style="font-size: xx-large;text-decoration: none;">${changeStore } 건</a>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index5.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">광고 신청</a><br>
-                        <a href="#" style="font-size: xx-large;text-decoration: none;">4건</a>
+                        <a href="<c:url value='/admin/menu2/storeAdList.do' />" style="font-size: xx-large;text-decoration: none;">${newAd } 건</a>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index7.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
                         <a style="color: white; font-size: medium;">리뷰 신고</a><br>
-                        <a href="#" style="font-size: xx-large;text-decoration: none;">5건</a>
+                        <a href="<c:url value='/admin/menu1/reviewMgList.do' />" style="font-size: xx-large;text-decoration: none;">${newReview } 건</a>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index6.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box;">
-                        <a style="color: white; font-size: medium;">1:1 문의</a><br>
-                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">6건</a>
+                        <a style="color: white; font-size: medium;">1:1 문의 미답변</a><br>
+	                    <c:if test="${empty askList}">
+	                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">
+	                        	0 건</a>
+	                    </c:if>
+	                    <c:if test="${!empty askList}">
+	                        <a href="<c:url value='/admin/menu5/oneToOne.do' />" style="font-size: xx-large;text-decoration: none;">
+	                        	${cnt} 건 </a>
+	                    </c:if>
                     </div>
                 </div>
             </div>
             <!-- Single Blog Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
-                    <img style="max-height: 480px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg" alt="">
+                    <img style="max-height: 440px;" src="${pageContext.request.contextPath}/resources/imgs/CommonImages/index4.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box; top:27%;">
-                        <a style="color: white; font-size: medium;">오늘의 날씨</a><br>
-                        <a style="color: white; font-size: xx-large;">흐림</a>
+                        <a style="color: white; font-size: medium;">오늘 뭐 먹지?</a><br>
+                        <a style="color: white; font-size: xx-large;"></a>
                     </div>
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box; top:75%;">
                         <a style="color: white; font-size: small;">추천 음식</a><br>
-                        <a style="color: white; font-size: medium; font-weight: bolder;">찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개, 초밥, 회, 찌개</a>
+                        <a style="color: white; font-size: medium; font-weight: bolder;">찌개, 초밥</a>
                     </div>
                 </div>
             </div>
@@ -269,15 +276,6 @@
 
                         <div class="widget-content">
 							<hr>
-                            <c:if test="${empty hList }">	
-	                            <!-- Single Blog Post -->
-	                            <div class="single-blog-post d-flex align-items-center widget-post">
-	                                <!-- Post Content -->
-	                                <div class="post-content" style="margin-left: 5%;">
-	                                    <h4><a class="post-headline">등록된 사장님꿀팁이 없어요.</a></h4>
-	                                </div>
-	                            </div>
-                        	</c:if>
 
                            <c:if test="${empty hList }">	
 	                            <!-- Single Blog Post -->

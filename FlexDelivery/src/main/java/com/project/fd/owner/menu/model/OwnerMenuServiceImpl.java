@@ -97,8 +97,8 @@ public class OwnerMenuServiceImpl implements  OwnerMenuService{
 		return ownerMenuDao.checkDupGroupName(sMGroupName);
 	}
 	
-	public int checkDupMenuName(String menuName) {
-		return ownerMenuDao.checkDupMenuName(menuName);
+	public int checkDupMenuName(Map<String, Object> map) {
+		return ownerMenuDao.checkDupMenuName(map);
 	}
 	
 	

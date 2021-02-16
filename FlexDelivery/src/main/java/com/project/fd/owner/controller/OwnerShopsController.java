@@ -45,7 +45,7 @@ public class OwnerShopsController {
 
 @RequestMapping("/updateContent.do")
 public String updateContent(  @RequestParam(defaultValue = "0") int storeNo, 
-		@RequestParam(defaultValue = "0") int storeContent){
+		@RequestParam(defaultValue = "0") String storeContent, Model model){
 		logger.info("소개 업데이트 storeContent={}, storeNO={}", storeContent,storeNo);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -60,7 +60,10 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 		if(cnt>0) { msg="글수정되었습니다.";
 		url="/owner/menu2/basic/basic.do";
 		}
-				
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		return "common/message";
 	}
 }

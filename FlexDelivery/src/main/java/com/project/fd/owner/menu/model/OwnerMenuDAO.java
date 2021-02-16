@@ -36,7 +36,7 @@ public interface OwnerMenuDAO {
 	
 	
 	public int checkDupGroupName(String sMGroupName);
-	public int checkDupMenuName(String menuName);
+	public int checkDupMenuName(Map<String, Object> map);
 	public List<OwnerMenuVO> selectMenuByGroupNo(int sMGroupNo);
 	public List<OwnerMenuOptionVO> selectOptionAllByMenuNo(Map<String, String> map);
 	public List<OwnerOptionRankVO> selectOptionRankAll();

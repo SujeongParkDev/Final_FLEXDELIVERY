@@ -28,8 +28,23 @@ $(function(){
 
 	});
     
+    $('#weatherEdit${vo.weatherNo}').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset()
+	  $('#emessage2').hide();
+	  $('#emessage').html("날씨를 입력해주세요.");
+	  $('#emessage').show();
+	  $('#emessageOk').html("N");
+
+	});
+    
     $('#weatherName').on('keyup', function(){
  	   writeFunc();
+   
+    });
+    
+    $('#EditWeatherName').on('keyup', function(){
+ 	   editFunc();
    
     });
 });
@@ -42,13 +57,33 @@ function chkDu(content){
 function readyWriteSubmit(){
 	writeFunc();
 	var ok=$('#messageOk').html();
-	alert("html:"+ok);
+	//alert("html:"+ok);
 	
 	if(ok=="Y"){
 		console.log("폼 전송 성공!");
 		$('form[name=frmWeatherWrite]').submit();
 	}else if(ok=="N"){
 		alert("등록 실패!");
+		event.preventDefault;
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+}
+
+function readyEditSubmit(){
+	editFunc();
+	var ok=$('#emessageOk').html();
+	//alert("html:"+ok);
+	console.log("ok:"+ok);
+	
+	if(ok=="Y"){
+		console.log("폼 전송 성공!");
+		alert("폼 전송 선공!");
+		$('form[name=frmWeatherEdit]').submit();
+	}else if(ok=="N"){
+		alert("수정 실패!");
 		event.preventDefault;
 		//return false;
 	} else {
@@ -101,6 +136,69 @@ function writeFunc(){
 	  }
 }
 
+function editFunc(){
+	  var name=$('#EditWeatherName').val();
+	  
+	  if(chkDu(name) && name.length>0){
+		  $.ajax({
+			  type:"get",
+			  url:"<c:url value='/admin/menu6/weatherName/ajaxCheck.do' />",
+			  data:"weatherName="+name,
+			  dataType:"json",
+			  success: function (bool) {
+				  if(bool){
+					  result = "등록 가능한 날씨입니다.";
+					  $('#emessage').hide();
+					  $('#emessage2').show();
+					  $('#emessage2').html(result);
+					  $('#emessageOk').html("Y");
+				  }else{
+					  result = "이미 등록된 날씨입니다.";
+					  $('#emessage2').hide();
+					  $('#emessage').show();
+					  $('#emessage').html(result);
+					  $('#emessageOk').html("N");
+					  
+				  }
+				
+			}//success
+
+		  }); //ajax
+	  }else if (name.length<1){
+		  $('#emessage2').hide();
+		  $('#emessage').show();
+		  $('#emessage').html("날씨를 입력해주세요.");
+		  $('#emessageOk').html("N");
+
+	  	
+ 	  }else if(!chkDu(name)){
+		  $('#emessage2').hide();
+		  $('#emessage').show();
+		  $('#emessage').html("한글만 사용 가능합니다.");
+		  $('#emessageOk').html("N");
+
+	  }
+}
+
+function readyDelete(cnt){
+	var ok="N";
+	
+	if(cnt==0){
+		ok="Y";
+	}	
+	//alert(ok);
+	
+	if (ok=="N"){
+		alert("하위메뉴가 등록된 날씨 카테고리는 삭제할 수 없습니다!");
+		event.preventDefault();
+	} else if (ok=="Y"){
+		$('form[name=frmWeatherDel]').submit();
+	} else {
+		alert("ok error!");
+		event.preventDefault();
+	}
+}
+
 </script>
 
 <div class="container">
@@ -110,7 +208,7 @@ function writeFunc(){
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">오늘 뭐 먹지? - 날씨별 추천</h4>
+						<h4 class="card-title">날씨 카테고리</h4>
 						<hr>
 					</div>
 					<div class="card-content">
@@ -127,7 +225,7 @@ function writeFunc(){
 			                           <div class="modal-content">
 											<form name="frmWeatherWrite" method="post" action="<c:url value='/admin/menu6/todayFoodsWeather.do' />">
 			                                	<div class="modal-header" style="background-color: black;">
-				                                    <h4 class="modal-title" style="color: white;" id="largeWrite">오늘 뭐 먹지 - 날씨 등록</h4>
+				                                    <h4 class="modal-title" style="color: white;" id="largeWrite">날씨 카테고리 등록</h4>
 				                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                       <i data-feather="x"></i>
 				                                    </button>
@@ -221,7 +319,7 @@ function writeFunc(){
 									<div class="table-responsive">
 										<table class="table table-hover mb-0" style="text-align: center;">
 											<thead>
-												<tr>
+												<tr style="background-color: black; color: white;">
 													<th>번호</th>
 													<th colspan="3">날씨</th>
 													<th>등록 메뉴 수 </th>
@@ -267,7 +365,7 @@ function writeFunc(){
 					                                                         <span class="d-none d-sm-block">취소</span>
 					                                                      </button>
 					                                                      
-					                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="form.submit()">
+					                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="readyDelete(${vo.wCount})">
 					                                                         <i class="bx bx-check d-block d-sm-none"></i>
 					                                                         <span class="d-none d-sm-block">삭제</span>
 					                                                      </button>
@@ -284,7 +382,7 @@ function writeFunc(){
 					                                             <div class="modal-content">
 					                                    			<form name="frmWeatherEdit" method="post" action="<c:url value='/admin/menu6/todayFoodsWeather/edit.do' />">
 					                                                   <div class="modal-header" style="background-color: black;">
-					                                                      <h4 class="modal-title" style="color: white;" id="myModalWeatherEdit">오늘 뭐 먹지 - 날씨 카테고리 수정</h4>
+					                                                      <h4 class="modal-title" style="color: white;" id="myModalWeatherEdit">날씨 카테고리 수정</h4>
 					                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					                                                         <i data-feather="x"></i>
 					                                                      </button>
@@ -302,6 +400,9 @@ function writeFunc(){
 																							 <td colspan="2">
 					                                                                           <input type="hidden" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
 					                                                                           <input type="text" name="weatherName" id="EditWeatherName" value="${vo.weatherName }">
+					                                                                           <br><span id="emessage" style="color: #dc3545;font-weight: bold;">날씨를 입력해주세요.</span>
+										                                                         <span id="emessage2" style="color: #6610f2;font-weight: bold;"></span>
+										                                                         <span id="emessageOk">N</span>
 																							 </td>					                                                                    
 					                                                                     </tr>					                                                                    
 					                                                                  </tbody>
@@ -315,7 +416,8 @@ function writeFunc(){
 					                                                         <i class="bx bx-x d-block d-sm-none"></i>
 					                                                         <span class="d-none d-sm-block">닫기</span>
 					                                                      </button>
-					                                                      <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
+					                                                      <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" 
+					                                                      	id="modalEdit" onclick="readyEditSubmit()">
 					                                                         <i class="bx bx-check d-block d-sm-none"></i>
 					                                                         <span class="d-none d-sm-block">수정</span>
 					                                                      </button>

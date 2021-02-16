@@ -22,7 +22,8 @@
 			from
 			(
 				select r.*,m.member_Id,
-				(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO) as menu_name
+				(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO and rownum=1) as menu_name,
+				(select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count
 				from
 				review r,member m
 				where r.MEMBER_NO = m.MEMBER_NO
@@ -43,10 +44,11 @@
 	</select>
 	
 	<select id="orderListForReview" parameterType="int" resultType="map">
-		select orders_no,(select distinct menu_name from hyorderdetailview d where v.orders_no=d.orders_no) as menu_name,
-		(select count(orders_no) from hyorderdetailview d where v.orders_no=d.orders_no group by orders_no) as menu_count
+		select orders_no,(select menu_name from hyorderdetailview d where d.orders_no=v.orders_no and rownum=1) as menu_name,
+		(select count(distinct menu_name) from hyorderdetailview d where d.orders_no=v.orders_no group by orders_no) as menu_count
 		from hyReviewCountView v
 		where member_no=#{memberNo}
+		and (select o_status_no from orders o where v.ORDERS_NO = o.ORDERS_NO)=4
 		and reviewCnt=0
 	</select>
 	
@@ -80,8 +82,9 @@
 	</select>
 	
 	<select id="myReviewList" resultType="memberReviewVo" parameterType="int">
-		select r.*,(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO) as menu_name,
-		(select store_name from stores s where r.store_no=s.store_no) as store_Name
+		select r.*,(select distinct menu_name from hyorderDetailview d where  r.ORDERS_NO = d.ORDERS_NO and rownum=1) as menu_name,
+		(select store_name from stores s where r.store_no=s.store_no) as store_Name,
+		(select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count
 		from
 		review r
 		where member_no=#{memberNo}

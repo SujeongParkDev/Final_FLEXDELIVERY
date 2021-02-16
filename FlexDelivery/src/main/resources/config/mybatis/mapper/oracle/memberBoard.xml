@@ -13,26 +13,54 @@
 		</where>
 	</sql>
 	<select id="selectEvent" parameterType="memberBoardSearchVo" resultType="memberBoardVo">
-		select A.* from
-			(
-				select rownum as rn, b.* from BOARD b 
+		select * from
+		(
+			select rownum as rn, A.* from
+				(
+					select * from BOARD
+					where BOARD_HEAD='event' 
+					and AUTHORITY_NO in (1,2,3)
+					order by BOARD_NO asc
+				)A
 				<include refid="searchKeyword"></include>
-			)A
-			where BOARD_HEAD='event' 
-			and AUTHORITY_NO in (1,2,3)
-			and rn>#{firstIndex}
-			and #{firstIndex}+5>rn
-			order by BOARD_NO asc
+			)
+			where rn>#{firstIndex}
+			and #{firstIndex}+#{countPerPage}>=rn
 	</select>
 	<select id="selectNotice" parameterType="memberBoardSearchVo" resultType="memberBoardVo">
-		select A.* from
+		select * from
 			(
-				select rownum as rn, b.* from BOARD b 
-				<include refid="searchKeyword"></include>
-			)A
-			where BOARD_HEAD='notice' and AUTHORITY_NO in (1,2,3)
-			and rn>#{firstIndex}
-			and #{firstIndex}+#{countPerPage}>rn
-			order by BOARD_NO asc
+			select rownum as rn, A.* from
+				(
+					select * from BOARD
+					where BOARD_HEAD='notice' 
+					and AUTHORITY_NO in (1,2,3)
+					order by BOARD_NO asc
+				)A
+			<include refid="searchKeyword"></include>
+			)
+			where rn>#{firstIndex}
+			and #{firstIndex}+#{countPerPage}>=rn
+	</select>
+	<select id="eventCount" parameterType="memberBoardSearchVo" resultType="int">
+		select count(*)
+		from
+		(
+			select * from board
+			where board_head='event'
+			and authority_no in (1,2,3)
+		)
+		<include refid="searchKeyword"></include>
+	</select>
+	
+	<select id="noticeCount" parameterType="memberBoardSearchVo" resultType="int">
+		select count(*)
+		from
+		(
+			select * from board
+			where board_head='notice'
+			and authority_no in (1,2,3)
+		)
+		<include refid="searchKeyword"></include>
 	</select>
 </mapper>

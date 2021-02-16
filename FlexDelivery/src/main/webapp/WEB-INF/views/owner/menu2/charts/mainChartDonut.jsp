@@ -13,37 +13,42 @@ $(function(){
 		success:function(mList){
 			 /* console.log(mList); */
 			
-			 var label3=[];
-			 var label4=[];
-			 
-			 $.each(mList, function(idx,item){
-				 	var idx = [];
-				 	label3.push(item['ORDERSMENUNAME']);
-				 	label4.push(item['ORDERSMENUQTY']);
-			 });
-			/*  console.log(label3);
-			 console.log(label4); */
-			
-			 var chart = c3.generate({
-				size:{
-					height:200
-				},
-				bindto: '#chart',
-			    data: {
-			    	 rows: [
-			            label3,
-			            label4
-			         ],
-		            labels: false,
-			        type : 'pie',
-			        onclick: function (d, i) { console.log("onclick", d, i); },
-			        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-			        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-			    },
-			    legend: {
-			        position: 'right'
-			    }
-			});
+			 if(mList.length==0){
+				 $('#chart').html('주문을 플렉스하는 <br>그날 까지 통계와는 <br>잠시만 안녕!');
+			 }else{
+				 $('#chart').html('');
+				 var label3=[];
+				 var label4=[];
+				 
+				 $.each(mList, function(idx,item){
+					 	var idx = [];
+					 	label3.push(item['ORDERSMENUNAME']);
+					 	label4.push(item['ORDERSMENUQTY']);
+				 });
+				/*  console.log(label3);
+				 console.log(label4); */
+				
+				 var chart = c3.generate({
+					size:{
+						height:200
+					},
+					bindto: '#chart',
+				    data: {
+				    	 rows: [
+				            label3,
+				            label4
+				         ],
+			            labels: false,
+				        type : 'pie',
+				        onclick: function (d, i) { console.log("onclick", d, i); },
+				        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+				        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+				    },
+				    legend: {
+				        position: 'right'
+				    }
+				});
+			 }
 		},
 		error: function(xhr, status, error){
 			alert('error:' +error);

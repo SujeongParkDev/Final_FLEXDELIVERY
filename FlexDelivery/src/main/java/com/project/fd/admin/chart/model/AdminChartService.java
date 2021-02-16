@@ -15,4 +15,5 @@ public interface AdminChartService {
 	List<Map<String, Object>> selectGCategory();
 	List<Map<String, Object>> selectGPrice();
 	List<Map<String, Object>> selectGProduct();
+	List<Map<String, Object>> selectGProduct5();
  }
