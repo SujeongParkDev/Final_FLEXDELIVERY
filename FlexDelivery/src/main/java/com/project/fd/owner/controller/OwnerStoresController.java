@@ -58,6 +58,24 @@ public class OwnerStoresController {
 		// 대분류 카테고리 
 		List<AdminLargeCategoryVO> large=adminlarge.selectAll();
 		 logger.info("result large.size={}",large.size());
+		 
+		int stck= ownerStoresService.dupckstores(ownerNo);
+		//ownerStoresService.selectByNo(ownerNo);
+		int regick=ownerStoresService.dupckregi(ownerNo);
+		
+		// 점포 레지넘버 유무 
+		int stresult=OwnerStoresService.NO_STORE, regiresult=OwnerStoresService.NO_LICENSE;
+		if(stck>0) {
+			stresult=OwnerStoresService.STORE_STAY;
+		}
+		
+		if(regiresult>0) {
+			regiresult=OwnerStoresService.LICENSE_STAY;
+		}
+		logger.info("regiresult={},stresult={}",regiresult,stresult);
+		
+		model.addAttribute("regiresult", regiresult);
+		model.addAttribute("stresult", stresult);
 		model.addAttribute("location", location);
 		model.addAttribute("large", large);
 				

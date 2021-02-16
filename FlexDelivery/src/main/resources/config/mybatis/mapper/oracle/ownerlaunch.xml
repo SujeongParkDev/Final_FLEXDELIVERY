@@ -85,7 +85,4 @@ on s.STORE_NO=t.STORE_NO;
 	</select>
 	<!-- 20210211 지안 추가 끝 -->
 	
-	<select id="dupckRegister" parameterType="int">
-	
-	</select>
 </mapper>

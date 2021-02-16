@@ -25,6 +25,7 @@ import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 import com.project.fd.owner.menu.model.OwnerMenuService;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 import com.project.fd.owner.request.model.OwnerRequestService;
+import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 import com.project.fd.owner.store.model.OwnerTemporaryVO;
 
@@ -35,19 +36,12 @@ public class OwnerRequestController {
 	
 	@Autowired OwnerRequestService requestService;
 	@Autowired private FileUploadUtil fileUtil;
+	@Autowired private OwnerStoresService ownerStoresService;
 	
 	@RequestMapping(value="/requests.do",method=RequestMethod.GET)
 	public String ownerrequests_get( HttpSession session,Model model) {
-		int ownerNo=0;
-		String msg="로그인 해주세요.", url="/owner/index.do";
-		if(session.getAttribute("ownerNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
-			
-		}else {
-			 ownerNo=(Integer)session.getAttribute("ownerNo");
-		}
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
 		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
 		
 		//List<OwnerAllRegisterVO> list =selectStore(ownerNo);

@@ -90,7 +90,11 @@ public class OwnerStoresDAOMybatis implements OwnerStoresDAO{
 	//지안 20210211 수정끝
 	
 	public int dupckstores(int ownerNo) {
-		return sqlSession.selectOne(namespace+"selectLCategoryName", ownerNo);
+		return sqlSession.selectOne(namespace+"dupckstores", ownerNo);
+	}
+	
+	public int dupckregi(int ownerNo) {
+		return sqlSession.selectOne(namespace+"dupckregi", ownerNo);
 	}
 
 }

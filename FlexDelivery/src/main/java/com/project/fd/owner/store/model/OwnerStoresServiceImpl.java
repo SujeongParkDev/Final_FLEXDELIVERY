@@ -113,4 +113,15 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	}
 	//지안 20210211 수정끝
 
+	@Override
+	public int dupckstores(int ownerNo) {
+		return ownerStoresDao.dupckstores(ownerNo);
+	}
+
+	@Override
+	public int dupckregi(int ownerNo) {
+		return ownerStoresDao.dupckregi(ownerNo);
+	}
+	
+
 }
