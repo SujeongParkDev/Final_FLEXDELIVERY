@@ -15,7 +15,17 @@
 
 	<select id="selectICAsk" parameterType="memberAskVo" resultType="memberAskVo">
 		select * from ask
-		where ask_id = #{askId}
+		where ask_id = #{askId} and authority_No in (1,2,3)
+	</select>
+
+	<select id="detailAsk" parameterType="memberAskVo" resultType="memberAskVo">
+		select * from ask
+		where ask_no=#{askNo}
+	</select>
+	
+	<select id="replyAskSelect" parameterType="memberAskVo" resultType="memberAskVo">
+		select * from ask
+		where ask_group_no=#{askNo} and ask_step=1
 	</select>
 
 </mapper>

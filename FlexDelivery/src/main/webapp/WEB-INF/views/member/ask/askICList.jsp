@@ -16,19 +16,23 @@
 		<c:forEach var="vo" items="${askICList }" varStatus="i">
 		<tr>
 			<td class="text-bold-500">${vo.askNo }</td>
-			<td colspan="3">${vo.askContent }</td>
-			<td>${vo.askRegdate }</td>
-				<c:if test="${vo.askReplyFlag =='n'}">
-				<td><span class="badge badge-success">
-				답변완료
-				</span></td>
-				</c:if>
-				<c:if test="${vo.askReplyFlag !='n'}">
+			<td colspan="3">
+			<a href="<c:url value='/member/ask/askDetail.do?askNo=${vo.askNo}'/>">
+			${vo.askTitle }
+			</a>
+			</td>
+			<td><fmt:formatDate value="${vo.askRegdate }" pattern="yyyy-MM-dd"/></td>
+				<c:if test="${vo.askReplyFlag =='N'}">
 				<td><span class="badge badge-danger">
 				미답변
 				</span></td>
 				</c:if>
-			<td><a href="" class="badge bg-secondary text-lite" >삭제</a></td>
+				<c:if test="${vo.askReplyFlag =='Y'}">
+				<td><span class="badge badge-success">
+				답변 완료
+				</span></td>
+				</c:if>
+			<td><a href="" class="badge bg-secondary text-light" >삭제</a></td>
 		</tr>
 		</c:forEach>
 	</c:if>

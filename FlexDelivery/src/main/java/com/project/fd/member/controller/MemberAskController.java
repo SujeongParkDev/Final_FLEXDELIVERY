@@ -67,4 +67,29 @@ public class MemberAskController {
 		return "member/ask/askICList";
 	}
 	
+	@RequestMapping("/askDetail.do")
+	public String askDetail(@RequestParam(defaultValue = "0") int askNo, Model model , 
+				HttpServletRequest request) {
+		logger.info("상세보기 파라미터 askNo={}", askNo);
+		if(askNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/member/askList.do");
+
+			return "common/message";
+		}
+		
+		MemberAskVO detailAsk = memberAskService.detailAsk(askNo);
+		MemberAskVO replyAskSelect = memberAskService.replyAskSelect(askNo);
+		
+		logger.info("detailAsk={}, replayAskSelect={}", detailAsk, replyAskSelect);
+		
+		//3
+		model.addAttribute("vo1", detailAsk);
+		model.addAttribute("vo2", replyAskSelect);
+		
+		return "member/ask/askDetail";
+		
+	}
+	
+	
 }
