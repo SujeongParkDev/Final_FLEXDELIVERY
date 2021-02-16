@@ -68,6 +68,8 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 	}
 }
 	
+
+
 	//파일 업로드 처리
 	/*
 	String originName="", fileName="";
@@ -80,6 +82,7 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 			fileName=(String) fileMap.get("fileName");//
 			fileSize=(Long)fileMap.get("fileSize");				
 		}//for
+		
 	} catch (IllegalStateException e) {
 		logger.info("파일 업로드 실패!");
 		e.printStackTrace();
