@@ -11,18 +11,14 @@
 		values(#{reviewNo},#{storeNo},#{rCommentContent})
 	</insert>
 
-	<!-- create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
+	<!-- review 변경함 20210216 소정 
+	create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
 		c.R_COMMENT_CONTENT,c.R_COMMENT_REGDATE, n.MENU_NAME,d.O_DETAIL_QTY, o.M_OPTION_NAME 
-		from MEMBER m full outer join REVIEW r on r.MEMBER_NO=m.MEMBER_NO full outer 
+		from MEMBER m full outer join REVIEW r on r.MEMBER_NO=m.MEMBER_NO left
 		join REVIEWCOMMENT c on c.store_no=r.store_no and c.REVIEW_NO=r.REVIEW_NO 
 		full outer join ORDERDETAIL d on r.ORDERS_NO=d.ORDERS_NO full outer join 
 		MENU n on n.MENU_NO=d.MENU_NO full outer join MENUOPTION o on d.M_OPTION_NO=o.M_OPTION_NO; 
-		<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map"> 
-		select * from ( select A.*, rownum as RNUM from ( select * from LSJCommentDDetailView 
-		where REVIEW_REGDATE >= #{startDay} and <![CDATA[ REVIEW_REGDATE< to_date(#{endDay})+1 
-		]]> and store_no=#{storeNo} order by ORDERS_NO desc )A ) <![CDATA[ where 
-		RNUM > #{firstRecordIndex} and RNUM <= #{firstRecordIndex} + #{recordCountPerPage} 
-		]]> </select> -->
+	 -->
 	<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map">
 		select *
 		from
@@ -36,6 +32,7 @@
 				and REVIEW_REGDATE >= #{startDay} and
 				REVIEW_REGDATE< to_date(#{endDay})+1
 				]]>
+				and review_del_flag='N'
                 order by ORDERS_NO desc
 		    )A
 		)
@@ -52,6 +49,7 @@
 		REVIEW_REGDATE< to_date(#{endDay})+1
 		]]>
 		and store_no=#{storeNo}
+		and review_del_flag='N'
 	</select>
 
 	<select id="memberInfoView" parameterType="int" resultType="map">
@@ -75,32 +73,38 @@
 	<!-- 미답변  -->
 	<select id="Nocomment" parameterType="int" resultType="map">
 		select * from LSJCommentDDetailView
-      	 where store_no=#{storeNo} and R_COMMENT_CONTENT is null
+      	 where store_no=#{storeNo} 
+      	 and R_COMMENT_CONTENT is null
+      	 and  REVIEW_REPORT='N'
      	 order by ORDERS_NO desc
 	</select>
 
 	<select id="NocmtTotalRecord" parameterType="int" resultType="int">
 		select count(*) from LSJCommentDDetailView
-         where store_no=#{storeNo} and R_COMMENT_CONTENT is null
+         where store_no=#{storeNo} 
+         and R_COMMENT_CONTENT is null
          order by ORDERS_NO desc
 	</select>
 	
 	<!-- 차단  -->
 	<select id="blockcmt" parameterType="int" resultType="map">
 		select * from LSJCommentDDetailView
-         where store_no=#{storeNo} and  REVIEW_REPORT='Y'
+         where store_no=#{storeNo} 
+         and  REVIEW_REPORT='Y'
          order by ORDERS_NO desc
 	</select>
 
 	<select id="blockTotalRecord" parameterType="int" resultType="int">
 		select count(*) from LSJCommentDDetailView
-         where store_no=#{storeNo} and  REVIEW_REPORT='Y'
+         where store_no=#{storeNo} 
+         and  REVIEW_REPORT='Y'
          order by ORDERS_NO desc
 	</select>
 	
 	<select id="selectAll" parameterType="int" resultType="map">
 		select * from LSJCommentDDetailView
-		where store_no=#{storeNo}
+		where store_no=#{storeNo} 
+		and  REVIEW_REPORT='N'
 		order by orders_no desc
 	</select>
 	
@@ -116,4 +120,9 @@
 	order by b.countNum
 	</select>
 	
+	<update id="reviewSingo" parameterType="int">
+		update review
+		set review_report='Y', report_date=sysdate
+		where review_no=#{reviewNo}
+	</update>
 </mapper>

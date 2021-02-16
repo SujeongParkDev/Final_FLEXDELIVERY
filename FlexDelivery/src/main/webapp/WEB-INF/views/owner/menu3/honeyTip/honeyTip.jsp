@@ -11,6 +11,7 @@ a.event:hover {
 	text-decoration: none;
 }
 </style>
+<div class="col-12"></div>
 <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
 	<div class="row align-items-center" style="padding: 5%;">
 		<div class="col-12 col-md-10">
@@ -19,7 +20,6 @@ a.event:hover {
 			</a>
 		</div>
 		<div class="col-12 col-md-1">
-			<a href="<c:url value='/owner/menu3/hoenyTip/honeyTip.do'/>" style="font-size: 15px; text-decoration: none; color: rgb(255, 201, 14); margin-right: 20px;">more</a>
 		</div>
 		<div class="col-12 col-md-1"></div>
 		<br> <br> <br> <br>
@@ -51,5 +51,7 @@ a.event:hover {
 				<div class="col-12 col-md-1"></div>
 			</c:forEach>
 		</c:if>
+		</div>
+		</div>
 		<div class="col-12 col-md-1" style="padding-bottom: 15%;"></div>
 <%@ include file="../../../ownerInc/bottom.jsp"%>

@@ -19,4 +19,6 @@ public interface OwnerReivewCommentDAO {
 	 
 	 List<Map<String, Object>> selectAll(int storeNo);
 	 List<Map<String, Object>> reviewReting(int storeNo);
+	 
+	public  int reviewSingo(int reviewNo);
 }

@@ -130,7 +130,7 @@ public class OwnerReviewController {
 		return "owner/menu2/reviewOwner/reviewOwnerList";
 	}
 	
-	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
+	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.POST)
 	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
 			Model model) {
 		logger.info("ownercomment page, vo={}",vo);
@@ -259,6 +259,24 @@ public class OwnerReviewController {
 			
 			logger.info("map={}" , map);
 			return map;
+		}
+		
+		@RequestMapping(value="/reviewOwnerSingo.do", method = RequestMethod.GET)
+		public String reviewSingo(@RequestParam(defaultValue = "0") int reviewNo,
+				Model model) {
+			logger.info("reviewSingo 처리, 파라미터 reviewNo={}", reviewNo);
+
+			int cnt=ownerReCommService.reviewSingo(reviewNo);
+			logger.info("reviewSingo 결과, cnt={}", cnt);
+			String msg="댓글 신고에 실패하였습니다. 다시 시도해주세요. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+			if(cnt>0) {
+				msg="댓글 신고가 정상적으로 되었습니다.";
+			}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
 		}
 		
 	/*
