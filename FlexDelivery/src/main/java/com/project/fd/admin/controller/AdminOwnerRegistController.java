@@ -79,7 +79,7 @@ public class AdminOwnerRegistController {
 	
 		return "redirect:/admin/menu2/registList.do";
 	}
-	
+	/*
 	@RequestMapping("/downloadReg.do")
 	public ModelAndView download(@RequestParam(defaultValue = "0") long no,
 			@RequestParam String fileName,
@@ -100,4 +100,5 @@ public class AdminOwnerRegistController {
 		//4
 		return mav;		
 	}
+	*/
 }

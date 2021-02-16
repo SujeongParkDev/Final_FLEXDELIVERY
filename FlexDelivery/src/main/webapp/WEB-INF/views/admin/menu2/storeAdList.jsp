@@ -104,7 +104,6 @@
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/main.js"></script>
 <!-- script end -->
-[/WEB-INF/views/admin/menu2/storeAdList.jsp]
 
 
 <%@ include file="../../adminInc/bottom.jsp" %>

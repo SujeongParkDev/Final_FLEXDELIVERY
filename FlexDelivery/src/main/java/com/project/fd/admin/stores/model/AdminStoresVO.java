@@ -15,6 +15,8 @@ public class AdminStoresVO {
 	private String ownerHp3; //점주전화번호3
 	private String storeContent;//점포요청사항
 	private int aAgreeNo; //승인관리번호
+	private String oRegisterFilename;	// 변경후 파일이름varchar2(200 byte)
+	private String oRegisterOriginalFilename;//변경전 파일이름	varchar2(200 byte)
 	public long getStoreNo() {
 		return storeNo;
 	}
@@ -87,11 +89,25 @@ public class AdminStoresVO {
 	public void setaAgreeNo(int aAgreeNo) {
 		this.aAgreeNo = aAgreeNo;
 	}
+	public String getoRegisterFilename() {
+		return oRegisterFilename;
+	}
+	public void setoRegisterFilename(String oRegisterFilename) {
+		this.oRegisterFilename = oRegisterFilename;
+	}
+	public String getoRegisterOriginalFilename() {
+		return oRegisterOriginalFilename;
+	}
+	public void setoRegisterOriginalFilename(String oRegisterOriginalFilename) {
+		this.oRegisterOriginalFilename = oRegisterOriginalFilename;
+	}
 	@Override
 	public String toString() {
 		return "AdminStoresVO [storeNo=" + storeNo + ", storeRegdate=" + storeRegdate + ", oRegisterNo=" + oRegisterNo
 				+ ", ownerName=" + ownerName + ", storeName=" + storeName + ", storeAddress=" + storeAddress
 				+ ", storeAddressDetail=" + storeAddressDetail + ", ownerHp1=" + ownerHp1 + ", ownerHp2=" + ownerHp2
-				+ ", ownerHp3=" + ownerHp3 + ", storeContent=" + storeContent + ", aAgreeNo=" + aAgreeNo + "]";
+				+ ", ownerHp3=" + ownerHp3 + ", storeContent=" + storeContent + ", aAgreeNo=" + aAgreeNo
+				+ ", oRegisterFilename=" + oRegisterFilename + ", oRegisterOriginalFilename="
+				+ oRegisterOriginalFilename + "]";
 	}	
 }

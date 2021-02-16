@@ -94,12 +94,12 @@
 </div>
 
 <!-- script start -->
-<!-- <script type="text/javascript">    
+<script type="text/javascript">    
     function doExcelDownloadProcess(){
         var f = document.excelFrm;
-        f.action = "approvalDownloadExcel.do";
+        f.action = "registDownloadExcel.do";
         f.submit();
-    } -->
+    }
 </script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

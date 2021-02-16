@@ -12,7 +12,8 @@
 	
 	<select id="approvalDetail" parameterType="long" resultType="adminStoresVo">
 		select store_no, store_regdate, o_register_no, owner_name, store_name, store_address,
-       		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no, STORE_CONTENT
+       		   store_address_detail, owner_hp1, owner_hp2, owner_hp3, a_agree_no, STORE_CONTENT,
+       		   o_register_filename, o_register_original_filename
        		   from hjStoreApprovalView
        		   where store_no=#{no}
 	</select>
