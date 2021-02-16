@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,8 +81,7 @@ public class OwnerCouponController {
 	
 	 */
 	@RequestMapping("/couponExpire.do")
-	public String ownercouponused(@ModelAttribute OwnerCouponSearchVO searchVo ,
-			HttpSession session,Model model) {
+	public String ownercouponExpire( HttpSession session,Model model) {
 		String msg="점포가 없습니다.", url="/owner/index.do";
 		int storeNo=0;
 		if(session.getAttribute("storeNo")==null) {
@@ -94,43 +94,11 @@ public class OwnerCouponController {
 		}
 		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
 		
-		searchVo.setStoreNo(storeNo);
-		logger.info("coupon 만료되거나 사용정지 쿠폰 조회 , 파라미터 searchVo={}", searchVo);
+		List<Map<String, Object>> list=couponService.expireAll(storeNo);
 		
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		
-		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
-		String startDay=searchVo.getStartDay();
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			searchVo.setStartDay(today);
-			searchVo.setEndDay(today);			
-		}
-		
-		logger.info("searchVo={}",searchVo);
-		int totalRecord=couponService.getTotalRecord(searchVo);
-		logger.info("coupon 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
-		
-		List<Map<String, Object>> list = couponService.Allcoupons(searchVo);
 		logger.info(" list.size={}",list.size());
 		
-		//만료된 쿠폰 전체 조회 날x 
-		List<Map<String, Object>> exList=couponService.expireAll(storeNo);
-		logger.info(" 조회 결과 exList.size={}", exList.size());
-		
-		model.addAttribute("exList", exList);
 		model.addAttribute("list", list);
-		model.addAttribute("pagingInfo", pagingInfo);
-		model.addAttribute("searchVo", searchVo);
 		
 		return "owner/menu2/couponused/couponExpire";
 	}
@@ -207,6 +175,107 @@ public class OwnerCouponController {
 		return "common/message";
 	}
 	
+	
+	
+	@RequestMapping("/couponExpireSearch.do")
+	public String ocouponExpireSearch(@ModelAttribute OwnerCouponSearchVO searchVo ,
+			HttpSession session,Model model) {
+		String msg="점포가 없습니다.", url="/owner/index.do";
+		int storeNo=0;
+		if(session.getAttribute("storeNo")==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+			
+		}else {
+			storeNo= (Integer)session.getAttribute("storeNo");
+		}
+		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
+		
+		searchVo.setStoreNo(storeNo);
+		logger.info("coupon 만료되거나 사용정지 쿠폰 조회 , 파라미터 searchVo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		
+		//날짜가 넘어오지 않은 경우 현재일자를 셋팅
+		String startDay=searchVo.getStartDay();
+		if(startDay==null || startDay.isEmpty()) {
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today=sdf.format(d);
+			searchVo.setStartDay(today);
+			searchVo.setEndDay(today);			
+		}
+		
+		logger.info("searchVo={}",searchVo);
+		int totalRecord=couponService.getTotalRecord(searchVo);
+		logger.info("coupon 전체 조회,  레코드 개수 조회 결과, totalRecord={}", totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		List<Map<String, Object>> list = couponService.Allcoupons(searchVo);
+		logger.info(" list.size={}",list.size());
+		
+		//만료된 쿠폰 전체 조회 날x 
+		List<Map<String, Object>> exList=couponService.expireAll(storeNo);
+		logger.info(" 조회 결과 exList.size={}", exList.size());
+		
+		model.addAttribute("exList", exList);
+		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("searchVo", searchVo);
+		
+		return "owner/menu2/couponused/couponExpireSearch";
+	}
+	
+	@RequestMapping("/updateCoupon.do")
+	public String updateCoupon(@RequestParam(defaultValue = "0 ")int scBoxNo, Model model) {
+		logger.info("update Y page scBoxNo={}",scBoxNo);
+		
+		String msg="쿠폰 사용 변경에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/couponused/couponUsed.do";
+		if(scBoxNo!=0) {
+			int cnt=couponService.updateCoupon(scBoxNo);
+			if(cnt>0) {
+				msg="쿠폰을 다시 사용할 수 있게 되었습니다.";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String deleteCoupon(@RequestParam(defaultValue = "0 ")int scBoxNo, Model model) {
+		logger.info("update N page scBoxNo={}",scBoxNo);
+		
+		String msg="쿠폰 사용 중지에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/couponused/couponUsed.do";
+		if(scBoxNo!=0) {
+			int cnt=couponService.deleteCoupon(scBoxNo);
+			if(cnt>0) {
+				msg="쿠폰 발급을 중지하였습니다. 만료일전까지 재발급 가능합니다.";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	/*
+	 * 
+	@RequestMapping(value="/couponRegi.do",method = RequestMethod.POST)
+	public String couponRegi(@RequestParam(defaultValue = "0")int no) {
+		logger.info(msg);
+	}
+	
 	@RequestMapping("/deleteMulti.do")
 	public String delMulti(@ModelAttribute OwnerCouponListVO Listvo,
 			HttpServletRequest request, Model model) {
@@ -222,26 +291,20 @@ public class OwnerCouponController {
 		if(cnt>0) {
 			msg="선택한 쿠폰들을 삭제하였습니다.";
 			
-			for(int i=0;i<cpList.size();i++) {
+			for(int i=0; i<cpList.size(); i++) {
 				OwnerCouponVO cVo=cpList.get(i);
 				
 				logger.info("[{}] : scBoxNo={}", i, cVo.getScBoxNo());
 				
-				}
+				int couponNo=cVo.getScBoxNo();
+				logger.info("삭제 하는 couponNo={}",couponNo);
 			}//for
+		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
 		return "common/message";
-	}
 	
-	
-	
-	/*
-	 * 
-	@RequestMapping(value="/couponRegi.do",method = RequestMethod.POST)
-	public String couponRegi(@RequestParam(defaultValue = "0")int no) {
-		logger.info(msg);
 	}
 	 * */
 	

@@ -4,23 +4,22 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="row mt-3">
-	<div class="col-md-2 col-sm-12"></div>
-	<div class="col-md-8 col-sm-12">
-		<ul class="nav nav-pills" style="float: right;">
-			<li class="nav-item">
+	<div class="col-md-6 col-sm-12"></div>
+	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-primary" id="btAll">전체(${fn:length(allList)})</button>
-			</li>
-			<li class="nav-item">
+			</div>
+			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-outline-primary" id="btnocmt">미답변(${fn:length(nocmtList)}) </button>
-			</li>
-			<li class="nav-item">
+			</div>
+			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-primary" id="btBlock">차단(${fn:length(blockList)}) </button>
-			</li>
-		</ul>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-12"></div>
 	</div>
-	<div class="col-md-2 col-sm-12"></div>
 </div>
-<br>
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-8 col-sm-12">
@@ -113,14 +112,14 @@
 											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
 											<c:if test="${empty map['R_COMMENT_CONTENT']}">
-												<div class="card-body">
+												<div class="form-control ">
 													<form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
 														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
 														<input type="hidden" id="storeNo" name="storeNo" value="1">
 														<label for="content"></label>
-														<div style="border: radius 2px solid lightgray;" class="text-left">
-															<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
-															<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
+														<div style="border: 2px solid lightgray; padding:5%;" class="">
+															<input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
+															<input class="button  btn btn-primary" type="submit" style="" value="댓글작성">
 														</div>
 													</form>
 												</div>

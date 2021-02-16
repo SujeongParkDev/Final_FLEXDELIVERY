@@ -37,7 +37,7 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 
 	@Override
 	public int deleteCoupon(int scBoxNo) {
-		return sqlSession.delete(namespace+"deleteCoupon",scBoxNo);
+		return sqlSession.update(namespace+"deleteCoupon",scBoxNo);
 	}
 
 	@Override
@@ -52,6 +52,11 @@ public class OwnerCouponDAOMybatis implements OwnerCouponDAO{
 	
 	public int dupCouponNo(OwnerCouponVO vo) {
 		return sqlSession.selectOne(namespace+"dupCouponNo",vo);
+	}
+
+	@Override
+	public int updateCoupon(int scBoxNo) {
+		return sqlSession.update(namespace+"updateCoupon",scBoxNo);
 	}
 	
 	

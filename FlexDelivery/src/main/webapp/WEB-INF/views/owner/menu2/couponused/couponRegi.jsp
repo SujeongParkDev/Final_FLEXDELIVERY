@@ -6,14 +6,13 @@
 <br>
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
-	<div class="col-md-8 col-sm-12">
+	<div class="col-md-9 col-sm-12">
 		<div class="text-right">
-			 <button id="btAll" class="btn btn-primary">사용중인 쿠폰 </button>
-		                	 <button id="btExpire" class="btn btn-primary">쿠폰 발급 내역 </button>
-		                	 <button id="btRegi" class="btn btn-outline-warning">쿠폰 신청 </button>
+			<button id="btAll" class="btn btn-primary">사용중인 쿠폰</button>
+			<button id="btExpire" class="btn btn-primary">쿠폰 발급 내역</button>
+			<button id="btRegi" class="btn btn-warning">쿠폰 신청</button>
 		</div>
 	</div>
-	<div class="col-md-2 col-sm-12"></div>
 </div>
 <br>
 <!-- 테이블 시작 -->
@@ -23,7 +22,6 @@
 		<div class="card">
 			<br>
 			<div class="card-content">
-				${list }
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역
 					</p>
@@ -109,6 +107,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script>
     $(function(){
 		$('form[name=frmDelete]').submit(function(){

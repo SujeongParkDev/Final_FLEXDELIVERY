@@ -43,4 +43,7 @@ public interface OwnerRequestDAO {
 	public int ownerregistercnt4(int ownerNo);
 	public int tempcnt4(int ownerNo);
 	
+	public int adcnt1(int ownerNo);
+	public int adcnt3(int ownerNo);
+	
 }

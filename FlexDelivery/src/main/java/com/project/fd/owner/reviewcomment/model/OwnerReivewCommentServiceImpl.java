@@ -67,5 +67,10 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 		return ownerReviewCommentDao.selectAll(storeNo);
 	}
 
+	@Override
+	public int reviewSingo(int reviewNo) {
+		return ownerReviewCommentDao.reviewSingo(reviewNo);
+	}
+
 	
 }

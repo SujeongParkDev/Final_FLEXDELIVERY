@@ -130,7 +130,7 @@ public class OwnerReviewController {
 		return "owner/menu2/reviewOwner/reviewOwnerList";
 	}
 	
-	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
+	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.POST)
 	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
 			Model model) {
 		logger.info("ownercomment page, vo={}",vo);
@@ -217,9 +217,21 @@ public class OwnerReviewController {
 		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
 		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
 		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
+		
+		
+		List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
+		logger.info("리뷰메인 리스트 allList.size={}",allList.size());
+		
+		
 		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+		logger.info("차  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		
+		model.addAttribute("allList", allList);
 		
 		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("nocmtList", nocmtList);
+		
 		model.addAttribute("totalBlock", totalBlock);
 		model.addAttribute("blockList", blockList);
 		return "owner/menu2/reviewOwner/blockcmt";
@@ -235,7 +247,19 @@ public class OwnerReviewController {
 			
 			List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
 			int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
-			logger.info("차단 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+			logger.info("미답 리뷰  리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+			
+			List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
+			logger.info("리뷰메인 리스트 allList.size={}",allList.size());
+			
+			List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
+			int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
+			logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
+			
+			model.addAttribute("allList", allList);
+			
+			model.addAttribute("totalBlock", totalBlock);
+			model.addAttribute("blockList", blockList);
 			
 			model.addAttribute("totalnocmt", totalnocmt);
 			model.addAttribute("nocmtList", nocmtList);
@@ -259,6 +283,24 @@ public class OwnerReviewController {
 			
 			logger.info("map={}" , map);
 			return map;
+		}
+		
+		@RequestMapping(value="/reviewOwnerSingo.do", method = RequestMethod.GET)
+		public String reviewSingo(@RequestParam(defaultValue = "0") int reviewNo,
+				Model model) {
+			logger.info("reviewSingo 처리, 파라미터 reviewNo={}", reviewNo);
+
+			int cnt=ownerReCommService.reviewSingo(reviewNo);
+			logger.info("reviewSingo 결과, cnt={}", cnt);
+			String msg="댓글 신고에 실패하였습니다. 다시 시도해주세요. ", url="/owner/menu2/reviewOwner/reviewOwner.do";
+			if(cnt>0) {
+				msg="댓글 신고가 정상적으로 되었습니다.";
+			}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
 		}
 		
 	/*

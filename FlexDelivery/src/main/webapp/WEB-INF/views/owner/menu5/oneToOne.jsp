@@ -100,7 +100,7 @@
 																	</c:if>
 																	<td>
 																		<span class="badge bg-dark"> 
-																			<a href="#" id="btDel" onclick="deleteFunc(${vo.askNo})">취소</a>
+																			<a href="#" id="btDel" onclick="deleteFunc(${vo.askNo})" style="color:white;">취소</a>
 																		</span>
 																	</td>
 																</tr>

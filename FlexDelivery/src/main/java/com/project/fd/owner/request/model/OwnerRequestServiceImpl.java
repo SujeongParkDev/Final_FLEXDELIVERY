@@ -89,8 +89,9 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		int store=requestDao.selectAgree1(ownerNo);
 		int register=requestDao.ownerregistercnt1(ownerNo);
 		int temp=requestDao.tempcnt1(ownerNo);
+		int adcnt=requestDao.adcnt1(ownerNo);
 		
-		result=store+register+temp;
+		result=store+register+temp+adcnt;
 		return result;
 	}
 
@@ -111,8 +112,9 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		int store3=requestDao.selectAgree3(ownerNo);
 		int register3=requestDao.ownerregistercnt3(ownerNo);
 		int temp3=requestDao.tempcnt3(ownerNo);
+		int adcnt=requestDao.adcnt3(ownerNo);
 		
-		result=store3+register3+temp3;
+		result=store3+register3+temp3+adcnt;
 		return result;
 	}
 

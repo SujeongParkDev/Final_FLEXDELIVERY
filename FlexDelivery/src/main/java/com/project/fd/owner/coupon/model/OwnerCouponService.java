@@ -20,6 +20,7 @@ public interface OwnerCouponService {
 	public int registerCoupon(OwnerCouponVO vo);
 	
 	public int deleteCoupon(List<OwnerCouponVO> cpList);
-	
+	public int updateCoupon(int scBoxNo);
+	public int deleteCoupon(int scBoxNo);
 	
 }

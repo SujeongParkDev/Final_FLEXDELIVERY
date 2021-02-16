@@ -34,30 +34,33 @@ button.btn.btn-link {
 	<div class="col-12 col-md-2"></div>
 	<!-- 페이지 이동시 필요한 form -->
 	<form name="frmPage" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="text" name="currentPage" >
-		 <input type="text" name="fCategoryNo" value="${param.fCategoryNo }">
+		<input type="hidden" name="currentPage" >
+		 <input type="hidden" name="fCategoryNo" value="${param.fCategoryNo }">
 	</form>
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8 text-right">
 		<form name="frmSearch" method="post"
-			action="<c:url value='/owner/menu5/faq.do'/>">
-			<div class="dropdown">
-				<a class="btn btn-primary " href="#none" role="button"
-					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> ${cgVo.fCategoryName }</a>
-				<!-- 반복문 시작 -->
-				<div class="dropdown-menu " aria-labelledby="dropdownMenuLink" style="text-decoration: none;">
-					<c:forEach var="cgVo" items="${cgList }">
-						<a class="dropdown-item" id="cgName"
-							href="${pageContext.request.contextPath}/owner/menu5/faqDetail.do?fCategoryNo=${cgVo.fCategoryNo}">${cgVo.fCategoryName }</a>
-					</c:forEach>
-				</div>
-			</div>
-			<!-- 반복문 끝 -->
+			action="<c:url value='/owner/menu5/faqDetail.do'/>">
+			<input type="hidden" value="${cgVo.fCategoryNo}">
+				<div class="row">
+						<div class="col-md-8 col-12"></div>
+						<div class="col-md-4 col-sm-12">
+							<select class="form-select groupChoice p-2" name="fCategoryNo"  id="fCategoryNo" style="overflow: auto;">
+								<c:forEach var="cgVo" items="${cgList }" >
+									<option value="${cgVo.fCategoryNo}"
+									<c:if test="${cgVo.fCategoryNo == param.fCategoryNo}">
+									selected="selected"</c:if>
+									>${cgVo.fCategoryName }</option>
+								</c:forEach>
+							</select> <br>
+						</div>
+						<div class="col-md-4 col-sm-12"></div>
+					</div>
 		</form>
 	</div>
 	<div class="col-12 col-md-2"></div>
 	<br> <br>
+	${searchVo }
 	<!-- 테이블 시작 -->
 	<div class="col-12 col-md-2"></div>
 	<div class="col-12 col-md-8">
@@ -116,13 +119,9 @@ button.btn.btn-link {
 	</div>
 <div class="col-12 col-md-2"></div>
 </div>
-
-<!-- 페이지 시작-->
 	<div class="card-body">
            <nav aria-label="Page navigation example">				
                <ul class="pagination pagination-primary justify-content-center">
-		   <!-- 페이지 번호 추가 -->		
-			<!-- 이전 블럭으로 이동 -->
 		 			<c:if test="${pagingInfo.firstPage>1 }">	
 						<li class="page-item">
 			                   <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
@@ -130,7 +129,6 @@ button.btn.btn-link {
 			                   </a>
 		                   </li>
 					</c:if>
-		                
 	              <!-- [1][2][3][4][5][6][7][8][9][10] -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage}">
 						<c:if test="${i==pagingInfo.currentPage }">
@@ -157,17 +155,25 @@ button.btn.btn-link {
 <br>
 <script type="text/javascript">
 	function pageFunc(curPage){
+		var num=$('input[name=fCategoryNo]').val();
+		if(num == null || num== 0 ){
+			
+		$('form[name=frmPage]').find('input[name=fCategoryNo]').val(0);	
+		}
 		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
 		$('form[name=frmPage]').submit();
 	}
 	
 $(function(){
 	$('#collapseTwo').hide();
-	if($('#cgName').on('click',function(idx,item){
+	$('#cgName').on('click',function(idx,item){
 		$('#collapseTwo').child().show();
 	});
+	
+	$('#fCategoryNo').change(function(){
+		$('form[name=frmSearch]').submit();
+	});
 });
-
 </script>
 <!-- script start -->
 <script src="${pageContext.request.contextPath}/resources/ownerResources/assets/js/feather-icons/feather.min.js"></script>

@@ -18,4 +18,6 @@ public interface OwnerReivewCommentService {
 	 int blockTotalRecord(int storeNo);
 
 	 public List<Map<String, Object>> selectAll(int storeNo);
+	 
+	 public  int reviewSingo(int reviewNo);
 }

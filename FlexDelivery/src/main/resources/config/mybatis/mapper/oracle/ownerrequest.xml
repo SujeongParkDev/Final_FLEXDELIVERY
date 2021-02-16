@@ -97,8 +97,14 @@
 	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=1
 	</select>
 	<select id="tempcnt1" parameterType="int" resultType="int">
-	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=1
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=1 or a_agree_no=5
 	</select>
+	<select id="adcnt1" parameterType="int" resultType="int">
+		select count(*) from storead a join stores s
+		on a.store_no=s.store_no
+		where s.owner_no=#{ownerNo} and AD_PAY_FLAG='N'
+	</select>
+	
 	
 	<select id="selectAgree2" parameterType="int" resultType="int">
 	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=2
@@ -117,8 +123,14 @@
 	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=3
 	</select>
 	<select id="tempcnt3" parameterType="int" resultType="int">
-	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=3
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=3 or a_agree_no=6
 	</select>
+	<select id="adcnt3" parameterType="int" resultType="int">
+		select count(*) from storead a join stores s
+		on a.store_no=s.store_no
+		where s.owner_no=#{ownerNo} and AD_PAY_FLAG='Y'
+	</select>
+	
 	
 	<select id="selectAgree4" parameterType="int" resultType="int">
 	select count(*) from stores where owner_no=#{ownerNo} and a_agree_no=4
@@ -127,7 +139,7 @@
 	select count(*) from ownerregister where owner_no=#{ownerNo}  and a_agree_no=4
 	</select>
 	<select id="tempcnt4" parameterType="int" resultType="int">
-	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=4
+	select count(*) from temporary where owner_no=#{ownerNo}  and a_agree_no=4 or a_agree_no=7
 	</select>
 	
 </mapper>
