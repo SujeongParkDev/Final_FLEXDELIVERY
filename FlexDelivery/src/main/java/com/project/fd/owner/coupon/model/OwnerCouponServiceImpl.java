@@ -80,6 +80,9 @@ public class OwnerCouponServiceImpl implements OwnerCouponService{
 		return cnt;
 	}
 
-
+	@Override
+	public int updateCoupon(int scBoxNo) {
+		return couponDao.updateCoupon(scBoxNo);
+	}
 
 }

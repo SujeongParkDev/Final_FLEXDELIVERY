@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -259,6 +260,24 @@ public class OwnerCouponController {
 		model.addAttribute("searchVo", searchVo);
 		
 		return "owner/menu2/couponused/couponExpireSearch";
+	}
+	
+	@RequestMapping("/updateCoupon.do")
+	public String updateCoupon(@RequestParam(defaultValue = "0 ")int scBoxNo, Model model) {
+		logger.info("update Y page scBoxNo={}",scBoxNo);
+		
+		String msg="쿠폰 사용 변경에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/couponused/couponUsed.do";
+		if(scBoxNo!=0) {
+			int cnt=couponService.updateCoupon(scBoxNo);
+			if(cnt>0) {
+				msg="쿠폰을 다시 사용할 수 있게 되었습니다.";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 	
 	/*

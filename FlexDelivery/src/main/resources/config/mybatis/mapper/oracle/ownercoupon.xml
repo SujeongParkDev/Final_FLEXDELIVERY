@@ -69,7 +69,13 @@
 	<update id="deleteCoupon" parameterType="int">
 		update storeCouponBox
 		 set s_c_service='N'
-		where  s_c_box_no=#{scBoxNo} or S_C_END_DATE != sysdate
+		where  s_c_box_no=#{scBoxNo} and S_C_END_DATE != sysdate
+	</update>
+	
+	<update id="updateCoupon" parameterType="int">
+		update storeCouponBox
+		 set s_c_service='Y'
+		where  s_c_box_no=#{scBoxNo} and S_C_END_DATE != sysdate
 	</update>
 	
 	<select id="dupCouponNo" parameterType="ownerCouponVo" resultType="int">

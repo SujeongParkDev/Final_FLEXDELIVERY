@@ -17,6 +17,7 @@ public interface OwnerCouponDAO {
 	public int registerCoupon(OwnerCouponVO vo);
 	
 	public int deleteCoupon(int scBoxNo);
+	public int updateCoupon(int scBoxNo);
 	
 	public int dupCouponNo(OwnerCouponVO vo);
 }
