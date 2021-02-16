@@ -30,7 +30,17 @@
 
     </footer>
     <!-- ##### Footer Area End ##### -->
-    
+      
+  <!-- jQuery (Necessary for All JavaScript Plugins) -->
+   
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
     
 </body>
 </html>

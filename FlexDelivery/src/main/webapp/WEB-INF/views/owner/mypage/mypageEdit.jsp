@@ -4,6 +4,9 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		$('input').attr('autocomplete','off');
+		
 		   $('#upfile').on('change', function(){
 		       readInputFile(this);
 		   });
@@ -37,6 +40,8 @@
 		//유효성 검사하기!
 		$(function(){
 			$('form[name=temporaryfrm]').submit(function(){
+				
+				
 				$('.tInfo').each(function(idx, item){
 					if($(this).val().length<1){
 						$('#'+$(this).attr('name')+'Warning').html('<small>'+$(this).attr('title')+ '을(를) 입력하세요</small>');
@@ -45,10 +50,24 @@
 						return false;  //each 탈출
 					}
 				});	
+				
+				if($('input[name=oRegisterNo]').val().length>0 && $('input[name=oRegisterNo]').val().length <10){
+					$('#oRegisterNoWarning').html('<small>사업자 번호 숫자 10자리 입력 부탁드립니다</small>');
+					$('input[name=oRegisterNo]').focus();
+					event.preventDefault();
+					return false;  //each 탈출
+				}
+				
 			});
 			
 		});
 		
+		
+		$(function(){
+			$('input[name=oRegisterNo]').keyup(function(){
+				$('#oRegisterNoLength').html("<small><b>"+$('input[name=oRegisterNo]').val().length+"/10</b></small>");
+			});
+		});
 		
 		$(function(){
 			$('.tInfo').click(function(){
@@ -85,7 +104,6 @@
 				method="POST"  enctype="multipart/form-data" >
 			  <input type="hidden" name="storeNo" value="${map['STORE_NO'] }">
 			  <input type="hidden" name="locationNo" value="${map['LOCATION_NO'] }">
-			  <input type="hidden" name="oRegisterNo" value="${map['O_REGISTER_NO'] }">
 			  <input type="hidden" name="ownerno" value="${map['OWNER_NO'] }">
 			  <input type="hidden" name="tOriginalFileName" value="${map['O_REGISTER_FILENAME'] }">
 			  
@@ -98,7 +116,7 @@
 	                      <label>점포명</label>
 	                  </div>
 	                  <div class="col-md-7 form-group">
-	                      <input type="text"  class="form-control tInfo" name="tStoreName" title="점포명" value="${map['STORE_NAME'] }">
+	                      <input type="text"  class="form-control tInfo" name="tStoreName" title="점포명" value="${map['STORE_NAME'] }" >
 	                      <span id="tStoreNameWarning" style="color:red;"></span>
 	                  </div>
 	                    <div class="col-md-1"></div>
@@ -127,16 +145,25 @@
 	                  <div class="col-12 text-center mb-5 mt-5">
 	                  	<h4 style="display: inline;">사업자 등록증</h4>
 	                  </div>
+	                   <div class="col-md-4 mb-5">
+	                      <label>사업자 등록증 번호</label>
+	                  </div>
+	                  <div class="col-md-7 form-group mb-5">
+	                      <input type="text"  class="form-control tInfo" name="oRegisterNo" title="사엄자 등록증 번호" value="${map['O_REGISTER_NO'] }" maxlength="10">
+	                      <span id="oRegisterNoWarning" style="color:red;"></span>
+	                      <span id="oRegisterNoLength" style="color:red;"></span>
+	                  </div>
+	                 
 	                 <!--  <span><small>사업자 등록증 파일</small></span> -->
 	                 <div class="col-12 text-center ">
 				          <div id="preview" class="text-center form-group">
 				        	  <c:if test="${fn:substring(map['O_REGISTER_FILENAME'], 0,4)=='http' }">
-									<img src="${map['O_REGISTER_FILENAME']}" class="card-img-top"  alt ="${map['O_REGISTER_NO'] }"  style="height:150px;">
+									<img src="${map['O_REGISTER_FILENAME']}" class="card-img-top"  alt ="${map['O_REGISTER_NO'] }"  style="size: fit-content; width:70%;">
 								</c:if>
 								<c:if test="${fn:substring(map['O_REGISTER_FILENAME'], 0,4)!='http' and (!empty map['O_REGISTER_FILENAME']) }">
 									<c:set var="oRegiFile" value="${map['O_REGISTER_FILENAME']}"></c:set>
 									<img src
-										="<c:url value='/resources/imgs/OwnerRegisterImages/${oRegiFile }'/>"  class="card-img-top" alt ="${map['O_REGISTER_NO'] }" sstyle="height:150px;">
+										="<c:url value='/resources/imgs/OwnerRegisterImages/${oRegiFile }'/>"  class="card-img-top" alt ="${map['O_REGISTER_NO'] }" style="size: fit-content; width:70%;">
 								</c:if>
 				          </div>
 				          <div class="form-file form-group">
@@ -145,6 +172,7 @@
 				                <span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>    
 		                  </div>
 		            </div>
+		           
 	                 <div class="col-12">
 	                 	<hr>
 	                 </div>     		
@@ -162,43 +190,39 @@
 	                  <div class="col-md-4">
 	                      <label>전화번호</label>
 	                  </div>
-	                  <div class="col-md-7 form-group">
-	                  	<div class="row">
-                             <div class="col-md-4 col-12">
-                                 <div style="text-align-last:center;" >
-                                     <select name="tOwnerHp1" class="form-control"  >
-                                         <option value="010"
-								            	<c:if test="${map['OWNER_HP1'] =='010'}">
-								            		selected="selected"
-								            	</c:if>
-								            >010</option>
-								            <option value="011"
-								            	<c:if test="${map['OWNER_HP1'] =='011'}">
-								            		selected="selected"
-								            	</c:if>
-								            >011</option>
-								            <option value="016"
-								            	<c:if test="${map['OWNER_HP1'] =='016'}">
-								            		selected="selected"
-								            	</c:if>
-								            >016</option>
-                                     </select>
-                                     <div class="select-dropdown"></div>
-                                 </div>
-                             </div>
+	                  <div class="col-md-7 form-group" style="display: flex; justify-content: space-around;">
                            
-                           <div class="col-md-4 col-12 pl-0">
-	                           	<div class="input-group" >
-	                           		-&nbsp;&nbsp; <input  type="text" class="form-control" name="tOwnerHp2"  maxlength="4" required="required" id="ownerHp2" value="${map['OWNER_HP2'] }" style="text-align:center; " >
-	                           	</div>
-	                        </div>
-	                       
-	                         <div class="col-md-4 col-12 pl-0">
-	                           	<div class="input-group">
-	                           		-&nbsp;&nbsp; <input type="text" class="form-control" name="tOwnerHp3" maxlength="4" required="required" id="ownerHp3" value="${map['OWNER_HP3'] }" style="text-align:center;">
-	                           	</div>
-	                         </div>
-	                    </div>
+                                    <select name="tOwnerHp1" class="form-control"  style="text-align-last:center; ">
+                                        <option value="010"
+							            	<c:if test="${map['OWNER_HP1'] =='010'}">
+							            		selected="selected"
+							            	</c:if>
+							            >010</option>
+							            <option value="011"
+							            	<c:if test="${map['OWNER_HP1'] =='011'}">
+							            		selected="selected"
+							            	</c:if>
+							            >011</option>
+							            <option value="016"
+							            	<c:if test="${map['OWNER_HP1'] =='016'}">
+							            		selected="selected"
+							            	</c:if>
+							            >016</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                            
+                           
+                          
+               
+                           	<div class="input-group" >
+                           		&nbsp;&nbsp;-&nbsp;&nbsp; <input  type="text" class="form-control" name="tOwnerHp2"  maxlength="4" required="required" id="ownerHp2" value="${map['OWNER_HP2'] }" style="text-align:center; " >
+                           	</div>
+                    
+                       
+                     
+                           	<div class="input-group">
+                           		&nbsp;&nbsp;-&nbsp;&nbsp; <input type="text" class="form-control" name="tOwnerHp3" maxlength="4" required="required" id="ownerHp3" value="${map['OWNER_HP3'] }" style="text-align:center;">
+                           	</div>
 	                  </div> 
 	                  <div class="col-md-1"></div> 
 	                   <div class="col-12">
@@ -208,7 +232,7 @@
 	               		  <label>요 청 사 항</label>
 	                   </div>
 	                 	<div class="col-12 text-center mt-2">
-	               		  <textarea rows="5" cols="70" name="tDetail" class="tInfo" style="margin-left:30px;" title="요청사항"></textarea>
+	               		  <textarea rows="5" cols="70" name="tDetail" class="tInfo" title="요청사항"></textarea>
 	               		  <br>
 	                   	  <span id="tDetailWarning" style="color:red;"></span>
 	                   </div>
