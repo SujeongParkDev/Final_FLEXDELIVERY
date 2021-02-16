@@ -37,6 +37,16 @@
 		where ASK_GROUP_No=#{askNo} and ASK_NO!=#{askNo}
 	</select>
 	
+	<select id="selectNewAsk" resultType="map">
+		select count(ASK_NO) as cntAsk from ASK
+		where ASK_STEP=0 and ASK_REPLY_FLAG='N'
+	</select>
+
+	<select id="selectNewAsk2" resultType="int">
+		select count(ASK_NO) as cntAsk from ASK
+		where ASK_STEP=0 and ASK_REPLY_FLAG='N'
+	</select>
+	
 	<update id="updateAsk" parameterType="adminAskVo">
 		update ASK
 		set ASK_REPLY_FLAG=#{askReplyFlag}

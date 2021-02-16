@@ -13,7 +13,7 @@ public class AdminChartServiceImpl implements AdminChartService{
 	private AdminChartDAO chartDao;
 
 	@Override
-	public List<Map<String, Object>> selectCurJoin() {		// TODO Auto-generated method stub
+	public List<Map<String, Object>> selectCurJoin() {		
 		return chartDao.selectCurJoin();
 	}
 
@@ -65,6 +65,11 @@ public class AdminChartServiceImpl implements AdminChartService{
 	@Override
 	public List<Map<String, Object>> selectGProduct() {
 		return chartDao.selectGProduct();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGProduct5() {
+		return chartDao.selectGProduct5();
 	}
 	
 }

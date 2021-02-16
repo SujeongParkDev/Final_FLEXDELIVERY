@@ -1,6 +1,7 @@
 package com.project.fd.admin.ask.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,17 @@ public class AdminAskDAOMybatis implements AdminAskDAO{
 	public int updateAsk(AdminAskVO askVo) {
 		int cnt=sqlSession.update(namespace+"updateAsk", askVo);
 		return cnt;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectNewAsk() {
+		List<Map<String, Object>> list=sqlSession.selectList(namespace+"selectNewAsk");
+		return list;
+	}
+
+	@Override
+	public int selectNewAsk2() {
+		return sqlSession.selectOne(namespace+"selectNewAsk2");
 	}
 
 }
