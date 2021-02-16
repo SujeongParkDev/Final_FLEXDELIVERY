@@ -55,8 +55,8 @@
 	}
 </script>
 <c:if test="${empty list}">
-	<div class='p-3 rounded shadow-sm bg-white' style='text-align:center'>";
-		<img src='<c:url value='/resources/imgs/noListDefault.png'/>' class='img-fluid' style='inline-size:45em;'>";
+	<div class='p-3 rounded shadow-sm bg-white' style='text-align:center'>
+		<img src='<c:url value='/resources/imgs/noListDefault.png'/>' class='img-fluid' style='inline-size:45em;'>
 	</div>
 </c:if>
 <c:if test="${!empty list}"> 

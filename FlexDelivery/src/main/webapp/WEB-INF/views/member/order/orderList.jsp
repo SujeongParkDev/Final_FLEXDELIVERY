@@ -199,7 +199,7 @@ function formatDate(date) {
 			                                        <p class="bg-primary text-white py-1 px-2 rounded small mb-1 text-center">조리중</p>
 		                                    	</c:if>
 		                                    	<c:if test="${vo.orderVo.oStatusNo==3}">
-			                                        <p class="bg-light text-white py-1 px-2 rounded small mb-1 text-center">배달중</p>
+			                                        <p class="bg-light text-dark py-1 px-2 rounded small mb-1 text-center">배달중</p>
 		                                    	</c:if>
 		                                        <p class="small font-weight-bold text-center"><i class="feather-clock"></i> <fmt:formatDate value="${vo.orderVo.ordersPayEndDate}" pattern="yyyy-MM-dd"/></p>
 		                                    </div>
