@@ -19,7 +19,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<c:url value='/admin/main.do'/> ">Main</a></li>
+                        <li class="breadcrumb-item"><a href="<c:url value='/admin/index.do'/> ">Main</a></li>
                         <li class="breadcrumb-item active" aria-current="page">회원 조회/현황</li>
                     </ol>
                 </nav>

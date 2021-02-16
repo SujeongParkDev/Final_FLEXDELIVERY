@@ -1,6 +1,11 @@
 package com.project.fd.admin.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.fd.admin.reviewMg.model.AdminReviewMgService;
 import com.project.fd.admin.reviewMg.model.AdminReviewMgVO;
+import com.project.fd.common.FileUploadUtil;
 
 
 @Controller
@@ -22,6 +29,8 @@ public class AdminReviewMgController {
 	
 	@Autowired
 	AdminReviewMgService reviewMgService;
+	@Autowired
+	private FileUploadUtil fileUtil;
 	
 	@RequestMapping("/reviewMgList.do")
 	public String adminReviewMgList(Model model) {
@@ -70,5 +79,26 @@ public class AdminReviewMgController {
 		logger.info("리뷰신고 반려 처리, cnt={}", cnt);
 		
 		return "redirect:/admin/menu1/reviewMgList.do";		
+	}
+	
+	@RequestMapping("/downloadReview.do")
+	public ModelAndView download(@RequestParam(defaultValue = "0") int no,
+			@RequestParam String fileName,
+			HttpServletRequest request) {
+		//1
+		logger.info("다운로드 처리 페이지, 파라미터 no={}, fileName={}", no, fileName);
+		//2
+		//3
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String upPath=fileUtil.getUploadPath(FileUploadUtil.REVIEW_TYPE, request);		
+		File file = new File(upPath, fileName);
+		map.put("file", file);
+
+		//ModelAndView(String viewName, Map<String, ?> model)
+		ModelAndView mav = new ModelAndView("adminDownloadView", map);
+
+		//4
+		return mav;		
 	}
 }

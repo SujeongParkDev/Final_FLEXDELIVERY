@@ -117,18 +117,20 @@
                             <div class="classynav">
                                 <ul>
                                 	<li>‍🔎<li>
-                                    <li><a href="<c:url value='/admin/menu1/memberMg.do' />"><span>회원 관리</span></a>
+                                    <li><a href="#">회원 관리</a>
                                         <ul class="dropdown">
-                                            <li><a href="<c:url value='/admin/menu1/member.do' />">회원 조회</a></li>
-                                            <li><a href="<c:url value='/admin/menu1/memberGrade.do' />">등급 관리</a></li>
-                                            <li><a href="<c:url value='/admin/menu1/review.do' />">리뷰 관리</a></li>
+                                            <li><a href="<c:url value='/admin/menu1/memberMg.do' />">회원 조회</a></li>
+                                            <li><a href="<c:url value='/admin/menu1/reviewMgList.do' />">리뷰 관리</a></li>
                                         </ul>
                                     
                                     </li>
-                                    <li><a href="<c:url value='/admin/menu2/storeMg.do' />">점포 관리</a>
+                                    <li><a href="#">가맹점 관리</a>
                                         <ul class="dropdown">
-                                            <li><a href="<c:url value='/admin/menu2/approval.do' />">승인 관리</a></li>
-                                            <li><a href="<c:url value='/admin/menu2/store.do' />">점포 조회</a></li>
+                                            <li><a href="<c:url value='/admin/menu2/approvalList.do' />">가맹점 등록 승인</a></li>
+                                            <li><a href="<c:url value='/admin/menu2/editList.do' />">가맹점 변경 승인</a></li>
+                                            <li><a href="<c:url value='/admin/menu2/registList.do' />">사업자등록증 승인</a></li>
+                                            <li><a href="<c:url value='/admin/menu2/storeAdList.do' />">가맹점 광고 등록 승인</a></li>
+                                            <li><a href="<c:url value='/admin/menu2/storeMgList.do' />">가맹점 현황</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">사장님광장</a>
