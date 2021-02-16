@@ -28,7 +28,7 @@
 				미답변
 				</span></td>
 				</c:if>
-			<td><a href="" class="badge bg-secondary text-light" >삭제</a></td>
+			<td><a href="" class="badge bg-secondary text-lite" >삭제</a></td>
 		</tr>
 		</c:forEach>
 	</c:if>
