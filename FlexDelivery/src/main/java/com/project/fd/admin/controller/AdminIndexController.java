@@ -78,9 +78,14 @@ public class AdminIndexController {
 		int maxVal=indexService.selectMNo();
 		logger.info("중분류 카테고리 최대값, maxVal={}", maxVal);
 		
-		//(int)Math.random();
+		int randomNo=(int)(Math.random()*maxVal)+1;
+		AdminMediumCategoryVO mVo=indexService.selectMCategory(randomNo);
+		logger.info("음식 랜덤, randomNo={}, mVo={}", randomNo, mVo);
+		model.addAttribute("mVo", mVo);
 		
-		//AdminMediumCategoryVO mVo=indexService.selectMCategory();
+		List<Map<String, Object>> foodList=indexService.selectFood(randomNo);
+		logger.info("추천가게와 추천 메뉴 정보, foodList={}", foodList);
+		model.addAttribute("foodList", foodList);
 		
 		//공지, 이벤트, 꿀팁
 		List<AdminBoardAllVO> nList=boardService.selectNotice();

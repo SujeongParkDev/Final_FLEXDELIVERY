@@ -146,12 +146,17 @@
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box; top:27%;">
                         <a style="color: white; font-size: medium;">오늘 뭐 먹지?</a><br>
-                        <a style="color: white; font-size: xx-large;"></a>
+                        <a style="color: white; font-size: x-large;">${mVo.mCategoryName }</a>
                     </div>
                     <!-- Catagory Title -->
                     <div class="catagory-title" style="display: -webkit-box; top:75%;">
-                        <a style="color: white; font-size: small;">추천 음식</a><br>
-                        <a style="color: white; font-size: medium; font-weight: bolder;">찌개, 초밥</a>
+                        <a style="color: white; font-size: small; font-weight: 600;">추천 메뉴</a><br>
+                        <c:if test="${empty foodList }">
+	                        <a style="color: white; font-size: x-large; font-weight: bolder;">등록된 메뉴가 없어요😥</a>
+                        </c:if>
+                        <c:if test="${!empty foodList }">
+	                        <a style="color: white; font-size: medium; font-weight: bolder;">"${map['foodList.MENU_NAME'] }"</a>
+                        </c:if>
                     </div>
                 </div>
             </div>
