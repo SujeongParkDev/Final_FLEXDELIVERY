@@ -25,6 +25,10 @@
 		color:rgb(182,73,197);
 		text-decoration: none;
 	}
+	
+	.hero-slides .single-hero-slide{
+		max-height: 400px;
+	}
 
 </style>
 	<!--  QQQ. 을 검색해서 수정부탁드려요 -->
@@ -34,7 +38,7 @@
         <div class="hero-slides owl-carousel">
       
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style="background-image: url('<c:url value='/resources/imgs/CommonImages/covid.png'/>'); background-size:contain; height:400px;">
+            <div class="single-hero-slide bg-img " style="background-image: url('<c:url value='/resources/imgs/CommonImages/covid.png'/>'); background-size:contain; ">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -51,7 +55,7 @@
          
          
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image :url('<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>'); background-size:contain;  height:400px;">
+            <div class="single-hero-slide bg-img" style="background-image :url('<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>'); background-size:contain;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -68,7 +72,7 @@
 
             
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style=" background-image: url('<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>'); background-size:contain; height:400px;">
+            <div class="single-hero-slide bg-img " style=" background-image: url('<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>'); background-size:contain; ">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -285,16 +289,6 @@
  	  <br>
 
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
 
 
 <%@ include file="../ownerInc/bottom.jsp" %>

@@ -74,9 +74,11 @@
 		<div class="container-login100" style="background-image: url('${pageContext.request.contextPath}/resources/ownerResources/Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action="<c:url value='/login.do' />">
+						<div style="display:flex; justify-content: center;">
 							<a href="<c:url value='/owner/index.do' />">
-								<img alt="logo" src="${pageContext.request.contextPath}/resources/imgs/OwnerLoginLogo.png" style="width:300px; height: 75px; padding-left:90px;">
+								<img alt="logo" src="${pageContext.request.contextPath}/resources/imgs/OwnerLoginLogo.png" style="width:200px; height: 75px;">
 							</a>
+						</div>
 					<span class="login100-form-title p-b-34 p-t-27">
 						L O G I N
 					</span>

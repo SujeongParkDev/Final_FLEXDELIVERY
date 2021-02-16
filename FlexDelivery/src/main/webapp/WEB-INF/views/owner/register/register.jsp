@@ -13,7 +13,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>플렉스 딜리버리 회원가입</title>
 
 
 
@@ -171,14 +171,14 @@
 		
 	</script>
 </head>
-<body style="background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAxMDlfMjMx%2FMDAxNjEwMjAxODU3NDY2.Yq_B5-mqmBaMchB1HYwLYoT-fIkiw7QWxcq75CREoBUg.9gyCahRJmXq2EYSfWz-O6lwO8iLgUQ1SoGoWznTNnjEg.JPEG.bmj3242%2F19.jpg&type=sc960_832');
+<body style="  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAxMDlfMjMx%2FMDAxNjEwMjAxODU3NDY2.Yq_B5-mqmBaMchB1HYwLYoT-fIkiw7QWxcq75CREoBUg.9gyCahRJmXq2EYSfWz-O6lwO8iLgUQ1SoGoWznTNnjEg.JPEG.bmj3242%2F19.jpg&type=sc960_832');
 				background-repeat: no-repeat; background-size: cover; ">
     <div class="page-wrapper p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
-           			<div  class="card-heading" onclick="goHome()" style="background-image: url('${pageContext.request.contextPath}/resources/imgs/registerBg.png');
+           			<div  class="card-heading"  onclick="goHome()" style="display:flex; justify-content:center; background-image: url('${pageContext.request.contextPath}/resources/imgs/registerBg.png');
            						background-repeat: no-repeat; background-size: cover;  padding-top: 150px;">
-           		 		<img src="${pageContext.request.contextPath}/resources/imgs/FD.png" width="500px;" style="margin-left:100px;"/>  
+           		 		<img src="${pageContext.request.contextPath}/resources/imgs/FD.png" width="80%"/>  
            			</div>
                 <div class="card-body ">
                     <h2 class="title" style="text-align: center;">R E G I S T E R</h2>
@@ -195,8 +195,8 @@
                             	아이디 <input class="input--style-1" type="text" name="ownerId"  id="ownerId" style="text-align:center;">
                         	</div>
                         </div>
-                        <div>
-                        	<button class="btn btn--radius" name="owner" type="button" style="margin-left:400px;width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
+                        <div style="display: flex; float: right;">
+                        	<button class="btn btn--radius" name="owner" type="button" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
                         </div> 
                          <div style="text-align: right;">
                         	<span></span>
@@ -217,7 +217,7 @@
                         	<span></span>
                         </div>
                     
-                        <div class="row row-space">
+                        <div style="display: flex;justify-content: space-between;" >
                                 <div>
                                     <div class="rs-select2 js-select-simple select--no-search" style="width:120px; text-align-last:center;" >
                                         <select name="ownerHp1" class="input-group" >
@@ -239,14 +239,14 @@
                             	<input type ="hidden" name="chkId" id="chkId">
                         </div>
                         <br>
-                        <div style="margin-left:180px;" class="mt-2">
-                        	<input type="checkbox" id="agreeCheck" style="display:inline; width:15px; height:15px;" onclick="agree()">
-                       		<label for="agreeCheck">약관에 동의합니다.</label>
+                  		 <div style="display: flex;justify-content: center;" >
+                        	<input type="checkbox" id="agreeCheck" style="display:inline; width:15px; height:15px;" onclick="agree()" >
+                       		<label for="agreeCheck" style="border:none;">약관에 동의합니다.</label>
                         </div>
                         <br>
-                        <div class="text-center">
+                       <div style="display: flex;justify-content: center;" >
                         	<!--recaptcha-->
-							<div class="g-recaptcha" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-left:100px; margin-bottom:20px;"></div>
+							<div class="g-recaptcha" data-sitekey="6LfgUU4aAAAAACrshEabcLYMkxfW7ZUfAATntxow" style="margin-bottom:20px;"></div>
 						</div>
                         <div align="center">
                             <button class="btn btn--radius btn--green " type="button" style="background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btOwnerWrite">가입</button>

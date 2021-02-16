@@ -57,11 +57,11 @@
 <div class="row">
 
 	<!-- 헤드 시작 -->
-	<div class="col-12 col-md-2"></div>
-	<div class="col-12 col-md-8 text-center" >
+	<div class="col-12 col-md-2  mb-5"></div>
+	<div class="col-12 col-md-8 text-center mb-5" >
 	 <h3>공 지 사 항</h3>
 	</div>
-	<div class="col-12 col-md-2"></div>
+	<div class="col-12 col-md-2 mb-5"></div>
 	
 
 	

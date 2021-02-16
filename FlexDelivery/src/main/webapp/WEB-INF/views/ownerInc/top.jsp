@@ -15,6 +15,7 @@
    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- fontawsome -->
+
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/adminResources/style.css"/>
@@ -28,7 +29,7 @@
 
 <!-- Favicon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/adminResources/img/core-img/favicon.ico">
-
+ <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 	function goWithdraw(){
 		if(confirm('탈퇴하시겠습니까?')){
@@ -170,14 +171,7 @@
                                 </ul>
 
                                 <!-- Search Form  -->
-                                <!-- <div id="search-wrapper">
-                                    <form action="#">
-                                        <input type="text" id="search" placeholder="Search something...">
-                                        <div id="close-icon"></div>
-                                        <input class="d-none" type="submit" value="">
-                                    </form>
-                                </div> -->
-                            </div>
+                        	
                             <!-- Nav End -->
                             
                         </div>
@@ -188,13 +182,4 @@
     </header>
     <!-- ##### Header Area End ##### -->
     
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/resources/adminResources/js/active.js"></script>
+   
