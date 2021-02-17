@@ -24,7 +24,7 @@ $(function(){
            <div class="card">
               <div class="card-header">
                 <h3 class="section-title text-uppercase">이벤트</h3>
-                <p class="text-subtitle text-muted">사장님을 위해 준비한 플렉스 딜리버리의 이벤트.</p>
+                <p class="text-subtitle text-muted">여러분을 위해 준비한 플렉스 딜리버리의 이벤트.</p>
                 <hr>
               </div>
 		<!-- 	<div class="page-title">

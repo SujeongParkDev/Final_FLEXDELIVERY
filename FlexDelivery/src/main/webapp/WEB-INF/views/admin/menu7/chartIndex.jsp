@@ -164,11 +164,18 @@
 						<!-- 여섯 번째 줄 -->
 						<div style="display: flex;" id="6thChart">
 						
-							<!-- 대분류카테고리 주문 회수 출력 --> <!-- 도넛: 전체 개수+비율 -->
+							<!-- 대분류카테고리 주문 회수 출력 --> <!-- area: 지난달+이번달-->
 		                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 								<div class="line" style="background-color: black;"></div>
 								<h5 style="color: black;">🍴이번 달 대분류 카테고리별 주문 현황</h5>
 								<div id="curMonthLCategory" style="margin-top: 30px; margin-bottom: 30px;"></div>
+							</div>
+							
+							<!-- 대분류카테고리 주문 회수 출력 --> <!-- 도넛: 전체 개수+비율 -->
+		                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
+								<div class="line" style="background-color: black;"></div>
+								<h5 style="color: black;">🍴이번 달 대분류 카테고리별 주문 현황</h5>
+								<div id="curMonthLCategory2" style="margin-top: 30px; margin-bottom: 30px;"></div>
 							</div>
 							
 						</div>
@@ -219,7 +226,9 @@
 			  dnt2('todayOrder', 71);
 			  dnt2('todayTotal', 72);
 			  
-			  piec('curMonthLCategory', 7);
+			  area('curMonthLCategory', 7);
+			  
+			  //piec('curMonthLCategory2', 7);
 			  piec('giftCategory', 8);
 			  piec('giftPrice', 9);
 
@@ -591,6 +600,29 @@
 					});
 				  
 			}/* dnt2 */
+			
+			function area(id, no){
+				var idChk="#"+id;
+				var tooltipTitle;
+				
+				 var labels=[];
+				  var labelVal=[];
+				  
+				  if (no==7){
+					  <c:forEach var="map" items="${list9 }">
+						  labels.push("${map['L_CATEGORY_NAME}']}");
+					  	  labelVal.push("${map['ORDERCNT']}");
+				  	  </c:forEach>
+						tooltipTitle="카테고리별 주문 수";
+				  }
+			
+					console.log("no="+no);
+				  	console.log("labels="+labels);
+					console.log("labelVal="+labelVal);
+					
+					
+					
+			}//area
 		  
 		  </script>
 			

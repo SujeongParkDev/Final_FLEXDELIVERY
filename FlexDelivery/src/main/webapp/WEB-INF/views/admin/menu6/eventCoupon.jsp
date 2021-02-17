@@ -208,7 +208,7 @@ function writeFunc(){
 						    <div class="table-responsive">
 						    	<table class="table table-hover mb-0" style="text-align: center;">
 						            <thead>
-						              <tr>
+						              <tr style="background-color: black; color:white;">
 						                <th>번호</th>
 						                <th colspan="3">쿠폰 이름</th>
 										<th>시작일</th>
