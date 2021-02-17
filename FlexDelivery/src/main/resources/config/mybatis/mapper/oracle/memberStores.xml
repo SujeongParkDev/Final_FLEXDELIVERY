@@ -14,7 +14,7 @@
 
 
 	<select id="selectFlexAdStores" parameterType="map" resultType="memberStoresVo">
-		select s.*
+		select distinct s.*
 		from hyStoreList s,storeAd a
 		where s.STORE_NO = a.STORE_NO 
 		and a.ad_validate>sysdate 
@@ -26,7 +26,7 @@
 		and a.advertise_no=1
 	</select>
 	<select id="selectOpenAdStores" parameterType="map" resultType="memberStoresVo">
-		select s.*
+		select distinct s.*
 		from hyStoreList s,storeAd a
 		where s.STORE_NO = a.STORE_NO 
 		and a.ad_validate>sysdate 

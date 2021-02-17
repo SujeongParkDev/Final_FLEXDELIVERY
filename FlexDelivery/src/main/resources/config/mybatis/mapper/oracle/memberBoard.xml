@@ -20,7 +20,7 @@
 					select * from BOARD
 					where BOARD_HEAD='이벤트' 
 					and AUTHORITY_NO in (1,2,3)
-					order by BOARD_NO asc
+					order by board_regdate desc
 				)A
 				<include refid="searchKeyword"></include>
 			)
@@ -35,7 +35,7 @@
 					select * from BOARD
 					where BOARD_HEAD='공지사항' 
 					and AUTHORITY_NO in (1,2,3)
-					order by BOARD_NO asc
+					order by board_regdate desc
 				)A
 			<include refid="searchKeyword"></include>
 			)
