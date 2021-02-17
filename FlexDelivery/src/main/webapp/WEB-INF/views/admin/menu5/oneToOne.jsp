@@ -56,52 +56,6 @@
 		                        		<td>${vo.askRegdate }</td>
 		                        	</tr>
 		                        </c:forEach>
-		                        <!-- <tr>
-		                            <td>2</td>
-		                            <td>선물쿠폰 잔액 조회</td>
-		                            <td>park</td>
-		                            <td>회원</td>
-		                            <td>
-		                                <span class="badge bg-success">답변완료</span>
-		                            </td>
-		                        </tr>
-		                        <tr>
-		                            <td>3</td>
-		                            <td>선물하기는 아이디로는 안 되나요?</td>
-		                            <td>KJM</td>
-		                            <td>회원</td>
-		                            <td>
-		                                <span class="badge bg-danger">미답변</span>
-		                            </td>
-		                        </tr>
-		                        
-		                        <tr>
-		                            <td>6</td>
-		                            <td>배송지를 잘못 입력했어요.</td>
-		                            <td>BJA</td>
-		                            <td>회원</td>
-		                            <td>
-		                                <span class="badge bg-success">답변</span>
-		                            </td>
-		                        </tr>
-		                        <tr>
-		                            <td>7</td>
-		                            <td>매출 통계는 어디서 확인할 수 있나요?</td>
-		                            <td>LSJ</td>
-		                            <td>점포</td>
-		                            <td>
-		                                <span class="badge bg-success">답변</span>
-		                            </td>
-		                        </tr>
-		                        <tr>
-		                            <td>8</td>
-		                            <td>정기쿠폰은 어떻게 적용할 수 있나요?</td>
-		                            <td>KBS</td>
-		                            <td>점포</td>
-		                            <td>
-		                                <span class="badge bg-success">답변</span>
-		                            </td>
-		                        </tr> -->
 		                    </tbody>
        		                </c:if>
 		                </table>

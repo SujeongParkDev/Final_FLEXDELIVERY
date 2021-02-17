@@ -173,7 +173,7 @@ function writeFunc(){
 				<div class="card-content">			
 					<table class="table table-hover mb-0" style="text-align: center;">
 						<thead>
-							<tr>
+							<tr style="background-color: black; color:white;">
 								<th>번호</th>
 								<th colspan="3">금액</th>
 								<th>비고</th>

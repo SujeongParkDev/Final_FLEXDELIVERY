@@ -241,7 +241,29 @@ function listForCategory(no){
 					str+="<div class='card-content d-flex'>";
 					str+="<div class='card-body'>";
 					str+="<img class='card-img-top mb-1' src='${pageContext.request.contextPath}/resources/imgs/GiftProductImages/"+gvo.gProductFilename+"' alt='"+gvo.gProductFilename+"' style='height: 120px'>";
-					str+="<span class='badge bg-info'>"+gvo.gCategoryName+"</span>";
+					if (gvo.gCategoryNo==1){
+						str+="<span class='badge bg-danger'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==2) {
+						str+="<span class='badge' style='background-color: #D7F205; color: black;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==3) {
+						str+="<span class='badge bg-success'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==4) {
+						str+="<span class='badge bg-secondary'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==5) {
+						str+="<span class='badge bg-warning'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==6) {
+						str+="<span class='badge bg-info'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==7) {
+						str+="<span class='badge' style='background-color: #F25CA2;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==8) {
+						str+="<span class='badge' style='background-color: #008080;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==9) {
+						str+="<span class='badge' style='background-color: #AB05F2;'>"+gvo.gCategoryName+"</span>";						
+					} else if (gvo.gCategoryNo==10) {
+						str+="<span class='badge bg-primary'>"+gvo.gCategoryName+"</span>";						
+					} else {
+						str+="<span class='badge bg-light'>"+gvo.gCategoryName+"</span>";						
+					}
 					str+="<p class='card-text white'>"+gvo.gProductNo+"</p>";
 					str+="<h4 class='card-title'>"+gvo.gProductName+"</h4>";
 					str+="<button type='button' class='round btn btn-dark' id='modalEditBt"+gvo.gProductNo+"'";

@@ -19,7 +19,7 @@ CKEDITOR.editorConfig = function( config ) {
 		'/', // 다음줄
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-		{ name: 'links', groups: [ 'links' ] },
+		
 		{ name: 'insert', groups: [ 'insert' ] },
 		'/',
 		{ name: 'styles', groups: [ 'styles' ] },
@@ -47,19 +47,14 @@ CKEDITOR.editorConfig = function( config ) {
 		'entities,' +
 		'filebrowser,' +
 		'find,' +
-		'flash,' +
 		'floatingspace,' +
 		'font,' +
 		'format,' +
-		'forms,' +
 		'horizontalrule,' +
 		'htmlwriter,' +
-		'image,' +
-		'iframe,' +
 		'indentlist,' +
 		'indentblock,' +
 		'justify,' +
-		'language,' +
 		'link,' +
 		'list,' +
 		'liststyle,' +
@@ -67,13 +62,11 @@ CKEDITOR.editorConfig = function( config ) {
 		'maximize,' +
 		'newpage,' +
 		'pagebreak,' +
-		'pastefromword,' +
 		'pastetext,' +
 		'preview,' +
 		'print,' +
 		'removeformat,' +
 		'resize,' +
-		'save,' +
 		'selectall,' +
 		'showblocks,' +
 		'showborders,' +
@@ -82,13 +75,9 @@ CKEDITOR.editorConfig = function( config ) {
 		'specialchar,' +
 		'stylescombo,' +
 		'tab,' +
-		'table,' +
-		'tableselection,' +
-		'tabletools,' +
 		'templates,' +
 		'toolbar,' +
 		'undo,' +
-		'uploadimage,' +
 		'wysiwygarea';
 
     

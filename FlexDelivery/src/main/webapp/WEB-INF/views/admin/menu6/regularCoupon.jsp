@@ -122,7 +122,7 @@ function writeFunc(){
 		 	<div class="card">
 		 	
 		  		<div class="card-header">
-					<h4 class="card-title">쿠폰 관리 - 정기 쿠폰</h4>
+					<h4 class="card-title" style="font-weight: 600;">쿠폰 관리 - 정기 쿠폰</h4>
 					<hr>
 		    	</div>
 		    	<div class="card-content">
