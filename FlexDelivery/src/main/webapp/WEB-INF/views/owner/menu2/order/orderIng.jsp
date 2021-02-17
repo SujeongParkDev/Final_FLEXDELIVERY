@@ -72,32 +72,30 @@ $(function(){
 //모달 누르면 update 
 
 $(function(){
-      $('.deliveryTimeOkModal').click(function(){
-         
-         var deliTime = $('input[class=deliveryTimeInput]').val();
-         if(deliTime==1){
-            $('#warningDeliveryTime').html('시간을 입력해 주세요');
-            event.prventDefault();
-            return false;
-         }else{
-            $.ajax({
-               url:"<c:url value='/owner/menu2/order/orderDeliveryUpdate.do'/>",
-               data:"ordersNo="+$(this).val()+"&ordersDuration="+deliTime,
-               dataType:"json",
-               type:"GET",
-               success:function(bool){
-                  if(bool==true){
-                     location.reload();
-                     alert("배달 접수 하셨습니다!");
-                     
-
-                  }else{
-                     alert('다시 시도해주세요');
-                  }
-               },
-               error:function(xhr, status, error){
-                  alert("error!! : " + error);
-               }
+		$('.deliveryTimeOkModal').click(function(){
+			
+			var deliTime = $('input[class=deliveryTimeInput]').val();
+			if(deliTime==1){
+				$('#warningDeliveryTime').html('시간을 입력해 주세요');
+				event.prventDefault();
+				return false;
+			}else{
+				$.ajax({
+					url:"<c:url value='/owner/menu2/order/orderDeliveryUpdate.do'/>",
+					data:"ordersNo="+$(this).val()+"&ordersDuration="+deliTime,
+					dataType:"json",
+					type:"GET",
+					success:function(bool){
+						if(bool==true){
+							location.reload();
+							alert("배달 접수 하셨습니다!");
+	                    }else{
+	                     alert('다시 시도해주세요');
+	                    }
+               		},
+	               error:function(xhr, status, error){
+	                  alert("error!! : " + error);
+	               }
             }); 
             
             
@@ -326,50 +324,48 @@ function goDetail(ordersNo,ordersDiscount){
             <!-- 배달할건지 묻는 모달-->
                     
                     <div class="modal fade" id="deliveryTime" tabindex="-1" aria-labelledby="deliveryTimeTitle" aria-hidden="true" style="display: none;">
-                       <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                           <div class="modal-content">
-                           <div class="modal-header">
-                               <h5 class="modal-title" id="deliveryTimeTitle">배달</h5>
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                               </button>
-                           </div>
-                           <div class="modal-body deliveryTimeText">
-                              <div class="row">
-                                 <div class="col-12 col-md-1"></div>
-                                    <input class="deliveryTimeInput" type="hidden" value="1">
-                                    <div class="col-12 col-md-10 text-center">
-                                       <button class="btn btn-outer-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
-                                       <br>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="20">20분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="30">30분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="40">40분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="50">50분</button>
-                                       <br>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="60">60분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="70">70분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="80">80분</button>
-                                       <button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="90">90분</button>
-                                    <br>
-                                    <span id="warningDeliveryTime" style="color:red;"></span>
-                                     </div>
-                           <div class="col-12 col-md-1"></div>
-                        </div>
-                           </div>
-                           <div class="modal-footer">
-                               <button type="button" class="btn btn-primary ml-1 deliveryTimeOkModal" value="${ordersNo }" data-dismiss="modal">
-                                  <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">확인</span>
-                               </button>
-                                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                  <span class="d-none d-sm-block">취소</span>
-                               </button>
-                           </div>
-                           </div>
-                       </div>
-                   </div>
-                     
-                     
+	                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+	                        <div class="modal-content">
+	                        <div class="modal-header">
+	                            <h5 class="modal-title" id="deliveryTimeTitle">배달</h5>
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+	                            </button>
+	                        </div>
+	                        <div class="modal-body deliveryTimeText">
+	                        	<div class="row">
+	                        		<div class="col-12 col-md-1"></div>
+	                        			<input class="deliveryTimeInput" type="hidden" value="1">
+	                        			<div class="col-12 col-md-10 text-center">
+	                        				<button class="btn btn-outer-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
+	                        				<br>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="20">20분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="30">30분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="40">40분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="50">50분</button>
+		                        			<br>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="60">60분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="70">70분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="80">80분</button>
+		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="90">90분</button>
+	                        			<br>
+	                        			<span id="warningDeliveryTime" style="color:red;"></span>
+			                         	</div>
+									<div class="col-12 col-md-1"></div>
+								</div>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="button" class="btn btn-primary ml-1 deliveryTimeOkModal" value="${ordersNo }" data-dismiss="modal">
+	                            	<i class="bx bx-check d-block d-sm-none"></i>
+	                           		<span class="d-none d-sm-block">확인</span>
+	                            </button>
+	                             <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+	                           		<i class="bx bx-x d-block d-sm-none"></i>
+	                            	<span class="d-none d-sm-block">취소</span>
+	                            </button>
+	                        </div>
+	                        </div>
+	                    </div>
+       				</div>
           
  <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

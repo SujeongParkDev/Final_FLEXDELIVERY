@@ -1,5 +1,7 @@
 package com.project.fd.owner.model;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,5 +49,8 @@ public class OwnerDAOMybatis implements OwnerDAO {
 		return sqlSession.update(namespace+"updateOwner", vo);
 	}
 	
+	public int selectOwnerAuthorityCount(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"selectOwnerAuthorityCount", map);
+	}
 	
 }

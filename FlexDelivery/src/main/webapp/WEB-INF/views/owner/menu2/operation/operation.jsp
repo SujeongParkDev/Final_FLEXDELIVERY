@@ -193,6 +193,37 @@
 			
 		});
 	});
+	
+	
+	
+	$(function(){
+		$('#minPriceUpdate').click(function(){
+			var storeMinPrice = $('input[name=storeMinPrice]').val();
+			var storeNo = $('input[name=storeNo]').val();
+			var ownerNo = $('input[name=ownerNo]').val();
+			
+			console.log(storeMinPrice);
+			console.log(storeNo);
+			console.log(ownerNo);
+			$.ajax({
+				url:"<c:url value='/owner/menu2/operation/updateMinPrice.do'/>",
+				data:"storeMinPrice="+storeMinPrice+"&storeNo="+storeNo+"&ownerNo="+ownerNo, 
+				success:function(res){
+					str="";
+					if(res>1){
+						alert("업데이트 실패!");
+					}else{
+						alert("업데이트 성공!");
+						goMinPrice();
+						$('#minPriceCard').css('display','none');
+					}
+				},
+				error:function(xhr,status,error){
+					alert("error!!: "+error);
+				}
+			});
+		});
+	});
 </script>
 
 
@@ -451,15 +482,17 @@
 							<div class="card-header">
 								<h3>최소 주문 금액</h3>
 								<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button small primary">적용</button>
+									<button type="button" class="button small primary" id="minPriceUpdate">적용</button>
 									<button type="button" class="button mr-1 small secondary btCancleChange" name="minPriceCancle" >닫기</button>
 								</div>
 							</div>
 							<div class="form-group no-divider" style="min-height: auto;">
 								<div class="form-control-wrap">
-									<div class="form-control ">
-										<div class="inline-values flex-1 ">
-											<input type="text" class="text-right" name="storeMinPrice" value=""/>
+									<div class="form-control only-one-input justify-content-start">
+										<div class="input-label-container" style="width: inherit;">
+											<div class="input-container right">
+												<input type="number" required="required" pattern="[0-9]" name="storeMinPrice" placeholder="숫자만 입력" inputmode="numeric" value="">
+											</div>
 										</div>
 									</div>
 								</div>
@@ -477,9 +510,6 @@
 										<i class="fas fa-pencil-alt"></i> 변경
 									</button>
 								</div>
-						<!-- 		<div class="card-menu " style="opacity: 1;">
-									<button type="button" class="button small primary" name="stopStore">임시 중지</button>
-								</div> -->
 							</div>
 							<div class="form-group ">
 								<div class="form-control-wrap">

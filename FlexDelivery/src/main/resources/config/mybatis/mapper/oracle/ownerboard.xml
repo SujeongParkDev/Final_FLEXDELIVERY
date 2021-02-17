@@ -54,9 +54,9 @@
 	<select id="selectMainBoard" resultType="ownerBoardVo" parameterType="String">
 		select *
 		from( 
-		   select * from board 
-		   where board_head = #{boardHead} and authority_no=4
-		   order by board_regdate desc
+		   select b.*,  (sysdate-b.board_regdate)*24 as newImgTerm from board b
+		   where b.board_head  = #{boardHead} and b.authority_no=4
+		   order by b.board_regdate desc
 		    ) 
 		<![CDATA[
 		where rownum<=6 ]]>

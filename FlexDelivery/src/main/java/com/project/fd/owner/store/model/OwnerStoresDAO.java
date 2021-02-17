@@ -33,4 +33,5 @@ public interface OwnerStoresDAO {
 	public int dupckstores(int ownerNo);
 	public int dupckregi(int ownerNo);
 	
+	public int updateMinPrice(Map<String,Object> map); //지안20210217추가
 }

@@ -134,6 +134,10 @@
 						"${pageContext.request.contextPath}/owner/register/checkId.do?ownerId="+$('#ownerId').val()+"&type="+type, 
 						"아이디 중복 확인", 
 						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+', scroll-x=no');
+					
+					
+					event.preventDefault();
+					return false;
 				});
 					
 				
@@ -154,7 +158,7 @@
 					
 					window.open(
 						"${pageContext.request.contextPath}/owner/register/agreement.do", 
-						"아이디 중복 확인", 
+						"회원 약관", 
 						'toolbar=no, menubar=no, height='+popupHeight+', width='+ popupWidth +', left='+popupX+', top='+popupY+', scroll-x=no');
 	 			}
 	 		
@@ -195,11 +199,8 @@
                             	아이디 <input class="input--style-1" type="text" name="ownerId"  id="ownerId" style="text-align:center;">
                         	</div>
                         </div>
-                        <div style="display: flex; float: right;">
-                        	<button class="btn btn--radius" name="owner" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
-                        </div> 
-                         <div style="text-align: right;">
-                        	<span></span>
+                        <div style="text-align: right;">
+                        	<button id="btnChkId" class="btn btn--radius" name="owner" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" >중복확인</button>
                         </div>
                         
                        

@@ -40,6 +40,8 @@ public interface OwnerStoresService {
 	public String selectLCategoryName(int lCategoryNo);
 	//지안 20210211 수정끝
 
+	
+	public int updateMinPrice(Map<String,Object> map);//지안 20210217추가
 	public int dupckstores(int ownerNo);
 	public int dupckregi(int ownerNo);
 }

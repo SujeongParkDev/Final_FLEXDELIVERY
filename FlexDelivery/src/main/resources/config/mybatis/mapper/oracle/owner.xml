@@ -56,7 +56,7 @@ create or replace view jaOwnerAuthorityAllView
 
 	<select id="selectOwnerAuthorityAll"  parameterType="string" resultType="ownerAuthorityVo">
 		select * from jaOwnerAuthorityAllView
-		where owner_id = #{userid}
+		where owner_id = #{userid} and owner_outdate is null
 	</select>
 
 	
@@ -65,5 +65,9 @@ create or replace view jaOwnerAuthorityAllView
 		set owner_name=#{ownerName} , owner_hp1=#{ownerHp1}, owner_hp2=#{ownerHp2}, owner_hp3=#{ownerHp3}
 		where owner_id=#{ownerId}
 	</update>
-          
+        
+     <select id="selectOwnerAuthorityCount" parameterType="map"  resultType="int">
+     	select count(*) from JAOWNERAUTHORITYALLVIEW
+		where SAgreeno =#{sAgreeNo} and rAgreeNo= #{rAgreeNo} and owner_id=#{userid}  and owner_outdate is null
+     </select>
 </mapper>
