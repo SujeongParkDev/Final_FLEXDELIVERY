@@ -1,8 +1,11 @@
 package com.project.fd.owner.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.common.FileUploadUtil;
 import com.project.fd.owner.store.model.OwnerStoresService;
@@ -66,12 +70,13 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 		
 		return "common/message";
 	}
-}
 	
-
-
-	//파일 업로드 처리
-	/*
+//파일 업로드 처리
+@RequestMapping(value="/basic/basic.do", method=RequestMethod.POST)
+public String logoRegister(@ModelAttribute OwnerStoresVO ownerStoresVo,
+		 HttpServletRequest request, HttpSession session,
+		 Model model) { 
+	int ownerNo=(Integer)session.getAttribute("ownerNo");
 	String originName="", fileName="";
 	long fileSize=0;
 	try {
@@ -91,7 +96,11 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 		e.printStackTrace();
 	}
 
-	ownerStoresVo.setStoreLogo(originName);*/
+	ownerStoresVo.setStoreLogo(fileName);
+	logger.info("파일업로드 처리 후 vo={}",ownerStoresVo);
 	
+	return "owner/menu2/basic/basic";
+ 	}	
+}
 
 

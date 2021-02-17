@@ -33,8 +33,7 @@ public class FileUploadUtil {
    public static final int TEMPORARY_TYPE=7;  //임시 - 사업자등록 파일
    public static final int LCATEGORY_TYPE=8;  //대분류 카테고리-등록에서 사용
    public static final int REVIEW_TYPE=9;
-   public static final int LOGO_TYPE=10;
-	
+  	
 	@Resource(name="fileUploadProperties")
 	private Properties fileUploadProps;
 	
@@ -157,12 +156,6 @@ public class FileUploadUtil {
 				upPath=fileUploadProps.getProperty("Review.upload.path.test");
 			}else {
 				upPath=fileUploadProps.getProperty("Review.upload.path");				
-			}
-		}else if(type==LOGO_TYPE) {
-			if(testGb.equals("test")) {
-				upPath=fileUploadProps.getProperty("LOGO.upload.path.test");
-			}else {
-				upPath=fileUploadProps.getProperty("LOGO.upload.path");				
 			}
 		}
 		

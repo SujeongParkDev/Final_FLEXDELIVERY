@@ -60,9 +60,9 @@
 			<div class="ShopSelect mb-4 mb-sm-0">
 				<section class="title">
 					<h3>
-						${vo.storeName} <i class="fas fa-angle-down"></i>
+						${vo.storeName} 
 					</h3>
-					<p class="text-sub mt-1">피자 · 배달의민족 · W13195815</p>
+					<p class="text-sub mt-1">FLEX DELIVERY</p>
 				</section>
 			</div>
 			<div>
@@ -196,8 +196,7 @@
 <div>
 <div class="modal-wrapper" style="display: none;">
 	<div class="Dialog     on  " >
-		<form novalidate="" class="dialog on lg " 
-		action="<c:url value='/owner/menu2/basic/basic.do'/>" method="post" enctype="multipart/form-data">
+		<form novalidate="" class="dialog on lg " name="logoForm" action="<c:url value='/owner/menu2/basic/basic.do'/>" method="post" enctype="multipart/form-data">
 			<div class="header">
 				<div class="header-close">
 					<button id="close" type="button" >나가기</button>
@@ -213,16 +212,19 @@
 					<div class="form-group ">
 						<h5 class="form-label">로고 이미지</h5>
 						<div class="uploader-wrapper ">
-							<span><input type="file" multiple=""
-								accept=".jpg, .jpeg, .png, .pdf, .zip"
-								style="position: absolute; left: -1000px; visibility: hidden;"><span><button
-										type="button" class="button uploader-btn  small text">
-										<i class="icon icon-plus"></i>
-										<div>이미지 (0/5)</div>
-									</button></span></span>
+						<span>
+							<!-- <input type="file" id="upfile" multiple="" accept=".jpg, .jpeg, .png, .pdf, .zip" 
+							style="position: absolute; left: -1000px; visibility: hidden;"> -->
+								<span>
+								<label for="upfile">
+									<input type="file" id="upfile" name="upfile" class="btn text-right" 
+ 									accept=".gif, .jpg, .png" style="visibility: hidden;">
+									<button type="button" class="button uploader-btn  small text">
+									<i class="icon icon-plus"></i>
+									<div>이미지 </div>
+									</button></label></span></span>
 						</div>
 						<ul class="bullet-ul small muted">
-		                    <input type="file" id="upfile" name="upfile" class="btn text-right" accept=".gif, .jpg, .png" />
                              <br><span style="margin-left:60px;"></span> 
 							<li>15MB 이하, JPG, PNG, ZIP, PDF 형식의 파일만 등록할 수 있습니다. (최대 5개까지
 								첨부가능)</li>
