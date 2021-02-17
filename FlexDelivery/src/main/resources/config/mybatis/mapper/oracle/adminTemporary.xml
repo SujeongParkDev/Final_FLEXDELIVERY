@@ -12,7 +12,8 @@
 	
 	<select id="editDetail" parameterType="long" resultType="adminTemporaryVo">
 		select t_no, t_submitdate, o_register_no, t_owner_name, t_stores_name, t_stores_address, owner_no
-       		   t_stores_address_detail, t_owner_hp1, t_owner_hp2, t_owner_hp3, t_detail, a_agree_no 
+       		   t_stores_address_detail, t_owner_hp1, t_owner_hp2, t_owner_hp3, t_detail, a_agree_no,
+       		   t_filename, t_original_filename
        		   from temporary where t_no=#{no}
 	</select>
 	
