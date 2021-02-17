@@ -57,5 +57,10 @@ set ask_title=#{askTitle}, ask_content=#{askContent}
 where ask_no=#{askNo}
 </update>
 
+<select id="replyAsk" parameterType="ownerAskVo" resultType="ownerAskVo">
+		select * from ask
+		where ask_group_no=#{askNo} and ask_step=1
+	</select>
+
 
 </mapper>

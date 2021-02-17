@@ -55,7 +55,9 @@
 											</div>
 										</div>
 										<div class="col-12 col-md-8 offset-md-4 form-group">
+										<c:if test="${vo.askReplyflag =='N' }">
 											<a href="<c:url value='/owner/menu5/OneToOneEdit.do?askNo='/>${vo.askNo}" class="btn btn-primary mr-1 mb-1" id="btEdit">수정</a>
+										</c:if>
 											<a href="<c:url value='/owner/menu5/oneToOne.do'/>" class="btn btn-primary mr-1 mb-1">목록 </a>
 										</div>
 									</div>
