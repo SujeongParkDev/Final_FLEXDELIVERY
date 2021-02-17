@@ -73,7 +73,9 @@
 													<div class="col-md-6"></div>
 													<div class="col-md-3">
 													<div class="text-right">
+													<c:if test="${map['REVIEW_REPORT'] == 'N' }">
 														<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>
+													</c:if>
 													</div>
 												</div>
 												<div class="row">

@@ -177,7 +177,7 @@
 			</c:forEach>
 			<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 				<li class="page-item"><a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.lastPage+1})">
-						<span aria-hidden="true">&raquo;</span>
+						<span aria-hidden="true">&raquo;</span>	
 				</a></li>
 			</c:if>
 		</ul>
@@ -199,76 +199,75 @@
     function Edit_form(num) {
      	$(this).parent().prev().css("display", "none");
      	console.log(this);
-$(function(){
-	if($('.content').val()<1){
-		 alert("댓글 내용을 입력해 주세요 ! ");
-		event.preventDefault();
-	}else{
-     	var params = $(".frm2").serialize();
-     	
-     	$.ajax({
-			url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
-			type:"GET",
-			data: params, //입력양식의 내용을 객체로 만든다
-			dataType:"json",
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			success:function(res){
-				//alert(res);
-				var output="<textarea class='form-control form-control-lg content' name='rCommentContent'>";
-					output+=res.rCommentContent+" </textarea><br>";
-					output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
-				
-					$('#resultDiv').append(output);
-						$('#listDiv').hide();
-				},
-				error:function(xhr, status, error){
-					alert("error! : " + error);
-				}				
-			});//ajax
-		}
-	});
-event.preventDefault();
-}
-
-$(function(){
-	$('form[name=frmDate]').submit(function(){
-		if($('#startDay').val().length<1){
-			alert('시작일을 입력하세요');
-			$('#startDay').focus();
+	$(function(){
+		if($('.content').val()<1){
+			 alert("댓글 내용을 입력해 주세요 ! ");
 			event.preventDefault();
-		}else if($('#endDay').val().length<1){
-			alert('종료일을 입력하세요');
-			$('#endDay').focus();
-			event.preventDefault();
-		}
-	});//frmDate
-
-	$('form[name=frm1]').submit(function(){
-		if($('.comment').val().length<1){
-			alert('내용을 입력하세요');
-			$('.comment').focus();
-			event.preventDefault();
-		}
-	});//frm1
-
-});//
-
-function pageFunc(curPage){
-	$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
-	$('form[name=frmDate]').submit();
+		}else{
+	     	var params = $(".frm2").serialize();
+	     	
+	     	$.ajax({
+				url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
+				type:"GET",
+				data: params, //입력양식의 내용을 객체로 만든다
+				dataType:"json",
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(res){
+					//alert(res);
+					var output="<textarea class='form-control form-control-lg content' name='rCommentContent'>";
+						output+=res.rCommentContent+" </textarea><br>";
+						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
+					
+						$('#resultDiv').append(output);
+							$('#listDiv').hide();
+					},
+					error:function(xhr, status, error){
+						alert("error! : " + error);
+					}				
+				});//ajax
+			}
+		});
+	event.preventDefault();
+	}
 	
-}
-$(function(){
-	$('#btAll').click(function(){
-	location.href='<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>';
+	$(function(){
+		$('form[name=frmDate]').submit(function(){
+			if($('#startDay').val().length<1){
+				alert('시작일을 입력하세요');
+				$('#startDay').focus();
+				event.preventDefault();
+			}else if($('#endDay').val().length<1){
+				alert('종료일을 입력하세요');
+				$('#endDay').focus();
+				event.preventDefault();
+			}
+		});//frmDate
+	
+		$('form[name=frm1]').submit(function(){
+			if($('.comment').val().length<1){
+				alert('내용을 입력하세요');
+				$('.comment').focus();
+				event.preventDefault();
+			}
+		});//frm1
+	});//
+
+	function pageFunc(curPage){
+		$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
+		$('form[name=frmDate]').submit();
+	}
+	
+	$(function(){
+		$('#btAll').click(function(){
+			location.href='<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>';
+		});
+		$('#btnocmt').click(function(){
+			location.href='<c:url value="/owner/menu2/reviewOwner/nocomment.do"/>';
+		});
+		$('#btBlock').click(function(){
+			location.href='<c:url value="/owner/menu2/reviewOwner/blockcmt.do"/>';
+		});
 	});
-	$('#btnocmt').click(function(){
-		location.href='<c:url value="/owner/menu2/reviewOwner/nocomment.do"/>';
-		});
-	$('#btBlock').click(function(){
-		location.href='<c:url value="/owner/menu2/reviewOwner/blockcmt.do"/>';
-		});
-});
 
 </script>
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
