@@ -17,36 +17,20 @@
 	<div class="bg-white">
 	    <div class="container">
 	    	<div class="pt-4 pb-2 title d-flex align-items-center">
-	        	<h5 class="m-0">EVENT</h5>
+	        	<h5 class="m-0">Event & Notice</h5>
 	    	</div>
 	    	<c:set var="no" property="${vo.lCategoryNo }" />
 	    	
 	        <div class="offer-slider">
-	            <div class="cat-item px-1 py-3">
-	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html'/>">
-	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro1.jpg' />" class="img-fluid rounded">
-	                </a>
-	            </div>
-	            <div class="cat-item px-1 py-3">
-	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-	                </a>
-	            </div>
-	            <div class="cat-item px-1 py-3">
-	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro3.jpg' />" class="img-fluid rounded">
-	                </a>
-	            </div>
-	            <div class="cat-item px-1 py-3">
-	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro4.jpg' />" class="img-fluid rounded">
-	                </a>
-	            </div>
-	            <div class="cat-item px-1 py-3">
-	                <a class="d-block text-center shadow-sm" href="<c:url value='/resources/memberResources/trending.html' />">
-	                    <img alt="#" src="<c:url value='/resources/memberResources/img/pro2.jpg' />" class="img-fluid rounded">
-	                </a>
-	            </div>
+	        	<!-- 공지사항 forEach -->
+	        	<c:forEach var="bVo" items="${bList}">
+		            <div class="cat-item px-1 py-3" style="text-align: center">
+		                <a class="d-block text-center shadow-sm" href="<c:url value='/member/board/detail.do?boardNo=${bVo.boardNo}'/>" >
+		                    <img alt="#" src="<c:url value='/resources/imgs/NoticeEventImages/${bVo.boardThumbnail}' />" class="img-fluid rounded" style="height: 200px;">
+		                </a>
+		            </div>
+		            <!-- /공지사항 -->
+	            </c:forEach>
 	        </div>
 	    </div>
 	</div>

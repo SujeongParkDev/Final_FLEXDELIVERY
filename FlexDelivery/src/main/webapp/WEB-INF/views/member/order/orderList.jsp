@@ -130,24 +130,25 @@ function formatDate(date) {
 	                    	<c:forEach var="vo" items="${oklist}">
 		                        <div class="pb-3">
 		                            <div class="p-3 rounded shadow-sm bg-white">
-		                                <div class="d-flex border-bottom pb-3">
-		                                    <div class="text-muted mr-3">
+		                                <div class="d-flex border-bottom pb-3 container">
+		                                    <div class="text-left col-md-2 col-2">
 		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
 		                                    </div>
-		                                    <div>
+		                                    <div class="col-md-8 col-6">
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
-		                                        <p class="mb-0">${vo.orderVo.storeAddress} ${vo.orderVo.storeAddressDetail }</p>
+		                                        <p class="mb-0">${vo.orderVo.storeAddress} ${vo.orderVo.storeAddressDetail}</p>
 		                                        <p class="mb-0 small"><a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>">리뷰작성하기</a></p>
 		                                    </div>
-		                                    <div class="ml-auto">
+		                                    <div class="ml-3 col-md-2 col-4" style="text-align: center">
 		                                        <p class="bg-success text-white py-1 px-2 rounded small mb-1 text-center">배달완료</p>
 		                                        <p class="small font-weight-bold text-center"><i class="feather-clock"></i> <fmt:formatDate value="${vo.orderVo.ordersPayEndDate}" pattern="yyyy-MM-dd"/> </p>
+		                                    	<p class="text-muted small">Total : <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" pattern="#,###원" /></span></p>
 		                                    </div>
 		                                </div>
-		                                <div class="d-flex pt-3">
-		                                    <div class="small">
+		                                <div class="d-flex pt-3 container">
+		                                    <div class="small col-md-8 col-8">
 		                                    	<c:forEach var="odVo" items="${vo.orderDetailList}">
-			                                        <p class="text- font-weight-bold mb-0">${odVo.menuName} 
+			                                        <p class="font-weight-bold mb-0">${odVo.menuName} 
 			                                        <c:if test="${odVo.mOptionNo!=0 }">
 			                                        	<span class="text-muted ml-2">${odVo.mOptionName}</span>
 			                                        </c:if>
@@ -156,12 +157,9 @@ function formatDate(date) {
 			                                        </c:if> x ${odVo.oDetailQty}</p>
 		                                    	</c:forEach>
 		                                    </div>
-		                                    <div class="text-muted m-0 ml-auto mr-3 small">주문결제금액<br>
-		                                        <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" type="currency" /></span>
-		                                    </div>
-		                                    <div class="text-right">
-		                                        <a href="" class="btn btn-primary px-3" onclick="detail(${vo.orderVo.ordersNo})" data-toggle="modal" data-target="#detailModal">주문 상세보기</a>
-		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-3">해당 점포 이동</a>
+		                                    <div class="col-md-4 col-4" style="text-align: end">
+		                                        <a href="" class="btn btn-primary px-2 my-1" onclick="detail(${vo.orderVo.ordersNo})" data-toggle="modal" data-target="#detailModal">주문 상세</a>
+		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-2 my-1">점포 방문</a>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -183,15 +181,15 @@ function formatDate(date) {
 	                    	<c:forEach var="vo" items="${ingList}">
 		                        <div class="pb-3">
 		                            <div class="p-3 rounded shadow-sm bg-white">
-		                                <div class="d-flex border-bottom pb-3">
-		                                    <div class="text-muted mr-3">
+		                                <div class="d-flex border-bottom pb-3 container">
+		                                    <div class="text-left col-md-2 col-2">
 		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>" class="img-fluid order_img rounded">
 		                                    </div>
-		                                    <div>
+		                                    <div class="col-md-8 col-6">
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
 		                                        <p class="mb-0">${vo.orderVo.storeAddress} ${vo.orderVo.storeAddressDetail }</p>
 		                                    </div>
-		                                    <div class="ml-auto">
+		                                    <div class="ml-3 col-md-2 col-4" style="text-align: center;">
 		                                    	<c:if test="${vo.orderVo.oStatusNo==1}">
 			                                        <p class="bg-warning text-white py-1 px-2 rounded small mb-1 text-center">주문요청</p>
 		                                    	</c:if>
@@ -202,26 +200,24 @@ function formatDate(date) {
 			                                        <p class="bg-light text-dark py-1 px-2 rounded small mb-1 text-center">배달중</p>
 		                                    	</c:if>
 		                                        <p class="small font-weight-bold text-center"><i class="feather-clock"></i> <fmt:formatDate value="${vo.orderVo.ordersPayEndDate}" pattern="yyyy-MM-dd"/></p>
+		                                        <p class="text-muted small">Total : <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" pattern="#,###원" /></span></p>
 		                                    </div>
 		                                </div>
-		                                <div class="d-flex pt-3">
-		                                    <div class="small">
+		                                <div class="d-flex pt-3 container">
+		                                    <div class="small col-md-8 col-8">
 		                                        <c:forEach var="odVo" items="${vo.orderDetailList}">
-			                                        <p class="text- font-weight-bold mb-0">${odVo.menuName} 
+			                                        <p class="font-weight-bold mb-0">${odVo.menuName} 
 			                                        <c:if test="${odVo.mOptionNo!=0 }">
 			                                        	<span class="text-muted ml-2">${odVo.mOptionName}</span>
 			                                        </c:if>
 			                                        <c:if test="${odVo.mOptionNo==0 }">
-			                                        	<span class="text-muted ml-2">기본 (선택 없음)</span>
+			                                        	<span class="text-muted ml-2">기본(선택 없음)</span>
 			                                        </c:if> x ${odVo.oDetailQty}</p>
 		                                    	</c:forEach>
 		                                    </div>
-		                                    <div class="text-muted m-0 ml-auto mr-3 small">주문결제금액<br>
-		                                        <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" type="currency" /></span>
-		                                    </div>
-		                                    <div class="text-right">
-		                                        <a href="" class="btn btn-primary px-3" onclick="detail(${vo.orderVo.ordersNo})" data-toggle="modal" data-target="#detailModal">주문 상세보기</a>
-		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-3">해당 점포 이동</a>
+		                                    <div class="col-md-4 col-4" style="text-align: end">
+		                                        <a href="" class="btn btn-primary px-2 my-1" onclick="detail(${vo.orderVo.ordersNo})" data-toggle="modal" data-target="#detailModal">주문 상세</a>
+		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-2 my-1">점포 방문</a>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -243,36 +239,34 @@ function formatDate(date) {
 	                    	<c:forEach var="vo" items="${ccList}">
 		                        <div class="pb-3">
 		                            <div class="p-3 rounded shadow-sm bg-white">
-		                                <div class="d-flex border-bottom pb-3">
-		                                    <div class="text-muted mr-3">
+		                                <div class="d-flex border-bottom pb-3 container">
+		                                    <div class="text-left col-md-2 col-2">
 		                                        <img alt="#" src="<c:url value='/resources/imgs/StoresImages/${vo.orderVo.storeLogo}'/>"  class="img-fluid order_img rounded">
 		                                    </div>
-		                                    <div>
+		                                    <div class="col-md-8 col-6">
 		                                        <p class="mb-0 font-weight-bold">${vo.orderVo.storeName}</p>
 		                                        <p class="mb-0">${vo.orderVo.storeAddress} ${vo.orderVo.storeAddressDetail }</p>
 		                                    </div>
-		                                    <div class="ml-auto">
+		                                    <div class="ml-3 col-md-2 col-4" style="text-align:center">
 		                                        <p class="bg-danger text-white py-1 px-2 rounded small mb-1 text-center">주문취소</p>
 		                                        <p class="small font-weight-bold text-center"><i class="feather-clock"></i> <fmt:formatDate value="${vo.orderVo.ordersPayEndDate}" pattern="yyyy-MM-dd"/></p>
+		                                    	<p class="text-muted small">Total : <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" pattern="#,###원" /></span></p>
 		                                    </div>
 		                                </div>
-		                                <div class="d-flex pt-3">
-		                                    <div class="small">
+		                                <div class="d-flex pt-3 container">
+		                                    <div class="small col-md-8 col-8">
 		                                        <c:forEach var="odVo" items="${vo.orderDetailList}">
-			                                        <p class="text- font-weight-bold mb-0">${odVo.menuName} 
+			                                        <p class="font-weight-bold mb-0">${odVo.menuName} 
 			                                        <c:if test="${odVo.mOptionNo!=0 }">
 			                                        	<span class="text-muted ml-2">${odVo.mOptionName}</span>
 			                                        </c:if>
 			                                        <c:if test="${odVo.mOptionNo==0 }">
-			                                        	<span class="text-muted ml-2">기본 (선택 없음)</span>
+			                                        	<span class="text-muted ml-2">기본(선택 없음)</span>
 			                                        </c:if> x ${odVo.oDetailQty}</p>
 		                                    	</c:forEach>
 		                                    </div>
-		                                    <div class="text-muted m-0 ml-auto mr-3 small">주문결제금액<br>
-		                                        <span class="text-dark font-weight-bold"><fmt:formatNumber value="${vo.orderVo.ordersPrice}" type="currency" /></span>
-		                                    </div>
-		                                    <div class="text-right">
-		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-3">해당 점포 이동</a>
+		                                    <div class="col-md-4 col-4" style="text-align: end">
+		                                        <a href="<c:url value='/member/store/storeDetail.do?storeNo=${vo.orderVo.storeNo}'/>" class="btn btn-outline-primary px-3">점포 이동</a>
 		                                    </div>
 		                                </div>
 		                            </div>

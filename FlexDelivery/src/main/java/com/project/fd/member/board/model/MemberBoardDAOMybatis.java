@@ -31,6 +31,10 @@ public class MemberBoardDAOMybatis implements MemberBoardDAO{
 	public MemberBoardVO boardDetail(int boardNo) {
 		return sqlSession.selectOne(namespace+"boardDetail",boardNo);
 	}
+	@Override
+	public List<MemberBoardVO> boardMain() {
+		return sqlSession.selectList(namespace+"boardMain");
+	}
 	
 	
 }

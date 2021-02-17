@@ -76,7 +76,7 @@
 		                 </span>
 		                </p>
 	               		<p class="text-gray mb-2">
-	                    <span class="float-left text-black-50"><fmt:formatNumber value="${vo.storeMinPrice}" type="currency"/>부터 배달가능</span></p>
+	                    <span class="float-left text-black-50"><fmt:formatNumber value="${vo.storeMinPrice}" pattern="#,###원"/>부터 배달가능</span></p>
 	                </div>
 	                <div class="list-card-badge">
 	                	<ul class="rating-stars list-unstyled float-right">

@@ -33,4 +33,9 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	public MemberBoardVO boardDetail(int boardNo) {
 		return boardDao.boardDetail(boardNo);
 	}
+
+	@Override
+	public List<MemberBoardVO> boardMain() {
+		return boardDao.boardMain();
+	}
 }
