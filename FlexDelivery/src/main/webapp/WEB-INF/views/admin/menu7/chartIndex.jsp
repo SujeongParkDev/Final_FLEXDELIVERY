@@ -237,8 +237,7 @@
 			  //times('curMonthOrder');
 			  rotate('giftProduct');
 			  
-			  
-				//alert("ready!");
+			  //alert("ready!");
   	});
 		  	
 		  function chartBar(id){
@@ -562,7 +561,7 @@
 					 	res="${map['COUNTORDERS']}";
 				  		//labelVal.push(${vo.SUMPRICE});
 				  	  </c:forEach>
-					 result=res+" 건";
+					 result="총 "+res+" 건";
 				  } else if (no==72){
 					  centerTitle="${dateYear}년 ${dateMonth}월 ${dateDay}일";
 					  <c:forEach var="map" items="${list7 }">
@@ -622,7 +621,7 @@
 					
 					
 					
-			}//area
+			}/* area */
 		  
 		  </script>
 			

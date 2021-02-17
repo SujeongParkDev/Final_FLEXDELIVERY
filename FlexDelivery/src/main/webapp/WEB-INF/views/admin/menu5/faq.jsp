@@ -11,6 +11,9 @@
 		$('#message2').hide();
 		$('#messageOk').hide();
 		$('#radioOk').hide();
+		
+		$('#modalEditBt1').hide();
+		$('#modalDeleteBt1').hide();
 	   
 		$('#faqCategoryWrite').on('hidden.bs.modal', function (e) {
 		  $(this).find('form')[0].reset()
@@ -20,6 +23,10 @@
 		  $('#messageOk').html("N");
 		  $('#radioOk').html("N");
 
+		});
+		
+		$('#faqWrite2').on('hidden.bs.modal', function (e){
+			$(this).find('form')[0].reset()
 		});
 		
 		$('#fCategoryName').on('keyup', function(){
@@ -53,8 +60,6 @@
 			writeRadio();
 		}); */
 		
-
-		
 		
 		$('#frmTr').hide();
 		$('#frmTr2').hide();
@@ -75,10 +80,14 @@
 		
 		if (inModalOpt==0){
 			$('#frmTr').hide();			
-			$('#frmTr2').hide();			
+			$('#frmTr2').hide();	
+			$('#modalEditBt1').hide();
+			$('#modalDeleteBt1').hide();
 		} else {
 			$('#frmTr').show();	
 			$('#frmTr2').show();	
+			$('#modalEditBt1').show();
+			$('#modalDeleteBt1').show();
 			
 			//var result=result.find('option:selected').text();
 			var result=$('#inModalOpt').find('option:selected').text();
@@ -106,11 +115,23 @@
 		}
 	}
 
+	function beforeEdit(){
+		var name=$('#afterCategoryName').val();
+		if (name==''){
+			alert("변경 후 카테고리 이름을 입력해주세요!");
+			return false;
+		}
+	}
 	
-	function beforeSubmit(){
+	function beforeDelete(){
 		var delNo=$('#inModalOpt').find('option:selected').val();
 		//alert(delNo);
-		location.href = "<c:url value='/admin/menu5/faq/category/delete.do?no="+ delNo +"' />";
+		var bool=confirm("카테고리를 삭제하시겠습니까?");
+		if (bool){
+			location.href = "<c:url value='/admin/menu5/faq/category/delete.do?no="+ delNo +"' />";
+		} else {
+			return false;
+		}
 	}
 	
 	function onMouseOver(e){
@@ -164,8 +185,7 @@
 				    str+="id='btFaqDelete"+fvo.faqNo+"' data-toggle='modal' data-backdrop='false' data-target='#modalFaqDelete"+fvo.faqNo+"' >삭제</button>";
 				    str+="</div>"; 
 				    
-				    str+="</li>"; 
-				    
+				    str+="</li>"; 			    
 				
 					});
 				
@@ -427,6 +447,55 @@
 		}
 		
 	}
+	
+	function faqWrite(){
+		var fCategory=$('#selectFCategory1').val();
+		var faqQ=$('#writeFaqQ').val();
+		var faqA=$('#writeFaqA').val();
+		
+		//alert("fCategory="+fCategory+", faqQ="+faqQ+", faqA="+faqA);
+		
+		if (fCategory=='0'){
+			alert("대분류 카테고리를 선택해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+		if (faqQ==''){
+			alert("질문을 입력해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+		if (faqA==''){
+			alert("답변을 입력해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+		
+	}
+	
+	function faqEdit(){
+		var fCategory=$('#selectFCategory2').val();
+		var faqQ=$('#editFaqQ').val();
+		var faqA=$('#editFaqA').val();
+		
+		//alert("fCategory="+fCategory+", faqQ="+faqQ+", faqA="+faqA);
+		
+		if (fCategory=='0'){
+			alert("대분류 카테고리를 선택해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+		if (faqQ==''){
+			alert("질문을 입력해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+		if (faqA==''){
+			alert("답변을 입력해주세요!");
+			//event.preventDeafult();
+			return false;
+		}
+	}
 
 </script>
 
@@ -473,8 +542,8 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
 								<form name="frmFAQCategoryWrite" id="frmFAQCategoryWrite" method="post" action="<c:url value='/admin/menu5/faq/category/write.do' />">
-                                	<div class="modal-header">
-	                                    <h4 class="modal-title" id="faqWrite">자주 하는 질문 - 카테고리 등록</h4>
+                                	<div class="modal-header" style="background-color: black;">
+	                                    <h4 class="modal-title" style="color: white;" id="faqWrite">자주 하는 질문 - 카테고리 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -515,7 +584,7 @@
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite"
+	                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite"
  	                                    	 id="modalWrite" onclick="readyWriteSubmit()">
 	                                     <!-- id="modalWrite" onclick="readySubmit()"> -->
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
@@ -534,8 +603,8 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                            <div class="modal-content">
 							<form name="frmFAQCategorEditDelete" method="post" action="<c:url value='/admin/menu5/faq/category/edit.do' />">
-                               	<div class="modal-header">
-                                    <h4 class="modal-title" id="faqEditAndDel">자주 하는 질문 - 카테고리 수정 / 삭제</h4>
+                               	<div class="modal-header" style="background-color: black;">
+                                    <h4 class="modal-title" style="color: white;" id="faqEditAndDel">자주 하는 질문 - 카테고리 수정 / 삭제</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                        <i data-feather="x"></i>
                                     </button>
@@ -580,13 +649,13 @@
                                        <i class="bx bx-x d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">닫기</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEditDelete1"
-                                     id="modalEditBt1" onclick="form.submit()">
+                                    <button type="button" class="btn btn-dark ml-1" name="modalEditDelete1"
+                                     id="modalEditBt1" onclick="beforeEdit()">
                                        <i class="bx bx-check d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">수정</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEditDelete2"
-                                     id="modalDeleteBt1" onclick="beforeSubmit()">
+                                    <button type="button" class="btn btn-dark ml-1" name="modalEditDelete2"
+                                     id="modalDeleteBt1" onclick="beforeDelete()">
                                        <i class="bx bx-check d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">삭제</span>
                                     </button>
@@ -604,8 +673,8 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                            <div class="modal-content">
 								<form name="frmFAQWrite" method="post" action="<c:url value='/admin/menu5/faq/write.do' />">
-                                	<div class="modal-header">
-	                                    <h4 class="modal-title">자주 하는 질문 - 질문과 답변 등록</h4>
+                                	<div class="modal-header" style="background-color: black;">
+	                                    <h4 class="modal-title" style="color: white;">자주 하는 질문 - 질문과 답변 등록</h4>
 	                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                                       <i data-feather="x"></i>
 	                                    </button>
@@ -620,7 +689,7 @@
                                                    	  	<td>카테고리 종류</td>
 	                                                      <td colspan="2"  style="text-align: center;">
 	                                                      	<input type="hidden" name="authorityNo" value="6">
-	                                                      	<select name="fCategoryNo" id="selectFCategory">
+	                                                      	<select name="fCategoryNo" id="selectFCategory1">
                                                       			<option value="0">선택하세요</option>
 	                                                      		<c:forEach var="cVo2" items="${ctList }">
 	                                                      			<option value="${cVo2.fCategoryNo }">${cVo2.fCategoryName }</option>
@@ -631,13 +700,13 @@
                                                    	  <tr>
                                                    	  	<td>질문</td>
 	                                                      <td colspan="2"  style="text-align: center;">
-	                                                      	<textarea rows="3" cols="70" name="faqQ"></textarea>
+	                                                      	<textarea rows="3" cols="70" name="faqQ" id="writeFaqQ"></textarea>
 	                                                      </td>			                                                   	  	
 													  </tr>
 													  <tr>
 													  	<td>답변</td>
 													  	<td colspan="2">
-													  		<textarea rows="10" cols="70" name="faqA"></textarea>
+													  		<textarea rows="10" cols="70" name="faqA" id="writeFaqA"></textarea>
 													  	</td>
 													  </tr>
 	                                                </tbody>
@@ -651,8 +720,8 @@
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite2"
-	                                     id="modalWrite2" onclick="form.submit()">
+	                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite2"
+	                                     id="modalWrite2" onclick="faqWrite()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>
@@ -677,15 +746,16 @@
 						<!-- 카테고리 클릭 시 list 개수 따라 다른 출력 -->
 			   
 					</div>
-						    <c:forEach var="vo" items="${list }" varStatus="status">
+					
+					    <c:forEach var="vo" items="${list }" varStatus="status">
                            <!-- FAQ 수정 start -->
 							<div class="modal fade text-left" id="modalFaqEdit${vo.faqNo }" tabindex="-1" 
 		                        role="dialog" aria-labelledby="FAQ 수정" aria-hidden="true">
 		                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 		                           <div class="modal-content">
 										<form name="frmFaqEdit" method="post" action="<c:url value='/admin/menu5/faq/edit.do' />">
-		                                	<div class="modal-header">
-			                                    <h4 class="modal-title">자주 하는 질문 - 질문과 답변 수정</h4>
+		                                	<div class="modal-header" style="background-color: black;">
+			                                    <h4 class="modal-title" style="color: white;">자주 하는 질문 - 질문과 답변 수정</h4>
 			                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                                       <i data-feather="x"></i>
 			                                    </button>
@@ -700,7 +770,7 @@
 		                                                   	  	<input type="hidden" name="faqNo" value=${vo.faqNo }>
 		                                                   	  	<td>카테고리 종류</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	<select name="fCategoryNo" id="selectFCategory">
+			                                                      	<select name="fCategoryNo" id="selectFCategory2">
 		                                                      			<option value="0">선택하세요</option>
 			                                                      		<c:forEach var="cVo2" items="${ctList }">
 			                                                      			<option value="${cVo2.fCategoryNo }">${cVo2.fCategoryName }</option>
@@ -711,13 +781,13 @@
 		                                                   	  <tr>
 		                                                   	  	<td>질문</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	<textarea rows="3" cols="70" name="faqQ">${vo.faqQ }</textarea>
+			                                                      	<textarea rows="3" cols="70" name="faqQ" id="editFaqQ">${vo.faqQ }</textarea>
 			                                                      </td>			                                                   	  	
 															  </tr>
 															  <tr>
 															  	<td>답변</td>
 															  	<td colspan="2">
-															  		<textarea rows="10" cols="70" name="faqA">${vo.faqA }</textarea>
+															  		<textarea rows="10" cols="70" name="faqA" id="editFaqA">${vo.faqA }</textarea>
 															  	</td>
 															  </tr>
 			                                                </tbody>
@@ -731,8 +801,8 @@
 			                                       <i class="bx bx-x d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
-			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit"
-			                                     id="btModalEdit" onclick="form.submit()">
+			                                    <button type="button" class="btn btn-dark ml-1" name="modalEdit"
+			                                     id="btModalEdit" onclick="faqEdit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">등록</span>
 			                                    </button>
@@ -776,6 +846,7 @@
 	                              </div>
 	                           </div> <!-- 삭제 모달 end-->
 							</c:forEach>
+							
 				</div><!-- card-content -->
 				
 			</div><!-- card -->

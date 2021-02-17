@@ -172,7 +172,7 @@ function writeFunc(){
 				<div class="card-content">			
 					<table class="table table-hover mb-0" style="text-align: center;">
 						<thead>
-							<tr>
+							<tr style="background-color: black; color:white;">
 								<th>번호</th>
 								<th colspan="3">이름</th>
 								<th>등록 메뉴 수</th>
