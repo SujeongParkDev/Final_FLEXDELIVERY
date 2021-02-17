@@ -55,14 +55,14 @@
 							</div>
 								</form>
 							<br>
-							<div class="AllDiv">
 								<c:if test="${empty allList }">
 									<div class="row">
 										<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
 									</div>
 								</c:if>
 								<c:if test="${!empty allList }">
-									<c:forEach var="map" items="${allList }">
+									<c:set var="k" value="0"/>
+									<c:forEach var="map" items="${allList }" >
 										<hr>
 										<br>
 										<div class="review-list">
@@ -105,6 +105,7 @@
 													</div>
 											 	 </div>
 											</div>
+											</div>
 										<br>
 										<br>
 										<div class="table-responsive">
@@ -131,24 +132,25 @@
 																	<fmt:formatDate value="${map['R_COMMENT_REGDATE'] }" pattern="yyyy-MM-dd" />
 																</div>
 																<div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
-																<div class="result" id="resultDiv"></div>
+																<div class="result" id="resultDiv"name="reuslt"></div>
 															</div>
 															<div class="row">
 																<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
 																<div class="text-right" style="margin-bottom: 10px;">
-																	<div class="button-group button-group-row align-right ">
+																	<div class="button-group button-group-row align-right btgroup">
 																		<br> <br>
 																		<button type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})" style="background-color: #0d6efd; color: white;">삭제 </button>
 																		<button type="submit" class="button small danger inGroup" onclick="Edit_form(${map['REVIEW_NO']})" style="background-color: r #0d6efd; color: white;">수정 </button>
 																	</div>
 																</div>
 															</div>
+															</div>
 													</form>
 													</div>
+											</c:if>
 												</div>
 												<div class="col-md-2 col-sm-12"></div>
 												<br>
-											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
 											<c:if test="${empty map['R_COMMENT_CONTENT']}">
 												<div class="card-body">
@@ -163,11 +165,11 @@
 														</div>
 													</form>
 												</div>
+												<c:set var="k" value="${k+1 }"/>
 											</c:if>
 											<br> <br>
 									</c:forEach>
 								</c:if>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -216,14 +218,13 @@
 				dataType:"json",
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(res){
-					//alert(res);
-					var output="<textarea class='form-control form-control-lg content' name='rCommentContent'>";
+					var output="<textarea class='col-md-7 text-left content' name='rCommentContent'>";
 						output+=res.rCommentContent+" </textarea><br>";
-						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
+						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
 					
-						$('#resultDiv').append(output);
-							$('#listDiv').hide();
-					},
+							$('.result').append(output);
+							
+				},
 					error:function(xhr, status, error){
 						alert("error! : " + error);
 					}				

@@ -51,7 +51,7 @@
 	</select>
 
 	<select id="memberInfoView" parameterType="int" resultType="map">
-		select * from LSJreviewidView where store_no=#{storeNo}
+		select * from LSJreviewidView where store_no=#{storeNo} 
 	</select>
 
 	<delete id="deleteComm" parameterType="int">
@@ -75,7 +75,7 @@
 	  	  rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
 	   	 from review r left join reviewcomment rc
 	     on r.REVIEW_NO = rc.REVIEW_NO
-	     where r.store_no=12
+	     where r.store_no=#{storeNo} 
 	     and R_COMMENT_CONTENT is null
       	 and  REVIEW_REPORT='N'
      	 order by r.review_no desc
@@ -85,7 +85,9 @@
 		 select count(*) from review
 	    r left join reviewcomment c
 	    on r.review_no=c.review_no
-	    where r.store_no=12 and c.r_comment_content is null
+	    where r.store_no=#{storeNo} 
+	    and c.r_comment_content is null
+	    and r.review_report='N'
 	</select>
 	
 	<!-- 차단  -->
@@ -95,7 +97,7 @@
 	    rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
 	    from review r left join reviewcomment rc
 	    on r.REVIEW_NO = rc.REVIEW_NO
-	    where r.store_no=12
+	    where r.store_no=#{storeNo}
 	    and R_COMMENT_CONTENT is null
       	 and REVIEW_REPORT='Y'
      	 order by r.review_no desc
@@ -103,7 +105,7 @@
 
 	<select id="blockTotalRecord" parameterType="int" resultType="int">
 		select count(*) from review
-         where store_no=12 and REVIEW_REPORT='Y'
+         where store_no=#{storeNo}  and REVIEW_REPORT='Y'
 	</select>
 	
 	<select id="selectAll" parameterType="int" resultType="map">

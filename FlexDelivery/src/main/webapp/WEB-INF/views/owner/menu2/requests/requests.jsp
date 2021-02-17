@@ -251,7 +251,7 @@ $(function(){
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(res){
 					//alert(res);
-					$('#register').show();
+					$('.store').replaceWith('');
 					},
 					error:function(xhr, status, error){
 						alert("error! : " + error);
