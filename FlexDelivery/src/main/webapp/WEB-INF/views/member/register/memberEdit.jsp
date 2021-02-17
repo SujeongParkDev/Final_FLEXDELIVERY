@@ -29,7 +29,25 @@
 					 alert('3자리 숫자 이상 입력하세요.');
 					$('#memberHp1').focus();
 					event.preventDefault();
+			
+			}else if ($('#memberEmail1').val().length<1 ||
+					 $('#memberEmail2').val().length<1) {
+					 alert('이메일을 입력해주세요.');
+					$('#memberEmail1').focus();
+					event.preventDefault();
+			
+			}else if ($('#memberAddress').val().length<1) {
+				 	alert('주소를 입력해주세요.');
+					$('#memberAddress').focus();
+					event.preventDefault();
+					
+			}else if ($('#memberAddressDetail').val().length<1) {
+			 	alert('상세주소를 입력해주세요.');
+				$('#memberAddressDetail').focus();
+				event.preventDefault();
+				
 			}
+			
 		});
 	});
 </script>
@@ -96,11 +114,10 @@
 							<div class="col-md-5" >
 								<input type="text"  placeholder="이메일 입력" class="form-control" id="memberEmail1" name="memberEmail1" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberEmail1 }">
 							</div>
-							<p>@</p>
+							<p style="margin: 0rem;">@</p>
 							<div class="col-md-5">
 								<input type="text" placeholder="이메일 입력" class="form-control" id="memberEmail2" name="memberEmail2" aria-describedby="numberHelp" style="background-color: #fafaf9;" value="${vo.memberEmail2 }">
 							</div>
-							<input type="Button" value="이메일 확인" id="btnEmail" title="새창열림">
 						</div>
 						<br>
 						<div class="row">
@@ -136,7 +153,6 @@
                     <a href="<c:url value='/member/index.do' />">
                         <p class="text-center m-0">메인 화면으로</p>
                     </a>
-                    <input type ="text" name="chkId" id="chkId">
                 </div>
             </div>
         </div>

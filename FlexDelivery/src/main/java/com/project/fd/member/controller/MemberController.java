@@ -191,6 +191,8 @@ public class MemberController {
 		}else {
 			int lono=memberService.memloNo(loName);
 			vo.setLocationNo(lono);
+			String hashPwd=BCrypt.hashpw(vo.getMemberPwd(), BCrypt.gensalt());
+			vo.setMemberPwd(hashPwd);
 			int cnt =memberService.updateMember(vo);
 			logger.info("회원수정 결과, cnt={}", cnt);
 			if(cnt>0) {
