@@ -82,6 +82,14 @@
 												<div class="col-md-7 text-left">${map['REVIEW_CONTENT']}</div>
 												<div class="col-md-1"></div>
 											</div>
+											<div class="single-blog-thumbnail">
+												<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
+													<img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
+												</c:if>
+												<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)!='http' and (!empty map['REVIEW_FILENAME']) }">
+													<img src="<c:url value='/resources/imgs/HoneytipImages/${map["REVIEW_FILENAME"]}'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+												</c:if>
+											</div>
 										</div>
 										<div class="text-right">
 											<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>

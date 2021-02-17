@@ -27,7 +27,7 @@
       });
 
       function drawStuff(map) {
-    	  alert(map);
+    	 // alert(map);
     	 var result = res['map']
         var data = new google.visualization.arrayToDataTable([
           ['countNum', 'many'],
