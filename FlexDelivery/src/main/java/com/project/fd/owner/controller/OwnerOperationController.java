@@ -137,6 +137,7 @@ public class OwnerOperationController {
 	}
 	
 	
+	
 	@ResponseBody
 	@RequestMapping("/selectMinPrice.do")
 	public int selectMinPrice( HttpSession session, Model model) {
@@ -157,4 +158,31 @@ public class OwnerOperationController {
 			return minPrice;
 		
 	}
+	
+	
+	
+
+	@ResponseBody
+	@RequestMapping("/updateMinPrice.do")
+	public int updateMinPrice(@RequestParam(defaultValue = "0") int storeNo,
+			@RequestParam(defaultValue = "0") int ownerNo,
+			@RequestParam(defaultValue = "0") int storeMinPrice) {
+			logger.info("시간 업데이트  ajax ,storeMinPrice={}", storeMinPrice);
+		
+			
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("storeMinPrice", storeMinPrice);
+			map.put("storeNo", storeNo);
+			
+			int cnt = ownerStoreService.updateMinPrice(map);
+	
+			
+			logger.info("업데이트 결과 res={}",cnt);
+			
+			
+			return cnt;
+		
+	}
+	
 }

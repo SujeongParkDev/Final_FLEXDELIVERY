@@ -75,7 +75,7 @@ $(function(){
 		$('.deliveryTimeOkModal').click(function(){
 			
 			var deliTime = $('input[class=deliveryTimeInput]').val();
-			if(deliTime==0){
+			if(deliTime==1){
 				$('#warningDeliveryTime').html('시간을 입력해 주세요');
 				event.prventDefault();
 				return false;
@@ -337,8 +337,10 @@ function goDetail(ordersNo,ordersDiscount){
 	                        <div class="modal-body deliveryTimeText">
 	                        	<div class="row">
 	                        		<div class="col-12 col-md-1"></div>
-	                        			<input class="deliveryTimeInput" type="hidden" value="0">
+	                        			<input class="deliveryTimeInput" type="hidden" value="1">
 	                        			<div class="col-12 col-md-10 text-center">
+	                        				<button class="btn btn-outer-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
+	                        				<br>
 		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="20">20분</button>
 		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="30">30분</button>
 		                        			<button class="btn btn-primary p-0 m-1 btdvtime" style="width:70px; height:40px;" value="40">40분</button>

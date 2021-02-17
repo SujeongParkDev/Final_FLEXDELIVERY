@@ -89,8 +89,8 @@ public class OwnerController {
 	
 	//회원 중복확인
 	@RequestMapping("/register/checkId.do")
-	public String checkId(@RequestParam String ownerId,
-			@RequestParam String type,
+	public String checkId(@RequestParam(required = false) String ownerId,
+			@RequestParam(defaultValue = "0") String type,
 			Model model) {
 		//1
 		logger.info("아이디 중복확인, 파라미터 ownerId={}, type={}",ownerId, type);

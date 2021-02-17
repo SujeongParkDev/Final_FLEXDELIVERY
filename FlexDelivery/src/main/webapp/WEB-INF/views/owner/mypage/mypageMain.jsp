@@ -119,6 +119,8 @@ $(function(){
 							if(vo.aAgreeNo==3 || vo.aAgreeNo==1){ 
 								if(vo.aAgreeNo==1){
 									str+="<p>현재 사업자 등록 <b>[승인 대기]</b> 중입니다</p>";
+								}else if(${result}==6){
+									str+="<p>현재 점포 탈퇴 <b>[승인 대기]</b> 중입니다</p>";
 								}
 								
 								str+="<table style='width:60%; margin-left:20%;'>";

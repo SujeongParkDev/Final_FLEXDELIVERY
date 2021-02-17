@@ -123,5 +123,7 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 		return ownerStoresDao.dupckregi(ownerNo);
 	}
 	
-
+	public int updateMinPrice(Map<String,Object> map) { //지안 20210217 추가
+		return ownerStoresDao.updateMinPrice(map);
+	}
 }

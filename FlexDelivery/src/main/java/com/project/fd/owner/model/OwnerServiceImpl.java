@@ -1,5 +1,8 @@
 package com.project.fd.owner.model;
 
+import java.util.Map;
+
+import org.apache.commons.collections4.map.HashedMap;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,12 +58,59 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public int checkAuthority(String userid) {
 		
-		 OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid);
+		/* OwnerAuthorityVO vo = ownerDao.selectOwnerAuthorityAll(userid); */
+		 Map<String, Object> map = new HashedMap<String, Object>();
+		 map.put("userid", userid);
+		 map.put("rAgreeNo",1);
+		 map.put("sAgreeNo", 0);
+		 
+		 int cnt1 = ownerDao.selectOwnerAuthorityCount(map); // rAgreeNo = 승인 중 
+		
+		 
+		 map.remove("rAgreeNo");
+		 map.put("rAgreeNo",3);
+		 int cnt2= ownerDao.selectOwnerAuthorityCount(map); // rAgreeNo= 승인완료
+
+		 
+		 map.remove("sAgreeNo");
+		 map.put("sAgreeNo",1);
+		 int cnt3=ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo = 승인 중
+	
+		 
+		 map.remove("sAgreeNo");
+		 map.put("sAgreeNo", 3);
+		 int cnt4 = ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo=승인완료
+		 
+		 
+		 map.remove("sAgreeNo");
+		 map.put("sAgreeNo", 8);
+		 int cnt5 = ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo=탈퇴신청
+		 
+	
+		 
+			/*
+			 * System.out.println("vo.getRagreeno()"+vo.getRagreeno());
+			 * System.out.println("vo"+vo);
+			 */
+		 
+		 System.out.println("cnt1="+cnt1+",cnt2="+cnt2+",cnt3="+cnt3+",cnt4="+cnt4+",cnt5="+cnt5);
+		 
 		 
 		 int result = NO_LICENSE;
-		 System.out.println("vo.getRagreeno()"+vo.getRagreeno());
-		 System.out.println("vo"+vo);
+		 if(cnt1==1) {
+			 result=LICENSE_STAY;
+		 }else if(cnt2==1) {
+			 result=NO_STORE;
+		 }else if(cnt3==1) {
+			 result=STORE_STAY;
+		 }else if(cnt4 ==1) {
+			 result=HAVE_ALL;
+		 }else if(cnt5==1) {
+			 result=WITHDRAW_STAY;
+		 }
 		 
+		 
+		/* 
 		 if((vo.getOwnerId()!=null && !vo.getOwnerId().isEmpty()) 
 				 	&& (vo.getRagreeno()<3 || vo.getRagreeno()==4)) {
 			 if(vo.getRagreeno()==1 && vo.getoRegisterNo()!=0) {
@@ -83,7 +133,7 @@ public class OwnerServiceImpl implements OwnerService {
 			 	result=HAVE_ALL;
 		 }
 		 System.out.println("result="+result);
-		 
+		 */
 		return result;
 	}
 	
@@ -102,5 +152,9 @@ public class OwnerServiceImpl implements OwnerService {
 	
 	public int updateOwner(OwnerVO vo) {
 		return ownerDao.updateOwner(vo);
+	}
+	
+	public int selectOwnerAuthorityCount(Map<String, Object> map) {
+		return ownerDao.selectOwnerAuthorityCount(map);
 	}
 }
