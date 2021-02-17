@@ -75,7 +75,13 @@
     	set STORE_CONTENT= #{storeContent}
     	where store_no = #{storeNo}
     </update>
-           
+    
+    <update id="updatelogo" parameterType="ownerStoresVo">
+    	update stores
+    	set STORE_LOGO= #{storeLogo}
+    	where owner_no = #{ownerNo}
+    </update>
+    
     <select id="selectOperationViewAll" parameterType="int" resultType="map">
     	select * from jaStoresOperationView
     	where owner_no=#{ownerNo}

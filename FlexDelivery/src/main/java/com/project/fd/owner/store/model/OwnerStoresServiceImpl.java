@@ -101,7 +101,10 @@ public class OwnerStoresServiceImpl implements OwnerStoresService{
 	public int updateContent(Map<String, Object> map) {
 		return ownerStoresDao.updateContent(map);
 	}
-
+	
+	public int updateLogo(OwnerStoresVO ownerStoresVO) {
+		return ownerStoresDao.updateLogo(ownerStoresVO);
+	}
 
 	public List<Map<String, Object>> selectsStatusAll(){
 		return ownerStoresDao.selectsStatusAll();

@@ -57,7 +57,6 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 		map.put("storeContent", storeContent);
 		
 		int cnt = ownerStoreService.updateContent(map);
-			
 		logger.info("업데이트 결과 cnt={}", cnt);
 				
 		String msg="글 수정 실패", url="/owner/menu2/basic/basic.do";

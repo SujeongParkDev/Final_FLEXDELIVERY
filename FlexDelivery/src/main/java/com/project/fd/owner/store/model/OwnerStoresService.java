@@ -32,6 +32,7 @@ public interface OwnerStoresService {
 	  public int updateTime(Map<String,Object> map);
 	  public OwnerStoresVO selectBasic(int ownerNo);
 	  public int updateContent(Map<String, Object> map);
+	  public int updateLogo(OwnerStoresVO ownerStoresVO);
 
 	public List<Map<String, Object>> selectsStatusAll();
 

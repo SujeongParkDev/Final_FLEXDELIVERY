@@ -84,8 +84,7 @@
 								<h5 class="form-label">로고</h5>
 								<div class="card-columns ">
 									<div class="mr-2 mb-2 shop-logo">
-										<img
-											src="https://img-cdn.baemin.com/cache/shop/logo/2020/7/6/10903606_logoc_13195815.jpg">
+										<img alt="" src="<c:url value='/resources/imgs/ReviewImages/${vo.storeLogo}'/>">
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
@@ -196,7 +195,9 @@
 <div>
 <div class="modal-wrapper" style="display: none;">
 	<div class="Dialog     on  " >
-		<form novalidate="" class="dialog on lg " name="logoForm" action="<c:url value='/owner/menu2/basic/basic.do'/>" method="post" enctype="multipart/form-data">
+		<form novalidate="" class="dialog on lg " name="logoForm" 
+		action="<c:url value='/owner/menu2/basic/basic.do'/>" 
+		method="post" enctype="multipart/form-data">
 			<div class="header">
 				<div class="header-close">
 					<button id="close" type="button" >나가기</button>
@@ -216,13 +217,13 @@
 							<!-- <input type="file" id="upfile" multiple="" accept=".jpg, .jpeg, .png, .pdf, .zip" 
 							style="position: absolute; left: -1000px; visibility: hidden;"> -->
 								<span>
-								<label for="upfile">
+								<button type="button" class="button uploader-btn  small text">
+								<label for="upfile" style="cursor: pointer;" color= "#1a7cff">
+									<i class="icon icon-plus"></i>
+									<div>이미지 </div></label></button>
 									<input type="file" id="upfile" name="upfile" class="btn text-right" 
  									accept=".gif, .jpg, .png" style="visibility: hidden;">
-									<button type="button" class="button uploader-btn  small text">
-									<i class="icon icon-plus"></i>
-									<div>이미지 </div>
-									</button></label></span></span>
+									</span></span>
 						</div>
 						<ul class="bullet-ul small muted">
                              <br><span style="margin-left:60px;"></span> 
