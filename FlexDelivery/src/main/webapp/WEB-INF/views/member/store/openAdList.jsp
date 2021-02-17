@@ -45,7 +45,7 @@
 	                   	${vo.storeName}
 	                   </span>
 	                    <c:if test="${vo.couponExist>0}">
-	                     	<span class="badge badge-danger sm float-right">coupon</span>
+	                     	<span class="badge badge-danger sm float-right">COUPON</span>
 	                     </c:if>
 	               		<%
 		                  	Date d = new Date();
@@ -54,7 +54,7 @@
 	                     <c:set var="newday" value="<%=d%>"/>
 	                     <fmt:parseDate var="openday" value="${vo.storeRegdate}" type="DATE" pattern="yyyy-MM-dd"/>
 						 <c:if test="${openday<newday}">
-			                 <span class="badge badge-sm-warning float-right">new</span> 
+			                 <span class="badge badge-sm-warning float-right">NEW</span> 
 						 </c:if>
 		                </p>
 		                <p class="text-gray mb-1 small">${vo.storeAddress} ${vo.storeAddressDetail}</p>

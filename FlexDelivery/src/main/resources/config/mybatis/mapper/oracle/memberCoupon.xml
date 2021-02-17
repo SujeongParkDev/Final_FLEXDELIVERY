@@ -76,7 +76,7 @@
 		update eventCouponBox
 		set use_flag='Y'
 		where member_no=#{memberNo}
-		and e_C_Box_No=#{eCBoxNo}
+		and e_Coupon_No=#{eCouponNo}
 	</update>
 	
 	<select id="memberRegularCouponList" parameterType="int" resultType="memberRegularCouponBoxVo">

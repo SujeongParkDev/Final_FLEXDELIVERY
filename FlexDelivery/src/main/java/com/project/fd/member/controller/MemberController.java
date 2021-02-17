@@ -5,6 +5,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.mail.Session;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -64,7 +67,7 @@ public class MemberController {
 		String msg="회원가입 실패!", url="/member/register.do";
 		if(cnt>0) {
 			msg="회원가입되었습니다.";
-			url="/index.do";
+			url="/member/index.do";
 		}
 		
 		//3		
@@ -208,6 +211,35 @@ public class MemberController {
 	public boolean memberchk(@ModelAttribute MemberVO vo) {
 		logger.info("선물하기 회원이름={},회원 핸드폰={}",vo.getMemberName(),vo.getMemberHp3());
 		return memberService.giftChk(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/memberOut.do",method = RequestMethod.POST)
+	public int memberOut(@RequestParam String memberPwd,HttpSession session,HttpServletResponse response) {
+		logger.info("회원 탈퇴처리, memberNo={}",memberPwd);
+		String memberId=(String)session.getAttribute("memberId");
+		int cnt=memberService.loginChk(memberId, memberPwd);
+		if(cnt==MemberService.PWD_DISAGREE) {
+			return 2; // 비밀번호 불일치
+		}else if(cnt==MemberService.LOGIN_OK) {
+			cnt=memberService.memberOut(memberId);
+			if(cnt>0) {
+				session.removeAttribute("memberId");
+				session.removeAttribute("memberName");
+				session.removeAttribute("memberNo");
+				session.removeAttribute("authorityNo");
+				session.removeAttribute("locationNo");
+				
+				Cookie ck=new Cookie("ck_memberid",memberId);
+				ck.setMaxAge(0);
+				ck.setPath("/");
+				response.addCookie(ck);
+				return 1; //성공
+			}else {
+				return 4; //회원탈퇴 실패
+			}
+		}
+		return 3; //회원인증 실패
 	}
 	
 }

@@ -106,6 +106,11 @@ public class MemberServiceImpl implements MemberService{
 	public int selectMemNo(Map<String, Object> map) {
 		return memberDao.selectMemNo(map);
 	}
+
+	@Override
+	public int memberOut(String memberId) {
+		return memberDao.memberOut(memberId);
+	}
 	
 	
 }

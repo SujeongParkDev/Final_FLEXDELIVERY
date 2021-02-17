@@ -81,6 +81,11 @@ public class MemberDAOMybatis implements MemberDAO{
 	public int selectMemNo(Map<String, Object> map) {
 		return sqlSession.selectOne(namespace+"selectMemNo",map);
 	}
+
+	@Override
+	public int memberOut(String memberId) {
+		return sqlSession.update(namespace+"memberOut",memberId);
+	}
 	
 	
 

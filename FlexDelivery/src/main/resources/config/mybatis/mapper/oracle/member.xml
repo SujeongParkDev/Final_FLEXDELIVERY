@@ -78,4 +78,10 @@
 	<select id="selectMemNo" parameterType="map" resultType="int">
 		select member_no from member where member_name=#{memberName} and member_hp3=#{memberHp3}
 	</select>
+	
+	<update id="memberOut" parameterType="string">
+		update member
+		set member_outdate=sysdate
+		where member_id=#{memberId}	
+	</update>
 </mapper>
