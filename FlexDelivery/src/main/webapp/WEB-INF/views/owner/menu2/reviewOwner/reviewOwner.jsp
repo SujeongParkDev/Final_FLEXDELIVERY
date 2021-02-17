@@ -8,15 +8,7 @@
       border: 1px solid rgb(212,212,212);
       border-radius: 5px;
    }
-.frame-wrap {
-    display: flex;
-    flex: 1;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1128px;
-    min-width: 0;
-    padding: 40px 56px 0;
-}
+
 </style>
 <!-- 이미지 경로 맞으면 미답변 차단에 붙이기 !!  -->
 <div class="row mt-3">
@@ -24,7 +16,7 @@
    <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
       <div class="btn-group " role="group" aria-label="...">
          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-warning" id="btAll" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
+            <button type="button" class="btn " id="btAll" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
          </div>
          <div class="btn-group" role="group">
             <button type="button" class="btn " id="btnocmt" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
@@ -37,7 +29,6 @@
    </div>
 </div>
 <!--  -->
-<div class="frame-wrap">
 <div class="row" id="table-hover-row">
    <div class="col-md-2 col-sm-12"></div>
    <div class="col-md-8 col-sm-12">
@@ -187,7 +178,6 @@
          </div>
       </div>
    </div>
-</div>
 </div>
 <div class="col-md-2 col-sm-12"></div>
 <br>

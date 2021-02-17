@@ -62,10 +62,10 @@
 						       </div>
 				       	   <!-- 끝  -->
 				       	   <div class="text-center">
-				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
-				       	   	 <c:if test="${rgVo.aAgreeNo == 1}">
-				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" 
+				       	   	 <button class="btn btn-dark block" id="btclose"  name="btclose">확인</button>
+				       	   	  <button class="btn btn-dark block"  id="btclose2"  name="btclose2" 
 				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
+				       	   	 <c:if test="${rgVo.aAgreeNo == 1}">
 				       	   	 </c:if>
 				       	   </div>
 				       </div>

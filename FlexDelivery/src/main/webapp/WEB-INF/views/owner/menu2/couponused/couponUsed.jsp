@@ -2,17 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
-<style>
-.frame-wrap {
-    display: flex;
-    flex: 1;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1128px;
-    min-width: 0;
-    padding: 40px 56px 0;
-}
-</style>
 <br>
 <div class="row mt-3">
 	<div class="col-md-2 col-sm-12"></div>
@@ -101,7 +90,6 @@
 		<div class="col-md-2 col-sm-12"></div>
 	</div>
 </form>
-</div>
 <br>
 <br>
 <br>

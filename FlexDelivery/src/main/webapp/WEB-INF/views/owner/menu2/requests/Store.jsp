@@ -80,9 +80,9 @@
 						       </div>
 				       	   <!-- 끝  -->
 				       	     <div class="text-center">
-				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
+				       	   	 <button class="btn-outline-dark" id="btclose"  name="btclose" >확인</button>
 				       	   	 	 <c:if test="${stVo.aAgreeNo == 1}">
-				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" 
+				       	   	  <button class="btn-outline-dark"  id="btclose2"  name="btclose2" 
 				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
 				       	   	 	 </c:if>
 				       	     </div>
@@ -110,8 +110,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">나가기</button>
-        <input type="submit" class="btn btn-primary" value="확인 ">
+        <button type="button" class="btn-outline-dark" data-dismiss="modal">나가기</button>
+        <input type="submit" class="btn-outline-dark" value="확인 ">
       </div>
         </form>
     </div>

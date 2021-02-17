@@ -3157,7 +3157,7 @@ progress {
 .btn-dark {
   color: #fff;
   background-color: #222f3e;
-  border-color: #ca74ec;
+  border-color: #222f3e;
 }
 .btn-dark:hover {
   color: #fff;
@@ -3173,7 +3173,7 @@ progress {
 .btn-check:checked + .btn-dark, .btn-check:active + .btn-dark, .btn-dark:active, .btn-dark.active, .show > .btn-dark.dropdown-toggle {
   color: #fff;
   background-color: #10161d;
-  border-color: #ca74ec;
+  border-color: #222f3e;
 }
 .btn-check:checked + .btn-dark:focus, .btn-check:active + .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus, .show > .btn-dark.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(67, 78, 91, 0.5);

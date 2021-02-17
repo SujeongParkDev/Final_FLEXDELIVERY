@@ -7,27 +7,19 @@ input {
 	border-radius: 5px;
 	height: 35px;
 }
-.frame-wrap {
-    display: flex;
-    flex: 1;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1128px;
-    min-width: 0;
-    padding: 40px 56px 0;
-}
+
 </style>
 <br>
 <!-- 셀렉 옵션만 되면 끝 !  -->
-<div class="frame-wrap">
+
 <div class="row" id="basic-table">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-12 col-md-8">
-		<div class="card">
+		<div class="card" style="margin-top: 70px;">
 			<br>
 			<div class="card-content">
 				<div class="card-body">
-					<p class="card-text text-center" style="font-size: 20px;" style="font-size:30px; color:#333; font-weight:bold;">요청 처리 현황</p>
+					<p class="card-text text-center"  style="font-size:30px; color:#333; font-weight:bold;">요청 처리 현황</p>
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<p class="card-text text-center">승인 대기 상태일 경우 상세보기에서 확인 후 취소하실 수 있습니다.</p>
 					<br> <br>
@@ -40,7 +32,7 @@ input {
 					<div class="table-responsive">
 						<table class="table">
 							<thead>
-								<tr class="text-center" style="font-size: 13px;" style="background-color:rgb(2, 48, 71); color:white;">
+								<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
 									<th style="width: 30%;">승인 목록</th>
 									<th style="width: 22%;">신청 일자</th>
 									<th style="width: 22%;">승인 상태</th>
@@ -175,7 +167,8 @@ input {
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
 </div>
-</div>
+<br>
+<br>
 <script type="text/javascript">
 
 function goDetail(no){
