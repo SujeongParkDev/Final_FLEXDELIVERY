@@ -8,9 +8,9 @@
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-9 col-sm-12">
 		<div class="text-right">
-			<button id="btAll" class="btn btn-primary">사용중인 쿠폰</button>
-			<button id="btExpire" class="btn btn-primary">쿠폰 발급 내역</button>
-			<button id="btRegi" class="btn btn-warning">쿠폰 신청</button>
+			<button id="btAll" class="btn" class="btn " style="color:black; background-color:#fcbe32; border: none;">사용중인 쿠폰</button>
+			<button id="btExpire" class="btn btn-outline-warning"style="color:black; border:1px solid #fcbe32;">쿠폰 발급 내역</button>
+			<button id="btRegi"class="btn"  style="color:black; background-color:#fcbe32; border: none;">쿠폰 신청</button>
 		</div>
 	</div>
 </div>
@@ -23,10 +23,10 @@
 			<br><br><br>
 			<div class="card-content">
 				<div class="card-body">
-					<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역
+					<p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">쿠폰 발급 내역
 					</p>
-					<p class="card-text text-center">전체 발급된 구폰 내역입니다.</p>
-					<br> <br> <br> <br>
+					<p class="card-text text-center">전체 발급되었던 쿠폰 내역입니다.</p>
+					<br> <br> 
 						<form name="frmPage" method="post" name="frm1"
 							action="<c:url value='/owner/menu2/couponused/couponExpireSearch.do'/>">
 					<div class="row">
@@ -37,8 +37,7 @@
 							</div>
 							<div class="col-md-1 col-12">
 								<input type="submit"
-									style="background-color: #0d6efd; color: white;" value="조회"
-									id="searchDate">
+									style="color:black; background-color:#fcbe32; border: none;" value="조회" id="searchDate">
 							</div>
 							<br> <br>
 					</div>
@@ -56,7 +55,7 @@
 								<col style="width: 20%" />
 							</colgroup>
 							<thead>
-								<tr class="text-center">
+								<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
 								<th scope="col">쿠폰 번호 </th>
 									<th scope="col">최소 금액</th>
 									<th scope="col">할인 금액</th>
@@ -66,6 +65,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<div class="AllList" id="AllList">
 									<c:if test="${empty exList }">
 										<tr>
 											<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
@@ -83,6 +83,7 @@
 											</tr>
 										</c:forEach>
 									</c:if>
+								</div>
 							</tbody>
 						</table>
 					</div>

@@ -24,7 +24,7 @@
 				<div class="card-content">
 					<div class="card-body">
 						<p class="card-text text-center"  style="font-size:30px; color:#333; font-weight:bold;">쿠폰 내역</p>
-						<p class="card-text text-center">전체 사용중인 쿠폰 내역입니다.</p>
+						<p class="card-text text-center">만료 일전까지 고객에게 발급 중지/재발급을 선택하실 수 있습니다.</p>
 						<br> <br> <br> <br>
 						<div class="row">
 							<div class="col-md-2 col-12">

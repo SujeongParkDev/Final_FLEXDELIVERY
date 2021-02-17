@@ -8,9 +8,9 @@
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-md-9 col-sm-12">
 		<div class="text-right">
-			<button id="btAll" class="btn btn-primary">사용중인 쿠폰</button>
-			<button id="btExpire" class="btn btn-primary">쿠폰 발급 내역</button>
-			<button id="btRegi" class="btn btn-warning">쿠폰 신청</button>
+			<button id="btAll" class="btn" style="color:black; background-color:#fcbe32; border: none;">사용중인 쿠폰</button>
+			<button id="btExpire" class="btn" style="color:black; background-color:#fcbe32; border: none;">쿠폰 발급 내역</button>
+			<button id="btRegi" class="btn btn-outline-warning"style="color:black; border:1px solid #fcbe32;">쿠폰 신청</button>
 		</div>
 	</div>
 </div>
@@ -23,19 +23,17 @@
 			<br><br><br>
 			<div class="card-content">
 				<div class="card-body">
-					<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역
+					<p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">쿠폰 신청
 					</p>
-					<p class="card-text text-center">전체 발급된 구폰 내역입니다.</p>
+					<p class="card-text text-center">발급일로부터 유효기간은 14일입니다. </p>
 					<br>
 					<br> <br>
-					<br>
-					<br>
 					<br>
 					<!--  -->
 					<div class="table-responsive">
 						<table class="table table-hover mb-5">
 							<thead>
-								<tr class="text-center">
+								<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
 									<th>쿠폰 번호</th>
 									<th>주문 최소 금액</th>
 									<th>할인 금액 </th>
@@ -58,7 +56,7 @@
 											<td>
 											<button type="button"
 													class="btn btn-primary round  mr-1 mb-1 register" data-toggle="modal" id="modalregister"
-													data-target="#exampleModal" value="${vo.rCouponNo}" >신청</button>
+													data-target="#exampleModal" value="${vo.rCouponNo}" style="color:black; background-color:#fcbe32; border: none;">신청</button>
 											</td>
 										</tr>
 									</c:forEach>
