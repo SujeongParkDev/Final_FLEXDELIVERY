@@ -20,7 +20,7 @@
 	<div class="col-md-1  col-sm-12"></div>
 	<div class="col-12 col-md-10">
 		<div class="card">
-			<br>
+			<br><br><br>
 			<div class="card-content">
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역
@@ -88,10 +88,9 @@
 						<h4 class="modal-title" id="exampleModalLabel">본인 확인</h4>
 					</div>
 				</div>
-				<p>${list}</p>
 				<form name="frmDelete" method="post"
 					action="<c:url value='/owner/menu2/couponused/couponRegi.do'/>">
-					<input type="text" id="no" name="no" value="${vo.rCouponNo}">
+					<input type="hidden" id="no" name="no" value="${vo.rCouponNo}">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">비밀번호를

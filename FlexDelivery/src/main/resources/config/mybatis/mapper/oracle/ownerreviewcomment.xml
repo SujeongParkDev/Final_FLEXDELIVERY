@@ -11,13 +11,7 @@
 		values(#{reviewNo},#{storeNo},#{rCommentContent})
 	</insert>
 
-	<!-- review 변경함 20210216 소정 
-	create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
-		c.R_COMMENT_CONTENT,c.R_COMMENT_REGDATE, n.MENU_NAME,d.O_DETAIL_QTY, o.M_OPTION_NAME 
-		from MEMBER m full outer join REVIEW r on r.MEMBER_NO=m.MEMBER_NO left
-		join REVIEWCOMMENT c on c.store_no=r.store_no and c.REVIEW_NO=r.REVIEW_NO 
-		full outer join ORDERDETAIL d on r.ORDERS_NO=d.ORDERS_NO full outer join 
-		MENU n on n.MENU_NO=d.MENU_NO full outer join MENUOPTION o on d.M_OPTION_NO=o.M_OPTION_NO; 
+	<!-- review 변경함 20210217 소정 
 	 -->
 	<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map">
 		select *
@@ -26,14 +20,18 @@
 		    select A.*, rownum as RNUM
 		    from
 		    (
-		        select * from LSJCommentDDetailView
-                where store_no=#{storeNo}
+		        select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
+			    (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
+			    rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
+			    from review r left join reviewcomment rc
+			    on r.REVIEW_NO = rc.REVIEW_NO
+			    where r.store_no=#{storeNo} and review_del_flag='N'
                 <![CDATA[
 				and REVIEW_REGDATE >= #{startDay} and
 				REVIEW_REGDATE< to_date(#{endDay})+1
 				]]>
-				and review_del_flag='N'
-                order by ORDERS_NO desc
+				
+                order by r.REVIEW_NO desc
 		    )A
 		)
 		<![CDATA[
@@ -43,7 +41,7 @@
 	</select>
 
 	<select id="getTotalRecord" parameterType="ownerReviewSearchVo" resultType="int">
-		select count(*) from LSJCommentDDetailView
+		select count(*) from review
 		<![CDATA[
 		where REVIEW_REGDATE >= #{startDay} and
 		REVIEW_REGDATE< to_date(#{endDay})+1
@@ -53,7 +51,7 @@
 	</select>
 
 	<select id="memberInfoView" parameterType="int" resultType="map">
-		select * from LSJreviewidView where store_no=#{storeNo}
+		select * from LSJreviewidView where store_no=#{storeNo} 
 	</select>
 
 	<delete id="deleteComm" parameterType="int">
@@ -72,41 +70,51 @@
 	
 	<!-- 미답변  -->
 	<select id="Nocomment" parameterType="int" resultType="map">
-		select * from LSJCommentDDetailView
-      	 where store_no=#{storeNo} 
-      	 and R_COMMENT_CONTENT is null
+		 select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
+	   	 (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
+	  	  rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
+	   	 from review r left join reviewcomment rc
+	     on r.REVIEW_NO = rc.REVIEW_NO
+	     where r.store_no=#{storeNo} 
+	     and R_COMMENT_CONTENT is null
       	 and  REVIEW_REPORT='N'
-     	 order by ORDERS_NO desc
+     	 order by r.review_no desc
 	</select>
 
 	<select id="NocmtTotalRecord" parameterType="int" resultType="int">
-		select count(*) from LSJCommentDDetailView
-         where store_no=#{storeNo} 
-         and R_COMMENT_CONTENT is null
-         and  REVIEW_REPORT='N'
-         order by ORDERS_NO desc
+		 select count(*) from review
+	    r left join reviewcomment c
+	    on r.review_no=c.review_no
+	    where r.store_no=#{storeNo} 
+	    and c.r_comment_content is null
+	    and r.review_report='N'
 	</select>
 	
 	<!-- 차단  -->
 	<select id="blockcmt" parameterType="int" resultType="map">
-		select * from LSJCommentDDetailView
-         where store_no=#{storeNo} 
-         and  REVIEW_REPORT='Y'
-         order by ORDERS_NO desc
+		select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
+	    (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
+	    rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
+	    from review r left join reviewcomment rc
+	    on r.REVIEW_NO = rc.REVIEW_NO
+	    where r.store_no=#{storeNo}
+	    and R_COMMENT_CONTENT is null
+      	 and REVIEW_REPORT='Y'
+     	 order by r.review_no desc
 	</select>
 
 	<select id="blockTotalRecord" parameterType="int" resultType="int">
-		select count(*) from LSJCommentDDetailView
-         where store_no=#{storeNo} 
-         and  REVIEW_REPORT='Y'
-         order by ORDERS_NO desc
+		select count(*) from review
+         where store_no=#{storeNo}  and REVIEW_REPORT='Y'
 	</select>
 	
 	<select id="selectAll" parameterType="int" resultType="map">
-		select * from LSJCommentDDetailView
-		where store_no=#{storeNo} 
-		and  REVIEW_REPORT='N'
-		order by orders_no desc
+	select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
+    (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
+    rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
+    from review r left join reviewcomment rc
+    on r.REVIEW_NO = rc.REVIEW_NO
+    where r.store_no=#{storeNo}
 	</select>
 	
 	<select id="reviewReting" parameterType="int" resultType="map">

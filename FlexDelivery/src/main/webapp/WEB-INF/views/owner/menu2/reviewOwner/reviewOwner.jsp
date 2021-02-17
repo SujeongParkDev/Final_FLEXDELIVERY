@@ -10,6 +10,7 @@
 	}
 
 </style>
+<!-- 이미지 경로 맞으면 미답변 차단에 붙이기 !!  -->
 <div class="row mt-3">
 	<div class="col-md-6 col-sm-12"></div>
 	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
@@ -41,27 +42,27 @@
 					<br> <br>
 					<div class="card-content">
 						<div class="card-body text-center">
-							<div class="row">
-								<div class="col-md-4 col-12"></div>
-									<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
-								<div class="col-md-6 col-12 ">
+							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
+								<div class="row">
+									<div class="col-md-4 col-12"></div>
+									<div class="col-md-6 col-12 ">
 										<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 										<input type="hidden" name="currentPage" value="1">
-								</div>
+									</div>
 								<div class="col-md-2 col-12">
 									<input type="submit" style="background-color: #0d6efd; color: white;" value="조회" id="searchDate">
 								</div>
-								</form>
 							</div>
+								</form>
 							<br>
-							<div class="AllDiv">
 								<c:if test="${empty allList }">
 									<div class="row">
 										<div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
 									</div>
 								</c:if>
 								<c:if test="${!empty allList }">
-									<c:forEach var="map" items="${allList }">
+									<c:set var="k" value="0"/>
+									<c:forEach var="map" items="${allList }" >
 										<hr>
 										<br>
 										<div class="review-list">
@@ -69,30 +70,48 @@
 												<div class="col-md-3">
 													<h4 class="card-title">${map['MEMBER_ID']}</h4>
 												</div>
+													<div class="col-md-6"></div>
+													<div class="col-md-3">
+													<div class="text-right">
+														<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>
+													</div>
+												</div>
 												<div class="row">
 													<div class="col-md-3">${map['REVIEW_RATING'] }점</div>
 													<div class="col-md-1"></div>
-													<div class="col-md-5 text-left">${map['MENU_NAME']}+ ${map['M_OPTION_NAME']}</div>
+													<div class="col-md-5 text-left">${map['MENU_NAME']}
+													<c:if test="${!empty map['M_OPTION_NAME']}">
+													  + ${map['M_OPTION_NAME']}
+													 </c:if>
+													 </div>
 												</div>
 											</div>
 											<div class="row ">
 												<div class="col-md-3">
 													<fmt:formatDate value="${map['REVIEW_REGDATE']}" pattern="yyyy-MM-dd" />
 												</div>
-												<div class="col-md-7 text-left">${map['REVIEW_CONTENT']}</div>
-												<div class="col-md-1"></div>
+												<div class="col-md-6 text-left">${map['REVIEW_CONTENT']}</div>
+											  	<div class="col-md-3">
+											  	<!-- 
+											 		 <img src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+											  	 -->
+														 <div class="single-blog-thumbnail">
+														<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
+															<img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
+														</c:if>
+														<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)!='http' and (!empty map['REVIEW_FILENAME']) }">
+															<img src="<c:url value='/resources/imgs/ReviewImages/${map["REVIEW_FILENAME"]}'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+														</c:if>
+													</div>
+											 	 </div>
 											</div>
-										</div>
-										<div class="text-right">
-											<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>
-										</div>
+											</div>
 										<br>
 										<br>
 										<div class="table-responsive">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-8"></div>
 												<div class="col-xs-6 col-md-4"></div>
-												${map['R_COMMENT_CONTENT']}
 											</div>
 											<!-- CEO comment start !! -->
 											<c:if test="${!empty map['R_COMMENT_CONTENT']}">
@@ -113,25 +132,25 @@
 																	<fmt:formatDate value="${map['R_COMMENT_REGDATE'] }" pattern="yyyy-MM-dd" />
 																</div>
 																<div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
-																<div class="result" id="resultDiv"></div>
+																<div class="result" id="resultDiv"name="reuslt"></div>
 															</div>
 															<div class="row">
 																<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
 																<div class="text-right" style="margin-bottom: 10px;">
-																	<div class="button-group button-group-row align-right ">
+																	<div class="button-group button-group-row align-right btgroup">
 																		<br> <br>
 																		<button type="button" class="button small danger inGroup" onclick="btDel(${map['REVIEW_NO']})" style="background-color: #0d6efd; color: white;">삭제 </button>
 																		<button type="submit" class="button small danger inGroup" onclick="Edit_form(${map['REVIEW_NO']})" style="background-color: r #0d6efd; color: white;">수정 </button>
 																	</div>
 																</div>
 															</div>
-														</div>
+															</div>
 													</form>
+													</div>
+											</c:if>
 												</div>
 												<div class="col-md-2 col-sm-12"></div>
 												<br>
-												<br>
-											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
 											<c:if test="${empty map['R_COMMENT_CONTENT']}">
 												<div class="card-body">
@@ -139,17 +158,18 @@
 														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
 														<input type="hidden" id="storeNo" name="storeNo" value="1">
 														<label for="content"></label>
+														<!--입력폼 디자인 고르기 회의할때 textarea input type -->
 														<div style="border: 2px solid lightgray;" class="">
 															<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
 															<input class="button  btn btn-primary" type="submit" style="margin-bottom:50px;" value="댓글작성">
 														</div>
 													</form>
 												</div>
+												<c:set var="k" value="${k+1 }"/>
 											</c:if>
 											<br> <br>
 									</c:forEach>
 								</c:if>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -198,14 +218,13 @@
 				dataType:"json",
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(res){
-					//alert(res);
-					var output="<textarea class='form-control form-control-lg content' name='rCommentContent'>";
+					var output="<textarea class='col-md-7 text-left content' name='rCommentContent'>";
 						output+=res.rCommentContent+" </textarea><br>";
-						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' >수정하기 </button>";
+						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
 					
-						$('#resultDiv').append(output);
-							$('#listDiv').hide();
-					},
+							$('.result').append(output);
+							
+				},
 					error:function(xhr, status, error){
 						alert("error! : " + error);
 					}				

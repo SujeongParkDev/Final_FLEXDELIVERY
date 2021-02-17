@@ -5,7 +5,7 @@
 
 <div class="row mt-3">
 	<div class="col-md-6 col-sm-12"></div>
-	<div class="col-md-4 col-sm-12" style="padding-left: 110px;">
+	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
 		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-outline-primary" id="btAll">전체(${fn:length(allList)})</button>
@@ -20,6 +20,11 @@
 		<div class="col-md-2 col-sm-12"></div>
 	</div>
 </div>
+<!-- 페이지 이동시 필요한 form -->
+	<form name="frmData" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
+		<input type="hidden" name="currentPage"> 
+		<input type="text" name="storeNo" value="${param.storeNo}">
+	</form>
 <!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>
@@ -30,22 +35,22 @@
 				<div class="card-body" id="allreview">
 					<p class="card-text text-center" style="font-size: 20px; font: bold;">리뷰 관리</p>
 					<p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p>
-					<%@include file="reviewChart.jsp"%>
 					<br> <br>
 					<div class="card-content">
 						<div class="card-body text-center">
-							<div class="row">
-								<div class="col-md-4 col-12"></div>
-								<div class="col-md-6 col-12 ">
-									<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
+							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
+								<div class="row">
+									<div class="col-md-4 col-12"></div>
+									<div class="col-md-6 col-12 ">
 										<%@include file="../../../owner/datePicker/datePicker.jsp"%>
 										<input type="hidden" name="currentPage" value="1">
-								</div>
+									</div>
 								<div class="col-md-2 col-12">
 									<input type="submit" style="background-color: #0d6efd; color: white;" value="조회" id="searchDate">
 								</div>
-								</form>
 							</div>
+								</form>
+							<br>
 							<br>
 							<!-- 데이트 피커 사용 조회 리스트  -->
 							<div class="DateDiv" id="DateDiv">
