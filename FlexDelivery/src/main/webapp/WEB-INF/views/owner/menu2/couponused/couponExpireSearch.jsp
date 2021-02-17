@@ -66,7 +66,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<div class="AllList" id="AllList">
 									<c:if test="${empty exList }">
 										<tr>
 											<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
@@ -84,7 +83,6 @@
 											</tr>
 										</c:forEach>
 									</c:if>
-								</div>
 							</tbody>
 						</table>
 					</div>

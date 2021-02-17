@@ -19,7 +19,7 @@
 		<div class="col-md-1  col-sm-12"></div>
 		<div class="col-12 col-md-10">
 			<div class="card">
-				<br>
+				<br><br><br>
 				<div class="card-content">
 					<div class="card-body">
 						<p class="card-text text-center" style="font-size: 20px;">쿠폰 내역</p>
