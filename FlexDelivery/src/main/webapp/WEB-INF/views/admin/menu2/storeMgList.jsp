@@ -64,14 +64,14 @@
 								</td>
 								<td>
 									<p>
-									<%-- <fmt:formatDate value="${vo.storeRegdate}" pattern="yyyy년  MM월 dd일"/> --%> 
+									<%-- <fmt:formatDate value="${vo.storeRegdate}" pattern="yyyy년  MM월 dd일"/> --%>
 									${vo.storeRegdate}
 									</p>
 								</td>
 								<td>
 									<p>
-									<%-- <fmt:formatDate value="${vo.storeOutdate}" pattern="yyyy년  MM월 dd일"/> --%> 
-									
+									<%-- <fmt:formatDate value="${vo.storeOutdate}" pattern="yyyy년  MM월 dd일"/>  --%>
+									${vo.storeOutdate}
 									</p>
 								</td>
 								<td><c:if test="${empty vo.storeOutdate}">
