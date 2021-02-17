@@ -204,13 +204,13 @@
     function Edit_form(num) {
      	$(this).parent().prev().css("display", "none");
      	console.log(this);
+     	alert(num);
 	$(function(){
 		if($('.content').val()<1){
 			 alert("댓글 내용을 입력해 주세요 ! ");
 			event.preventDefault();
 		}else{
 	     	var params = $(".frm2").serialize();
-	     	
 	     	$.ajax({
 				url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
 				type:"GET",
