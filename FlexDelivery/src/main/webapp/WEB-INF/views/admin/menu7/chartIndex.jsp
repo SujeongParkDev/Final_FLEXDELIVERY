@@ -104,7 +104,7 @@
 							<!-- 정기 쿠폰 적용/미점포 적용 수+비율--> <!-- 도넛차트 -->
 		                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 								<div class="line" style="background-color: black;"></div>
-								<h5 style="color: black;">🏬정기 쿠폰 적용 점포 현황   </h5>
+								<h5 style="color: black;">🏬 유료광고 이용 점포 현황   </h5>
 								<div id="storeRCoupon" style="margin-top: 30px; margin-bottom: 30px;"></div>
 							</div>
 							

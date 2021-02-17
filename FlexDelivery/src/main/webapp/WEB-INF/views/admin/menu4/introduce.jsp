@@ -197,7 +197,7 @@ function openMember(number){
                         <div class="row">
                             <div class="col-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                                 <div class="post-date">
-                                    <a href="#">FD <span>공동대표</span></a>
+                                    <a >FD <span>공동대표</span></a>
                                 </div>
                             </div>
                         </div>
