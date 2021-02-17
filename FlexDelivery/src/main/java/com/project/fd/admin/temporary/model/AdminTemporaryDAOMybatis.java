@@ -31,15 +31,15 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	}
 
 	@Override
-	public int editAgree(long no) {
-		return sqlSession.update(namespace + "editAgree", no);
+	public int editAgree(AdminTemporaryVO vo) {
+		return sqlSession.update(namespace + "editAgree", vo);
 	}
 
 	@Override
 	public int editDeny(long no) {
 		return sqlSession.update(namespace + "editDeny", no);
 	}
-
+	/*
 	 @Override public int editOwner(OwnerVO ownerVo) { 
 		 return	 sqlSession.update(namespace+"editOwner", ownerVo); 
 	}
@@ -51,6 +51,6 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	 @Override public int editStores(OwnerStoresVO storesVo) { 
 		 return	 sqlSession.update(namespace+"editStores"); 
 	}	 
-
+	*/
 }
 

@@ -19,17 +19,17 @@ public class AdminStoresServiceImpl implements AdminStoresService{
 	}
 
 	@Override
-	public AdminStoresVO adminApprovalDetail(long no) {	
+	public AdminStoresVO adminApprovalDetail(int no) {	
 		return adminStoresDao.adminApprovalDetail(no);
 	}
 
 	@Override
-	public int adminApprovalAgree(long no) {
+	public int adminApprovalAgree(int no) {
 		return adminStoresDao.adminApprovalAgree(no);
 	}
 
 	@Override
-	public int adminApprovalDeny(long no) {
+	public int adminApprovalDeny(int no) {
 		return adminStoresDao.adminApprovalDeny(no);
 	}
 }

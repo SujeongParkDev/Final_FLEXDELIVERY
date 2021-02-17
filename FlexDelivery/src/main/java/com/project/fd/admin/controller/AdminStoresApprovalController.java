@@ -46,7 +46,7 @@ public class AdminStoresApprovalController {
 	
 	
 	@RequestMapping("/approvalDetail.do")
-	public String adminApprovalDetail(@RequestParam(defaultValue = "0")  long no ,Model model) {
+	public String adminApprovalDetail(@RequestParam(defaultValue = "0")  int no ,Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 등록 세부 화면, 파라미터 no={}", no);
 		//1
@@ -60,7 +60,7 @@ public class AdminStoresApprovalController {
 	}
 	
 	@RequestMapping("/approvalAgree.do")
-	public String adminApprovalAgree(@RequestParam(defaultValue = "0") long no) {
+	public String adminApprovalAgree(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 등록 승인 화면, 파라미터 no={}", no);
 		
 		int cnt= storesService.adminApprovalAgree(no);
@@ -71,7 +71,7 @@ public class AdminStoresApprovalController {
 	}
 	
 	@RequestMapping("/approvalDeny.do")
-	public String adminApprovalDeny(@RequestParam(defaultValue = "0") long no) {
+	public String adminApprovalDeny(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 등록 반려, 파라미터 no={}", no);
 		
 		int cnt= storesService.adminApprovalDeny(no);

@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function () {
 		$('#approvalAgree').click(function () {
-			alert("승인하시겠습니까?");
+			alert("변경하시겠습니까?");
 			location.href = '<c:url value="/admin/menu2/registApproval.do?registerNo=${vo.oRegisterNo}&ownerNo=${vo.ownerNo}" />';
 			event.preventDefault();
 		});
@@ -109,7 +109,7 @@
 													<span>
 														<c:if test="${!empty vo.oRegisterFilename }">
 															<a href
-		="<c:url value='/admin/menu2/downloadReg.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
+		="<c:url value='/admin/menu2/downloadEdit.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
 															 ${vo.oRegisterOriginalFilename }</a>
 														</c:if>
 													</span>

@@ -102,7 +102,7 @@
 													<span>
 														<c:if test="${!empty vo.oRegisterFilename }">
 															<a href
-		="<c:url value='/admin/menu2/downloadReg.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
+		="<c:url value='/admin/menu2/downloadEdit.do?no=${vo.oRegisterNo}&fileName=${vo.oRegisterFilename }'/>">
 															 ${vo.oRegisterOriginalFilename }</a>
 														</c:if>
 													</span>
