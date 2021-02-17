@@ -31,7 +31,8 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="qwe">
-								<br> <input type="hidden" name="askNo" value="${vo.askNo}">
+								<br> 
+								<input type="hidden" name="askNo" value="${vo.askNo}">
 								<input type="hidden" name="askContent" value="${vo.askContent}">
 								<input type="hidden" name="askTitle" value="${vo.askTitle}">
 								<div class="form-body">
@@ -54,20 +55,36 @@
 												</div>
 											</div>
 										</div>
+									</div>
+								<c:if test="${!empty reVo.askContent }">
+									<div class="row">
+										<div class="col-md-4"></div>
+										<div class="col-md-8 form-group">
+											<label>Re : </label>
+											<p>${reVo.askTitle }</p>
+										</div>
+										<div class="col-md-4"></div>
+										<div class="col-md-8 form-group">
+												<label>답변 내용</label>
+											<p>${reVo.askContent }</p>
+										</div>
 										<div class="col-12 col-md-8 offset-md-4 form-group">
+										</div>
+									</div>		
+									</c:if>
+									<div class="col-12 col-md-8 offset-md-4 form-group">
 										<c:if test="${vo.askReplyflag =='N' }">
 											<a href="<c:url value='/owner/menu5/OneToOneEdit.do?askNo='/>${vo.askNo}" class="btn btn-primary mr-1 mb-1" id="btEdit">수정</a>
 										</c:if>
 											<a href="<c:url value='/owner/menu5/oneToOne.do'/>" class="btn btn-primary mr-1 mb-1">목록 </a>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 </div>
 <!-- script start -->

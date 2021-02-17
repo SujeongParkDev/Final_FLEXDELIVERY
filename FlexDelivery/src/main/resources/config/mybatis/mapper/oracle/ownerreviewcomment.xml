@@ -115,6 +115,7 @@
     from review r left join reviewcomment rc
     on r.REVIEW_NO = rc.REVIEW_NO
     where r.store_no=#{storeNo}
+    order by r.review_no desc
 	</select>
 	
 	<select id="reviewReting" parameterType="int" resultType="map">

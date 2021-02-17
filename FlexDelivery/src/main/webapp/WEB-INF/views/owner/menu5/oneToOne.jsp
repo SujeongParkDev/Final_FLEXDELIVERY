@@ -82,6 +82,7 @@
 															<th>취소하기</th>
 														</tr>
 													</thead>
+													${list }
 													<tbody>
 														<c:if test="${!empty list}">
 															<c:forEach var="vo" items="${list}">
@@ -92,10 +93,10 @@
 																	</td>
 																	<td></td>
 																	<td>${vo.askRegdate}</td>
-																	<c:if test="${vo.askStep >0}">
+																	<c:if test="${vo.askReplyflag =='Y'}">
 																		<td><span class="badge bg-success">답변완료</span></td>
 																	</c:if>
-																	<c:if test="${vo.askStep ==0}">
+																	<c:if test="${vo.askReplyflag == 'N'}">
 																		<td><span class="badge bg-danger">미답변</span></td>
 																	</c:if>
 																	<td>

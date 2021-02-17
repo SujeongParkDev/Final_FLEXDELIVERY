@@ -57,10 +57,9 @@ public class OwnerOneToOneController {
 	public String askList_get(@ModelAttribute OwnerAskSearchVO searchVo, Model model) {
 		String askId=(String)session.getAttribute("ownerId");
 		int authorityNo=(Integer)session.getAttribute("authorityNo");
-		logger.info("글수정 처리, 파라미터 authorityNo={},askId={}", authorityNo,askId);
+		logger.info("일대일 문의 리스트 , 파라미터 authorityNo={},askId={}", authorityNo,askId);
 		searchVo.setAskId(askId);
 		
-		//String askId=(String)session.getAttribute("ownerId");
 		logger.info("점포 - 일대일 문의 보여주기");
 		logger.info("글 목록 페이지, 파라미터 searchVo={},askId={}", searchVo,askId);
 
@@ -78,7 +77,7 @@ public class OwnerOneToOneController {
 		int totalRecord=ownerAskService.selectTotalRecord(searchVo);
 		logger.info("글 개수, totalRecord={}", totalRecord);		
 		pagingInfo.setTotalRecord(totalRecord);
-
+		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
@@ -121,9 +120,10 @@ public class OwnerOneToOneController {
 		OwnerAskVO vo=ownerAskService.selectByNo(askNo);
 		logger.info("디테일 , 조회 결과 vo={}", vo);
 		
-		
+		OwnerAskVO reVo=ownerAskService.replyAsk(askNo);
 		
 		model.addAttribute("vo", vo);
+		model.addAttribute("reVo", reVo);
 		
 		return "owner/menu5/OneToOneDetail";
 	}

@@ -21,10 +21,6 @@
 	</div>
 </div>
 <!-- 페이지 이동시 필요한 form -->
-	<form name="frmData" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
-		<input type="hidden" name="currentPage"> 
-		<input type="text" name="storeNo" value="${param.storeNo}">
-	</form>
 <!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>
@@ -38,7 +34,7 @@
 					<br> <br>
 					<div class="card-content">
 						<div class="card-body text-center">
-							<form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
+							<form name="frmPage" method="post"  action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
 								<div class="row">
 									<div class="col-md-4 col-12"></div>
 									<div class="col-md-6 col-12 ">
@@ -129,19 +125,21 @@
 												<br>
 											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
-											<c:if test="${empty map['R_COMMENT_CONTENT']}">
-												<div class="card-body">
-													<form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerWrite.do'/>">
-														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }">
-														 <input type="hidden" id="storeNo" name="storeNo" value="1">
-														<label for="content"></label>
-														<div style="border: radius 2px solid lightgray;" class="text-left">
-															<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
-															<input class="button medium write" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
-														</div>
-													</form>
-												</div>
-											</c:if>
+											 <c:if test="${empty map['R_COMMENT_CONTENT']}">
+			                                    <div class="card-body">
+			                                       <form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+			                                          <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
+			                                          <input type="hidden" id="storeNo" name="storeNo" value="1">
+			                                          <label for="content"></label>
+			                                          <!--입력폼 디자인 고르기 회의할때 textarea input type -->
+			                                          <div style="border: 2px solid lightgray;" class="">
+			                                             <textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
+			                                             <input class="button  btn btn-primary" type="submit" style="margin-bottom:50px;" value="댓글작성">
+			                                          </div>
+			                                       </form>
+			                                    </div>
+			                                    <c:set var="k" value="${k+1 }"/>
+			                                 </c:if>
 											<br> <br>
 									</c:forEach>
 								</c:if>
@@ -231,7 +229,7 @@
 	}
 	
 	$(function(){
-		$('form[name=frmDate]').submit(function(){
+		$('form[name=frmPage]').submit(function(){
 			if($('#startDay').val().length<1){
 				alert('시작일을 입력하세요');
 				$('#startDay').focus();
@@ -253,8 +251,8 @@
 	});//
 
 	function pageFunc(curPage){
-		$('form[name=frmDate]').find('input[name=currentPage]').val(curPage);	
-		$('form[name=frmDate]').submit();
+		$('form[name=frmPage]').find('input[name=currentPage]').val(curPage);	
+		$('form[name=frmPage]').submit();
 	}
 	
 	$(function(){

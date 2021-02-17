@@ -17,7 +17,7 @@
 	values(#{askNo},#{askTitle},#{askId},#{askContent},#{askNo},#{authorityNo})
 	</insert>
 	
-	<select id="selectAllAsk" parameterType="ownerAdvertiseSearchVo" resultType="ownerAskVo">
+	<select id="selectAllAsk" parameterType="ownerAskSearchVo" resultType="ownerAskVo">
 		select *
 		from
 		(

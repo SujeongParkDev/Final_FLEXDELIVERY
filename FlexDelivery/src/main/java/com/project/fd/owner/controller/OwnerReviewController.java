@@ -135,7 +135,7 @@ public class OwnerReviewController {
 		model.addAttribute("totalBlock", totalBlock);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingInfo", pagingInfo);
-		//model.addAttribute("searchVo", searchVo);
+		model.addAttribute("searchVo", searchVo);
 		
 		return "owner/menu2/reviewOwner/reviewOwnerList";
 	}
