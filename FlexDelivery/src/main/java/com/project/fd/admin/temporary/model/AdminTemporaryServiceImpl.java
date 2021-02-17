@@ -20,35 +20,17 @@ public class AdminTemporaryServiceImpl implements AdminTemporaryService{
 	}
 
 	@Override
-	public AdminTemporaryVO editDetail(long no) {
+	public AdminTemporaryVO editDetail(int no) {
 		return temporaryDao.editDetail(no);
 	}
 
 
 	
 	@Override
-	public int editDeny(long no) {
+	public int editDeny(int no) {
 		return temporaryDao.editDeny(no);
 	}
-	/*
-	@Override
-	public int editOwner(OwnerVO ownerVo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int editOwnerRegister(OwnerRegisterVO registerVo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int editStores(OwnerStoresVO storesVo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	*/
 
 	@Override
 	public int editAgree(AdminTemporaryVO vo) {

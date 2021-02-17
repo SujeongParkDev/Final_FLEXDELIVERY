@@ -10,41 +10,41 @@
 			   order by t_no desc
 	</select>
 	
-	<select id="editDetail" parameterType="long" resultType="adminTemporaryVo">
+	<select id="editDetail" parameterType="int" resultType="adminTemporaryVo">
 		select t_no, t_submitdate, o_register_no, t_owner_name, t_stores_name, t_stores_address, owner_no
        		   t_stores_address_detail, t_owner_hp1, t_owner_hp2, t_owner_hp3, t_detail, a_agree_no,
-       		   t_filename, t_original_filename
+       		   t_filename, t_original_filename, t_regdate, store_no, location_no, owner_no
        		   from temporary where t_no=#{no}
 	</select>
 	
-	<update id="editAgree" parameterType="long">
+	<update id="editTemporary" parameterType="adminTemporaryVo">
 		update temporary
-		set a_agree_no = 6
-		where t_no =#{no}
+		set a_agree_no = 6, t_submitdate=sysdate
+		where t_no =#{tNo}
 	</update>
-	
-	<update id="editDeny" parameterType="long">
-		update temporary
-		set a_agree_no = 7
-		where t_no =#{no}
-	</update>
-	
-	<!-- <update id="editOwner" parameterType="ownerVo">
+	<update id="editOwner" parameterType="adminTemporaryVo">
 		update owner
-		set owner_name=#{ownerName}, owner_hp1=#{ownerHp1}, owner_hp2=#{ownerHp2}, owner_hp3=#{ownerHp3} 
+		set owner_name=#{tOwnerName}, owner_hp1=#{tOwnerHp1}, owner_hp2=#{tOwnerHp2}, owner_hp3=#{tOwnerHp3}
 		where owner_no = #{ownerNo}
 	</update>
-	
-	<update id="editOwnerRegister" parameterType="OwnerRegisterVo">
+	<update id="editRegister" parameterType="adminTemporaryVo">
 		update ownerregister
-		set o_register_no=#{oRegisterNo}
-		where owner_no= #{ownerNo}
+		set o_register_no=#{oRegisterNo}, o_register_filename=#{tFilename}
+		where owner_no =#{ownerNo}
 	</update>
+	<update id="editStores" parameterType="adminTemporaryVo">
+		update stores
+		set store_name=#{tStoresName}, store_address=#{tStoresAddress}, store_address_detail=#{tStoresAddressDetail}, 
+    		location_no=#{locationNo}    
+		where store_no=#{storeNo}
+	</update>
+
 	
-	<update id="editStores" parameterType="ownerStoresVo">
-		update 
-	</update> -->
-	
+	<update id="editDeny" parameterType="int">
+		update temporary
+		set a_agree_no = 7, t_submitdate=sysdate
+		where t_no =#{no}
+	</update>	
 	
 </mapper>
 

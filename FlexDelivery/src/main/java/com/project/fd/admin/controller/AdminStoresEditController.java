@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,7 +54,7 @@ public class AdminStoresEditController {
 	
 	
 	@RequestMapping("/editDetail.do")
-	public String adminEditDetail(@RequestParam(defaultValue = "0")  long no ,
+	public String adminEditDetail(@RequestParam(defaultValue = "0")  int no ,
 			@RequestParam(defaultValue = "0") int sNo, Model model) {
 		//승인/변경 상태 목록 보여주기
 		logger.info("점포 변경 세부 화면, 파라미터 no={}", no);
@@ -73,12 +74,13 @@ public class AdminStoresEditController {
 	}
 	
 	@RequestMapping("/editAgree.do")
-	public String adminEditAgree(@ModelAttribute AdminTemporaryVO vo) {
-		logger.info("점포 변경 승인 화면, 파라미터 vo={}", vo);
+	public String adminEditAgree(@RequestParam(defaultValue = "0") int no) {
+		logger.info("점포 변경 승인 화면, 파라미터 vo={}", no);
 		
-	
-		 int cnt= temporaryService.editAgree(vo); 
-		 logger.info("점포 변경 승인 처리, cnt={}", cnt);
+		AdminTemporaryVO temporaryVo= temporaryService.editDetail(no);
+		logger.info("점포변견 값 temporaryVo={}", temporaryVo);
+		int cnt= temporaryService.editAgree(temporaryVo); 
+		logger.info("점포 변경 승인 처리, cnt={}", cnt);
 		
 		
 		return "redirect:/admin/menu2/editList.do";
@@ -86,7 +88,7 @@ public class AdminStoresEditController {
 	}
 	
 	@RequestMapping("/editDeny.do")
-	public String adminEditDeny(@RequestParam(defaultValue = "0") long no) {
+	public String adminEditDeny(@RequestParam(defaultValue = "0") int no) {
 		logger.info("점포 변경 반려, 파라미터 no={}", no);
 		
 		int cnt= temporaryService.editDeny(no);
