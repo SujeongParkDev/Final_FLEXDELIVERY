@@ -48,7 +48,7 @@
 					resultValue=label[3];
 					type="주문완료";
 				}else if(oStatusNo==5){
-					result  = label[5]/total*100;
+					result  = label[4]/total*100;
 					resultValue=label[4];
 					type="주문취소";
 				}
