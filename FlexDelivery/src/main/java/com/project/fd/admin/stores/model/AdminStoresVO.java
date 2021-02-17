@@ -3,9 +3,9 @@ package com.project.fd.admin.stores.model;
 import java.sql.Timestamp;
 
 public class AdminStoresVO {
-	private long storeNo; //점포등록신청번호
+	private int storeNo; //점포등록신청번호
 	private Timestamp storeRegdate; //점포등록신청일
-	private int oRegisterNo; //사업자등록증 번호
+	private long oRegisterNo; //사업자등록증 번호
 	private String ownerName; //점주명
 	private String storeName; //점포명
 	private String storeAddress; //점포주소
@@ -17,10 +17,10 @@ public class AdminStoresVO {
 	private int aAgreeNo; //승인관리번호
 	private String oRegisterFilename;	// 변경후 파일이름varchar2(200 byte)
 	private String oRegisterOriginalFilename;//변경전 파일이름	varchar2(200 byte)
-	public long getStoreNo() {
+	public int getStoreNo() {
 		return storeNo;
 	}
-	public void setStoreNo(long storeNo) {
+	public void setStoreNo(int storeNo) {
 		this.storeNo = storeNo;
 	}
 	public Timestamp getStoreRegdate() {
@@ -29,10 +29,10 @@ public class AdminStoresVO {
 	public void setStoreRegdate(Timestamp storeRegdate) {
 		this.storeRegdate = storeRegdate;
 	}
-	public int getoRegisterNo() {
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
-	public void setoRegisterNo(int oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	public String getOwnerName() {
@@ -109,5 +109,5 @@ public class AdminStoresVO {
 				+ ", ownerHp3=" + ownerHp3 + ", storeContent=" + storeContent + ", aAgreeNo=" + aAgreeNo
 				+ ", oRegisterFilename=" + oRegisterFilename + ", oRegisterOriginalFilename="
 				+ oRegisterOriginalFilename + "]";
-	}	
+	}		
 }

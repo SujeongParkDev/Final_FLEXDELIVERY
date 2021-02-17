@@ -76,10 +76,10 @@ public class AdminStoresEditController {
 	public String adminEditAgree(@ModelAttribute AdminTemporaryVO vo) {
 		logger.info("점포 변경 승인 화면, 파라미터 vo={}", vo);
 		
-		/*
-		 int cnt= temporaryService.editAgree(no); 
+	
+		 int cnt= temporaryService.editAgree(vo); 
 		 logger.info("점포 변경 승인 처리, cnt={}", cnt);
-		 */
+		
 		
 		return "redirect:/admin/menu2/editList.do";
 		

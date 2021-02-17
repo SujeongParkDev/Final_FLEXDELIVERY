@@ -54,7 +54,7 @@
 	
 	<insert id="reviewWrite" parameterType="memberReviewVo">
 		insert into review
-		values(review_seq.nextval,#{reviewRating},#{reviewContent},0,sysdate,'N',#{reviewFilename},'N',#{memberNo},#{ordersNo},#{storeNo})
+		values(review_seq.nextval,#{reviewRating},#{reviewContent},0,sysdate,'N',#{reviewFilename},'N',#{memberNo},#{ordersNo},#{storeNo}, null)
 	</insert>
 	
 	<update id="deleteReview" parameterType="int">
