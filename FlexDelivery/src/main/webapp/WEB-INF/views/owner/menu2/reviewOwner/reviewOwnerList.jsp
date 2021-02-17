@@ -5,7 +5,7 @@
 
 <div class="row mt-3">
 	<div class="col-md-6 col-sm-12"></div>
-	<div class="col-md-4 col-sm-12" style="padding-left: 110px;">
+	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
 		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-outline-primary" id="btAll">전체(${fn:length(allList)})</button>

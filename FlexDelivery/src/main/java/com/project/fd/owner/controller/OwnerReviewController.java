@@ -112,7 +112,25 @@ public class OwnerReviewController {
 		List<Map<String, Object>> reviewList=ownerReCommService.selectReView(searchVo);
 		logger.info("리뷰 전체 조회, reviewList.size={}", reviewList.size());
 		
+		
+		List<Map<String, Object>> allList=ownerReCommService.selectAll(storeNo);
+		logger.info("리뷰메인 리스트 allList.size={}",allList.size());
+		
+		
+		List<Map<String, Object>> nocmtList=ownerReCommService.selectNocomment(storeNo);
+		int totalnocmt=ownerReCommService.NocmtTotalRecord(storeNo);
+		logger.info("미답변   리스트 nocmtList.size={},totalnocmt={}",nocmtList.size(),totalnocmt);
+		
+		List<Map<String, Object>> blockList=ownerReCommService.selectblockcmt(storeNo);
 		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
+		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
+		
+		model.addAttribute("blockList", blockList);
+		
+		model.addAttribute("totalnocmt", totalnocmt);
+		model.addAttribute("nocmtList", nocmtList);
+		
+		model.addAttribute("allList", allList);
 		
 		model.addAttribute("totalBlock", totalBlock);
 		model.addAttribute("reviewList", reviewList);
