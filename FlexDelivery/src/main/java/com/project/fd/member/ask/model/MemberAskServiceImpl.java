@@ -18,6 +18,16 @@ public class MemberAskServiceImpl implements MemberAskService{
 	public List<MemberAskVO> selectICAsk(String askId) {
 		return memberAskDao.selectICAsk(askId);
 	}
+
+	@Override
+	public MemberAskVO detailAsk(int askNo) {
+		return memberAskDao.detailAsk(askNo);
+	}
+
+	@Override
+	public MemberAskVO replyAskSelect(int askNo) {
+		return memberAskDao.replyAskSelect(askNo);
+	}
 	
 	
 

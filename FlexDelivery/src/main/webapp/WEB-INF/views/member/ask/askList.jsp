@@ -42,13 +42,13 @@
 								<form class="form form-horizontal" method="post" action="<c:url value='/member/ask/askWrite.do'/>">
 									<div class="form-body">
 										<div class="row">
-											<div class="col-md-1">
+											<div class="col-md-1" style=" text-align: center">
 												<label>제목</label>
 											</div>
 											<div class="col-md-11 form-group">
 												<input type="text" class="form-control" id="askTitle" name="askTitle" placeholder="문의글 제목을 입력하세요">
 											</div>
-												<div class="col-md-1">
+												<div class="col-md-1" style=" text-align: center">
 													<label>내용</label>
 												</div>
 											<div class="col-md-11 form-group">
