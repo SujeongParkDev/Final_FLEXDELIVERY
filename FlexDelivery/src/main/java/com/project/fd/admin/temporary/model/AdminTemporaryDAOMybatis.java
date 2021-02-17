@@ -32,7 +32,16 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 
 	@Override
 	public int editAgree(AdminTemporaryVO vo) {
-		return sqlSession.update(namespace + "editAgree", vo);
+		int cnt1 = sqlSession.update(namespace + "editOwner", vo);
+		int cnt2 = sqlSession.update(namespace + "editRegister");
+		int cnt3 = sqlSession.update(namespace + "editRegister");
+		
+		int result = -1;
+		if(cnt1==1 && cnt2==1 && cnt3==1) {
+			result = 1;
+		}
+		
+		return result;
 	}
 
 	@Override
