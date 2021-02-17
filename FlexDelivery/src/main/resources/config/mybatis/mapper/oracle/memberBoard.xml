@@ -68,4 +68,13 @@
 		select * from board
 		where board_no=#{boardNo}
 	</select>
+	
+	<select id="boardMain" resultType="memberBoardVo">
+		select * from board
+		where board_thumbnail is not null
+		and authority_no in (1,2,3)
+		<![CDATA[
+		and rownum<=5
+		]]>
+	</select>
 </mapper>

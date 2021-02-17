@@ -58,15 +58,16 @@
 		<!-- 이미지 띄우기 -->
 	    <c:set var="type" value="${type }"></c:set> 
 	   	<c:if test="${type=='file'}">
-	   	<img src
-			="<c:url value='/resources/imgs/NoticeEventImages/${ownerBoardVo.boardThumbnail}'/>" 
+	   	<img class="img-fluid mx-auto" src="<c:url value='/resources/imgs/NoticeEventImages/${ownerBoardVo.boardThumbnail}'/>" 
 			alt="${ownerBoardVo.boardTitle }" style="height:250px;">
 		</c:if>
 		<c:if test="${type=='url'}">
-	      	<img src="${ownerBoardVo.boardThumbnail}" style="height:250px;"
+	      	<img class="img-fluid mx-auto" src="${ownerBoardVo.boardThumbnail}" style="height:250px;"
 			 alt="${ownerBoardVo.boardTitle }">
 		</c:if>
-		
+		<c:if test="${empty ownerBoardVo.boardThumbnail}">
+			<img class="img-fluid mx-auto" src="<c:url value='/resources/imgs/NoticeEventImages/noticeDefault.jpg'/>" alt="${ownerBoardVo.boardTitle}" ">
+		</c:if>
 		<br>
 		<br>
 		<!-- 진짜 내용 -->

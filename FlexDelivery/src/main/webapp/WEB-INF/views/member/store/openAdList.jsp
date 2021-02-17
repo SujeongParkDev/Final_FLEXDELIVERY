@@ -59,7 +59,7 @@
 		                </p>
 		                <p class="text-gray mb-1 small">${vo.storeAddress} ${vo.storeAddressDetail}</p>
 	               		<p class="text-gray mb-2">
-	                    <span class="float-left text-black-50"><fmt:formatNumber value="${vo.storeMinPrice}" type="currency"/>부터</span></p>
+	                    <span class="float-left text-black-50"><fmt:formatNumber value="${vo.storeMinPrice}" pattern="#,###원"/>부터</span></p>
 		            </div>
 		        </div>
 		    </div>

@@ -46,15 +46,23 @@
                                     <div class="p-3 border-bottom bg-white">
                                         <p class="m-0 small">${vo.boardHead}</p>
                                     </div>
-                                    <div class="p-3 border-bottom">
-                                        <img alt="#" src="<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>" class="img-fluid mx-auto">
+                                    <div class="p-3 border-bottom text-center">
+                                    	
+                                        <img alt="#" src="
+                                        <c:if test="${!empty vo.boardThumbnail }">
+                                        	<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>
+                                        </c:if>
+                                        <c:if test="${empty vo.boardThumbnail }">
+                                        	<c:url value='/resources/imgs/NoticeEventImages/noticeDefault.jpg'/>
+                                        </c:if>
+                                        " 
+                                        class="img-fluid mx-auto" style="inline-size:30em">
                                     </div>
                                     <!-- total price -->
                                     <!-- Destination -->
                                     <div class="p-3 border-bottom bg-white">
                                         <div class="d-flex align-items-center mb-2">
                                             <h6 class="font-weight-bold mb-1">내용</h6>
-                                            <h6 class="font-weight-bold ml-auto mb-1">$8.52</h6>
                                         </div>
                                         <p class="m-0 small text-muted">${vo.boardContent}</p>
                                     </div>

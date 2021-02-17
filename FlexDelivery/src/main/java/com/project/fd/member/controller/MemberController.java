@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryService;
 import com.project.fd.admin.largecategory.model.AdminLargeCategoryVO;
+import com.project.fd.member.board.model.MemberBoardService;
+import com.project.fd.member.board.model.MemberBoardVO;
 import com.project.fd.member.model.MemberService;
 import com.project.fd.member.model.MemberVO;
 
@@ -35,6 +37,7 @@ public class MemberController {
 	
 	@Autowired private MemberService memberService;
 	@Autowired private AdminLargeCategoryService lCategoryServ;
+	@Autowired private MemberBoardService boardServ;
 	
 	@RequestMapping("/register/register.do")
 	public String register(){
@@ -84,7 +87,10 @@ public class MemberController {
 		logger.info("회원 메인화면 보여주기");
 		List<AdminLargeCategoryVO> list=lCategoryServ.selectAll();
 		logger.info("list.size={}",list.size());
+		List<MemberBoardVO> bList=boardServ.boardMain();
+		
 		model.addAttribute("list",list);
+		model.addAttribute("bList",bList);
 		return "member/index";
 	}
 	

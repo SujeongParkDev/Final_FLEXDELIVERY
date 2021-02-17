@@ -481,7 +481,7 @@
                 <div class="row">
                     <div class="col-6 col-md-2">
                         <p class="text-white-50 font-weight-bold m-0 small">최소주문금액</p>
-                        <p class="text-white m-0">~<fmt:formatNumber value="${vo.storeMinPrice}" type="currency"/></p>
+                        <p class="text-white m-0">~<fmt:formatNumber value="${vo.storeMinPrice}" pattern="#,###원"/></p>
                     </div>
                     <div class="col-6 col-md-2">
                         <p class="text-white-50 font-weight-bold m-0 small">영업 시간</p>

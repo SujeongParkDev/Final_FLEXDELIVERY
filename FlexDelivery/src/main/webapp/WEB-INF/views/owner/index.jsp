@@ -38,7 +38,7 @@
         <div class="hero-slides owl-carousel">
       
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style="background-image: url('<c:url value='/resources/imgs/CommonImages/covid.png'/>'); background-size:contain; ">
+            <div class="single-hero-slide bg-img img-fluid" style="background-image: url('<c:url value='/resources/imgs/CommonImages/covid.png'/>'); background-size:contain; ">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -55,7 +55,7 @@
          
          
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image :url('<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>'); background-size:contain;">
+            <div class="single-hero-slide bg-img img-fluid" style="background-image :url('<c:url value='/resources/imgs/CommonImages/firstPrize.png'/>'); background-size:contain;">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">
@@ -72,7 +72,7 @@
 
             
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img " style=" background-image: url('<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>'); background-size:contain; ">
+            <div class="single-hero-slide bg-img img-fluid" style=" background-image: url('<c:url value='/resources/imgs/CommonImages/weatherMain.png'/>'); background-size:contain; ">
                 <div class="container h-80">
                     <div class="row h-80 align-items-center">
                         <div class="col-12">

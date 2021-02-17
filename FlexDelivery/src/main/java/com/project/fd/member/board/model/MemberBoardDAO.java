@@ -8,4 +8,5 @@ public interface MemberBoardDAO {
 	int eventCount(MemberBoardSearchVO vo);
 	int noticeCount(MemberBoardSearchVO vo);
 	MemberBoardVO boardDetail(int boardNo);
+	List<MemberBoardVO> boardMain();
 }

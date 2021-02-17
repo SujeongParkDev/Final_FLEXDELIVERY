@@ -205,7 +205,7 @@
 				                             	 <option value="0" title="0" selected>선택 없음
 			                            	 <c:forEach items="${coupList}" var="cVo">
 			                            	 	<c:if test="${cVo.rCouponMin<=buyPrice}">
-					                             <option value="${cVo.sCBoxNo}" title="${cVo.rCouponDc}"><fmt:formatNumber value="${cVo.rCouponDc}" type="currency" /> 할인 - <fmt:formatNumber value="${cVo.rCouponMin}" type="currency" />부터 사용가능</option>
+					                             <option value="${cVo.sCBoxNo}" title="${cVo.rCouponDc}"><fmt:formatNumber value="${cVo.rCouponDc}" pattern="#,###원" /> 할인 - <fmt:formatNumber value="${cVo.rCouponMin}" pattern="#,###원" />부터 사용가능</option>
 			                            	 	</c:if>
 			                            	 </c:forEach>
 				                           	</select>
@@ -224,7 +224,7 @@
 			                            	<select class="custom-select form-control" name="giftSelect" id="giftSelect" onchange="change(event,${totalPrice})">
 				                             	 <option value="0" title="0" selected>선택 없음</option>
 			                            	 <c:forEach items="${giftList}" var="gVo">
-					                             <option value="${gVo.giftNo}" title="${gVo.gPTypePrice}"><fmt:formatNumber value="${gVo.gPTypePrice}" type="currency" /> 상품권 </option>
+					                             <option value="${gVo.giftNo}" title="${gVo.gPTypePrice}"><fmt:formatNumber value="${gVo.gPTypePrice}" pattern="#,###원" /> 상품권 </option>
 			                            	 </c:forEach>
 				                           	</select>
 		                               	</c:if>
@@ -243,7 +243,7 @@
 				                             	 <option value="0" title="0" selected>선택 없음
 			                            	 <c:forEach items="${eCoupList}" var="eVo">
 			                            	 	<c:if test="${eVo.eCouponMin<=buyPrice}">
-					                             <option value="${eVo.eCouponNo}" title="${eVo.eCouponDc}">${eVo.eCouponName} - <fmt:formatNumber value="${eVo.eCouponDc}" type="currency" /> 할인 (<fmt:formatNumber value="${eVo.eCouponMin}" type="currency" />부터 사용가능)</option>
+					                             <option value="${eVo.eCouponNo}" title="${eVo.eCouponDc}">${eVo.eCouponName} - <fmt:formatNumber value="${eVo.eCouponDc}" pattern="#,###원" /> 할인 (<fmt:formatNumber value="${eVo.eCouponMin}" pattern="#,###원" />부터 사용가능)</option>
 			                            	 	</c:if>
 			                            	 </c:forEach>
 				                           	</select>
