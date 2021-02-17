@@ -9,4 +9,5 @@ public interface OwnerAskDAO {
 	int deleteAsk(int askNo);
 	OwnerAskVO selectByNo(int askNo);
 	int updateASK(OwnerAskVO ownerAskVo);
+	OwnerAskVO replyAsk(int askNo);
 }

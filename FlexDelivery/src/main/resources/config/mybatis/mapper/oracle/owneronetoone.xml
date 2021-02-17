@@ -14,7 +14,7 @@
 			select ASK_SEQ.nextval from dual
 		</selectKey>
 	insert into ask(ASK_NO,ASK_TITLE,ASK_ID,ASK_CONTENT,ASK_GROUP_NO,AUTHORITY_NO)
-	values(#{askNo},#{askTitle},#{askId},#{askContent},#{askGroupNo},#{authorityNo})
+	values(#{askNo},#{askTitle},#{askId},#{askContent},#{askNo},#{authorityNo})
 	</insert>
 	
 	<select id="selectAllAsk" parameterType="ownerAdvertiseSearchVo" resultType="ownerAskVo">
@@ -51,13 +51,13 @@
 		select * from ask where ask_no=#{askNo}
 	</select>
 
-<update id="updateASK" parameterType="ownerAskVo">
-update ask 
-set ask_title=#{askTitle}, ask_content=#{askContent}
-where ask_no=#{askNo}
-</update>
+	<update id="updateASK" parameterType="ownerAskVo">
+	update ask 
+	set ask_title=#{askTitle}, ask_content=#{askContent}
+	where ask_no=#{askNo}
+	</update>
 
-<select id="replyAsk" parameterType="ownerAskVo" resultType="ownerAskVo">
+	<select id="replyAsk" parameterType="int" resultType="ownerAskVo">
 		select * from ask
 		where ask_group_no=#{askNo} and ask_step=1
 	</select>
