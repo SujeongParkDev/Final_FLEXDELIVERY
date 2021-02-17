@@ -11,25 +11,27 @@
       $(function(){
     	  $.ajax({
 				url:"<c:url value='/owner/menu2/reviewOwner/ratingstars.do'/>",
-				success:function(res){
+				success:function(map){
 					//alert(res);
 					// 방법 1 하나씩 꺼낸다 2 each돌린다 
 					// var five=res.rating ?? 
 					//var stars=${map.countNum};
 					//var many=${map.many};
 					//alert(stars);
+    	  		drawStuff(map)
 				},
 				error:function(xhr, status, error){
 					alert("error발생:"+ error);
 				}
 			});
-    	  drawStuff()
       });
 
-      function drawStuff() {
+      function drawStuff(map) {
+    	  alert(map);
+    	 var result = res['map']
         var data = new google.visualization.arrayToDataTable([
-          ['', 'Percentage'],
-          ["5점 ", 44],
+          ['countNum', 'many'],
+          ["5점 ", map[0]],
           ["4점 ", 31],
           ["3점 ", 12],
           ["2점 ", 10],

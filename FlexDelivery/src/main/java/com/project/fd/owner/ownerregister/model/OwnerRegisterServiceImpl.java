@@ -74,4 +74,8 @@ public class OwnerRegisterServiceImpl implements OwnerRegisterService{
 	public OwnerRegisterVO selectRegisterByOwnerNo(int ownerNo) {	//지안 추가 20210211
 		return ownerRegisterDao.selectRegisterByOwnerNo(ownerNo);
 	}
+
+	
+	
+	
 }

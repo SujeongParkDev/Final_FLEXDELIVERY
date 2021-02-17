@@ -23,5 +23,5 @@ public interface OwnerRegisterService {
 	public OwnerStoresVO selecSt(int storeNo);
 	
 	public OwnerRegisterVO selectRegisterByOwnerNo(int ownerNo);//지안 추가 20210211
-	int dupckregi(int ownerNo);
+	
 }

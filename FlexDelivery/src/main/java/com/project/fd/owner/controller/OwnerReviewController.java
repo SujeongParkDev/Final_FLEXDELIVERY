@@ -123,8 +123,12 @@ public class OwnerReviewController {
 	}
 	
 	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.POST)
-	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo,
+	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo, HttpSession session,
 			Model model) {
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
+		vo.setStoreNo(storeNo);
 		logger.info("ownercomment page, vo={}",vo);
 		int cnt=ownerReCommService.insertComm(vo);
 		logger.info("코멘트 작성  결과, cnt={}", cnt);

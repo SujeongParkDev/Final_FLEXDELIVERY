@@ -14,9 +14,17 @@
 	<!-- review 변경함 20210216 소정 
 	create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
 		c.R_COMMENT_CONTENT,c.R_COMMENT_REGDATE, n.MENU_NAME,d.O_DETAIL_QTY, o.M_OPTION_NAME 
-		from MEMBER m full outer join REVIEW r on r.MEMBER_NO=m.MEMBER_NO left
+		from MEMBER m join REVIEW r on r.MEMBER_NO=m.MEMBER_NO left
 		join REVIEWCOMMENT c on c.store_no=r.store_no and c.REVIEW_NO=r.REVIEW_NO 
 		full outer join ORDERDETAIL d on r.ORDERS_NO=d.ORDERS_NO full outer join 
+		MENU n on n.MENU_NO=d.MENU_NO full outer join MENUOPTION o on d.M_OPTION_NO=o.M_OPTION_NO;
+		
+		20210217 변경함
+		create or replace view LSJCommentDDetailView as select r.*, m.MEMBER_ID, 
+		c.R_COMMENT_CONTENT,c.R_COMMENT_REGDATE, n.MENU_NAME,d.O_DETAIL_QTY, o.M_OPTION_NAME 
+		from MEMBER m  join REVIEW r on r.MEMBER_NO=m.MEMBER_NO full outer
+		join REVIEWCOMMENT c on c.store_no=r.store_no and c.REVIEW_NO=r.REVIEW_NO 
+		 join ORDERDETAIL d on r.ORDERS_NO=d.ORDERS_NO  join 
 		MENU n on n.MENU_NO=d.MENU_NO full outer join MENUOPTION o on d.M_OPTION_NO=o.M_OPTION_NO; 
 	 -->
 	<select id="selectReView" parameterType="ownerReviewSearchVo" resultType="map">

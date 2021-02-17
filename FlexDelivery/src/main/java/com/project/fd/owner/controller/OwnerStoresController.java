@@ -60,7 +60,6 @@ public class OwnerStoresController {
 		 logger.info("result large.size={}",large.size());
 		 
 		int stck= ownerStoresService.dupckstores(ownerNo);
-		//ownerStoresService.selectByNo(ownerNo);
 		int regick=ownerStoresService.dupckregi(ownerNo);
 		
 		// 점포 레지넘버 유무 
@@ -69,7 +68,7 @@ public class OwnerStoresController {
 			stresult=OwnerStoresService.STORE_STAY;
 		}
 		
-		if(regiresult>0) {
+		if(regick>0) {
 			regiresult=OwnerStoresService.LICENSE_STAY;
 		}
 		logger.info("regiresult={},stresult={}",regiresult,stresult);
