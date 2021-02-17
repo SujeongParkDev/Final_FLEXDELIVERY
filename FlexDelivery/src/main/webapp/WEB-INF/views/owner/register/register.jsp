@@ -196,7 +196,7 @@
                         	</div>
                         </div>
                         <div style="display: flex; float: right;">
-                        	<button class="btn btn--radius" name="owner" type="button" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
+                        	<button class="btn btn--radius" name="owner" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" id="btnChkId">중복확인</button>
                         </div> 
                          <div style="text-align: right;">
                         	<span></span>
