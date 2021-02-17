@@ -7,10 +7,19 @@ input {
 	border-radius: 5px;
 	height: 35px;
 }
-
+.frame-wrap {
+    display: flex;
+    flex: 1;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1128px;
+    min-width: 0;
+    padding: 40px 56px 0;
+}
 </style>
 <br>
 <!-- 셀렉 옵션만 되면 끝 !  -->
+<div class="frame-wrap">
 <div class="row" id="basic-table">
 	<div class="col-md-2 col-sm-12"></div>
 	<div class="col-12 col-md-8">
@@ -25,15 +34,6 @@ input {
 					<div class="row">
 						<div class="col-md-8 col-12"></div>
 						<div class="col-md-4 col-sm-12">
-						<form name="frmSearch" method="post"  action='<c:url value="/owner/menu2/requestst/requests.do"/>'>
-							<select class="form-select groupChoice p-2 choice" name="choice" id="choice" style="overflow: auto;">
-								<option class="m-3 text-center choice" style="font-size: 17px;" selected value="0">승인 목록 선택</option>
-								<option value="1">사업자 등록 신청</option>
-								<option value="2">입점 등록 신청</option>
-								<option value="3">광고 신청 내역 </option>
-								<option value="4">점포 정보 변경 신청</option>
-							</select> <br>
-						</form>
 						</div>
 						<div class="col-md-4 col-sm-12"></div>
 					</div>
@@ -174,6 +174,7 @@ input {
 		</div>
 	</div>
 	<div class="col-md-2 col-sm-12"></div>
+</div>
 </div>
 <script type="text/javascript">
 

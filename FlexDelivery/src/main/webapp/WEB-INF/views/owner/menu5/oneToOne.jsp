@@ -82,7 +82,6 @@
 															<th>취소하기</th>
 														</tr>
 													</thead>
-													${list }
 													<tbody>
 														<c:if test="${!empty list}">
 															<c:forEach var="vo" items="${list}">
