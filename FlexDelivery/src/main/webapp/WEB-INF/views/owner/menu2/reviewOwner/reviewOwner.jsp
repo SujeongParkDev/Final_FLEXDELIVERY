@@ -69,31 +69,31 @@
 												<div class="col-md-3">
 													<h4 class="card-title">${map['MEMBER_ID']}</h4>
 												</div>
+													<div class="col-md-6"></div>
+													<div class="col-md-3">
+													<div class="text-right">
+														<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>
+													</div>
+												</div>
 												<div class="row">
 													<div class="col-md-3">${map['REVIEW_RATING'] }점</div>
 													<div class="col-md-1"></div>
-													<div class="col-md-5 text-left">${map['MENU_NAME']}+ ${map['M_OPTION_NAME']}</div>
+													<div class="col-md-5 text-left">${map['MENU_NAME']}
+													<c:if test="${!empty map['M_OPTION_NAME']}">
+													  + ${map['M_OPTION_NAME']}
+													 </c:if>
+													 </div>
 												</div>
 											</div>
 											<div class="row ">
 												<div class="col-md-3">
 													<fmt:formatDate value="${map['REVIEW_REGDATE']}" pattern="yyyy-MM-dd" />
 												</div>
-												<div class="col-md-7 text-left">${map['REVIEW_CONTENT']}</div>
-												<div class="col-md-1"></div>
+												<div class="col-md-6 text-left">${map['REVIEW_CONTENT']}</div>
+											  	<div class="col-md-3">
+											 		 <img src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+											 	 </div>
 											</div>
-											<div class="single-blog-thumbnail">
-												<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
-													<img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
-												</c:if>
-												<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)!='http' and (!empty map['REVIEW_FILENAME']) }">
-													<img src="<c:url value='/resources/imgs/HoneytipImages/${map["REVIEW_FILENAME"]}'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
-												</c:if>
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="button" class="btn btn-outline-warning small" onclick="btSingo(${map['REVIEW_NO']})" >신고</button>
-										</div>
 										<br>
 										<br>
 										<div class="table-responsive">
@@ -137,7 +137,6 @@
 													</form>
 												</div>
 												<div class="col-md-2 col-sm-12"></div>
-												<br>
 												<br>
 											</c:if>
 											<!-- 댓글이 없는 경우 활성화  -->
