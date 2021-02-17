@@ -567,8 +567,8 @@
 						    		<div class="col-md-4 col-4 p-2">
 										<img src="<c:url value='/resources/imgs/MenuImages/${menuAllvo.memberMenuVo.menuImg}' />" class="img-fluid rounded float-start" alt="...">
 							    	</div>
-							    	<div class="col-md-8 col-8 p-5">
-										<p class="mb-0 h4 fw-bold font-monospace" style="line-height: 1;text-align: end">${menuAllvo.memberMenuVo.menuContent}</p>
+							    	<div class="col-md-8 col-8 p-2 pt-5">
+										<p class="mb-0 h5 fw-bold font-monospace" style="text-align: center">${menuAllvo.memberMenuVo.menuContent}</p>
 									</div>
 								</div>
 						    </div>
@@ -598,7 +598,7 @@
 							                <div class="col-md-12" style="text-align: center;line-height: 25">
 							                	<img src="<c:url value='/resources/imgs/MenuImages/${menuAllvo.memberMenuVo.menuImg}' />" width="250px" height="250px">
 							                	<br>
-												<p class="h5">${menuAllvo.memberMenuVo.menuContent}</p>                 	
+												<p class="h5 p-2">${menuAllvo.memberMenuVo.menuContent}</p>                 	
 							                </div>
 							                <form name="cartForm">
 							                	<input type="hidden" name="menuNo" value="${menuAllvo.memberMenuVo.menuNo}">
