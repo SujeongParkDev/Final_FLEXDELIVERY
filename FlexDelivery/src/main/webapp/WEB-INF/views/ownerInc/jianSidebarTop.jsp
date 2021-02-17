@@ -212,56 +212,9 @@
 	                </button>
 	                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-	                        <li class="dropdown nav-icon">
-	                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-	                                <div class="d-lg-inline-block">
-	                                    <i data-feather="bell"></i>
-	                                </div>
-	                            </a>
-	                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
-	                                <h6 class='py-2 px-4'>알림</h6>
-	                                <ul class="list-group rounded-none">
-	                                    <li class="list-group-item border-0 align-items-start">
-	                                        <div class="avatar bg-success mr-3">
-	                                            <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
-	                                        </div>
-	                                        <div>
-	                                            <h6 class='text-bold'>주문현황</h6>
-	                                            <p class='text-xs'>
-	                                                	주문이 도착했습니다.<br>
-	                                                	확인 후 접수 및 취소 버튼을 눌러주세요!
-	                                            </p>
-	                                        </div>
-	                                    </li>
-	                                </ul>
-	                            </div>
-	                        </li>
-	                        <li class="dropdown nav-icon mr-2">
-	                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-	                                <div class="d-lg-inline-block">
-	                                    <i data-feather="mail"></i>
-	                                </div>
-	                            </a>
-	                            <div class="dropdown-menu dropdown-menu-right">
-	                                <a class="dropdown-item" href="#"><i data-feather="user"></i> 관리자</a>
-	                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> 문의사항</a>
-	                             
-	                            </div>
-	                        </li>
-	                        <li class="dropdown">
-	                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-	                                <div class="avatar mr-1">
-	                                    <img src="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" alt="owner">
-	                                </div>
-	                                <div class="d-none d-md-block d-lg-inline-block">Flex Delivery Admin</div>
-	                            </a>
-	                            <div class="dropdown-menu dropdown-menu-right">
-	                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-	                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-	                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-	                                <div class="dropdown-divider"></div>
-	                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-	                            </div>
+	                       
+	                        <li class="dropdown nav-icon mr-2" >
+	                             <a href="<c:url value='/owner/index.do'/>" style="width:25%;"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" style="width:100%;" alt="owner" ></a>
 	                        </li>
 	                    </ul>
 	                </div>
