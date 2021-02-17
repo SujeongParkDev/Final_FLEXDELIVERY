@@ -17,6 +17,11 @@
 	  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
 	<style type="text/css">
 		html {overflow-x:hidden;}
+		.btn-dark {
+	    color: #fff;
+	    background-color: #222f3e;
+	    border-color: #222f3e;
+	}
 	</style>
 
 </head>	
@@ -61,11 +66,11 @@
 						          </div>
 						       </div>
 				       	   <!-- 끝  -->
-				       	   <div class="text-center">
+				       	   <div class="text-center" style="margin-top:14px;">
 				       	   	 <button class="btn btn-dark block" id="btclose"  name="btclose">확인</button>
+				       	   	 <c:if test="${rgVo.aAgreeNo == 1}">
 				       	   	  <button class="btn btn-dark block"  id="btclose2"  name="btclose2" 
 				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
-				       	   	 <c:if test="${rgVo.aAgreeNo == 1}">
 				       	   	 </c:if>
 				       	   </div>
 				       </div>
