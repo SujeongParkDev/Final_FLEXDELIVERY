@@ -72,5 +72,10 @@ public class OwnerReivewCommentServiceImpl implements OwnerReivewCommentService{
 		return ownerReviewCommentDao.reviewSingo(reviewNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> reviewReting(int storeNo) {
+		return ownerReviewCommentDao.reviewReting(storeNo);
+	}
+
 	
 }

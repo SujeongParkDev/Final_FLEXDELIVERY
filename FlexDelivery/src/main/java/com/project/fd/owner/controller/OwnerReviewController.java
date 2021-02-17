@@ -270,9 +270,10 @@ public class OwnerReviewController {
 			int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
 			logger.info("차트 , storeNo={}", storeNo);
 			
-			
+			List<Map<String, Object>> starsList=ownerReCommService.reviewReting(storeNo);
 			Map<String, Object> map = new HashedMap<String, Object>();
 			
+			map.put("starsList", starsList);
 			logger.info("map={}" , map);
 			return map;
 		}

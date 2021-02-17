@@ -19,6 +19,7 @@ import com.project.fd.owner.board.model.OwnerBoardVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.request.model.OwnerRequestService;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 
 @Controller
@@ -36,7 +37,7 @@ public class OwnerIndexController {
 	
 	@Autowired
 	private AdminHoneytipService honeytipService;
-	
+	@Autowired private OwnerStoresService ownerStoresService;
 	@Autowired private OwnerReivewCommentService reviewcmtService; // 20210214소정 추가 
 	
 	@Autowired private OwnerRequestService requestService; // 20210214 소정 추가 
@@ -84,6 +85,7 @@ public class OwnerIndexController {
 			model.addAttribute("totalnocmt", totalnocmt);
 			model.addAttribute("allList", allList);
 			
+			//int storeNo=ownerStoresService.selectStoreNoByNo(ownerNo);
 			//agree
 			model.addAttribute("totalagree1", totalagree1);
 			model.addAttribute("totalagree2", totalagree2);
