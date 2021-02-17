@@ -91,7 +91,17 @@
 												</div>
 												<div class="col-md-6 text-left">${map['REVIEW_CONTENT']}</div>
 											  	<div class="col-md-3">
+											  	<!-- 
 											 		 <img src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+											  	 -->
+														 <div class="single-blog-thumbnail">
+														<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
+															<img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
+														</c:if>
+														<c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)!='http' and (!empty map['REVIEW_FILENAME']) }">
+															<img src="<c:url value='/resources/imgs/ReviewImages/${map["REVIEW_FILENAME"]}'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
+														</c:if>
+													</div>
 											 	 </div>
 											</div>
 										<br>
@@ -133,8 +143,8 @@
 																	</div>
 																</div>
 															</div>
-														</div>
 													</form>
+													</div>
 												</div>
 												<div class="col-md-2 col-sm-12"></div>
 												<br>
