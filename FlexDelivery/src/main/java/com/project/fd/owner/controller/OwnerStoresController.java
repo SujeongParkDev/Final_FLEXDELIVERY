@@ -43,9 +43,16 @@ public class OwnerStoresController {
 
 	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.GET)
 	 public String ownerlaunch(Model model,HttpSession session) {
-		 String msg="	사업자 등록 신청 먼저 부탁드려요. ", url="/owner/menu1/launch/launch.do";
-		 int ownerNo=(Integer)session.getAttribute("ownerNo");
-		ownerNo=(Integer)session.getAttribute("ownerNo");
+		 String msg="	로그인 먼저 부탁드려요. ", url="/owner/index.do";
+		 int ownerNo=0;
+			if(session.getAttribute("ownerNo")==null) {
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				return "common/message";
+				
+			}else {
+				ownerNo=(Integer)session.getAttribute("ownerNo");
+			}
 			
 		logger.info("입점신청 세션의 ownerNo={}",ownerNo);
 				

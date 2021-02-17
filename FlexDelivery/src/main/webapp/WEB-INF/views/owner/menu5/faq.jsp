@@ -22,6 +22,9 @@ button.btn.btn-link {
 	border-radius: 2px;
 	width: 55px;
 }
+button.shadow-none.btn.btn-block.d-flex.justify-content-between.card-btn.collapsed.p-3 {
+    background: white;
+}
 </style>
 <br>
 <br>
@@ -42,9 +45,9 @@ button.btn.btn-link {
 		<form name="frmSearch" method="post" action="<c:url value='/owner/menu5/faqDetail.do'/>">
 			<input type="hidden" value="${cgVo.fCategoryNo}">
 			<div class="row">
-				<div class="col-md-8 col-12"></div>
-				<div class="col-md-4 col-sm-12">
-					<select class="form-select groupChoice p-2" name="fCategoryNo"
+				<div class="col-md-9 col-12"></div>
+				<div class="col-md-3 col-sm-12">
+					<select class="form-control input-lg groupChoice p-2" name="fCategoryNo"
 						id="fCategoryNo" style="overflow: auto;">
 						<c:forEach var="cgVo" items="${cgList }">
 							<option value="${cgVo.fCategoryNo}" <c:if test="${cgVo.fCategoryNo == param.fCategoryNo}"> selected="selected"</c:if>>${cgVo.fCategoryName }</option>

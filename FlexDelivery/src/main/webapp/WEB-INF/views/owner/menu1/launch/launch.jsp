@@ -32,18 +32,22 @@ h1 {
 
 <div class="container">
 	<div class="jumbotron">
-		<h1> FLEXDELIVERY 입점하고<br />${regiresult}${stresult}
-		 <strong>가게매출<img
+	<div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
+		<h1> FLEXDELIVERY 입점하고<br />
+		 <strong>가게매출
+		 <img
 				src="https://ceo-cdn.baemin.com/cdn/ceo-selfservice/src/images/ols/icon_calc.png?ver=42f9afb5d8c17e79d0659cea66351d9f" />
 				을 올리세요!
 			</strong>
 		</h1>
+	</div>
 		<button type="button" id="btRegi" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" >사업자 등록 신청</button>
 		<input type="button" id="btStore" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" data-dismiss="#exampleModal1" value="FLEXD 입점 신청">
 	</div>
 	<div class="row h-80 align-items-center marketing">
 		<div class="col-lg-6">
 	 <div class="slide-content text-center">
+	 <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
 			<h4>
 				<i class="fas fa-paperclip"></i> 미리 준비해주세요!
 			</h4>
@@ -57,8 +61,10 @@ h1 {
 			</div>
 		</div>
 		</div>
+		</div>
 		<div class="col-lg-6">
 		 <div class="slide-content text-center">
+		 <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
 			<h4>
 				<i class="fas fa-paperclip"></i> 입점 과정 미리보기
 			</h4>
@@ -76,7 +82,9 @@ h1 {
 		</div>
 	</div>
 	</div>
+	</div>
 </div>
+<div style="padding-bottom: 5%;"></div>
 <br>
 <br>
 <!-- 사업자 등록 폼 시작  -->

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <div class="row mt-3">
 	<div class="col-md-6 col-sm-12"></div>
 	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
@@ -34,7 +33,6 @@
 					<div class="card-content">
 						<div class="card-body text-center">
 							<br>
-							<!-- 전체 보여주기 데이트 피커 없이  -->
 							<div class="AllDiv">
 								<c:if test="${empty blockList }">
 									<div class="row">
@@ -52,7 +50,7 @@
 												</div>
 												<div class="row">
 													<div class="col-md-3">${map['REVIEW_RATING'] }점</div>
-													<div class="col-md-1">.col-md-1</div>
+													<div class="col-md-1"></div>
 													<div class="col-md-5 text-left">${map['MENU_NAME']} + ${map['M_OPTION_NAME']}</div>
 												</div> 
 											</div>
@@ -66,7 +64,6 @@
 										</div>
 										<br>
 										<br>
-										<!-- table hover -->
 										<div class="table-responsive">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-8"></div>
@@ -115,17 +112,16 @@
 												<br>
 
 											</c:if>
-											<!-- 댓글이 없는 경우 활성화  -->
 											<c:if test="${empty map['R_COMMENT_CONTENT']}">
 												<div class="card-body">
 													<form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
-														<!-- hidden  -->
 														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
 														<input type="hidden" id="storeNo" name="storeNo" value="1">
 														<label for="content"></label>
-														<div style="border: radius 2px solid lightgray;" class="text-left">
-															<textarea class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%;" placeholder="사장님 ! 댓글을 등록해주세요."></textarea>
-															<input class="button medium" type="submit" onclick="" style="background-color: #0d6efd; color: white; padding: 3%;" value="댓글작성">
+														<!-- 차단은 답변 없앨까 고민중  -->
+														<div style="border: 2px solid lightgray; padding:5%;" class="">
+															<input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
+															<input class="button  btn btn-primary" type="submit" style="" value="댓글작성">
 														</div>
 													</form>
 												</div>
@@ -141,11 +137,9 @@
 		</div>
 	</div>
 </div>
-<!-- The end -->
 <div class="col-md-2 col-sm-12"></div>
 <br>
 
-<!-- two  -->
 <script type="text/javascript">
 	function btDel(reviewNo){
 		if(confirm("리뷰 답변을 삭제하시겠습니까?")) {

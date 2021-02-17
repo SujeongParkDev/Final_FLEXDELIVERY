@@ -10,8 +10,13 @@ a.event:hover {
 	color: rgb(182, 73, 197);
 	text-decoration: none;
 }
+footer.footer-area.text-center {
+    width: -webkit-fill-available;
+}
 </style>
-<div class="col-12"></div>
+<div class="row">
+	<div class="col-12 col-md-1"></div>
+	<div class="col-12 col-md-11">
 <div class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
 	<div class="row align-items-center" style="padding: 5%;">
 		<div class="col-12 col-md-10">
@@ -52,6 +57,7 @@ a.event:hover {
 			</c:forEach>
 		</c:if>
 		</div>
-		</div>
-		<div class="col-12 col-md-1" style="padding-bottom: 15%;"></div>
+	</div>
+	<div class="col-12 col-md-1" style="padding-bottom: 5%;"></div>
+</div>
 <%@ include file="../../../ownerInc/bottom.jsp"%>
