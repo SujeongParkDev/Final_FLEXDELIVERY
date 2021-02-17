@@ -17,6 +17,11 @@
 	  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
 	<style type="text/css">
 		html {overflow-x:hidden;}
+		.btn-dark {
+	    color: #fff;
+	    background-color: #222f3e;
+	    border-color: #222f3e;
+	}
 	</style>
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
@@ -59,8 +64,8 @@
 						          </div>
 						       </div>
 				       	   <!-- 끝  -->
-				       	   <div class="text-center">
-				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
+				       	   <div class="text-center" style="margin-top:14px;">
+				       	   	 <button class="btn btn-dark block" id="btclose"  name="btclose">확인</button>
 				       	   </div>
 				       </div>
 				   </div>

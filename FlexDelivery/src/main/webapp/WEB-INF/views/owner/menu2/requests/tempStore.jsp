@@ -17,6 +17,11 @@
 	  <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
 	<style type="text/css">
 		html {overflow-x:hidden;}
+			.btn-dark {
+	    color: #fff;
+	    background-color: #222f3e;
+	    border-color: #222f3e;
+	}
 	</style>
     <script src="${pageContext.request.contextPath}/resources/adminResources/js/jquery/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
@@ -27,7 +32,6 @@
 	});
 	</script>
 </head>	
-		<!-- 메뉴 컨텐츠 내용 br 바꾸기 -->
 		<div></div>
 		<br>
 		<br>
@@ -39,7 +43,6 @@
 				       			<h4> 점포 정보 변경 상세보기  </h4>
 				       	   	 </div>
 				       	   		<div class="row" id="basic-table">
-						          <!-- Table with outer spacing -->
 						          <div class="table-responsive"  style="overflow-x: hidden;">
 						            <table  class="table table-striped">
 						              <tbody>
@@ -82,10 +85,10 @@
 						          </div>
 						       </div>
 				       	   <!-- 끝  -->
-				       	     <div class="text-center">
-				       	   	 <button class="btn btn-primary block" id="btclose"  name="btclose">확인</button>
+				       	     <div class="text-center" style="margin-top:14px;">
+				       	   	 <button class="btn btn-dark block" id="btclose"  name="btclose">확인</button>
 				       	     	 <c:if test="${tempVo.aAgreeNo == 1}">
-				       	   	  <button class="btn btn-primary block"  id="btclose2"  name="btclose2" 
+				       	   	  <button class="btn btn-dark block"  id="btclose2"  name="btclose2" 
 				       	   	   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">신청 취소</button>
 				       	   	 </c:if>
 				       	     </div>

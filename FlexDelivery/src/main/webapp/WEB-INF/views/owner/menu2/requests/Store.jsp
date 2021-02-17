@@ -40,10 +40,9 @@
 				<div class="col-md-3 col-sm-12"></div>
 				<div class="col-md-6 col-sm-12">
 				      		<div class="text-center">
-				       			<h4> 사업자 정보 상세보기  </h4>
+				       			<h4> 점포 입점 신청 내역 상세보기  </h4>
 				       	   	 </div>
 				       	   		<div class="row" id="basic-table">
-						          <!-- Table with outer spacing -->
 						          <div class="table-responsive"  style="overflow-x: hidden;">
 						            <table  class="table table-striped">
 						              <tbody>
@@ -84,7 +83,7 @@
 						          </div>
 						       </div>
 				       	   <!-- 끝  -->
-				       	     <div class="text-center">
+				       	     <div class="text-center" style="margin-top:14px;">
 				       	   	 <button class="btn btn-dark block"id="btclose"  name="btclose">확인</button>
 				       	   	 	 <c:if test="${stVo.aAgreeNo == 1}">
 				       	   	  <button class="btn btn-dark block" id="btclose2"  name="btclose2" 
