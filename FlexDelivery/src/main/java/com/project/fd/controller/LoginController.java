@@ -55,7 +55,6 @@ public class LoginController {
 				session.setAttribute("memberNo",vo.getMemberNo());
 				session.setAttribute("authorityNo",vo.getAuthorityNo());
 				session.setAttribute("locationNo",vo.getLocationNo());
-				session.setAttribute("memberNo", vo.getMemberNo());
 				
 				//[2] cookie
 				Cookie ck=new Cookie("ck_memberid", vo.getMemberId());

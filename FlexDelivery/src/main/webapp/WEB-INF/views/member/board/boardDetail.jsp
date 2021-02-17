@@ -34,20 +34,16 @@
                             <div class="col-lg-12">
                                 <div class="osahan-status">
                                     <!-- status complete -->
-                                    <div class="p-3 status-order border-bottom bg-white">
-                                        <p class="small m-0"><i class="feather-calendar text-primary"></i><fmt:formatDate value="${vo.boardRegdate}" pattern="yyyy-MM-dd HH:mm E요일"/></p>
-                                    </div>
                                     <div class="p-3 border-bottom">
-                                        <div class="d-flex">
-                                            <h6 class="font-weight-bold">${vo.boardTitle}</h6>
+                                        <div class="p-2">
+                                            <h6 class="font-weight-bold" style="text-align: center">${vo.boardTitle}</h6>
+                                            <span class="m-0 small" style="float:right;">${vo.boardHead}</span>
                                         </div>
                                     </div>
-                                    <!-- Destination -->
-                                    <div class="p-3 border-bottom bg-white">
-                                        <p class="m-0 small">${vo.boardHead}</p>
+                                    <div class="p-3 status-order border-bottom bg-white">
+                                        <p class="small m-0" style="text-align: end"><i class="feather-calendar text-primary"></i>&nbsp;<fmt:formatDate value="${vo.boardRegdate}" pattern="yyyy-MM-dd HH:mm E요일"/></p>
                                     </div>
                                     <div class="p-3 border-bottom text-center">
-                                    	
                                         <img alt="#" src="
                                         <c:if test="${!empty vo.boardThumbnail }">
                                         	<c:url value='/resources/imgs/NoticeEventImages/${vo.boardThumbnail}'/>
@@ -61,7 +57,7 @@
                                     <!-- total price -->
                                     <!-- Destination -->
                                     <div class="p-3 border-bottom bg-white">
-                                        <div class="d-flex align-items-center mb-2">
+                                        <div class="d-flex align-items-center mb-2 justify-content-center">
                                             <h6 class="font-weight-bold mb-1">내용</h6>
                                         </div>
                                         <p class="m-0 small text-muted">${vo.boardContent}</p>
@@ -69,6 +65,7 @@
                                 </div>
                             </div>
                         </div>
+						<a href="<c:url value='/member/board/board.do' />" class="btn btn-lg btn-primary btn-block my-2">목록으로<i class="feather-arrow-right"></i></a> 
                     </div>
                 </section>
             </div>

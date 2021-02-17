@@ -9,7 +9,8 @@
 	as
 	select o.orders_no,o.MEMBER_NO,
 	(select count(*) from review r where r.orders_no=o.orders_no) as reviewCnt
-	from orders o 
+	from orders o
+	where o_status_no=4;
 	리뷰 갯수 구하기 위한 view
 	컬럼 : 주문번호 / 회원번호 / 주문번호에 작성된 리뷰의 count, 1이상이면 이미 작성됨
 	-->
@@ -54,7 +55,7 @@
 	
 	<insert id="reviewWrite" parameterType="memberReviewVo">
 		insert into review
-		values(review_seq.nextval,#{reviewRating},#{reviewContent},0,sysdate,'N',#{reviewFilename},'N',#{memberNo},#{ordersNo},#{storeNo}, null)
+		values(review_seq.nextval,#{reviewRating},#{reviewContent},0,sysdate,'N',#{reviewFilename},'N',#{memberNo},#{ordersNo},#{storeNo},null)
 	</insert>
 	
 	<update id="deleteReview" parameterType="int">

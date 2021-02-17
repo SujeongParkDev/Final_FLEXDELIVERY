@@ -78,6 +78,9 @@ public class MemberOrderController {
 	public String orderSuccess(@ModelAttribute MemberOrderVO vo,@RequestParam(defaultValue = "0",required = false) int giftSelect
 			,@RequestParam(defaultValue = "0",required = false) int couponSelect,@RequestParam(defaultValue = "0",required = false) int eCouponSelect,Model model) {
 		logger.info("주문처리, MemberOrderVO={}",vo);
+		logger.info("주문처리, giftSelect={}",giftSelect);
+		logger.info("주문처리, couponSelect={}",couponSelect);
+		logger.info("주문처리, eCouponSelect={}",eCouponSelect);
 		List<MemberCartViewVO> cartList=cartServ.selectCartList(vo.getMemberNo());
 		int cnt=0;
 		int type=0;

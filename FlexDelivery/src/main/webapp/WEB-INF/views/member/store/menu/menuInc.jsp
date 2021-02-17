@@ -22,7 +22,7 @@
 	                </button>
                 </div>
                 <div class="col-md-12" style="text-align: center;line-height: 25">
-                	<img src="<c:url value='/resources/imgs/${mVo.memberMenuVo.menuImg}' />" width="250px" height="250px">
+                	<img src="<c:url value='/resources/imgs/MenuImages/${mVo.memberMenuVo.menuImg}' />" width="250px" height="250px">
                 	<br>
 					<p class="h5">${mVo.memberMenuVo.menuContent}</p>                 	
                 </div>

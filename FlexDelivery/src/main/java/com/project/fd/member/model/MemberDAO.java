@@ -16,4 +16,5 @@ public interface MemberDAO {
 	public int rupdateMember(MemberVO vo);
 	int giftChk(MemberVO vo);
 	int selectMemNo(Map<String, Object> map);
+	int memberOut(String memberId);
 }

@@ -25,7 +25,7 @@
                         </a>
                         <!-- profile-details -->
                         <div class="bg-white profile-details">
-                        	<a class="d-flex align-items-center border-bottom p-3" data-toggle="modal" data-target="#inviteModal">
+                        	<a class="d-flex align-items-center border-bottom p-3">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold mb-1">주소</h6>
                                     <p class="small text-muted m-0">${vo.memberAddress}&nbsp;${vo.memberAddressDetail}</p>
@@ -92,7 +92,7 @@
                                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                                 </div>
                             </a>
-                            <a href="<c:url value="/member/login/memberOut.do" />" class="d-flex w-100 align-items-center px-3 py-4">
+                            <a href="#" class="d-flex w-100 align-items-center px-3 py-4" data-toggle="modal" data-target="#outModal">
                                 <div class="left mr-3">
                                     <h6 class="font-weight-bold m-0 text-dark"><i class="feather-x-circle bg-danger text-white p-2 rounded-circle mr-2"></i>회원탈퇴</h6>
                                 </div>

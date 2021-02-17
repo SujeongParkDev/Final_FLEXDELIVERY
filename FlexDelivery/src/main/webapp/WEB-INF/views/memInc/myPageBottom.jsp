@@ -1,6 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#outForm').submit(function(){
+			var data=$(this).serializeArray();
+			
+			$.ajax({
+				url:"<c:url value='/member/memberOut.do'/>",
+				type:"post",
+				data:data,
+				dataType:"json",
+				success:function(no){
+					if(no==1){
+						alert('회원 탈퇴처리 되었습니다.');
+						location.href="<c:url value='/member/index.do'/>";
+					}else if(no==2){
+						alert('비밀번호가 일치하지 않습니다.');
+					}else if(no==3){
+						alert('회원 정보가 일치하지 않습니다.');
+					}else{
+						alert('회원 탈퇴처리에 실패하였습니다. 고객센터로 문의해주세요.');
+					}
+				},error:function(error){
+					alert("error : "+error);
+				}
+				
+			});
+			$('#outModal').hide();
+			event.preventDefault();
+		})
+	});
+</script>
  <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
         <div class="row">
@@ -176,55 +208,42 @@
         </ul>
     </nav>
     <!-- modal창 -->
-    <%-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="outModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Filter</h5>
+                    <h5 class="modal-title">회원탈퇴</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="osahan-filter">
-                        <div class="filter">
-                            <!-- SORT BY -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">회원등급</h6>
-                            </div>
-                            <div class="custom-control border-bottom px-0">
-                                <label class="py-3 w-100 px-3">${authorityName} 등급</label>
-                            </div>
-                            <!-- Filter -->
-                            <div class="p-3 bg-light border-bottom">
-                                <h6 class="m-0">FILTER</h6>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck1" checked>
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck1">Open Now</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck2">
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck2">Credit Cards</label>
-                            </div>
-                            <div class="custom-control border-bottom px-0  custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultCheck3">
-                                <label class="custom-control-label py-3 w-100 px-3" for="defaultCheck3">Alcohol Served</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer p-0 border-0">
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col-6 m-0 p-0">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Apply</button>
-                    </div>
-                </div>
+                <form name="outForm" id="outForm">
+	                <div class="modal-body p-0">
+	                    <div class="osahan-filter">
+	                        <div class="filter">
+	                            <div class="p-3 bg-light border-bottom">
+	                                <h6 class="m-0">정말 FLEX-DELIVERY를 탈퇴하시겠어요?</h6>
+	                            </div>
+	                            <div class="custom-control border-bottom px-2 mt-3">
+		                            <div class="form-group">
+		                                <input type="password" class="form-control" id="memberPwd" name="memberPwd" placeholder="비밀번호를 입력해주세요">
+		                            </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="modal-footer p-0 border-0">
+	                    <div class="col-6 m-0 p-0">
+	                        <button type="submit" class="btn btn-primary btn-lg btn-block">탈퇴하기</button>
+	                    </div>
+	                    <div class="col-6 m-0 p-0">
+	                        <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">닫기</button>
+	                    </div>
+	                </div>
+                </form>
             </div>
         </div>
-    </div> --%>
+    </div>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/memberResources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
