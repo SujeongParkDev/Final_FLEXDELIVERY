@@ -21,6 +21,7 @@ import com.project.fd.member.model.MemberVO;
 import com.project.fd.owner.model.OwnerAuthorityVO;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.model.OwnerVO;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 @Controller
 public class LoginController {
@@ -31,6 +32,7 @@ public class LoginController {
 	@Autowired private MemberService memServ;
 	@Autowired private AdminService adminServ;
 	@Autowired private OwnerService ownerServ;
+	@Autowired private OwnerStoresService ownerStoresServ;
 	
 	@RequestMapping("/login.do")
 	public String login(@RequestParam int idx,@RequestParam String userid,@RequestParam String pwd,@RequestParam(required = false) String chkSave,
@@ -82,9 +84,7 @@ public class LoginController {
 				int result = ownerServ.checkAuthority(userid);
 				logger.info("점포 로그인 권한 번호 결과 result={}", result);
 
-				OwnerAuthorityVO auVo= ownerServ.selectOwnerAuthorityAll(userid);
-				logger.info("점포 로그인 권한 번호 결과 vovo={}", auVo);
-
+				
 				
 				OwnerVO vo=ownerServ.selectOwner(userid);
 				session.setAttribute("ownerId",userid);
@@ -92,8 +92,9 @@ public class LoginController {
 				session.setAttribute("ownerNo",vo.getOwnerNo());
 				session.setAttribute("authorityNo",vo.getAuthorityNo());
 				session.setAttribute("result", result);
-				if(auVo.getStoreNo()>0) {
-					session.setAttribute("storeNo", auVo.getStoreNo());
+				if(result==3 || result==6) {
+					int storeNo = ownerStoresServ.selectStoreNoByNo(vo.getOwnerNo());
+					session.setAttribute("storeNo", storeNo);
 				}
 				Cookie ck=new Cookie("ck_ownerid", vo.getOwnerId());
 				ck.setPath("/");

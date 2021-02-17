@@ -51,6 +51,7 @@ public class OwnerIndexController {
 			model.addAttribute("HAVE_ALL", OwnerService.HAVE_ALL);
 			model.addAttribute("LICENSE_STAY", OwnerService.LICENSE_STAY);
 			model.addAttribute("STORE_STAY", OwnerService.STORE_STAY);
+			model.addAttribute("WITHDRAW_STAY", OwnerService.WITHDRAW_STAY);
 			model.addAttribute("NOTICE", OwnerBoardService.BOARD_NOTICE);
 			model.addAttribute("EVENT", OwnerBoardService.BOARD_EVENT);
 			

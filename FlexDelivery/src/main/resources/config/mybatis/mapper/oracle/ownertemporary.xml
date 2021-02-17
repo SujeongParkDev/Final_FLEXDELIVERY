@@ -6,7 +6,7 @@
 
 	<select id="selectOwnerInfoAll" parameterType="string" resultType="map">
 		select * from jaStoresRegisterOwnerView
-		where owner_id = #{ownerId}
+		where owner_id = #{ownerId} and a_agree_no !=2 and a_agree_no !=4 and a_agree_no !=9
 	</select>
           
           

@@ -40,7 +40,7 @@
 						$('#noStore').css('display','block');
 						$('#noRegi').css('display','none');
 						$('#haveStore').css('display','none');
-					}else if(res==${HAVE_ALL}){
+					}else if(res==${HAVE_ALL} || res==${WITHDRAW_STAY}){
 						$('#haveStore').css('display','block');
 						$('#noStore').css('display','none');
 						$('#noRegi').css('display','none');

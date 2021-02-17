@@ -94,6 +94,13 @@ public class OwnerServiceImpl implements OwnerService {
 		 map.put("sAgreeNo", 8);
 		 int cnt5 = ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo=탈퇴신청
 		 
+		 map.remove("sAgreeNo");
+		 map.put("sAgreeNo", 2);
+		 int cnt6 =  ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo=승인취소
+		 
+		 map.remove("sAgreeNo");
+		 map.put("sAgreeNo", 4);
+		 int cnt7 =  ownerDao.selectOwnerAuthorityCount(map); //sAgreeNo=승인반려
 	
 		 
 			/*
@@ -101,20 +108,24 @@ public class OwnerServiceImpl implements OwnerService {
 			 * System.out.println("vo"+vo);
 			 */
 		 
-		 System.out.println("cnt1="+cnt1+",cnt2="+cnt2+",cnt3="+cnt3+",cnt4="+cnt4+",cnt5="+cnt5);
+		 System.out.println("cnt1="+cnt1+",cnt2="+cnt2+",cnt3="+cnt3+",cnt4="+cnt4+",cnt5="+cnt5+",cnt6="+cnt6+",cnt7="+cnt7);
 		 
 		 
 		 int result = NO_LICENSE;
-		 if(cnt1==1) {
-			 result=LICENSE_STAY;
-		 }else if(cnt2==1) {
-			 result=NO_STORE;
-		 }else if(cnt3==1) {
-			 result=STORE_STAY;
-		 }else if(cnt4 ==1) {
+		 if(cnt4==1) {
 			 result=HAVE_ALL;
-		 }else if(cnt5==1) {
-			 result=WITHDRAW_STAY;
+		 }else {
+			 if(cnt1==1) {
+				 result=LICENSE_STAY;
+			 } else if(cnt4==1) {
+					 
+			 }else if(cnt2==1 || cnt6==1 || cnt7==1) {
+				 result=NO_STORE;
+			 }else if(cnt3==1) {
+				 result=STORE_STAY;
+			 }else if(cnt5==1) {
+				 result=WITHDRAW_STAY;
+			 }
 		 }
 		 
 		 

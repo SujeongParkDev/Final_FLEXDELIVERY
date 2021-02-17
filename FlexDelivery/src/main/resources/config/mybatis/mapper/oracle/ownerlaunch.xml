@@ -81,7 +81,7 @@ on s.STORE_NO=t.STORE_NO;
 	<!-- 20210211 지안 추가 시작 -->
 	<select id="selectRegisterByOwnerNo" parameterType="int" resultType="ownerRegisterVo">
 		select * from ownerRegister
-		where owner_no=#{ownerNo}
+		where owner_no=#{ownerNo} and  a_agree_no !=2 and a_agree_no !=4 and a_agree_no !=9
 	</select>
 	<!-- 20210211 지안 추가 끝 -->
 	
