@@ -28,4 +28,8 @@
 		where ask_group_no=#{askNo} and ask_step=1
 	</select>
 
+	<delete id="deleteAsk" parameterType="memberAskVo">
+		delete from ask
+		where ask_no=#{askNo}
+	</delete>
 </mapper>

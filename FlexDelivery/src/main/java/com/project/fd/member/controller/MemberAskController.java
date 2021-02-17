@@ -88,7 +88,32 @@ public class MemberAskController {
 		model.addAttribute("vo2", replyAskSelect);
 		
 		return "member/ask/askDetail";
+	}
+	
+	@RequestMapping("/askDelete.do")
+	public String askDelete(@RequestParam(defaultValue = "0") int askNo, Model model ) {
+		logger.info("상세보기 파라미터 askNo={}", askNo);
+		if(askNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/member/ask/askList.do");
+
+			return "common/message";
+		}
 		
+		String msg="글 삭제 실패", url="member/ask/askList.do?askNo="+askNo;
+		
+		memberAskService.deleteAsk(askNo);
+		logger.info("글 삭제됨");
+		
+		msg="문의가 삭제되었습니다.";
+		url="/member/ask/askList.do";
+		
+		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		//4
+		return "common/message";
 	}
 	
 	
