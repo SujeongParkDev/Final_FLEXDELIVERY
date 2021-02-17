@@ -268,7 +268,7 @@ function goDetail(ordersNo,ordersDiscount){
 										               		 </c:import>
 										               		
 										                <td class="text-bold-500">${map['ORDERS_DATE']}</td>
-										                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
+										                <td>${map['ORDERS_PRICE'] }</td>
 										                <td>
 										                	<button class="btn btDeliveryTime" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;"
 										                				data-toggle="modal" data-target="#deliveryTime">배달</button>

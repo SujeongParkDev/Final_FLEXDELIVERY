@@ -164,7 +164,7 @@
 						                <th style="width:25%;">주문내역</th>
 						                <th style="width:15%;">결제금액</th>
 						                <th style="width:20%;">배달시간</th>
-						                <th style="width:20%;">완료시간</th>
+						                <th style="width:20%;">완료예정시간</th>
 						               
 						              </tr>
 						            </thead>
@@ -184,7 +184,7 @@
 									                	 	<c:param name="ordersNo" value = "${map['ORDERS_NO'] }"/>
 										                	 <c:param name="ordersDiscount" value = "${map['ORDERS_DISCOUNT'] }"/>
 									               		 </c:import>
-									                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] } 원</td>
+									                <td>${map['ORDERS_PRICE']} 원</td>
 									                <td class="text-bold-500">${map['ORDERS_DURATION']} 분</td>
 									                <td class="text-bold-500">${map['DELIVERYSUCCESS']}</td>
 								             </tr>

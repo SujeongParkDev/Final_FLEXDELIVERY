@@ -184,7 +184,7 @@
 										                	 	<c:param name="ordersDiscount" value = "${map['ORDERS_DISCOUNT'] }"/>
 										                	
 										               		 </c:import>
-										                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
+										                <td>${map['ORDERS_PRICE'] }</td>
 										                <td class="text-bold-500">${map['DELIVERYSUCCESS']}</td>
 									             </tr>
 									             </c:forEach>

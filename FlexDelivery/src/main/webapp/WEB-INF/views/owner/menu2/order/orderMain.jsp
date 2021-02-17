@@ -261,7 +261,7 @@
 										                	 	<c:param name="type" value = "${type }"/>
 										               		 </c:import>
 										                <td class="text-bold-500">${map['ORDERS_PAY_END_DATE']}</td>
-										                <td>${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT'] }</td>
+										                <td>${map['ORDERS_PRICE']}</td>
 										                <td>
 										                	<button class="btn btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:#1a7cff; color:white; border: none;"
 										                				data-toggle="modal" data-target="#requestOk">접수</button>

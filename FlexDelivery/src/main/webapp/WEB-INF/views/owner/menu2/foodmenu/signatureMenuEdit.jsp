@@ -58,7 +58,7 @@
 		    <div class="row match-height">
 		    	<div class="col-md-2 col-sm-12"></div>
 		        <div class="col-md-8 col-sm-12">
-		        <div class="card" >
+		
 		            <div class="card-header" style="background-color:white;">
 		            <h4 class="card-title text-center mt-5">대표 메뉴 등록</h4>
 		            </div>
@@ -120,7 +120,7 @@
 		                </form>
 		            </div>
 		            </div>
-		        </div>
+
 		        </div>
 		        <div class="col-md-2 col-sm-12"></div>
 		    </div>

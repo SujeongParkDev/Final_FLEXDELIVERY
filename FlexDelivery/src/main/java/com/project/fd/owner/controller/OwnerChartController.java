@@ -1,5 +1,8 @@
 package com.project.fd.owner.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.owner.chart.model.OwnerChartService;
@@ -96,5 +100,35 @@ public class OwnerChartController {
 		logger.info("map={}" , map);
 		return map;
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/ordersListChart.do")
+	public  List<Map<String, Object>> ordersListChart(HttpSession session, @RequestParam(defaultValue = "0") String startDay,
+			@RequestParam(defaultValue = "0") String endDay){
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		logger.info("주문 비교 구하기 ajax ownerNo={}",ownerNo);
+		
+		
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("storeNo 구하기 결과 storeNo={}", storeNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("storeNo", storeNo);
+		map.put("startDay", startDay);
+		map.put("endDay", endDay);
+		
+		logger.info("map={}" , map);
+		
+		
+		List<Map<String,Object>> oList =  ownerChartService.selectOrdersFiveStatusNo(map);
+		logger.info("주문 건수 구하기 oList={}" , oList);
+		
+		return oList;
+	}
+	
+	
+	
+	
 	
 }

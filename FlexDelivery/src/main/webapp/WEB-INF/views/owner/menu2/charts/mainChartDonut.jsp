@@ -16,6 +16,7 @@ $(function(){
 			 if(mList.length==0){
 				 $('#chart').html('주문을 플렉스하는 <br>그날 까지 통계와는 <br>잠시만 안녕!');
 			 }else{
+				 $('#chartspan').html('<small style="float: center;" class="mt-2">* 주문 완료건만 계산되었습니다</small><br><small style="float: center;" >* 한달간 주문건에 대한 통계입니다</small>');
 				 $('#chart').html('');
 				 var label3=[];
 				 var label4=[];
@@ -29,6 +30,7 @@ $(function(){
 				 console.log(label4); */
 				
 				 var chart = c3.generate({
+					bindto:'chart',
 					size:{
 						height:200
 					},
@@ -46,7 +48,17 @@ $(function(){
 				    },
 				    legend: {
 				        position: 'right'
-				    }
+				    },
+				    tooltip: {
+	                    format: {
+	                        title: function (d) { return '메뉴이름'; },
+	                        value: function (value, ratio, id) {
+	                        	value2 = value+" 건";
+	                            return value2;
+	                        }
+	                    }
+	                }
+				    
 				});
 			 }
 		},
@@ -93,5 +105,7 @@ var chart = c3.generate({
 
 </script>
 
-<div id="chart"></div>
+<div id="chart" class="mb-2"></div>
 
+
+<span id="chartspan" class=" mr-2" > </span>

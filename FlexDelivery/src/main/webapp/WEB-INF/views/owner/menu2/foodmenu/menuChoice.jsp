@@ -170,10 +170,10 @@
 												     	<div class="card-body text-center" style="height:130px;">
 												       		 <div class="card-title">
 											       		 		<a class="event" onclick="goDetail(${vo.menuNo})" href="#"   style="font-size:15px;">
-															 		<c:if test="${fn:length(vo.menuName)>=12}">
-																		${fn:substring(vo.menuName, 0,12) } ..
+															 		<c:if test="${fn:length(vo.menuName)>=8}">
+																		${fn:substring(vo.menuName, 0,8) } ..
 																	</c:if>
-																	<c:if test="${fn:length(vo.menuName)<12}">				
+																	<c:if test="${fn:length(vo.menuName)<8}">				
 																		${vo.menuName}
 																	</c:if>
 																</a>

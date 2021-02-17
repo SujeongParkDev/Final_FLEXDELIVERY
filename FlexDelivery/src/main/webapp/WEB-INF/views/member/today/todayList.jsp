@@ -12,6 +12,17 @@
 <script src="${pageContext.request.contextPath}/resources/ownerResources/herbJs/jquery-3.5.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<style>
+	li{
+		float: left;
+	    display: flex;
+	    margin: 0.3em;
+	}
+	
+	ul{
+		display: contents;
+	}
+</style>
 <script>
 	
 
@@ -148,24 +159,26 @@
 			    <div class="card h-100" style="width: 100%; background-image: url('<c:url value='/resources/imgs/todayBg3.png'/>'); background-repeat: no-repeat; background-size: cover; border:none;">
 			      <div class="card-body" style="color: white;">
 					     <div class="row" style="margin:auto;">
-					     <div class="col-12 col-md-2"></div>
-					     <div class="col-12 col-md-8">
-						     <div class="row" style="margin-top:10%;" id="tagList">
+					     <div class="col-12 col-md-1"></div>
+					     <div class="col-12 col-md-10">
+						     <div  style="margin-top:5%;" id="tagList" >
 									<c:if test="${empty mList }">
-										<div class='col-12 mb-4 p-1 mt-1'>
+										<div >
 			   	 							<p style='border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px; width:100%; text-align:center;' class='p-2'>메뉴 준비 중입니다</p>
 				   						</div>
 									</c:if>
 									<c:if test="${!empty mList }">
 										<c:forEach var="map" items="${mList }">
-											<div class='col-12 col-md-4  mb-4 p-1'>
-				   	 							<span style='border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px;' class='p-2 spanClick' onclick="goStore(${map['STORE_NO']})">#${map['MENU_NAME'] }</span>
-					    					</div>
-										</c:forEach>
+										<ul>
+											<li >
+				   	 							<span style='border-radius: 10px; background-color:rgba(30,30,30,0.3); font-size:13px; width:auto;' class='p-2 spanClick' onclick="goStore(${map['STORE_NO']})">#${map['MENU_NAME'] }</span>
+					    					</li>
+					    				</ul>
+					    				</c:forEach>
 									</c:if>   
 						      </div>
 					 	 </div>
-					 	<div class="col-12 col-md-2"></div>
+					 	<div class="col-12 col-md-1"></div>
 					 	</div>
 			      </div>
 			    </div>
