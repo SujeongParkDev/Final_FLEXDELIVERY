@@ -153,7 +153,7 @@
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/myGift.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/loing/logout.do">FLEX-OUT</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/logout.do">FLEX-OUT</a></li>
 	                </ul>
                 </c:if>
             </li>

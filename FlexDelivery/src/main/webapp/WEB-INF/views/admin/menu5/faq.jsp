@@ -120,6 +120,8 @@
 		if (name==''){
 			alert("변경 후 카테고리 이름을 입력해주세요!");
 			return false;
+		} else {
+			$('form[name=frmFAQCategorEditDelete]').submit();	
 		}
 	}
 	
@@ -471,6 +473,7 @@
 			return false;
 		}
 		
+		$('form[name=frmFAQWrite]').submit();
 	}
 	
 	function faqEdit(){
@@ -767,7 +770,7 @@
 			                                             <table class="table mb-0">
 			                                                <tbody>
 		                                                   	  <tr>
-		                                                   	  	<input type="hidden" name="faqNo" value=${vo.faqNo }>
+		                                                   	  	<input type="hidden" name="faqNo" value="${vo.faqNo }">
 		                                                   	  	<td>카테고리 종류</td>
 			                                                      <td colspan="2"  style="text-align: center;">
 			                                                      	<select name="fCategoryNo" id="selectFCategory2">

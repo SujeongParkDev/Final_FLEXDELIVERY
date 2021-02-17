@@ -52,6 +52,8 @@
 			<mapping path="/member/review/**/*"/>
 			<mapping path="/member/menu/**/*"/>
 			<mapping path="/member/today/**/*"/>
+			<mapping path="/member/ask/**/*"/>
+			<mapping path="/member/faq/**/*"/>
 			<exclude-mapping path="/member/board/**/*"/>
 			<exclude-mapping path="/member/login/*"/>
 			<exclude-mapping path="/member/register/register.do"/>

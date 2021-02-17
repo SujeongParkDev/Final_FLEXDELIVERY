@@ -57,22 +57,29 @@
                         </article>
                     </aside>
                     <aside class="col-sm-3 col-md-2 text-white">
-                        <h6 class="title">Error Pages</h6>
+                        <h6 class="title">Main</h6>
                         <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/not-found.html" class="text-muted">Not found</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/maintence.html" class="text-muted">Maintence</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/coming-soon.html" class="text-muted">Coming Soon</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/index.do" class="text-muted">Home</a></li>
+                            <c:if test="${empty sessionScope.memberId}">
+                            	<li> <a href="${pageContext.request.contextPath}/member/login/login.do" class="text-muted">Flex-ON</a></li>
+                            	<li> <a href="${pageContext.request.contextPath}/member/register.do" class="text-muted">Flex-Register</a></li>
+                            </c:if>
+                            <c:if test="${!empty sessionScope.memberId}">
+                            	<li> <a href="${pageContext.request.contextPath}/member/login/logout.do" class="text-muted">Flex-OUT</a></li>
+                            </c:if>
                         </ul>
                     </aside>
-                    <aside class="col-sm-3 col-md-2 text-white">
-                        <h6 class="title">Services</h6>
-                        <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/faq.html" class="text-muted">Delivery Support</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/contact-us.html" class="text-muted">Contact Us</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/terms.html" class="text-muted">Terms of use</a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/privacy.html" class="text-muted">Privacy policy</a></li>
-                        </ul>
-                    </aside>
+                    <c:if test="${!empty sessionScope.memberId}">
+	                    <aside class="col-sm-3 col-md-2 text-white">
+	                        <h6 class="title"><a href="${pageContext.request.contextPath}/member/mypage/main.do" class="text-muted">MyFlex</a></h6>
+	                        <ul class="list-unstyled hov_footer">
+	                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myCoupon.do" class="text-muted">내 쿠폰함</a></li>
+	                            <li> <a href="${pageContext.request.contextPath}/member/gift/myGift.do" class="text-muted">내 선물</a></li>
+	                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do" class="text-muted">찜한가게</a></li>
+	                            <li> <a href="${pageContext.request.contextPath}/member/review/myReview.do" class="text-muted">내 리뷰</a></li>
+	                        </ul>
+	                    </aside>
+                    </c:if>
                     <aside class="col-sm-3  col-md-2 text-white">
                         <h6 class="title">For users</h6>
                         <ul class="list-unstyled hov_footer">
@@ -121,7 +128,7 @@
 	                    <li><a href="${pageContext.request.contextPath}/member/gift/myGift.do">선물함</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do">찜한가게</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/member/review/myReview.do">내 리뷰관리</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/member/loing/logout.do">FLEX-OUT</a></li>
+	                    <li><a href="${pageContext.request.contextPath}/member/login/logout.do">FLEX-OUT</a></li>
 	                </ul>
                 </c:if>
             </li>
@@ -152,7 +159,7 @@
                 </a>
             </li>
             <li class="github">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/faq.html">
+                <a href="${pageContext.request.contextPath}/member/faq/faqList.do">
                     <p class="h5 m-0"><i class="feather-message-circle"></i></p>
                     FAQ
                 </a>

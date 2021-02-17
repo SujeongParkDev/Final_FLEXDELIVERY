@@ -25,7 +25,7 @@
 						</div>
 						<div class="overflow-hidden border-top d-flex align-items-center p-3">
 							<a class="font-weight-bold d-block"
-								href="<c:url value='/member/askWrite.do'/>">1:1 문의 메뉴로 이동합니다.</a> <i
+								href="<c:url value='/member/ask/askList.do'/>">1:1 문의 메뉴로 이동합니다.</a> <i
 								class="feather-arrow-right-circle ml-auto text-primary"></i>
 						</div>
 					</div>

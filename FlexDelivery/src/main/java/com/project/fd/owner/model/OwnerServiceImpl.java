@@ -19,12 +19,20 @@ public class OwnerServiceImpl implements OwnerService {
 		if(dbPwd==null || dbPwd.isEmpty()) {
 			result=ID_NONE;
 		}else{
-			if (BCrypt.checkpw(pwd, dbPwd)) { //비밀번호 암호화 체크
-			//if (dbPwd.equals(pwd)) {
-				result=LOGIN_OK;				
-			}else {
-				result=PWD_DISAGREE;
+			if(dbPwd.length()<10) {
+				if (dbPwd.equals(pwd)) { //비밀번호 암호화 체크
+					result=LOGIN_OK;				
+				}else {
+					result=PWD_DISAGREE;
+				}
+			}else{
+				if (BCrypt.checkpw(pwd, dbPwd)) {
+					
+				}else {
+					result=PWD_DISAGREE;
+				}
 			}
+			
 		}
 		return result;
 	}
