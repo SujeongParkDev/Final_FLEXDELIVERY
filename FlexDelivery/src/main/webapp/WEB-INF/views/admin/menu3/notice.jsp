@@ -32,6 +32,7 @@ function goMember(){
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">공지사항</h4>
+                        <p class="text-subtitle text-muted">여러분께 전달해드리고 싶은 플렉스 딜리버리의 소식.</p>
                         <hr>
                     </div>
                     <div class="card-content">

@@ -157,7 +157,7 @@ function writeFunc(){
 															</tr>
 														</thead> -->
 		                                                <tbody   style="text-align: center;">
-                                                   	  	  <input type="hidden" name="rCouponNo" value="123" readonly>
+                                                   	  	  <input type="hidden" name="rCouponNo" value="0" readonly>
 		                                                   	 
 	                                                   	  <tr>
 	                                                   	  	 <td>할인금액</td>
@@ -208,7 +208,7 @@ function writeFunc(){
 						    <div class="table-responsive">
 						    	<table class="table table-hover mb-0" style="text-align: center;">
 						            <thead>
-						              <tr>
+						              <tr style="background-color: black; color:white;">
 						                <th>번호</th>
 						                <th colspan="3">할인 가격</th>
 						                <th colspan="3">최소주문금액</th>
@@ -241,7 +241,7 @@ function writeFunc(){
 			                                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 			                                             <div class="modal-content">
 			                                                <form name="frmRegularCouponDel" id="frmRegularCouponDel" method="post" action="<c:url value='/admin/menu6/regularCoupon/delete.do' />">
-			                                                   <div class="modal-header bg-danger">
+			                                                   <div class="modal-header bg-danger" >
 			                                                      <h5 class="modal-title white" id="myModalLabel140">정기 쿠폰 삭제</h5>
 			                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                                                          <i data-feather="x"></i>
