@@ -28,6 +28,11 @@ public class MemberAskServiceImpl implements MemberAskService{
 	public MemberAskVO replyAskSelect(int askNo) {
 		return memberAskDao.replyAskSelect(askNo);
 	}
+
+	@Override
+	public void deleteAsk(int askNo) {
+		memberAskDao.deleteAsk(askNo);
+	}
 	
 	
 

@@ -32,6 +32,11 @@ public class MemberAskDAOMybatis implements MemberAskDAO{
 	public MemberAskVO replyAskSelect(int askNo) {
 		return sqlSession.selectOne(namespace+"replyAskSelect", askNo);
 	}
+
+	@Override
+	public void deleteAsk(int askNo) {
+		sqlSession.delete(namespace+"deleteAsk", askNo);
+	}
 	
 	
 

@@ -7,4 +7,5 @@ public interface MemberAskService {
 	public List<MemberAskVO> selectICAsk(String askId);
 	public MemberAskVO detailAsk(int askNo);
 	public MemberAskVO replyAskSelect(int askNo);
+	public void deleteAsk(int askNo);
 }

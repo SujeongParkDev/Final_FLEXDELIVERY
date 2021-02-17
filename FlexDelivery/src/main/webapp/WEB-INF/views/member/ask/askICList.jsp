@@ -32,7 +32,7 @@
 				답변 완료
 				</span></td>
 				</c:if>
-			<td><a href="" class="badge bg-secondary text-light" >삭제</a></td>
+			<td><a href="<c:url value='/member/ask/askDelete.do?askNo=${vo.askNo}'/>" class="badge bg-secondary text-light" >삭제</a></td>
 		</tr>
 		</c:forEach>
 	</c:if>
