@@ -40,6 +40,12 @@
 		where F_CATEGORY_NAME like #{fCategoryName}
 	</select>
 	
+	<select id="chkFCategory" parameterType="int" resultType="map">
+		select nvl(count(f.F_CATEGORY_NO),0) as cntFCategory
+		from FAQ f
+		where f.F_CATEGORY_NO=#{fCategoryNo}
+	</select>
+	
 	<insert id="insertFaq" parameterType="adminFaqVo" >
 		<selectKey keyProperty="faqNo" resultType="int" order="BEFORE">
 			select FAQ_seq.nextval from dual
