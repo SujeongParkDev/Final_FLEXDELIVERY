@@ -11,7 +11,7 @@
 
 </style>
 <!-- 이미지 경로 맞으면 미답변 차단에 붙이기 !!  -->
-<div class="row mt-3">
+<div class="row mt-3" style="margin-top:14px;">
    <div class="col-md-6 col-sm-12"></div>
    <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
       <div class="btn-group " role="group" aria-label="...">
@@ -35,7 +35,7 @@
       <div class="card">
          <br>
          <div class="card-content">
-            <div class="card-body" id="allreview">
+            <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
                <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p>
                <%@include file="reviewChart.jsp"%>
@@ -50,7 +50,7 @@
                               <input type="hidden" name="currentPage" value="1">
                            </div>
                         <div class="col-md-2 col-12">
-                           <input type="submit" style=" background-color:#f1f3f5; color:#333; border: none;"value="조회" id="searchDate" >
+                           <input type="submit" style="color:black; background-color:#fcbe32; border: none;" value="조회" id="searchDate" >
                         </div>
                      </div>
                         </form>
