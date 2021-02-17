@@ -498,8 +498,11 @@
 			//event.preventDeafult();
 			return false;
 		}
-	}
-
+		
+		$('form[name=frmFaqEdit]').submit();
+		
+	}//
+		
 </script>
 
 <!-- css start -->
@@ -807,7 +810,7 @@
 			                                    <button type="button" class="btn btn-dark ml-1" name="modalEdit"
 			                                     id="btModalEdit" onclick="faqEdit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
-			                                       <span class="d-none d-sm-block">등록</span>
+			                                       <span class="d-none d-sm-block">수정</span>
 			                                    </button>
 			                                 </div>
 		                              	</form><!-- frmFAQEdit 폼 모달 -->

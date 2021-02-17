@@ -274,7 +274,7 @@
 		                    	<a style="font-size: larger;font-weight: 600;">🍯사장님꿀팁</a>
                     		</div>
                     		<div style="text-align: right; width: 40%;">
-                    			<a href="<c:url value='/admin/menu3/honeyTip.do' />"
+                    			<a href="<c:url value='/admin/menu3/honeytip.do' />"
                     				style="font-size: small; color: gray; text-decoration: none;">더보기</a>
                     		</div>
                    		</div>
