@@ -14,9 +14,9 @@
 <div class="row mt-3">
    <div class="col-md-6 col-sm-12"></div>
    <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
-      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group " role="group" aria-label="...">
          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-outline-primary" id="btAll" style=" border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
+            <button type="button" class="btn btn-warning" id="btAll" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
          </div>
          <div class="btn-group" role="group">
             <button type="button" class="btn " id="btnocmt" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
@@ -74,7 +74,7 @@
                                        <div class="col-md-3">
                                        <div class="text-right">
                                        <c:if test="${map['REVIEW_REPORT'] == 'N' }">
-                                          <button type="button" class="button small" onclick="btSingo(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">신고</button>
+                                          <button type="button" class="button small" onclick="btSingo(${map['REVIEW_NO']})" style=" background-color:#f1f3f5; color:#333; border: none;">신고</button>
                                        </c:if>
                                        </div>
                                     </div>
@@ -141,8 +141,8 @@
                                                 <div class="text-right" style="margin-bottom: 10px;">
                                                    <div class="button-group button-group-row align-right btgroup">
                                                       <br> <br>
-                                                      <button type="button" class="button small" onclick="btDel(${map['REVIEW_NO']})" style=" background-color:#f1f3f5; color:#333; border: none;">삭제 </button>
-                                                      <button type="submit" class="button small btn-outline-dark" onclick="Edit_form(${map['REVIEW_NO']})" style="background-color: r #0d6efd; color: r #0d6efd;">수정 </button>
+                                                      <button type="button" class="button small" onclick="btDel(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">삭제 </button>
+                                                      <button type="submit" class="button small btn-outline-dark" onclick="Edit_form(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">수정 </button>
                                                    </div>
                                                 </div>
                                              </div>
@@ -163,7 +163,7 @@
                                           <!--입력폼 디자인 고르기 회의할때 textarea input type -->
                                           <div style="border: 2px solid lightgray; padding:5%;" class="">
                                           <input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
-                                             <input class="button  btn btn-primary" type="submit" style="color:black; background-color:#fcbe32; border: none;" value="댓글작성">
+                                             <input class="button" type="submit" style="color:black; background-color:#fcbe32; border: none;" value="댓글작성">
                                           </div>
                                        </form>
                                     </div>

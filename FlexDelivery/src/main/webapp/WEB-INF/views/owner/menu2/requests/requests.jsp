@@ -18,7 +18,7 @@ input {
 			<br>
 			<div class="card-content">
 				<div class="card-body">
-					<p class="card-text text-center" style="font-size: 20px;">요청 처리 현황</p>
+					<p class="card-text text-center" style="font-size: 20px;" style="font-size:30px; color:#333; font-weight:bold;">요청 처리 현황</p>
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<p class="card-text text-center">승인 대기 상태일 경우 상세보기에서 확인 후 취소하실 수 있습니다.</p>
 					<br> <br>
@@ -40,7 +40,7 @@ input {
 					<div class="table-responsive">
 						<table class="table">
 							<thead>
-								<tr class="text-center" style="font-size: 13px;">
+								<tr class="text-center" style="font-size: 13px;" style="background-color:rgb(2, 48, 71); color:white;">
 									<th style="width: 30%;">승인 목록</th>
 									<th style="width: 22%;">신청 일자</th>
 									<th style="width: 22%;">승인 상태</th>
