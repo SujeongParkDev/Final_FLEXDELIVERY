@@ -77,8 +77,8 @@ public class AdminStoresEditController {
 		logger.info("점포 변경 승인 화면, 파라미터 vo={}", vo);
 		
 		/*
-		 * int cnt= temporaryService.editAgree(no); logger.info("점포 변경 승인 처리, cnt={}",
-		 * cnt);
+		 int cnt= temporaryService.editAgree(no); 
+		 logger.info("점포 변경 승인 처리, cnt={}", cnt);
 		 */
 		
 		return "redirect:/admin/menu2/editList.do";

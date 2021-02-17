@@ -185,7 +185,22 @@
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
                                                 value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp2}" disabled="disabled">
                                         </div>
-                                    </div>                                                                        
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                        	<label for="appendix-file2">첨부파일</label>
+												<div>								
+													<span>
+														<c:if test="${!empty temporaryVo.tOriginalFilename }">
+															<a href
+		="<c:url value='/admin/menu2/downloadEdit.do?no=${temporaryVo.tNo}&fileName=${temporaryVo.tOriginalFilename }'/>">
+															 ${temporaryVo.tOriginalFilename }</a>
+														</c:if>
+													</span>
+												</div>                                   
+                                        </div>
+                                    </div>
+                                                                                                            
                                 </div>
                             </form>
                         </div>
