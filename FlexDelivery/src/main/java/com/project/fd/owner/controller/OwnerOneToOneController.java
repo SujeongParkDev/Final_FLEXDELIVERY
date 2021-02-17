@@ -119,7 +119,9 @@ public class OwnerOneToOneController {
 		}
 		
 		OwnerAskVO vo=ownerAskService.selectByNo(askNo);
-		logger.info("수정화면, 조회 결과 vo={}", vo);
+		logger.info("디테일 , 조회 결과 vo={}", vo);
+		
+		
 		
 		model.addAttribute("vo", vo);
 		

@@ -39,6 +39,11 @@ public class OwnerAskServiceImpl implements OwnerAskService{
 	public int updateASK(OwnerAskVO ownerAskVo) {
 		return ownerAskDao.updateASK(ownerAskVo);
 	}
+
+	@Override
+	public OwnerAskVO replyAsk(int askNo) {
+		return ownerAskDao.replyAsk(askNo);
+	}
 	
 	
 }
