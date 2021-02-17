@@ -111,7 +111,6 @@
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-8"></div>
 												<div class="col-xs-6 col-md-4"></div>
-												${map['R_COMMENT_CONTENT']}
 											</div>
 											<!-- CEO comment start !! -->
 											<c:if test="${!empty map['R_COMMENT_CONTENT']}">

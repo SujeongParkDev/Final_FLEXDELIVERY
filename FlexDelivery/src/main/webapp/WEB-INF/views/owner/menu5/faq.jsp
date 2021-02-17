@@ -49,6 +49,7 @@ button.shadow-none.btn.btn-block.d-flex.justify-content-between.card-btn.collaps
 				<div class="col-md-3 col-sm-12">
 					<select class="form-control input-lg groupChoice p-2" name="fCategoryNo"
 						id="fCategoryNo" style="overflow: auto;">
+						<option class="m-3 text-center" style="font-size: 17px;" selected value="0">카테고리 선택 </option>
 						<c:forEach var="cgVo" items="${cgList }">
 							<option value="${cgVo.fCategoryNo}" <c:if test="${cgVo.fCategoryNo == param.fCategoryNo}"> selected="selected"</c:if>>${cgVo.fCategoryName }</option>
 						</c:forEach>

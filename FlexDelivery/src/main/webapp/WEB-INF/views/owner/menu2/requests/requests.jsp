@@ -19,6 +19,7 @@ input {
 			<div class="card-content">
 				<div class="card-body">
 					<p class="card-text text-center" style="font-size: 20px;">요청 처리 현황</p>
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<p class="card-text text-center">승인 대기 상태일 경우 상세보기에서 확인 후 취소하실 수 있습니다.</p>
 					<br> <br>
 					<div class="row">
@@ -250,7 +251,7 @@ $(function(){
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(res){
 					//alert(res);
-					$('#store').empty();
+					$('#register').show();
 					},
 					error:function(xhr, status, error){
 						alert("error! : " + error);

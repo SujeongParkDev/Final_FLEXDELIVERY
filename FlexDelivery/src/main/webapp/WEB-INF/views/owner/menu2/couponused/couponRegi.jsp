@@ -88,10 +88,9 @@
 						<h4 class="modal-title" id="exampleModalLabel">본인 확인</h4>
 					</div>
 				</div>
-				<p>${list}</p>
 				<form name="frmDelete" method="post"
 					action="<c:url value='/owner/menu2/couponused/couponRegi.do'/>">
-					<input type="text" id="no" name="no" value="${vo.rCouponNo}">
+					<input type="hidden" id="no" name="no" value="${vo.rCouponNo}">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">비밀번호를

@@ -60,7 +60,7 @@
 	
 	<select id="selectCategoryAll" resultType="ownerFaqVO">
 		select c.F_CATEGORY_NAME
-		from FAQ f left join FAQCATEGORY c
+		from FAQ f join FAQCATEGORY c
 		on f.F_CATEGORY_NO=c.F_CATEGORY_NO
 		order by f.F_CATEGORY_NO
 	</select>

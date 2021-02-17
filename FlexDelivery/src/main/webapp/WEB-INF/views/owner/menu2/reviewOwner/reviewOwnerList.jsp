@@ -20,6 +20,11 @@
 		<div class="col-md-2 col-sm-12"></div>
 	</div>
 </div>
+<!-- 페이지 이동시 필요한 form -->
+	<form name="frmData" method="post" style="float: right;" action="<c:url value='/owner/menu5/faq.do'/>">
+		<input type="hidden" name="currentPage"> 
+		<input type="text" name="storeNo" value="${param.storeNo}">
+	</form>
 <!--  -->
 <div class="row" id="table-hover-row">
 	<div class="col-md-2 col-sm-12"></div>

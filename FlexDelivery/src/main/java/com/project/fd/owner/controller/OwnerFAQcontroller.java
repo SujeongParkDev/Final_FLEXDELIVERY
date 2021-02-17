@@ -49,7 +49,7 @@ public class OwnerFAQcontroller {
 		logger.info("글 개수, totalRecord={}", totalRecord);		
 		pagingInfo.setTotalRecord(totalRecord);
 		
-		List<AdminFaqCategoryVO> cgList = categoryService.selectCategoryAll();
+		List<AdminFaqCategoryVO> cgList = faqService.selectCategoryAll();
 		
 		model.addAttribute("cgList",cgList);
 		model.addAttribute("list",list);

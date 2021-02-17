@@ -51,13 +51,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<!-- table 시작 -->
 									<c:if test="${empty list }">
 										<tr>
 											<td colspan="6" class="text-center">데이터가 존재하지 않습니다.</td>
 										</tr>
 									</c:if>
-									<c:set var="k" value="0" />
 									<c:if test="${!empty list }">
 										<c:forEach var="map" items="${list}">
 											<tr class="text-center">
@@ -79,13 +77,11 @@
 													</td>
 												</c:if>
 											</tr>
-											<c:set var="k" value="${k+1 }" />
 										</c:forEach>
 									</c:if>
 								</tbody>
 							</table>
 						</div>
-						<!-- 테이블 끝 -->
 					</div>
 				</div>
 			</div>
