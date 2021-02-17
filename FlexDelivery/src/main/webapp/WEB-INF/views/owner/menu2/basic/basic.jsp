@@ -200,7 +200,7 @@
 		method="post" enctype="multipart/form-data">
 			<div class="header">
 				<div class="header-close">
-					<button id="close" type="button" >나가기</button>
+					<button id="close" type="button"> 나가기</button>
 				</div>
 				<div class="header-title">
 					<h3>가게 로고 변경</h3>
