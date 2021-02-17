@@ -30,13 +30,13 @@
 		                </c:if>
 		                <c:if test="${!empty list }">
 		                    <thead>
-		                        <tr style="text-align: center;">
-		                            <th>글번호</th>
-		                            <th>회원종류</th>
-		                            <th style="width: 30%;">제목</th>
-		                            <th>아이디</th>
-		                            <th>답변여부</th>
-		                            <th>등록일</th>
+		                        <tr style="background-color: black;color: white;">
+		                            <th style="text-align: center;">글번호</th>
+		                            <th style="text-align: center;">회원종류</th>
+		                            <th style="width: 30%;text-align: center;">제목</th>
+		                            <th style="text-align: center;">아이디</th>
+		                            <th style="text-align: center;">답변여부</th>
+		                            <th style="text-align: center;">등록일</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
@@ -44,10 +44,10 @@
 		                        	<tr style="text-align: center;">
 		                        		<td>${vo.askNo }</td>
 		                        		<td>
-		                        			<c:if test="${vo.authorityNo==1 }"><span class="badge bg-dark">회원</span></c:if>
-		                        			<c:if test="${vo.authorityNo==4 }"><span class="badge bg-dark">점포</span></c:if>
+		                        			<c:if test="${vo.authorityNo==1 }"><span class="badge" style="background-color: #DBC2D4;">회원</span></c:if>
+		                        			<c:if test="${vo.authorityNo==4 }"><span class="badge" style="background-color: #B29EBA;">점포</span></c:if>
 		                        		</td>
-		                        		<td style="text-align: left;"><a href="<c:url value='/admin/menu5/oneToOne/detail.do?no=${vo.askNo }'/>">${vo.askTitle }</a></td>
+		                        		<td style="text-align: left;"><a href="<c:url value='/admin/menu5/oneToOne/detail.do?no=${vo.askNo }'/>" style="text-decoration: none;color:grey; font-weight: 600;">${vo.askTitle }</a></td>
 		                        		<td>${vo.askId }</td>
 		                        		<td>
 		                        			<c:if test="${vo.askReplyFlag=='Y' }"><span class="badge bg-success">답변완료</span></c:if>

@@ -7,7 +7,7 @@
 	<select id="selectCurJoin" resultType="map">
 		select sum(a.AUTHORITY_NO) as curAuth, nvl(sum(a.curTotalMember),0) as cntMem
 		from
-		    (select AUTHORITY_NO, count(MEMBER_NO) as curTotalMember from MEMBER
+		    (select AUTHORITY_NO, nvl(count(MEMBER_NO), 0) as curTotalMember from MEMBER
 		    where MEMBER_OUTDATE is null
 		    and AUTHORITY_NO in (1, 2, 3)
 		    group by AUTHORITY_NO)a
@@ -16,7 +16,7 @@
 		
 		select sum(b.AUTHORITY_NO) as curAuthority, nvl(sum(b.curTotalOwner),0) as curTotal
 		from
-		    (select AUTHORITY_NO, count(OWNER_NO) as curTotalOwner from OWNER
+		    (select AUTHORITY_NO, nvl(count(OWNER_NO), 0) as curTotalOwner from OWNER
 		    where OWNER_OUTDATE is null
 		    and AUTHORITY_NO in (4, 5)
 		    group by AUTHORITY_NO)b
@@ -25,7 +25,7 @@
 	<select id="selectCurLeave" resultType="map">
 	select sum(a.AUTHORITY_NO) as curAuth, nvl(sum(a.curTotalMember),0) as cntMem
 		from
-		    (select AUTHORITY_NO, count(MEMBER_NO) as curTotalMember from MEMBER
+		    (select AUTHORITY_NO, nvl(count(MEMBER_NO),0) as curTotalMember from MEMBER
 		    where MEMBER_OUTDATE is not null
 		    and AUTHORITY_NO in (1, 2, 3)
 		    group by AUTHORITY_NO)a
@@ -34,7 +34,7 @@
 		
 		select sum(b.AUTHORITY_NO) as curAuthority, nvl(sum(b.curTotalOwner),0) as curTotal
 		from
-		    (select AUTHORITY_NO, count(OWNER_NO) as curTotalOwner from OWNER
+		    (select AUTHORITY_NO, nvl(count(OWNER_NO),0) as curTotalOwner from OWNER
 		    where OWNER_OUTDATE is not null
 		    and AUTHORITY_NO in (4, 5)
 		    group by AUTHORITY_NO)b
@@ -67,18 +67,25 @@
 		
 		union all
 		
-		select count(distinct scb.STORE_NO) as adStore
+		select nvl(count(distinct scb.STORE_NO),0) as adStore
 		from STORECOUPONBOX scb
 	</select>
 
 	<select id="selectRCoupon" resultType="map">
-		select s.R_COUPON_NO, nvl(count(s.R_COUPON_NO),0) as cntRCou
-		from STORECOUPONBOX s
-		group by s.r_coupon_no
+		select s.R_COUPON_NO, r.R_COUPON_DC, nvl(count(s.R_COUPON_NO),0) as cntRCou
+		from STORECOUPONBOX s left join REGULARCOUPON r
+		on s.R_COUPON_NO=r.R_COUPON_NO
+		group by s.R_COUPON_NO, r.R_COUPON_DC
 	</select>
 	
 	<select id="selectCurOrder" resultType="map">
-		select count(ORDERS_NO) as countOrders, nvl(sum(ORDERS_PRICE),0) as sumPrice
+		select nvl(count(ORDERS_NO), 0) as countOrders, nvl(sum(ORDERS_PRICE),0) as sumPrice
+		from ORDERS 
+		where to_char(ORDERS_DATE, 'YYYY-MM-DD')=to_char(sysdate, 'YYYY-MM-DD')
+		    and O_STATUS_NO=4
+	</select>
+	<select id="selectCurOrder2" resultType="map">
+		select nvl(count(ORDERS_NO), 0) as countOrders, nvl(sum(ORDERS_PRICE),0) as sumPrice
 		from ORDERS 
 		where to_char(ORDERS_DATE, 'YYYY-MM')=to_char(sysdate, 'YYYY-MM')
 		    and O_STATUS_NO=4
