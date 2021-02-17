@@ -35,6 +35,9 @@ public class OwnerChartDAOMybatis implements OwnerChartDAO{
 		return session.selectList(namespace+"selectBestMenu",storeNo);
 	}
 	
+	public List<Map<String, Object>>  selectOrdersFiveStatusNo(Map<String, Object> map){
+		return session.selectList(namespace+"selectOrdersFiveStatusNo",map);
+	}
 	
 	
 }

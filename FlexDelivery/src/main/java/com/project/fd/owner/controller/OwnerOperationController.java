@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.fd.owner.store.model.OwnerStoresService;
+import com.project.fd.owner.store.model.OwnerStoresVO;
 
 
 
@@ -132,6 +133,28 @@ public class OwnerOperationController {
 			
 			
 			return map3;
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/selectMinPrice.do")
+	public int selectMinPrice( HttpSession session, Model model) {
+		//storeNo 구하기
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			logger.info("최소주문금액 셀렉 ajax , ownerno={}",ownerNo );
+		
+			
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			OwnerStoresVO vo = ownerStoreService.selectStoreByOwnerNo(ownerNo);
+		
+			logger.info("ownerNo으로 구한 vo = {}",vo);
+			
+			int minPrice = vo.getStoreMinPrice();
+			
+			return minPrice;
 		
 	}
 }

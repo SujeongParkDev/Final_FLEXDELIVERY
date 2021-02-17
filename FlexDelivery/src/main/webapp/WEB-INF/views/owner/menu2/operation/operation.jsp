@@ -39,6 +39,12 @@
 				}else if($('#statusCard').css("display")=="block"){
 					$('#statusCard').css('display','none');
 				}
+			}else if($(this).attr('name')=='btMinPrice'){
+				if($('#minPriceCard').css("display")=="none"){
+					$('#minPriceCard').css('display','block');
+				}else if($('#minPriceCard').css("display")=="block"){
+					$('#minPriceCard').css('display','none');
+				}
 			}
 			
 		});
@@ -53,13 +59,33 @@
 				$('#changeTime').css('display','none');
 			}else if($(this).attr("name")=="statusCancle"){
 				$('#statusCard').css('display','none');
+			}else if($(this).attr("name")=="minPriceCancle"){
+				$('#minPriceCard').css('display','none');
 			}
 		});
 	});
 	
 	
+	function goMinPrice(){
+		$.ajax({
+			url:"<c:url value='/owner/menu2/operation/selectMinPrice.do'/>",
+			success:function(res){
+				$('.spanMinPriceText').html("<span class='text' >"+res+"원</span>");
+				$('input[name=storeMinPrice]').val(res);
+			},
+			error:function(xhr,status,error){
+				alert("error!!: "+error);
+			}
+		});
+	}
 	
-	
+		$(function(){
+			
+			goMinPrice();
+		});
+		
+		
+		
 	$(function(){
 		$('#holidayUpdate').click(function(){
 			var hCategoryNo = $('select[name=hCategoryNo]').val();
@@ -388,6 +414,53 @@
 											<option value="6">토요일</option>
 											<option value="0">일요일</option>
 										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<form class="form-card">
+					<div>
+						<div class="Card ">
+							<div class="card-header">
+								<h3>최소 주문 금액</h3>
+								<div class="card-menu " style="opacity: 0.99;">
+									<button type="button" class="button change-button medium text"  name="btMinPrice">
+										<i class="fas fa-pencil-alt"></i> 변경
+									</button>
+								</div>
+							</div>
+							<div class="form-group no-divider">
+								<div class="form-control-wrap form-control-inline">
+									<div class="form-control ">
+										<div class="inline-values flex-1 ">
+											<span class="inline-value  spanMinPriceText" >
+													
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+					<form class="form-card">
+					<div>
+						<div class="Card " id="minPriceCard" style="display:none;">
+							<div class="card-header">
+								<h3>최소 주문 금액</h3>
+								<div class="card-menu " style="opacity: 1;">
+									<button type="button" class="button small primary">적용</button>
+									<button type="button" class="button mr-1 small secondary btCancleChange" name="minPriceCancle" >닫기</button>
+								</div>
+							</div>
+							<div class="form-group no-divider" style="min-height: auto;">
+								<div class="form-control-wrap">
+									<div class="form-control ">
+										<div class="inline-values flex-1 ">
+											<input type="text" class="text-right" name="storeMinPrice" value=""/>
+										</div>
 									</div>
 								</div>
 							</div>

@@ -5,7 +5,9 @@
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- top 끝 -->
-
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
 
 	<style>
 		#oStatusNo{
@@ -16,6 +18,94 @@
 
 	<script type="text/javascript">
 	
+	$(function(){
+		
+		var startDay = $('input[name=startDay]').val();
+		var endDay = $('input[name=endDay]').val();
+		var oStatusNo = $('#oStatusNo').val();
+		console.log(oStatusNo);
+		$.ajax({
+			url:"<c:url value='/owner/menu2/charts/ordersListChart.do'/>",
+			data:"startDay="+startDay+"&endDay="+endDay,
+			success:function(res){
+				var result = 0;
+				var type="";
+				var resultValue=0;
+				var label = [];
+				var total = 0;
+				
+				$.each(res, function(idx,items){
+					label.push(items['ORDERSCOUNT']);
+					if(items['OSTATUSNO']==4 || items['OSTATUSNO']==5 ){
+						total+=items['ORDERSCOUNT'];
+					}
+				});
+				
+				console.log(oStatusNo);
+				
+				if(oStatusNo == 4){
+					result = label[3]/total*100;
+					resultValue=label[3];
+					type="주문완료";
+				}else if(oStatusNo==5){
+					result  = label[5]/total*100;
+					resultValue=label[4];
+					type="주문취소";
+				}
+				
+				$('.type').html(type);
+				$('#num').html('<b>'+total+'</b>');
+				$('#typeOfnum').html('<b>'+resultValue+'</b>');
+				
+				
+				//gauge 차트 시작
+				var chart = c3.generate({
+					bindto:"#chart",
+				    data: {
+				        columns: [
+				            [type, result]
+				        ],
+				        type: 'gauge',
+				        onclick: function (d, i) { console.log("onclick", d, i); },
+				        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+				        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+				    },
+				    gauge: {
+
+				    },
+				    color: {
+				        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+				        threshold: {
+//				            unit: 'value', // percentage is default
+//				            max: 200, // 100 is default
+				            values: [30, 60, 90, 100]
+				        }
+				    },
+				    size: {
+				        height: 180
+				    },
+				    tooltip: {
+	                    format: {
+	                        title: function (d) { return type; },
+	                        value: function (value, ratio, id) {
+	                        	value=resultValue+"건";
+	                            return value;
+	                        }
+	                    }
+	                }
+				});
+				
+				//gauge 차트끝
+				
+				//도넛 chart 시작
+			
+				//끝
+			},
+			error:function(xhr,status,error){
+				
+			}
+		});
+	});
 	  
 	function goDetail(ordersNo,ordersDiscount){
 		$.ajax({
@@ -115,22 +205,54 @@
 		
 		 
 	</script>
-
-		
 	
 
+  <br>          
+  
+	
+<div class="m-5 mb-0">
+	<div class=" collapse-icon accordion-icon-rotate m-2 mr-0">
+         <div class="accordion" id="cardAccordion">
+                 <div class="header text-center pb-3"  data-toggle="collapse" data-target="#collapseOne"
+                     aria-expanded="false" aria-controls="collapseOne" role="button">
+                    <div>
+                    	<div>
+                      		<span class="collapsed collapse-title" style="font-size:20px;">전체 주문량에 대한 <span class="type" style="font-size: 25px; font-weight: bold;"></span> 퍼센트</span>
+                      		<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16" style="float:right;">
+								<path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+							</svg>
+  						</div>
+                 	</div>
+                 </div>
+                 <div id="collapseOne" class="collapse pt-1 show " aria-labelledby="headingOne"
+                     data-parent="#cardAccordion">
+                     <div class="card-body p-0 pb-4">
+	 						<div class="text-center" >
+    			 				 <span style="font-size:15px;"><span class="type"></span> : <span class="mr-1" style="font-size:20px;" id="typeOfnum"></span> 건</span>
+    							  <br><span style="font-size:15px;">총  주문건수 : <span class="mr-1" style="font-size:20px;" id="num"></span> 건</span> 
+     						</div> 
+     						<div class="text-center mt-3 ">
+        						<div id="chart"></div>
+   							</div>
+   							<div class="text-center">
+   								<small >* 총 주문 건수에 주문 취소 및 주문 완료만 포함되어 있습니다.</small>
+                 	  		</div>
+                 	  </div>
+     		</div>
+	</div>
+</div>
+ </div>
 			
-	<div class="row m-5">
+	<div class="row m-5 mt-0 mb-0">
 	  	
 			<div class="card m-2">
+				 <br>
+	            <br>
+	             <br>
 	            <div class="card-header  text-center">
-	            	<br>
-	            	<br>
-	            	<br>
 	                <h4 class="card-title">주문내역</h4>
 	            </div>
-	         	   <br>
-	            	<br>
+	         	  
 	            	<br>
 	            <div class="card-body">
 	                <div class="row">
@@ -195,7 +317,7 @@
 							            	<c:if test="${!empty list }">
 							            		
 								            	<c:forEach var="map" items="${list }">
-								            	<c:set var="sum" value="${map['ORDERS_PRICE']-map['ORDERS_DISCOUNT']}"/>
+								            	<c:set var="sum" value="${map['ORDERS_PRICE']}"/>
 												<c:set var="buyPrice" value="${buyPrice + sum }"/>	
 									              <tr  class="text-center">
 									              		<td>${map['RNUM'] }</td>
@@ -291,11 +413,12 @@
 	                    </div>
                     </div>
               
-              
-              
-			
-		
-		
+      
+
+ <br>
+  <br>
+   <br>
+
   <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
 
 
