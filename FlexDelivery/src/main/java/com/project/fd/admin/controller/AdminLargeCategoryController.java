@@ -184,9 +184,7 @@ public class AdminLargeCategoryController {
 		AdminLargeCategoryVO vo=largeCategoryService.selectByNo(no);
 		logger.info("수정화면, 조회 결과 vo={}", vo);
 
-		//String fileInfo
-		//=largeCategoryService.getFileInfo(vo.getlCategoryFilename(), request);
-
+	
 		//3
 		model.addAttribute("vo", vo);
 		//model.addAttribute("fileInfo", fileInfo);
@@ -205,14 +203,25 @@ public class AdminLargeCategoryController {
 		//업로드 처리
 		String fileName="", originName="";
 		long fileSize=0;
+		int len=0;
+		
 		try {
 			List<Map<String, Object>> fileList
 			=fileUtil.fileUplaod(request, FileUploadUtil.LCATEGORY_TYPE);
-			for(Map<String, Object> map : fileList) {
-				originName=(String) map.get("originalFileName");
-				fileName=(String) map.get("fileName");
-				fileSize=(Long) map.get("fileSize");				
-			}//for
+			len=fileList.size();
+			logger.info("fileList.size={}"+fileList.size());
+			if (len==1) {
+				logger.info("새로운 첨부파일 있음!");
+				for(Map<String, Object> map : fileList) {
+					originName=(String) map.get("originalFileName");
+					fileName=(String) map.get("fileName");
+					fileSize=(Long) map.get("fileSize");				
+				}
+				
+			}else {
+				logger.info("기존파일 계속 사용!"+oldFileName);
+				fileName=oldFileName;
+			}
 
 			logger.info("파일 업로드 성공");
 		} catch (IllegalStateException e) {
@@ -225,8 +234,6 @@ public class AdminLargeCategoryController {
 
 		//2
 		largecategoryVo.setlCategoryFilename(fileName);
-		//vo.setFileSize(fileSize);
-		//vo.setOriginalFileName(originName);
 
 		String msg="글 수정 실패", url="/admin/menu6/largeCategory.do";
 		int cnt=largeCategoryService.updateLargeCategory(largecategoryVo);
@@ -234,10 +241,9 @@ public class AdminLargeCategoryController {
 
 		if(cnt>0) {
 			msg="대분류 카테고리를 수정하였습니다.";
-			//url="/admin/menu6/largeCategory.do";
 
 			//새로 업로드한 경우, 기존 파일이 존재하면 기존 파일 삭제
-			if(fileName!=null && !fileName.isEmpty()) {
+			if(fileName!=null && !fileName.isEmpty() && len==1) {
 				String upPath 
 				= fileUtil.getUploadPath(FileUploadUtil.LCATEGORY_TYPE, request);
 				File oldFile = new File(upPath, oldFileName);

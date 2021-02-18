@@ -122,7 +122,7 @@ function writeFunc(){
 		 	<div class="card">
 		 	
 		  		<div class="card-header">
-					<h4 class="card-title" style="font-weight: 600;">쿠폰 관리 - 정기 쿠폰</h4>
+					<h4 class="card-title">쿠폰 관리 - 정기 쿠폰</h4>
 					<hr>
 		    	</div>
 		    	<div class="card-content">
@@ -289,12 +289,8 @@ function writeFunc(){
 			                                                            <div class="table-responsive" style="text-align: center;">
 			                                                               <table class="table mb-0">
 			                                                                  <tbody style="text-align: center;">
-			                                                                     <tr>
-			                                                                     	<td>
-		                                                                           	<input type="hidden" name="rCouponNo" id="regularCouponNo" value="${vo.rCouponNo }" readonly>
-		                                                                           </td>
-		                                                                         </tr>
 		                                                                         <tr>
+		                                                                           	<input type="hidden" name="rCouponNo" id="regularCouponNo" value="${vo.rCouponNo }" readonly>
 		                                                                         	 <td>할인 금액</td>
 																					 <td colspan="2">
 			                                                                           <input type="text" name="rCouponDc" id="regularCouponDc" value="${vo.rCouponDc }">
@@ -305,10 +301,7 @@ function writeFunc(){
 			                                                                         <td colspan="2">
 			                                                                           <input type="text" name="rCouponMin" id="regularCouponMin" value="${vo.rCouponMin }">
 																					 </td>					                                                                    
-			                                                                     </tr>		
-			                                                                     <tr>
-			                                                                     	<td></td>
-			                                                                     </tr>                                                                    
+			                                                                     </tr>                                                                 
 			                                                                  </tbody>
 			                                                               </table>                      
 			                                                            </div>

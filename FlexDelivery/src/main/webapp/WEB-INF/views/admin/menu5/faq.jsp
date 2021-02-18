@@ -796,7 +796,7 @@
 		                                                   	  	<input type="hidden" name="faqNo" value="${vo.faqNo }">
 		                                                   	  	<td>카테고리 종류</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	<select name="fCategoryNo" id="selectFCategory2" onchange="chkEdit()">
+			                                                      	<select name="fCategoryNo" id="selectFCategory">
 		                                                      			<option value="0">선택하세요</option>
 			                                                      		<c:forEach var="cVo2" items="${ctList }">
 			                                                      			<option value="${cVo2.fCategoryNo }" title="${cVo2.authorityNo }">${cVo2.fCategoryName }</option>
@@ -829,7 +829,7 @@
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
 			                                    <button type="button" class="btn btn-dark ml-1" name="modalEdit"
-			                                     id="btModalEdit" onclick="faqEdit()">
+			                                     id="btModalEdit" onclick="form.submit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">수정</span>
 			                                    </button>

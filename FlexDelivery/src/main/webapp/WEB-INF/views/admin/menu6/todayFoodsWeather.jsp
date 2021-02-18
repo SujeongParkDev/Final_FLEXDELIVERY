@@ -181,20 +181,14 @@ function editFunc(){
 }
 
 function readyDelete(cnt){
-	var ok="N";
 	
-	if(cnt==0){
-		ok="Y";
-	}	
-	//alert(ok);
-	
-	if (ok=="N"){
+	if (cnt!="0"){
 		alert("하위메뉴가 등록된 날씨 카테고리는 삭제할 수 없습니다!");
 		event.preventDefault();
-	} else if (ok=="Y"){
+	} else if (cnt=="0"){
 		$('form[name=frmWeatherDel]').submit();
 	} else {
-		alert("ok error!");
+		alert("error!");
 		event.preventDefault();
 	}
 }
@@ -400,9 +394,6 @@ function readyDelete(cnt){
 																							 <td colspan="2">
 					                                                                           <input type="hidden" name="weatherNo" id="EditWeatherNo" value="${vo.weatherNo }" readonly>						                                                                     
 					                                                                           <input type="text" name="weatherName" id="EditWeatherName" value="${vo.weatherName }">
-					                                                                           <br><span id="emessage" style="color: #dc3545;font-weight: bold;">날씨를 입력해주세요.</span>
-										                                                         <span id="emessage2" style="color: #6610f2;font-weight: bold;"></span>
-										                                                         <span id="emessageOk">N</span>
 																							 </td>					                                                                    
 					                                                                     </tr>					                                                                    
 					                                                                  </tbody>
@@ -417,7 +408,7 @@ function readyDelete(cnt){
 					                                                         <span class="d-none d-sm-block">닫기</span>
 					                                                      </button>
 					                                                      <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" 
-					                                                      	id="modalEdit" onclick="readyEditSubmit()">
+					                                                      	id="modalEdit" onclick="form.submit()">
 					                                                         <i class="bx bx-check d-block d-sm-none"></i>
 					                                                         <span class="d-none d-sm-block">수정</span>
 					                                                      </button>

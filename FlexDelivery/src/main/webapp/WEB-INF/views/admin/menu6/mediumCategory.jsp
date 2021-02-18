@@ -40,16 +40,26 @@ function chkDu(content){
 
 function readyWriteSubmit(){
 	writeFunc();
-	var ok=$('#messageOk').html();
-	alert("html:"+ok);
 	
-	if(ok=="Y"){
+	var lCategory=$('#lCategoryNo').val();
+	var wSel=$('#weatherNo').val();
+	var ok=$('#messageOk').html();
+	//alert("lCategory:"+lCategory+", wSel:"+wSel+", ok:"+ok);
+	//alert("html:"+ok);
+	
+	if(ok=="Y" && lCategory!="0" && wSel!="0"){
 		console.log("폼 전송 성공!");
 		$('form[name=frmMediumCategoryWrite]').submit();
-	}else if(ok=="N"){
-		alert("등록 실패!");
+	} else if (lCategory=="0"){
+		alert("대분류 카테고리를 선택해주세요!");
+		event.preventDefault();
+	} else if(ok=="N"){
+		alert("올바른 이름을 입력해주세요!");
 		event.preventDefault;
 		//return false;
+	} else if (wSel=="0"){
+		alert("날씨 카테고리를 선택해주세요!");
+		event.preventDefault();
 	} else {
 		alert("error!");
 		event.preventDefault();
@@ -193,7 +203,7 @@ function writeFunc(){
 				                                       <i class="bx bx-x d-block d-sm-none"></i>
 				                                       <span class="d-none d-sm-block">닫기</span>
 				                                    </button>
-				                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" 
+				                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite" 
 				                                    	id="modalWrite" onclick="readyWriteSubmit()">
 				                                       <i class="bx bx-check d-block d-sm-none"></i>
 				                                       <span class="d-none d-sm-block">등록</span>

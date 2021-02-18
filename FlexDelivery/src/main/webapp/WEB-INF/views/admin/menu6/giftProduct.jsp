@@ -35,10 +35,7 @@ $(function(){
 	 $('#upfile').on('change', function(){
 	       readInputFile(this);
 	   });
-	 $('#upfile2').on('change', function(){
-	       readInputFile(this);
-	   });
-	 
+
 	 listForAll();
 	 
 	 $.ajax({
@@ -70,15 +67,6 @@ function readInputFile(input) {
         var reader = new FileReader();
        reader.onload = function (e) {
             $('#preview').html("<img src="+ e.target.result +">");
-        }
-        reader.readAsDataURL(input.files[0]);
-    }  
-} 
-function readInputFile(input) {
-    if(input.files && input.files[0]) {
-        var reader = new FileReader();
-       reader.onload = function (e) {
-            $('#preview2').html("<img src="+ e.target.result +">");
         }
         reader.readAsDataURL(input.files[0]);
     }  
@@ -115,7 +103,7 @@ function readyWriteSubmit(){
 	}
 }
 
-function readyEditSubmit(){
+/*function readyEditSubmit(){
 	
 	var img=$('form[name=frmGiftProductEdit]').find('#upfile').val();	//이미지 파일 첨부 여부 검사
 	var select=$('#gCategoryNoEdit').val();//셀렉트 체크 여부 검사
@@ -123,7 +111,7 @@ function readyEditSubmit(){
 	//alert("img:"+img+", name:"+name+", select:"+sel);
 	console.log("img:"+img+", name:"+name+", select:"+select);
 	
-	if(name!='' && select!='0'){
+	if(img=='' && name!=''){
 		var bool=confirm("기존 이미지를 사용하시겠습니까?");
 		if (bool){
 			console.log("폼 전송 성공!");
@@ -131,13 +119,12 @@ function readyEditSubmit(){
 		} else {
 			event.preventDefault();
 		}
-	/* }else if (img=='') {
-		alert("이미지를 첨부하세요!(필수)");
-		event.preventDefault(); */
-	}else if (select=='0'){
+
+	/* else if (select=='0'){
 		alert("선물 카테고리를 선택해주세요!");
 		event.preventDefault();
-	}else if(name==''){
+	} 
+	else if(name==''){
 		alert("상품 이름을 입력해주세요!");
 		event.preventDefault;
 		//return false;
@@ -146,7 +133,7 @@ function readyEditSubmit(){
 		event.preventDefault();
 	}
 	
-}
+}*/
 
 function writeFunc(){
 	  var name=$('#gProductName').val();
@@ -499,14 +486,14 @@ function listForCategory(no){
                                                          	<tr>
 				                                                 <td colspan="3"  style="text-align: center;">
                                                                    <input type="hidden" name="gProductNo" value="${vo.gProductNo }" readonly>	 
-				                                                    <div id="preview2"><img src="${pageContext.request.contextPath}/resources/imgs/GiftProductImages/${vo.gProductFilename}" id="previewImg"/></div>
+				                                                    <div id="preview"><img src="${pageContext.request.contextPath}/resources/imgs/GiftProductImages/${vo.gProductFilename}" id="previewImg"/></div>
 				                                                 </td>
 															</tr>
 															<tr>
 				                                                 <td colspan="3"  style="text-align: center;">
 				                                                    <div>
 				                                                    	<input type="hidden" name="oldFileName" value="${vo.gProductFilename }">
-				                                                       <input type="file" id="upfile2" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
+				                                                       <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
 				                                                    </div>
 				                                                 </td>
 				                                              </tr>
@@ -536,7 +523,7 @@ function listForCategory(no){
                                                 <i class="bx bx-x d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">닫기</span>
                                              </button>
-                                             <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="readyEditSubmit()">
+                                             <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="form.submit()">
                                                 <i class="bx bx-check d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">수정</span>
                                              </button>

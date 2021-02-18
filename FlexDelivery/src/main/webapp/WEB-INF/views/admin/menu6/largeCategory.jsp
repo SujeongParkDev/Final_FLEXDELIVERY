@@ -9,7 +9,7 @@ $(function(){
 	$('#messageOk').hide();
 	$('#emessage').hide();
     var ok=$('#messageOk').val();
-	console.log(ok);
+	//console.log(ok);
     
     $('#largeWrite').on('hidden.bs.modal', function (e) {
 	    console.log('modal close');
@@ -26,6 +26,7 @@ $(function(){
    $('#upfile').on('change', function(){
        readInputFile(this);
    });
+
    
    /* $('#upfile').on('change', function(){
         if(input.files && input.files[0]) {
@@ -90,6 +91,7 @@ function readInputFile(input) {
         reader.readAsDataURL(input.files[0]);
     }  
 } 
+
  
 function chkDu(content){
 	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣/]+$/g);
@@ -99,13 +101,18 @@ function chkDu(content){
 function readyWriteSubmit(){
 	writeFunc();
 	var ok=$('#messageOk').html();
-	alert("html:"+ok);
+	var img=$('#upfile').val();
+
+	//alert("html:"+ok);
 	
-	if(ok=="Y"){
+	if(ok=="Y" && img!=""){
 		console.log("폼 전송 성공!");
 		$('form[name=frmLCategoryWrite]').submit();
+	}else if (img==""){
+		alert("이미지를 첨부해주세요!(필수)");
+		event.preventDefault();
 	}else if(ok=="N"){
-		alert("등록 실패!");
+		alert("적합한 이름을 입력해주세요!");
 		event.preventDefault();
 		//return false;
 	} else {
@@ -217,6 +224,34 @@ function writeFunc(){
 	  }
 }//editFunc */
 
+function readyEdit(){
+	var img=$('#upfile2').val();
+	console.log("img:"+img);
+	
+	
+	if (img=="0"){
+		var bool=confirm("기존 이미지 파일을 계속 사용하시겠습니까?");
+		if (bool){
+			$('form[name=frmLCategoryEdit]').submit();
+		} else {
+			event.preventDefault();
+		}
+	}
+	
+}
+
+function readyDel(no){
+	console.log("no:"+no);
+	if (no!=0){
+		alert("하위 카테고리가 등록된 대분류 카테고리는 삭제할 수 없습니다!");
+		event.preventDefault();
+	} else if (no=="0"){
+		$('form[name=frmLCategoryDel]').submit();
+		console.log("삭제 폼 전송!");
+	}
+	
+}
+
 </script>
 <!-- script end -->
    
@@ -300,7 +335,7 @@ function writeFunc(){
                                        <i class="bx bx-x d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">닫기</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
+                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
                                        <i class="bx bx-check d-block d-sm-none"></i>
                                        <span class="d-none d-sm-block">등록</span>
                                     </button>
@@ -366,7 +401,7 @@ function writeFunc(){
                                                          <span class="d-none d-sm-block">취소</span>
                                                       </button>
                                                       
-                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="form.submit()">
+                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="readyDel(${vo.lCCount})">
                                                          <i class="bx bx-check d-block d-sm-none"></i>
                                                          <span class="d-none d-sm-block">삭제</span>
                                                       </button>
@@ -397,7 +432,7 @@ function writeFunc(){
                                                                   <tbody>
                                                                      <tr>
                                                                         <td colspan="3"  style="text-align: center;">
-                                                                           <div id="preview"><img src="<c:url value='/resources/imgs/largeCategoryImages/${vo.lCategoryFilename }' />" id="previewImg"/></div>
+                                                                           <div id="preview"><img src="<c:url value='/resources/imgs/LargeCategoryImages/${vo.lCategoryFilename }' />" id="previewImg"/></div>
                                                                         </td>
                                                                      </tr>
                                                                      <tr>
@@ -414,9 +449,6 @@ function writeFunc(){
                                                                         <td colspan="2">
                                                                            <input type="text" name="lCategoryName" id="EditlCategoryName" placeholder="이름을 입력하세요" 
                                                                            		style="margin-bottom: 12px;" value="${vo.lCategoryName }">
-					                                                         <br><span id="emessage" style="color: #dc3545;font-weight: bold;"></span>
-					                                                         <span id="emessage2" style="color: #6610f2;font-weight: bold;">사용 가능한 이름입니다</span>
-					                                                         <span id="messageOk2">Y</span>
                                                                            <input type="hidden" name="lCategoryNo" id="EditlCategoryNo" value="${vo.lCategoryNo }">
                                                                            <input type="hidden" name="oldFileName" id="EditoldFileName" value="${vo.lCategoryFilename }">
                                                                         </td>
@@ -432,7 +464,7 @@ function writeFunc(){
                                                          <i class="bx bx-x d-block d-sm-none"></i>
                                                          <span class="d-none d-sm-block">닫기</span>
                                                       </button>
-                                                      <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
+                                                      <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="readyEdit()">
                                                          <i class="bx bx-check d-block d-sm-none"></i>
                                                          <span class="d-none d-sm-block">수정</span>
                                                       </button>

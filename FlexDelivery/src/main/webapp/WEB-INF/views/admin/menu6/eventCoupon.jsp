@@ -82,22 +82,34 @@ $(function(){
 });
 
 function chkDu(content){
-	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣1-9!\s]+$/g);
+	var pattern=new RegExp(/^[ㄱ-ㅎ가-힣0-9!a-zA-Z\s]+$/g);
 	return pattern.test(content);
 }
 
 function readyWriteSubmit(){
 	writeFunc();
 	var ok=$('#messageOk').html();
-	alert("ok:"+ok);
+	var name=$('#eCouponName').val();
+	var min=$('#eCouponMinWrite').val();
+	var dc=$('#eCouponDcWrite').val();
 	
-	if(ok=="Y"){
+	//alert("ok:"+ok+", name:"+name+", min:"+min+", dc:"+dc);
+	
+	if(ok=="Y" && name!='' && dc!='' && min!=''){
 		console.log("폼 전송 성공!");
 		$('form[name=frmEventCouponWrite]').submit();
-	}else if (ok=="N"){
-		alert("등록 실패!");
+	} else if (name==''){
+		alert("이름을 입력해주세요!");
 		event.preventDefault();
-		//return false;
+	} else if (ok=="N"){
+		alert("올바른 이름을 입력해주세요!");
+		event.preventDefault();
+	}else if (dc==''){
+		alert("할인금액을 입력해주세요!");
+		event.preventDefault();
+	}else if (min==''){
+		alert("최소주문금액을 입력해주세요!");
+		event.preventDefault();
 	} else {
 		alert("error!");
 		event.preventDefault();
@@ -217,7 +229,7 @@ function writeFunc(){
 																	  <option value="3">3일 후</option>
 																	  <option value="7">7일 후</option>
 																	  <option value="14">14일 후</option>
-																	  <option value="etc">직접입력 (숫자만 입력)</option>
+																	  <option value="etc">직접입력 (n일 후, 숫자만 입력)</option>
 																	</select>
 			                                    	               	<input type="text" name="startDate" id="startDate" value="0" style="visibility: hidden">
 			                                                      </td>
@@ -229,7 +241,7 @@ function writeFunc(){
 																	  <option selected value="15">보름 후</option>
 																	  <option value="30">1개월 후</option>
 																	  <option value="60">2개월 후</option>
-																	  <option value="etc">직접입력 (숫자만 입력)</option>
+																	  <option value="etc">직접입력 (n개월 후, 숫자만 입력)</option>
 																	</select>
 			                                    	               	<input type="text" name="endDate" id="endDate" value="15" style="visibility: hidden">
 			                                                      </td>
@@ -237,13 +249,13 @@ function writeFunc(){
 		                                                      <tr>
 		                                                      	  <td>할인가격</td>
 			                                                      <td colspan="2">
-			                                    	               	<input type="text" name="eCouponDc">
+			                                    	               	<input type="text" name="eCouponDc" id="eCouponDcWrite">
 			                                                      </td>
 		                                                      </tr>
 		                                                      <tr>
 		                                                      	  <td>최소주문금액</td>
 			                                                      <td colspan="2">
-			                                    	               	<input type="text" name="eCouponMin">
+			                                    	               	<input type="text" name="eCouponMin" id="eCouponMinWrite">
 			                                                      </td>
 			                                                   </tr>
 			                                                </tbody>
@@ -257,7 +269,7 @@ function writeFunc(){
 			                                       <i class="bx bx-x d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
-			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="form.submit()">
+			                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">등록</span>
 			                                    </button>
