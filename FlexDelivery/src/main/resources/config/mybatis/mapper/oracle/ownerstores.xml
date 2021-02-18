@@ -78,7 +78,7 @@
     
     <update id="updatelogo" parameterType="ownerStoresVo">
     	update stores
-    	set STORE_CONTENT= #{storeContent}
+    	set STORE_LOGO= #{storeLogo}
     	where store_no = #{storeNo} and a_Agree_no!=9 and a_Agree_no!=2 and a_Agree_no!=4
     </update>
     
