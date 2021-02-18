@@ -112,8 +112,8 @@ a {
 				                    </div>
 				                  
 				                    <div class="col-sm-12 d-flex justify-content-end pt-5">
-				                        <button type="button" class="btn btn-primary mr-1 mb-1 adSubmit">신청</button>
-				                        <button type="button" onclick="history.back()" class="btn btn-light-secondary mr-1 mb-1">취소</button>
+				                        <button type="button" class="btn  mr-1 mb-1 adSubmit" style="color:black; background-color:#fcbe32; border: none; ">신청</button>
+				                        <button type="button" onclick="history.back()" class="btn  mr-1 mb-1" style=" background-color:#f1f3f5; color:#333; border: none;">취소</button>
 				                    </div>
 			                    </div>
 			                </div>

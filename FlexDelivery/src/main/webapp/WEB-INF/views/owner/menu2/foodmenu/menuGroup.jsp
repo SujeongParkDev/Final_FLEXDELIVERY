@@ -98,10 +98,10 @@
 			  		<div class="col-md-2 col-12"></div>
 			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
+		                	 <button id="btNowMenu" class="btn  btMainMenuChange"  style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;" >현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btMainMenuChange"  style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;"   >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn  btMainMenuChange "  style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;" >옵션편집</button>
+		                	 <button id="btMainMenu" class="btn  btMainMenuChange"  style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px;  font-weight: bold;"   >대표메뉴</button>
 	                	 </div>
 		            </div>
                     <div class="col-md-2 col-12"></div>
@@ -124,15 +124,15 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center mb-5 mt-3"  style="font-size:30px; color:#ffb703;"><b>📋메뉴 그룹📋</b></p>
+					          <p class="card-text text-center mb-5 mt-3"  style="font-size:30px; color:#333; font-weight:bold;"><b>📋메뉴 그룹📋</b></p>
 					          <p class="card-text text-center mb-3">메뉴 그룹 수정 삭제해주세요</p>
 					          <div class="table-responsive">
 					            <table class="table mb-5">
 					              <thead>
-					                <tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
-					                  <th style="width:55%;">메뉴 그룹</th>
-					                  <th style="width:28%;">수정/삭제</th>
-					                   <th style="width:17%;" class="pl-3"><button class="btn btn-warning p-2 " style="color:black;"  id="btMenuGroupWrite">등록</button></th>
+					                <tr class="text-center"style="background-color:#004e66; color:white;">
+					                  <th style="width:55%;" class="p-2">메뉴 그룹</th>
+					                  <th style="width:28%;" class="p-2">수정/삭제</th>
+					                   <th style="width:17%;" class=" p-2 pl-3" ><button class="btn btn-warning p-2 " style="color:black; background-color:#fcbe32; border: none; "  id="btMenuGroupWrite">등록</button></th>
 					                </tr>
 					              </thead>
 					              <tbody>
@@ -144,10 +144,10 @@
 					                 	  <c:if test="${!empty list}">
 					                 	  		<c:forEach var="vo" items="${list }">
 						                 	  		  <tr class="text-center">
-									                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=${vo.sMGroupNo}" style="color:navy;"><strong>${vo.sMGroupName }</strong></a></td>
+									                  <td class="text-bold-500"><a href="${pageContext.request.contextPath}/owner/menu2/foodmenu/menuChoice.do?sMGroupNo=${vo.sMGroupNo}"   style="color:#333;"><strong>${vo.sMGroupName }</strong></a></td>
 									                  <td>  
 									                  		<button class="btmenu btn btn-outline-dark p-2 " value="${vo.sMGroupNo}"  name="menuEdit" >수정</button>
-									                  		<button class="btmenu btn btn-outline-dark p-2 " value="${vo.sMGroupNo}" name="menuDelete">삭제</button>
+									                  		<button class="btmenu btn btn-outline-dark p-2 " value="${vo.sMGroupNo}"  style=" background-color:#f1f3f5; color:#333; border: none;" name="menuDelete">삭제</button>
 									                  </td>
 									                  <td></td>
 					                 	  		</c:forEach>

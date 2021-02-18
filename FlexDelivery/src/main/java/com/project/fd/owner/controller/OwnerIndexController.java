@@ -16,6 +16,7 @@ import com.project.fd.admin.hoenytip.AdminHoneytipService;
 import com.project.fd.admin.hoenytip.AdminHoneytipVO;
 import com.project.fd.owner.board.model.OwnerBoardService;
 import com.project.fd.owner.board.model.OwnerBoardVO;
+import com.project.fd.owner.chart.model.OwnerChartService;
 import com.project.fd.owner.model.OwnerService;
 import com.project.fd.owner.request.model.OwnerRequestService;
 import com.project.fd.owner.reviewcomment.model.OwnerReivewCommentService;
@@ -42,6 +43,8 @@ public class OwnerIndexController {
 	
 	@Autowired private OwnerRequestService requestService; // 20210214 소정 추가 
 	
+	@Autowired
+	private OwnerChartService ownerChartService; // 20210218 지안추가
 	//관리자, 점포 공통 뷰 보여주기(점포)
 		@RequestMapping("/index.do")
 		public void index(Model model){
@@ -56,7 +59,11 @@ public class OwnerIndexController {
 			model.addAttribute("EVENT", OwnerBoardService.BOARD_EVENT);
 			
 			logger.info("점포 공통 뷰 보여주기");
-		
+			
+			List<Map<String, Object>> list = ownerChartService.selectMainStoreFour();
+			logger.info("list={}",list);
+			
+			model.addAttribute("list",list);
 		}
 		
 		
@@ -204,4 +211,9 @@ public class OwnerIndexController {
 
 			return "owner//menu2/myStoreMainNotice";
 		}
+		
+		
+		
+		
+		
 }

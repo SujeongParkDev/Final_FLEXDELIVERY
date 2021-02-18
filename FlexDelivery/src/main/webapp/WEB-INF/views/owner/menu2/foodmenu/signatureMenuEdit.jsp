@@ -30,6 +30,9 @@
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script type="text/javascript">
 		
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
 	
 	$(document).ready(function(){
 		 	var type=1;
@@ -112,8 +115,8 @@
 		                    <Br>
 		                    <br>
 		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuEdit" name="btMainEdit" value="수정">
-		                        <button type="reset" class="btn btn-outline-primary mr-1 mb-1" onclick="self.close()">취소</button>
+		                        <input type="submit" class="btn btn-outline-dark mr-1 mb-1" id="btMenuEdit" name="btMainEdit" value="수정">
+		                        <button type="reset" class="btn btn-outline-primary mr-1 mb-1" onclick="self.close()"style=" background-color:#f1f3f5; color:#333; border: none;" >취소</button>
 		                    </div>
 		                    <Br>
 		                    </div>

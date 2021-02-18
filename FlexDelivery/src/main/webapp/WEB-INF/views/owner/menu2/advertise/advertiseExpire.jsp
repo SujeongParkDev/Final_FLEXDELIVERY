@@ -34,6 +34,20 @@
 		
 		 
 	</script>
+	<style>
+	.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	    color: white;
+	    background-color: #fcbe32;
+	}
+	
+	a.nav-link:hover {
+   		 color: gray;
+	}
+	
+	a.nav-link{
+		 color: #004e66;
+	}
+	</style>
 		<bR><br><br>
 		 <!-- 광고등록 탭 + 버튼-->
 		  <div class="row mt-3">
@@ -62,7 +76,7 @@
 			  <div class="col-md-8 col-sm-12">
 			    <div class="card">
 			      <div class="card-header text-center">
-			        <h4 class="card-title">만료된 광고</h4>
+			        <h4 class="card-title mt-4"  style="font-size:30px; color:#333; font-weight:bold;">만료된 광고</h4>
 			      </div>
 			      <div class="card-content">
 			        <div class="card-body text-center">
@@ -76,7 +90,7 @@
 										<input type="hidden" name="currentPage" value="1">
 									</div>
 									<div class="col-md-1 col-12">
-										<input type="submit" style="background-color:rgb(223,108,220); color:white;" value="조회" >
+										<input type="submit" value="조회"  style=" background-color:#f1f3f5; color:#333; border:1px solid #004e66;">
 									</div>
 								</div>
 							</form>
@@ -90,7 +104,7 @@
 					        <div class="table-responsive">
 					          <table class="table table-hover mb-5">
 					            <thead>
-					              <tr class="text-center">
+					              <tr class="text-center" style="background-color:#004e66; color:white;">
 					              	<th>번호</th>
 					                <th>광고번호</th>
 					                <th>광고명</th>

@@ -36,6 +36,13 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript">
+		
+		$(function(){
+			$('input').attr("autocomplete","off");
+		});
+		
+		
+		
 		function goHome(){
 			location.href="<c:url value='/owner/index.do'/>";
 		}
@@ -64,7 +71,7 @@
 					event.preventDefault();
 				}else if(!validate_phone($('#ownerHp2').val()) ||
 						!validate_phone($('#ownerHp3').val())){
-					alert('전화번호를 입력하세요.');
+					alert('전화번호는 숫자만 가능합니다.');
 					$('#ownerHp2').focus();
 					event.preventDefault();				
 				}else if($('#chkId').val() !='Y'){
@@ -105,17 +112,148 @@
 		});
 		
 		function validate_userid(id){
-			var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
+			var pattern = new RegExp(/^[a-zA-Z0-9_]*$/g);
 			return pattern.test(id);
 		
 		}
 		
 		function validate_phone(tel){
-			var pattern = new RegExp(/^[0-9]+$/g);
+			var pattern = new RegExp(/^[0-9]*$/g);
 			return pattern.test(tel);
 
 		
 		}
+	
+		
+		$(function(){
+			$('#ownerId').keyup(function(){
+				$('#warningId').html('');
+				if(!validate_userid($('#ownerId').val()) )	{
+					$('#warningId').html('<small>아이디는 영문,숫자,_만 가능합니다.</small>');
+				}else{
+					$('#warningId').html('');
+				}
+			});
+			
+		});
+		
+		
+		
+		$(function(){
+			$('#ownerId').change(function(){
+				$('#warningId').html('');
+				if(!validate_userid($('#ownerId').val()) )	{
+					$('#warningId').html('<small>아이디는 영문,숫자,_만 가능합니다.</small>');
+				}else{
+					$('#warningId').html('');
+				}
+			});
+			
+		});
+		
+		
+		$(function(){
+			$('#ownerId').click(function(){
+				$('#warningId').html('');
+				if(!validate_userid($('#ownerId').val()) )	{
+					$('#warningId').html('<small>아이디는 영문,숫자,_만 가능합니다.</small>');
+				}else{
+					$('#warningId').html('');
+				}
+			});
+			
+		});
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		$(function(){
+			$('#ownerHp2').keyup(function(){
+				$('#warningPhone').html('');
+				if(!validate_phone($('#ownerHp2').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		
+		$(function(){
+			$('#ownerHp2').change(function(){
+				$('#warningPhone').html('');
+				if(!validate_phone($('#ownerHp2').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		$(function(){
+			$('#ownerHp3').change(function(){
+				$('#warningPhone').html('');
+				if(!validate_phone($('#ownerHp3').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		
+		$(function(){
+			$('#ownerHp2').click(function(){
+				$('#warningPhone').html('');
+				if(!validate_phone($('#ownerHp2').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		$(function(){
+			$('#ownerHp3').click(function(){
+				$('#warningPhone').html('');
+				
+				if(!validate_phone($('#ownerHp3').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		
+		
+		$(function(){
+			$('#ownerHp3').keyup(function(){
+				$('#warningPhone').html('');
+				if(!validate_phone($('#ownerHp3').val()) )	{
+					$('#warningPhone').html('<small>전화번호는 숫자만 입력 가능합니다.</small>');
+				}else{
+					$('#warningPhone').html('');
+				}
+			});
+			
+		});
+		
+		
+		
+		
+		
+		
 		
 	 	$(function(){
 				$('#btnChkId').click(function(){
@@ -198,8 +336,9 @@
                         	<div>
                             	아이디 <input class="input--style-1" type="text" name="ownerId"  id="ownerId" style="text-align:center;">
                         	</div>
+                        	<span id="warningId"  style="float:right; color:red; "></span>
                         </div>
-                        <div style="text-align: right;">
+                        <div style="text-align: right; margin-top:20px;">
                         	<button id="btnChkId" class="btn btn--radius" name="owner" style="width:80px; height:40px; background-color: rgb(223,108,220);border:1px solid rgb(223,108,220);" >중복확인</button>
                         </div>
                         
@@ -218,9 +357,9 @@
                         	<span></span>
                         </div>
                     
-                        <div style="display: flex;justify-content: space-between;" >
+                        <div style="display: flex;justify-content: space-between; height:50px;" >
                                 <div>
-                                    <div class="rs-select2 js-select-simple select--no-search" style="width:120px; text-align-last:center;" >
+                                    <div class="rs-select2 js-select-simple select--no-search" style="width:120px; text-align-last:center; " >
                                         <select name="ownerHp1" class="input-group" >
                                             <option selected="selected">010</option>
                                             <option >011</option>
@@ -239,8 +378,9 @@
                             	</div>
                             	<input type ="hidden" name="chkId" id="chkId">
                         </div>
+                       <span id="warningPhone"  style="float:right; color:red;"></span>
                         <br>
-                  		 <div style="display: flex;justify-content: center;" >
+                  		 <div style="display: flex;justify-content: center; margin-top:20px;"  >
                         	<input type="checkbox" id="agreeCheck" style="display:inline; width:15px; height:15px;" onclick="agree()" >
                        		<label for="agreeCheck" style="border:none;">약관에 동의합니다.</label>
                         </div>

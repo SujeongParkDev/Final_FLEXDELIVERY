@@ -143,7 +143,7 @@
 					              </tbody>
 					            </table>
 					             <div class="text-center">
-				         	 		 <button class="btn btn-primary block" id="btMenuCheck"  name="btMenuCheck">확인</button>
+				         	 		 <button class="btn btn-primary block" id="btMenuCheck"  name="btMenuCheck" style="color:black; background-color:#fcbe32; border: none; ">확인</button>
 				          	    </div>
 					          </div>
 					        </div>

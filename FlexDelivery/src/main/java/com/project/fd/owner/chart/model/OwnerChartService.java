@@ -15,4 +15,6 @@ public interface OwnerChartService {
 	public List<Map<String, Object>> selectBestMenu(int storeNo) ;
 	
 	public List<Map<String, Object>>  selectOrdersFiveStatusNo(Map<String, Object> map);
+	
+	public List<Map<String, Object>>  selectMainStoreFour();
 }

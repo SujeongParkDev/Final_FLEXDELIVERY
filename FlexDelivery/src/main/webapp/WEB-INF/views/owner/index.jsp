@@ -213,70 +213,41 @@
                             <h5 class="title">이달의 점포</h5>
 							<!-- QQQ.스토어 선택하는 곳으로 가주세요 -->
                             <div class="widget-content">
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/imgs/flexHyuna.jpg" style="height: 90px; border-radius: 20px; width: 90px;" alt="현아">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Flex Store</a>
-                                        <h4><a href="#" class="post-headline">현아 </a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">현아하게</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="${pageContext.request.contextPath}/resources/imgs/testS.jpg" style="height: 90px;  width: 90px; border-radius: 20px;" alt="화난스누피">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Flex Store</a>
-                                        <h4><a href="#" class="post-headline">스누피</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">스누피의 하루</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVaqwzBAs5EoFftJ4G5u13gGmSDHQ_K5epiA&usqp=CAU"  style="height: 90px;  border-radius: 20px; width: 90px;" alt="조승우">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Flex Store</a>
-                                        <h4><a href="#" class="post-headline">타짜</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">고니곤이</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmYcd4VxUYaFNLKYccgploJWUy8xLPwoChyA&usqp=CAU" style="height: 90px; border-radius: 20px; width: 90px;" alt="공효진">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Flex Store</a>
-                                        <h4><a href="#" class="post-headline">공효진</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">효진스토어</a></p>
-                                        </div>
-                                    </div>
-                                </div>
+								
+								 <c:if test="${empty list }"> 
+									<div class="single-blog-post d-flex align-items-center widget-post">
+										 <div class="post-content">
+										 	 <h4><a href="#" class="post-headline">집계중 입니다</a></h4>
+										 </div>
+									</div>
+								 </c:if> 
+								<c:if test="${!empty list }">
+									<c:forEach var="map" items="${list }">
+		                                <!-- Single Blog Post -->
+		                                <div class="single-blog-post d-flex align-items-center widget-post">
+		                                    <!-- Post Thumbnail -->
+		                                    <div class="post-thumbnail">
+		                                    	<c:if test="${fn:substring(map['STORE_LOGO'], 0,4)=='http' }">
+													<img src="${map['STORE_LOGO']}" style="height: 90px; border-radius: 20px; width: 90px;" alt="${map['STORE_NAME']}">
+												</c:if>
+												<c:if test="${fn:substring(map['STORE_LOGO'], 0,4)!='http' and (!empty map['STORE_LOGO']) }">
+													<img src
+														='<c:url value="/resources/imgs/StoresImages/${map['STORE_LOGO']}"/>' 
+														style="height: 90px; border-radius: 20px; width: 90px;" alt="${map['STORE_NAME']}">
+												</c:if>
+		                                    </div>
+		                                    <!-- Post Content -->
+		                                    <div class="post-content">
+		                                        <a href="#" class="post-tag">FLEX STORE</a>
+		                                        <h4><a href="#" class="post-headline">${map['STORE_NAME']}</a></h4>
+		                                        <div class="post-meta">
+		                                            <p><a href="#">축하드려요</a></p>
+		                                        </div>
+		                                    </div>
+		                                </div>
+	                                </c:forEach>
+								</c:if> 
+                              
                             </div>
                         </div>
                     </div>

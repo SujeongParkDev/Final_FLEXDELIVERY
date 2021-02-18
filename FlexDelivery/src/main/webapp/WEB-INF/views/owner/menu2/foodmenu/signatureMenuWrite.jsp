@@ -29,7 +29,10 @@
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script type="text/javascript">
-		
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
+	
 	
 	$(document).ready(function(){
 		 	var type=1;
@@ -131,8 +134,8 @@
 		                    <Br>
 		                    <br>
 		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuWritce" name="btMainWrite" value="등록">
-		                        <button type="reset" class="btn btn-outline-primary mr-1 mb-1" onclick="self.close()">취소</button>
+		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuWritce" name="btMainWrite" value="등록" style="color:black; background-color:#fcbe32; border: none; ">
+		                        <button type="reset" class="btn btn-outline-primary mr-1 mb-1" onclick="self.close()" style=" background-color:#f1f3f5; color:#333; border: none;">취소</button>
 		                    </div>
 		                    <Br>
 		                    </div>
