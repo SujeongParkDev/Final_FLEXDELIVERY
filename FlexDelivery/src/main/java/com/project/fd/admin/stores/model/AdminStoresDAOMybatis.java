@@ -38,4 +38,14 @@ public class AdminStoresDAOMybatis implements AdminStoresDAO{
 		return sqlSession.update(namespace+"approvalDeny", no);
 	}
 
+	@Override
+	public int adminOutAgree(int no) {
+		return sqlSession.update(namespace+"outAgree", no);
+	}
+
+	@Override
+	public int adminOutDeny(int no) {
+		return sqlSession.update(namespace+"outDeny", no);
+	}
+
 }

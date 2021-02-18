@@ -185,7 +185,7 @@
                                         <div class="form-group">
                                             <label for="phone-number">연락처</label>
                                             <input type="text" id="phone-number" class="form-control" name="phone-number"
-                                                value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp2}" disabled="disabled">
+                                                value="${storeVo.ownerHp1}-${storeVo.ownerHp2}-${storeVo.ownerHp3}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">

@@ -30,6 +30,18 @@
 		where store_no =#{no}
 	</select>
 	
+	<select id="outAgree" parameterType="int">
+		update stores
+		set a_agree_no=9, store_outdate=sysdate
+		where store_no =#{no}		
+	</select>
+	
+	<select id="outDeny" parameterType="int">
+		update stores
+		set a_agree_no = 3
+		where store_no =#{no}
+	</select>
+	
 </mapper>
 
 

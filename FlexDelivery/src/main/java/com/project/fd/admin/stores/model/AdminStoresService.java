@@ -9,4 +9,6 @@ public interface AdminStoresService {
 	public AdminStoresVO adminApprovalDetail(int no);
 	public int adminApprovalAgree(int no);
 	public int adminApprovalDeny(int no);
+	public int adminOutAgree(int no);
+	public int adminOutDeny(int no);
 }
