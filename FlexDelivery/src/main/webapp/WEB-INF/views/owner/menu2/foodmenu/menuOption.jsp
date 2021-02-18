@@ -48,51 +48,17 @@
 			});  
 		
 			
-			//메뉴 그룹을 클릭하면 등록 버튼과 메뉴 셀렉트가 보인다.
-			 $(function(){
-				$('.groupChoice').change(function(){
-					
-					$('#btOptionWrite').css('display','block');
-					$('#optionTable').html('');
-					$('#oRankSelect').find('option:first').prop('selected', true);
-					
-					$.ajax({
-						url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
-						data:"sMGroupNo=" + $(this).val(),
-						dataType:"json",
-						type:"GET",
-						success:function(res){
-							//alert(res);
-							//alert(res.length);
-							if(res.length>0){
-								var str="";
-									str+="<option value='0'>메뉴 선택</option><br>";
-								$.each(res, function(idx, item){
-									str+="<option value='"+item.menuNo+"' class='menuClick'>"+ item.menuName+"</option><br>";
-								});
-								
-								$('#menuSelect').html(str);
-							}else{
-								$('#menuSelect').html('<option class="m-3 text-center" style="font-size:17px;" selected value="0" >메뉴 선택</option>');
-							}
-						},
-						error:function(xhr, status, error){
-							alert("error!! : " + error);
-						}
-					});
-					
-				});
-				
-			});
 			
 			
 			
 			 $(function(){
 					$('.groupChoice').click(function(){
 						
-						$('#btOptionWrite').css('display','block');
+						
 						$('#optionTable').html('');
 						$('#oRankSelect').find('option:first').prop('selected', true);
+						$('#btOptionWrite').prop('disabled',true);
+						$('#optionTable').html("<tr class='text-center'><td colspan='5'>옵션 선택을 위해 메뉴 그룹을 클릭해 주세요</td></tr>");
 						
 						$.ajax({
 							url:"<c:url value='/owner/menu2/foodmenu/selectAllByGroupNo.do'/>",
@@ -131,6 +97,7 @@
 				$('#menuSelect').change(function(){
 					$.optionSelectFunction();
 					$('#oRankSelect').find('option:first').prop('selected', true);
+					$('#btOptionWrite').prop('disabled',false);
 				});
 			});
 
@@ -138,7 +105,7 @@
 		 	$(function(){
 				$('.menuSelect').click(function(){
 					$.optionSelectFunction();
-					
+					$('#btOptionWrite').prop('disabled',false);
 					
 				});
 			});
@@ -167,8 +134,8 @@
 								str+="<tr class='text-center'><br><td>"+item.oRankNo+"순위</td><br>";
 								str+="<td class='text-bold-500'><strong>"+item.mOptionName+"</strong></td><br>";
 								str+="<td>"+item.mOptionPrice+"원</td><br>";
-								str+="<td class='p-0'><button class='btn btn-outline-info p-2 btmenuEdit' data-toggle='modal' data-target='#inlineForm2'  value='"+item.mOptionNo+"' name='menuEdit' >수정</button>";
-			                  	str+="<button class='btn btn-outline-dark p-2 btmenuDelete' value='"+item.mOptionNo+"' name='menuDelete'>삭제</button><br></td>";	
+								str+="<td class='p-0'><button class='btn btn-outline-dark p-2 btmenuEdit' data-toggle='modal' data-target='#inlineForm2'  value='"+item.mOptionNo+"' name='menuEdit' >수정</button>";
+			                  	str+="<button class='btn btn-outline-dark p-2 btmenuDelete' value='"+item.mOptionNo+"' name='menuDelete' style='background-color:#f1f3f5; color:#333; border: none;'>삭제</button><br></td>";	
 								str+=" <td></td><br></tr>";
 							});
 							
@@ -205,11 +172,11 @@
 					
 					
 					if($('#menuGroupSelect').val()==0 || $('#menuSelect').val()==0){
-						alert('유효하지 않은 선택입니다');
-
-						event.preventDefault();
-						return false;
-					}else{
+						alert("유효하지 않은 선택입니다");
+						$('#inlineForm').modal('hide');
+						
+					
+					}else if($('#menuGroupSelect').val()!=0 && $('#menuSelect').val()!=0){
 							$.ajax({
 								url:"<c:url value='/owner/menu2/foodmenu/inputGroupNoMenuNoToOption.do'/>",
 								data:"sMGroupNo=" + $('.groupChoice').val() +"&menuNo="+$('.menuSelect').val(), 
@@ -254,11 +221,12 @@
 									alert("error!! : " + error);
 								}
 							});
-							event.preventDefault();
+							
 							
 					}
 				
-					
+					event.preventDefault();
+				
 					
 				});
 				
@@ -426,7 +394,7 @@
 		 
 		 $(function(){
 				$('#mOptionPrice').change(function(){
-					if(!validate_price($('#mmOptionPrice').val())){
+					if(!validate_price($('#mOptionPrice').val())){
 						$('#warningOptionPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');	
 						$('#mOptionPrice').focus();
 						event.preventDefault();	
@@ -575,11 +543,11 @@
 			  		<div class="col-md-2 col-12"></div>
 			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
-	                	 </div>
+		                	  <button id="btNowMenu" class="btn btn-primary btMainMenuChange"   style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange"   style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn  btMainMenuChange "  style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">옵션편집</button>
+		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;" >대표메뉴</button> 
+		           		</div>
 		            </div>
                     <div class="col-md-2 col-12"></div>
 			  </div>
@@ -606,7 +574,7 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center mb-3 mt-3" style="font-size:30px; color:#ffb703;"><b>📋메뉴 옵션📋</b></p>
+					          <p class="card-text text-center mb-3 mt-3" style="font-size:30px; color:#333; font-weight:bold;"><b>📋메뉴 옵션📋</b></p>
 					          <p class="card-text text-center">메뉴 옵션 수정 및 삭제 및 등록 해주세요</p>
 					          <br>
 					          <br>
@@ -635,9 +603,9 @@
 					          <div class="table-responsive">
 					            <table class="table">
 					              <thead>
-					                <tr class="text-center" style="font-size:13px;  background-color:rgb(2, 48, 71); color:white;">
-					                  <th style="width:25%;">
-											<select class="form-select menuSelect p-2" name="oRankNo" id="oRankSelect" style="overflow : auto; ">
+					                <tr class="text-center" style="background-color:#004e66; color:white;" >
+					                  <th style="width:25%;"class="p-2" >
+											<select class="form-select menuSelect " name="oRankNo" id="oRankSelect" style="overflow : auto; ">
 												<c:if test="${!empty oList }">
 													<c:forEach var="vo" items="${oList }">
 														<option value="${vo.oRankNo }">${vo.oRankName }</option>
@@ -645,17 +613,19 @@
 												</c:if>
 											</select>
 								      </th>
-					                  <th style="width:20%;">메뉴 옵션</th>
-					                  <th style="width:20%;">가격</th>
-					                  <th style="width:20%;">수정/삭제</th>
-					                  <th style="width:15%;" class="pl-3">
-					                  		<button class="btn btn-warning p-2" data-toggle="modal" data-target="#inlineForm" 
-					                  			id="btOptionWrite" style="display:none; color:black;">등록</button>
+					                  <th style="width:20%;" class="p-2">메뉴 옵션</th>
+					                  <th style="width:20%;" class="p-2">가격</th>
+					                  <th style="width:20%;" class="p-2">수정/삭제</th>
+					                  <th style="width:15%;" class="p-2 pl-3 ">
+					                  		<button class="btn btn-warning p-2 mr-3" data-toggle="modal" data-target="#inlineForm" 
+					                  			id="btOptionWrite" style="color:black; background-color:#fcbe32; border: none; " disabled="disabled">등록</button>
 					                  </th>
 					                </tr>
 					              </thead>
 					              <tbody id="optionTable">
-					               
+					               		<tr class="text-center">
+					               			<td colspan="5">옵션 선택을 위해 메뉴 그룹을 클릭해 주세요</td>
+					               		</tr>
 					              </tbody>
 					            </table>
 					          </div>
@@ -702,11 +672,11 @@
 		                    	    </div>
 	                            </div>
 	                            <div class="modal-footer">
-	                                <button type="button" class="btn btn-light-secondary submitWriteOption">  
+	                                <button type="button" class="btn btn-light-secondary submitWriteOption" style="color:black; background-color:#fcbe32; border: none; ">  
 	                                	<i class="bx bx-x d-block d-sm-none "></i>
 	                                	<span class="d-none d-sm-block">등록</span>
 	                                </button>
-	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal" style=" background-color:#f1f3f5; color:#333; border: none;">
 	                               		<i class="bx bx-check d-block d-sm-none"></i>
 	                                	<span class="d-none d-sm-block">취소</span>
 	                                </button>
@@ -750,11 +720,11 @@
 	                              
 	                            </div>
 	                            <div class="modal-footer">
-	                                <button type="button" class="btn btn-light-secondary submitEditOption">  
+	                                <button type="button" class="btn btn-outline-dark submitEditOption">  
 	                                	<i class="bx bx-x d-block d-sm-none "></i>
 	                                	<span class="d-none d-sm-block">수정</span>
 	                                </button>
-	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+	                                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal" style=" background-color:#f1f3f5; color:#333; border: none;">
 	                               		<i class="bx bx-check d-block d-sm-none"></i>
 	                                	<span class="d-none d-sm-block">취소</span>
 	                                </button>

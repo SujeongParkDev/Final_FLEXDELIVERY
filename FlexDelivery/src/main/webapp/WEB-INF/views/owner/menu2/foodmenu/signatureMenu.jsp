@@ -81,10 +81,10 @@
 			  		<div class="col-md-2 col-12"></div>
 			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
+		                	  <button id="btNowMenu" class="btn btn-primary btMainMenuChange"   style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange"   style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange "  style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;" >옵션편집</button>
+		                	 <button id="btMainMenu" class="btn  btMainMenuChange" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;"  >대표메뉴</button>
 	                	 </div>
 		            </div>
                     <div class="col-md-2 col-12"></div>
@@ -104,7 +104,7 @@
 					<Br>
 					<Br>
 					<div class="card-title text-center">
-						<p style="font-size:30px; color:#ffb703;"><b>📋대표 메뉴📋</b></p>
+						<p style="font-size:30px; color:#333; font-weight:bold;"><b>📋대표 메뉴📋</b></p>
 					</div>
 					<br>
 					<div class="card-content text-center">
@@ -141,7 +141,7 @@
 						           <br>
 						           <br>
 						           <div class="text-center">
-						         	  <button class="btn btn-primary block btMain" id="btSignatureMenuEdit"  name="btSignatureMenuEdit">수정</button>
+						         	  <button class="btn btn-dark block btMain" id="btSignatureMenuEdit"  name="btSignatureMenuEdit">수정</button>
 						           </div>
 						           <br>
 						           <br>
@@ -157,7 +157,7 @@
 					       		  	<span style="color:gray;">등록 부탁 드려요!</span>
 					       		  	<br><Br><br>
 					       		  	 <div class="text-center">
-						         	  <button class="btn btn-primary block btMain" id="btSignatureMenuWrite"  name="btSignatureMenuWrite">등록</button>
+						         	  <button class="btn btn-primary block btMain" id="btSignatureMenuWrite"  name="btSignatureMenuWrite"  style="color:black; background-color:#fcbe32; border: none; ">등록</button>
 						           </div>
 						           <br><Br><br>
 					       		  </div>

@@ -9,7 +9,20 @@
 
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <!-- top 끝 -->
-
+	<style>
+	.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	    color: white;
+	    background-color: #fcbe32;
+	}
+	
+	a.nav-link:hover {
+   		 color: gray;
+	}
+	
+	a.nav-link{
+		 color: #004e66;
+	}
+	</style>
 
 	<script type="text/javascript">
 			$(function(){

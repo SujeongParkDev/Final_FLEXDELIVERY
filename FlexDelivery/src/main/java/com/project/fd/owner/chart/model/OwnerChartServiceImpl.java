@@ -35,4 +35,8 @@ public class OwnerChartServiceImpl implements OwnerChartService{
 	public List<Map<String, Object>>  selectOrdersFiveStatusNo(Map<String, Object> map){
 		return ownerChartDao.selectOrdersFiveStatusNo(map);
 	}
+
+	public List<Map<String, Object>>  selectMainStoreFour(){
+		return ownerChartDao.selectMainStoreFour();
+	}
 }

@@ -83,7 +83,7 @@
 			                                 
 			                               
 			                                 <div class="col-12 d-flex mt-3 justify-content-center">
-			                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" >확인</button>
+			                          		 	<button class="btn btn-primary btAdPwdCheck"  id="button-addon1" style="color:black; background-color:#fcbe32; border: none; ">확인</button>
 			                         		  </div>
 			                         	 </div>
 			                    	</div> 

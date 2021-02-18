@@ -54,10 +54,10 @@
 			  		<div class="col-md-2 col-12"></div>
 			  		<div class="col-md-8 col-12">
 				  		 <div class="text-right">
-		                	 <button id="btNowMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">현재메뉴</button>
-		                	 <button id="btMenuChange" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188);  border-color:rgb(33, 158, 188);"  >메뉴편집</button>
-		                	 <button id="btOptionChange" class="btn btn-primary btMainMenuChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188);">옵션편집</button>
-		                	 <button id="btMainMenu" class="btn btn-primary btMainMenuChange" style="background-color: rgb(33, 158, 188); border-color:rgb(33, 158, 188); " >대표메뉴</button>
+		                	  <button id="btNowMenu" class="btn  btMainMenuChange"  style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">현재메뉴</button>
+		                	 <button id="btMenuChange" class="btn  btMainMenuChange"   style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;"  >메뉴편집</button>
+		                	 <button id="btOptionChange" class="btn  btMainMenuChange "  style=" background-color:#fcbe32; color:#333;  border: none; font-size: 15px;  font-weight: bold;" >옵션편집</button>
+		                	 <button id="btMainMenu" class="btn  btMainMenuChange"  style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px;  font-weight: bold;"   >대표메뉴</button>
 	                	 </div>
 		            </div>
                     <div class="col-md-2 col-12"></div>
@@ -79,16 +79,16 @@
 					      </div> -->
 					      <div class="card-content">
 					        <div class="card-body">
-					          <p class="card-text text-center mb-5 mt-3" style="font-size:30px; color:#ffb703;"><b>📋현재 메뉴📋</b></p>
+					          <p class="card-text text-center mb-5 mt-3"   style="font-size:30px; color:#333; font-weight:bold;"><b>📋현재 메뉴📋</b></p>
 					          <p class="card-text text-center mb-3"> 현재 보여지는 메뉴들 입니다.</p>
 					          <div class="table-responsive">
 						          <table class="table table mb-5">
 						            <thead>
-						              <tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;" >
-						              	<th>번호</th>
-						                <th>메뉴이름</th>
-						                <th>메뉴그룹</th>
-						                <th>메뉴가격</th>
+						              <tr class="text-center"style="background-color:#004e66; color:white;" >
+						              	<th class="p-3">번호</th>
+						                <th class="p-3">메뉴이름</th>
+						                <th class="p-3">메뉴그룹</th>
+						                <th class="p-3">메뉴가격</th>
 						              </tr>
 						            </thead>
 						            <tbody>

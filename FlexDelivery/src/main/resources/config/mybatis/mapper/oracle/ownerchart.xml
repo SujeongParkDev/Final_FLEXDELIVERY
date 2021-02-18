@@ -131,4 +131,24 @@
 				order by b.oStatusNo
 		
 	</select>
+	
+	
+	
+	
+	<select id="selectMainStoreFour" resultType="map">
+		select A.*, rownum from
+			(
+			select sum(nvl(o.orders_price,0)) as ordersPrice , o.store_no, s.store_name,s.store_logo
+			from orders o join stores s
+			on s.store_no=o.store_no
+			<![CDATA[
+			where s.a_agree_no=3 and  o.o_status_no=4 and o.orders_date + o.orders_duration/(24*60) >= TRUNC(sysdate,'MM')
+			]]>
+			group by o.store_no, s.store_name,s.store_logo
+			order by ordersPrice desc
+			) A
+			<![CDATA[
+			where rownum <=4
+			]]>
+	</select>
 </mapper>

@@ -118,7 +118,7 @@
 											<!-- CEO comment start !! -->
 											<c:if test="${!empty map['R_COMMENT_CONTENT']}">
 												<div class="CEO-comment" style="background-color: rgba(208, 201, 208, 0.12); color: #333;">
-													<form class="frm2" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
+													<form class="frm${map['REVIEW_NO']}" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
 														<input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
 														<input type="hidden" id="storeNo" name="storeNo" value="1">
 														<div class="reply" style="padding: 7%;">
@@ -134,7 +134,7 @@
 																	<fmt:formatDate value="${map['R_COMMENT_REGDATE'] }" pattern="yyyy-MM-dd" />
 																</div>
 																<div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
-																<div class="result" id="resultDiv"name="reuslt"></div>
+																<div class="result${map['REVIEW_NO']}" id="resultDiv"></div>
 															</div>
 															<div class="row">
 																<div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
@@ -212,7 +212,7 @@
 			 alert("댓글 내용을 입력해 주세요 ! ");
 			event.preventDefault();
 		}else{
-	     	var params = $(".frm2").serialize();
+	     	var params = $(".frm"+num).serialize();
 	     	$.ajax({
 				url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
 				type:"GET",
@@ -224,7 +224,7 @@
 						output+=res.rCommentContent+" </textarea><br>";
 						output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
 					
-							$('.result').append(output);
+							$('.result'+num).append(output);
 							
 				},
 					error:function(xhr, status, error){

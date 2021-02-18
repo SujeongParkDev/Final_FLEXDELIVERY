@@ -121,7 +121,7 @@
 						message = map.oMap['ORDERS_MESSAGE'];
 					}
 				
-       				str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>회원 정보</h5></div><br>";
+       				str+="<div class='text-center' style='height:15px;'><h5 style='background-color:#004e66; color:white;' class='p-2'>회원 정보</h5></div><br>";
        				str+="<table style='margin-top: 60px;'>";
        				str+="<tbody>";
        				str+="<tr><td><b class='ml-3'>회원 아이디</b></td><tr><tr><td><span  class='ml-3'>"+map.oMap['MEMBER_ID']+"</span><br><hr></td></tr>";
@@ -131,7 +131,7 @@
        				str+="</tbody>";
        				str+="</table>";
        				
-       				str+="<br><div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>메뉴 / 옵션</h5></div><br>";
+       				str+="<br><div class='text-center' style='height:15px;'><h5 style=' background-color:#004e66; color:white;' class='p-2'>메뉴 / 옵션</h5></div><br>";
        				
        				str+="<table style='margin-top:30px;'>";
 					str+="<tbody>";
@@ -157,7 +157,7 @@
             			});
             		str+="</tbody><br></table><br>";
             		
-            		str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>가격</h5></div>";
+            		str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#004e66; color:white;' class='p-2'>가격</h5></div>";
             		str+="<table style='margin-top:50px;'><br><tbody>";
             		
             		str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>총 주문 금액</b></span>";
@@ -192,6 +192,7 @@
 			}
 		}); 
   };	
+
 
 	
 		function pageFunc(curPage){
@@ -250,7 +251,7 @@
 	            <br>
 	             <br>
 	            <div class="card-header  text-center">
-	                <h4 class="card-title">주문내역</h4>
+	                <h4 class="card-title" style="font-size:30px; color:#333; font-weight:bold;">주문내역</h4>
 	            </div>
 	         	  
 	            	<br>
@@ -284,7 +285,7 @@
 										<input type="hidden" name="currentPage" value="1">
 									</div>
 									<div class="col-md-1 col-12">
-										<input type="submit" style="background-color:rgb(223,108,220); color:white;" value="조회" >
+										<input type="submit" value="조회" style="color:black; background-color:#fcbe32; border: none; ">
 									</div>
 								</div>
 							</form>
@@ -296,7 +297,7 @@
 								 <div class="table-responsive" >
 							          <table class="table table mb-5">
 							            <thead>
-							              <tr class="text-center">
+							              <tr class="text-center"  style="background-color:#004e66; color:white;">
 							              	<th style="width:15%;">번호</th>
 							              	<th style="width:20%;">회원</th>
 							                <!-- 다급한거 이미지 -->
@@ -404,7 +405,7 @@
 									</div>  
 		                        </div>
 		                       	<div class="modal-footer justify-content-center mt-3">
-			                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+			                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal" style="color:black; background-color:#fcbe32; border: none; ">
 			                           		 <i class="bx bx-check d-block d-sm-none"></i>
 			                           		 <span class="d-none d-sm-block">확인</span>
 			                            </button>

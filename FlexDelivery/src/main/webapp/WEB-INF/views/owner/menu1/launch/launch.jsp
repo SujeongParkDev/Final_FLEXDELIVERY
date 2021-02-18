@@ -28,6 +28,14 @@ h1 {
 .row {
 	margin-top: 15%;
 }
+
+body > header > div.logo-area.text-center > div > div{
+   margin-top:0px;
+}
+
+body > header > div.top-header > div > div{
+   margin-top:0px;
+}
 </style>
 
 <div class="container">

@@ -166,8 +166,8 @@
                               </div>
                           </div>
                           <div class="col-12 d-flex justify-content-center mt-3">
-                              <input type="button" class="btn btn-primary mr-1 mb-1"  id="groupBT" value="등록">
-                              <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
+                              <input type="button" class="btn  mr-1 mb-1"  id="groupBT" value="등록" style="color:black; background-color:#fcbe32; border: none; ">
+                              <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()"  style=" background-color:#f1f3f5; color:#333; border: none;" >취소</button>
                           </div>
                           </div>
                       </div>
