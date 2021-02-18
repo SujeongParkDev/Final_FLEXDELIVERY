@@ -1,6 +1,7 @@
 package com.project.fd.admin.faq.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	@Override
 	public List<AdminFaqAllViewVO> selectFor2(int categoryNo) {
 		return faqDao.selectFor2(categoryNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> chkFCategory(int no) {
+		return faqDao.chkFCategory(no);
 	}
 
 }

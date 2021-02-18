@@ -65,10 +65,10 @@ $(function(){
 					                        <!-- Blog Content -->
 					                        <div class="single-blog-content">
 					                            <div class="line"></div>
-					                            <a href="#" class="post-tag">${vo.askNo }번째 문의</a>
-					                            <h4><a href="#" class="post-headline mb-0">${vo.askTitle }</a></h4>
+					                            <a class="post-tag" style="font-size:1em;">${vo.askNo }번째 문의</a>
+					                            <h4><a class="post-headline mb-0">${vo.askTitle }</a></h4>
 					                            <div class="post-meta mb-50">
-					                                <p> ${vo.askRegdate }, By <a href="#">${vo.askId }</a></p>
+					                                <p style="font-size:1em;"> ${vo.askRegdate }, By <a style="font-size:1em;">${vo.askId }</a></p>
 					                                <hr>
 					                            </div>
 					                            <div class="text-left">
@@ -97,13 +97,13 @@ $(function(){
 							                            <div class="row">
 							                                <div class="col-12 col-md-6">
 							                                    <div class="group">
-							                                    	<input type="hidden" name="askNo" value="3">
+							                                    	<input type="hidden" name="askNo" value="${vo.askNo }">
 							                                    	<input type="hidden" name="askId" value="admin">
 							                                    	<input type="hidden" name="askGroupNo" value="${vo.askNo }">
 							                                    	<input type="hidden" name="askStep" value="${vo.askStep +1}">
 							                                    	<input type="hidden" name="authorityNo" value="6">
 							                                        <input style="text-align: right;" type="text" name="askId" id="replyAskId" 
-							                                        	value="플렉스 딜리버리" readonly required>
+							                                        	value="플렉스 딜리버리" readonly required disabled>
 							                                        <span class="highlight"></span>
 							                                        <span class="bar"></span>
 							                                        <label>작성자</label>
@@ -134,8 +134,7 @@ $(function(){
 							                                    </div>
 							                                </div>
 		 -->					                                <div class="col-12">
-							                                    <!-- <button type="submit" class="btn original-btn">답변 등록</button> -->
-							                                    <button type="submit" id="btReplyWriteSubmit" class="btn original-btn block btn-primary">답변 등록</button>
+							                                    <button type="submit" id="btReplyWriteSubmit" class="btn original-btn block btn-secondary" style="background-color: black;">답변 등록</button>
 							                                </div>
 							                            </div>
 							                        </form>
@@ -156,8 +155,14 @@ $(function(){
 					                                <div class="comment-content d-flex">
 					                                    <!-- Comment Meta -->
 					                                    <div class="comment-meta">
-					                                        <a href="#" class="post-date">${rVo.askId } | ${rVo.askRegdate }</a>
-					                                        <p>${rVo.askTitle }</p>
+					                                    	<c:if test="${rVo.askId=='admin' }">
+						                                        <a class="post-date" style="font-size:0.9em;">플렉스 딜리버리 | ${rVo.askRegdate }</a>					                                    	
+					                                    	</c:if>
+					                                    	<c:if test="${rVo.askId!='admin' }">
+						                                        <a class="post-date" style="font-size:0.9em;">${rVo.askId } | ${rVo.askRegdate }</a>
+					                                    	</c:if>
+					                                        <p style="font-weight: 600;">${rVo.askTitle }</p>
+					                                        <hr>
 					                                        <p>${rVo.askContent }</p>
 					                                        <button type="button" style="border: none; outline: none; background: none;" class="comment-reply" 
 					                                        	id="detailReplyEdit">수정</button> | 
@@ -209,7 +214,7 @@ $(function(){
 							                                    </div>
 							                                </div>
 							                                <div class="col-12">
-							                                    <button type="submit" id="btReplyEditSubmit" class="btn round block btn-primary">답변 등록</button>
+							                                    <button type="submit" id="btReplyEditSubmit" style="background-color: black;" class="btn round block btn-secondary">답변 수정</button>
 							                                </div>
 							                            </div>
 							                        </form>

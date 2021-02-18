@@ -1,6 +1,7 @@
 package com.project.fd.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -197,11 +198,20 @@ public class AdminFaqController {
 		logger.info("delete_post FAQ 카테고리 삭제처리, 파라미터 no={}", no);
 		
 		String msg="FAQ 카테고리 삭제 실패", url="/admin/menu5/faq.do";
-		int cnt=faqCategoryService.deleteFaqCategory(no);
-		logger.info("FAQ 카테고리 삭제 처리 결과, cnt={}", cnt);
 		
-		if (cnt>0) {
-			msg="FAQ 카테고리를 삭제하였습니다.";
+		List<Map<String, Object>>list=faqService.chkFCategory(no);
+		logger.info("list.size={}", list.size());
+		
+		String fno=list.get(0).get("CNTFCATEGORY").toString();
+		logger.info("하위 메뉴 개수, fno={}", fno);
+		
+		if (fno.equals("0")) {
+			int cnt=faqCategoryService.deleteFaqCategory(no);
+			logger.info("FAQ 카테고리 삭제 처리 결과, cnt={}", cnt);
+			if (cnt>0) { msg="FAQ 카테고리를 삭제하였습니다."; }
+		} else {
+			msg="하위 질문답변이 있는 카테고리는 삭제할 수 없습니다!";
+			
 		}
 		
 		model.addAttribute("msg", msg);

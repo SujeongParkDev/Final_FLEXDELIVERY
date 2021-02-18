@@ -95,6 +95,7 @@ public class AdminAskController {
 		
 		if (cnt>0) {
 			msg="답변을 수정하였습니다.";
+			//url="/admin/menu5/oneToOne/detail.do?no="+askVo.getAskNo();
 		}
 		
 		model.addAttribute("msg", msg);

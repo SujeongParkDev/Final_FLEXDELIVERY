@@ -16,7 +16,7 @@
 		$('#modalDeleteBt1').hide();
 	   
 		$('#faqCategoryWrite').on('hidden.bs.modal', function (e) {
-		  $(this).find('form')[0].reset()
+		  $(this).find('form')[0].reset();
 		  $('#message2').hide();
 		  $('#message').html("카테고리 이름을 입력해주세요.");
 		  $('#message').show();
@@ -24,6 +24,10 @@
 		  $('#radioOk').html("N");
 
 		});
+		
+		$('#faqCategoryEditDelete').on('hidden.bs.modal', function (e) {
+			$(this).find('form')[0].reset();
+		})
 		
 		$('#faqWrite2').on('hidden.bs.modal', function (e){
 			$(this).find('form')[0].reset()

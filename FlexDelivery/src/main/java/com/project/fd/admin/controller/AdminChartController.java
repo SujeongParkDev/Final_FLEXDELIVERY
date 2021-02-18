@@ -30,6 +30,7 @@ public class AdminChartController {
 		List<Map<String, Object>> list5=chartService.selectStoreCoupon();
 		List<Map<String, Object>> list6=chartService.selectRCoupon();
 		List<Map<String, Object>> list7=chartService.selectCurOrder();
+		List<Map<String, Object>> list72=chartService.selectCurOrder2();
 		//List<Map<String, Object>> list8=chartService;
 		List<Map<String, Object>> list9=chartService.selectCurLCategory();
 		List<Map<String, Object>> list10=chartService.selectGCategory();
@@ -39,9 +40,9 @@ public class AdminChartController {
 		logger.info("list 사이즈, list1.size={}, list2.size={}",	list1.size(), list2.size());
 		logger.info("list 사이즈, list3.size={}, list4.size={}",	list3.size(), list4.size());
 		logger.info("list 사이즈, list5.size={}, list6.size={}",	list5.size(), list6.size());
-		logger.info("list 사이즈, list7.size={}",	list7.size());
+		logger.info("list 사이즈, list7.size={}, list72.size={}",	list7.size(), list72.size());
 		logger.info("list 사이즈, list9.size={}, list10.size={}",	list9.size(), list10.size());
-		logger.info("list 사이즈, list11.size={}, list12.size={}",	list11.size(), list12.size());
+		logger.info("list 사이즈, list11.size={}, list12.size={}", list11.size(), list12.size());
 		
 		logger.info("list1={}", list1);
 		logger.info("list2={}", list2);
@@ -51,6 +52,7 @@ public class AdminChartController {
 		logger.info("list6={}", list6);
 
 		logger.info("list7={}", list7);
+		logger.info("list72={}", list72);
 		logger.info("list12={}", list12);
 		//logger.info("list8={}", list8);
 		logger.info("list9={}", list9);
