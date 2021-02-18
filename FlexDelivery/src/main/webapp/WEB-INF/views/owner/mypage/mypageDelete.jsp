@@ -28,8 +28,6 @@ $(function(){
 			    success: function(data) {
 			        switch (data) {
 			            case 0:
-			                alert("자동 가입 방지 봇 통과");
-			                
 			                location.href="<c:url value='/owner/withdrawStore.do?storeNo="+storeNo+"'/>"; 
 			                break;
 			

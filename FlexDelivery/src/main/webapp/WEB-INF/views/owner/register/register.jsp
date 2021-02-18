@@ -92,12 +92,11 @@
 		                  success: function(data) {
 		                      switch (data) {
 		                          case 0:
-		                              alert("자동 가입 방지 봇 통과");
 		                              $('form[name=registerfrm]').submit();
 		                              break;
 	
 		                          case 1:
-		                              alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+		                              
 		                              break;
 	
 		                          default:

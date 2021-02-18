@@ -106,6 +106,7 @@ $(function(){
       
 });
 
+
 function goDetail(ordersNo,ordersDiscount){
 	$.ajax({
 		url:"<c:url value='/owner/menu2/order/orderRequestResult.do'/>",
@@ -142,14 +143,14 @@ function goDetail(ordersNo,ordersDiscount){
             			if(item['M_OPTION_NO']==0){
             				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
             				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br><hr></td>";
+            				str+="<tr><td><span class='ml-3'>＊ 기본 ("+item['MENU_PRICE']+"원)</span><br><hr></td>";
             				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
             			}else{
             				
             				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
             				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+((item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br>";
-            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" "+item['M_OPTION_PRICE']+"원</span><br><hr></td></tr>";
+            				str+="<tr><td><span class='ml-3'>＊ 기본 ("+item['MENU_PRICE']+"원)</span><br>";
+            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" ("+item['M_OPTION_PRICE']+"원)</span><br><hr></td></tr>";
             				
             				price+=(item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'];
             			}
@@ -268,7 +269,7 @@ function goDetail(ordersNo,ordersDiscount){
                                               <td class="text-bold-500">${map['ORDERS_DATE']}</td>
                                               <td>${map['ORDERS_PRICE'] }</td>
                                               <td>
-                                                 <button class="btn btDeliveryTime" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;"
+                                                 <button class="btn btDeliveryTime" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; border: none; background-color:#fcbe32; color:#333;"
                                                           data-toggle="modal" data-target="#deliveryTime">배달</button>
                                               </td>
                                         </tr>
@@ -337,7 +338,7 @@ function goDetail(ordersNo,ordersDiscount){
 	                        		<div class="col-12 col-md-1"></div>
 	                        			<input class="deliveryTimeInput" type="hidden" value="1">
 	                        			<div class="col-12 col-md-10 text-center">
-	                        				<button class="btn btn-outer-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
+	                        				<button class="btn btn-outline-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
 	                        				<br>
 		                        			<button class="btn btn-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="20">20분</button>
 		                        			<button class="btn btn-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="30">30분</button>

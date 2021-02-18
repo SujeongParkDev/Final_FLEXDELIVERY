@@ -134,7 +134,7 @@
 											</svg>
 										</a>
 									</div>
-									<div class="col-12 col-md-6" style="color:gray; text-align: right;">디플렉스점</div>
+									<div class="col-12 col-md-6" style="color:gray; text-align: right;"></div>
 								</div>
                                <p class="card-text">
                                	<br>

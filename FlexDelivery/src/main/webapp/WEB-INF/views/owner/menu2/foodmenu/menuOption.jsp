@@ -169,7 +169,7 @@
 			//메뉴 등록을 누르면 모달창이 뜬다.
 		 	$(function(){
 				$('#btOptionWrite').click(function(){
-					
+					var oRankSelect = $('#oRankSelect').val();
 					
 					if($('#menuGroupSelect').val()==0 || $('#menuSelect').val()==0){
 						alert("유효하지 않은 선택입니다");
@@ -208,7 +208,11 @@
 										var str2="";
 								
 										$.each(res.list, function(idx, item){
-											str2+="<option value='"+item.oRankNo+"'>"+item.oRankName+"</option><br>";
+											str2+="<option value='"+item.oRankNo+"'";
+											if(item.oRankNo==oRankSelect){
+												str2+="selected='selected'";
+											}
+											str2+=">"+item.oRankName+"</option><br>";
 										});
 										$('.menuOptionSelect').html(str2);
 									}

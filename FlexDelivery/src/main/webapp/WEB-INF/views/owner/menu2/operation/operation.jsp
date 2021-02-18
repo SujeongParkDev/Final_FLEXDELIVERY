@@ -213,7 +213,7 @@
 					if(res>1){
 						alert("업데이트 실패!");
 					}else{
-						alert("업데이트 성공!");
+						
 						goMinPrice();
 						$('#minPriceCard').css('display','none');
 					}
@@ -346,30 +346,30 @@
 										<div class="form-control ">
 											<h5 class="form-label form-sub-label">종료</h5>
 											<select class="_31CECf9nJyK91ez9apcKQB" name="closeHour">
-												<option   value="12" selected="selected">낮 12시</option>
-			                                    <option value="13">오후 1시</option>
-			                                    <option value="14">오후 2시</option>
-			                                    <option value="15">오후 3시</option>
-			                                    <option value="16">오후 4시</option>
-			                                    <option value="17">오후 5시</option>
-			                                    <option value="18">오후 6시</option>
-			                                    <option value="19">오후 7시</option>
-			                                    <option value="20">오후 8시</option>
-			                                    <option value="21">오후 9시</option>
-			                                    <option value="22">오후 10시</option>
-			                                    <option value="23">오후 11시</option>
-			                                    <option value="24">밤 12시 (다음 날)</option>
-			                                    <option value="25">오전 1시 (다음 날)</option>
-			                                    <option value="26">오전 2시 (다음 날)</option>
-			                                    <option value="27">오전 3시 (다음 날)</option>
-			                                    <option value="28">오전 4시 (다음 날)</option>
-			                                    <option value="29">오전 5시 (다음 날)</option>
-			                                    <option value="30">오전 6시 (다음 날)</option>
-			                                    <option value="31">오전 7시 (다음 날)</option>
-			                                    <option value="32">오전 8시 (다음 날)</option>
-			                                    <option value="33">오전 9시 (다음 날)</option>
-			                                    <option value="34">오전 10시 (다음 날)</option>
-			                                    <option value="35">오전 11시 (다음 날)</option>
+												<option	value="12" selected="selected">낮 12시</option>
+												<option value="13">오후 1시</option>
+												<option value="14">오후 2시</option>
+												<option value="15">오후 3시</option>
+												<option value="16">오후 4시</option>
+												<option value="17">오후 5시</option>
+												<option value="18">오후 6시</option>
+												<option value="19">오후 7시</option>
+												<option value="20">오후 8시</option>
+												<option value="21">오후 9시</option>
+												<option value="22">오후 10시</option>
+												<option value="23">오후 11시</option>
+												<option value="24">밤 12시 (다음 날)</option>
+												<option value="25">오전 1시 (다음 날)</option>
+												<option value="26">오전 2시 (다음 날)</option>
+												<option value="27">오전 3시 (다음 날)</option>
+												<option value="28">오전 4시 (다음 날)</option>
+												<option value="29">오전 5시 (다음 날)</option>
+												<option value="30">오전 6시 (다음 날)</option>
+												<option value="31">오전 7시 (다음 날)</option>
+												<option value="32">오전 8시 (다음 날)</option>
+												<option value="33">오전 9시 (다음 날)</option>
+												<option value="34">오전 10시 (다음 날)</option>
+												<option value="35">오전 11시 (다음 날)</option>
 											</select>
 											<select	class="_1HdZOQKzdMFA822bBz8vnt" name="closeMinute">
 												<option value="00" selected="selected">0분</option>

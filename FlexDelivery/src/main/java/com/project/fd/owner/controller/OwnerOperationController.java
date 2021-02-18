@@ -167,7 +167,7 @@ public class OwnerOperationController {
 	public int updateMinPrice(@RequestParam(defaultValue = "0") int storeNo,
 			@RequestParam(defaultValue = "0") int ownerNo,
 			@RequestParam(defaultValue = "0") int storeMinPrice) {
-			logger.info("시간 업데이트  ajax ,storeMinPrice={}", storeMinPrice);
+			logger.info("최소 주문 금액 업데이트  ajax ,storeMinPrice={}", storeMinPrice);
 		
 			
 			

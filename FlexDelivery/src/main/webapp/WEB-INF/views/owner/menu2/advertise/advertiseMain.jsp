@@ -108,7 +108,7 @@
 								                	<span>광고명 : ${vo.advertiseName } </span><br>
 								                	<span style="color:purple;">광고번호 : ${vo.advertiseNo } </span><br>
 								                	<span>광고가격 : ${vo.advertisePrice} </span><br>
-								                	<span>만료일 : ${vo.adValidate } 	</span>
+								                	<span>만료일 : ${fn:substring(vo.adValidate, 0,10) }	</span> 
 					                            </p>
 					                            <small class="text-muted">언제나 감사합니다 플렉스한 하루 되세요</small>
 					                        </div>

@@ -19,16 +19,15 @@ public class OwnerTemporaryVO {
 	
 	// owner table 
 	private String tOwnerName ;/* 변경점주이름 */
-	private int tOwnerHp1 ;/* 변경점주연락처1 */
-	private int tOwnerHp2 ; /* 변경점주연락처2 */
-	private int tOwnerHp3 ; /* 변경점주연락처3 */
+	private String tOwnerHp1 ;/* 변경점주연락처1 */
+	private String tOwnerHp2 ; /* 변경점주연락처2 */
+	private String tOwnerHp3 ; /* 변경점주연락처3 */
 	
 	// 관리자용 
 	private String tDetail ;/* 변경내용상세 */
 	private String tRegdate ;/* 변경신청일 */
 	private String tSubmitDate;/* 변경승인일 */
 	private int aAgreeNo; /* 관리자승인번호 */
-	
 	public int gettNo() {
 		return tNo;
 	}
@@ -40,6 +39,30 @@ public class OwnerTemporaryVO {
 	}
 	public void setStoreNo(int storeNo) {
 		this.storeNo = storeNo;
+	}
+	public int getOwnerno() {
+		return ownerno;
+	}
+	public void setOwnerno(int ownerno) {
+		this.ownerno = ownerno;
+	}
+	public long getoRegisterNo() {
+		return oRegisterNo;
+	}
+	public void setoRegisterNo(long oRegisterNo) {
+		this.oRegisterNo = oRegisterNo;
+	}
+	public String gettFileName() {
+		return tFileName;
+	}
+	public void settFileName(String tFileName) {
+		this.tFileName = tFileName;
+	}
+	public String gettOriginalFileName() {
+		return tOriginalFileName;
+	}
+	public void settOriginalFileName(String tOriginalFileName) {
+		this.tOriginalFileName = tOriginalFileName;
 	}
 	public String gettStoreName() {
 		return tStoreName;
@@ -65,52 +88,28 @@ public class OwnerTemporaryVO {
 	public void setLocationNo(int locationNo) {
 		this.locationNo = locationNo;
 	}
-	public long getoRegisterNo() {
-		return oRegisterNo;
-	}
-	public void setoRegisterNo(long oRegisterNo) {
-		this.oRegisterNo = oRegisterNo;
-	}
-	public String gettFileName() {
-		return tFileName;
-	}
-	public void settFileName(String tFileName) {
-		this.tFileName = tFileName;
-	}
-	public String gettOriginalFileName() {
-		return tOriginalFileName;
-	}
-	public void settOriginalFileName(String tOriginalFileName) {
-		this.tOriginalFileName = tOriginalFileName;
-	}
-	public int getOwnerno() {
-		return ownerno;
-	}
-	public void setOwnerno(int ownerno) {
-		this.ownerno = ownerno;
-	}
 	public String gettOwnerName() {
 		return tOwnerName;
 	}
 	public void settOwnerName(String tOwnerName) {
 		this.tOwnerName = tOwnerName;
 	}
-	public int gettOwnerHp1() {
+	public String gettOwnerHp1() {
 		return tOwnerHp1;
 	}
-	public void settOwnerHp1(int tOwnerHp1) {
+	public void settOwnerHp1(String tOwnerHp1) {
 		this.tOwnerHp1 = tOwnerHp1;
 	}
-	public int gettOwnerHp2() {
+	public String gettOwnerHp2() {
 		return tOwnerHp2;
 	}
-	public void settOwnerHp2(int tOwnerHp2) {
+	public void settOwnerHp2(String tOwnerHp2) {
 		this.tOwnerHp2 = tOwnerHp2;
 	}
-	public int gettOwnerHp3() {
+	public String gettOwnerHp3() {
 		return tOwnerHp3;
 	}
-	public void settOwnerHp3(int tOwnerHp3) {
+	public void settOwnerHp3(String tOwnerHp3) {
 		this.tOwnerHp3 = tOwnerHp3;
 	}
 	public String gettDetail() {
@@ -139,13 +138,15 @@ public class OwnerTemporaryVO {
 	}
 	@Override
 	public String toString() {
-		return "OwnerTemporaryVO [tNo=" + tNo + ", storeNo=" + storeNo + ", tStoreName=" + tStoreName
-				+ ", tStoreAddress=" + tStoreAddress + ", tStoreAddressDetail=" + tStoreAddressDetail + ", locationNo="
-				+ locationNo + ", oRegisterNo=" + oRegisterNo + ", tFileName=" + tFileName + ", tOriginalFileName="
-				+ tOriginalFileName + ", ownerno=" + ownerno + ", tOwnerName=" + tOwnerName + ", tOwnerHp1=" + tOwnerHp1
-				+ ", tOwnerHp2=" + tOwnerHp2 + ", tOwnerHp3=" + tOwnerHp3 + ", tDetail=" + tDetail + ", tRegdate="
-				+ tRegdate + ", tSubmitDate=" + tSubmitDate + ", aAgreeNo=" + aAgreeNo + "]";
+		return "OwnerTemporaryVO [tNo=" + tNo + ", storeNo=" + storeNo + ", ownerno=" + ownerno + ", oRegisterNo="
+				+ oRegisterNo + ", tFileName=" + tFileName + ", tOriginalFileName=" + tOriginalFileName
+				+ ", tStoreName=" + tStoreName + ", tStoreAddress=" + tStoreAddress + ", tStoreAddressDetail="
+				+ tStoreAddressDetail + ", locationNo=" + locationNo + ", tOwnerName=" + tOwnerName + ", tOwnerHp1="
+				+ tOwnerHp1 + ", tOwnerHp2=" + tOwnerHp2 + ", tOwnerHp3=" + tOwnerHp3 + ", tDetail=" + tDetail
+				+ ", tRegdate=" + tRegdate + ", tSubmitDate=" + tSubmitDate + ", aAgreeNo=" + aAgreeNo + "]";
 	}
+	
+	
 	
 	
 }
