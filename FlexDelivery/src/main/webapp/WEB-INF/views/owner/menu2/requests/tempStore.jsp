@@ -108,7 +108,7 @@
       </div>
       </div>
         <form name="frmDelete" method="post"  action="<c:url value='/owner/menu2/requests/deletetempStore.do'/>" >
-        <input type="hidden" id="no" name="no" value="${rgVo.tNo}">
+        <input type="hidden" id="no" name="no" value="${tempVo.tNo}">
       <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="control-label">비밀번호를 입력하세요. </label>
