@@ -1,6 +1,7 @@
 package com.project.fd.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +23,11 @@ public class MemberFaqController {
 	@Autowired MemberFaqService memberFaqService;
 	
 	@RequestMapping("/faqList.do")
-	public void memberFaqList() {
+	public void memberFaqList(Model model) {
 		logger.info("FAQ보여주기");
+		List<Map<String, Object>> list=memberFaqService.faqCategoryList();
+		model.addAttribute("list",list);
+		
 	}
 	
 	@RequestMapping("/faqC.do")

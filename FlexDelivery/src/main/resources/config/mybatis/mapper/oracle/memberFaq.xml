@@ -15,4 +15,8 @@
 		where f_category_no = #{fCategoryNo}
 	</select>
 	
+	<select id="faqCategoryList" resultType="map">
+		select * from faqCategory
+		where authority_no in (1,2,3)
+	</select>
 </mapper>

@@ -4,6 +4,18 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.admineventcoupon">
 	
+	<sql id="editStart">
+		<if test="startDate>0">
+			,e_coupon_start_date=sysdate+#{startDate}
+		</if>
+	</sql>
+	
+	<sql id="editEnd">
+		<if test="endDate>0">
+			,e_coupon_end_date=sysdate+#{endDate}
+		</if>
+	</sql>
+	
 	<select id="selectAll" parameterType="adminEventCouponVo" resultType="adminEventCouponVo">
 		select E_COUPON_NO, E_COUPON_NAME, E_COUPON_START_DATE, E_COUPON_END_DATE,
 		E_COUPON_DC, E_COUPON_MIN from EVENTCOUPON
@@ -21,13 +33,16 @@
 		</selectKey>
 		insert into EVENTCOUPON(E_COUPON_NO, E_COUPON_NAME, E_COUPON_START_DATE,
 		E_COUPON_END_DATE, E_COUPON_DC, E_COUPON_MIN)
-		values(#{eCouponNo}, #{eCouponName}, #{eCouponStartDate}, #{eCouponEndDate}, #{eCouponDc}, #{eCouponMin})
+		values(#{eCouponNo}, #{eCouponName},sysdate+#{startDate},sysdate+#{endDate}, #{eCouponDc}, #{eCouponMin})
 	</insert>
 	
 	<update id="updateEventCoupon" parameterType="adminEventCouponVo">
 		update EVENTCOUPON
-		set E_COUPON_NAME=#{eCouponName}, E_COUPON_START_DATE=#{eCouponStartDate}, E_COUPON_END_DATE=#{eCouponEndDate},
-		E_COUPON_DC=#{eCouponDc}, E_COUPON_MIN=#{eCouponMin}
+		set E_COUPON_NAME=#{eCouponName},
+			E_COUPON_DC=#{eCouponDc},
+		 	E_COUPON_MIN=#{eCouponMin}
+		 	<include refid="editStart"></include>
+		 	<include refid="editEnd"></include>
 		where E_COUPON_NO=#{eCouponNo}
 	</update>
 	
