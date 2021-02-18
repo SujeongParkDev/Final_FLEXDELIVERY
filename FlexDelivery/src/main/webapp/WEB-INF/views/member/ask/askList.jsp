@@ -29,15 +29,15 @@
 						<div class="card-body">
 							<ul class="nav nav-tabs">
 								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#qwe">1:1 문의하기</a>
+									<a class="nav-link active" data-toggle="tab" href="#asd">나의 질문과 답변보기</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#asd">나의 질문과 답변보기 <span class="badge bg-transparent">3</span></a>
+									<a class="nav-link" data-toggle="tab" href="#qwe">1:1 문의하기 <span class="badge bg-transparent"></span></a>
 								</li> 
 							</ul>
 						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade show active" id="qwe">
+						<div class="tab-content ml-5 mr-5 mb-5">
+							<div class="tab-pane fade show" id="qwe">
 								<br>
 								<form class="form form-horizontal" method="post" action="<c:url value='/member/ask/askWrite.do'/>">
 									<div class="form-body">
@@ -67,11 +67,11 @@
 											</div>
 										</div>
 									</div>
-									<input type ="text" name="askId" id="askId" value="${sessionScope.memberId}">
-									<input type ="text" name="authorityNo" id="authorityNo" value="${sessionScope.authorityNo}">
+									<input type ="hidden" name="askId" id="askId" value="${sessionScope.memberId}">
+									<input type ="hidden" name="authorityNo" id="authorityNo" value="${sessionScope.authorityNo}">
 								</form>
 							</div>
-							<div class="tab-pane fade" id="asd">
+							<div class="tab-pane fade show active" id="asd">
 								<br>
 							 	<!-- Hoverable rows start -->
 								<div class="row" id="table-hover-row">

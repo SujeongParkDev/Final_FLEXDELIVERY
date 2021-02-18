@@ -144,8 +144,8 @@
 <!--					<div class="py-2">
 							<button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
 						</div> -->
-                    	<input type ="text" name="locationName" id="locationName">
-                    	<input type ="text" name="locationNo" id="locationNo" value="${vo.locationNo}">
+                    	<input type ="hidden" name="locationName" id="locationName">
+                    	<input type ="hidden" name="locationNo" id="locationNo" value="${vo.locationNo}">
 					</form>
                     	
 				</div>

@@ -119,10 +119,6 @@
 
 <body>
     <div class="osahan-signup login-page">
-        <video loop autoplay muted id="vid">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/mp4">
-            <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
-         </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-110">
             <div class="px-6">
                 <div class="px-5 col-10 mx-auto">
@@ -194,14 +190,14 @@
 <!--					<div class="py-2">
 							<button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with Facebook</button>
 						</div> -->
-                    	<input type ="text" name="locationName" id="locationName">
+                    	<input type ="hidden" name="locationName" id="locationName">
 					</form>
 				</div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
                     <a href="<c:url value='/member/login/memberLogin.do' />">
                         <p class="text-center m-0">아이디가 있으신가요? 로그인 화면으로</p>
                     </a>
-                    <input type ="text" name="chkId" id="chkId">
+                    <input type ="hidden" name="chkId" id="chkId">
                 </div>
             </div>
         </div>
