@@ -4,10 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
-<script src="https://kit.fontawesome.com/e42a7f130f.js"
-	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
+<script src="https://kit.fontawesome.com/e42a7f130f.js"crossorigin="anonymous"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9cc0c63f366c2fc01061c22802cf0ee&libraries=services"></script>
 	
 <script type="text/javascript">
 	$(function() {
@@ -33,6 +32,7 @@
 		});
 	});
 	
+	//파일 업로드 
 	$(function(){
 		   $('#upfile').on('change', function(){
 		       readInputFile(this);
@@ -49,8 +49,97 @@
 		        reader.readAsDataURL(input.files[0]);
 		    }  
 		} 
+		//파일업로드 끝
+		
+		<% 
+         pageContext.setAttribute("newLine","\r\n"); 
+      %>
+      <c:set var="content" 
+         value="${fn:replace(vo.storeContent, newLine,'<br>') }" />
+</script> 	
+<!-- <script type="text/javascript">		
+		$(function(){
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
 
-</script>  
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		var mapcode="";
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${vo.storeAddress}', function(result,status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				mapcode=coords
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		        
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		    
+		     var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">클릭하여 큰 지도로 보기</div>'
+		       });
+		    
+		  	// 마커에 마우스오버 이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'mouseover', function() {
+		       // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		         infowindow.open(map, marker);
+		     });
+
+		     // 마커에 마우스아웃 이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'mouseout', function() {
+		         // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+		         infowindow.close();
+		     });
+		     
+		  	// 마커에 클릭이벤트를 등록합니다
+		     kakao.maps.event.addListener(marker, 'click', function() {
+		    	 if(clickCount==1){
+			    	 resizeMap1();
+			    	 map.relayout();
+			    	 map.panTo(mapcode);
+			    	 clickCount=2;
+		    	 }else if(clickCount==2){
+		    		 resizeMap2();
+		    		 map.relayout();
+		    		 map.panTo(mapcode);
+		    		 clickCount=1;
+		    	 }
+		     });
+		  	
+		  	// 지도 확대 레벨 변화 이벤트를 등록한다
+			kakao.maps.event.addListener(map, 'zoom_changed', function () {
+				map.panTo(mapcode);
+			});
+		}); 
+
+</script>   -->
 
 
 <link rel="stylesheet" type="text/css"
@@ -116,9 +205,9 @@
 								<h5 class="form-label">가게 이름</h5>
 								<div class="inline-values flex-1 mb-1">${vo.storeName}</div>
 								<ul class="bullet-ul small muted">
-									<li>변경이 필요한 경우 <a
-										href="<c:url value='/owner/mypage/mypageMain.do'/>"
-										style="font-weight: bold;">마이페이지</a>에서 가능합니다.</li>
+									<li>변경이 필요한 경우 <a  
+										href="<c:url value='/owner/mypage/mypageEdit.do'/>"
+										style="font-weight: bold;">내 정보 수정</a>에서 가능합니다.</li>
 								</ul>
 							</div>
 							<div class="form-group ">
@@ -133,6 +222,14 @@
 								<ul class="bullet-ul mt-0 small muted">
 									
 								</ul>
+								
+							<!-- MAP 
+                			<div class="shadow-sm rounded bg-white mb-3 p-3 overflow-hidden" >
+                			<h6 class="mb-3">점포 위치</h6>
+                			<div id="map" style="min-height:300px"></div>
+                			</div>
+                			<!-- /MAP -->
+								
 								<button type="button" class="button mt-2 p-0 text text" onclick="location.href = '/fd/owner/mypage/mypageEdit.do'"/>노출위치
 									변경</button>
 							</div>
@@ -183,7 +280,7 @@
 									<div class="form-control ">
 										<div class="textarea-container ">
 											<textarea data-component="[object Object]" class="" rows="13"
-												maxlength="500" placeholder="" name="storeContent" >${vo.storeContent}</textarea> 
+												maxlength="500" placeholder="" name="storeContent" >${content}</textarea> 
 											<span class="text-count">118</span>
 										</div>
 									</div>
