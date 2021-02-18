@@ -43,7 +43,7 @@ public class OwnerStoresController {
 
 	 @RequestMapping(value="/launch/launch.do", method=RequestMethod.GET)
 	 public String ownerlaunch(Model model,HttpSession session) {
-		 String msg="	로그인 먼저 부탁드려요. ", url="/owner/index.do";
+		 String msg="	로그인 먼저 부탁드려요. ", url="/owner/login/login.do";
 		 int ownerNo=0;
 			if(session.getAttribute("ownerNo")==null) {
 				model.addAttribute("msg",msg);
