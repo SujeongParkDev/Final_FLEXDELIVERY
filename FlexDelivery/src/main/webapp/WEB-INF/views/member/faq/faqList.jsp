@@ -30,34 +30,16 @@
 						</div>
 					</div>
 					<div id=memberregister>
-						<div class="mb-2 mt-3">
-							<h5 class="font-weight-semi-bold mb-0">회원가입 FAQ</h5>
-						</div>
-	 					<c:import url="/member/faq/faqC.do">
-							<c:param name="fCategoryNo" value="10"></c:param>
-						</c:import>
+						<!-- forEach -->
+						<c:forEach var="map" items="${list}">
+							<div class="mb-2 mt-3">
+								<h5 class="font-weight-semi-bold mb-0">${map['F_CATEGORY_NAME']} FAQ</h5>
+							</div>
+		 					<c:import url="/member/faq/faqC.do">
+								<c:param name="fCategoryNo" value="${map['F_CATEGORY_NO']}"></c:param>
+							</c:import>
+						</c:forEach>
 					</div>
-					<div class="mb-2 mt-3">
-						<h5 class="font-weight-semi-bold mb-0">리뷰관리 FAQ</h5>
-					</div>
- 					<c:import url="/member/faq/faqC.do">
-						<c:param name="fCategoryNo" value="11"></c:param>
-					</c:import>
-					
-					<div class="mb-2 mt-3">
-						<h5 class="font-weight-semi-bold mb-0">이용문의 FAQ</h5>
-					</div>
- 					<c:import url="/member/faq/faqC.do">
-						<c:param name="fCategoryNo" value="12"></c:param>
-					</c:import>
-					
-					<div class="mb-2 mt-3">
-						<h5 class="font-weight-semi-bold mb-0">불편사항 FAQ</h5>
-					</div>
- 					<c:import url="/member/faq/faqC.do">
-						<c:param name="fCategoryNo" value="13"></c:param>
-					</c:import>
-
 				</div>
 			</div>
 		</div>

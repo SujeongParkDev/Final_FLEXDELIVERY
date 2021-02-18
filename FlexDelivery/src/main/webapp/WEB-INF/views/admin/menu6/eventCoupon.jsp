@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../adminInc/top.jsp" %>    
-	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>	
 <!-- css start -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/simple-datatables/style.css">
@@ -29,6 +31,54 @@ $(function(){
 		   writeFunc();
 			  
 	   });//write keyup function
+	   
+	$('#startDateSelect').change(function(){
+		if($(this).val()=='etc'){
+			$('#startDate').val('');
+			$('#startDate').css('visibility','visible');
+			$('#startDate').focus();				
+		}else{
+			var s=$(this).val()
+			$('#startDate').css('visibility','hidden');
+			$('#startDate').val(s);
+		}	
+	}); 
+	   
+	$('#endDateSelect').change(function(){
+		if($(this).val()=='etc'){
+			$('#endDate').val('');
+			$('#endDate').css('visibility','visible');
+			$('#endDate').focus();				
+		}else{
+			var s=$(this).val()
+			$('#endDate').css('visibility','hidden');
+			$('#endDate').val(s);
+		}	
+	}); 
+	   
+	$('#editStartDateSelect').change(function(){
+		if($(this).val()=='etc'){
+			$('#editStartDate').val('');
+			$('#editStartDate').css('visibility','visible');
+			$('#editStartDate').focus();				
+		}else{
+			var s=$(this).val()
+			$('#editStartDate').css('visibility','hidden');
+			$('#editStartDate').val(s);
+		}	
+	});   
+	   
+	$('#editEndDateSelect').change(function(){
+		if($(this).val()=='etc'){
+			$('#editEndDate').val('');
+			$('#editEndDate').css('visibility','visible');
+			$('#editEndDate').focus();				
+		}else{
+			var s=$(this).val()
+			$('#editEndDate').css('visibility','hidden');
+			$('#editEndDate').val(s);
+		}	
+	});   
 });
 
 function chkDu(content){
@@ -162,13 +212,26 @@ function writeFunc(){
 			                                                   	  	  쿠폰 적용 시작일
 			                                                      </td>
 			                                                      <td colspan="2">
-			                                    	               	<input type="text" name="eCouponStartDate">
+			                                                      	<select class="form-select mb-3" aria-label="Default select example" id="startDateSelect">
+																	  <option selected value="0">바로 적용</option>
+																	  <option value="3">3일 후</option>
+																	  <option value="7">7일 후</option>
+																	  <option value="14">14일 후</option>
+																	  <option value="etc">직접입력 (숫자만 입력)</option>
+																	</select>
+			                                    	               	<input type="text" name="startDate" id="startDate" value="0" style="visibility: hidden">
 			                                                      </td>
 		                                                      </tr>
 		                                                      <tr>
 		                                                      	  <td>쿠폰 적용 만료일</td>
 			                                                      <td colspan="2">
-			                                    	               	<input type="text" name="eCouponEndDate">
+			                                                      	<select class="form-select mb-3" aria-label="Default select example" id="endDateSelect">
+																	  <option selected value="15">보름 후</option>
+																	  <option value="30">1개월 후</option>
+																	  <option value="60">2개월 후</option>
+																	  <option value="etc">직접입력 (숫자만 입력)</option>
+																	</select>
+			                                    	               	<input type="text" name="endDate" id="endDate" value="15" style="visibility: hidden">
 			                                                      </td>
 		                                                      </tr>
 		                                                      <tr>
@@ -229,10 +292,11 @@ function writeFunc(){
 						              <tr>
 						                 <td class="text-bold-500">${vo.eCouponNo }</td>
 						                 <td colspan="3">${vo.eCouponName }</td>
-						                 <td>${vo.eCouponStartDate }</td>
-						                 <td>${vo.eCouponEndDate }</td>
-						                 <td>${vo.eCouponDc }</td>
-						                 <td>${vo.eCouponMin }</td>
+						                 <td>${fn:substring(vo.eCouponStartDate, 0,10)}</td>
+						                 <td>${fn:substring(vo.eCouponEndDate, 0,10)}</td>
+						                 
+						                 <td><fmt:formatNumber value="${vo.eCouponDc}" pattern="#,###원" /></td>
+						                 <td><fmt:formatNumber value="${vo.eCouponMin }" pattern="#,###원" /></td>
 						                 <td>
 						                 	<button type="button" class="btn btn-dark round btEdit" id="modalEditBt${vo.eCouponNo}"
 		                                       data-toggle="modal" data-backdrop="false" data-target="#eventCouponEdit${vo.eCouponNo}">
@@ -322,13 +386,26 @@ function writeFunc(){
 	                                                                         <tr>
 	                                                                         	<td>쿠폰 적용 시작일</td>
 			                                                                     <td colspan="2">
-		                                                                         	<input type="text" name="eCouponStartDate" id="eventCouponStartDate" value="${vo.eCouponStartDate }">						                                                                     
+			                                                                     	<select class="form-select mb-3" aria-label="Default select example" id="editStartDateSelect">
+																					  <option selected value="0">변경없음 (기존 : ${fn:substring(vo.eCouponStartDate, 0,10)})</option>
+																					  <option value="3">3일 후</option>
+																					  <option value="7">7일 후</option>
+																					  <option value="14">14일 후</option>
+																					  <option value="etc">직접입력 (숫자만 입력)</option>
+																					</select>
+							                                    	               	<input type="text" name="startDate" id="editStartDate" value="0" style="visibility: hidden">
 			                                                                     </td>
 		                                                                     </tr>
 		                                                                     <tr>
 	                                                                         	<td>쿠폰 적용 만료일</td>
 			                                                                     <td colspan="2">
-		                                                                         	<input type="text" name="eCouponEndDate" id="eventCouponEndDate" value="${vo.eCouponEndDate }">						                                                                     
+			                                                                     	<select class="form-select mb-3" aria-label="Default select example" id="editEndDateSelect">
+																					  <option selected value="0">변경없음 (기존 : ${fn:substring(vo.eCouponEndDate, 0,10)})</option>
+																					  <option value="30">1개월 후</option>
+																					  <option value="60">2개월 후</option>
+																					  <option value="etc">직접입력 (숫자만 입력)</option>
+																					</select>
+							                                    	               	<input type="text" name="endDate" id="editEndDate" value="0" style="visibility: hidden">
 			                                                                     </td>
 		                                                                     </tr>
 		                                                                     <tr>
