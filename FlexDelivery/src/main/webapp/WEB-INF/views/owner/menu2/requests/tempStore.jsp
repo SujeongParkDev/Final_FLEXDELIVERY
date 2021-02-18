@@ -48,37 +48,23 @@
 						              <tbody>
 						                <tr>
 						                	<td colspan="4" class="text-center">
-						                	<c:set var="type" value="${type }"></c:set> 
-						                		<c:if test="${type=='file'}">
-						                			<img src
-														="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${tempVo.storeLogo}" 
-														alt="${tempVo.menuName }" style="height:250px; width:80%;"  class="thumbnail">
-												</c:if>
-												<c:if test="${type=='url'}">
-				 		               				<img src="${pageContext.request.contextPath}/resources/imgs/TemporaryImages/${tempVo.storeLogo}"  style="height:250px; width:80%;"
-		       											 alt="${tempVo.storeLogo }" class="thumbnail">
-		       									</c:if>
 				                			</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500" >점포명  </th>
-							                  <td>${tempVo.storeName}</td>
+							                  <td>${tempVo.tStoreName}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500"  >점포 주소 </th>
-							                  <td>${tempVo.storeAddress}</td>
+							                  <td>${tempVo.tStoreAddress}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">상세 주소 </th>
-							                  <td>${tempVo.storeAddressDetail}</td>
+							                  <td>${tempVo.tStoreAddressDetail}</td>
 						                </tr>
 						                <tr class="text-center">
 							                  <th class="text-bold-500">점포 지역명 </th>
 							                  <td>${tempVo.locationName}</td>
-						                </tr>
-						                <tr class="text-center">
-							                  <th class="text-bold-500"> 메뉴 대분류 </th>
-							                  <td>${tempVo.lCategoryName}</td>
 						                </tr>
 						              </tbody>
 						            </table>

@@ -28,6 +28,11 @@ public class OwnerTemporaryVO {
 	private String tRegdate ;/* 변경신청일 */
 	private String tSubmitDate;/* 변경승인일 */
 	private int aAgreeNo; /* 관리자승인번호 */
+	
+//	지역 이름  대분류 카테고리 네암 
+	private String locationName;
+	private String lCategoryName;
+	
 	public int gettNo() {
 		return tNo;
 	}
@@ -136,6 +141,21 @@ public class OwnerTemporaryVO {
 	public void setaAgreeNo(int aAgreeNo) {
 		this.aAgreeNo = aAgreeNo;
 	}
+	
+	
+	
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String getlCategoryName() {
+		return lCategoryName;
+	}
+	public void setlCategoryName(String lCategoryName) {
+		this.lCategoryName = lCategoryName;
+	}
 	@Override
 	public String toString() {
 		return "OwnerTemporaryVO [tNo=" + tNo + ", storeNo=" + storeNo + ", ownerno=" + ownerno + ", oRegisterNo="
@@ -143,7 +163,8 @@ public class OwnerTemporaryVO {
 				+ ", tStoreName=" + tStoreName + ", tStoreAddress=" + tStoreAddress + ", tStoreAddressDetail="
 				+ tStoreAddressDetail + ", locationNo=" + locationNo + ", tOwnerName=" + tOwnerName + ", tOwnerHp1="
 				+ tOwnerHp1 + ", tOwnerHp2=" + tOwnerHp2 + ", tOwnerHp3=" + tOwnerHp3 + ", tDetail=" + tDetail
-				+ ", tRegdate=" + tRegdate + ", tSubmitDate=" + tSubmitDate + ", aAgreeNo=" + aAgreeNo + "]";
+				+ ", tRegdate=" + tRegdate + ", tSubmitDate=" + tSubmitDate + ", aAgreeNo=" + aAgreeNo
+				+ ", locationName=" + locationName + ", lCategoryName=" + lCategoryName + "]";
 	}
 	
 	
