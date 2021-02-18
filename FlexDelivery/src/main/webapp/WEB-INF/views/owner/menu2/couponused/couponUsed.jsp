@@ -42,7 +42,7 @@
 									<col style="width: 20%" />
 								</colgroup>
 								<thead>
-									<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
+									<tr class="text-center" style="background-color:#004e66; color:white;">
 									<th scope="col">쿠폰 번호 </th>
 										<th scope="col">최소 금액</th>
 										<th scope="col">할인 금액</th>

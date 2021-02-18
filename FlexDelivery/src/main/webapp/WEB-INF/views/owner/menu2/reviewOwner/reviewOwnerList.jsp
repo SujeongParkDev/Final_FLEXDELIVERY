@@ -8,9 +8,26 @@
       border: 1px solid rgb(212,212,212);
       border-radius: 5px;
    }
+   .one {
+  background-color: #F46A6A;
+  color:#fff;
+  max-width:800px;
+  margin: 100px auto 0;
+  text-align: center;
+  display: table;
+}
 
+.counter {
+  display: table-cell;
+  margin:1.5%;
+  font-size:50px;
+  background-color: #FF6F6F;
+  width:200px;
+  border-radius: 50%;
+  height:200px;
+  vertical-align: middle;
+}
 </style>
-<!-- 이미지 경로 맞으면 미답변 차단에 붙이기 !!  -->
 <div class="row mt-3" style="margin-top:14px;">
    <div class="col-md-6 col-sm-12"></div>
    <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
@@ -37,8 +54,10 @@
          <div class="card-content">
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
-               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p>
-               <%@include file="reviewChart.jsp"%>
+               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
+               <div style="padding-left:10px;"class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
+                <%@include file="reviewChart.jsp"%>
+               </div>
                <br> <br>
                <div class="card-content">
                   <div class="card-body text-center">
@@ -94,9 +113,6 @@
                                     </div>
                                     <div class="col-md-6 text-left">${map['REVIEW_CONTENT']}</div>
                                       <div class="col-md-3">
-                                      <!-- 
-                                         <img src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
-                                       -->
                                            <div class="single-blog-thumbnail">
                                           <c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
                                              <img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
@@ -116,11 +132,15 @@
                                     <div class="col-xs-6 col-md-4"></div>
                                  </div>
                                  <!-- CEO comment start !! -->
-                                 <c:if test="${!empty map['R_COMMENT_CONTENT']}">
                                     <div class="CEO-comment" style="background-color: rgba(208, 201, 208, 0.12); color: #333;">
+                                    <c:if test="${map['REVIEW_REPORT'] == 'Y'}">
+                                    	<p style="padding:5%">신고접수된 리뷰입니다. </p>
+                                    </c:if>
+                               		 <c:if test="${!empty map['R_COMMENT_CONTENT'] && map['REVIEW_REPORT'] == 'N'}">
                                        <form class="frm${map['REVIEW_NO']}" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
-                                          <input type="hidden" id="storeNo" name="storeNo" value="1">
+                                          <input type="hidden" id="storeNo" name="storeNo" >
+                                          <input type="hidden" id="rCommentContent" name="rCommentContent" value="${map['R_COMMENT_CONTENT']}">
                                           <div class="reply" style="padding: 7%;">
                                              <div class="row">
                                                 <div class="col-md-3">
@@ -133,34 +153,34 @@
                                                 <div class="col-md-3">
                                                    <fmt:formatDate value="${map['R_COMMENT_REGDATE'] }" pattern="yyyy-MM-dd" />
                                                 </div>
-                                                <div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
-                                                <div class="result${map['REVIEW_NO']}" id="resultDiv"></div>
+                                                <div class="listDiv${map['REVIEW_NO']} col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
+                                                	<div class="result${map['REVIEW_NO']}" id="resultDiv">
+                                                </div> 
                                              </div>
                                              <div class="row">
                                                 <div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
                                                 <div class="text-right" style="margin-bottom: 10px;">
-                                                   <div class="button-group button-group-row align-right btgroup">
+                                                   <div class="button-group button-group-row align-right btgroup${map['REVIEW_NO']}">
                                                       <br> <br>
                                                       <button type="button" class="button small" onclick="btDel(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">삭제 </button>
                                                       <button type="submit" class="button small btn-outline-dark" onclick="Edit_form(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">수정 </button>
                                                    </div>
                                                 </div>
+                                           	  </div>
                                              </div>
-                                             </div>
-                                       </form>
+                                      	 </form>
+                                		</c:if>
                                        </div>
-                                 </c:if>
                                     </div>
                                     <div class="col-md-2 col-sm-12"></div>
                                     <br>
-                                 <!-- 댓글이 없는 경우 활성화  -->
-                                 <c:if test="${empty map['R_COMMENT_CONTENT']}">
+                                 <!-- No Comment -->
+                                 <c:if test="${empty map['R_COMMENT_CONTENT'] && map['REVIEW_REPORT'] == 'N'}">
                                     <div class="card-body">
                                        <form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
                                           <input type="hidden" id="storeNo" name="storeNo" value="1">
                                           <label for="content"></label>
-                                          <!--입력폼 디자인 고르기 회의할때 textarea input type -->
                                           <div style="border: 2px solid lightgray; padding:5%;" class="">
                                           <input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
                                              <input class="button" type="submit" style="color:black; background-color:#fcbe32; border: none;" value="댓글작성">
@@ -206,7 +226,7 @@
     function Edit_form(num) {
         $(this).parent().prev().css("display", "none");
         console.log(this);
-        alert(num);
+        //alert(num);
    $(function(){
       if($('.content').val()<1){
           alert("댓글 내용을 입력해 주세요 ! ");
@@ -220,11 +240,14 @@
             dataType:"json",
             contentType: 'application/x-www-form-urlencoded; charset=utf-8',
             success:function(res){
-               var output="<textarea class='col-md-7 text-left content' name='rCommentContent'>";
-                  output+=res.rCommentContent+" </textarea><br>";
-                  output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
-               
-                     $('.result'+num).append(output);
+            	var  output="<div style='border: 2px solid lightgray; padding:5%;' class=''>";
+               output+="<input type='text' class='col-md-7 text-left content' name='rCommentContent'  style='width: 80%; border:none; background: unset;' value="+res.rCommentContent+">";
+               output+="<input type='submit' class='button' type='submit' style='color:black; background-color:#fcbe32; border: none; ' value='수정하기'>";
+          	 	output+="</div>";
+               $('.result'+num).append(output);
+               $('.listDiv'+num).empty();
+               $('.btgroup'+num).empty();
+               event.preventDefault();
                      
             },
                error:function(xhr, status, error){
@@ -278,7 +301,27 @@
       });
       
    });
+   $('.counter').each(function() {
+	   var $this = $(this),
+	       countTo = $this.attr('data-count');
+	   
+	   $({ countNum: $this.text()}).animate({
+	     countNum: countTo
+	   },
+	   {
+	     duration: 8000,
+	     easing:'linear',
+	     step: function() {
+	       $this.text(Math.floor(this.countNum));
+	     },
+	     complete: function() {
+	       $this.text(this.countNum);
+	       //alert('finished');
+	     }
 
+	   });  
+
+	 });
 </script>
 
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

@@ -70,15 +70,15 @@
 	
 	<!-- 미답변  -->
 	<select id="Nocomment" parameterType="int" resultType="map">
-		 select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
-	   	 (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
-	  	  rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
-	   	 from review r left join reviewcomment rc
-	     on r.REVIEW_NO = rc.REVIEW_NO
-	     where r.store_no=#{storeNo} 
-	     and R_COMMENT_CONTENT is null
-      	 and  REVIEW_REPORT='N'
-     	 order by r.review_no desc
+     select r.*,(select member_id from member m where r.MEMBER_NO=m.MEMBER_NO) as member_id,
+    (select count(distinct menu_name) from hyorderdetailview d where r.orders_no=d.orders_no group by orders_no) as menu_count,
+    rc.R_COMMENT_REGDATE,rc.R_COMMENT_CONTENT
+    from review r left join reviewcomment rc
+    on r.REVIEW_NO = rc.REVIEW_NO
+    where r.store_no=#{storeNo}
+    and rc.R_COMMENT_CONTENT is null
+    and  r.REVIEW_REPORT='N'
+    order by r.review_no desc
 	</select>
 
 	<select id="NocmtTotalRecord" parameterType="int" resultType="int">
@@ -98,8 +98,8 @@
 	    from review r left join reviewcomment rc
 	    on r.REVIEW_NO = rc.REVIEW_NO
 	    where r.store_no=#{storeNo}
-	    and R_COMMENT_CONTENT is null
-      	 and REVIEW_REPORT='Y'
+	    and rc.R_COMMENT_CONTENT is null
+      	 and r.REVIEW_REPORT='Y'
      	 order by r.review_no desc
 	</select>
 

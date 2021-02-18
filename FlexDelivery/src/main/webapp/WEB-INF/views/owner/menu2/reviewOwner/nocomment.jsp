@@ -1,24 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<div class="row mt-3">
-	<div class="col-md-6 col-sm-12"></div>
-	<div class="col-md-5 col-sm-12" style="padding-left: 105px;">
-		<div class="btn-group btn-group-justified" role="group" aria-label="...">
-			<div class="btn-group" role="group">
-				<button type="button" class="btn" id="btAll" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
-			</div>
-			<div class="btn-group" role="group">
-				<button type="button" class="btn" id="btnocmt" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
-			</div>
-			<div class="btn-group" role="group">
-				<button type="button" class="btn" id="btBlock" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">차단(${fn:length(blockList)}) </button>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-12"></div>
-	</div>
+<!-- 리뷰 상이드바 안눌리는거 ??  -->
+<style>
+   textarea, input {
+      border: 1px solid rgb(212,212,212);
+      border-radius: 5px;
+   }
+   .one {
+  background-color: #F46A6A;
+  color:#fff;
+  max-width:800px;
+  margin: 100px auto 0;
+  text-align: center;
+  display: table;
+}
+
+.counter {
+  display: table-cell;
+  margin:1.5%;
+  font-size:50px;
+  background-color: #FF6F6F;
+  width:200px;
+  border-radius: 50%;
+  height:200px;
+  vertical-align: middle;
+}
+</style>
+<div class="row mt-3" style="margin-top:14px;">
+   <div class="col-md-6 col-sm-12"></div>
+   <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
+      <div class="btn-group " role="group" aria-label="...">
+         <div class="btn-group" role="group">
+            <button type="button" class="btn " id="btAll" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
+         </div>
+         <div class="btn-group" role="group">
+            <button type="button" class="btn " id="btnocmt" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
+         </div>
+         <div class="btn-group" role="group">
+            <button type="button" class="btn" id="btBlock"style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">차단(${fn:length(blockList)}) </button>
+         </div>
+      </div>
+      <div class="col-md-2 col-sm-12"></div>
+   </div>
 </div>
+<!--  -->
 <div class="row" id="table-hover-row">
    <div class="col-md-2 col-sm-12"></div>
    <div class="col-md-8 col-sm-12">
@@ -27,19 +54,19 @@
          <div class="card-content">
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">미답변 리뷰 관리</p>
-               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p>
+               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
                <br> <br>
                <div class="card-content">
                   <div class="card-body text-center">
                      <br>
-                        <c:if test="${empty nocmtList }">
+                        <c:if test="${empty nocmtList}">
                            <div class="row">
                               <div class="ccol-md-8">데이터가 존재하지 않습니다.</div>
                            </div>
                         </c:if>
-                        <c:if test="${!empty nocmtList }">
+                        <c:if test="${!empty nocmtList}">
                            <c:set var="k" value="0"/>
-                           <c:forEach var="map" items="${nocmtList }" >
+                           <c:forEach var="map" items="${nocmtList}" >
                               <hr>
                               <br>
                               <div class="review-list">
@@ -71,9 +98,6 @@
                                     </div>
                                     <div class="col-md-6 text-left">${map['REVIEW_CONTENT']}</div>
                                       <div class="col-md-3">
-                                      <!-- 
-                                         <img src="<c:url value='/resources/imgs/pancake.jpg'/>" alt="${map['MENU_NAME']}" class="card-img-top" style="margin-bottom: 40px;">
-                                       -->
                                            <div class="single-blog-thumbnail">
                                           <c:if test="${fn:substring(map['REVIEW_FILENAME'], 0,4)=='http' }">
                                              <img src="${map['REVIEW_FILENAME']}" class="card-img-top" style="margin-bottom: 40px;" alt="${map['MENU_NAME']}">
@@ -97,7 +121,8 @@
                                     <div class="CEO-comment" style="background-color: rgba(208, 201, 208, 0.12); color: #333;">
                                        <form class="frm${map['REVIEW_NO']}" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
-                                          <input type="hidden" id="storeNo" name="storeNo" value="1">
+                                          <input type="hidden" id="storeNo" name="storeNo" >
+                                          <input type="hidden" id="rCommentContent" name="rCommentContent" value="${map['R_COMMENT_CONTENT']}">
                                           <div class="reply" style="padding: 7%;">
                                              <div class="row">
                                                 <div class="col-md-3">
@@ -110,13 +135,14 @@
                                                 <div class="col-md-3">
                                                    <fmt:formatDate value="${map['R_COMMENT_REGDATE'] }" pattern="yyyy-MM-dd" />
                                                 </div>
-                                                <div class="listDiv col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
-                                                <div class="result${map['REVIEW_NO']}" id="resultDiv"></div>
+                                                <div class="listDiv${map['REVIEW_NO']} col-md-7 text-left text-left">${map['R_COMMENT_CONTENT'] }</div>
+                                                	<div class="result${map['REVIEW_NO']}" id="resultDiv">
+                                                </div> 
                                              </div>
                                              <div class="row">
                                                 <div class=".col-xs-12 .col-sm-6 .col-md-8"></div>
                                                 <div class="text-right" style="margin-bottom: 10px;">
-                                                   <div class="button-group button-group-row align-right btgroup">
+                                                   <div class="button-group button-group-row align-right btgroup${map['REVIEW_NO']}">
                                                       <br> <br>
                                                       <button type="button" class="button small" onclick="btDel(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">삭제 </button>
                                                       <button type="submit" class="button small btn-outline-dark" onclick="Edit_form(${map['REVIEW_NO']})" style="color:black; background-color:#fcbe32; border: none; ">수정 </button>
@@ -130,14 +156,13 @@
                                     </div>
                                     <div class="col-md-2 col-sm-12"></div>
                                     <br>
-                                 <!-- 댓글이 없는 경우 활성화  -->
+                                 <!-- No Comment -->
                                  <c:if test="${empty map['R_COMMENT_CONTENT']}">
                                     <div class="card-body">
-                                       <form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
+                                       <form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/nocomment.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
                                           <input type="hidden" id="storeNo" name="storeNo" value="1">
                                           <label for="content"></label>
-                                          <!--입력폼 디자인 고르기 회의할때 textarea input type -->
                                           <div style="border: 2px solid lightgray; padding:5%;" class="">
                                           <input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
                                              <input class="button" type="submit" style="color:black; background-color:#fcbe32; border: none;" value="댓글작성">
@@ -158,101 +183,131 @@
 </div>
 <div class="col-md-2 col-sm-12"></div>
 <br>
+<br>
+<br>
 <script type="text/javascript">
-function btDel(reviewNo){
-    if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
-       location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerDelete.do?reviewNo='/>" + reviewNo;
-       event.preventDefault();
-    }else {
-       return false;
-    }
- }
- 
- function btSingo(reviewNo){
-    if(confirm("리뷰를 신고 하시겠습니까?")) {
-       location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerSingo.do?reviewNo='/>" + reviewNo;
-       event.preventDefault();
-    }else {
-       return false;
-    }
- }
- 
- //댓글 수정버튼 눌렀을 시 폼
-  function Edit_form(num) {
-      $(this).parent().prev().css("display", "none");
-      console.log(this);
-      alert(num);
- $(function(){
-    if($('.content').val()<1){
-        alert("댓글 내용을 입력해 주세요 ! ");
-       event.preventDefault();
-    }else{
-         var params = $(".frm"+num).serialize();
-         $.ajax({
-          url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
-          type:"GET",
-          data: params,
-          dataType:"json",
-          contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-          success:function(res){
-             var output="<textarea class='col-md-7 text-left content' name='rCommentContent'>";
-                output+=res.rCommentContent+" </textarea><br>";
-                output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
-             
-                   $('.result'+num).append(output);
-                   
-          },
-             error:function(xhr, status, error){
-                alert("error! : " + error);
-             }            
-          });//ajax
-       }
-    });
- event.preventDefault();
- }
-    
- 
- $(function(){
-    $('form[name=frmDate]').submit(function(){
-       if($('#startDay').val().length<1){
-          alert('시작일을 입력하세요');
-          $('#startDay').focus();
-          event.preventDefault();
-       }else if($('#endDay').val().length<1){
-          alert('종료일을 입력하세요');
-          $('#endDay').focus();
-          event.preventDefault();
-       }
-    });//frmDate
- 
-    $('form[name=frm1]').submit(function(){
-       if($('.comment').val().length<1){
-          alert('내용을 입력하세요');
-          $('.comment').focus();
-          event.preventDefault();
-       }
-    });//frm1
- });
- 
- function pageFunc(curPage){
-    $('form[name=frmDate]').find('input[name=currentPage]').val(curPage);   
-    $('form[name=frmDate]').submit();
-    
- }
- $(function(){
-    $('#btAll').click(function(){
-    location.href='<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>';
-    });
-    
-    $('#btnocmt').click(function(){
-       location.href='<c:url value="/owner/menu2/reviewOwner/nocomment.do"/>';
-    });
-    
-    $('#btBlock').click(function(){
-       location.href='<c:url value="/owner/menu2/reviewOwner/blockcmt.do"/>';
-    });
-    
- });
+   function btDel(reviewNo){
+      if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
+         location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerDelete.do?reviewNo='/>" + reviewNo;
+         event.preventDefault();
+      }else {
+         return false;
+      }
+   }
+   
+   function btSingo(reviewNo){
+      if(confirm("리뷰를 신고 하시겠습니까?")) {
+         location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerSingo.do?reviewNo='/>" + reviewNo;
+         event.preventDefault();
+      }else {
+         return false;
+      }
+   }
+   
+   //댓글 수정버튼 눌렀을 시 폼
+    function Edit_form(num) {
+        $(this).parent().prev().css("display", "none");
+        console.log(this);
+        //alert(num);
+   $(function(){
+      if($('.content').val()<1){
+          alert("댓글 내용을 입력해 주세요 ! ");
+         event.preventDefault();
+      }else{
+           var params = $(".frm"+num).serialize();
+           $.ajax({
+            url:"<c:url value='/owner/menu2/reviewOwner/edit.do'/>",
+            type:"GET",
+            data: params,
+            dataType:"json",
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            success:function(res){
+            	var  output="<div style='border: 2px solid lightgray; padding:5%;' class=''>";
+               output+="<input type='text' class='col-md-7 text-left content' name='rCommentContent'  style='width: 80%; border:none; background: unset;' value="+res.rCommentContent+">";
+               output+="<input type='submit' class='button' type='submit' style='color:black; background-color:#fcbe32; border: none; ' value='수정하기'>";
+          	 	output+="</div>";
+               $('.result'+num).append(output);
+               $('.listDiv'+num).empty();
+               $('.btgroup'+num).empty();
+               event.preventDefault();
+                     
+            },
+               error:function(xhr, status, error){
+                  alert("error! : " + error);
+               }            
+            });//ajax
+         }
+      });
+   event.preventDefault();
+   }
+      
+   
+   $(function(){
+      $('form[name=frmDate]').submit(function(){
+         if($('#startDay').val().length<1){
+            alert('시작일을 입력하세요');
+            $('#startDay').focus();
+            event.preventDefault();
+         }else if($('#endDay').val().length<1){
+            alert('종료일을 입력하세요');
+            $('#endDay').focus();
+            event.preventDefault();
+         }
+      });//frmDate
+   
+      $('form[name=frm1]').submit(function(){
+         if($('.comment').val().length<1){
+            alert('내용을 입력하세요');
+            $('.comment').focus();
+            event.preventDefault();
+         }
+      });//frm1
+   });
+   
+   function pageFunc(curPage){
+      $('form[name=frmDate]').find('input[name=currentPage]').val(curPage);   
+      $('form[name=frmDate]').submit();
+      
+   }
+   $(function(){
+      $('#btAll').click(function(){
+      location.href='<c:url value="/owner/menu2/reviewOwner/reviewOwner.do"/>';
+      });
+      
+      $('#btnocmt').click(function(){
+         location.href='<c:url value="/owner/menu2/reviewOwner/nocomment.do"/>';
+      });
+      
+      $('#btBlock').click(function(){
+         location.href='<c:url value="/owner/menu2/reviewOwner/blockcmt.do"/>';
+      });
+      
+   });
+   $('.counter').each(function() {
+	   var $this = $(this),
+	       countTo = $this.attr('data-count');
+	   
+	   $({ countNum: $this.text()}).animate({
+	     countNum: countTo
+	   },
 
+	   {
+
+	     duration: 8000,
+	     easing:'linear',
+	     step: function() {
+	       $this.text(Math.floor(this.countNum));
+	     },
+	     complete: function() {
+	       $this.text(this.countNum);
+	       //alert('finished');
+	     }
+
+	   });  
+	   
+	   
+
+	 });
 </script>
+
 <%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>

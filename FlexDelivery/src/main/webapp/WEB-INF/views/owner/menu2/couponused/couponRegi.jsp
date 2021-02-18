@@ -33,7 +33,7 @@
 					<div class="table-responsive">
 						<table class="table table-hover mb-5">
 							<thead>
-								<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
+								<tr class="text-center" style="background-color:#004e66; color:white;">
 									<th>쿠폰 번호</th>
 									<th>주문 최소 금액</th>
 									<th>할인 금액 </th>

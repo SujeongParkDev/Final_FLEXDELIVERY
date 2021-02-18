@@ -32,7 +32,7 @@ input {
 					<div class="table-responsive">
 						<table class="table">
 							<thead>
-								<tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
+								<tr class="text-center" style="background-color:#004e66; color:white;">
 									<th style="width: 30%;">승인 목록</th>
 									<th style="width: 22%;">신청 일자</th>
 									<th style="width: 22%;">승인 상태</th>

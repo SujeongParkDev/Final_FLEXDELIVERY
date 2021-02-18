@@ -93,9 +93,12 @@
                                     <div class="col-xs-12 col-sm-6 col-md-8"></div>
                                     <div class="col-xs-6 col-md-4"></div>
                                  </div>
+                                    <div class="CEO-comment" style="background-color: rgba(208, 201, 208, 0.12); color: #333;">
+                                 <c:if test="${empty map['R_COMMENT_CONTENT']}">
+                                	<p style="padding:5%">신고접수된 리뷰입니다. </p>
+                                 </c:if>
                                  <!-- CEO comment start !! -->
                                  <c:if test="${!empty map['R_COMMENT_CONTENT']}">
-                                    <div class="CEO-comment" style="background-color: rgba(208, 201, 208, 0.12); color: #333;">
                                        <form class="frm${map['REVIEW_NO']}" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
                                           <input type="hidden" id="storeNo" name="storeNo" value="1">
@@ -126,30 +129,14 @@
                                              </div>
                                              </div>
                                        </form>
-                                       </div>
                                  </c:if>
                                     </div>
                                     <div class="col-md-2 col-sm-12"></div>
                                     <br>
-                                 <!-- 댓글이 없는 경우 활성화  -->
-                                 <c:if test="${empty map['R_COMMENT_CONTENT']}">
-                                    <div class="card-body">
-                                       <form id="frm1" method="post" action="<c:url value='/owner/menu2/reviewOwner/reviewOwner.do'/>">
-                                          <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
-                                          <input type="hidden" id="storeNo" name="storeNo" value="1">
-                                          <label for="content"></label>
-                                          <!--입력폼 디자인 고르기 회의할때 textarea input type -->
-                                          <div style="border: 2px solid lightgray; padding:5%;" class="">
-                                          <input type="text" class="form-control form-control-lg comment" name="rCommentContent" style="width: 80%; border:none;" placeholder="사장님 ! 댓글을 등록해주세요.">
-                                             <input class="button" type="submit" style="color:black; background-color:#fcbe32; border: none;" value="댓글작성">
-                                          </div>
-                                       </form>
-                                    </div>
-                                    <c:set var="k" value="${k+1 }"/>
-                                 </c:if>
                                  <br> <br>
                            </c:forEach>
                         </c:if>
+                       </div>
                   </div>
                </div>
             </div>
