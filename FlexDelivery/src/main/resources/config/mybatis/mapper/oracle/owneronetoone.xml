@@ -44,7 +44,7 @@
 	</select>
 	
 	<delete id="deleteAsk" parameterType="int">
-		delete from ask where ASK_NO=#{askNo}
+		delete from ask where where ask_group_no=#{askNo}
 	</delete>
 	
 	<select id="selectByNo" parameterType="int" resultType="ownerAskVo">
