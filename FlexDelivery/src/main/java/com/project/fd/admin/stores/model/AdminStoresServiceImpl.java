@@ -32,4 +32,16 @@ public class AdminStoresServiceImpl implements AdminStoresService{
 	public int adminApprovalDeny(int no) {
 		return adminStoresDao.adminApprovalDeny(no);
 	}
+
+	@Override
+	public int adminOutAgree(int no) {
+		
+		return adminStoresDao.adminOutAgree(no);
+	}
+
+	@Override
+	public int adminOutDeny(int no) {
+		
+		return adminStoresDao.adminOutDeny(no);
+	}
 }

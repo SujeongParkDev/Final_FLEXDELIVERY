@@ -79,4 +79,25 @@ public class AdminStoresApprovalController {
 		
 		return "redirect:/admin/menu2/approvalList.do";
 	}
+	
+	@RequestMapping("/outAgree.do")
+	public String adminoutAgree(@RequestParam(defaultValue = "0") int no) {
+		logger.info("점포 탈퇴 승인 화면, 파라미터 no={}", no);
+		
+		int cnt= storesService.adminOutAgree(no);
+		logger.info("점포 탈퇴 승인 처리, cnt={}", cnt);
+		
+		return "redirect:/admin/menu2/approvalList.do";
+		
+	}
+	
+	@RequestMapping("/outDeny.do")
+	public String adminOutDeny(@RequestParam(defaultValue = "0") int no) {
+		logger.info("점포 탈퇴 반려, 파라미터 no={}", no);
+		
+		int cnt= storesService.adminOutDeny(no);
+		logger.info("점포 탈퇴 승인 처리, cnt={}", cnt);
+		
+		return "redirect:/admin/menu2/approvalList.do";
+	}
 }
