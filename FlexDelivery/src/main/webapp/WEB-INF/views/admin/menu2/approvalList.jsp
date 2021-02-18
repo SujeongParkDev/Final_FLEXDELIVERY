@@ -84,6 +84,12 @@
 									<c:if test="${vo.aAgreeNo == 4}">
 										<span class="badge bg-danger">승인반려</span>
 									</c:if>
+									<c:if test="${vo.aAgreeNo == 8}">
+										<span class="badge bg-light">탈퇴대기</span>
+									</c:if> 
+									<c:if test="${vo.aAgreeNo == 9}">
+										<span class="badge bg-danger">탈퇴완료</span>
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>

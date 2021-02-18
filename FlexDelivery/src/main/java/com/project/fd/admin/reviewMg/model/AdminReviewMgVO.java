@@ -7,13 +7,13 @@ public class AdminReviewMgVO {
 	private String		reviewContent;	// 리뷰내용 varchar2(2000 byte)
 	private Timestamp	reviewRegdate;	// 리뷰등록일 date
 	private String		reviewReport;	// 리뷰신고플래그	varchar2(10 byte)
+	private Timestamp	reportDate; //리뷰신고일
 	private	String		reviewFilename; //	리뷰이미지 varchar2(200 byte)
 	private String		reviewDelFlag; //	리뷰 삭제플래그 varchar2(10 byte)
 	private String		memberId; //	리뷰작성 멤버 ID varchar2(200 byte)
 	private	String		storeName;	// 리뷰신고 점포명 varchar2(150 byte)
 	private String		storeAddress; //	점포주소 varchar2(300 byte)
 	private String		storeAddressDetail; //	점포상세주소 varchar2(200 byte)//
-	
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -37,6 +37,12 @@ public class AdminReviewMgVO {
 	}
 	public void setReviewReport(String reviewReport) {
 		this.reviewReport = reviewReport;
+	}
+	public Timestamp getReportDate() {
+		return reportDate;
+	}
+	public void setReportDate(Timestamp reportDate) {
+		this.reportDate = reportDate;
 	}
 	public String getReviewFilename() {
 		return reviewFilename;
@@ -76,9 +82,10 @@ public class AdminReviewMgVO {
 	}
 	@Override
 	public String toString() {
-		return "AdminReviewMemberStoreVO [reviewNo=" + reviewNo + ", reviewContent=" + reviewContent
-				+ ", reviewRegdate=" + reviewRegdate + ", reviewReport=" + reviewReport + ", reviewFilename="
+		return "AdminReviewMgVO [reviewNo=" + reviewNo + ", reviewContent=" + reviewContent + ", reviewRegdate="
+				+ reviewRegdate + ", reviewReport=" + reviewReport + ", reportDate=" + reportDate + ", reviewFilename="
 				+ reviewFilename + ", reviewDelFlag=" + reviewDelFlag + ", memberId=" + memberId + ", storeName="
 				+ storeName + ", storeAddress=" + storeAddress + ", storeAddressDetail=" + storeAddressDetail + "]";
-	}	
+	}
+		
 }
