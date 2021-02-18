@@ -155,7 +155,9 @@
 	                        <a style="color: white; font-size: x-large; font-weight: bolder;">등록된 메뉴가 없어요😥</a>
                         </c:if>
                         <c:if test="${!empty foodList }">
-	                        <a style="color: white; font-size: medium; font-weight: bolder;">"${map['foodList.MENU_NAME'] }"</a>
+                        	<c:forEach var="map" items="${foodList}">
+	                        	<a style="color: white; font-size: medium; font-weight: bolder;">"${map['MENU_NAME'] }"</a>
+                        	</c:forEach>
                         </c:if>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ public class MemberStoresVO {
 	
 	private int aAgreeNo; /* 관리자승인번호 */
 	private int ownerNo; /* 점주번호 */
-	private int oRegisterNo;/* 사업자등록번호 */
+	private long oRegisterNo;/* 사업자등록번호 */
 	
 	private int reviewCount; /* 리뷰 갯수 */
 	private int couponExist;	/* 점포 쿠폰함에 있는 쿠폰갯수 , 0이상이면 쿠폰 사용중임 */
@@ -148,10 +148,10 @@ public class MemberStoresVO {
 	public void setaAgreeNo(int aAgreeNo) {
 		this.aAgreeNo = aAgreeNo;
 	}
-	public int getoRegisterNo() {
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
-	public void setoRegisterNo(int oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	@Override

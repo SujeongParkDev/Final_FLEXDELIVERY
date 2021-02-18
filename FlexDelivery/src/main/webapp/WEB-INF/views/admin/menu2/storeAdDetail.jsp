@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../adminInc/top.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ownerResources/assets/css/app.css">
@@ -85,7 +85,7 @@
                                             <label for="adPrice">신청광고가격</label>
                                             <p id="adPrice" class="form-control" name="adPrice" >
                                             	<fmt:setLocale value="ko_KR" />
-                                           		<fmt:formatNumber type="currency" value="${vo.advertisePrice}"/>
+                                           		<fmt:formatNumber pattern="#,###원" value="${vo.advertisePrice}"/>
                                            	</p>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                                             <label for="adValidate">광고만료일</label>
                                             <c:if test="${!empty vo.adValidate }">
                                             	<p id="adValidate" class="form-control" name="adValidate">
-                                               		${vo.adValidate } </p>
+                                               		${fn:substring(vo.adValidate,0,4)}년 ${fn:substring(vo.adValidate,5,7)}월 ${fn:substring(vo.adValidate,8,10)}일 </p>
                                             </c:if>
                                             <c:if test="${empty vo.adValidate }">
                                             	<p id="adValidate" class="form-control" name="adValidate">- </p>

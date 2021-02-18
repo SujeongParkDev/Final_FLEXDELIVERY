@@ -95,7 +95,7 @@
 	});
 </script>
 <div class="most_sale">
-   <div class="row mb-3 justify-content-center" id="listDiv">
+   <div class="row mb-3" id="listDiv">
    <form name="frmPlus" id="frmPlus" method="post">
    		<input type="hidden" name="startIndex" id="startIndex" value="${map.startIndex}">
    		<input type="hidden" name="lastIndex" id="lastIndex" value="${map.lastIndex}">

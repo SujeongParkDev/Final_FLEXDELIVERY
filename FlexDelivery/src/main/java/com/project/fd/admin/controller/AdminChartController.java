@@ -66,6 +66,7 @@ public class AdminChartController {
 		model.addAttribute("list5", list5);
 		model.addAttribute("list6", list6);
 		model.addAttribute("list7", list7);
+		model.addAttribute("list72", list72);
 		//model.addAttribute("list8", list8);
 		model.addAttribute("list9", list9);
 		model.addAttribute("list10", list10);

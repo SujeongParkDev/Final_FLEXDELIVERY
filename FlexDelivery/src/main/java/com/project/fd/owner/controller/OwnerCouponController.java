@@ -5,13 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.fd.admin.coupons.model.AdminRegularCouponVO;
 import com.project.fd.common.PaginationInfo;
 import com.project.fd.common.Utility;
-import com.project.fd.owner.coupon.model.OwnerCouponListVO;
 import com.project.fd.owner.coupon.model.OwnerCouponSearchVO;
 import com.project.fd.owner.coupon.model.OwnerCouponService;
 import com.project.fd.owner.coupon.model.OwnerCouponVO;
 import com.project.fd.owner.request.model.OwnerRequestService;
+import com.project.fd.owner.store.model.OwnerStoresService;
 
 @Controller
 @RequestMapping("/owner/menu2/couponused")
@@ -38,19 +36,13 @@ public class OwnerCouponController {
 	
 	@Autowired OwnerCouponService couponService;
 	@Autowired OwnerRequestService requestService;
+	@Autowired OwnerStoresService ownerStoresService;
 	
 	@RequestMapping("/couponUsed.do")
 	public String ownercouponused(HttpSession session,Model model) {
-		int storeNo= (Integer)session.getAttribute("storeNo");
-		String msg="점포가 없습니다.", url="/owner/index.do";
-		if(session.getAttribute("storeNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
-			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
-		}
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> list = couponService.useCoupons(storeNo);
@@ -83,15 +75,9 @@ public class OwnerCouponController {
 	@RequestMapping("/couponExpire.do")
 	public String ownercouponExpire( HttpSession session,Model model) {
 		String msg="점포가 없습니다.", url="/owner/index.do";
-		int storeNo=0;
-		if(session.getAttribute("storeNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
-			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
-		}
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
 		
 		List<Map<String, Object>> list=couponService.expireAll(storeNo);
@@ -108,17 +94,10 @@ public class OwnerCouponController {
 		logger.info("coupon Register page !!");
 		List<AdminRegularCouponVO> list=couponService.Allselect();
 		
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 		//일치 여부를 위해 
-		int storeNo=0;
-		String msg="점포가 없습니다.", url="/owner/index.do";
-		if(session.getAttribute("storeNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
-			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
-		}
 		logger.info("사용중인 쿠폰  보여주기 storeNo={}",storeNo);
 		List<Map<String, Object>> useList = couponService.useCoupons(storeNo);
 		logger.info("useList.size={}",useList.size());
@@ -138,21 +117,13 @@ public class OwnerCouponController {
 			@RequestParam String pwd, HttpSession session , Model model) {
 		logger.info("coupon Register page !! parameter rCouponNo={}",no);
 
-		int storeNo=0;
-		String msg2="점포가 없습니다.", url2="/owner/index.do";
-		if(session.getAttribute("storeNo")==null) {
-			model.addAttribute("msg",msg2);
-			model.addAttribute("url",url2);
-			return "common/message";
-			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
-		}
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 		OwnerCouponVO vo = new OwnerCouponVO();
 		vo.setStoreNo(storeNo);
 		vo.setrCouponNo(no);
 		
-		int ownerNo=(Integer)session.getAttribute("ownerNo");
 		logger.info("pwdCK  처리  파라미터 ownerNo={},storeNo={}",ownerNo,storeNo);
 		
 		String msg="쿠폰 등록에 실패하였습다. ", url="/owner/menu2/couponused/couponRegi.do";
@@ -181,15 +152,9 @@ public class OwnerCouponController {
 	public String ocouponExpireSearch(@ModelAttribute OwnerCouponSearchVO searchVo ,
 			HttpSession session,Model model) {
 		String msg="점포가 없습니다.", url="/owner/index.do";
-		int storeNo=0;
-		if(session.getAttribute("storeNo")==null) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
-			return "common/message";
-			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
-		}
+		int ownerNo=(Integer)session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 		logger.info("혜택 - 쿠폰관리 보여주기 storeNo={}",storeNo);
 		
 		searchVo.setStoreNo(storeNo);

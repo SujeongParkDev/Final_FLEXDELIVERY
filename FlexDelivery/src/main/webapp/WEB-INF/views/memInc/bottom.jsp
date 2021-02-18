@@ -50,7 +50,7 @@
                                 <h6 class="title text-white">About Us</h6>
 								<!-- 플렉스 딜리버리 사업자 소개 Start-->
 								<p class="text-muted">
-									<b>플렉스 딜리버리 FLEX DELIVERY</b><br>
+									<b>플렉스 딜리버리 FLEX DELIVERY</b><a href="<c:url value='/admin/login/login.do'/>">&nbsp;</a><br>
 									<b>대표자:</b> 윤희영 | 김정만 | 김백신 | 박수정 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 박지안 | 양현준 | 이소정 <br><b>본사 :</b> 경상북도 울릉군 울릉읍 <a href="https://dokdo.mofa.go.kr/kor/" style="text-decoration: none">독도</a>안용복길 3<br><b>대표전화:</b> 054-0115-0219<br><b>대표메일:</b> FlexDeliveryCEO@flexdelivery.com
 								</p>
                             </div>

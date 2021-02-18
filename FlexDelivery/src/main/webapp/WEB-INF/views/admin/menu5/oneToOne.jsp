@@ -46,6 +46,7 @@
 		                        		<td>
 		                        			<c:if test="${vo.authorityNo==1 }"><span class="badge" style="background-color: #DBC2D4;">회원</span></c:if>
 		                        			<c:if test="${vo.authorityNo==4 }"><span class="badge" style="background-color: #B29EBA;">점포</span></c:if>
+		                        			<c:if test="${vo.authorityNo==5 }"><span class="badge" style="background-color: #B29EBA;">점포</span></c:if>
 		                        		</td>
 		                        		<td style="text-align: left;"><a href="<c:url value='/admin/menu5/oneToOne/detail.do?no=${vo.askNo }'/>" style="text-decoration: none;color:grey; font-weight: 600;">${vo.askTitle }</a></td>
 		                        		<td>${vo.askId }</td>

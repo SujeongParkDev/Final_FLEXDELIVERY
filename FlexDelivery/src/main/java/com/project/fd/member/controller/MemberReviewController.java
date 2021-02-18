@@ -29,6 +29,7 @@ public class MemberReviewController {
 	@Autowired private static final Logger logger=LoggerFactory.getLogger(MemberReviewController.class);
 	@Autowired private MemberReviewService reServ;
 	@Autowired private FileUploadUtil fileUtil;
+	
 	@RequestMapping(value="/storeReview.do",method = RequestMethod.GET)
 	public String storeReview_View(@RequestParam int storeNo,HttpServletRequest req,HttpSession session,Model model) {
 		logger.info("점포상세에서 리뷰노출 , 파라미터 storeNo={}",storeNo);
@@ -42,11 +43,15 @@ public class MemberReviewController {
 		map.put("storeNo",storeNo);
 		map.put("totalRecords", totalRecords);
 		
+		Map<String, Object> remap=new HashMap<String, Object>();
+		remap.put("storeNo", storeNo);
+		remap.put("memberNo", memberNo);
+		
 		List<MemberReviewVO> list=reServ.selectStoreReview(map); // 점포별 리뷰리스트 출력
 		
-		boolean reviewChk=reServ.reviewChk(memberNo); // 현재 로그인한 회원의 리뷰작성가능 여부 체크, true면 작성가능
+		boolean reviewChk=reServ.reviewChk(remap); // 현재 로그인한 회원의 리뷰작성가능 여부 체크, true면 작성가능
 		
-		List<Map<String, Object>> orderList=reServ.orderListForReview(memberNo); //회원의 주문내역중 리뷰가 작성되지 않은 리스트
+		List<Map<String, Object>> orderList=reServ.orderListForReview(remap); //회원의 주문내역중 리뷰가 작성되지 않은 리스트
 		
 		List<MemberReviewCommentVO> coList=reServ.selectReviewComment(storeNo);//점포 사장님 댓글리스트
 				
@@ -154,6 +159,8 @@ public class MemberReviewController {
 		int memberNo=(Integer)session.getAttribute("memberNo");
 		logger.info("내 리뷰관리, memberNo={}",memberNo);
 		List<MemberReviewVO> list=reServ.myReviewList(memberNo);
+		List<MemberReviewCommentVO> coList=reServ.myReviewComment(memberNo);
+		model.addAttribute("coList",coList);
 		model.addAttribute("list",list);
 		return "member/mypage/myReview";
 	}

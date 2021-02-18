@@ -293,7 +293,7 @@
 	       </c:if>
 	       <div class="d-flex align-items-center mb-3 justify-content-center" id="preview"> </div>
 	       <div class="form-group"><label class="form-label">내용</label>
-	       <textarea class="form-control" name="reviewContent"></textarea>
+	       <textarea class="form-control" name="reviewContent" placeholder="리뷰는 한번 작성 시 수정 및 삭제가 불가능합니다. 신중하게 작성해주세요!"></textarea>
 	       </div>
 	       <div class="d-flex align-items-center my-3">
 	       		<label for="reviewFilename" ><img class="img-fluid" style="inline-size:7em;cursor: pointer;" src="<c:url value='/resources/imgs/photo.png'/>"> </label>

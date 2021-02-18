@@ -12,7 +12,7 @@
 	</select>
 	
 	<select id="myTakeGiftList" parameterType="int" resultType="memberGiftVo">
-		select g.*,gpd.g_product_name,g_product_filename,gp.g_p_type_Price,(select member_name from member m where m.MEMBER_NO=g.gift_take_member_no) as gift_give_member_name from
+		select g.*,gpd.g_product_name,g_product_filename,gp.g_p_type_Price,(select member_name from member m where m.MEMBER_NO=g.gift_give_member_no) as gift_give_member_name from
 		gift g, giftpricetype gp,giftProduct gpd
 		where g.G_P_TYPE_NO = gp.G_P_TYPE_NO
 		and g.G_PRODUCT_NO = gpd.G_PRODUCT_NO

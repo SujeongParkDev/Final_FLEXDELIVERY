@@ -32,7 +32,31 @@
 						str+="<div class='col-md-3 col-6 pb-3'>";
 						str+="<div class='list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm'>";
 						str+="<div class='list-card-image'>";
-						str+="<div class='member-plan position-absolute'><span class='badge badge-success'>"+map.list[i].gCategoryName+"</span></div>";
+						str+="<div class='member-plan position-absolute'>";
+						if(map.list[i].gCategoryNo==1){
+							str+="<span class='badge badge-success'>";
+						}else if(map.list[i].gCategoryNo==2){
+							str+="<span class='badge' style='background-color: #D7F205; color: black;'>";
+						}else if(map.list[i].gCategoryNo==3){
+							str+="<span class='badge badge-success'>";
+						}else if(map.list[i].gCategoryNo==4){
+							str+="<span class='badge badge-secondary'>";
+						}else if(map.list[i].gCategoryNo==5){
+							str+="<span class='badge badge-warning' style='color:white'>";
+						}else if(map.list[i].gCategoryNo==6){
+							str+="<span class='badge badge-info'>";
+						}else if(map.list[i].gCategoryNo==7){
+							str+="<span class='badge' style='background-color: #F25CA2;color: white'>";
+						}else if(map.list[i].gCategoryNo==8){
+							str+="<span class='badge' style='background-color: #008080;color: white'>";
+						}else if(map.list[i].gCategoryNo==9){
+							str+="<span class='badge' style='background-color: #AB05F2;color: white'>";
+						}else if(map.list[i].gCategoryNo==10){
+							str+="<span class='badge badge-primary'>";
+						}else{
+							str+="<span class='badge badge-light'>";
+						}
+						str+=map.list[i].gCategoryName+"</span></div>";
 						str+="<a href='#' data-toggle='modal' data-target='#giftModal' onclick='modalOn("+map.list[i].gProductNo+")'><img alt='#' style='height:200px' src='<c:url value='/resources/imgs/GiftProductImages/"+map.list[i].gProductFilename+"'/>' class='img-fluid item-img w-100'></a></div>";
 						str+="<div class='p-3 position-relative'>";
 						str+="<div class='list-card-body'>";
@@ -67,7 +91,43 @@
 		    <div class="col-md-3 col-6 pb-3">
 		        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
 		            <div class="list-card-image">
-		                <div class="member-plan position-absolute"><span class="badge badge-success">${vo.gCategoryName}</span></div>
+		                <div class="member-plan position-absolute">
+		                <c:choose>
+			                <c:when test="${vo.gCategoryNo==1}">
+			               		<span class="badge badge-danger">
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==2}">
+			               		<span class="badge" style='background-color: #D7F205; color: black;'>
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==3}">
+			               		<span class="badge badge-success">
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==4}">
+			               		<span class="badge badge-secondary">
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==5}">
+			               		<span class="badge badge-warning" style="color: white">
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==6}">
+			               		<span class="badge badge-info">
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==7}">
+			               		<span class="badge" style='background-color: #F25CA2;color: white'>
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==8}">
+			               		<span class="badge" style='background-color: #008080;color: white'>
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==9}">
+			               		<span class="badge" style='background-color: #AB05F2;color: white'>
+			                </c:when>
+			                <c:when test="${vo.gCategoryNo==10}">
+			               		<span class="badge badge-primary">
+			                </c:when>
+							<c:otherwise>
+								<span class="badge badge-light">
+							</c:otherwise>			                
+		                </c:choose>
+		                ${vo.gCategoryName}</span></div>
 		                <a href="#" data-toggle="modal" data-target="#giftModal" onclick="modalOn(${vo.gProductNo})">
 		                    <img alt="#" src="<c:url value='/resources/imgs/GiftProductImages/${vo.gProductFilename}'/>" class="img-fluid item-img w-100" style="height:200px">
 		                </a>

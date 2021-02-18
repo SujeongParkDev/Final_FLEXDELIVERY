@@ -100,7 +100,6 @@ $(function(){
 	                                                   <div class="modal-body">
 	                                                      <input type="hidden" name="boardNo" value="${vo.boardNo }">
 	                                                      <input type="hidden" name="boardTitle" value="${vo.boardTitle }">
-	                                                      <input type="hidden" name="boardContent" value="${vo.boardContent }">
 	                                                      <input type="hidden" name="oldFileName" value="${vo.boardThumbnail }">
 	                                                      	[<span style="font-weight: bolder;">${vo.boardNo}번 게시글: ${vo.boardTitle }</span>] 을 삭제하시겠습니까?
 	                                                   </div>

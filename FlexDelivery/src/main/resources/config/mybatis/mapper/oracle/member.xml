@@ -72,7 +72,8 @@
 	<select id="giftChk" parameterType="memberVo" resultType="int">
 		select count(*) from member
 		where member_Name=#{memberName}
-		and member_Hp3=#{memberHp3}	
+		and member_Hp3=#{memberHp3}
+		and member_outdate is null
 	</select>
 	
 	<select id="selectMemNo" parameterType="map" resultType="int">

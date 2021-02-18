@@ -101,8 +101,8 @@
     
      <update id="updateTime" parameterType="map">
     	update stores
-    	set store_open_time = #{startTime}, store_close_time=#{closeTime} and a_Agree_no!=9 and a_Agree_no!=2 and a_Agree_no!=4
-    	where store_no = #{storeNo}
+    	set store_open_time = #{startTime}, store_close_time=#{closeTime}
+    	where store_no = #{storeNo} and a_Agree_no!=9 and a_Agree_no!=2 and a_Agree_no!=4
     </update>
    
     <select id="selectsStatusAll" resultType="map">
