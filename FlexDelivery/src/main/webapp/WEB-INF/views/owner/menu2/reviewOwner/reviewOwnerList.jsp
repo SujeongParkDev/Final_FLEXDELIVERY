@@ -34,11 +34,7 @@
 		<div class="col-md-8 col-12">
 			<div class="text-right">
             <button type="button" class="btn " id="btAll" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
-         </div>
-         <div class="btn-group" role="group">
             <button type="button" class="btn " id="btnocmt" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
-         </div>
-         <div class="btn-group" role="group">
             <button type="button" class="btn" id="btBlock"style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">차단(${fn:length(blockList)}) </button>
          </div>
       </div>

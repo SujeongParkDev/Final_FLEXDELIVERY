@@ -50,9 +50,11 @@
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
                <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
+              <!-- 삭제 전에 커밋  -->
                <div style="padding-left:10px;"class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
                 <%@include file="reviewChart.jsp"%>
                </div>
+              
                <br> <br>
                <div class="card-content">
                   <div class="card-body text-center">
