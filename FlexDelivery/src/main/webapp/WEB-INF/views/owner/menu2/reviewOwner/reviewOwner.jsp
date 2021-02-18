@@ -138,8 +138,7 @@
                                		 <c:if test="${!empty map['R_COMMENT_CONTENT'] && map['REVIEW_REPORT'] == 'N'}">
                                        <form class="frm${map['REVIEW_NO']}" method="post" action="<c:url value='/owner/menu2/reviewOwner/edit.do'/>">
                                           <input type="hidden" id="reviewNo" name="reviewNo" value="${map['REVIEW_NO'] }"> 
-                                          <input type="hidden" id="storeNo" name="storeNo" >
-                                          <input type="hidden" id="rCommentContent" name="rCommentContent" value="${map['R_COMMENT_CONTENT']}">
+                                          <input type="hidden" id="storeNo" name="storeNo" value="${sessionScope.storeNo }">
                                           <div class="reply" style="padding: 7%;">
                                              <div class="row">
                                                 <div class="col-md-3">
@@ -273,11 +272,12 @@
             success:function(res){
             	var  output="<div style='border: 2px solid lightgray; padding:5%;' class=''>";
                output+="<input type='text' class='col-md-7 text-left content' name='rCommentContent'  style='width: 80%; border:none; background: unset;' value="+res.rCommentContent+">";
-               output+="<input type='submit' class='button' type='submit' style='color:black; background-color:#fcbe32; border: none; ' value='수정하기'>";
+               output+="<input type='submit' class='button' style='color:black; background-color:#fcbe32; border: none; ' value='수정하기'>";
           	 	output+="</div>";
                $('.result'+num).append(output);
                $('.listDiv'+num).empty();
                $('.btgroup'+num).empty();
+               
                event.preventDefault();
                      
             },

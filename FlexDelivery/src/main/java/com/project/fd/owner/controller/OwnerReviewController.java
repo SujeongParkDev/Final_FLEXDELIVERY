@@ -144,8 +144,29 @@ public class OwnerReviewController {
 		return "owner/menu2/reviewOwner/reviewOwnerList";
 	}
 	
-	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.POST)
+	@RequestMapping(value="/reviewOwnerWrite.do",method=RequestMethod.POST)
 	public String reviewWrite(@ModelAttribute OwnerReviewCommentVO vo, HttpSession session,
+			Model model) {
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
+		logger.info("요청처리현황 보여주기 ownerNo={}",ownerNo);
+		vo.setStoreNo(storeNo);
+		logger.info("ownercomment page, vo={}",vo);
+		int cnt=ownerReCommService.insertComm(vo);
+		logger.info("코멘트 작성  결과, cnt={}", cnt);
+		String msg="답변 작성에 실패하였습니다. 다시 시도해주세요.", url="/owner/menu2/reviewOwner/nocomment.do";
+		if(cnt>0) {
+			msg="답변이 정상적으로 등록되었습니다. ";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/reviewOwner.do",method=RequestMethod.POST)
+	public String reviewWrite_write(@ModelAttribute OwnerReviewCommentVO vo, HttpSession session,
 			Model model) {
 		int ownerNo = (Integer) session.getAttribute("ownerNo");
 		int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
