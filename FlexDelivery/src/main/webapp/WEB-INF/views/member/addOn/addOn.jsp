@@ -8,7 +8,7 @@
 		IMP.init('imp06881014');
 		
 		$('#search').click(function(){
-			if($('#memberName').val().length<3 || $('#memberHp3').val().length<4){
+			if($('#memberName').val().length<1 || $('#memberHp3').val().length<4){
 				$('#inputCorrect').prop("hidden",false);
 				return false;
 			}
@@ -47,7 +47,8 @@
 			event.preventDefault();
 			return false;
 		}
-		var price=$('input[name=price]').val();
+		$('form[name=frmGift]').submit();
+		/* var price=$('input[name=price]').val();
 		console.log(pay);
 		IMP.request_pay({
           pay_method: "card",
@@ -62,7 +63,7 @@
 	            alert('결제 실패  : ' + rsp.error_msg);
 	            
 	          }
-		});
+		}); */
 	};
 	
 	function change(e){

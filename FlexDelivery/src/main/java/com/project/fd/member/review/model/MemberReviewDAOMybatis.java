@@ -18,13 +18,13 @@ public class MemberReviewDAOMybatis implements MemberReviewDAO{
 	}
 
 	@Override
-	public int reviewChk(int memberNo) {
-		return sqlSession.selectOne(namespace+"reviewChk",memberNo);
+	public int reviewChk(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"reviewChk",map);
 	}
 
 	@Override
-	public List<Map<String, Object>> orderListForReview(int memberNo) {
-		return sqlSession.selectList(namespace+"orderListForReview",memberNo);
+	public List<Map<String, Object>> orderListForReview(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"orderListForReview",map);
 	}
 
 	@Override
@@ -55,6 +55,11 @@ public class MemberReviewDAOMybatis implements MemberReviewDAO{
 	@Override
 	public List<MemberReviewVO> myReviewList(int memberNo) {
 		return sqlSession.selectList(namespace+"myReviewList",memberNo);
+	}
+
+	@Override
+	public List<MemberReviewCommentVO> myReviewComment(int memberNo) {
+		return sqlSession.selectList(namespace+"myReviewComment",memberNo);
 	}
 	
 	

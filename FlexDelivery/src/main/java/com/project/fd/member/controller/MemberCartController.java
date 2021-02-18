@@ -48,6 +48,7 @@ public class MemberCartController {
 		logger.info("cartVo={}",cartVo);
 		cartVo.setMemberNo((Integer)session.getAttribute("memberNo"));
 		int cnt=cartServ.addCart(cartVo);
+		logger.info("cnt={}",cnt);
 		if(cnt>0) {
 			return true;
 		}
@@ -123,6 +124,18 @@ public class MemberCartController {
 		return false;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/cartChk.do")
+	public boolean cartChk(@RequestParam int storeNo,@RequestParam int memberNo) {
+		logger.info("장바구니 유효성검사 storeNo={},memberNO={}",storeNo,memberNo);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("storeNo",storeNo );
+		map.put("memberNo",memberNo);
+		
+		boolean bool=cartServ.CartChk(map);
+		
+		return bool;
+	}
 	/*
 	기존거
 	@RequestMapping("/addCart.do")

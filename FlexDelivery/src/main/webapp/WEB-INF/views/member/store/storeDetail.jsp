@@ -242,6 +242,7 @@
 		
    		$('form[name=couponForm]').submit(function(){
    			var dataForm=$(this).serializeArray();
+   			console.log(dataForm);
    			$.ajax({
    				url:"<c:url value='/member/coupon/addCoupon.do'/>",
    				type:"post",
@@ -268,75 +269,91 @@
 				alert('먼저 상품을 선택해야합니다!');
 				return false;
 			}
-			if(bool){
-				var result=confirm('다른 점포의 메뉴가 담겨 있어요. 기존 상품을 삭제하고 담으시겠어요?');
-				if(result){
-					var tqtq="memberNo="+${sessionScope.memberNo};
-					var tq = $.param($(this).serializeArray());
-					$.ajax({
-						url:"<c:url value='/member/cart/deleteOtherStore.do'/>",
-						type:"get",
-						data:tqtq,
-						success:function(bool){
-							if(bool){
-								$.ajax({
-									url:"<c:url value='/member/cart/addCart.do'/>",
-									type:"post",
-									data:tq,
-									dataType:"json",
-									success:function(bool){
-										if(bool){
-											cartList();
-											alert('장바구니에 상품을 담았습니다');
-											$('.closeBt').click();
-										}else{
-											cartList();
-											alert('장바구니 담기 실패ㅠㅠ');
-											$('.closeBt').click();
-										}
-									},
-									error:function(error){
-										alert("error : "+error);
+			var storeNo=${vo.storeNo};
+			var data="storeNo="+storeNo+"&memberNo="+${sessionScope.memberNo};
+			var cartFo=$(this).serializeArray();
+			console.log(cartFo);
+			$.ajax({
+				url:"<c:url value='/member/cart/cartChk.do'/>",
+				type:"get",
+				data:data,
+				success:function(chk){
+					if(chk){
+						var result=confirm('다른 점포의 메뉴가 담겨 있어요. 기존 상품을 삭제하고 담으시겠어요?');
+						if(result){
+							var tqtq="memberNo="+${sessionScope.memberNo};
+							console.log(cartFo);
+							$.ajax({
+								url:"<c:url value='/member/cart/deleteOtherStore.do'/>",
+								type:"get",
+								data:tqtq,
+								success:function(delChk){
+									if(delChk){
+										$.ajax({
+											url:"<c:url value='/member/cart/addCart.do'/>",
+											type:"post",
+											data:cartFo,
+											dataType:"json",
+											success:function(addChk){
+												if(addChk){
+													cartList();
+													alert('장바구니에 상품을 담았습니다');
+													$('.closeBt').click();
+												}else{
+													cartList();
+													alert('장바구니 담기 실패ㅠㅠ');
+													$('.closeBt').click();
+												}
+											},
+											error:function(error){
+												alert("error : "+error);
+											}
+										});
+										event.preventDefault();
+									}else{
+										cartList();
+										alert('장바구니 삭제 실패ㅠㅠ');
+										$('.closeBt').click();
 									}
-								});
-								event.preventDefault();
-							}else{
-								cartList();
-								alert('장바구니 삭제 실패ㅠㅠ');
-								$('.closeBt').click();
-							}
-						},
-						error:function(xhr,request,errorThrown){
-							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error+"cnt="+cnt);
-						}
-					});
-					event.preventDefault();
-				}else{
-					event.preventDefault();
-				}
-			}else{
-				$.ajax({
-					url:"<c:url value='/member/cart/addCart.do'/>",
-					type:"post",
-					data:$(this).serializeArray(),
-					dataType:"json",
-					success:function(bool){
-						if(bool){
-							cartList();
-							alert('장바구니에 상품을 담았습니다');
-							$('.closeBt').click();
+								},
+								error:function(xhr,request,errorThrown){
+									alert("code = "+ request.status + " message = " + request.responseText + " error = " + error+"cnt="+cnt);
+								}
+							});
+							event.preventDefault();
 						}else{
-							cartList();
-							alert('장바구니 담기 실패ㅠㅠ');
-							$('.closeBt').click();
+							event.preventDefault();
 						}
-					},
-					error:function(error){
-						alert("error : "+error);
+					}else{
+						$.ajax({
+							url:"<c:url value='/member/cart/addCart.do'/>",
+							type:"post",
+							data:cartFo,
+							dataType:"json",
+							success:function(addCheck){
+								if(addCheck){
+									cartList();
+									alert('장바구니에 상품을 담았습니다');
+									$('.closeBt').click();
+								}else{
+									cartList();
+									alert('장바구니 담기 실패ㅠㅠ');
+									$('.closeBt').click();
+								}
+							},
+							error:function(error){
+								alert("error : "+error);
+							}
+						});
+						event.preventDefault();
 					}
-				});
-				event.preventDefault();
-			}
+				},error:function(error){
+					alert("error:"+error);
+				}
+				
+			});
+			event.preventDefault();
+		
 		});
 		
 		
@@ -550,12 +567,19 @@
 	            		<div class="col-md-12 col-12 border-top">
 					    	<div class="row m-0">
 						    	<div class="col-md-12 col-12 p-5">
-									<p class="mb-0 h6 font-monospace" style="line-height: 2;">${vo.storeContent}</p>
+						    		<c:if test="${empty vo.storeContent}">
+						    			<img alt="" class="img-fluid" src="<c:url value='/resources/imgs/noListDefault.png'/>" style="inline-size:48em">
+						    		</c:if>
+						    		<c:if test="${!empty vo.storeContent}">
+										<p class="mb-0 h6 font-monospace" style="line-height: 2;">${vo.storeContent}</p>
+						    		</c:if>
 								</div>
 							</div>
 						</div>
 	            	</div>
 	            </div>
+	            <!-- 대표메뉴 div -->
+	            <c:if test="${!empty menuAllvo.memberMenuVo.menuImg}">
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
 	            	<div class="d-flex item-aligns-center">
 				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">대표메뉴      <span class="badge bg-primary text-white">MAIN</span></p>
@@ -667,6 +691,8 @@
 					    </div>
 					</div>
             	</div>
+            	</c:if>
+            	<!--/대표메뉴 끝 -->
             	<div class="shadow-sm rounded bg-white mb-3 overflow-hidden">
 				    <div class="d-flex item-aligns-center">
 				        <p class="font-weight-bold h6 p-3 border-bottom mb-0 w-100">메뉴</p>

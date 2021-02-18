@@ -78,7 +78,7 @@ public class MemberGiftController {
 		int memberNo=memServ.selectMemNo(map);
 		vo.setGiftTakeMemberNo(memberNo);
 		int giveMemberNo=(Integer)session.getAttribute("memberNo");
-		vo.setGiftTakeMemberNo(giveMemberNo);
+		vo.setGiftGiveMemberNo(giveMemberNo);
 		int cnt=giftServ.giftSend(vo);
 		logger.info("주문하기 결과 cnt={}",cnt);
 		if(cnt>0) {

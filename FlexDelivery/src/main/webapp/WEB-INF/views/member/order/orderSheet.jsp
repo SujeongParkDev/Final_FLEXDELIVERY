@@ -55,7 +55,8 @@
 	};
 	
 	function pay(){
-		var pay=$('input[name=ordersPrice]').val();
+		$('form[name=orderForm]').submit();
+		/* var pay=$('input[name=ordersPrice]').val();
 		var tel=$('input[name=ordersHp]').val();
 		var address=$('input[name=ordersAddress]').val();
 		var memName=$('input[name=memberName]').val();
@@ -78,7 +79,7 @@
 	            alert('결제 실패  : ' + rsp.error_msg);
 	            
 	          }
-		});
+		}); */
 	};
 </script>
 

@@ -16,8 +16,8 @@ public class MemberReviewServiceImpl implements MemberReviewService{
 	}
 
 	@Override
-	public boolean reviewChk(int memberNo) {
-		int cnt=reviewDao.reviewChk(memberNo);
+	public boolean reviewChk(Map<String, Object> map) {
+		int cnt=reviewDao.reviewChk(map);
 		if(cnt>0) {
 			return true;
 		}
@@ -25,8 +25,8 @@ public class MemberReviewServiceImpl implements MemberReviewService{
 	}
 
 	@Override
-	public List<Map<String, Object>> orderListForReview(int memberNo) {
-		return reviewDao.orderListForReview(memberNo);
+	public List<Map<String, Object>> orderListForReview(Map<String, Object> map) {
+		return reviewDao.orderListForReview(map);
 	}
 
 	@Override
@@ -57,6 +57,11 @@ public class MemberReviewServiceImpl implements MemberReviewService{
 	@Override
 	public List<MemberReviewVO> myReviewList(int memberNo) {
 		return reviewDao.myReviewList(memberNo);
+	}
+
+	@Override
+	public List<MemberReviewCommentVO> myReviewComment(int memberNo) {
+		return reviewDao.myReviewComment(memberNo);
 	}
 	
 	

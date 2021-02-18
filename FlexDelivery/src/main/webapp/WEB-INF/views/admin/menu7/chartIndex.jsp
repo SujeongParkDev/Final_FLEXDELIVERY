@@ -337,11 +337,11 @@
 			  var labelVal=[];
 			  
 			  if (no==7){
-				  <c:forEach var="map" items="${list9 }">
+				  /* <c:forEach var="map" items="${list9 }">
 					  labels.push("${map['L_CATEGORY_NAME}']}");
 				  	  labelVal.push("${map['ORDERCNT']}");
 			  	  </c:forEach>
-					tooltipTitle="카테고리별 주문 수";
+					tooltipTitle="카테고리별 주문 수"; */
 
 			  } else if (no==8) {
 				  <c:forEach var="map" items="${list10 }">

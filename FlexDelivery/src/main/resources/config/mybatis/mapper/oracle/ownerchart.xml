@@ -94,11 +94,16 @@
 	
 	<!-- 베스트  주문 메뉴  -->
 	<select id="selectBestMenu" parameterType="int" resultType="map">
+			select A.* 
+			from(
 			select sum(o_detail_qty) as ordersMenuQty ,menu_name as ordersMenuName from jaordersbestmenuview
+			         where store_no=#{storeNo} and o_status_no=4 and to_date(orders_date)+orders_duration/(24*60) >= add_months(sysdate,-1)
+			         group by menu_name
+			            order by ordersMenuQty desc
+			) A
 			<![CDATA[
-			where store_no=#{storeNo} and rownum <=5 and o_status_no=4 and to_date(orders_date)+orders_duration/(24*60) >= add_months(sysdate,-1)
+			where rownum <=5
 			]]> 
-			group by menu_name
 	</select>
 	
 	<select id="selectOrdersFiveStatusNo" parameterType="map" resultType="map">

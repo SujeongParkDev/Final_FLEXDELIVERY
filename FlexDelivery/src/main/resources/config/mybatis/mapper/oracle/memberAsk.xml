@@ -30,6 +30,6 @@
 
 	<delete id="deleteAsk" parameterType="memberAskVo">
 		delete from ask
-		where group_no=#{askNo}
+		where ask_group_no=#{askNo}
 	</delete>
 </mapper>
