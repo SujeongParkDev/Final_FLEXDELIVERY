@@ -54,6 +54,10 @@ public class OwnerReviewController {
 		int totalBlock=ownerReCommService.blockTotalRecord(storeNo);
 		logger.info("차단 리뷰  리스트 blockList.size={},totalBlock={}",blockList.size(),totalBlock);
 		
+		
+		List<Map<String, Object>> starsList=ownerReCommService.reviewReting(storeNo);
+		
+		model.addAttribute("starsList", starsList);
 		model.addAttribute("totalBlock", totalBlock);
 		model.addAttribute("blockList", blockList);
 		

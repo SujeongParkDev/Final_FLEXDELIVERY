@@ -50,12 +50,14 @@
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
                <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
-              <!-- 삭제 전에 커밋  -->
-               <div style="padding-left:10px;"class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
-                <%@include file="reviewChart.jsp"%>
-               </div>
-              
                <br> <br>
+                <div style="padding-left:10px;"class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
+               <div id="top_x_div" style="width: 600px; height: 300px;"></div>
+               </div>
+               ${starsList }
+               <c:forEach var="vo" items="${starsList}">
+              	
+               </c:forEach>
                <div class="card-content">
                   <div class="card-body text-center">
                      <form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
@@ -200,7 +202,39 @@
 <br>
 <br>
 <br>
-<script type="text/javascript">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+		
+      function drawStuff() {
+    	  
+        var data = new google.visualization.arrayToDataTable([
+          ['countNum', 'Person'],
+          ["5점 ", 44],
+          ["4점 ", 31],
+          ["3점 ", 12],
+          ["2점 ", 10],
+          ['1점 ', 3]
+        ]);
+
+        var options = {
+          title: 'My store review star ratings ',
+          legend: { position: 'none' },
+          chart: { title: '우리 가게 고객들의 리뷰 별점입니다. ',
+              subtitle: 'Reviews by my store customers, star ratings' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Person '} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "60%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
    function btDel(reviewNo){
       if(confirm("리뷰 답변을 삭제하시겠습니까?")) {
          location.href= "<c:url value='/owner/menu2/reviewOwner/reviewOwnerDelete.do?reviewNo='/>" + reviewNo;

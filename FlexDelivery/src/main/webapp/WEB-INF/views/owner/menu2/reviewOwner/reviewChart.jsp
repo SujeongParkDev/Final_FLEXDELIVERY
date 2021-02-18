@@ -9,8 +9,9 @@
       google.charts.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
+    	  console.log(starsList);
         var data = new google.visualization.arrayToDataTable([
-          ['Stars', 'Person'],
+          ['countNum', 'Person'],
           ["5점 ", 44],
           ["4점 ", 31],
           ["3점 ", 12],
@@ -38,6 +39,6 @@
     </script>
   </head>
   <body>
-   <div id="top_x_div" style="width: 600px; height: 300px;"></div>
+   
   </body>
 </html>
