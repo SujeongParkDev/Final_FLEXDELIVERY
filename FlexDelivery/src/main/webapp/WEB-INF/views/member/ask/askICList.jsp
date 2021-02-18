@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
-<input type ="text" name="askId" id="askId" value="${sessionScope.memberId}">
+<input type ="hidden" name="askId" id="askId" value="${sessionScope.memberId}">
 <div>
 	<c:if test="${empty askICList}">
 		<div>

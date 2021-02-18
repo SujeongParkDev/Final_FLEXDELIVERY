@@ -51,8 +51,8 @@
 									</div>
 								</div>
 							</div>
-							<input type ="text" name="askId" id="askId" value="${sessionScope.memberId}">
-							<input type ="text" name="authorityNo" id="authorityNo" value="${sessionScope.authorityNo}">
+							<input type ="hidden" name="askId" id="askId" value="${sessionScope.memberId}">
+							<input type ="hidden" name="authorityNo" id="authorityNo" value="${sessionScope.authorityNo}">
 					</div>
 				</div>
 			</section>
