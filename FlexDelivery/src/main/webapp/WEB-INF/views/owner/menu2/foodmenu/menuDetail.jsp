@@ -41,9 +41,12 @@
 	</script>
 </head>	
 		<!-- 메뉴 컨텐츠 내용 br 바꾸기 -->
+		<% 
+			pageContext.setAttribute("newLine","\r\n"); 
+		%>
 		<c:set var="content" 
 			value="${fn:replace(menuAllVo.menuContent, newLine,'<br>') }" />
-
+	
 		<div></div>
 		<br>
 		<br>

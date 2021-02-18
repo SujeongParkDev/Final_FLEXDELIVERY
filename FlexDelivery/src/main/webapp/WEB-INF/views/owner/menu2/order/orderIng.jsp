@@ -269,7 +269,7 @@ function goDetail(ordersNo,ordersDiscount){
                                               <td class="text-bold-500">${map['ORDERS_DATE']}</td>
                                               <td>${map['ORDERS_PRICE'] }</td>
                                               <td>
-                                                 <button class="btn btDeliveryTime" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;"
+                                                 <button class="btn btDeliveryTime" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; border: none; background-color:#fcbe32; color:#333;"
                                                           data-toggle="modal" data-target="#deliveryTime">배달</button>
                                               </td>
                                         </tr>
@@ -338,7 +338,7 @@ function goDetail(ordersNo,ordersDiscount){
 	                        		<div class="col-12 col-md-1"></div>
 	                        			<input class="deliveryTimeInput" type="hidden" value="1">
 	                        			<div class="col-12 col-md-10 text-center">
-	                        				<button class="btn btn-outer-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
+	                        				<button class="btn btn-outline-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="0">PICK UP</button>
 	                        				<br>
 		                        			<button class="btn btn-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="20">20분</button>
 		                        			<button class="btn btn-warning p-0 m-1 btdvtime" style="width:70px; height:40px;" value="30">30분</button>

@@ -67,6 +67,10 @@
 					$('#warningPrice').html('<small>가격은 숫자만 입력 가능합니다</small><br>');				
 					$('#menuPrice').focus();
 					event.preventDefault();	
+				}else if($('#upfile').val().length<1){
+					$('#warningFile').html('<small>파일을 선택해 주세요</small><br>');
+					$('#upfile').focus();
+					event.preventDefault();				
 				}else{
 					$.ajax({
 						url:"<c:url value='/owner/menu2/foodmenu/checkDupMenuName.do'/>",
@@ -184,8 +188,17 @@
 				
 			}); 
 		
+		 
+		 
+		  $(function(){
+				$('#upfile').click(function(){
+					  $('#warningFile').html('');
+					
+				});
+				
+			});
 		
-		
+	
 		
 		
 		$(function(){
@@ -299,7 +312,8 @@
 		                     		<div class="form-file text-center">
 		                     			 <input type="file" id="upfile" name="upfile" class="btn text-right"  accept=".gif, .jpg, .png" />
 		                     			 
-                                           <br><span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>    
+                                           <br><span style="margin-left:60px;"><small>* 첨부파일을 새로 지정할 경우 기존파일은 삭제됩니다.</small></span>   
+                                           <br><span style="margin-left:60px; color:red; " id="warningFile" ></span>    
                                     </div>
                             		
                             		<label for="exampleFormControlTextarea1" class="form-label">메뉴 내용<span style="color:red; margin-left:4px;"><b>*</b></span></label>

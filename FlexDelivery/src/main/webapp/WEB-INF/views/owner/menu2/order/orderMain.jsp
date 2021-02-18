@@ -266,7 +266,7 @@
 										                <td class="text-bold-500">${map['ORDERS_PAY_END_DATE']}</td>
 										                <td>${map['ORDERS_PRICE']}</td>
 										                <td>
-										                	<button class="btn btn-dark btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px;  border: none;"
+										                	<button class="btn btn-dark btRequest" value="${map['ORDERS_NO'] }" style="width:40px; height:25px; font-size:3px; padding:0px; background-color:#fcbe32; color:#333; border: none;"
 										                				data-toggle="modal" data-target="#requestOk">접수</button>
 										                </td>
 										                <td>

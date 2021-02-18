@@ -213,7 +213,7 @@
 	
 	
 	<select id="checkDupMenuName" parameterType="map" resultType="int">
-		select count(*) from menu
+		select count(*) from jaMenuAllview
 		where menu_name=#{menuName} and s_M_Group_No =#{sMGroupNo} and store_no=#{storeNo}
 	</select>
 	

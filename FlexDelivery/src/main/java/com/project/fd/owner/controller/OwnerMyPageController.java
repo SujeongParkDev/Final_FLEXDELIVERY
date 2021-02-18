@@ -166,9 +166,12 @@ public class OwnerMyPageController {
 			e.printStackTrace();
 		}
 		
+		logger.info("fileName={}",fileName);
+		
 		if(fileName==null || fileName.isEmpty()) {
 			String oldFileName = temporaryVo.gettOriginalFileName();
 			temporaryVo.settFileName(oldFileName);
+			logger.info("oldFileName={}",oldFileName);
 		}else {
 			temporaryVo.settFileName(fileName);
 		}
