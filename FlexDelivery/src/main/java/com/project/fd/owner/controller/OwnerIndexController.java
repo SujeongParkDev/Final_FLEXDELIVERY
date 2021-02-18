@@ -71,8 +71,8 @@ public class OwnerIndexController {
 		//내점포 메인 뷰 보여주기(점포)
 		@RequestMapping("/menu2/myStoreIndex.do")
 		public String myStoreIndex(Model model, HttpSession session){
-			int storeNo=(Integer)session.getAttribute("storeNo");
 			int ownerNo=(Integer)session.getAttribute("ownerNo");
+			int storeNo = ownerStoresService.selectStoreNoByNo(ownerNo);
 			logger.info("내점포 메인 뷰 보여주기 storeNo={},ownerNo={}",storeNo,ownerNo);
 			
 			int totalblockcmt=reviewcmtService.blockTotalRecord(storeNo);

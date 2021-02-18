@@ -50,14 +50,14 @@
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
                <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
-               <br> <br>
+               <br>
                 <div style="padding-left:10px;"class="single-blog-area blog-style-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
                <div id="top_x_div" style="width: 600px; height: 300px;"></div>
                </div>
-               ${starsList }
                <c:forEach var="vo" items="${starsList}">
               	
                </c:forEach>
+               <br>
                <div class="card-content">
                   <div class="card-body text-center">
                      <form name="frmPage" method="post" name="frm1" action="<c:url value='/owner/menu2/reviewOwner/reviewOwnerList.do'/>">
