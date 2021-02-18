@@ -72,7 +72,7 @@
 	                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/member/mypage/main.do">마이페이지</a>
 	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/member/board/board.do">알림광장</a>
-	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/#">고객센터</a>
+	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/member/faq/faqList.do">고객센터</a>
 	                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/member/addOn/addOn.do">FLEX-ON</a>
 	                                </div>
 	                            </div>
