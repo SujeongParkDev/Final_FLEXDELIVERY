@@ -15,7 +15,7 @@
 
 	<select id="selectICAsk" parameterType="memberAskVo" resultType="memberAskVo">
 		select * from ask
-		where ask_id = #{askId} and authority_No in (1,2,3)
+		where ask_id = #{askId} and authority_No in (1,2,3) order by ask_No desc
 	</select>
 
 	<select id="detailAsk" parameterType="memberAskVo" resultType="memberAskVo">

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="osahan-home-page">
 	
-		<div class="text-black">
+		<div class="text-black mt-5">
 			<div class="title d-flex align-items-center">
 				<h4 class="font-weight-bold m-0 pl-5">고객센터</h4>
 			</div>
