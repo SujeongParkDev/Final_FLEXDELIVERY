@@ -28,23 +28,18 @@
   vertical-align: middle;
 }
 </style>
-<div class="row mt-3" style="margin-top:14px;">
-   <div class="col-md-6 col-sm-12"></div>
-   <div class="col-md-5 col-sm-12" style="padding-left: 105px;">
-      <div class="btn-group " role="group" aria-label="...">
-         <div class="btn-group" role="group">
+<br><br><br><br><br>
+ <div class="row mt-3 mb-2">
+	<div class="col-md-2 col-12"></div>
+		<div class="col-md-8 col-12">
+			<div class="text-right">
             <button type="button" class="btn " id="btAll" style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">전체(${fn:length(allList)})</button>
-         </div>
-         <div class="btn-group" role="group">
             <button type="button" class="btn " id="btnocmt" style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">미답변(${fn:length(nocmtList)}) </button>
-         </div>
-         <div class="btn-group" role="group">
             <button type="button" class="btn" id="btBlock"style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">차단(${fn:length(blockList)}) </button>
-         </div>
+      </div>
       </div>
       <div class="col-md-2 col-sm-12"></div>
    </div>
-</div>
 <!--  -->
 <div class="row" id="table-hover-row">
    <div class="col-md-2 col-sm-12"></div>
