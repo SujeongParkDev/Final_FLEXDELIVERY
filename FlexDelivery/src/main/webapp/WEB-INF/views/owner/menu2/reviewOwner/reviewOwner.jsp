@@ -37,8 +37,10 @@
          <div class="card-content">
             <div class="card-body" id="allreview"><br><br>
                <p class="card-text text-center" style="font-size:30px; color:#333; font-weight:bold;">리뷰 관리</p>
-               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p>
+               <p class="card-text text-center">소중한 고객님의 리뷰에 댓글을 달아보세요 !</p><br><br>
+               <div style="padding-left:10px;">
                <%@include file="reviewChart.jsp"%>
+               </div>
                <br> <br>
                <div class="card-content">
                   <div class="card-body text-center">
@@ -225,6 +227,7 @@
                   output+="<button type='submit' class='button small secondary inGroup' id='btEdit' style='width: auto;'>수정하기 </button>";
                
                      $('.result'+num).append(output);
+                     $('.listDiv'+num).hide();
                      
             },
                error:function(xhr, status, error){
