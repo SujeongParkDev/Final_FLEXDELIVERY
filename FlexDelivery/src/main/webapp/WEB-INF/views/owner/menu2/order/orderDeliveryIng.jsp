@@ -45,7 +45,7 @@
 						message = map.oMap['ORDERS_MESSAGE'];
 					}
 				
-       				str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>회원 정보</h5></div><br>";
+       				str+="<div class='text-center' style='height:15px;'><h5 style='background-color:#004e66; color:white;' class='p-2'>회원 정보</h5></div><br>";
        				str+="<table style='margin-top: 60px;'>";
        				str+="<tbody>";
        				str+="<tr><td><b class='ml-3'>회원 아이디</b></td><tr><tr><td><span  class='ml-3'>"+map.oMap['MEMBER_ID']+"</span><br><hr></td></tr>";
@@ -55,7 +55,7 @@
        				str+="</tbody>";
        				str+="</table>";
        				
-       				str+="<br><div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>메뉴 / 옵션</h5></div><br>";
+       				str+="<br><div class='text-center' style='height:15px;'><h5 style=' background-color:#004e66; color:white;' class='p-2'>메뉴 / 옵션</h5></div><br>";
        				
        				str+="<table style='margin-top:30px;'>";
 					str+="<tbody>";
@@ -81,7 +81,7 @@
             			});
             		str+="</tbody><br></table><br>";
             		
-            		str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#e7f5ff;' class='p-2'>가격</h5></div>";
+            		str+="<div class='text-center' style='height:15px;'><h5 style=' background-color:#004e66; color:white;' class='p-2'>가격</h5></div>";
             		str+="<table style='margin-top:50px;'><br><tbody>";
             		
             		str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>총 주문 금액</b></span>";
@@ -125,10 +125,10 @@
   		<div class="col-md-1 col-sm-12"></div>
   		<div class="col-md-10 col-sm-12">
 	  		 <div class="text-right">
-               	 <button id="btRequestTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >주문신청</button>
-               	 <button id="btOrderTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">조리중</button>
-               	 <button id="btOrderIngTop" class="btn btn-primary btOrderChange " style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); ">배달중</button>
-               	 <button id="btOrderSuccessTop" class="btn btn-primary btOrderChange" style="background-color: rgb(33, 158, 188); border-color: rgb(33, 158, 188); " >배달완료</button>
+               	 <button id="btRequestTop" class="btn btOrderChange"  style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;" >주문신청</button>
+               	 <button id="btOrderTop" class="btn  btOrderChange"   style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;">조리중</button>
+               	 <button id="btOrderIngTop" class="btn  btOrderChange " style="border:1px solid #fcbe32; color:#333;  font-size: 15px; font-weight: bold;">배달중</button>
+               	 <button id="btOrderSuccessTop" class="btn btOrderChange"  style=" background-color:#fcbe32; color:#333; border: none; font-size: 15px; font-weight: bold;" >배달완료</button>
               	 </div>
            </div>
            <div class="col-md-1 col-sm-12"></div>
@@ -143,7 +143,7 @@
 	            	<br>
 	            	<br>
 	            	<br>
-	                <p class="card-title mb-5 mt-3" style="font-size:30px; color:#ffb703;"><b>🛵배달중🛵</b></p>
+	                <p class="card-title mb-5 mt-3" style="font-size:30px; color:#333; font-weight:bold;"><b>🛵배달중🛵</b></p>
 	            </div>
 	            <div class="card-body">
 	                <div class="row">
@@ -157,7 +157,7 @@
 						        <div class="table-responsive">
 						          <table class="table table mb-5">
 						            <thead>
-						              <tr class="text-center" style="background-color:rgb(2, 48, 71); color:white;">
+						              <tr class="text-center" style="background-color:#004e66; color:white;">
 						              	<th style="width:10%;">번호</th>
 						              	<th style="width:10%;">회원</th>
 						                <!-- 다급한거 이미지 -->
@@ -214,7 +214,7 @@
 	                    <div class="modal-dialog" role="document">
 	                        <div class="modal-content">
 		                        <div class="modal-header">
-		                            <h5 class="modal-title" id="orderDetailTitle">주문 상세 내역</h5>
+		                            <h5 class="modal-title" id="orderDetailTitle" >주문 상세 내역</h5>
 		                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 		                            </button>
@@ -225,7 +225,7 @@
 									</div>  
 		                        </div>
 		                       	<div class="modal-footer justify-content-center mt-3">
-			                        	<button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+			                        	<button type="button" class="btn  ml-1" data-dismiss="modal" style="color:black; background-color:#fcbe32; border: none; ">
 			                           		 <i class="bx bx-check d-block d-sm-none"></i>
 			                           		 <span class="d-none d-sm-block">확인</span>
 			                            </button>

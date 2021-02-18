@@ -1,6 +1,7 @@
 package com.project.fd.admin.faq.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminFaqService {
 	
@@ -18,5 +19,7 @@ public interface AdminFaqService {
 	int updateFaq(AdminFaqVO faqVo);
 	
 	int deleteFaq(int no);
+	
+	List<Map<String, Object>> chkFCategory(int no);
 	
 }

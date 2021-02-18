@@ -71,5 +71,10 @@ public class AdminChartServiceImpl implements AdminChartService{
 	public List<Map<String, Object>> selectGProduct5() {
 		return chartDao.selectGProduct5();
 	}
+
+	@Override
+	public List<Map<String, Object>> selectCurOrder2() {
+		return chartDao.selectCurOrder2();
+	}
 	
 }

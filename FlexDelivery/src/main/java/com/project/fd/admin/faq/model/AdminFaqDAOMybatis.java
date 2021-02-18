@@ -1,6 +1,7 @@
 package com.project.fd.admin.faq.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,12 @@ public class AdminFaqDAOMybatis implements AdminFaqDAO{
 	@Override
 	public List<AdminFaqAllViewVO> selectFor2(int categoryNo) {
 		List<AdminFaqAllViewVO> list=sqlSession.selectList(namespace+"selectFor2", categoryNo);
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> chkFCategory(int no) {
+		List<Map<String, Object>> list=sqlSession.selectList(namespace+"chkFCategory", no);
 		return list;
 	}
 }

@@ -10,18 +10,28 @@
 <script type="text/javascript">
 	$(function () {
 		$('#approvalAgree').click(function () {
-			alert("등록하시겠습니까?");
+			alert("가입 등록하시겠습니까?");
 			location.href = '<c:url value="/admin/menu2/approvalAgree.do?no=${vo.storeNo}" />';
 			event.preventDefault();
 		});
 		
 		$('#approvalDeny').click(function () {
-			alert("반려하시겠습니까?");
+			alert("가입 반려하시겠습니까?");
 			location.href = '<c:url value="/admin/menu2/approvalDeny.do?no=${vo.storeNo}" />';
 			event.preventDefault();
 		});
-			
-	
+		
+		$('#outAgree').click(function () {
+			alert("탈퇴 등록하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/outAgree.do?no=${vo.storeNo}" />';
+			event.preventDefault();
+		});
+		
+		$('#outDeny').click(function () {
+			alert("탈퇴 반려하시겠습니까?");
+			location.href = '<c:url value="/admin/menu2/outDeny.do?no=${vo.storeNo}" />';
+			event.preventDefault();
+		});
 	});
 </script>
 <!-- main start -->
@@ -130,8 +140,12 @@
                                     <!-- 요청사항 끝 -->
                                     <div class="col-12 d-flex justify-content-end">
                                     	<c:if test="${vo.aAgreeNo == 1}">
-                                        	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">승인</button>
-                                        	<button id="approvalDeny"  class="btn btn-danger mr-1 mb-1">반려</button>
+                                        	<button id="approvalAgree"  class="btn btn-primary mr-1 mb-1">가입승인</button>
+                                        	<button id="approvalDeny"  class="btn btn-danger mr-1 mb-1">가입반려</button>
+                                        </c:if>
+                                        <c:if test="${vo.aAgreeNo == 8}">
+                                        	<button id="outAgree"  class="btn btn-primary mr-1 mb-1">탈퇴승인</button>
+                                        	<button id="outDeny"  class="btn btn-danger mr-1 mb-1">탈퇴반려</button>
                                         </c:if>
                                     </div>
                                 </div>

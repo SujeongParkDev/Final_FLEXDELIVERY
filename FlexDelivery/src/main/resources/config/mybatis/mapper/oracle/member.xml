@@ -53,7 +53,7 @@
 	
 	<update id="updateMember" parameterType="memberVo">
 		update member
-		set member_Zipcode=#{memberZipcode}, member_Address=#{memberAddress}, member_Address_Detail=#{memberAddressDetail},
+		set member_pwd=#{memberPwd} ,member_Zipcode=#{memberZipcode}, member_Address=#{memberAddress}, member_Address_Detail=#{memberAddressDetail},
 			member_Hp1=#{memberHp1},member_Hp2=#{memberHp2}, member_Hp3=#{memberHp3},member_Email1=#{memberEmail1}, member_Email2=#{memberEmail2}, location_No=#{locationNo}
 		where member_Id=#{memberId}
 	</update>
@@ -64,7 +64,7 @@
 	
 	<update id="rupdateMember" parameterType="memberVo">
 		update member
-		set member_Zipcode=#{memberZipcode}, member_Address=#{memberAddress}, member_Address_Detail=#{memberAddressDetail},
+		set member_pwd=#{memberPwd} ,member_Zipcode=#{memberZipcode}, member_Address=#{memberAddress}, member_Address_Detail=#{memberAddressDetail},
 			member_Hp1=#{memberHp1},member_Hp2=#{memberHp2}, member_Hp3=#{memberHp3},member_Email1=#{memberEmail1}, member_Email2=#{memberEmail2}
 		where member_Id=#{memberId}
 	</update>

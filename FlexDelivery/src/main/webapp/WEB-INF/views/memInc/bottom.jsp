@@ -61,41 +61,39 @@
                         <ul class="list-unstyled hov_footer">
                             <li> <a href="${pageContext.request.contextPath}/member/index.do" class="text-muted">Home</a></li>
                             <c:if test="${empty sessionScope.memberId}">
-                            	<li> <a href="${pageContext.request.contextPath}/member/login/login.do" class="text-muted">Flex-ON</a></li>
-                            	<li> <a href="${pageContext.request.contextPath}/member/register.do" class="text-muted">Flex-Register</a></li>
+                            	<li> <a href="${pageContext.request.contextPath}/member/login/memberLogin.do" class="text-muted">Flex-ON</a></li>
+                            	<li> <a href="${pageContext.request.contextPath}/member/register/register.do" class="text-muted">Flex-Register</a></li>
                             </c:if>
                             <c:if test="${!empty sessionScope.memberId}">
                             	<li> <a href="${pageContext.request.contextPath}/member/login/logout.do" class="text-muted">Flex-OUT</a></li>
+                            	<li> <a href="${pageContext.request.contextPath}/member/register/memberEdit.do" class="text-muted">회원정보수정</a></li>
                             </c:if>
                         </ul>
                     </aside>
-                    <c:if test="${!empty sessionScope.memberId}">
-	                    <aside class="col-sm-3 col-md-2 text-white">
-	                        <h6 class="title"><a href="${pageContext.request.contextPath}/member/mypage/main.do" class="text-muted">MyFlex</a></h6>
-	                        <ul class="list-unstyled hov_footer">
-	                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myCoupon.do" class="text-muted">내 쿠폰함</a></li>
-	                            <li> <a href="${pageContext.request.contextPath}/member/gift/myGift.do" class="text-muted">내 선물</a></li>
-	                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do" class="text-muted">찜한가게</a></li>
-	                            <li> <a href="${pageContext.request.contextPath}/member/review/myReview.do" class="text-muted">내 리뷰</a></li>
-	                        </ul>
-	                    </aside>
-                    </c:if>
-                    <aside class="col-sm-3  col-md-2 text-white">
-                        <h6 class="title">For users</h6>
+                    <aside class="col-sm-3 col-md-2 text-white">
+                        <h6 class="title"><a href="${pageContext.request.contextPath}/member/mypage/main.do" class="text-muted">MyFlex</a></h6>
                         <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/login.html" class="text-muted"> User Login </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/signup.html" class="text-muted"> User register </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/forgot_password.html" class="text-muted"> Forgot Password </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/profile.html" class="text-muted"> Account Setting </a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myCoupon.do" class="text-muted">내 쿠폰함</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/gift/myGift.do" class="text-muted">내 선물</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/mypage/myLikeStore.do" class="text-muted">찜한가게</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/review/myReview.do" class="text-muted">내 리뷰</a></li>
                         </ul>
                     </aside>
                     <aside class="col-sm-3  col-md-2 text-white">
-                        <h6 class="title">More Pages</h6>
+                        <h6 class="title">Order</h6>
                         <ul class="list-unstyled hov_footer">
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/trending.html" class="text-muted"> Trending </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/most_popular.html" class="text-muted"> Most popular </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/restaurant.html" class="text-muted"> Restaurant Details </a></li>
-                            <li> <a href="${pageContext.request.contextPath}/resources/memberResources/favorites.html" class="text-muted"> Favorites </a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/order/orderList.do" class="text-muted"> 주문내역 </a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/cart/cartView.do" class="text-muted"> 장바구니 </a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/today/todayList.do" class="text-muted"> 오늘뭐먹지 </a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-sm-3  col-md-2 text-white">
+                        <h6 class="title">Flex-Activity</h6>
+                        <ul class="list-unstyled hov_footer">
+                            <li> <a href="${pageContext.request.contextPath}/member/board/board.do" class="text-muted">알림광장</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/addOn/addOn.do" class="text-muted">FLEX-OFFERS</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/ask/askList.do" class="text-muted">1:1문의</a></li>
+                            <li> <a href="${pageContext.request.contextPath}/member/faq/faqList.do" class="text-muted">자주묻는질문</a></li>
                         </ul>
                     </aside>
                 </div>

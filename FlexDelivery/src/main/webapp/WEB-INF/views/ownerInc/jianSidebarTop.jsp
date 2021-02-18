@@ -54,6 +54,11 @@
 		});
 	});
 
+	
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
+	
 </script>
 	
 
@@ -210,13 +215,8 @@
 	                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	                    <span class="navbar-toggler-icon"></span>
 	                </button>
-	                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-	                       
-	                        <li class="dropdown nav-icon mr-2" >
-	                             <a href="<c:url value='/owner/index.do'/>" style="width:25%;"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" style="width:100%;" alt="owner" ></a>
-	                        </li>
-	                    </ul>
+	                <div  class="text-right" style="width:100%;">
+	                      <a href="<c:url value='/owner/index.do'/>" class="mt-2"><img src="${pageContext.request.contextPath}/resources/imgs/FD.png" style="width:150px; hegith:35px; margin-right:50px;" alt="owner" ></a>
 	                </div>
 	            </nav> 
 

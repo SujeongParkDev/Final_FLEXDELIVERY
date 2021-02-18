@@ -36,6 +36,11 @@
 			location.href="<c:url value='/owner/withdraw.do'/>";
 		}
 	};
+	
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
+	
 
 </script>
 

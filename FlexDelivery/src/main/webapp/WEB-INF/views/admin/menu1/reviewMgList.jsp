@@ -62,7 +62,7 @@
 								</td>
 								<td>
 									<a href="<c:url value='/admin/menu1/reviewMgDetail.do?no=${vo.reviewNo}'/>" >
-									<p>${vo.reviewRegdate}</p></a>
+									<p><fmt:formatDate value="${vo.reviewRegdate}" pattern="yyyy년 MM월 dd일"/></p></a>
 								</td>
 								<td>
 									<a href="<c:url value='/admin/menu1/reviewMgDetail.do?no=${vo.reviewNo}'/>" >
@@ -70,7 +70,7 @@
 								</td>
 								<td>
 									<a href="<c:url value='/admin/menu1/reviewMgDetail.do?no=${vo.reviewNo}'/>" >
-									<p><fmt:formatDate value="${vo.reviewRegdate}" pattern="yyyy년 MM월 dd일"/></p></a>
+									<p><fmt:formatDate value="${vo.reportDate}" pattern="yyyy년 MM월 dd일"/></p></a>
 								</td>
 								<td>
 									<c:if test="${vo.reviewDelFlag == 'N'}">

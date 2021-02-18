@@ -28,7 +28,7 @@
 			}else if(!validate_phone($('#memberHp1').val()) ||
 					!validate_phone($('#memberHp2').val()) ||
 					!validate_phone($('#memberHp3').val())){
-				alert('전화번호는 숫자만 가능합니다.');
+				alert('전화번호는 숫자만 가능합니다. 번호를 입력해주세요');
 				$('#memberHp1').focus();
 				event.preventDefault();
 			}else if ($('#memberHp1').val().length<3 ||
@@ -38,6 +38,22 @@
 					$('#memberHp1').focus();
 					event.preventDefault();
 			
+			}else if ($('#memberEmail1').val().length<1 ||
+					 $('#memberEmail2').val().length<1) {
+					 alert('이메일을 입력해주세요.');
+					$('#memberEmail1').focus();
+					event.preventDefault();
+			
+			}else if ($('#memberAddress').val().length<1) {
+				 	alert('주소를 입력해주세요.');
+					$('#memberAddress').focus();
+					event.preventDefault();
+					
+			}else if ($('#memberAddressDetail').val().length<1) {
+			 	alert('상세주소를 입력해주세요.');
+				$('#memberAddressDetail').focus();
+				event.preventDefault();
+				
 			}else if($('#chkId').val() !='Y'){
 				alert('아이디 중복확인하세요');
 				$('#btnChkId').focus();
@@ -70,7 +86,7 @@
 						$('#chkId').val(chkYn);
 					},
 					error:function(xhr, status, error){
-						alert('error! : '  +error);
+						alert('error! : '+error);
 					}
 				});
 			}else{
@@ -108,7 +124,7 @@
             <source src="<c:url value='/resources/memberResources/img/bg.mp4' />" type="video/ogg">
          </video>
         <div class="d-flex align-items-center justify-content-center flex-column vh-110">
-            <div class="px-6 col-md-6 ml-auto">
+            <div class="px-6">
                 <div class="px-5 col-10 mx-auto">
                     <!-- <p class="text-50">Sign up to continue</p> -->
                     <form class="mt-5 mb-4" method="post" action="<c:url value='/member/memberWrite.do'/>">
@@ -148,11 +164,10 @@
 							<div class="col-md-5" >
 								<input type="text"  placeholder="이메일 입력" class="form-control" id="memberEmail1" name="memberEmail1" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
-							<p>@</p>
+							<p style="margin: 0rem;">@</p>
 							<div class="col-md-5">
 								<input type="text" placeholder="이메일 입력" class="form-control" id="memberEmail2" name="memberEmail2" aria-describedby="numberHelp" style="background-color: #fafaf9;">
 							</div>
-							<input type="Button" value="이메일 확인" id="btnEmail" title="새창열림">
 						</div>
 						<br>
 						<div class="row">

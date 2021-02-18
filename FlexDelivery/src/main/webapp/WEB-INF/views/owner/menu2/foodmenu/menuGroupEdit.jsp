@@ -27,6 +27,10 @@
 
     
 	<script type="text/javascript">
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
+	
 		var type="1";
 		var YorN = ${YorN};
 		if(type==YorN){
@@ -67,7 +71,7 @@
 		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-center">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuGroupEdit" value="수정">
+		                        <input type="submit" class="btn btn-outline-dark mr-1 mb-1" id="btMenuGroupEdit" value="수정">
 		                    </div>
 		                    </div>
 		                </form>

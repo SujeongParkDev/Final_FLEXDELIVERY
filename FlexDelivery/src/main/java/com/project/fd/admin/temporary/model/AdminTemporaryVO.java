@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 public class AdminTemporaryVO {
 	private int tNo;// number not null, /* 임시저장번호 */
-	private long storeNo;// number not null, /* 점포번호 */
+	private int storeNo;// number not null, /* 점포번호 */
 	private String tStoresName;// varchar2(150) not null, /* 변경점포명 */
 	private String tStoresAddress;// varchar2(300) not null, /* 변경점포주소 */
 	private String tStoresAddressDetail;// varchar2(200) not null, /* 변경점포상세주소 */
 	private int locationNo;// number not null, /* 지역코드번호 */
-	private int oRegisterNo;// number not null, /* 사업자등록번호 */
+	private long oRegisterNo;// number not null, /* 사업자등록번호 */
 	private String tFilename;// varchar2(200) not null, /* 변경사업자등록증파일이름 */
 	private String tOriginalFilename;// varchar2(200) not null, /* 변경사업자등록증원본파일이름 */
 	private int ownerNo; //number not null, /* 점주번호 */
@@ -21,17 +21,16 @@ public class AdminTemporaryVO {
 	private Timestamp tRegdate;// date default sysdate not null, /* 변경신청일 */
 	private Timestamp tSubmitdate;// date, /* 변경승인일 */
 	private int aAgreeNo;// number default 1 not null /* 관리자승인번호 */
-	
 	public int gettNo() {
 		return tNo;
 	}
 	public void settNo(int tNo) {
 		this.tNo = tNo;
 	}
-	public long getStoreNo() {
+	public int getStoreNo() {
 		return storeNo;
 	}
-	public void setStoreNo(long storeNo) {
+	public void setStoreNo(int storeNo) {
 		this.storeNo = storeNo;
 	}
 	public String gettStoresName() {
@@ -58,10 +57,10 @@ public class AdminTemporaryVO {
 	public void setLocationNo(int locationNo) {
 		this.locationNo = locationNo;
 	}
-	public int getoRegisterNo() {
+	public long getoRegisterNo() {
 		return oRegisterNo;
 	}
-	public void setoRegisterNo(int oRegisterNo) {
+	public void setoRegisterNo(long oRegisterNo) {
 		this.oRegisterNo = oRegisterNo;
 	}
 	public String gettFilename() {

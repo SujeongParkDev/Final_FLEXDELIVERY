@@ -100,7 +100,7 @@
 							if(map.coList.length>0){
 								$.each(map.coList,function(idx,coVo){
 									if(coVo.reviewNo==item.reviewNo){
-										str+="<p class='p-3 my-3 bg-primary rounded w-100 text-light'>";
+										str+="<p class='p-3 my-3 bg-secondary rounded w-100 text-light'>";
 						                str+="<span class='badge bg-light text-dark'>사장님</span><span class='small text-light' style='float:right'>&nbsp;&nbsp;"+formatDate(coVo.rCommentRegdate)+"</span><br><br>";
 						                str+=coVo.rCommentContent+"</p>";
 									}
@@ -235,8 +235,8 @@
 					                <c:if test="${!empty coList}">
 					                	<c:forEach var="coVo" items="${coList}">
 										<c:if test="${coVo.reviewNo==vo.reviewNo}">
-							                <p class="p-3 my-3 bg-primary rounded w-100 text-light">
-							                <span class="badge bg-light text-dark">사장님</span><span class="small text-light" style="float:right">&nbsp;&nbsp;${coVo.rCommentRegdate}</span><br><br>
+							                <p class="p-3 my-3 bg-secondary rounded w-100 text-light">
+							                <span class="badge bg-light text-dark">사장님답변</span><span class="small text-light" style="float:right">&nbsp;&nbsp;<fmt:formatDate value="${coVo.rCommentRegdate}" pattern="yyyy-MM-dd"/></span><br><br>
 							                ${coVo.rCommentContent}
 							                </p>	                
 										</c:if>

@@ -23,7 +23,7 @@ public interface OwnerStoresDAO {
 	public int updateTime(Map<String,Object> map);
 	public OwnerStoresVO selectBasic(int ownerNo);
 	public int updateContent(Map<String, Object> map);
-	public int updateLogo(OwnerStoresVO ownerStoresVO);
+	public int updateLogo(OwnerStoresVO ownerStoresVo);
 	
 	public List<Map<String, Object>> selectsStatusAll();
 	

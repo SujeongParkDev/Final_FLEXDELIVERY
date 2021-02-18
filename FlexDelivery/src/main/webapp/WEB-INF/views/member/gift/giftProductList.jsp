@@ -33,7 +33,7 @@
 						str+="<div class='list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm'>";
 						str+="<div class='list-card-image'>";
 						str+="<div class='member-plan position-absolute'><span class='badge badge-success'>"+map.list[i].gCategoryName+"</span></div>";
-						str+="<a href='#' data-toggle='modal' data-target='#giftModal' onclick='modalOn("+map.list[i].gProductNo+")'><img alt='#' src='<c:url value='/resources/imgs/GiftProductImages/"+map.list[i].gProductFilename+"'/>' class='img-fluid item-img w-100'></a></div>";
+						str+="<a href='#' data-toggle='modal' data-target='#giftModal' onclick='modalOn("+map.list[i].gProductNo+")'><img alt='#' style='height:200px' src='<c:url value='/resources/imgs/GiftProductImages/"+map.list[i].gProductFilename+"'/>' class='img-fluid item-img w-100'></a></div>";
 						str+="<div class='p-3 position-relative'>";
 						str+="<div class='list-card-body'>";
 						str+="<span class='h5 mb-2 text-end'>"+map.list[i].gProductName+"</span></div>";
@@ -69,7 +69,7 @@
 		            <div class="list-card-image">
 		                <div class="member-plan position-absolute"><span class="badge badge-success">${vo.gCategoryName}</span></div>
 		                <a href="#" data-toggle="modal" data-target="#giftModal" onclick="modalOn(${vo.gProductNo})">
-		                    <img alt="#" src="<c:url value='/resources/imgs/GiftProductImages/${vo.gProductFilename}'/>" class="img-fluid item-img w-100">
+		                    <img alt="#" src="<c:url value='/resources/imgs/GiftProductImages/${vo.gProductFilename}'/>" class="img-fluid item-img w-100" style="height:200px">
 		                </a>
 		            </div>
 		            <div class="p-3 position-relative">

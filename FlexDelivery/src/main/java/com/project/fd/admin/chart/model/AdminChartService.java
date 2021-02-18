@@ -11,6 +11,8 @@ public interface AdminChartService {
 	List<Map<String, Object>> selectStoreCoupon();
 	List<Map<String, Object>> selectRCoupon();
 	List<Map<String, Object>> selectCurOrder();
+	List<Map<String, Object>> selectCurOrder2();
+
 	List<Map<String, Object>> selectCurLCategory();
 	List<Map<String, Object>> selectGCategory();
 	List<Map<String, Object>> selectGPrice();

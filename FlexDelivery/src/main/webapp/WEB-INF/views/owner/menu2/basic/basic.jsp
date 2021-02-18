@@ -33,7 +33,22 @@
 		});
 	});
 	
-	
+	$(function(){
+		   $('#upfile').on('change', function(){
+		       readInputFile(this);
+		   });
+		});
+		
+		
+		function readInputFile(input) {
+		    if(input.files && input.files[0]) {
+		        var reader = new FileReader();
+		       reader.onload = function (e) {
+		            $('#preview').html("<img src="+ e.target.result +"  style='width:90%; margin-left:20px;' >");
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }  
+		} 
 
 </script>  
 
@@ -84,15 +99,15 @@
 								<h5 class="form-label">로고</h5>
 								<div class="card-columns ">
 									<div class="mr-2 mb-2 shop-logo">
-										<img alt="" src="<c:url value='/resources/imgs/ReviewImages/${vo.storeLogo}'/>">
+										<img alt="" src="<c:url value='/resources/imgs/StoresImages/${vo.storeLogo}'/>">
 									</div>
 									<div class="box-wrapper flex-1 small">
 										로고 변경은
 										<button type="button" class="button p-0 text text" id="open">
-											로고변경요청</button>
+											가게로고변경</button>
 										에서 하실 수 있습니다.
 										<ul class="bullet-ul small muted">
-											<li>영업일 기준 최대 5일 이내 처리됩니다.</li>
+											<li>변경 즉시 FLEX DELIVERY에 반영됩니다.</li>
 										</ul>
 									</div>
 								</div>
@@ -217,21 +232,23 @@
 							<!-- <input type="file" id="upfile" multiple="" accept=".jpg, .jpeg, .png, .pdf, .zip" 
 							style="position: absolute; left: -1000px; visibility: hidden;"> -->
 								<span>
+								
 								<button type="button" class="button uploader-btn  small text">
+								<div id="preview" class="text-center">
 								<label for="upfile" style="cursor: pointer;" color= "#1a7cff">
 									<i class="icon icon-plus"></i>
-									<div>이미지 </div></label></button>
+									<div>이미지 </div></label>
+									</div></button>
 									<input type="file" id="upfile" name="upfile" class="btn text-right" 
  									accept=".gif, .jpg, .png" style="visibility: hidden;">
 									</span></span>
 						</div>
 						<ul class="bullet-ul small muted">
                              <br><span style="margin-left:60px;"></span> 
-							<li>15MB 이하, JPG, PNG, ZIP, PDF 형식의 파일만 등록할 수 있습니다. (최대 5개까지
-								첨부가능)</li>
+							<li>15MB 이하, JPG, PNG, ZIP, PDF 형식의 파일만 등록할 수 있습니다.</li>
 						</ul>
 					</div>
-						
+					
 				</div>
 			</div>
 			<div class="footer">

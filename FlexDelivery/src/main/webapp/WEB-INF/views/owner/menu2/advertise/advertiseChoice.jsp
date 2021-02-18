@@ -65,7 +65,7 @@
 						             
 						           </p>
 						           <div class="text-right">
-						         	  <button class="btn btn-primary block" id="btFlexAD" value="${vo.advertiseNo}" name="btFlexAD">선택</button>
+						         	  <button class="btn btn-primary block" id="btFlexAD" value="${vo.advertiseNo}" name="btFlexAD" style="color:black; background-color:#fcbe32; border: none; ">선택</button>
 						           </div>
 						       </div>
 						   </div>

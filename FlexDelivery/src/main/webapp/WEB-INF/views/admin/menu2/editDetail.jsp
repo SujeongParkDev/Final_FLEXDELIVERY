@@ -9,9 +9,9 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ownerResources/assets/images/favicon.svg" type="image/x-icon">
 <script type="text/javascript">
 	$(function () {
-		$('#editFrm').submit(function () {
+		$('#editAgree').click(function () {
 			alert("등록하시겠습니까?");
-			return;
+			location.href = '<c:url value="/admin/menu2/editAgree.do?no=${temporaryVo.tNo}" />';
 			event.preventDefault();
 		});
 		
@@ -50,12 +50,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >변경 요청 내역</h4>
-                        <h4 class="card-title" ><p>[접수번호 : ${temporaryVo.tNo }, &nbsp &nbsp &nbsp 최종처리일자: 
+                        <h4 class="card-title" ><p>[변경접수번호 : ${temporaryVo.tNo }, &nbsp &nbsp &nbsp 최종처리일자: 
                         	<fmt:formatDate value="${temporaryVo.tRegdate}" pattern="yyyy년 MM월 dd일"/> ]</p></h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form id="editFrm" name="editFrm" class="form" action="<c:url value='/admin/menu2/editAgree.do'/>" >
+                            <form id="editFrm" name="editFrm" class="form" method="post" action="<c:url value='/admin/menu2/editAgree.do'/>" >
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -145,8 +145,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" >기존 등록 내역</h4>
-                        <h4 class="card-title" >[접수번호 : ${storeVo.storeNo}, 
-                        	접수일자 : ${storeVo.storeRegdate}]</h4>
+                        <h4 class="card-title" ><p>[등록접수번호 : ${storeVo.storeNo},&nbsp &nbsp &nbsp 
+                        	접수일자 : ${fn:substring(storeVo.storeRegdate,0,4)}년 ${fn:substring(storeVo.storeRegdate,5,7)}월 
+                        				${fn:substring(storeVo.storeRegdate,8,10)}일]</p></h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">

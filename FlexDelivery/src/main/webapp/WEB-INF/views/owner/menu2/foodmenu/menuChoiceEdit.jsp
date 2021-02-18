@@ -32,6 +32,9 @@
 	<!-- 클릭시 비밀번호 유효성 검사 및 페이지 이동 -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script type="text/javascript">
+	$(function(){
+		$('input').attr("autocomplete","off");
+	});
 	
 	
 	  $(document).ready(function(){
@@ -257,8 +260,8 @@
 		                      </div>
 		                    </div>
 		                    <div class="col-12 d-flex justify-content-end">
-		                        <input type="submit" class="btn btn-primary mr-1 mb-1" id="btMenuChoiceEdit" value="수정">
-		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()">취소</button>
+		                        <input type="submit" class="btn btn-outline-dark mr-1 mb-1" id="btMenuChoiceEdit" value="수정">
+		                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1" onclick="self.close()" style=" background-color:#f1f3f5; color:#333; border: none;">취소</button>
 		                    </div>
 		                    </div>
 		                </form>
