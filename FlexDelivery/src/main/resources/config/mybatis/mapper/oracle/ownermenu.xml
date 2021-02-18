@@ -23,7 +23,7 @@
 					select * from jaMenuAllView
 				<![CDATA[
 					where store_no=#{storeNo} and a_agree_no=3 
-					order by S_M_GROUP_No , MENU_NO
+					order by S_M_GROUP_No , MENU_NAME
 			  	]]>
 			   )A
 		)
@@ -206,15 +206,15 @@
 	
 	
 	
-	<select id="checkDupGroupName" parameterType="string" resultType="int">
+	<select id="checkDupGroupName" parameterType="map" resultType="int">
 		select count(*) from storeMenuGroup
-		where S_M_GROUP_NAME=#{sMGroupName}
+		where S_M_GROUP_NAME=#{sMGroupName} and store_no=#{storeNo}
 	</select>
 	
 	
 	<select id="checkDupMenuName" parameterType="map" resultType="int">
 		select count(*) from menu
-		where menu_name=#{menuName} and s_M_Group_No =#{sMGroupNo}
+		where menu_name=#{menuName} and s_M_Group_No =#{sMGroupNo} and store_no=#{storeNo}
 	</select>
 	
 	<select id="selectOptionAllByMenuNo" parameterType="map" resultType="ownerMenuOptionVo">

@@ -166,7 +166,7 @@ public class OwnerMyPageController {
 			e.printStackTrace();
 		}
 		
-		if(fileName==null) {
+		if(fileName==null || fileName.isEmpty()) {
 			String oldFileName = temporaryVo.gettOriginalFileName();
 			temporaryVo.settFileName(oldFileName);
 		}else {
@@ -177,7 +177,7 @@ public class OwnerMyPageController {
 		logger.info("임시저장함 저장 결과 cnt={}",cnt);
 		String msg="변경에 실패하였습니다", url="/owner/index.do";
 		if(cnt>0) {
-			msg="변경에 성공하셨습니다.";
+			msg="변경 신청 되었습니다.";
 			url="/owner/mypage/mypageMain.do";
 		}else {
 			if(cnt==-2) {

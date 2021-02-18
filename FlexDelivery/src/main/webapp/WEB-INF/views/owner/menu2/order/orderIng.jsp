@@ -106,6 +106,7 @@ $(function(){
       
 });
 
+
 function goDetail(ordersNo,ordersDiscount){
 	$.ajax({
 		url:"<c:url value='/owner/menu2/order/orderRequestResult.do'/>",
@@ -142,14 +143,14 @@ function goDetail(ordersNo,ordersDiscount){
             			if(item['M_OPTION_NO']==0){
             				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
             				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+(item['O_DETAIL_QTY']*item['MENU_PRICE'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br><hr></td>";
+            				str+="<tr><td><span class='ml-3'>＊ 기본 ("+item['MENU_PRICE']+"원)</span><br><hr></td>";
             				price+=(item['O_DETAIL_QTY']*item['MENU_PRICE']);
             			}else{
             				
             				str+="<tr><td><span style='float:left; font-size:15px;' class='ml-3'><b>"+item['MENU_NAME']+"&nbsp;&nbsp;"+item['O_DETAIL_QTY']+"개</b></span>";
             				str+="<span style='float:right; font-size:15px;' class='mr-4'><b>"+((item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'])+" 원</b></span></td>"
-            				str+="<tr><td><span class='ml-3'>＊ 기본 "+item['MENU_PRICE']+"원</span><br>";
-            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" "+item['M_OPTION_PRICE']+"원</span><br><hr></td></tr>";
+            				str+="<tr><td><span class='ml-3'>＊ 기본 ("+item['MENU_PRICE']+"원)</span><br>";
+            				str+="<span class='ml-3'>＊ "+item['M_OPTION_NAME']+" ("+item['M_OPTION_PRICE']+"원)</span><br><hr></td></tr>";
             				
             				price+=(item['MENU_PRICE']+item['M_OPTION_PRICE'])*item['O_DETAIL_QTY'];
             			}

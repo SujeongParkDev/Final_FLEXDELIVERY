@@ -116,8 +116,8 @@ public class OwnerMenuDAOMybatis implements OwnerMenuDAO{
 	}
 	
 	
-	public int checkDupGroupName(String sMGroupName) {
-		return sqlSession.selectOne(namespace+"checkDupGroupName", sMGroupName);
+	public int checkDupGroupName(Map<String, Object> map) {
+		return sqlSession.selectOne(namespace+"checkDupGroupName", map);
 	}
 	
 	public int checkDupMenuName(Map<String, Object> map) {

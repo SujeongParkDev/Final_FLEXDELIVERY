@@ -691,11 +691,15 @@ public class OwnerMenuController {
 		//에이젝스 도전!
 		@ResponseBody  
 		@RequestMapping("/checkDupGroupName.do")
-		public boolean checkDupGroupName(@RequestParam(defaultValue = "0") String sMGroupName) {
+		public boolean checkDupGroupName(@RequestParam(defaultValue = "0") String sMGroupName, HttpSession session) {
 		logger.info("ajax이용-checkDupGroupName,sMGroupName={}", sMGroupName);
-		
-		
-			int result = ownerMenuService.checkDupGroupName(sMGroupName);
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("storeNo", storeNo);
+			map.put("sMGroupName",sMGroupName);
+			int result = ownerMenuService.checkDupGroupName(map);
 			logger.info("그룹 이름 중복 확인 결과 result={}", result);
 			boolean bool = false;
 			
@@ -712,13 +716,17 @@ public class OwnerMenuController {
 		@ResponseBody  
 		@RequestMapping("/checkDupMenuName.do")
 		public boolean checkDupMenuName(@RequestParam(defaultValue = "0") String menuName,
-				@RequestParam(defaultValue = "0") int sMGroupNo) {
+				@RequestParam(defaultValue = "0") int sMGroupNo , HttpSession session) {
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
 		logger.info("ajax이용-checkDupMenuName,   menuName={}, sMGroupNo={}", menuName, sMGroupNo);
 		
 			
 			Map<String, Object> map = new HashedMap<String, Object>();
 			map.put("menuName", menuName);
 			map.put("sMGroupNo", sMGroupNo);
+			map.put("storeNo", storeNo);
 			
 			int result = ownerMenuService.checkDupMenuName(map);
 			logger.info("메뉴 이름 중복 확인 결과 result={}", result);
