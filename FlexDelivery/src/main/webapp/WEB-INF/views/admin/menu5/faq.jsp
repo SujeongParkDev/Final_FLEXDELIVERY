@@ -14,6 +14,8 @@
 		
 		$('#modalEditBt1').hide();
 		$('#modalDeleteBt1').hide();
+		
+		$('#chkEditSel').hide();
 	   
 		$('#faqCategoryWrite').on('hidden.bs.modal', function (e) {
 		  $(this).find('form')[0].reset();
@@ -361,6 +363,20 @@
 		});
 	}
 	
+	function chkEdit(){
+		var chk=$('#selectFCategory2').val();
+		var chk2=$('#chkEditSel').html();
+		alert("chk="+chk+", chk2="+chk2);
+		
+		if (chk==0){
+			$('#chkEditSel').html("N");
+		} else {
+			$('#chkEditSel').html("Y");
+			
+		}
+		alert("chk="+chk+", chk2="+chk2);
+	}
+	
 	function chkDu(content){
 		var pattern=new RegExp(/^[ㄱ-ㅎ가-힣]+$/g);
 		return pattern.test(content);
@@ -481,13 +497,13 @@
 	}
 	
 	function faqEdit(){
-		var fCategory=$('#selectFCategory2').val();
+		var fCategory=$('#chkEditSel').html();
 		var faqQ=$('#editFaqQ').val();
 		var faqA=$('#editFaqA').val();
 		
-		//alert("fCategory="+fCategory+", faqQ="+faqQ+", faqA="+faqA);
+		alert("fCategory="+fCategory+", faqQ="+faqQ+", faqA="+faqA);
 		
-		if (fCategory=='0'){
+		if (fCategory=='N'){
 			alert("대분류 카테고리를 선택해주세요!");
 			//event.preventDeafult();
 			return false;
@@ -780,12 +796,13 @@
 		                                                   	  	<input type="hidden" name="faqNo" value="${vo.faqNo }">
 		                                                   	  	<td>카테고리 종류</td>
 			                                                      <td colspan="2"  style="text-align: center;">
-			                                                      	<select name="fCategoryNo" id="selectFCategory2">
+			                                                      	<select name="fCategoryNo" id="selectFCategory">
 		                                                      			<option value="0">선택하세요</option>
 			                                                      		<c:forEach var="cVo2" items="${ctList }">
-			                                                      			<option value="${cVo2.fCategoryNo }">${cVo2.fCategoryName }</option>
+			                                                      			<option value="${cVo2.fCategoryNo }" title="${cVo2.authorityNo }">${cVo2.fCategoryName }</option>
 			                                                      		</c:forEach>
 			                                                      	</select>
+			                                                      	<span id="chkEditSel"></span>
 			                                                      </td>			                                                   	  	
 															  </tr>
 		                                                   	  <tr>
@@ -812,7 +829,7 @@
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
 			                                    <button type="button" class="btn btn-dark ml-1" name="modalEdit"
-			                                     id="btModalEdit" onclick="faqEdit()">
+			                                     id="btModalEdit" onclick="form.submit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">수정</span>
 			                                    </button>

@@ -379,7 +379,7 @@ public class AdminBoardController {
 			List<Map<String, Object>> fileList
 			=fileUtil.fileUplaod(request, FileUploadUtil.NOTICE_EVENT_TYPE);
 			len=fileList.size();
-			logger.info("fileList.size="+fileList.size());
+			logger.info("fileList.size={}"+fileList.size());
 			if (len==1) {
 				logger.info("새로운 첨부파일 있음!");
 				for(Map<String, Object> map : fileList) {

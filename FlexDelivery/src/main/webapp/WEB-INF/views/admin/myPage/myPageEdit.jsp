@@ -30,7 +30,7 @@ $(function(){
 		var ok1=$('#pwd1Ok').html();
 		var ok2=$('#pwd2Ok').html();
 		var ok3=$('#nameOk').html();
-		alert (ok1+"/"+ok2+"/"+ok3);
+		//alert (ok1+"/"+ok2+"/"+ok3);
 		
 		if (!(ok1=="Y" && ok2=="Y" && ok3=="Y")){
 			alert("정보 수정 실패!");

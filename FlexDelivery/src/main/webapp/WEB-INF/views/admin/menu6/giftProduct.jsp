@@ -35,7 +35,7 @@ $(function(){
 	 $('#upfile').on('change', function(){
 	       readInputFile(this);
 	   });
-	 
+
 	 listForAll();
 	 
 	 $.ajax({
@@ -78,15 +78,23 @@ function chkDu(content){
 }
 
 function readyWriteSubmit(){
-	writeFunc();
+	writeFunc();	//이름 중복검사
+	var img=$('#upfile').val();	//이미지 파일 첨부 여부 검사
+	var sel=$('#writeSelect').val();//셀렉트 체크 여부 검사
 	var ok=$('#messageOk').html();
-	alert("html:"+ok);
+	//alert("html:"+ok+", sel:"+sel);
 	
-	if(ok=="Y"){
+	if(ok=="Y" && img!='' && sel!='0'){
 		console.log("폼 전송 성공!");
 		$('form[name=frmGiftProductWrite]').submit();
+	}else if (img=='') {
+		alert("이미지를 첨부하세요!(필수)");
+		event.preventDefault();
+	}else if (sel=='0'){
+		alert("선물 카테고리를 선택해주세요!");
+		event.preventDefault();
 	}else if(ok=="N"){
-		alert("등록 실패!");
+		alert("올바른 상품 이름을 입력해주세요!");
 		event.preventDefault;
 		//return false;
 	} else {
@@ -94,6 +102,38 @@ function readyWriteSubmit(){
 		event.preventDefault();
 	}
 }
+
+/*function readyEditSubmit(){
+	
+	var img=$('form[name=frmGiftProductEdit]').find('#upfile').val();	//이미지 파일 첨부 여부 검사
+	var select=$('#gCategoryNoEdit').val();//셀렉트 체크 여부 검사
+	var name=$('#gNameEdit').val();
+	//alert("img:"+img+", name:"+name+", select:"+sel);
+	console.log("img:"+img+", name:"+name+", select:"+select);
+	
+	if(img=='' && name!=''){
+		var bool=confirm("기존 이미지를 사용하시겠습니까?");
+		if (bool){
+			console.log("폼 전송 성공!");
+			$('form[name=frmGiftProductEdit]').submit();			
+		} else {
+			event.preventDefault();
+		}
+
+	/* else if (select=='0'){
+		alert("선물 카테고리를 선택해주세요!");
+		event.preventDefault();
+	} 
+	else if(name==''){
+		alert("상품 이름을 입력해주세요!");
+		event.preventDefault;
+		//return false;
+	} else {
+		alert("error!");
+		event.preventDefault();
+	}
+	
+}*/
 
 function writeFunc(){
 	  var name=$('#gProductName').val();
@@ -202,6 +242,7 @@ function listForAll() {
 					str+="<button type='button' class='round btn btn-danger' data-toggle='modal' data-backdrop='false' ";
 					str+="data-target='#giftProductDelete"+gvo.gProductNo+"' id='modalDeleteBt'"+gvo.gProductNo+"'>삭제</button>";
 					str+="</div></div></div></div>";
+					
 				})
 				str+="";
 			}
@@ -256,9 +297,9 @@ function listForCategory(no){
 					} else if (gvo.gCategoryNo==7) {
 						str+="<span class='badge' style='background-color: #F25CA2;'>"+gvo.gCategoryName+"</span>";						
 					} else if (gvo.gCategoryNo==8) {
-						str+="<span class='badge' style='background-color: #008080;'>"+gvo.gCategoryName+"</span>";						
+						str+="<span class='badge' style='background-color: #d185e6;'>"+gvo.gCategoryName+"</span>";						
 					} else if (gvo.gCategoryNo==9) {
-						str+="<span class='badge' style='background-color: #AB05F2;'>"+gvo.gCategoryName+"</span>";						
+						str+="<span class='badge' style='background-color: #5af2d1;'>"+gvo.gCategoryName+"</span>";						
 					} else if (gvo.gCategoryNo==10) {
 						str+="<span class='badge bg-primary'>"+gvo.gCategoryName+"</span>";						
 					} else {
@@ -320,7 +361,7 @@ function listForCategory(no){
 													<tbody>
 														<tr>
 	                                                      <td colspan="3"  style="text-align: center;">
-	                                                         <div id="preview"><img src="#" id="previewImg"/></div>
+	                                                         <div id="preview"><img src="${pageContext.request.contextPath}/resources/imgs/CommonImages/noImageDefault.png" id="previewImg"/></div>
 	                                                      </td>
 														</tr>
 														<tr>
@@ -333,7 +374,7 @@ function listForCategory(no){
 														<tr>
 															<td colspan="1">선물 카테고리</td>
 															<td colspan="2">
-																<select name="gCategoryNo">
+																<select name="gCategoryNo" id="writeSelect">
 																	<option value="0">선택하세요</option>
 																	<c:forEach var="cVo" items="${cList }">
 																		<option value="${cVo.gCategoryNo }">${cVo.gCategoryName }</option>
@@ -361,7 +402,7 @@ function listForCategory(no){
 	                                       <i class="bx bx-x d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">닫기</span>
 	                                    </button>
-	                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
+	                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite" id="modalWrite" onclick="readyWriteSubmit()">
 	                                       <i class="bx bx-check d-block d-sm-none"></i>
 	                                       <span class="d-none d-sm-block">등록</span>
 	                                    </button>
@@ -428,7 +469,7 @@ function listForCategory(no){
                                  role="dialog" aria-labelledby="선물 상품 수정" aria-hidden="true">
                                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
-                           			<form name="frmGiftProductyEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
+                           			<form name="frmGiftProductEdit" method="post" action="<c:url value='/admin/menu6/giftProduct/edit.do' />" enctype="multipart/form-data">
                                           <div class="modal-header" style="background-color: black;">
                                              <h4 class="modal-title" style="color: white;" id="myModalGiftProductEdit">선물 상품 수정</h4>
                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -443,34 +484,34 @@ function listForCategory(no){
                                                       <table class="table mb-0">
                                                          <tbody>
                                                          	<tr>
-                                                 <td colspan="3"  style="text-align: center;">
+				                                                 <td colspan="3"  style="text-align: center;">
                                                                    <input type="hidden" name="gProductNo" value="${vo.gProductNo }" readonly>	 
-                                                    <div id="preview"><img src="#" id="previewImg"/></div>
-                                                 </td>
-											</tr>
-											<tr>
-                                                 <td colspan="3"  style="text-align: center;">
-                                                    <div>
-                                                    	<input type="hidden" name="oldFileName" value="${vo.gProductFilename }">
-                                                       <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
-                                                    </div>
-                                                 </td>
-                                              </tr>
-                                                          <tr>
-								 <td colspan="1">선물 카테고리</td>
-                                                       	 <td colspan="2">
-                                                                  <select name="gCategoryNo" id="gCategoryNo">
-                                                 		<option value="0">선택하세요</option>
-                                                 		<c:forEach var="cVo" items="${cList }">
-											<option value="${cVo.gCategoryNo}" <c:if test="${cVo.gCategoryNo}==${vo.gCategoryNo }"> selected</c:if>>${cVo.gCategoryName }</option>
-										</c:forEach> 
-                                                 	</select>
-								 </td>  
+				                                                    <div id="preview"><img src="${pageContext.request.contextPath}/resources/imgs/GiftProductImages/${vo.gProductFilename}" id="previewImg"/></div>
+				                                                 </td>
+															</tr>
+															<tr>
+				                                                 <td colspan="3"  style="text-align: center;">
+				                                                    <div>
+				                                                    	<input type="hidden" name="oldFileName" value="${vo.gProductFilename }">
+				                                                       <input type="file" id="upfile" name="upfile" class="btn btn-outline-light" accept=".gif, .jpg, .png" />             
+				                                                    </div>
+				                                                 </td>
+				                                              </tr>
+	                                                          <tr>
+																 <td colspan="1">선물 카테고리</td>
+		                                                       	 <td colspan="2">
+	                                                                  <select name="gCategoryNo" id="gCategoryNoEdit">
+				                                                 		<option value="0">선택하세요</option>
+				                                                 		<c:forEach var="cVo" items="${cList }">
+																			<option value="${cVo.gCategoryNo}">${cVo.gCategoryName }</option>
+																		</c:forEach> 
+				                                                 	</select>
+																 </td>  
                                                              </tr>
-							   <tr>
-									 <td colspan="1">상품 이름</td>
-								 	 <td colspan="2"><input type="text" name="gProductName" value="${vo.gProductName }"></td>
-						 	   </tr>          			                                                                    
+															   <tr>
+																 <td colspan="1">상품 이름</td>
+															 	 <td colspan="2"><input type="text" name="gProductName" value="${vo.gProductName }" id="gNameEdit"></td>
+														 	   </tr>          			                                                                    
                                                          </tbody>
                                                       </table>                      
                                                    </div>
@@ -482,7 +523,7 @@ function listForCategory(no){
                                                 <i class="bx bx-x d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">닫기</span>
                                              </button>
-                                             <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalEdit" id="modalEdit" onclick="form.submit()">
+                                             <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="form.submit()">
                                                 <i class="bx bx-check d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">수정</span>
                                              </button>
@@ -491,6 +532,7 @@ function listForCategory(no){
                                     </div>
                                  </div>
                               </div> <!-- #giftProductEdit 수정 모달 -->
+                              
 	         							
 						</c:forEach> 
 					</div><!--row-match-height-->
