@@ -121,7 +121,7 @@
 									<!-- 오늘 총 주문 수--> 
 				                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 										<div id="todayOrder" style="margin-top: 30px; margin-bottom: 30px;">
-											<div class="">
+											<div id="temp1">
 											  <c:forEach var="map" items="${list7 }">
 											 	<h5 style="color: black;font-weight: 600;text-align: center;">총 ${map['COUNTORDERS']} 건</h5>
 										  	  </c:forEach>
@@ -134,7 +134,7 @@
 				                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 										
 										<div id="todayTotal" style="margin-top: 30px; margin-bottom: 30px;">
-											<div class="">
+											<div id="temp2">
 											  <c:forEach var="map" items="${list7 }">
 											  	<h5 style="color: black;font-weight: 600;">총 ${map['SUMPRICE']} 원</h5>
 										  	  </c:forEach>									
@@ -152,7 +152,7 @@
 									<!-- 오늘 총 주문 수--> 
 				                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 										<div id="monthOrder2" style="margin-top: 30px; margin-bottom: 30px;">
-											<div class="">
+											<div id="temp3">
 											  <c:forEach var="map" items="${list72 }">
 											 	<h5 style="color: black;font-weight: 600;text-align: center;">총 ${map['COUNTORDERS']} 건</h5>
 										  	  </c:forEach>
@@ -165,7 +165,7 @@
 				                    <div class="single-blog-content col-6" style="text-align: left; margin-bottom: 20px;">
 										
 										<div id="monthTotal2" style="margin-top: 30px; margin-bottom: 30px;">
-											<div class="">
+											<div id="temp4">
 											  <c:forEach var="map" items="${list72 }">
 											  	<h5 style="color: black;font-weight: 600;">총 ${map['SUMPRICE']} 원</h5>
 										  	  </c:forEach>									
@@ -243,25 +243,25 @@
 			</div> <!-- card -->
 					
   <script>
-		  	$(function(){
+	  	$(function(){
 
-			  dnt('curMonthJoin', 1);
-			  dnt('curMonthLeave', 2);
-			  dnt('totalOwner', 3);
-			  dnt('totalAd', 4);
-			  
-			  dnt('regularCoupon', 6);
+		  dnt('curMonthJoin', 1);
+		  dnt('curMonthLeave', 2);
+		  dnt('totalOwner', 3);
+		  dnt('totalAd', 4);
+		  
+		  dnt('regularCoupon', 6);
 
-			  //area('curMonthLCategory', 7);
-			  dot('curMonthLCategory2', 77);
-			  
-			  piec('giftCategory', 8);
-			  piec('giftPrice', 9);
-			  
-			  //times('curMonthOrder');
-			  rotate('giftProduct');
-			  
-			  //alert("ready!");
+		  //area('curMonthLCategory', 7);
+		  dot('curMonthLCategory2', 77);
+		  
+		  piec('giftCategory', 8);
+		  piec('giftPrice', 9);
+		  
+		  //times('curMonthOrder');
+		  rotate('giftProduct');
+		  
+		  //alert("ready!");
   	});
 		  	
 
@@ -495,14 +495,14 @@
 			            '점포사장님': '#016F94',
 			            '플렉스한광고': '#3A808A',
 			            '오픈리스트': '#284D5B',
-			            '1000원 할인': '#FF675C',
-			            '1500원 할인': '#FF855C',
-			            '2000원 할인': '#FFA35C',
-			            '2500원 할인': '#FFBF5C',
-			            '3000원 할인': '#FFD45C',
-			            '3500원 할인': '#E88B98',
-			            '4000원 할인': '#A5A6BC',
-			            '5000원 할인': '#93C3CB',
+			            '1000원 할인': '#B4D966',
+			            '1500원 할인': '#59CCD9',
+			            '2000원 할인': '#49A3F2',
+			            '2500원 할인': '#4B94F2',
+			            '3000원 할인': '#6D81F2',
+			            '3500원 할인': '#8890BF',
+			            '4000원 할인': '#636DA6',
+			            '5000원 할인': '#36A0D9',
 			            
 			        },
 				  },
@@ -533,17 +533,19 @@
 				  
 				 if (no==77){
 					  <c:forEach var="map" items="${list9 }">
-						  labels.push("${map['L_CATEGORY_NAME}']}");
+						  labels.push("${map['L_CATEGORY_NAME']}");
 					  	  labelVal.push("${map['ORDERCNT']}");
 				  	  </c:forEach>
 						tooltipTitle="대분류별 주문 수";
 				 }
 			
 				console.log("no="+no);
+				conosole.log("id="+idChk);
 			  	console.log("labels="+labels);
 				console.log("labelVal="+labelVal);
 				
 				var chart = c3.generate({
+					bindto: idChk,
 				    data: {
 				       rows: [
 				            labels,
