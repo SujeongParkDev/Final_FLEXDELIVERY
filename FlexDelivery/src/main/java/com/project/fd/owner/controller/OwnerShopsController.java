@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.fd.common.FileUploadUtil;
+import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
 import com.project.fd.owner.store.model.OwnerStoresService;
 import com.project.fd.owner.store.model.OwnerStoresVO;
 
@@ -34,7 +35,7 @@ public class OwnerShopsController {
 
 	@Autowired private OwnerStoresService ownerStoreService;
 
-	@RequestMapping("/menu2/basic/basic.do")
+	@RequestMapping(value="/menu2/basic/basic.do", method=RequestMethod.GET)
 	public void ownerbasic(HttpSession session, Model model) {
 		
 		int ownerNo = (Integer) session.getAttribute("ownerNo");
@@ -71,11 +72,12 @@ public String updateContent(  @RequestParam(defaultValue = "0") int storeNo,
 	}
 	
 //파일 업로드 처리
-@RequestMapping(value="/basic/basic.do", method=RequestMethod.POST)
+@RequestMapping(value="/menu2/basic/basic.do", method=RequestMethod.POST)
 public String logoRegister(@ModelAttribute OwnerStoresVO ownerStoresVo,
 		 HttpServletRequest request, HttpSession session,
 		 Model model) { 
 	int ownerNo=(Integer)session.getAttribute("ownerNo");
+	int storeNo=(Integer)session.getAttribute("storeNo");
 	String originName="", fileName="";
 	long fileSize=0;
 	try {
@@ -94,11 +96,23 @@ public String logoRegister(@ModelAttribute OwnerStoresVO ownerStoresVo,
 		logger.info("파일 업로드 실패!");
 		e.printStackTrace();
 	}
-
+	ownerStoresVo.setStoreNo(storeNo);
 	ownerStoresVo.setStoreLogo(fileName);
-	logger.info("파일업로드 처리 후 vo={}",ownerStoresVo);
 	
-	return "owner/menu2/basic/basic";
+	logger.info("Logo업로드 처리 후 vo={}",ownerStoresVo);
+	
+	int cnt = ownerStoreService.updateLogo(ownerStoresVo);
+	logger.info("Logo업로드 업데이트 결과 cnt={}", cnt);
+	
+	String msg="Logo 수정 실패", url="/owner/menu2/basic/basic.do";
+	if(cnt>0) { msg="Logo가 수정되었습니다.";
+	url="/owner/menu2/basic/basic.do";
+	}
+	
+	model.addAttribute("msg", msg);
+	model.addAttribute("url", url);
+	
+	return "common/message";
  	}	
 }
 
