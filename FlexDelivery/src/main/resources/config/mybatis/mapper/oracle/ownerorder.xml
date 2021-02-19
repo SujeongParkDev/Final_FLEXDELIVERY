@@ -20,7 +20,7 @@
 				order by orders_date
 			</if>
 			<if test="oStatusNo == 3 || oStatusNo == 4">
-				order by orders_date + (orders_duration/(24*60)) 
+				order by orders_date + (orders_duration/(24*60))
 			</if>
 	</sql>
 <!-- 

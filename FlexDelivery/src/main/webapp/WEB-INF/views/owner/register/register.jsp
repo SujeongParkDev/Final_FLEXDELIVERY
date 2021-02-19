@@ -96,7 +96,7 @@
 		                              break;
 	
 		                          case 1:
-		                              
+		                              alert('자동 가입 방지 체크를 확인해주세요');
 		                              break;
 	
 		                          default:

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/resources/memberResources/js/jquery/member.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/memberResources/js/member.js' />"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#forgotId').click(function(){

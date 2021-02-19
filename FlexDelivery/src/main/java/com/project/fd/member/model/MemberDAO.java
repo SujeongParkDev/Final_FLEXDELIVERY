@@ -17,4 +17,5 @@ public interface MemberDAO {
 	int giftChk(MemberVO vo);
 	int selectMemNo(Map<String, Object> map);
 	int memberOut(String memberId);
+	MemberVO getEmail(String memberId);
 }

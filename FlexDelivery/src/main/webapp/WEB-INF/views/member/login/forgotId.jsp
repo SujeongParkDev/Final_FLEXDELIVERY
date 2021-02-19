@@ -30,7 +30,7 @@
     	            alert('이름을 2글자 이상 입력하세요');
     	            $('#memberName').focus();
     	            event.preventDefault();
-    	         }else if(!validate_name($('#memberName').val())){
+    	         }else if(!validate_membername($('#memberName').val())){
     	            alert('이름은 한글을 입력하세요');
     	            $('#memberName').focus();
     	            event.preventDefault();            

@@ -100,7 +100,7 @@ $(function(){
             
             
          }
-         
+         event.preventDefault();
          
       });
       

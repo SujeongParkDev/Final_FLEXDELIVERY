@@ -540,7 +540,7 @@
 				 }
 			
 				console.log("no="+no);
-				conosole.log("id="+idChk);
+				console.log("id="+idChk);
 			  	console.log("labels="+labels);
 				console.log("labelVal="+labelVal);
 				
