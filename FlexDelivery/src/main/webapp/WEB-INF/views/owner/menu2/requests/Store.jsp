@@ -50,7 +50,7 @@
 						                	<td colspan="4" class="text-center">
 						                	
 						                		<c:if test="${fn:substring(stVo.storeLogo, 0,4)=='http' }">
-											<img src="${stVo.storeLogo}" class="card-img-top"  alt ="${stVo.oRegisterNo}"  style="height:150px;">
+											<img src="${stVo.storeLogo}" class="card-img-top"  alt ="${stVo.storeName}"  style="height:150px;">
 										</c:if>
 										<c:if test="${fn:substring(stVo.storeLogo, 0,4)!='http' and (!empty stVo.storeLogo) }">
 											<img src

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.fd.owner.advertise.model.OwnerStoreAdVO;
 import com.project.fd.owner.ownerregister.model.OwnerRegisterVO;
@@ -83,18 +84,20 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		return result;
 	}
 
+	@Transactional
 	@Override
 	public int selectAgree1(int ownerNo) {
 		int result=0;
-		int store=requestDao.selectAgree1(ownerNo);
-		int register=requestDao.ownerregistercnt1(ownerNo);
-		int temp=requestDao.tempcnt1(ownerNo);
-		int adcnt=requestDao.adcnt1(ownerNo);
+		int store1=requestDao.selectAgree1(ownerNo);
+		int register1=requestDao.ownerregistercnt1(ownerNo);
+		int temp1=requestDao.tempcnt1(ownerNo);
+		int adcnt1=requestDao.adcnt1(ownerNo);
 		
-		result=store+register+temp+adcnt;
+		result=store1+register1+temp1+adcnt1;
 		return result;
 	}
 
+	@Transactional
 	@Override
 	public int selectAgree2(int ownerNo) {
 		int result=0;
@@ -106,6 +109,7 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		return result;
 	}
 
+	@Transactional
 	@Override
 	public int selectAgree3(int ownerNo) {
 		int result=0;
@@ -118,6 +122,7 @@ public class OwnerRequestServiceImpl implements OwnerRequestService{
 		return result;
 	}
 
+	@Transactional
 	@Override
 	public int selectAgree4(int ownerNo) {
 		int result=0;
