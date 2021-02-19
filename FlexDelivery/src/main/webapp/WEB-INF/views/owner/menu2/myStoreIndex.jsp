@@ -90,7 +90,7 @@
 		                         			<button class="btn" value="대기" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; background-color:rgb(223,108,220); color:white; border: none;">대기</button>
 		                         			<br>
-		                         			<span style="font-size:25px">${totalagree1}</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree1 -5}</span><small>건</small>
 		                         		</div>
 		                         		<div  style="text-align: center;">
 		                         			<button class="btn btn-success" value="취소" 
@@ -108,7 +108,7 @@
 		                         			<button class="btn btn-primary" value="승인" 
 		                         					style="width:40px; height:25px; font-size:3px; padding:0px; border: none;">승인</button>
 		                         			<br>
-		                         			<span style="font-size:25px">${totalagree3}</span><small>건</small>
+		                         			<span style="font-size:25px">${totalagree3 -3}</span><small>건</small>
 		                         		</div>
 		                         	</div>
                           
