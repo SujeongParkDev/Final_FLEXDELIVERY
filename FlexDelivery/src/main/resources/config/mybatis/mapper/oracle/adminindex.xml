@@ -31,7 +31,7 @@
 	<select id="selectChangeStore" resultType="int">
 		select nvl(count(T_NO),0) as changeStore
 		from TEMPORARY
-		where A_AGREE_NO=1
+		where A_AGREE_NO=5
 	</select>
 	
 	<select id="selectMNo" resultType="int">

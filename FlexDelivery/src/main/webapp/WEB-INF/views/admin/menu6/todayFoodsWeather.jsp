@@ -262,7 +262,7 @@ function readyDelete(cnt){
 			                                       <i class="bx bx-x d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">닫기</span>
 			                                    </button>
-			                                    <button type="button" class="btn btn-dark ml-1" data-dismiss="modal" name="modalWrite" 
+			                                    <button type="button" class="btn btn-dark ml-1" name="modalWrite" 
 			                                    	id="modalWrite" onclick="readyWriteSubmit()">
 			                                       <i class="bx bx-check d-block d-sm-none"></i>
 			                                       <span class="d-none d-sm-block">등록</span>

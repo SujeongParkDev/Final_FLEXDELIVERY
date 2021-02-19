@@ -100,6 +100,15 @@ function writeFunc(){
 
 	  }
 }
+
+function readyDelete(no){
+	if (no=='0'){
+		$('form[name=frmGiftCategoryDel]').submit();
+	} else if (no!='0'){
+		alert("하위 상품이 등록된 카테고리는 삭제할 수 없습니다!");
+		event.preventDefault();
+	}
+}
 </script>
 
 <div class="container">
@@ -222,7 +231,7 @@ function writeFunc(){
 	                                                         <span class="d-none d-sm-block">취소</span>
 	                                                      </button>
 	                                                      
-	                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="form.submit()">
+	                                                      <button type="button" class="btn btn-danger ml-1" data-dismiss="modal" id="modalDel" onclick="readyDelete(${vo.cCount})">
 	                                                         <i class="bx bx-check d-block d-sm-none"></i>
 	                                                         <span class="d-none d-sm-block">삭제</span>
 	                                                      </button>
