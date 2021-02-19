@@ -82,10 +82,12 @@ public class MemberLoginController {
 			}
 		}
 		
+		MemberVO emailVo=memServ.getEmail(vo.getMemberId());
+		
 		logger.info("랜덤키 생성값 key={}",key);
 		String subject="<Flex-Delivery> 비밀번호 찾기 인증번호";
 		String content="<h2>FLEX-DELIVERY</h2><p>인증번호 : "+key+"를 입력하세요</p>";
-		String receiver="dgd2763@naver.com";	//받는사람 이메일주소 , 임시로 내메일
+		String receiver=emailVo.getMemberEmail1()+"@"+emailVo.getMemberEmail2();	//받는사람 이메일주소 , 임시로 내메일
 		String sender="admin@FlexDelivery.com";		//보내는사람 이메일주소
 		
 		try {

@@ -8,7 +8,10 @@
 		select   A.M_CATEGORY_NO, A.M_CATEGORY_NAME, A.L_CATEGORY_NO, A.WEATHER_NO , rownum
 		from 
 		(
-			select M_CATEGORY_NO, M_CATEGORY_NAME, L_CATEGORY_NO,WEATHER_NO from mediumCategory
+			select m.M_CATEGORY_NO, M_CATEGORY_NAME, L_CATEGORY_NO,WEATHER_NO 
+			from 
+			mediumCategory m,storemainmenu s
+			where m.M_CATEGORY_NO = s.M_CATEGORY_NO
 			ORDER BY DBMS_RANDOM.RANDOM()
 		) A
 		where rownum=1

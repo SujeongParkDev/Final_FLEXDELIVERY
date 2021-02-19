@@ -189,7 +189,7 @@
                 </a>
             </li>
             <li class="github">
-                <a href="${pageContext.request.contextPath}/resources/memberResources/faq.html">
+                <a href="${pageContext.request.contextPath}/member/faq/faqList.do">
                     <p class="h5 m-0"><i class="feather-message-circle"></i></p>
                     FAQ
                 </a>

@@ -85,4 +85,10 @@
 		set member_outdate=sysdate
 		where member_id=#{memberId}	
 	</update>
+	
+	<select id="getEmail" parameterType="string" resultType="memberVo">
+		select member_email1,member_email2 
+		from member
+		where member_id=#{memberId}
+	</select>
 </mapper>

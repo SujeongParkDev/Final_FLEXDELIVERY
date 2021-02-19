@@ -30,29 +30,32 @@
     	            alert('아이디를 입력하세요');
     	            $('#memberId').focus();
     	            event.preventDefault();
-    	         }else if(!validate_userid($('#memberId').val())){
-    	            alert('아이디를 정확히 입력하세요');
-    	            $('#memberId').focus();
-    	            event.preventDefault();            
-    	         }else if($('#memberEmail1').val().length<1){
+    	            return false;
+    	         }else if($('input[name=memberEmail1]').val().length<1){
     	            alert('이메일아이디를 입력하세요');
     	            $('#memberEmail1').focus();
     	            event.preventDefault();
-    	         }else if($('#memberEmail2').val().length<1){
+    	            return false;
+    	         }else if($('input[name=memberEmail2]').val().length<1){
     	            alert('이메일주소를 입력하세요');
     	            $('#memberEmail2').focus();
     	            event.preventDefault();
+    	            return false;
+    	         }else if(!validate_memberid($('#memberId').val())){
+    	            alert('아이디를 정확히 입력하세요');
+    	            $('#memberId').focus();
+    	            event.preventDefault();
+    	            return false;
     	         }else if(!validate_email($('#memberEmail2').val())){
     	            alert('이에일을 정확히 입력하세요');
     	            $('#memberEmail2').focus();
-    	            event.preventDefault();            
+    	            event.preventDefault();
+    	            return false;
     	         }
     	      });
     	});
     </script>
-    
 </head>
-
 <body>
     <div class="login-page vh-100">
         <video loop autoplay muted id="vid">
@@ -84,7 +87,6 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/jquery/jquery.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
     <!-- slick Slider JS-->
     <script type="text/javascript" src="<c:url value='/resources/memberResources/vendor/slick/slick.min.js' />"></script>

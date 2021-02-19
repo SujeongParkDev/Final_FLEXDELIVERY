@@ -34,9 +34,9 @@ function searchElist(idx){
 				str+="<table class='table table-borderless table-hover'>";
 					str+="<thead>";
 						str+="<tr>";
-						str+="<th scope='col' width='10%'>No</th>";
-						str+="<th scope='col' width='70%' align='center'>Title</th>";
-						str+="<th scope='col' width='20%'>Date</th>";
+						str+="<th scope='col' width='5%'>No</th>";
+						str+="<th scope='col' width='65%' align='center'>Title</th>";
+						str+="<th scope='col' width='30%'>Date</th>";
 						str+="</tr>";
 					str+="</thead>";
 					str+="<tbody>";
@@ -111,9 +111,9 @@ function searchElist(idx){
         	<table class="table table-borderless table-hover">
         		<thead>
 				    <tr>
-				      <th scope="col" width="10%">No</th>
-				      <th scope="col" width="70%" align="center">Title</th>
-				      <th scope="col" width="20%">Date</th>
+				      <th scope="col" width="5%">No</th>
+				      <th scope="col" width="65%" align="center">Title</th>
+				      <th scope="col" width="30%">Date</th>
 				    </tr>
 				</thead>
 				<tbody>

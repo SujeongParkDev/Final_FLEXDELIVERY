@@ -124,7 +124,7 @@ body > header > div.top-header > div > div{
 							<label for="recipient-name" class="control-label">사업자등록 번호</label>
 							<input type="text" id="oRegisterNo" name="oRegisterNo"
 								class="col-md-8 form-group"
-								placeholder="숫자만 입력, 예시 :  1048300469" pattern="[0-9]+">
+								placeholder="숫자만 입력, 예시 :  1048300469" maxlength="10" pattern="[0-9]+">
 							<span class="count"></span>
 						</div>
 						<div class="form-group">

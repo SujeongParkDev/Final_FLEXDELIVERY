@@ -111,6 +111,11 @@ public class MemberServiceImpl implements MemberService{
 	public int memberOut(String memberId) {
 		return memberDao.memberOut(memberId);
 	}
+
+	@Override
+	public MemberVO getEmail(String memberId) {
+		return memberDao.getEmail(memberId);
+	}
 	
 	
 }
