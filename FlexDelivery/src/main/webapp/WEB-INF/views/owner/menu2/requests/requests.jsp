@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../../../ownerInc/jianSidebarTop.jsp"%>
+<%@include file="../../../ownerInc/top.jsp"%>
 <style>
 input {
 	border: 1px solid rgb(212, 212, 212);
@@ -29,7 +29,7 @@ input {
 						</div>
 						<div class="col-md-4 col-sm-12"></div>
 					</div>
-					<div class="table-responsive">
+					<div class="table-responsive mb-5">
 						<table class="table">
 							<thead>
 								<tr class="text-center" style="background-color:#004e66; color:white;">
@@ -54,29 +54,29 @@ input {
 													<span class="badge bg-light">승인대기</span>
 												</c:if> 
 												<c:if test="${tempVo['A_AGREE_NO'] == 2 }">
-													<span class="badge bg-danger">신청취소</span>
+													<span class="badge bg-danger text-light">신청취소</span>
 												</c:if> 
 												<c:if test="${tempVo['A_AGREE_NO'] == 3 }">
-													<span class="badge bg-success">승인완료</span>
+													<span class="badge bg-success text-light">승인완료</span>
 												</c:if> 
 												<c:if test="${tempVo['A_AGREE_NO']  == 4 }">
-													<span class="badge bg-danger">승인반려</span>
+													<span class="badge bg-danger text-light">승인반려</span>
 												</c:if>
 												<c:if test="${tempVo['A_AGREE_NO']  == 5 }">
-													<span class="badge bg-danger">변경대기</span>
+													<span class="badge bg-danger text-light">변경대기</span>
 												</c:if>
 												<c:if test="${tempVo['A_AGREE_NO']  == 6 }">
-													<span class="badge bg-success">변경완료</span>
+													<span class="badge bg-success text-light">변경완료</span>
 												</c:if>
 												<c:if test="${tempVo['A_AGREE_NO']  == 7 }">
-													<span class="badge bg-danger">변경반려</span>
+													<span class="badge bg-danger text-light">변경반려</span>
 												</c:if>
 												<c:if test="${tempVo['A_AGREE_NO']  == 8 }">
-													<span class="badge bg-danger">변경반려</span>
+													<span class="badge bg-danger text-light">변경반려</span>
 												</c:if>
 												</td>
-											<td class="p-0">
-												<button class="buttons badge bg-dark" onclick="gotempVo(${tempVo['T_NO']})">상세 보기</button></td>
+											<td class="p-3">
+												<button class="buttons badge bg-dark text-light" onclick="gotempVo(${tempVo['T_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -94,10 +94,10 @@ input {
 													<span class="badge bg-light">승인대기</span>
 												</c:if> 
 												<c:if test="${adVo['AD_PAY_FLAG'] == 'Y' }">
-													<span class="badge bg-success">승인완료</span>
+													<span class="badge bg-success text-light">승인완료</span>
 												</c:if></td>
-											<td class="p-0">
-												<button class="buttons badge bg-dark" onclick="goAD(${adVo['STOREAD_NO']})">상세 보기</button></td>
+											<td class="p-3">
+												<button class="buttons badge bg-dark text-light" onclick="goAD(${adVo['STOREAD_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -115,16 +115,16 @@ input {
 													<span class="badge bg-light">승인대기</span>
 												</c:if>
 												 <c:if test="${stVo['A_AGREE_NO']== 2 }">
-													<span class="badge bg-danger">신청취소</span>
+													<span class="badge bg-danger text-light">신청취소</span>
 												</c:if>
 												 <c:if test="${stVo['A_AGREE_NO']== 3 }">
-													<span class="badge bg-success">승인완료</span>
+													<span class="badge bg-success text-light">승인완료</span>
 												</c:if> 
 												<c:if test="${stVo['A_AGREE_NO'] == 4 }">
-													<span class="badge bg-danger">승인반려</span>
+													<span class="badge bg-danger text-light">승인반려</span>
 												</c:if></td>
-											<td class="p-0">
-												<button class="buttons badge bg-dark" onclick="goStores(${stVo['STORE_NO']})">상세 보기</button></td>
+											<td class="p-3">
+												<button class="buttons badge bg-dark text-light" onclick="goStores(${stVo['STORE_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -142,16 +142,16 @@ input {
 													<span class="badge bg-light">승인대기</span>
 												</c:if>
 												 <c:if test="${regiVo['A_AGREE_NO']== 2 }">
-													<span class="badge bg-danger">신청취소</span>
+													<span class="badge bg-danger text-light">신청취소</span>
 												</c:if>
 												 <c:if test="${regiVo['A_AGREE_NO']== 3 }">
-													<span class="badge bg-success">승인완료</span>
+													<span class="badge bg-success text-light">승인완료</span>
 												</c:if>
 												 <c:if test="${regiVo['A_AGREE_NO'] == 4 }">
-													<span class="badge bg-danger">승인반려</span>
+													<span class="badge bg-danger text-light">승인반려</span>
 												</c:if></td>
-											<td class="p-0">
-												<button class="buttons badge bg-dark" onclick="goDetail(${regiVo['O_REGISTER_NO']})">상세 보기</button></td>
+											<td class="p-3">
+												<button class="buttons badge bg-dark text-light" onclick="goDetail(${regiVo['O_REGISTER_NO']})">상세 보기</button></td>
 											<td></td>
 										</tr>
 									</c:forEach>
@@ -271,5 +271,5 @@ $(function(){
 });
 	
 </script>
-<%@include file="../../../ownerInc/jianSidebarBottom.jsp"%>
+<%@include file="../../../ownerInc/bottom.jsp"%>
 

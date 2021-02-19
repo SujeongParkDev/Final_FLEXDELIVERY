@@ -94,7 +94,7 @@
 							str+="<p class='text-muted small'>"+formatDate(item.reviewRegdate)+"</p></div>";
 							str+="<div class='reviews-members-body'>";
 							if(item.reviewFilename!=null){
-								str+="<div class='row mb-3'><img src='<c:url value='/resources/imgs/ReviewImage/"+item.reviewFilename+"'/>' class='img-fluid mx-auto' width='50%'></div>";
+								str+="<div class='row mb-3'><img src='<c:url value='/resources/imgs/ReviewImages/"+item.reviewFilename+"'/>' class='img-fluid mx-auto' width='50%'></div>";
 							}
 							str+="<p class='p-3 mb-3 bg-light rounded w-100'><span class='badge bg-dark text-light'>리뷰</span><span class='small text-muted' style='float:right'>&nbsp;&nbsp;"+item.menuName+" 등"+item.menuCount+"건</span><br><br>"+item.reviewContent+"</p>";
 							if(map.coList.length>0){

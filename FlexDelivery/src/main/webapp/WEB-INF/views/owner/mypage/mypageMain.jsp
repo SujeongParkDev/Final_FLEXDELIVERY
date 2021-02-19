@@ -392,7 +392,8 @@ $(function(){
 				<br><br><Br>
 			<!-- 헤드 시작 -->
 			<div class="col-11 text-right mt-4 mb-4" >
-				 <h5 style="display: inline;">[${ownerName}]</h5><span><small>&nbsp;사장님 반갑습니다</small></span>
+				 <h5 style="display: inline;">[${ownerName}]</h5><span><small>&nbsp;사장님 반갑습니다</small></span><br>
+				<span><small><a href="<c:url value='/owner/menu2/requests/requests.do'/>" style="decoration:none; color:black;">[ 승인 현황 보기 ]</a></small></span>
 			</div>
 			<div class="col-12 col-md-1"></div>
 				<br><br>
