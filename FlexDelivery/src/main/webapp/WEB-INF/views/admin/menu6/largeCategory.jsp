@@ -224,12 +224,12 @@ function writeFunc(){
 	  }
 }//editFunc */
 
-function readyEdit(){
-	var img=$('#upfile2').val();
+/* function readyEdit(){
+	var img=$('#upfile').val();
 	console.log("img:"+img);
 	
 	
-	if (img=="0"){
+	if (img==""){
 		var bool=confirm("기존 이미지 파일을 계속 사용하시겠습니까?");
 		if (bool){
 			$('form[name=frmLCategoryEdit]').submit();
@@ -238,7 +238,7 @@ function readyEdit(){
 		}
 	}
 	
-}
+} */
 
 function readyDel(no){
 	console.log("no:"+no);
@@ -464,7 +464,7 @@ function readyDel(no){
                                                          <i class="bx bx-x d-block d-sm-none"></i>
                                                          <span class="d-none d-sm-block">닫기</span>
                                                       </button>
-                                                      <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="readyEdit()">
+                                                      <button type="button" class="btn btn-dark ml-1" name="modalEdit" id="modalEdit" onclick="form.submit()">
                                                          <i class="bx bx-check d-block d-sm-none"></i>
                                                          <span class="d-none d-sm-block">수정</span>
                                                       </button>

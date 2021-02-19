@@ -139,24 +139,24 @@
 	
 	<select id="selectGProduct5" resultType="map">
 		select * from
-		(
-		    select a.*, rownum as rnum
-		    from
-		    (
-		        select (select g_p_type_price from giftpricetype gp where gp.g_p_type_no=g.g_p_type_no) as g_p_type_Price,
-		        (select g_product_name from giftproduct where g.g_product_no=g_product_no) as g_product_name, count(*) as count,
-		        (
-		            select g_category_name
-		            from giftcategory c, giftproduct p
-		            where c.G_CATEGORY_NO = p.G_CATEGORY_NO
-		            and p.G_PRODUCT_NO=g.g_product_no
-		        ) as g_category_name
-		        from gift g
-		        group by g.G_P_TYPE_NO,g.G_PRODUCT_NO
-		        order by count
-		    )a
-		)
-		where 5>=rnum
+      (
+          select a.*, rownum as rnum
+          from
+          (
+              select (select g_p_type_price from giftpricetype gp where gp.g_p_type_no=g.g_p_type_no) as g_p_type_Price,
+              (select g_product_name from giftproduct where g.g_product_no=g_product_no) as g_product_name, count(*) as counts,
+              (
+                  select g_category_name
+                  from giftcategory c, giftproduct p
+                  where c.G_CATEGORY_NO = p.G_CATEGORY_NO
+                  and p.G_PRODUCT_NO=g.g_product_no
+              ) as g_category_name
+              from gift g
+              group by g.G_P_TYPE_NO,g.G_PRODUCT_NO
+              order by counts desc
+          )a
+      )
+      where 5>=rnum
 	</select>
 
 </mapper>
