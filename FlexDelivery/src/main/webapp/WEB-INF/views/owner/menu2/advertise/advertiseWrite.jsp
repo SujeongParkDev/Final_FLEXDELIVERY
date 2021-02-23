@@ -15,8 +15,7 @@
 		IMP.init('imp96883620');
 		
 		$('.adSubmit').click(function(){
-			$('form[name=adfrm]').submit();
-			/* var pay=$('input[name=advertisePrice]').val();
+			var pay=$('input[name=advertisePrice]').val();
 			var tel=$('input[name=hp]').val();
 			var ownerName=$('input[name=buyer_name]').val();
 			var method=$('select[name=pay_method]').val();;
@@ -43,7 +42,7 @@
 		            alert('결제 실패  : ' + rsp.error_msg);
 		            
 		          }
-			}); */
+			});
 		});
 		
 	}); 

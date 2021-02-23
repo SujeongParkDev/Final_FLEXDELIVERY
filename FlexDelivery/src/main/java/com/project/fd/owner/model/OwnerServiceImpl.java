@@ -112,21 +112,22 @@ public class OwnerServiceImpl implements OwnerService {
 		 
 		 
 		 int result = NO_LICENSE;
-		 if(cnt4==1) {
-			 result=HAVE_ALL;
-		 }else {
-			 if(cnt1==1) {
-				 result=LICENSE_STAY;
-			 } else if(cnt4==1) {
-					 
-			 }else if(cnt2==1 || cnt6==1 || cnt7==1) {
-				 result=NO_STORE;
-			 }else if(cnt3==1) {
-				 result=STORE_STAY;
-			 }else if(cnt5==1) {
-				 result=WITHDRAW_STAY;
-			 }
-		 }
+	       if(cnt4==1) {
+	          result=HAVE_ALL;
+	       }else {
+	          if(cnt1==1) {
+	             result=LICENSE_STAY;
+	             return result;
+	          }else if(cnt3==1) {
+	             result=STORE_STAY;
+	             return result;
+	          }else if(cnt5==1) {
+	             result=WITHDRAW_STAY;
+	             return result;
+	          }else if(cnt2==1 || cnt6==1 || cnt7==1) {
+	             result=NO_STORE;
+	          }
+	       }
 		 
 		 
 		/* 

@@ -83,6 +83,9 @@ public class MemberCartController {
 		}
 		int storeNo=list.get(0).getStoreNo();
 		MemberStoresVO vo=storeServ.selectStoresDetail(storeNo);
+		int today=storeServ.today()-1;
+		logger.info("11111111111111111111111111111111111111111today={}",today);
+		map.put("today", today);
 		map.put("vo", vo);
 		map.put("list", list);
 		return map;

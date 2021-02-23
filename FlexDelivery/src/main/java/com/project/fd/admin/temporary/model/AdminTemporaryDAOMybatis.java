@@ -40,6 +40,7 @@ public class AdminTemporaryDAOMybatis implements AdminTemporaryDAO {
 	@Transactional
 	@Override
 	public int editAgree(AdminTemporaryVO vo) {
+		System.out.println(vo);
 		int cnt1 = sqlSession.update(namespace + "editOwner", vo);
 		int cnt2 = sqlSession.update(namespace + "editRegister", vo);
 		int cnt3 = sqlSession.update(namespace + "editStores", vo);

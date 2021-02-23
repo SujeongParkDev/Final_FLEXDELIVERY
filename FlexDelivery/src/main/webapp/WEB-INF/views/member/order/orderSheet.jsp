@@ -55,8 +55,7 @@
 	};
 	
 	function pay(){
-		$('form[name=orderForm]').submit();
-		/* var pay=$('input[name=ordersPrice]').val();
+		var pay=$('input[name=ordersPrice]').val();
 		var tel=$('input[name=ordersHp]').val();
 		var address=$('input[name=ordersAddress]').val();
 		var memName=$('input[name=memberName]').val();
@@ -68,7 +67,7 @@
           pay_method: method,
           merchant_uid: 'FD_'+merchant,
           name: "FLEX-DELIVERY",
-          amount: 10,//pay로 변경해야댐
+          amount: pay,//pay로 변경해야댐
           buyer_name: memName,
           buyer_tel: tel,
           buyer_addr: address
@@ -79,7 +78,7 @@
 	            alert('결제 실패  : ' + rsp.error_msg);
 	            
 	          }
-		}); */
+		});
 	};
 </script>
 
