@@ -47,14 +47,13 @@
 			event.preventDefault();
 			return false;
 		}
-		$('form[name=frmGift]').submit();
-		/* var price=$('input[name=price]').val();
+		var price=$('#price').val();
 		console.log(pay);
 		IMP.request_pay({
           pay_method: "card",
           merchant_uid: 'FD_'+new Date().getTime(),
           name: "FLEX-DELIVERY 상품권",
-          amount: 10,//pay로 변경해야댐
+          amount: price,//pay로 변경해야댐
           buyer_email:""
 		},function(rsp){
 			if (rsp.success) {
@@ -63,7 +62,7 @@
 	            alert('결제 실패  : ' + rsp.error_msg);
 	            
 	          }
-		}); */
+		});
 	};
 	
 	function change(e){

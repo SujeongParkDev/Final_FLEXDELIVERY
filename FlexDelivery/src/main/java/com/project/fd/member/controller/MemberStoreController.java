@@ -55,7 +55,7 @@ public class MemberStoreController {
 		int memberNo=(Integer)session.getAttribute("memberNo");
 		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
 		int today=memStoresServ.today()-1;
-		
+		logger.info("11111111111111111111111111111111111111111today={}",today);
 		model.addAttribute("today",today);
 		model.addAttribute("likeList",likeList);
 		model.addAttribute("list",list);
@@ -73,7 +73,7 @@ public class MemberStoreController {
 		int memberNo=(Integer)session.getAttribute("memberNo");
 		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
 		int today=memStoresServ.today()-1;
-		
+		logger.info("11111111111111111111111111111111111111111today={}",today);
 		model.addAttribute("today",today);
 		model.addAttribute("likeList",likeList);
 		model.addAttribute("list",list);
@@ -109,7 +109,7 @@ public class MemberStoreController {
 		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
 		logger.info("관심등록 리스트 출력결과 likeList.size={}",likeList.size());
 		int today=memStoresServ.today()-1;
-		
+		logger.info("11111111111111111111111111111111111111111today={}",today);
 		model.addAttribute("today",today);
 		model.addAttribute("likeList",likeList);
 		model.addAttribute("list",list);
@@ -141,7 +141,7 @@ public class MemberStoreController {
 		List<MemberLikeStoreVO> likeList=memStoresServ.selectLikeStore(memberNo);
 		logger.info("ajax관심등록 리스트 출력결과 likeList.size={}",likeList.size());
 		int today=memStoresServ.today()-1;
-		
+		logger.info("11111111111111111111111111111111111111111today={}",today);
 		map.put("today",today);
 		map.put("likeList", likeList);
 		map.put("list", list);
@@ -170,7 +170,7 @@ public class MemberStoreController {
 		boolean likeChk=memStoresServ.chkLike(likeVo); //관심등록 체크, true면 관심등록한 점포임
 		boolean couponChk=coupServ.chkCoupon(storeNo); //쿠폰함 체크, true면 쿠폰발급가능 점포
 		int today=memStoresServ.today()-1;
-		
+		logger.info("11111111111111111111111111111111111111111today={}",today);
 		model.addAttribute("today",today);
 		model.addAttribute("vo",vo);
 		model.addAttribute("cartChk",cartChk); 

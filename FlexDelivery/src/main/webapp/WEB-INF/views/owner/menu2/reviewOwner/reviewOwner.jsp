@@ -209,12 +209,12 @@
       function drawStuff() {
     	  
         var data = new google.visualization.arrayToDataTable([
-          ['countNum', 'Person'],
-          ["5점 ", 2],
-          ["4점 ", 2],
-          ["3점 ", 0],
-          ["2점 ", 0],
-          ['1점 ', 3]
+        	  ['countNum', 'Person'],
+        	    ["5점 ", 44],
+        	    ["4점 ", 31],
+        	    ["3점 ", 12],
+        	    ["2점 ", 10],
+        	    ['1점 ', 3]
         ]);
 
         var options = {
@@ -271,7 +271,7 @@
             contentType: 'application/x-www-form-urlencoded; charset=utf-8',
             success:function(res){
             	var  output="<div style='border: 2px solid lightgray; padding:5%;' class=''>";
-               output+="<textarea type='text' class='col-md-7 text-left content' name='rCommentContent'  style='width: 80%; border:none; background: unset;' value="+res.rCommentContent+">";
+               output+="<input type='text' class='col-md-7 text-left content' name='rCommentContent'  style='width: 80%; border:none; background: unset;' value="+res.rCommentContent+">";
                output+="<input type='submit' class='button' style='color:black; background-color:#fcbe32; border: none; ' value='수정하기'>";
           	 	output+="</div>";
                $('.result'+num).append(output);

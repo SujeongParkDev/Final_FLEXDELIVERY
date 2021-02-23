@@ -31,12 +31,14 @@
 		update ownerregister
 		set o_register_no=#{oRegisterNo}, o_register_filename=#{tFilename}
 		where owner_no =#{ownerNo}
+		and a_agree_no=3
 	</update>
 	<update id="editStores" parameterType="adminTemporaryVo">
 		update stores
 		set store_name=#{tStoresName}, store_address=#{tStoresAddress}, store_address_detail=#{tStoresAddressDetail}, 
     		location_no=#{locationNo}    
 		where store_no=#{storeNo}
+		and a_agree_no=3
 	</update>
 
 	
