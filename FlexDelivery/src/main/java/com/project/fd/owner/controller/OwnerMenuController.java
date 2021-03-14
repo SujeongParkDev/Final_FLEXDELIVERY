@@ -65,8 +65,19 @@ public class OwnerMenuController {
 	@RequestMapping(value = "/menuMain.do", method = RequestMethod.GET) 
 	public String menuMain_get(HttpSession session, Model model) {
 		int ownerNo = (Integer) session.getAttribute("ownerNo");
-		int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
-	
+		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+		}
+		
 		logger.info("menuMain 창 보여주기 파라미터 no={}",storeNo);
 		//=>Q.점포 번호가 필요합니다. 세션으로 두는게 편할까??
 		
@@ -124,7 +135,20 @@ public class OwnerMenuController {
 		@RequestMapping(value = "/menuGroup.do", method = RequestMethod.GET) 
 		public String  menuGroup_get(HttpSession session, Model model){
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
+			
 			logger.info("menuGroup 창 보여주기 , 파라미터 = {} ", storeNo);
 			
 			//전체 메뉴 그룹 구하기
@@ -216,7 +240,20 @@ public class OwnerMenuController {
 		public String  menuGroup_write_get(HttpSession session, Model model){
 
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 		
 			logger.info("menuGroup 등록하기창 보여주기 파라미터 storeNo={}",storeNo);
 			
@@ -256,7 +293,19 @@ public class OwnerMenuController {
 		public String  menuChoice_get(@ModelAttribute OwnerStoreMenuGroupVO vo,
 							HttpSession session, Model model){
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 			
 			logger.info("menuChoice 창 보여주기, 파라미터 vo={} , storeNo={} ", vo, storeNo);
 			
@@ -289,7 +338,19 @@ public class OwnerMenuController {
 			}
 			
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 			
 			//받아온 storeNo으로 메뉴그룹 구하기
 			List<OwnerStoreMenuGroupVO> list =null;
@@ -431,7 +492,19 @@ public class OwnerMenuController {
 					@RequestParam (defaultValue = "0") int sMGroupNo){
 			
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 			logger.info("menuWrite 등록하기 창 보여주기,  파라미터 storeNo={} ", storeNo);
 			
 			List<OwnerStoreMenuGroupVO> list = null;
@@ -503,7 +576,19 @@ public class OwnerMenuController {
 		@RequestMapping(value = "/menuOption.do", method = RequestMethod.GET) 
 		public String  menuOptionGroup_get(HttpSession session, Model model){
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 			logger.info("menuOption 창 보여주기 , 파라미터 = {} ", storeNo);
 			
 			//전체 메뉴 그룹 구하기
@@ -536,7 +621,19 @@ public class OwnerMenuController {
 		@RequestMapping(value = "/signatureMenu.do", method = RequestMethod.GET) 
 		public String  signatureMenu_get(HttpSession session, Model model,HttpServletRequest request){
 			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+				
+				return "common/message";
+			}
+			
 			logger.info("signatureMenu 창 보여주기 , 파라미터 = {} ", storeNo);
 			
 			int countResult = ownerMenuService.selectCountMainMenu(storeNo);

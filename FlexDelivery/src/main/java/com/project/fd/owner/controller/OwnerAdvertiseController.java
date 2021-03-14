@@ -52,7 +52,8 @@ public class OwnerAdvertiseController {
 	@Autowired
 	private OwnerService ownerService;
 
-	
+	@Autowired
+	private OwnerStoresService ownerStoreService;
 	
 	
 	// 테스트용
@@ -72,16 +73,18 @@ public class OwnerAdvertiseController {
 	// advertiseMain 을 보여주기위한 창
 	@RequestMapping(value = "/advertiseMain.do", method = RequestMethod.GET)
 	public String advertiseMain_get( HttpSession session, Model model) {
-		int storeNo=0;
-			
-		String msg="점포가 없습니다.", url="/owner/index.do";
-		if(session.getAttribute("storeNo")==null) {
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+  		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
-			return "common/message";
 			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
+			return "common/message";
 		}
 		
 		logger.info("advertiseMain 창 보여주기, 파라미터 storeNo={}",storeNo);
@@ -161,16 +164,18 @@ public class OwnerAdvertiseController {
 	public String advertiseWrite_get(@RequestParam(defaultValue = "0") int advertiseNo, 
 				HttpSession session, Model model) {
 		//storeNo 구하기
-		int storeNo=0;
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+  		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
 		
-		String msg="점포가 없습니다.", url="/owner/index.do";
-		if(session.getAttribute("storeNo")==null) {
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
-			return "common/message";
 			
-		}else {
-			storeNo= (Integer)session.getAttribute("storeNo");
+			return "common/message";
 		}
 		logger.info("advertiseWrite 창 보여주기, 파라미터 advertiseNo={} , storeNo={}", advertiseNo,storeNo);
 		
@@ -237,17 +242,19 @@ public class OwnerAdvertiseController {
 	public String advertiseExpire_post(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
 				HttpSession session, Model model) {
 			//storeNo 구하기
-				int storeNo=0;
+			int ownerNo = (Integer) session.getAttribute("ownerNo");
+	  		int storeNo =0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+			
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				String msg="점포번호가 없습니다.", url="/owner/index.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
 				
-				String msg="점포가 없습니다.", url="/owner/index.do";
-				if(session.getAttribute("storeNo")==null) {
-					model.addAttribute("msg",msg);
-					model.addAttribute("url",url);
-					return "common/message";
-					
-				}else {
-					storeNo= (Integer)session.getAttribute("storeNo");
-				}
+				return "common/message";
+			}
 				
 			//1
 			logger.info("만료된 글 목록 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);

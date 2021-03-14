@@ -49,12 +49,24 @@ public class OwnerOrderController {
 	
 	
 	
-		@RequestMapping("/orderMain.do")
-		public String orderMain(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
-			HttpSession session, Model model) {
-		//storeNo 구하기
-			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+	@RequestMapping("/orderMain.do")
+	public String orderMain(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+		HttpSession session, Model model) {
+	//storeNo 구하기
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+		}
+			
 			
 		//1
 		logger.info("주문 접수중 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -90,12 +102,24 @@ public class OwnerOrderController {
 	}
 	
 		
-		@RequestMapping("/orderIng.do")
-		public String orderIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
-			HttpSession session, Model model) {
-		//storeNo 구하기
-			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+	@RequestMapping("/orderIng.do")
+	public String orderIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+		HttpSession session, Model model) {
+	//storeNo 구하기
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+		}
+		
 			
 			
 		//1
@@ -138,12 +162,24 @@ public class OwnerOrderController {
 	
 		
 		
-		@RequestMapping("/orderDeliveryIng.do")
-		public String orderDeliveryIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
-			HttpSession session, Model model) {
-		//storeNo 구하기
-			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+	@RequestMapping("/orderDeliveryIng.do")
+	public String orderDeliveryIng(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+		HttpSession session, Model model) {
+	//storeNo 구하기
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+		}
+		
 			
 			
 		//1
@@ -181,12 +217,24 @@ public class OwnerOrderController {
 	
 		
 		
-		@RequestMapping("/orderSuccess.do")
-		public String orderDeliverySuccess(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
-			HttpSession session, Model model) {
-		//storeNo 구하기
-			int ownerNo = (Integer) session.getAttribute("ownerNo");
-			int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+	@RequestMapping("/orderSuccess.do")
+	public String orderDeliverySuccess(@ModelAttribute OwnerAdvertiseSearchVO searchVo, 
+		HttpSession session, Model model) {
+	//storeNo 구하기
+		int ownerNo = (Integer) session.getAttribute("ownerNo");
+		int storeNo =0;
+		try {
+			storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			String msg="점포번호가 없습니다.", url="/owner/index.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+		}
+		
 			
 			
 		//1
@@ -232,21 +280,22 @@ public class OwnerOrderController {
 			  @RequestParam(defaultValue = "0") String hurryImgTerm,
 			  @RequestParam(defaultValue = "0") int type,
 			  Model model) {
+			 
 		  logger.info("각 주문 번호에 따른 메뉴 제목 찾기, ordersNo={}, ordersDiscount={}", ordersNo,ordersDiscount);
+			  
+			  double hurryImg = Double.parseDouble(hurryImgTerm);
+			  
+			  String title = ownerOrderService.getTitle(ordersNo);
+			  model.addAttribute("title",title);
+			  model.addAttribute("ordersNo",ordersNo);
+			  model.addAttribute("ordersDiscount",ordersDiscount);
+			  model.addAttribute("type",type);
+			  model.addAttribute("hurryImg",hurryImg);
+			
+			  
+			  return "owner/menu2/order/orderTd"; 
 		  
-		  double hurryImg = Double.parseDouble(hurryImgTerm);
-		  
-		  String title = ownerOrderService.getTitle(ordersNo);
-		  model.addAttribute("title",title);
-		  model.addAttribute("ordersNo",ordersNo);
-		  model.addAttribute("ordersDiscount",ordersDiscount);
-		  model.addAttribute("type",type);
-		  model.addAttribute("hurryImg",hurryImg);
-		
-		  
-		  return "owner/menu2/order/orderTd"; 
-	  
-	  }
+		  }
 	  
 	  @ResponseBody
 	  @RequestMapping("/orderRequestResult.do")
@@ -353,7 +402,19 @@ public class OwnerOrderController {
 					HttpSession session, Model model) {
 				//storeNo 구하기
 		  		int ownerNo = (Integer) session.getAttribute("ownerNo");
-		  		int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+		  		int storeNo =0;
+				try {
+					storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+				
+				}catch(NullPointerException e) {
+					e.printStackTrace();
+					String msg="점포번호가 없습니다.", url="/owner/index.do";
+					model.addAttribute("msg",msg);
+					model.addAttribute("url",url);
+					
+					return "common/message";
+				}
+				
 			
 				//1
 				logger.info("주문완료 내역 페이지, 파라미터 searchVo={},storeNo={}", searchVo,storeNo);
@@ -421,8 +482,18 @@ public class OwnerOrderController {
 	  public int orderCount(HttpSession session) {
 		  int ownerNo =  (Integer)session.getAttribute("ownerNo");
 		  
-		  int storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
-		  int count = ownerOrderService.selectCountByStoreNo(storeNo);
+		  int storeNo =0;
+		  int count= 0;
+			try {
+				storeNo = ownerStoreService.selectStoreNoByNo(ownerNo);
+				 count = ownerOrderService.selectCountByStoreNo(storeNo);
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+				count = -10;
+				
+			}
+			
+		 
 		  
 		  return count;
 	  }
