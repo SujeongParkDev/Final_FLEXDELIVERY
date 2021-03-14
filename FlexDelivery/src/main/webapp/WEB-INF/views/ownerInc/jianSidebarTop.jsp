@@ -38,14 +38,19 @@
 		$.ajax({
 			url:"<c:url value='/owner/menu2/order/orderCount.do'/>",
 			success:function(res){
-				if(res<10 && res >=1){
-					res="00"+res;
-				}else if(res>=10 && res<100){
-					res="0"+res;
-				}else if(res==0){
-					res="";
+				
+				if(res==-10){
+					location.href="<c:url value='/owner/index.do'/>";
+				}else{
+					if(res<10 && res >=1){
+						res="00"+res;
+					}else if(res>=10 && res<100){
+						res="0"+res;
+					}else if(res==0){
+						res="";
+					}
+					$('#ordersCount').html(res);
 				}
-				$('#ordersCount').html(res);
 				
 			},
 			error:function(xhr,status,error){
